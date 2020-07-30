@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <com.kieronquinn.app.taptap.preferences.Preference
+        android:icon="@drawable/ic_tensorflow"
+        android:key="gesture_device_model"
+        android:title="@string/setting_gesture_model"
+        android:summary="@string/setting_gesture_model_desc"/>
+
+    <com.kieronquinn.app.taptap.preferences.Preference
+        android:icon="@drawable/ic_feedback"
+        android:title="@string/setting_gesture_sensitivity"
+        android:summary="@string/setting_gesture_sensitivity_desc"/>
+
+</PreferenceScreen>

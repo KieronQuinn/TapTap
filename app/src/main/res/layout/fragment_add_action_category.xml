@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="?android:actionBarSize"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingTop="@dimen/margin_small"
+    android:paddingStart="@dimen/margin_large"
+    android:paddingEnd="@dimen/margin_large"
+    android:paddingBottom="@dimen/margin_extra_large"
+    android:clipToPadding="false">
+    
+    <androidx.cardview.widget.CardView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/add_action_category_launch"
+        android:layout_marginEnd="@dimen/margin_small"
+        android:focusable="true"
+        android:clickable="true"
+        android:foreground="?selectableItemBackground"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/add_action_category_utilities"
+        app:cardCornerRadius="@dimen/margin_small">
+
+        <TextView
+            android:layout_margin="@dimen/margin_large"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/margin_large"
+            android:text="@string/add_action_category_launch"
+            android:gravity="center_vertical"
+            android:drawableStart="@drawable/ic_action_category_launch"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium.TapTap.Primary"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/add_action_category_utilities"
+        android:layout_marginStart="@dimen/margin_small"
+        android:focusable="true"
+        android:clickable="true"
+        android:foreground="?selectableItemBackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/add_action_category_launch"
+        app:layout_constraintTop_toTopOf="parent"
+        app:cardCornerRadius="@dimen/margin_small">
+
+        <TextView
+            android:layout_margin="@dimen/margin_large"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/margin_large"
+            android:text="@string/add_action_category_utilities"
+            android:gravity="center_vertical"
+            android:drawableStart="@drawable/ic_action_category_utilities"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium.TapTap.Primary"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/add_action_category_actions"
+        android:layout_marginEnd="@dimen/margin_small"
+        android:layout_marginTop="@dimen/margin_large"
+        android:focusable="true"
+        android:clickable="true"
+        android:foreground="?selectableItemBackground"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/add_action_category_launch"
+        app:layout_constraintEnd_toStartOf="@+id/add_action_category_advanced"
+        app:cardCornerRadius="@dimen/margin_small">
+
+        <TextView
+            android:layout_margin="@dimen/margin_large"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/margin_large"
+            android:text="@string/add_action_category_actions"
+            android:gravity="center_vertical"
+            android:drawableStart="@drawable/ic_action_back"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium.TapTap.Primary"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/add_action_category_advanced"
+        android:layout_marginStart="@dimen/margin_small"
+        android:layout_marginTop="@dimen/margin_large"
+        android:focusable="true"
+        android:clickable="true"
+        android:foreground="?selectableItemBackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/add_action_category_actions"
+        app:layout_constraintTop_toBottomOf="@id/add_action_category_launch"
+        app:cardCornerRadius="@dimen/margin_small">
+
+        <TextView
+            android:layout_margin="@dimen/margin_large"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/margin_large"
+            android:text="@string/add_action_category_advanced"
+            android:gravity="center_vertical"
+            android:drawableStart="@drawable/ic_action_category_advanced"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium.TapTap.Primary"/>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

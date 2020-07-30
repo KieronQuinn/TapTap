@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recycler_view"
+        android:clipToPadding="false"
+        android:scrollbarStyle="outsideInset"
+        android:overScrollMode="never"
+        tools:listitem="@layout/item_action" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.75"
+        android:elevation="100dp">
+
+        <include layout="@layout/item_action"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="100dp"
+            android:id="@+id/fakeCard"
+            android:visibility="gone"
+            android:layout_gravity="bottom"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true">
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/fab_action"
+            android:fontFamily="@font/hkgrotesk"
+            android:layout_gravity="center|bottom"
+            android:layout_marginBottom="@dimen/margin_large"
+            android:text="@string/fab_add_action"
+            android:textAllCaps="false"
+            app:icon="@drawable/ic_fab_add"/>
+
+    </FrameLayout>
+
+</FrameLayout>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph.xml"
+    app:startDestination="@id/settingsFragment">
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.kieronquinn.app.taptap.fragments.SettingsFragment"
+        android:label="@string/app_name" >
+        <action
+            android:id="@+id/action_settingsFragment_to_settingsGestureFragment"
+            app:destination="@id/settingsGestureFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_settingsFragment_to_settingsFeedbackFragment"
+            app:destination="@id/settingsFeedbackFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_settingsFragment_to_settingsGateFragment"
+            app:destination="@id/settingsGateFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_settingsFragment_to_settingsActionFragment"
+            app:destination="@id/settingsActionFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsGestureFragment"
+        android:name="com.kieronquinn.app.taptap.fragments.SettingsGestureFragment"
+        android:label="@string/setting_gesture" />
+    <fragment
+        android:id="@+id/settingsFeedbackFragment"
+        android:name="com.kieronquinn.app.taptap.fragments.SettingsFeedbackFragment"
+        android:label="@string/setting_feedback" />
+    <fragment
+        android:id="@+id/settingsGateFragment"
+        android:name="com.kieronquinn.app.taptap.fragments.SettingsGateFragment"
+        android:label="@string/setting_gates"
+        tools:layout="@layout/fragment_gates" />
+    <fragment
+        android:id="@+id/settingsActionFragment"
+        android:name="com.kieronquinn.app.taptap.fragments.SettingsActionFragment"
+        android:label="@string/setting_actions"
+        tools:layout="@layout/fragment_actions" />
+</navigation>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="windowBackground">#ffffff</color>
+    <color name="toolbarColor">#D9ffffff</color>
+    <color name="sheet_color">#F9F9F9</color>
+    <color name="fab_color">@color/colorAccent</color>
+    <color name="fab_color_delete">#F44336</color>
+    <color name="card_background">@color/cardview_light_background</color>
+    <color name="card_selected">#BDBDBD</color>
+</resources>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="windowBackground">#222222</color>
+    <color name="toolbarColor">#D9222222</color>
+    <color name="sheet_color">#2D2D2D</color>
+    <color name="card_selected">#616161</color>
+    <color name="card_background">@color/cardview_dark_background</color>
+</resources>

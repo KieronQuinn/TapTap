@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:elevation="@dimen/toolbar_elevation"
+    android:animateLayoutChanges="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        app:layout_constraintTop_toTopOf="parent"
+        android:elevation="@dimen/toolbar_elevation"
+        android:id="@+id/search_container"
+        android:outlineProvider="background"
+        android:background="?android:windowBackground"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:drawableStart="@drawable/ic_search"
+            android:paddingStart="@dimen/activity_padding"
+            android:paddingEnd="52dp"
+            android:hint="@string/search"
+            android:fontFamily="@font/hkgrotesk"
+            android:drawablePadding="@dimen/activity_padding"
+            android:layout_marginStart="@dimen/activity_padding"
+            android:layout_marginEnd="@dimen/activity_padding"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginBottom="@dimen/margin_small"
+            android:layout_height="@dimen/search_box_height"
+            android:background="@drawable/search_box_background"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:id="@+id/searchBox"/>
+
+        <ImageView
+            android:src="@drawable/ic_close"
+            android:padding="@dimen/margin_small"
+            android:clickable="true"
+            android:focusable="true"
+            android:id="@+id/search_clear"
+            android:foreground="@drawable/rounded_ripple_36"
+            android:layout_gravity="end|center_vertical"
+            android:layout_marginEnd="24dp"
+            android:layout_width="@dimen/clear_button_size"
+            android:layout_height="@dimen/clear_button_size"/>
+
+    </FrameLayout>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        app:layout_constraintTop_toBottomOf="@id/search_container"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:animateLayoutChanges="false"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/margin_small"
+            android:paddingBottom="@dimen/margin_small"
+            app:fastScrollEnabled="true"
+            app:fastScrollHorizontalThumbDrawable="@drawable/thumb_drawable"
+            app:fastScrollHorizontalTrackDrawable="@drawable/line_drawable"
+            app:fastScrollVerticalThumbDrawable="@drawable/thumb_drawable"
+            app:fastScrollVerticalTrackDrawable="@drawable/line_drawable"
+            tools:listitem="@layout/item_app" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:gravity="center"
+        android:id="@+id/empty_list"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toBottomOf="@id/search_container"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="0dp">
+
+        <ImageView
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:src="@drawable/ic_search"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_small"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium.TapTap"
+            android:text="@string/nothing_found"/>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
