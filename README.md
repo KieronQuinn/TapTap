@@ -5,7 +5,8 @@ Tap, Tap is a port of the [https://www.xda-developers.com/google-pixel-android-1
 Tap, Tap is currently in alpha, and has been released at this time due to the interest around the feature, and its appearance in MIUI 13. Stay tuned for updates with new features, including gates for specific actions (eg. running an action only when a certain apps is open), and integration with apps such as Tasker. If you'd like to report a bug or suggest a feature, you can do so in this thread or on the GitHub.
 
 Screenshots:
-![Actions]https://i.imgur.com/SsIsrdk.png](https://i.imgur.com/SsIsrdkl.png) ![Gates](https://i.imgur.com/rf2COsjl.png)
+
+![Actions](https://i.imgur.com/SsIsrdkl.png) ![Gates](https://i.imgur.com/rf2COsjl.png)
 
 [https://streamable.com/4jd1mu](Example video, showing launching the camera on double tap)
 
