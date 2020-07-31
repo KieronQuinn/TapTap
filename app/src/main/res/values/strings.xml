@@ -1,13 +1,13 @@
 <resources>
     <string name="app_name">Tap, Tap</string>
-    <string name="xposed_desc">Columbus backport</string>
-    <string name="accessibility_service_description">TapTap Accessibility Service\n\n<b>Important Note: No data is collected from any of your apps, this service is simply used to keep the recognition active and provide interaction with the device</b></string>
-    <string name="toast_no_action_selected">No action has been selected</string>
-    <string name="launch_accessibility">Launch Accessibility</string>
-    <string name="setting_gesture">Gesture</string>
-    <string name="setting_gesture_desc">Tweak how the gesture works</string>
-    <string name="setting_actions">Actions</string>
-    <string name="settings_actions_desc">Set the actions to be run when the gesture is used</string>
+    <string name="xposed_desc">哥倫布後門</string>
+    <string name="accessibility_service_description">TapTap 無障礙設定\n\n<b>重要提示: 應用不會收集您的個資，此服務僅用於辨識手勢活動並提供與裝置的互動支援</b></string>
+    <string name="toast_no_action_selected">尚未選擇任何動作</string>
+    <string name="launch_accessibility">啟動輔助功能</string>
+    <string name="setting_gesture">手勢</string>
+    <string name="setting_gesture_desc">調整手勢的工作方式</string>
+    <string name="setting_actions">動作</string>
+    <string name="settings_actions_desc">設定使用手勢時要執行的動作</string>
     <string name="setting_gates">Gates</string>
     <string name="setting_gates_desc">Set situations when the gesture should not run an action</string>
     <string name="setting_feedback">Feedback</string>
