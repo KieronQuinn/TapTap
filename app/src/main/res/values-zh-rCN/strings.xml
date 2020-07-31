@@ -1,0 +1,105 @@
+<resources>
+    <string name="app_name">Tap, Tap</string>
+    <string name="xposed_desc">Columbus backport</string>
+    <string name="accessibility_service_description">TapTap Accessibility Service\n\n<b>Important Note: No data is collected from any of your apps, this service is simply used to keep the recognition active and provide interaction with the device</b></string>
+    <string name="toast_no_action_selected">No action has been selected</string>
+    <string name="launch_accessibility">Launch Accessibility</string>
+    <string name="setting_gesture">Gesture</string>
+    <string name="setting_gesture_desc">Tweak how the gesture works</string>
+    <string name="setting_actions">Actions</string>
+    <string name="settings_actions_desc">Set the actions to be run when the gesture is used</string>
+    <string name="setting_gates">Gates</string>
+    <string name="setting_gates_desc">Set situations when the gesture should not run an action</string>
+    <string name="setting_feedback">Feedback</string>
+    <string name="setting_feedback_desc">Set how the device notifies you when the gesture is run</string>
+    <string name="setting_gesture_model">Device Model</string>
+    <string name="setting_gesture_model_desc">Select which device\'s model to use for the machine learning component</string>
+    <string name="setting_feedback_vibrate">Vibrate</string>
+    <string name="setting_feedback_vibrate_desc">Vibrate once when the gesture is used and the action is run</string>
+    <string name="setting_feedback_wake">Wake Device</string>
+    <string name="setting_feedback_wake_desc">Wake the device up the screen is off (note: this will interfere with actions that turn the screen off!)</string>
+
+    <string-array name="device_model_keys">
+        <item>Pixel 3 XL</item>
+        <item>Pixel 4</item>
+        <item>Pixel 4 XL</item>
+    </string-array>
+
+    <!-- Gates -->
+    <string name="gate_charging_state">Charging</string>
+    <string name="gate_charging_state_desc">Blocks gesture for half a second after the device is plugged in</string>
+    <string name="gate_telephony_activity">On call</string>
+    <string name="gate_telephony_activity_desc">Blocks gesture when the device is on a call. Only standard calls are supported - not VoIP eg. WhatsApp</string>
+    <string name="gate_usb_state">USB device</string>
+    <string name="gate_usb_state_desc">Blocks gesture for half a second when a USB device, such as a thumb drive, is plugged in</string>
+    <string name="gate_camera_visibility">Camera</string>
+    <string name="gate_camera_visibility_desc">Blocks gesture when any camera app is opened. Note: This will break the skipping functionality of the Launch Camera action.</string>
+    <string name="gate_power_state">Display off</string>
+    <string name="gate_power_state_desc">Blocks gesture when the device\'s screen is off</string>
+    <string name="gate_app_showing">App showing</string>
+    <string name="gate_app_showing_desc">Blocks gesture when an app is showing on screen</string>
+    <string name="gate_app_showing_desc_formatted">Blocks gesture when an %1s is showing on screen</string>
+    <string name="action_launch_camera">Launch camera</string>
+    <string name="action_launch_camera_desc">Launch your default camera app. This action will be skipped if the camera is already running.</string>
+    <string name="action_home">Home</string>
+    <string name="action_home_desc">Simulate pressing the home button</string>
+    <string name="action_back">Back</string>
+    <string name="action_back_desc">Simulate pressing the back button</string>
+    <string name="action_recents">Open recents</string>
+    <string name="action_recents_desc">Open the recents by simulating pressing the recents button. On devices that support it, using this action when recents is already open will switch to the first backgrounded app</string>
+    <string name="action_notifications">Open notifications</string>
+    <string name="action_notifications_desc">Open the notification shade</string>
+    <string name="action_quick_settings">Quick settings</string>
+    <string name="action_quick_settings_desc">Open the quick settings shade</string>
+    <string name="action_screenshot">Screenshot</string>
+    <string name="action_screenshot_desc">Take a screenshot using the system screenshot UI</string>
+    <string name="action_lock_screen">Lock the screen</string>
+    <string name="action_lock_screen_desc">Lock the screen by simulating the power button being pressed</string>
+    <string name="fab_add_action">Add Action</string>
+    <string name="fab_remove_action">Remove</string>
+    <string name="fab_remove_action_drop">Drop to remove</string>
+    <string name="add_action_category_launch">Launch</string>
+    <string name="add_action_category_utilities">Utilities</string>
+    <string name="add_action_category_actions">Actions</string>
+    <string name="add_action_category_advanced">Advanced</string>
+    <string name="action_flashlight">Flashlight</string>
+    <string name="action_flashlight_desc">Toggle the flashlight. This action will fail if the camera is in use by another app.</string>
+    <string name="action_launch_app">Launch app</string>
+    <string name="action_launch_app_desc">Launch an app</string>
+    <string name="action_launch_app_desc_formattable">Launch %1s. This action will be skipped if it is already running.</string>
+    <string name="fab_add_gate">Add Gate</string>
+    <string name="add_gate_category_state">State</string>
+    <string name="add_gate_category_action">Action</string>
+    <string name="nothing_found">Nothing found</string>
+    <string name="search">Search</string>
+    <string name="show_system_apps">Show system apps</string>
+    <string name="select_an_app">Select an app</string>
+    <string name="setting_gesture_sensitivity">Sensitivity</string>
+    <string name="setting_gesture_sensitivity_desc">Sensitivity is not currently implemented in Google\'s code that this app uses. I\'m actively looking into how it might be possible, and it may become available in a future version.</string>
+    <string name="bs_help_action">Actions are tasks that are run when you tap the back of your device twice. Actions are run in the order of the list - top to bottom. If an action is able to run successfully, no further actions will be run. However, if an action is unavailable (eg. if the assistant for a "Launch assistant" action is already running), the next action below it will be run, and so on until one is run successfully.\n\nIn future versions of this app, you will be able to add gates to actions (see the Gates menu of the app) to allow for more control of when certain actions are run.</string>
+    <string name="bs_help_action_title">What are Actions?</string>
+    <string name="bs_help_gate">Gates are situations that can block the gesture from running any actions. In order for any action to be run, all the enabled gates must be open.\nIf a scenario is currently met, for example if the screen is off and the "Display off" gate is enabled, no actions will be run. You can add as many gates as you like, and enable/disable them using the toggles (rather than having to delete and re-add) to make configuration quicker and easier.</string>
+    <string name="bs_help_gate_title">What are Gates?</string>
+    <string name="help">Help</string>
+    <string name="action_launch_assistant">Launch Assistant</string>
+    <string name="action_launch_assistant_desc">Launch your default assistant app</string>
+    <string name="add_action_category_info">Advanced actions such as Tasker integration are coming soon!</string>
+
+    <string name="accessibility_info_off">Accessibility Service is disabled</string>
+    <string name="accessibility_info_off_desc">The gesture will not currently work. Tap to enable</string>
+    <string name="accessibility_info_on">Accessibility Service is enabled</string>
+    <string name="accessibility_info_on_desc">If you want to disable the gesture, tap to disable the service</string>
+    <string name="accessibility_info_toast">Select "Tap, Tap" from the accessibility service list, toggle it and return to Tap, Tap to continue</string>
+    <string name="menu_alpha">This app is in Alpha. Tap for info.</string>
+    <string name="bs_alpha">This app is in the early stages of development and has been released in an "Alpha" state to allow for testing on lots of devices. If you encounter a bug, please report it on the GitHub as an issue. If you would like to request a feature, post it on the XDA thread or request it on GitHub.\n\nCheck back on XDA, either on Labs or in the thread, for updates as soon as they\'re available.\n\nThank you for your patience during development.</string>
+    <string name="bs_alpha_title">Alpha</string>
+
+    <string name="category_about">About</string>
+    <string name="about">%1s v%2s</string>
+    <string name="about_summary">Created by Kieron Quinn / Quinny899 @ XDA</string>
+    <string name="xda_thread">XDA Thread</string>
+    <string name="github">GitHub</string>
+    <string name="libraries">Third party libraries</string>
+    <string name="donate">Donate</string>
+    <string name="twitter">Follow me on Twitter</string>
+</resources>
