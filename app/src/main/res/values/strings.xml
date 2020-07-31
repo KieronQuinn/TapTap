@@ -55,6 +55,12 @@
     <string name="action_screenshot_desc">Take a screenshot using the system screenshot UI</string>
     <string name="action_lock_screen">Lock the screen</string>
     <string name="action_lock_screen_desc">Lock the screen by simulating the power button being pressed</string>
+    <string name="action_toggle_pause">Play/Pause</string>
+    <string name="action_toggle_pause_desc">Play/Pause current playing audio</string>
+    <string name="action_previous">Previous</string>
+    <string name="action_previous_desc">Play previous audio</string>
+    <string name="action_next">Next</string>
+    <string name="action_next_desc">Play next audio</string>
     <string name="fab_add_action">Add Action</string>
     <string name="fab_remove_action">Remove</string>
     <string name="fab_remove_action_drop">Drop to remove</string>
