@@ -24,7 +24,12 @@ enum class TapAction(val clazz: Class<*>, @StringRes val nameRes: Int, @StringRe
     TASKER_TASK(TaskerTask::class.java, R.string.action_tasker_task, R.string.action_tasker_task_desc, R.drawable.ic_action_tasker, true, true, dataType = ActionDataTypes.TASKER_TASK),
     TOGGLE_PAUSE(MusicAction::class.java, R.string.action_toggle_pause, R.string.action_toggle_pause_desc, R.drawable.ic_action_toggle_pause, true, true),
     PREVIOUS(MusicAction::class.java, R.string.action_previous, R.string.action_previous_desc, R.drawable.ic_action_previous, true, true),
-    NEXT(MusicAction::class.java, R.string.action_next, R.string.action_next_desc, R.drawable.ic_action_next, true, true)
+    NEXT(MusicAction::class.java, R.string.action_next, R.string.action_next_desc, R.drawable.ic_action_next, true, true),
+    VOLUME_PANEL(VolumeAction::class.java, R.string.action_volume_panel, R.string.action_volume_panel_desc, R.drawable.ic_action_volume_panel, true, true),
+    VOLUME_UP(VolumeAction::class.java, R.string.action_volume_up, R.string.action_volume_up_desc, R.drawable.ic_action_volume_up, true, true),
+    VOLUME_DOWN(VolumeAction::class.java, R.string.action_volume_down, R.string.action_volume_down_desc, R.drawable.ic_action_volume_down, true, true),
+    VOLUME_TOGGLE_MUTE(VolumeAction::class.java, R.string.action_volume_toggle_mute, R.string.action_volume_toggle_mute_desc, R.drawable.ic_action_volume_toggle_mute, true, true),
+    WAKE_DEVICE(WakeDeviceAction::class.java, R.string.action_wake_device, R.string.action_wake_device_desc, R.drawable.ic_wake_from_sleep, true, true)
 }
 
 enum class ActionDataTypes {

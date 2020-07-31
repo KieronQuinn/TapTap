@@ -36,6 +36,8 @@
     <string name="gate_camera_visibility_desc">Blocks gesture when any camera app is opened. Note: This will break the skipping functionality of the Launch Camera action.</string>
     <string name="gate_power_state">Display off</string>
     <string name="gate_power_state_desc">Blocks gesture when the device\'s screen is off</string>
+    <string name="gate_power_state_inverse">Display on</string>
+    <string name="gate_power_state_inverse_desc">Blocks gesture when the device\'s screen is on</string>
     <string name="gate_app_showing">App showing</string>
     <string name="gate_app_showing_desc">Blocks gesture when an app is showing on screen</string>
     <string name="gate_app_showing_desc_formatted">Blocks gesture when an %1s is showing on screen</string>
@@ -117,4 +119,15 @@
     <string name="bs_tasker_title">Permission Required</string>
     <string name="bs_tasker_negative">Later</string>
     <string name="bs_tasker_positive">Open Tasker Settings</string>
+    <string name="picker_launch_camera">Launch Camera</string>
+    <string name="action_volume_panel">Show volume panel</string>
+    <string name="action_volume_panel_desc">Show the system volume panel with the sound stream for adjustment showing</string>
+    <string name="action_volume_up">Volume up</string>
+    <string name="action_volume_up_desc">Increase the volume of the current sound stream</string>
+    <string name="action_volume_down">Volume down</string>
+    <string name="action_volume_down_desc">Decrease the volume of the current sound stream</string>
+    <string name="action_volume_toggle_mute">Toggle mute</string>
+    <string name="action_volume_toggle_mute_desc">Turn mute on/off for the current sound stream</string>
+    <string name="action_wake_device">Wake device</string>
+    <string name="action_wake_device_desc">Wake the device up if the screen is off. This overrides the setting in the feedback settings, is skipped if the display is on, and will not work if you have the \"Display off\" gate enabled</string>
 </resources>
