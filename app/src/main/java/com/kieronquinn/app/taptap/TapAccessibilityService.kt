@@ -27,6 +27,7 @@ import com.kieronquinn.app.taptap.models.TfModel
 import com.kieronquinn.app.taptap.models.store.ActionListFile
 import com.kieronquinn.app.taptap.smaliint.SmaliCalls
 import com.kieronquinn.app.taptap.utils.*
+import java.lang.RuntimeException
 
 class TapAccessibilityService : AccessibilityService(),
     SharedPreferences.OnSharedPreferenceChangeListener {
@@ -55,7 +56,12 @@ class TapAccessibilityService : AccessibilityService(),
         Log.d(TAG, "onCreate")
         val context = this
         val contentResolverWrapper = ContentResolverWrapper(context)
-        val activityManagerService = ActivityManager::class.java.getMethod("getService").invoke(null)
+        val activityManagerService = try{
+            ActivityManager::class.java.getMethod("getService").invoke(null)
+        }catch (e: NoSuchMethodException){
+            val activityManagerNative = Class.forName("android.app.ActivityManagerNative")
+            activityManagerNative.getMethod("getDefault").invoke(null)
+        }
         //val columbusContentObserver = ColumbusContentObserverCompat.Factory(contentResolverWrapper, activityManagerService)
         val gestureConfiguration = createGestureConfiguration(context, activityManagerService)
         this.gestureSensorImpl = GestureSensorImpl(context, gestureConfiguration)
@@ -107,49 +113,54 @@ class TapAccessibilityService : AccessibilityService(),
     }
 
     private fun getColumbusActions() : List<Action> {
-        return ActionListFile.loadFromFile(this).toList().map { getActionForEnum(it) }
+        return ActionListFile.loadFromFile(this).toList().mapNotNull { getActionForEnum(it) }
     }
 
-    private fun getActionForEnum(action: ActionInternal) : Action {
-        return when(action.action){
-            TapAction.LAUNCH_CAMERA -> LaunchCameraLocal(
-                this
-            )
-            TapAction.BACK -> AccessibilityServiceGlobalAction(
-                this,
-                GLOBAL_ACTION_BACK
-            )
-            TapAction.HOME -> AccessibilityServiceGlobalAction(
-                this,
-                GLOBAL_ACTION_HOME
-            )
-            TapAction.LOCK_SCREEN -> AccessibilityServiceGlobalAction(
-                this,
-                GLOBAL_ACTION_LOCK_SCREEN
-            )
-            TapAction.RECENTS -> AccessibilityServiceGlobalAction(
-                this,
-                GLOBAL_ACTION_RECENTS
-            )
-            TapAction.SCREENSHOT -> AccessibilityServiceGlobalAction(
-                this,
-                GLOBAL_ACTION_TAKE_SCREENSHOT
-            )
-            TapAction.QUICK_SETTINGS -> AccessibilityServiceGlobalAction(
-                this,
-                GLOBAL_ACTION_QUICK_SETTINGS
-            )
-            TapAction.NOTIFICATIONS -> AccessibilityServiceGlobalAction(
-                this,
-                GLOBAL_ACTION_NOTIFICATIONS
-            )
-            TapAction.FLASHLIGHT -> Flashlight(this)
-            TapAction.LAUNCH_APP -> LaunchApp(this, action.data ?: "")
-            TapAction.LAUNCH_ASSISTANT -> LaunchAssistant(this)
-            TapAction.TASKER_EVENT -> TaskerEvent(this)
-            TapAction.TOGGLE_PAUSE -> MusicAction(this, MusicAction.Command.TOGGLE_PAUSE)
-            TapAction.PREVIOUS -> MusicAction(this, MusicAction.Command.PREVIOUS)
-            TapAction.NEXT -> MusicAction(this, MusicAction.Command.NEXT)
+    private fun getActionForEnum(action: ActionInternal) : Action? {
+        return try {
+            when (action.action) {
+                TapAction.LAUNCH_CAMERA -> LaunchCameraLocal(
+                    this
+                )
+                TapAction.BACK -> AccessibilityServiceGlobalAction(
+                    this,
+                    GLOBAL_ACTION_BACK
+                )
+                TapAction.HOME -> AccessibilityServiceGlobalAction(
+                    this,
+                    GLOBAL_ACTION_HOME
+                )
+                TapAction.LOCK_SCREEN -> AccessibilityServiceGlobalAction(
+                    this,
+                    GLOBAL_ACTION_LOCK_SCREEN
+                )
+                TapAction.RECENTS -> AccessibilityServiceGlobalAction(
+                    this,
+                    GLOBAL_ACTION_RECENTS
+                )
+                TapAction.SCREENSHOT -> AccessibilityServiceGlobalAction(
+                    this,
+                    GLOBAL_ACTION_TAKE_SCREENSHOT
+                )
+                TapAction.QUICK_SETTINGS -> AccessibilityServiceGlobalAction(
+                    this,
+                    GLOBAL_ACTION_QUICK_SETTINGS
+                )
+                TapAction.NOTIFICATIONS -> AccessibilityServiceGlobalAction(
+                    this,
+                    GLOBAL_ACTION_NOTIFICATIONS
+                )
+                TapAction.FLASHLIGHT -> Flashlight(this)
+                TapAction.LAUNCH_APP -> LaunchApp(this, action.data ?: "")
+                TapAction.LAUNCH_ASSISTANT -> LaunchAssistant(this)
+                TapAction.TASKER_EVENT -> TaskerEvent(this)
+                TapAction.TOGGLE_PAUSE -> MusicAction(this, MusicAction.Command.TOGGLE_PAUSE)
+                TapAction.PREVIOUS -> MusicAction(this, MusicAction.Command.PREVIOUS)
+                TapAction.NEXT -> MusicAction(this, MusicAction.Command.NEXT)
+            }
+        }catch (e: RuntimeException){
+            //Enum not found, probably a downgrade issue
+            null
         }
     }
 

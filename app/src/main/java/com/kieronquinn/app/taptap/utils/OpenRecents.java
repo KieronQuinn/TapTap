@@ -49,7 +49,7 @@ public final class OpenRecents extends Action {
 
     @SuppressLint("WrongConstant")
     public void onTrigger() {
-        Log.d("XColumbus", "onTrigger");
+        Log.d("TapTap", "onTrigger");
         if(triggerListener != null) triggerListener.onTrigger();
         Shell.sh("input keyevent KEYCODE_APP_SWITCH").exec();
     }

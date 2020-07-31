@@ -10,6 +10,7 @@ import android.content.Intent
 import android.util.Log
 import com.google.android.systemui.columbus.actions.Action
 import com.google.android.systemui.columbus.sensors.GestureSensor.DetectionProperties
+import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.TapAccessibilityService
 import kotlin.jvm.internal.Intrinsics
 
@@ -39,10 +40,18 @@ class LaunchCameraLocal(var1: Context) : Action(var1, null) {
 
     @SuppressLint("WrongConstant")
     override fun onTrigger() {
-        Log.d("XColumbus", "onTrigger")
         if (triggerListener != null) triggerListener!!.onTrigger()
-        context
-            .startActivity(Intent("android.media.action.IMAGE_CAPTURE").addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+        val cameraIntent = context.getCameraLaunchIntent()
+        if(cameraIntent.size > 1){
+            val chooser = Intent.createChooser(cameraIntent.removeAt(0), context.getString(R.string.picker_launch_camera))
+            chooser.putExtra(Intent.EXTRA_INITIAL_INTENTS, cameraIntent.toTypedArray())
+            chooser.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            context.startActivity(chooser)
+        }else if(cameraIntent.isNotEmpty()){
+            context.startActivity(cameraIntent.first())
+        }else{
+            //No camera app available
+        }
     }
 
     override fun toString(): String {

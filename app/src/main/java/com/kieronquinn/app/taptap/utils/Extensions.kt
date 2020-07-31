@@ -178,6 +178,18 @@ fun Context.isPackageCamera(packageName: String): Boolean {
     return false
 }
 
+fun Context.getCameraLaunchIntent(): ArrayList<Intent> {
+    val intentActions = arrayOf(MediaStore.ACTION_IMAGE_CAPTURE, "android.media.action.STILL_IMAGE_CAMERA", "android.media.action.VIDEO_CAMERA")
+    val packages = ArrayList<Intent>()
+    intentActions.forEach {
+        packages.addAll(packageManager.queryIntentActivities(Intent(it), 0).mapNotNull { activity ->
+            if(packages.any { intent -> intent.`package` == activity.activityInfo.packageName }) null
+            else packageManager.getLaunchIntentForPackage(activity.activityInfo.packageName)?.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        })
+    }
+    return packages
+}
+
 fun Context.isPackageAssistant(packageName: String): Boolean {
     return packageManager.resolveActivity(Intent(Intent.ACTION_VOICE_COMMAND).setPackage(packageName), 0) != null
 }

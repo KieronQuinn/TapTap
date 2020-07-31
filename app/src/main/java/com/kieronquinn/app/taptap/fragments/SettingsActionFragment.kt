@@ -23,10 +23,11 @@ import com.kieronquinn.app.taptap.utils.*
 import dev.chrisbanes.insetter.applySystemWindowInsetsToMargin
 import kotlinx.android.synthetic.main.fragment_actions.*
 import kotlinx.android.synthetic.main.item_action.view.*
+import java.lang.RuntimeException
 
 class SettingsActionFragment : BaseFragment() {
 
-    companion object{
+    companion object {
         const val addResultKey = "ADD_ACTION_RESULT"
         const val PREF_KEY_ACTION_HELP_SHOWN = "action_help_shown"
     }
@@ -41,20 +42,27 @@ class SettingsActionFragment : BaseFragment() {
 
     private val animationAddToDelete by lazy {
         context?.let {
-            if(!isAdded) null
+            if (!isAdded) null
             else ContextCompat.getDrawable(it, R.drawable.ic_add_to_delete) as AnimatedVectorDrawable
         }
     }
 
     private val animationDeleteToAdd by lazy {
         context?.let {
-            if(!isAdded) null
+            if (!isAdded) null
             else ContextCompat.getDrawable(it, R.drawable.ic_delete_to_add) as AnimatedVectorDrawable
         }
     }
 
     private val actions by lazy {
-        ActionListFile.loadFromFile(requireContext()).toMutableList()
+        ActionListFile.loadFromFile(requireContext()).mapNotNull {
+            try {
+                if(it.action == null) null
+                else it
+            } catch (e: RuntimeException) {
+                null
+            }
+        }.toMutableList()
     }
 
     private val itemTouchHelper by lazy {
@@ -65,93 +73,95 @@ class SettingsActionFragment : BaseFragment() {
         var draggingViewHolder: RecyclerView.ViewHolder? = null
 
         val simpleItemTouchCallback =
-            object : ItemTouchHelper.SimpleCallback(UP or DOWN or START or END, 0) {
+                object : ItemTouchHelper.SimpleCallback(UP or DOWN or START or END, 0) {
 
-                override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
-                    val adapter = recyclerView.adapter as ActionAdapter
-                    val from = viewHolder.adapterPosition
-                    val to = target.adapterPosition
-                    adapter.moveItem(from, to)
-                    adapter.notifyItemMoved(from, to)
-                    saveToFile()
-                    return true
-                }
-                override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                }
-
-                override fun onSelectedChanged(viewHolder: RecyclerView.ViewHolder?, actionState: Int) {
-                    super.onSelectedChanged(viewHolder, actionState)
-                    if (actionState == ACTION_STATE_DRAG) {
-                        viewHolder?.itemView?.run {
-                            draggingItem = actions[viewHolder.adapterPosition]
-                            draggingViewHolder = viewHolder
-                            fakeCard.cloneSize(this)
-                            viewHolder.itemView.visibility = View.INVISIBLE
-                            fakeCard.visibility = View.VISIBLE
-                            fakeCard.item_action_name.text = item_action_name.text
-                            fakeCard.item_action_icon.setImageDrawable(item_action_icon.drawable)
-                            fakeCard.item_action_description.text = item_action_description.text
-                        }
-                        setFabState(true)
-                    }
-                    if(actionState == ACTION_STATE_IDLE && fakeCard.isOverlapping(fab)){
-                        val action = draggingItem ?: return
-                        val draggedViewHolder = draggingViewHolder ?: return
-                        val position = recyclerView.layoutManager?.getPosition(draggedViewHolder.itemView) ?: -1
-                        actions.remove(action)
-                        recyclerView.adapter?.notifyItemRemoved(position)
-                        //Fix for item hanging around after removal
-                        draggedViewHolder.itemView.run {
-                            (parent as ViewGroup).removeView(this)
-                        }
+                    override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
+                        val adapter = recyclerView.adapter as ActionAdapter
+                        val from = viewHolder.adapterPosition
+                        val to = target.adapterPosition
+                        adapter.moveItem(from, to)
+                        adapter.notifyItemMoved(from, to)
                         saveToFile()
+                        return true
                     }
-                }
 
-                override fun clearView(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder) {
-                    super.clearView(recyclerView, viewHolder)
-                    viewHolder.itemView.visibility = View.VISIBLE
-                    fakeCard.visibility = View.GONE
-                    setFabState(false)
-                }
+                    override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                    }
 
-                override fun onChildDrawOver(c: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder?, dX: Float, dY: Float, actionState: Int, isCurrentlyActive: Boolean) {
-                    viewHolder?.itemView?.run {
-                        fakeCard.clonePosition(this)
-                        if(fakeCard.isOverlapping(fab)){
-                            if(!isFabDrop) {
-                                fakeCard.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(fab.context, R.color.fab_color_delete))
-                                fab.text = getString(R.string.fab_remove_action_drop)
-                                TransitionManager.beginDelayedTransition(fab.parent as ViewGroup)
-                                isFabDrop = true
+                    override fun onSelectedChanged(viewHolder: RecyclerView.ViewHolder?, actionState: Int) {
+                        super.onSelectedChanged(viewHolder, actionState)
+                        if (actionState == ACTION_STATE_DRAG) {
+                            viewHolder?.itemView?.run {
+                                draggingItem = actions[viewHolder.adapterPosition]
+                                draggingViewHolder = viewHolder
+                                fakeCard.cloneSize(this)
+                                viewHolder.itemView.visibility = View.INVISIBLE
+                                fakeCard.visibility = View.VISIBLE
+                                fakeCard.item_action_name.text = item_action_name.text
+                                fakeCard.item_action_icon.setImageDrawable(item_action_icon.drawable)
+                                fakeCard.item_action_description.text = item_action_description.text
                             }
-                        }else{
-                            if(isFabDrop) {
-                                fakeCard.backgroundTintList = null
-                                fab.text = getString(R.string.fab_remove_action)
-                                TransitionManager.beginDelayedTransition(fab.parent as ViewGroup)
-                                isFabDrop = false
+                            setFabState(true)
+                        }
+                        if (actionState == ACTION_STATE_IDLE && fakeCard.isOverlapping(fab)) {
+                            val action = draggingItem ?: return
+                            val draggedViewHolder = draggingViewHolder ?: return
+                            val position = recyclerView.layoutManager?.getPosition(draggedViewHolder.itemView)
+                                    ?: -1
+                            actions.remove(action)
+                            recyclerView.adapter?.notifyItemRemoved(position)
+                            //Fix for item hanging around after removal
+                            draggedViewHolder.itemView.run {
+                                (parent as ViewGroup).removeView(this)
                             }
+                            saveToFile()
                         }
                     }
-                    super.onChildDrawOver(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
+
+                    override fun clearView(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder) {
+                        super.clearView(recyclerView, viewHolder)
+                        viewHolder.itemView.visibility = View.VISIBLE
+                        fakeCard.visibility = View.GONE
+                        setFabState(false)
+                    }
+
+                    override fun onChildDrawOver(c: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder?, dX: Float, dY: Float, actionState: Int, isCurrentlyActive: Boolean) {
+                        viewHolder?.itemView?.run {
+                            fakeCard.clonePosition(this)
+                            if (fakeCard.isOverlapping(fab)) {
+                                if (!isFabDrop) {
+                                    fakeCard.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(fab.context, R.color.fab_color_delete))
+                                    fab.text = getString(R.string.fab_remove_action_drop)
+                                    TransitionManager.beginDelayedTransition(fab.parent as ViewGroup)
+                                    isFabDrop = true
+                                }
+                            } else {
+                                if (isFabDrop) {
+                                    fakeCard.backgroundTintList = null
+                                    fab.text = getString(R.string.fab_remove_action)
+                                    TransitionManager.beginDelayedTransition(fab.parent as ViewGroup)
+                                    isFabDrop = false
+                                }
+                            }
+                        }
+                        super.onChildDrawOver(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
+                    }
                 }
-            }
         ItemTouchHelper(simpleItemTouchCallback)
     }
 
-    private fun setFabState(removeEnabled: Boolean){
-        if(!isAdded) return
+    private fun setFabState(removeEnabled: Boolean) {
+        if (!isAdded) return
         val colorRemove = ContextCompat.getColor(fab.context, R.color.fab_color_delete)
         val colorAdd = ContextCompat.getColor(fab.context, R.color.fab_color)
-        if(removeEnabled){
+        if (removeEnabled) {
             fab.text = fab.context.getString(R.string.fab_remove_action)
             fab.icon = animationAddToDelete
             animationAddToDelete?.start()
             fab.animateBackgroundStateChange(colorAdd, colorRemove)
             fab.isClickable = false
             fab.isFocusable = false
-        }else{
+        } else {
             fab.text = fab.context.getString(R.string.fab_add_action)
             fab.icon = animationDeleteToAdd
             animationDeleteToAdd?.start()
@@ -170,7 +180,7 @@ class SettingsActionFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
         recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.adapter = ActionAdapter(recyclerView.context, actions){
+        recyclerView.adapter = ActionAdapter(recyclerView.context, actions) {
             itemTouchHelper.startDrag(it)
         }
         fab.applySystemWindowInsetsToMargin(bottom = true)
@@ -181,19 +191,19 @@ class SettingsActionFragment : BaseFragment() {
             showActionBottomSheet()
         }
         itemTouchHelper.attachToRecyclerView(recyclerView)
-        setFragmentResultListener(addResultKey){ key, bundle ->
+        setFragmentResultListener(addResultKey) { key, bundle ->
             val newItem = bundle.get(addResultKey) as ActionInternal
             actions.add(newItem)
             recyclerView.adapter?.notifyItemInserted(actions.size)
             recyclerView?.layoutManager?.scrollToPosition(actions.size - 1)
             saveToFile()
         }
-        if(sharedPreferences?.getBoolean(PREF_KEY_ACTION_HELP_SHOWN, false) == false) {
+        if (sharedPreferences?.getBoolean(PREF_KEY_ACTION_HELP_SHOWN, false) == false) {
             showHelpBottomSheet()
         }
     }
 
-    private fun showActionBottomSheet(){
+    private fun showActionBottomSheet() {
         ActionBottomSheetFragment().show(parentFragmentManager, "bs_action")
     }
 
@@ -202,11 +212,11 @@ class SettingsActionFragment : BaseFragment() {
         setHomeAsUpEnabled(true)
     }
 
-    private fun saveToFile(){
+    private fun saveToFile() {
         ActionListFile.saveToFile(recyclerView.context, actions.toTypedArray(), sharedPreferences)
     }
 
-    private fun showHelpBottomSheet(){
+    private fun showHelpBottomSheet() {
         GenericBottomSheetFragment.create(getString(R.string.bs_help_action), R.string.bs_help_action_title, android.R.string.ok).show(childFragmentManager, "bs_help")
         sharedPreferences?.edit()?.putBoolean(PREF_KEY_ACTION_HELP_SHOWN, true)?.apply()
     }
@@ -218,7 +228,7 @@ class SettingsActionFragment : BaseFragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
+        when (item.itemId) {
             R.id.menu_help -> {
                 showHelpBottomSheet()
                 return true

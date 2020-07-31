@@ -110,4 +110,5 @@
     <string name="libraries">Third party libraries</string>
     <string name="donate">Donate</string>
     <string name="twitter">Follow me on Twitter</string>
+    <string name="picker_launch_camera">Launch Camera</string>
 </resources>
