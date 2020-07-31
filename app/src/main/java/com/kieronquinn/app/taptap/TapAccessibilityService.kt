@@ -147,6 +147,7 @@ class TapAccessibilityService : AccessibilityService(),
             TapAction.LAUNCH_APP -> LaunchApp(this, action.data ?: "")
             TapAction.LAUNCH_ASSISTANT -> LaunchAssistant(this)
             TapAction.TASKER_EVENT -> TaskerEvent(this)
+            TapAction.TASKER_TASK -> TaskerTask(this, action.data ?: "")
             TapAction.TOGGLE_PAUSE -> MusicAction(this, MusicAction.Command.TOGGLE_PAUSE)
             TapAction.PREVIOUS -> MusicAction(this, MusicAction.Command.PREVIOUS)
             TapAction.NEXT -> MusicAction(this, MusicAction.Command.NEXT)

@@ -52,13 +52,13 @@ class ActionListFragment : Fragment() {
                listOf(TapAction.LAUNCH_APP, TapAction.LAUNCH_ASSISTANT, TapAction.LAUNCH_CAMERA).map { ActionInternal(it, ArrayList()) }
             }
             TapActionCategory.UTILITIES -> {
-               listOf(TapAction.TASKER_EVENT, TapAction.FLASHLIGHT).map { ActionInternal(it, ArrayList()) }
+               listOf(TapAction.FLASHLIGHT).map { ActionInternal(it, ArrayList()) }
             }
             TapActionCategory.ACTIONS -> {
                listOf(TapAction.SCREENSHOT, TapAction.NOTIFICATIONS, TapAction.QUICK_SETTINGS, TapAction.HOME, TapAction.BACK, TapAction.RECENTS, TapAction.LOCK_SCREEN, TapAction.TOGGLE_PAUSE, TapAction.PREVIOUS, TapAction.NEXT).map { ActionInternal(it, ArrayList()) }
             }
             TapActionCategory.ADVANCED -> {
-                listOf(TapAction.LAUNCH_CAMERA).map { ActionInternal(it, ArrayList()) }
+                listOf(TapAction.TASKER_EVENT, TapAction.TASKER_TASK).map { ActionInternal(it, ArrayList()) }
             }
         }.toMutableList()
     }
