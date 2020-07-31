@@ -36,6 +36,8 @@
     <string name="gate_camera_visibility_desc">Blocks gesture when any camera app is opened. Note: This will break the skipping functionality of the Launch Camera action.</string>
     <string name="gate_power_state">Display off</string>
     <string name="gate_power_state_desc">Blocks gesture when the device\'s screen is off</string>
+    <string name="gate_power_state_inverse">Display on</string>
+    <string name="gate_power_state_inverse_desc">Blocks gesture when the device\'s screen is on</string>
     <string name="gate_app_showing">App showing</string>
     <string name="gate_app_showing_desc">Blocks gesture when an app is showing on screen</string>
     <string name="gate_app_showing_desc_formatted">Blocks gesture when an %1s is showing on screen</string>

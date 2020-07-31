@@ -37,6 +37,7 @@ import com.google.android.systemui.columbus.sensors.TfClassifier
 import com.kieronquinn.app.taptap.BuildConfig
 import com.kieronquinn.app.taptap.columbus.gates.AppVisibility
 import com.kieronquinn.app.taptap.columbus.gates.CameraVisibility
+import com.kieronquinn.app.taptap.columbus.gates.PowerStateInverse
 import com.kieronquinn.app.taptap.models.GateInternal
 import com.kieronquinn.app.taptap.models.TapAction
 import com.kieronquinn.app.taptap.models.TapGate
@@ -63,7 +64,7 @@ const val SHARED_PREFERENCES_KEY_SENSITIVITY = "sensitivity"
 val SHARED_PREFERENCES_FEEDBACK_KEYS = arrayOf(SHARED_PREFERENCES_KEY_FEEDBACK_WAKE, SHARED_PREFERENCES_KEY_FEEDBACK_VIBRATE)
 
 val DEFAULT_GATES = arrayOf(TapGate.POWER_STATE, TapGate.TELEPHONY_ACTIVITY)
-val ALL_NON_CONFIG_GATES = arrayOf(TapGate.POWER_STATE, TapGate.USB_STATE, TapGate.TELEPHONY_ACTIVITY, TapGate.CHARGING_STATE)
+val ALL_NON_CONFIG_GATES = arrayOf(TapGate.POWER_STATE, TapGate.POWER_STATE_INVERSE, TapGate.USB_STATE, TapGate.TELEPHONY_ACTIVITY, TapGate.CHARGING_STATE)
 val CONFIGURABLE_GATES = arrayOf(TapGate.APP_SHOWING)
 
 val DEFAULT_ACTIONS = arrayOf(TapAction.LAUNCH_ASSISTANT, TapAction.SCREENSHOT)
@@ -141,7 +142,8 @@ fun getGates(context: Context): Set<Gate> {
     for(gate in gatesInternal){
         if(!gate.isActivated) continue
         gates.add(when (gate.gate) {
-            TapGate.POWER_STATE -> PowerState(context, getWakefulnessLifecycle())
+            TapGate.POWER_STATE -> PowerState(context, wakefulnessLifecycle)
+            TapGate.POWER_STATE_INVERSE -> PowerStateInverse(context)
             TapGate.CHARGING_STATE -> ChargingState(context, Handler(), ColumbusModule.provideTransientGateDuration())
             TapGate.TELEPHONY_ACTIVITY -> TelephonyActivity(context)
             TapGate.CAMERA_VISIBILITY -> CameraVisibility(context)
@@ -152,8 +154,8 @@ fun getGates(context: Context): Set<Gate> {
     return gates
 }
 
-fun getWakefulnessLifecycle(): LazyWakefulness {
-    return LazyWakefulness(WakefulnessLifecycle())
+val wakefulnessLifecycle by lazy {
+    LazyWakefulness(WakefulnessLifecycle())
 }
 
 fun String.splitToArray(): Array<String> {

@@ -4,22 +4,21 @@ import android.accessibilityservice.AccessibilityService
 import android.app.ActivityManager
 import android.content.Context
 import android.content.SharedPreferences
-import android.os.Handler
 import android.util.Log
 import android.view.accessibility.AccessibilityEvent
 import com.android.internal.logging.MetricsLogger
 import com.android.systemui.keyguard.WakefulnessLifecycle
-import com.android.systemui.statusbar.policy.KeyguardStateController
-import com.google.android.systemui.columbus.*
+import com.google.android.systemui.columbus.ColumbusContentObserver
+import com.google.android.systemui.columbus.ColumbusService
+import com.google.android.systemui.columbus.ContentResolverWrapper
+import com.google.android.systemui.columbus.PowerManagerWrapper
 import com.google.android.systemui.columbus.actions.Action
 import com.google.android.systemui.columbus.feedback.FeedbackEffect
-import com.google.android.systemui.columbus.gates.*
 import com.google.android.systemui.columbus.sensors.GestureSensorImpl
 import com.google.android.systemui.columbus.sensors.config.GestureConfiguration
 import com.kieronquinn.app.taptap.columbus.actions.*
 import com.kieronquinn.app.taptap.columbus.feedback.HapticClickCompat
 import com.kieronquinn.app.taptap.columbus.feedback.WakeDevice
-import com.kieronquinn.app.taptap.columbus.gates.CameraVisibility
 import com.kieronquinn.app.taptap.impl.KeyguardStateControllerImpl
 import com.kieronquinn.app.taptap.models.ActionInternal
 import com.kieronquinn.app.taptap.models.TapAction
@@ -27,7 +26,6 @@ import com.kieronquinn.app.taptap.models.TfModel
 import com.kieronquinn.app.taptap.models.store.ActionListFile
 import com.kieronquinn.app.taptap.smaliint.SmaliCalls
 import com.kieronquinn.app.taptap.utils.*
-import java.lang.RuntimeException
 
 class TapAccessibilityService : AccessibilityService(),
     SharedPreferences.OnSharedPreferenceChangeListener {
@@ -55,52 +53,18 @@ class TapAccessibilityService : AccessibilityService(),
         super.onCreate()
         Log.d(TAG, "onCreate")
         val context = this
-        val contentResolverWrapper = ContentResolverWrapper(context)
         val activityManagerService = try{
             ActivityManager::class.java.getMethod("getService").invoke(null)
         }catch (e: NoSuchMethodException){
             val activityManagerNative = Class.forName("android.app.ActivityManagerNative")
             activityManagerNative.getMethod("getDefault").invoke(null)
         }
-        //val columbusContentObserver = ColumbusContentObserverCompat.Factory(contentResolverWrapper, activityManagerService)
         val gestureConfiguration = createGestureConfiguration(context, activityManagerService)
         this.gestureSensorImpl = GestureSensorImpl(context, gestureConfiguration)
         val powerManagerWrapper = PowerManagerWrapper(context)
         val metricsLogger = MetricsLogger()
         val wakefulnessLifecycle = WakefulnessLifecycle()
         this.wakefulnessLifecycle = wakefulnessLifecycle
-        val mainHandler = Handler()
-
-        //Feedback
-        val hapticClick =
-            HapticClickCompat(
-                context
-            )
-
-        //Gates
-        val powerState = PowerState(context,
-            LazyWakefulness(wakefulnessLifecycle)
-        )
-
-        //We can't create this properly as it's missing some classes, so we'll hack it with reflection
-        val keyguardVisibility = KeyguardVisibility::class.java.getConstructor(Context::class.java, KeyguardStateController::class.java).newInstance(context, keyguardStateController)
-        //val cameraVisibility = CameraVisibility(context, emptyList(), keyguardVisibility, powerState, activityManagerService, mainHandler)
-
-        val chargingState = ChargingState(context, mainHandler, ColumbusModule.provideTransientGateDuration())
-        val telephonyActivity = TelephonyActivity(context)
-        val usbState = UsbState(context, mainHandler, ColumbusModule.provideTransientGateDuration())
-        //val vrMode = VrMode(context)
-
-        /*val navigationBarControllerClass = XposedHelpers.findClass("com.android.systemui.statusbar.NavigationBarController", classLoader)
-        val actualNavigationBarController = classLoader.getDependency(navigationBarControllerClass)
-        val navigationBarController = NavigationBarController(actualNavigationBarController, navigationBarControllerClass)
-
-        val navUndimEffect = NavUndimEffect::class.java.getConstructor(NavigationBarController::class.java).newInstance(navigationBarController)
-        val assistManagerClass = XposedHelpers.findClass("com.android.systemui.assist.AssistManager", classLoader)
-        val assistManager = classLoader.getDependency(assistManagerClass)
-        val assistInvocationEffect = AssistInvocationEffectCompat(assistManager, assistManagerClass)*/
-
-        val cameraVisibility = CameraVisibility(this)
 
         sharedPreferences.registerOnSharedPreferenceChangeListener(this)
 
@@ -108,7 +72,6 @@ class TapAccessibilityService : AccessibilityService(),
         SmaliCalls.setTapRtModel(TfModel.valueOf(sharedPreferences.getString(SHARED_PREFERENCES_KEY_MODEL, TfModel.PIXEL4.name) ?: TfModel.PIXEL4.name).model)
 
         //Create the service
-        //this.columbusService = ColumbusService(getColumbusActions(), getColumbusFeedback(), getGates(context), gestureSensorImpl, powerManagerWrapper, metricsLogger)
         this.columbusService = ColumbusService::class.java.constructors.first().newInstance(getColumbusActions(), getColumbusFeedback(), getGates(context), gestureSensorImpl, powerManagerWrapper, metricsLogger) as ColumbusService
     }
 
