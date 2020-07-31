@@ -15,6 +15,8 @@ import com.kieronquinn.app.taptap.adapters.ActionAdapter
 import com.kieronquinn.app.taptap.adapters.GateAdapter
 import com.kieronquinn.app.taptap.fragments.SettingsActionFragment
 import com.kieronquinn.app.taptap.models.*
+import com.kieronquinn.app.taptap.models.store.GateListFile
+import com.kieronquinn.app.taptap.utils.CONFIGURABLE_GATES
 import com.kieronquinn.app.taptap.utils.dip
 import dev.chrisbanes.insetter.applySystemGestureInsetsToPadding
 
@@ -32,7 +34,11 @@ class GateListFragment : Fragment(), GateAdapter.GateCallback {
         super.onViewCreated(view, savedInstanceState)
         val recyclerView = view as RecyclerView
         recyclerView.layoutManager = LinearLayoutManager(recyclerView.context)
-        val gates = TapGate.values().map { GateInternal(it, false) }.toMutableList()
+        val currentGates = GateListFile.loadFromFile(recyclerView.context).map { it.gate }
+        val gates = TapGate.values().mapNotNull {
+            if(!CONFIGURABLE_GATES.contains(it) && currentGates.contains(it)) null
+            else GateInternal(it, false)
+        }.toMutableList()
         val adapter = GateAdapter(recyclerView.context, gates, true, this)
         recyclerView.adapter = adapter
         recyclerView.setOnScrollChangeListener { _, _, _, _, _ ->
