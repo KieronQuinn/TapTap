@@ -113,4 +113,14 @@
     <string name="donate">Donate</string>
     <string name="twitter">Follow me on Twitter</string>
     <string name="picker_launch_camera">Launch Camera</string>
+    <string name="action_volume_panel">Show volume panel</string>
+    <string name="action_volume_panel_desc">Show the system volume panel with the sound stream for adjustment showing</string>
+    <string name="action_volume_up">Volume up</string>
+    <string name="action_volume_up_desc">Increase the volume of the current sound stream</string>
+    <string name="action_volume_down">Volume down</string>
+    <string name="action_volume_down_desc">Decrease the volume of the current sound stream</string>
+    <string name="action_volume_toggle_mute">Toggle mute</string>
+    <string name="action_volume_toggle_mute_desc">Turn mute on/off for the current sound stream</string>
+    <string name="action_wake_device">Wake device</string>
+    <string name="action_wake_device_desc">Wake the device up if the screen is off. This overrides the setting in the feedback settings, is skipped if the display is on, and will not work if you have the \"Display off\" gate enabled</string>
 </resources>

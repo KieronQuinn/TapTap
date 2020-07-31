@@ -4,6 +4,7 @@ import android.accessibilityservice.AccessibilityService
 import android.app.ActivityManager
 import android.content.Context
 import android.content.SharedPreferences
+import android.media.AudioManager
 import android.util.Log
 import android.view.accessibility.AccessibilityEvent
 import com.android.internal.logging.MetricsLogger
@@ -120,6 +121,11 @@ class TapAccessibilityService : AccessibilityService(),
                 TapAction.TOGGLE_PAUSE -> MusicAction(this, MusicAction.Command.TOGGLE_PAUSE)
                 TapAction.PREVIOUS -> MusicAction(this, MusicAction.Command.PREVIOUS)
                 TapAction.NEXT -> MusicAction(this, MusicAction.Command.NEXT)
+                TapAction.VOLUME_PANEL -> VolumeAction(this, AudioManager.ADJUST_SAME)
+                TapAction.VOLUME_UP -> VolumeAction(this, AudioManager.ADJUST_RAISE)
+                TapAction.VOLUME_DOWN -> VolumeAction(this, AudioManager.ADJUST_LOWER)
+                TapAction.VOLUME_TOGGLE_MUTE -> VolumeAction(this, AudioManager.ADJUST_TOGGLE_MUTE)
+                TapAction.WAKE_DEVICE -> WakeDeviceAction(this)
             }
         }catch (e: RuntimeException){
             //Enum not found, probably a downgrade issue
