@@ -93,7 +93,6 @@
     <string name="action_launch_assistant_desc">Launch your default assistant app</string>
     <string name="action_tasker_event">Tasker Event</string>
     <string name="action_tasker_event_desc">Trigger the Tasker Event plugin</string>
-    <string name="add_action_category_info">Advanced actions such as Tasker integration are coming soon!</string>
 
     <string name="accessibility_info_off">Accessibility Service is disabled</string>
     <string name="accessibility_info_off_desc">The gesture will not currently work. Tap to enable</string>
@@ -112,6 +111,14 @@
     <string name="libraries">Third party libraries</string>
     <string name="donate">Donate</string>
     <string name="twitter">Follow me on Twitter</string>
+    <string name="tasker_config_label">Double Tapped Back</string>
+    <string name="action_tasker_task">Tasker Task</string>
+    <string name="action_tasker_task_desc">Run a specified Tasker task</string>
+    <string name="action_tasker_event_toast">Tasker not installed or version not supported</string>
+    <string name="bs_tasker_content">In order to launch a Tasker task without using the Event plugin, you must enable the \"Allow External Access\" option in Tasker\'s settings. If you do not have this option enabled, this Action will always be skipped.</string>
+    <string name="bs_tasker_title">Permission Required</string>
+    <string name="bs_tasker_negative">Later</string>
+    <string name="bs_tasker_positive">Open Tasker Settings</string>
     <string name="picker_launch_camera">Launch Camera</string>
     <string name="action_volume_panel">Show volume panel</string>
     <string name="action_volume_panel_desc">Show the system volume panel with the sound stream for adjustment showing</string>
