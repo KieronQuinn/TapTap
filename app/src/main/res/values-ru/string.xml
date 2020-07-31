@@ -9,7 +9,7 @@
     <string name="setting_gates">Запреты</string>
     <string name="setting_gates_desc">Установите ситуации, когда жест не должен запускать действие</string>
     <string name="setting_feedback">Обратная связь</string>
-    <string name="setting_feedback_desc">Set how the device notifies you when the gesture is run</string>
+    <string name="setting_feedback_desc">Установите, как устройство уведомляет вас о запуске жеста</string>
     <string name="setting_gesture_model">Модель устройства</string>
     <string name="setting_gesture_model_desc">Выберите модель устройства для использования в компоненте машинного обучения</string>
     <string name="setting_feedback_vibrate">Вибрация</string>
@@ -74,7 +74,7 @@
     <string name="bs_help_gate_title">Что такое запреты?</string>
     <string name="help">Помощь</string>
     <string name="action_launch_assistant">Запустить ассистента</string>
-    <string name="action_launch_assistant_desc">Запустите приложение-ассистента по умолчанию</string>
+    <string name="action_launch_assistant_desc">Запустите приложение-ассистент по умолчанию</string>
     <string name="add_action_category_info">Расширенные действия, такие как интеграция с Tasker, скоро появятся!</string>
 
     <string name="accessibility_info_off">Служба доступности отключена</string>
