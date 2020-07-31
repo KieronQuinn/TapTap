@@ -1,0 +1,113 @@
+<resources>
+    <string name="app_name">Tap, Tap</string>
+    <string name="xposed_desc">Columbus backport</string>
+    <string name="accessibility_service_description">Serviço de Acessibilidade do TapTap\n\n<b>Aviso Importante: Nenhum dado de seus aplicativos será coletado, este serviço é usado simplesmente para manter o reconhecimento ativo e providenciar a interação com o seu dispositivo</b></string>
+    <string name="toast_no_action_selected">Nenhuma ação selecionada</string>
+    <string name="launch_accessibility">Abra o menu de Acessibilidade</string>
+    <string name="setting_gesture">Gesto</string>
+    <string name="setting_gesture_desc">Ajuste como o gesto funciona</string>
+    <string name="setting_actions">Ações</string>
+    <string name="settings_actions_desc">Defina as ações a serem executadas quando o gesto for realizado</string>
+    <string name="setting_gates">Portões</string>
+    <string name="setting_gates_desc">Defina situações em que o gesto não deve executar uma ação</string>
+    <string name="setting_feedback">Feedback</string>
+    <string name="setting_feedback_desc">Defina como o dispositivo irá te avisar quando o gesto é executado</string>
+    <string name="setting_gesture_model">Modelo do Dispositivo</string>
+    <string name="setting_gesture_model_desc">Selecione qual modelo de dispositivo usar para o componente de machine learning</string>
+    <string name="setting_feedback_vibrate">Vibrar</string>
+    <string name="setting_feedback_vibrate_desc">Vibrar quando o gesto é realizado e a ação é executada</string>
+    <string name="setting_feedback_wake">Acordar Dispositivo</string>
+    <string name="setting_feedback_wake_desc">Ligar a tela do dispositivo caso esteja desligada (aviso: isso vai interferir ações que desligam a tela!)</string>
+
+    <string-array name="device_model_keys">
+        <item>Pixel 3 XL</item>
+        <item>Pixel 4</item>
+        <item>Pixel 4 XL</item>
+    </string-array>
+
+    <!-- Gates -->
+    <string name="gate_charging_state">Carregando</string>
+    <string name="gate_charging_state_desc">Bloqueia o gesto por meio segundo após o dispositivo ser conectado a uma fonte de energia</string>
+    <string name="gate_telephony_activity">Durante uma ligação</string>
+    <string name="gate_telephony_activity_desc">Bloqueia o gesto quando o dispositivo está em uma chamada de voz. Apenas ligações normais são suportadas - não funciona com VoIP, como no WhatsApp, por exemplo.</string>
+    <string name="gate_usb_state">Dispositivo USB</string>
+    <string name="gate_usb_state_desc">Bloqueia o gesto por meio segundo quando um dispositivo USB, como um pen drive, é conectado</string>
+    <string name="gate_camera_visibility">Câmera</string>
+    <string name="gate_camera_visibility_desc">Bloqueia o gesto quando qualquer aplicativo de câmera é aberto. Aviso: Isso vai quebrar a funcionalidade de ignorar a ação "Iniciar câmera".</string>
+    <string name="gate_power_state">Tela desligada</string>
+    <string name="gate_power_state_desc">Bloqueia o gesto quando a tela do dispositivo está desligada</string>
+    <string name="gate_app_showing">Aplicativo sendo exibido</string>
+    <string name="gate_app_showing_desc">Bloqueia o gesto quando um determinado aplicativo está sendo exibido na tela</string>
+    <string name="gate_app_showing_desc_formatted">Bloqueia o gesto quando %1s está sendo exibido na tela</string>
+    <string name="action_launch_camera">Iniciar câmera</string>
+    <string name="action_launch_camera_desc">Inicia seu aplicativo de câmera padrão. Esta ação será ignorada se a câmera já estiver em execução.</string>
+    <string name="action_home">Tela inicial</string>
+    <string name="action_home_desc">Simula o pressionamento do botão tela de ínicio</string>
+    <string name="action_back">Back</string>
+    <string name="action_back_desc">Simula o pressionamento do botão voltar</string>
+    <string name="action_recents">Abrir recentes</string>
+    <string name="action_recents_desc">Abre a tela de apps recentes simulando o pressionamento do botão recentes. Nos dispositivos compatíveis, o uso dessa ação quando a tela de apps recentes já estiver sendo exibida, mudará para o primeiro aplicativo em segundo plano</string>
+    <string name="action_notifications">Abrir notificações</string>
+    <string name="action_notifications_desc">Abre o painel de notificação</string>
+    <string name="action_quick_settings">Configurações rápidas</string>
+    <string name="action_quick_settings_desc">Abre o painel de configurações rápidas</string>
+    <string name="action_screenshot">Captura de tela</string>
+    <string name="action_screenshot_desc">Tira um print usando a interface de captura de tela do sistema</string>
+    <string name="action_lock_screen">Bloquear a tela</string>
+    <string name="action_lock_screen_desc">Bloqueia a tela simulando o pressionamento do botão de energia</string>
+	<string name="action_toggle_pause">Reproduzir/Pausar</string>
+    <string name="action_toggle_pause_desc">Reproduz/Pausa o áudio atual</string>
+    <string name="action_previous">Anterior</string>
+    <string name="action_previous_desc">Reproduz o áudio anterior</string>
+    <string name="action_next">Próximo</string>
+    <string name="action_next_desc">Reproduz o próximo áudio</string>
+    <string name="fab_add_action">Adicionar Ação</string>
+    <string name="fab_remove_action">Remover</string>
+    <string name="fab_remove_action_drop">Solte aqui para remover</string>
+    <string name="add_action_category_launch">Executar</string>
+    <string name="add_action_category_utilities">Utilidades</string>
+    <string name="add_action_category_actions">Ações</string>
+    <string name="add_action_category_advanced">Avançado</string>
+    <string name="action_flashlight">Lanterna</string>
+    <string name="action_flashlight_desc">Alterne a lanterna. Esta ação falhará se a câmera estiver em uso por outro aplicativo.</string>
+    <string name="action_launch_app">Abrir app</string>
+    <string name="action_launch_app_desc">Abre um app</string>
+    <string name="action_launch_app_desc_formattable">Abrir %1s. Esta ação será ignorada se isso já estiver em execução.</string>
+    <string name="fab_add_gate">Adicionar Portão</string>
+    <string name="add_gate_category_state">Estado</string>
+    <string name="add_gate_category_action">Ação</string>
+    <string name="nothing_found">Nada encontrado</string>
+    <string name="search">Pesquisar</string>
+    <string name="show_system_apps">Mostrar apps do sistema</string>
+    <string name="select_an_app">Selecione um app</string>
+    <string name="setting_gesture_sensitivity">Sensibilidade</string>
+    <string name="setting_gesture_sensitivity_desc">No momento, sensibilidade não está implementada no código do Google usado por este aplicativo. Estou analisando ativamente como isso pode ser possível e deverá estar disponível em uma futura atualização.</string>
+    <string name="bs_help_action">Ações são tarefas executadas quando você toca na parte traseira do seu dispositivo duas vezes. As ações são executadas na ordem da lista - de cima para baixo. Se uma ação puder ser executada com êxito, nenhuma ação adicional será executada. No entanto, se uma ação não estiver disponível (por exemplo, se o assistente da ação "Abrir Assistente" já estiver em execução), a próxima ação abaixo será executada e assim sucessivamente até que uma seja executada com êxito.\n\nEm versões futuras deste aplicativo, você poderá adicionar portões às ações (consulte o menu Portões do aplicativo) para permitir mais controle sobre quando determinadas ações são executadas.</string>
+    <string name="bs_help_action_title">O que são Ações?</string>
+    <string name="bs_help_gate">Portões são situações que podem impedir o gesto de executar qualquer ação. Para que qualquer ação seja executada, todos os portões ativados devem estar abertos.\nSe uma situação ocorrer, por exemplo, se a tela estiver desligada e o portão "Tela desligada" estiver ativado, nenhuma ação será executada. Você pode adicionar quantas portas desejar e ativá-los/desativá-los usando os interruptores (em vez de precisar excluir e adicionar novamente) para tornar a configuração mais rápida e fácil.</string>
+    <string name="bs_help_gate_title">O que são Portões?</string>
+    <string name="help">Ajuda</string>
+    <string name="action_launch_assistant">Abrir Assistente</string>
+    <string name="action_launch_assistant_desc">Abre seu app de assistente padrão</string>
+    <string name="action_tasker_event">Evento do Tasker</string>
+    <string name="action_tasker_event_desc">Dispara o Tasker Event plug-in</string>
+    <string name="add_action_category_info">Ações avançadas, como a integração do Tasker, estão chegando em breve!</string>
+
+    <string name="accessibility_info_off">Serviço de Acessibilidade desativado</string>
+    <string name="accessibility_info_off_desc">O gesto não irá funcionar. Toque para ativar</string>
+    <string name="accessibility_info_on">Serviço de Acessibilidade ativado</string>
+    <string name="accessibility_info_on_desc">Se você deseja desativar o gesto, toque para desativar o serviço</string>
+    <string name="accessibility_info_toast">Selecione "Tap, Tap" na lista de serviços de acessibilidade, ative isso e retorne para o Tap, Tap para continuar</string>
+    <string name="menu_alpha">Este aplicativo está em Alpha. Toque para obter informações.</string>
+    <string name="bs_alpha">Este aplicativo está nos estágios iniciais de desenvolvimento e foi lançado em um estado "Alpha" para permitir testes em vários dispositivos. Se você encontrar um bug, informe-o no GitHub como um issue. Se você deseja solicitar um recurso, poste isso no thread do XDA ou no GitHub.\n\nRetorne ao XDA, no Labs ou no thread, para atualizações assim que estiverem disponíveis.\n\nObrigado pela sua paciência durante o desenvolvimento.</string>
+    <string name="bs_alpha_title">Alpha</string>
+
+    <string name="category_about">Sobre</string>
+    <string name="about">%1s v%2s</string>
+    <string name="about_summary">Criado por Kieron Quinn / Quinny899 @ XDA</string>
+    <string name="xda_thread">XDA Thread</string>
+    <string name="github">GitHub</string>
+    <string name="libraries">Bibliotecas de terceiros</string>
+    <string name="donate">Doar</string>
+    <string name="twitter">Me siga no Twitter</string>
+</resources>
