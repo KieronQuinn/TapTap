@@ -19,6 +19,7 @@ import com.google.android.systemui.columbus.sensors.config.GestureConfiguration
 import com.kieronquinn.app.taptap.columbus.actions.Flashlight
 import com.kieronquinn.app.taptap.columbus.actions.LaunchApp
 import com.kieronquinn.app.taptap.columbus.actions.LaunchAssistant
+import com.kieronquinn.app.taptap.columbus.actions.TaskerEvent
 import com.kieronquinn.app.taptap.columbus.feedback.HapticClickCompat
 import com.kieronquinn.app.taptap.columbus.feedback.WakeDevice
 import com.kieronquinn.app.taptap.columbus.gates.CameraVisibility
@@ -148,6 +149,7 @@ class TapAccessibilityService : AccessibilityService(),
             TapAction.FLASHLIGHT -> Flashlight(this)
             TapAction.LAUNCH_APP -> LaunchApp(this, action.data ?: "")
             TapAction.LAUNCH_ASSISTANT -> LaunchAssistant(this)
+            TapAction.TASKER_EVENT -> TaskerEvent(this)
         }
     }
 

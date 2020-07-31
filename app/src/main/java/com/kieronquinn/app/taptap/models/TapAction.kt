@@ -5,6 +5,7 @@ import androidx.annotation.StringRes
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.columbus.actions.LaunchApp
 import com.kieronquinn.app.taptap.columbus.actions.LaunchAssistant
+import com.kieronquinn.app.taptap.columbus.actions.TaskerEvent
 import com.kieronquinn.app.taptap.utils.AccessibilityServiceGlobalAction
 import com.kieronquinn.app.taptap.utils.LaunchCameraLocal
 import com.kieronquinn.app.taptap.utils.minApi
@@ -20,7 +21,8 @@ enum class TapAction(val clazz: Class<*>, @StringRes val nameRes: Int, @StringRe
     SCREENSHOT(AccessibilityServiceGlobalAction::class.java, R.string.action_screenshot, R.string.action_screenshot_desc, R.drawable.ic_action_screenshot, minApi(28), true),
     LOCK_SCREEN(AccessibilityServiceGlobalAction::class.java, R.string.action_lock_screen, R.string.action_lock_screen_desc, R.drawable.ic_power_state, minApi(28), true),
     FLASHLIGHT(AccessibilityServiceGlobalAction::class.java, R.string.action_flashlight, R.string.action_flashlight_desc, R.drawable.ic_action_category_utilities, true, true, dataType = ActionDataTypes.CAMERA_PERMISSION),
-    LAUNCH_APP(LaunchApp::class.java, R.string.action_launch_app, R.string.action_launch_app_desc, R.drawable.ic_action_category_launch, true, true, R.string.action_launch_app_desc_formattable, ActionDataTypes.PACKAGE_NAME)
+    LAUNCH_APP(LaunchApp::class.java, R.string.action_launch_app, R.string.action_launch_app_desc, R.drawable.ic_action_category_launch, true, true, R.string.action_launch_app_desc_formattable, ActionDataTypes.PACKAGE_NAME),
+    TASKER_EVENT(TaskerEvent::class.java, R.string.action_tasker_event, R.string.action_tasker_event_desc, R.drawable.ic_launch_assistant, true, true)
 }
 
 enum class ActionDataTypes {
