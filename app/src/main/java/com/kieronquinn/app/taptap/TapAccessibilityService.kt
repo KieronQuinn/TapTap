@@ -76,6 +76,10 @@ class TapAccessibilityService : AccessibilityService(),
         this.columbusService = ColumbusService::class.java.constructors.first().newInstance(getColumbusActions(), getColumbusFeedback(), getGates(context), gestureSensorImpl, powerManagerWrapper, metricsLogger) as ColumbusService
     }
 
+    private fun getColumbusActions() : List<Action> {
+        return ActionListFile.loadFromFile(this).toList().mapNotNull { getActionForEnum(it) }
+    }
+
     private fun getActionForEnum(action: ActionInternal) : Action? {
         return try {
             when (action.action) {
