@@ -52,7 +52,7 @@ class ActionListFragment : Fragment() {
                listOf(TapAction.LAUNCH_APP, TapAction.LAUNCH_ASSISTANT, TapAction.LAUNCH_CAMERA).map { ActionInternal(it, ArrayList()) }
             }
             TapActionCategory.UTILITIES -> {
-               listOf(TapAction.FLASHLIGHT).map { ActionInternal(it, ArrayList()) }
+               listOf(TapAction.TASKER_EVENT, TapAction.FLASHLIGHT).map { ActionInternal(it, ArrayList()) }
             }
             TapActionCategory.ACTIONS -> {
                listOf(TapAction.SCREENSHOT, TapAction.NOTIFICATIONS, TapAction.QUICK_SETTINGS, TapAction.HOME, TapAction.BACK, TapAction.RECENTS, TapAction.LOCK_SCREEN).map { ActionInternal(it, ArrayList()) }

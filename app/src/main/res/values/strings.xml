@@ -83,6 +83,8 @@
     <string name="help">Help</string>
     <string name="action_launch_assistant">Launch Assistant</string>
     <string name="action_launch_assistant_desc">Launch your default assistant app</string>
+    <string name="action_tasker_event">Tasker Event</string>
+    <string name="action_tasker_event_desc">Trigger the Tasker Event plugin</string>
     <string name="add_action_category_info">Advanced actions such as Tasker integration are coming soon!</string>
 
     <string name="accessibility_info_off">Accessibility Service is disabled</string>

@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
 
     <application
         android:allowBackup="true"
@@ -48,6 +49,14 @@
             android:name="com.google.android.gms.oss.licenses.OssLicensesActivity"
             android:theme="@style/AppTheme.ThirdPartyLicences" />
 
+        <activity android:name=".activities.ActivityConfigTaskerEvent"
+            android:exported="true"
+            android:icon="@mipmap/ic_launcher"
+            android:label="Double Tapped Back">
+            <intent-filter>
+                <action android:name="net.dinglisch.android.tasker.ACTION_EDIT_EVENT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
