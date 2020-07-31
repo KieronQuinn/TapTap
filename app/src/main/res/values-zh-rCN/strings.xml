@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Tap, Tap</string>
     <string name="xposed_desc">哥伦布后门</string>
-    <string name="accessibility_service_description">TapTap 无障碍五福\n\n<b>重要提示：应用不会收集您的数据，此服务仅用于识别手势活动并提供与设备的互动支持。</b></string>
+    <string name="accessibility_service_description">TapTap 无障碍服务\n\n<b>重要提示：应用不会收集您的数据，此服务仅用于识别手势活动并提供与设备的互动支持。</b></string>
     <string name="toast_no_action_selected">没有选择任何动作</string>
     <string name="launch_accessibility">激活无障碍服务</string>
     <string name="setting_gesture">手势</string>
@@ -18,12 +18,6 @@
     <string name="setting_feedback_vibrate_desc">当识别到手势并执行动作时，振动一次</string>
     <string name="setting_feedback_wake">唤醒设备</string>
     <string name="setting_feedback_wake_desc">当屏幕关闭时唤醒设备（注意：这会干扰「锁屏」动作！）</string>
-
-    <string-array name="device_model_keys">
-        <item>Pixel 3 XL</item>
-        <item>Pixel 4</item>
-        <item>Pixel 4 XL</item>
-    </string-array>
 
     <!-- Gates -->
     <string name="gate_charging_state">充电时</string>
@@ -91,7 +85,7 @@
     <string name="accessibility_info_on_desc">如果您想禁用手势，点击以禁用服务</string>
     <string name="accessibility_info_toast">在无障碍服务列表中选择「Tap, Tap」启用它，然后返回应用以继续</string>
     <string name="menu_alpha">此应用处于 Alpha 阶段。点击了解详情。</string>
-    <string name="bs_alpha">这款应用程序还处于早期开发阶段，目前已经发布为了 Alpha 版本，可在众多设备上进行测试。如果您遇到了 bug，请在 GitHub 上提交一个 issue。如果您希望能有一些新功能，可以在 XDA 上的帖子里告诉我，或者同样在 GitHub 上提交。\n\n请在 XDA 上查看，无论是在实验室还是在这个帖子里，一旦有更新，就会立即更新。\n\n感谢您在开发过程中的耐心等候。</string>
+    <string name="bs_alpha">这款应用程序还处于早期开发阶段，目前已经发布了 Alpha 版本，可在众多设备上进行测试。如果您遇到了 bug，请在 GitHub 上提交一个 issue。如果您希望能有一些新功能，可以在 XDA 上的帖子里告诉我，或者同样在 GitHub 上提交。\n\n请在 XDA 上查看，无论是在实验室还是在这个帖子里。一旦有新版本释出，就会立即更新。\n\n感谢您在开发过程中的耐心等候。</string>
     <string name="bs_alpha_title">Alpha</string>
 
     <string name="category_about">关于</string>
