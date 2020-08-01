@@ -15,4 +15,26 @@
     <color name="card_outlined">#DADCE0</color>
     <color name="accessibility_cross">#F44336</color>
     <color name="accessibility_check">#8BC34A</color>
+
+    <color name="icon_circle_0">#D7E5F8</color>
+    <color name="icon_circle_1">#F8D7DF</color>
+    <color name="icon_circle_2">#F8E0D7</color>
+    <color name="icon_circle_3">#D7F8E7</color>
+    <color name="icon_circle_4">#F8F3D7</color>
+    <color name="icon_circle_5">#F7E9D5</color>
+    <color name="icon_circle_6">#E8E8E8</color>
+    <color name="icon_circle_7">#DAD7F8</color>
+    <color name="icon_circle_8">#D7F8F8</color>
+    <color name="icon_circle_9">#EDD7F8</color>
+
+    <color name="icon_inside_0">#1A6CD9</color>
+    <color name="icon_inside_1">#D91A4A</color>
+    <color name="icon_inside_2">#D9521A</color>
+    <color name="icon_inside_3">#1AD975</color>
+    <color name="icon_inside_4">#D9BA1A</color>
+    <color name="icon_inside_5">#f59714</color>
+    <color name="icon_inside_6">#333</color>
+    <color name="icon_inside_7">#2F1AD9</color>
+    <color name="icon_inside_8">#1AD5D9</color>
+    <color name="icon_inside_9">#981AD9</color>
 </resources>
