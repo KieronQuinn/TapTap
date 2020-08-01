@@ -8,25 +8,25 @@
         android:summary="@string/accessibility_info_off_desc"/>
 
     <com.kieronquinn.app.taptap.preferences.Preference
-        android:icon="@drawable/ic_gesture"
+        android:icon="@drawable/ic_gesture_round"
         android:key="gesture"
         android:title="@string/setting_gesture"
         android:summary="@string/setting_gesture_desc"/>
 
     <com.kieronquinn.app.taptap.preferences.Preference
-        android:icon="@drawable/ic_actions"
+        android:icon="@drawable/ic_actions_round"
         android:key="actions"
         android:title="@string/setting_actions"
         android:summary="@string/settings_actions_desc"/>
 
     <com.kieronquinn.app.taptap.preferences.Preference
-        android:icon="@drawable/ic_gates"
+        android:icon="@drawable/ic_gates_round"
         android:key="gates"
         android:title="@string/setting_gates"
         android:summary="@string/setting_gates_desc"/>
 
     <com.kieronquinn.app.taptap.preferences.Preference
-        android:icon="@drawable/ic_feedback"
+        android:icon="@drawable/ic_feedback_round"
         android:key="feedback"
         android:title="@string/setting_feedback"
         android:summary="@string/setting_feedback_desc"/>
@@ -37,32 +37,32 @@
         <com.kieronquinn.app.taptap.preferences.Preference
             android:title="@string/about"
             android:summary="@string/about_summary"
-            android:icon="@drawable/ic_info"
+            android:icon="@drawable/ic_info_round"
             android:key="about_about"/>
 
         <com.kieronquinn.app.taptap.preferences.Preference
             android:title="@string/xda_thread"
-            android:icon="@drawable/ic_xda"
+            android:icon="@drawable/ic_xda_round"
             android:key="about_xda"/>
 
         <com.kieronquinn.app.taptap.preferences.Preference
             android:title="@string/github"
-            android:icon="@drawable/ic_github"
+            android:icon="@drawable/ic_github_round"
             android:key="about_github"/>
 
         <com.kieronquinn.app.taptap.preferences.Preference
             android:title="@string/donate"
-            android:icon="@drawable/ic_donate"
+            android:icon="@drawable/ic_donate_round"
             android:key="about_donate"/>
 
         <com.kieronquinn.app.taptap.preferences.Preference
             android:title="@string/twitter"
-            android:icon="@drawable/ic_twitter"
+            android:icon="@drawable/ic_twitter_round"
             android:key="about_twitter"/>
 
         <com.kieronquinn.app.taptap.preferences.Preference
             android:title="@string/libraries"
-            android:icon="@drawable/ic_libraries"
+            android:icon="@drawable/ic_libraries_round"
             android:key="about_libraries"/>
 
     </com.kieronquinn.app.taptap.preferences.PreferenceCategory>

@@ -6,7 +6,7 @@ Tap, Tap is currently in alpha, and has been released at this time due to the in
 
 Screenshots:
 
-![Tap, Tap](https://i.imgur.com/K5SuyfCl.png) ![Actions](https://i.imgur.com/SsIsrdkl.png) ![Gates](https://i.imgur.com/rf2COsjl.png)
+![Tap, Tap](https://i.imgur.com/n5jfNCN.png)
 
 [Example video, showing launching the camera on double tap](https://streamable.com/4jd1mu)
 
