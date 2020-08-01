@@ -105,7 +105,7 @@
 
     <string name="category_about">About</string>
     <string name="about">%1s v%2s</string>
-    <string name="about_summary">Created by Kieron Quinn / Quinny899 @ XDA\nWith thanks to contributions from the community, including: joaomgcd, timfedo, gcantoni</string>
+    <string name="about_summary">Created by Kieron Quinn / Quinny899 @ XDA\nWith thanks to contributions from the community, including: João Dias, timfedo, Giorgio Cantoni, Fedor Shatokhin, Rodrigo Souza, Petro Bilyi, Kevin Kung</string>
     <string name="xda_thread">XDA Thread</string>
     <string name="github">GitHub</string>
     <string name="libraries">Third party libraries</string>
