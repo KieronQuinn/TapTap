@@ -110,7 +110,7 @@
     <string name="bs_tasker_negative">Позже</string>
     <string name="bs_tasker_positive">Открыть настройки Tasker</string>
      <string name="action_volume_panel">Показать панель громкости</string>
-    <string name="action_volume_panel_desc">Show the system volume panel with the sound stream for adjustment showing</string>
+    <string name="action_volume_panel_desc">Показать панель громкости системы</string>
     <string name="action_volume_up">Увеличить громкость</string>
     <string name="action_volume_up_desc">Увеличить громкость текущего звукового потока</string>
     <string name="action_volume_down">Уменьшить громкость</string>
