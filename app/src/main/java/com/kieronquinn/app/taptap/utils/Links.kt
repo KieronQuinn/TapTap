@@ -3,7 +3,10 @@ package com.kieronquinn.app.taptap.utils
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import androidx.browser.customtabs.CustomTabsIntent
+import androidx.core.content.ContextCompat
 import androidx.preference.PreferenceScreen
+import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.preferences.Preference
 
 class Links {
@@ -14,8 +17,32 @@ class Links {
         const val LINK_TWITTER = "https://kieronquinn.co.uk/redirect/TapTap/twitter"
 
         private fun startLinkIntent(context: Context, link: String){
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(link))
-            context.startActivity(intent)
+            if(link == LINK_XDA){
+                startLinkIntentXDA(context)
+            }else{
+                startCCT(context, link)
+            }
+        }
+
+        private fun startLinkIntentXDA(context: Context){
+            if(context.isAppLaunchable("com.xda.labs")){
+                //Open normally rather than CCT to allow for XDA app to open forum link
+                val intent = Intent(Intent.ACTION_VIEW)
+                intent.data = Uri.parse(LINK_XDA)
+                context.startActivity(intent)
+            }else {
+                startCCT(context, LINK_XDA)
+            }
+        }
+
+        private fun startCCT(context: Context, link: String){
+            val customTabsIntent = CustomTabsIntent.Builder()
+                .setShowTitle(true)
+                .setToolbarColor(ContextCompat.getColor(context, R.color.windowBackground))
+                .build()
+            customTabsIntent.intent.flags = Intent.FLAG_ACTIVITY_NO_HISTORY
+            customTabsIntent.intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            customTabsIntent.launchUrl(context, Uri.parse(link))
         }
 
         fun setupPreference(context: Context, preferenceScreen: PreferenceScreen, preferenceKey: String, link: String){
