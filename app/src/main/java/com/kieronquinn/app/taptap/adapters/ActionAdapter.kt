@@ -1,6 +1,7 @@
 package com.kieronquinn.app.taptap.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.models.ActionInternal
 import com.kieronquinn.app.taptap.models.ActionDataTypes
+import com.kieronquinn.app.taptap.utils.deserialize
 import kotlinx.android.synthetic.main.item_action.view.*
 
 class ActionAdapter(private val context: Context, val actions: MutableList<ActionInternal>, private val isAdd: Boolean = false, private val onItemTouchListener: (ViewHolder) -> Unit) : RecyclerView.Adapter<ActionAdapter.ViewHolder>() {
@@ -66,6 +68,24 @@ class ActionAdapter(private val context: Context, val actions: MutableList<Actio
             ActionDataTypes.PACKAGE_NAME -> {
                 val applicationInfo = context.packageManager.getApplicationInfo(item.data, 0)
                 applicationInfo.loadLabel(context.packageManager)
+            }
+            ActionDataTypes.SHORTCUT -> {
+                val intent = Intent().apply {
+                    deserialize(item.data ?: "")
+                }
+                try {
+                    context.packageManager.queryIntentActivities(intent, 0).firstOrNull()?.let {
+                        val applicationInfo = context.packageManager.getApplicationInfo(
+                            it.activityInfo.packageName,
+                            0
+                        )
+                        applicationInfo.loadLabel(context.packageManager)
+                    } ?: run {
+                        null
+                    }
+                }catch (e: Exception){
+                    null
+                }
             }
             else -> null
         } ?: return null

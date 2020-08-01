@@ -49,7 +49,7 @@ class ActionListFragment : Fragment() {
     private fun getActionsForCategory(category: TapActionCategory): MutableList<ActionInternal> {
         return when(category){
             TapActionCategory.LAUNCH -> {
-               listOf(TapAction.LAUNCH_APP, TapAction.LAUNCH_ASSISTANT, TapAction.LAUNCH_CAMERA).map { ActionInternal(it, ArrayList()) }
+               listOf(TapAction.LAUNCH_APP, TapAction.LAUNCH_SHORTCUT, TapAction.LAUNCH_ASSISTANT, TapAction.LAUNCH_CAMERA).map { ActionInternal(it, ArrayList()) }
             }
             TapActionCategory.UTILITIES -> {
                listOf(TapAction.FLASHLIGHT).map { ActionInternal(it, ArrayList()) }

@@ -32,10 +32,7 @@ import com.kieronquinn.app.taptap.fragments.SettingsActionFragment
 import com.kieronquinn.app.taptap.fragments.action.ActionListFragment
 import com.kieronquinn.app.taptap.models.ActionInternal
 import com.kieronquinn.app.taptap.models.ActionDataTypes
-import com.kieronquinn.app.taptap.utils.animateColorChange
-import com.kieronquinn.app.taptap.utils.animateElevationChange
-import com.kieronquinn.app.taptap.utils.dip
-import com.kieronquinn.app.taptap.utils.isDarkTheme
+import com.kieronquinn.app.taptap.utils.*
 import dev.chrisbanes.insetter.Insetter
 import kotlinx.android.synthetic.main.fragment_bottomsheet_action.*
 import net.dinglisch.android.tasker.TaskerIntent
@@ -46,6 +43,8 @@ class ActionBottomSheetFragment : BottomSheetDialogFragment(), NavController.OnD
         private const val REQUEST_CODE_SELECT_APP = 1001
         private const val REQUEST_CODE_PERMISSION = 1002
         private const val REQUEST_CODE_TASKER_ACTION = 1003
+        private const val REQUEST_CODE_SHORTCUT = 1004
+        private const val REQUEST_CODE_SHORTCUT_SECOND = 1005
     }
 
     private var storedAction: ActionInternal? = null
@@ -182,25 +181,60 @@ class ActionBottomSheetFragment : BottomSheetDialogFragment(), NavController.OnD
                     storedAction = null
                 }
             }
+            ActionDataTypes.SHORTCUT -> {
+                launchShortcutPicker(action, callback)
+            }
         }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode == REQUEST_CODE_SELECT_APP && resultCode == Activity.RESULT_OK){
+        val result: Boolean = if(requestCode == REQUEST_CODE_SELECT_APP && resultCode == Activity.RESULT_OK){
             val currentAction = storedAction ?: return
             val packageName = data?.getStringExtra(AppsFragment.KEY_SELECTED_APP)
             if(packageName.isNullOrEmpty()) return
             currentAction.data = packageName
             storedActionCallback?.invoke(currentAction)
+            true
         }else if(requestCode == REQUEST_CODE_TASKER_ACTION && resultCode == Activity.RESULT_OK){
             val currentAction = storedAction ?: return
             val taskName = data?.dataString ?: return
             currentAction.data = taskName
             storedActionCallback?.invoke(currentAction)
+            true
+        }else if(requestCode == REQUEST_CODE_SHORTCUT && resultCode == Activity.RESULT_OK){
+            if(data?.component != null){
+                //Handle the required extra step
+                startActivityForResult(data, REQUEST_CODE_SHORTCUT_SECOND)
+                false
+            }else {
+                handleShortcutIntent(data)
+                true
+            }
+        }else if(requestCode == REQUEST_CODE_SHORTCUT_SECOND && resultCode == Activity.RESULT_OK){
+            handleShortcutIntent(data)
+            true
+        }else false
+        if(result) {
+            storedActionCallback = null
+            storedAction = null
         }
-        storedActionCallback = null
-        storedAction = null
+    }
+
+    private fun handleShortcutIntent(data: Intent?) {
+        val returnedIntent = data?.getParcelableExtra<Intent>(Intent.EXTRA_SHORTCUT_INTENT)
+        val currentAction = storedAction ?: return
+        val serializedIntent = returnedIntent?.serialize()
+        if (serializedIntent != null) {
+            currentAction.data = serializedIntent
+            storedActionCallback?.invoke(currentAction)
+        } else {
+            Toast.makeText(
+                context,
+                getString(R.string.action_launch_shortcut_toast),
+                Toast.LENGTH_LONG
+            ).show()
+        }
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
@@ -241,6 +275,15 @@ class ActionBottomSheetFragment : BottomSheetDialogFragment(), NavController.OnD
 
     private fun onBackPressed(){
         if(!navController.navigateUp()) dismiss()
+    }
+
+    private fun launchShortcutPicker(action: ActionInternal, callback: (ActionInternal) -> Unit){
+        storedAction = action
+        storedActionCallback = callback
+        val intent = Intent(Intent.ACTION_PICK_ACTIVITY).apply {
+            putExtra(Intent.EXTRA_INTENT, Intent(Intent.ACTION_CREATE_SHORTCUT))
+        }
+        startActivityForResult(intent, REQUEST_CODE_SHORTCUT)
     }
 
     private var isToolbarElevationEnabled = false
