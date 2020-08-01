@@ -17,6 +17,25 @@ class Links {
         const val LINK_TWITTER = "https://kieronquinn.co.uk/redirect/TapTap/twitter"
 
         private fun startLinkIntent(context: Context, link: String){
+            if(link == LINK_XDA){
+                startLinkIntentXDA(context)
+            }else{
+                startCCT(context, link)
+            }
+        }
+
+        private fun startLinkIntentXDA(context: Context){
+            if(context.isAppLaunchable("com.xda.labs")){
+                //Open normally rather than CCT to allow for XDA app to open forum link
+                val intent = Intent(Intent.ACTION_VIEW)
+                intent.data = Uri.parse(LINK_XDA)
+                context.startActivity(intent)
+            }else {
+                startCCT(context, LINK_XDA)
+            }
+        }
+
+        private fun startCCT(context: Context, link: String){
             val customTabsIntent = CustomTabsIntent.Builder()
                 .setShowTitle(true)
                 .setToolbarColor(ContextCompat.getColor(context, R.color.windowBackground))
