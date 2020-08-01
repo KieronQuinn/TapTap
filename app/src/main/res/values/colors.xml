@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorPrimary">#1472FF</color>
+    <color name="colorPrimaryDark">#801472FF</color>
+    <color name="colorAccent">#1472FF</color>
     <color name="windowBackground">#ffffff</color>
     <color name="toolbarColor">#D9ffffff</color>
-    <color name="sheet_color">#F9F9F9</color>
+    <color name="sheet_color">@color/windowBackground</color>
     <color name="fab_color">@color/colorAccent</color>
     <color name="fab_color_delete">#F44336</color>
+    <color name="fab_icon">@color/windowBackground</color>
+    <color name="fab_text">@color/windowBackground</color>
     <color name="card_background">@color/cardview_light_background</color>
     <color name="card_selected">#BDBDBD</color>
+    <color name="card_outlined">#DADCE0</color>
+    <color name="accessibility_cross">#F44336</color>
+    <color name="accessibility_check">#8BC34A</color>
 </resources>

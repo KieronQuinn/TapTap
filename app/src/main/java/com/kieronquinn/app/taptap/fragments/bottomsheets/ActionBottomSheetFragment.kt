@@ -13,6 +13,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import android.widget.Toast
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.setFragmentResult
@@ -37,12 +38,14 @@ import com.kieronquinn.app.taptap.utils.dip
 import com.kieronquinn.app.taptap.utils.isDarkTheme
 import dev.chrisbanes.insetter.Insetter
 import kotlinx.android.synthetic.main.fragment_bottomsheet_action.*
+import net.dinglisch.android.tasker.TaskerIntent
 
 class ActionBottomSheetFragment : BottomSheetDialogFragment(), NavController.OnDestinationChangedListener {
 
     companion object {
         private const val REQUEST_CODE_SELECT_APP = 1001
         private const val REQUEST_CODE_PERMISSION = 1002
+        private const val REQUEST_CODE_TASKER_ACTION = 1003
     }
 
     private var storedAction: ActionInternal? = null
@@ -127,6 +130,10 @@ class ActionBottomSheetFragment : BottomSheetDialogFragment(), NavController.OnD
                 if(dataType != null){
                     //Fire off to the required data picker
                     launchDataPicker(action, dataType){ completedAction ->
+                        if(dataType == ActionDataTypes.TASKER_TASK){
+                            //Check Tasker permission too (this can be done synchronously)
+                            checkTaskerAccessPermission()
+                        }
                         val bundle = Bundle()
                         bundle.putParcelable(SettingsActionFragment.addResultKey, completedAction)
                         setFragmentResult(SettingsActionFragment.addResultKey, bundle)
@@ -142,6 +149,13 @@ class ActionBottomSheetFragment : BottomSheetDialogFragment(), NavController.OnD
         }
     }
 
+    private fun checkTaskerAccessPermission() {
+        if(TaskerIntent.testStatus(context) == TaskerIntent.Status.AccessBlocked){
+            //User does not have Misc > Allow External Access enabled
+            TaskerPermissionBottomSheetFragment().show(parentFragmentManager, "bs_tasker")
+        }
+    }
+
     private fun launchDataPicker(action: ActionInternal, dataTypes: ActionDataTypes, callback: (ActionInternal) -> Unit){
         storedActionCallback = callback
         storedAction = action
@@ -154,6 +168,18 @@ class ActionBottomSheetFragment : BottomSheetDialogFragment(), NavController.OnD
                     requestPermissions(arrayOf(Manifest.permission.CAMERA), REQUEST_CODE_PERMISSION)
                 }else{
                     callback.invoke(action)
+                    storedActionCallback = null
+                    storedAction = null
+                }
+            }
+            ActionDataTypes.TASKER_TASK -> {
+                try {
+                    val intent = TaskerIntent.getTaskSelectIntent()
+                    startActivityForResult(intent, REQUEST_CODE_TASKER_ACTION)
+                }catch (e: Exception){
+                    Toast.makeText(context, getString(R.string.action_tasker_event_toast), Toast.LENGTH_LONG).show()
+                    storedActionCallback = null
+                    storedAction = null
                 }
             }
         }
@@ -167,9 +193,14 @@ class ActionBottomSheetFragment : BottomSheetDialogFragment(), NavController.OnD
             if(packageName.isNullOrEmpty()) return
             currentAction.data = packageName
             storedActionCallback?.invoke(currentAction)
-            storedActionCallback = null
-            storedAction = null
+        }else if(requestCode == REQUEST_CODE_TASKER_ACTION && resultCode == Activity.RESULT_OK){
+            val currentAction = storedAction ?: return
+            val taskName = data?.dataString ?: return
+            currentAction.data = taskName
+            storedActionCallback?.invoke(currentAction)
         }
+        storedActionCallback = null
+        storedAction = null
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {

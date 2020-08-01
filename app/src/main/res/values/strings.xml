@@ -36,6 +36,8 @@
     <string name="gate_camera_visibility_desc">Blocks gesture when any camera app is opened. Note: This will break the skipping functionality of the Launch Camera action.</string>
     <string name="gate_power_state">Display off</string>
     <string name="gate_power_state_desc">Blocks gesture when the device\'s screen is off</string>
+    <string name="gate_power_state_inverse">Display on</string>
+    <string name="gate_power_state_inverse_desc">Blocks gesture when the device\'s screen is on</string>
     <string name="gate_app_showing">App showing</string>
     <string name="gate_app_showing_desc">Blocks gesture when an app is showing on screen</string>
     <string name="gate_app_showing_desc_formatted">Blocks gesture when an %1s is showing on screen</string>
@@ -55,6 +57,12 @@
     <string name="action_screenshot_desc">Take a screenshot using the system screenshot UI</string>
     <string name="action_lock_screen">Lock the screen</string>
     <string name="action_lock_screen_desc">Lock the screen by simulating the power button being pressed</string>
+    <string name="action_toggle_pause">Play/Pause</string>
+    <string name="action_toggle_pause_desc">Play/Pause current playing audio</string>
+    <string name="action_previous">Previous</string>
+    <string name="action_previous_desc">Play previous audio</string>
+    <string name="action_next">Next</string>
+    <string name="action_next_desc">Play next audio</string>
     <string name="fab_add_action">Add Action</string>
     <string name="fab_remove_action">Remove</string>
     <string name="fab_remove_action_drop">Drop to remove</string>
@@ -83,7 +91,8 @@
     <string name="help">Help</string>
     <string name="action_launch_assistant">Launch Assistant</string>
     <string name="action_launch_assistant_desc">Launch your default assistant app</string>
-    <string name="add_action_category_info">Advanced actions such as Tasker integration are coming soon!</string>
+    <string name="action_tasker_event">Tasker Event</string>
+    <string name="action_tasker_event_desc">Trigger the Tasker Event plugin</string>
 
     <string name="accessibility_info_off">Accessibility Service is disabled</string>
     <string name="accessibility_info_off_desc">The gesture will not currently work. Tap to enable</string>
@@ -96,10 +105,29 @@
 
     <string name="category_about">About</string>
     <string name="about">%1s v%2s</string>
-    <string name="about_summary">Created by Kieron Quinn / Quinny899 @ XDA</string>
+    <string name="about_summary">Created by Kieron Quinn / Quinny899 @ XDA\nWith thanks to contributions from the community, including: joaomgcd, timfedo, gcantoni</string>
     <string name="xda_thread">XDA Thread</string>
     <string name="github">GitHub</string>
     <string name="libraries">Third party libraries</string>
     <string name="donate">Donate</string>
     <string name="twitter">Follow me on Twitter</string>
+    <string name="tasker_config_label">Double Tapped Back</string>
+    <string name="action_tasker_task">Tasker Task</string>
+    <string name="action_tasker_task_desc">Run a specified Tasker task</string>
+    <string name="action_tasker_event_toast">Tasker not installed or version not supported</string>
+    <string name="bs_tasker_content">In order to launch a Tasker task without using the Event plugin, you must enable the \"Allow External Access\" option in Tasker\'s settings. If you do not have this option enabled, this Action will always be skipped.</string>
+    <string name="bs_tasker_title">Permission Required</string>
+    <string name="bs_tasker_negative">Later</string>
+    <string name="bs_tasker_positive">Open Tasker Settings</string>
+    <string name="picker_launch_camera">Launch Camera</string>
+    <string name="action_volume_panel">Show volume panel</string>
+    <string name="action_volume_panel_desc">Show the system volume panel with the sound stream for adjustment showing</string>
+    <string name="action_volume_up">Volume up</string>
+    <string name="action_volume_up_desc">Increase the volume of the current sound stream</string>
+    <string name="action_volume_down">Volume down</string>
+    <string name="action_volume_down_desc">Decrease the volume of the current sound stream</string>
+    <string name="action_volume_toggle_mute">Toggle mute</string>
+    <string name="action_volume_toggle_mute_desc">Turn mute on/off for the current sound stream</string>
+    <string name="action_wake_device">Wake device</string>
+    <string name="action_wake_device_desc">Wake the device up if the screen is off. This overrides the setting in the feedback settings, is skipped if the display is on, and will not work if you have the \"Display off\" gate enabled</string>
 </resources>

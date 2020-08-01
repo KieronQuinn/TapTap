@@ -10,7 +10,7 @@ import android.util.Log
 import com.google.android.systemui.columbus.actions.Action
 import com.google.android.systemui.columbus.sensors.GestureSensor
 
-class Flashlight(context: Context) : Action(context, emptyList()) {
+class Flashlight(context: Context) : ActionBase(context) {
 
     private var isFlashlightOn = false
 
@@ -37,12 +37,6 @@ class Flashlight(context: Context) : Action(context, emptyList()) {
     override fun isAvailable(): Boolean {
         if(!context.packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH)) return false
         return true
-    }
-
-    override fun onProgress(var1: Int, var2: GestureSensor.DetectionProperties?) {
-        if (var1 == 3) {
-            onTrigger()
-        }
     }
 
     override fun onTrigger() {

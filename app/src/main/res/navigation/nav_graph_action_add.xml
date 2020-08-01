@@ -17,13 +17,6 @@
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/fade_in"
             app:popExitAnim="@anim/fade_out" />
-        <action
-            android:id="@+id/action_actionCategoryFragment_to_actionCategoryInfoFragment"
-            app:destination="@id/actionCategoryInfoFragment"
-            app:enterAnim="@anim/fade_in"
-            app:exitAnim="@anim/fade_out"
-            app:popEnterAnim="@anim/fade_in"
-            app:popExitAnim="@anim/fade_out"  />
     </fragment>
 
     <fragment
@@ -36,9 +29,5 @@
             app:argType="com.kieronquinn.app.taptap.models.TapActionCategory"
             android:defaultValue="LAUNCH" />
     </fragment>
-    <fragment
-        android:id="@+id/actionCategoryInfoFragment"
-        android:name="com.kieronquinn.app.taptap.fragments.action.ActionCategoryInfoFragment"
-        android:label="@string/add_action_category_advanced" />
 
 </navigation>
