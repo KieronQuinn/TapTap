@@ -24,12 +24,14 @@
     <string name="gate_charging_state_desc">当设备刚处于充电状态时，暂时禁用手势半秒钟</string>
     <string name="gate_telephony_activity">通话时</string>
     <string name="gate_telephony_activity_desc">当设备在通话时，禁用手势。仅支持标准电话，不支持网络电话，例如：WhatsApp</string>
-    <string name="gate_usb_state">USB device</string>
-    <string name="gate_usb_state_desc">当有 USB 设备插入时，禁用手势半秒钟。例如：U盘插入</string>
+    <string name="gate_usb_state">USB 设备</string>
+    <string name="gate_usb_state_desc">当有 USB 设备插入时，禁用手势半秒钟。例如：U 盘插入</string>
     <string name="gate_camera_visibility">相机启动时</string>
     <string name="gate_camera_visibility_desc">当相机开启时，暂时禁用手势。注意：这将在执行动作时跳过「启动相机」动作</string>
     <string name="gate_power_state">屏幕关闭时</string>
     <string name="gate_power_state_desc">当屏幕处于关闭状态时，暂时禁用手势</string>
+    <string name="gate_power_state_inverse">屏幕开启时</string>
+    <string name="gate_power_state_inverse_desc">当屏幕处于打开状态时，暂时禁用手势</string>
     <string name="gate_app_showing">应用前台时</string>
     <string name="gate_app_showing_desc">当指定应用处于前台时，暂时禁用手势</string>
     <string name="gate_app_showing_desc_formatted">当 %1s 处于前台运行时，暂时禁用手势</string>
@@ -49,6 +51,12 @@
     <string name="action_screenshot_desc">使用系统界面截图</string>
     <string name="action_lock_screen">锁屏</string>
     <string name="action_lock_screen_desc">通过模拟按下电源键将设备锁屏</string>
+    <string name="action_toggle_pause">Play/Pause</string>
+    <string name="action_toggle_pause_desc">Play/Pause current playing audio</string>
+    <string name="action_previous">Previous</string>
+    <string name="action_previous_desc">Play previous audio</string>
+    <string name="action_next">Next</string>
+    <string name="action_next_desc">Play next audio</string>
     <string name="fab_add_action">添加动作</string>
     <string name="fab_remove_action">移除</string>
     <string name="fab_remove_action_drop">松开以移除</string>
@@ -77,7 +85,8 @@
     <string name="help">帮助</string>
     <string name="action_launch_assistant">启动语音助手</string>
     <string name="action_launch_assistant_desc">启动您默认的语音助手</string>
-    <string name="add_action_category_info">高级操作，如 Tasker 集成，即将推出!</string>
+    <string name="action_tasker_event">Tasker Event</string>
+    <string name="action_tasker_event_desc">Trigger the Tasker Event plugin</string>
 
     <string name="accessibility_info_off">无障碍服务被禁用</string>
     <string name="accessibility_info_off_desc">手势将无法工作。点击以启用</string>
@@ -90,10 +99,29 @@
 
     <string name="category_about">关于</string>
     <string name="about">%1s v%2s</string>
-    <string name="about_summary">由 Kieron Quinn / Quinny899 @ XDA 开发</string>
+    <string name="about_summary">由 Kieron Quinn / Quinny899 @ XDA 开发\n感谢 joaomgcd、timfedo、gcantoni 对社区的贡献</string>
     <string name="xda_thread">XDA 帖子</string>
     <string name="github">GitHub</string>
     <string name="libraries">第三方库</string>
     <string name="donate">捐赠</string>
     <string name="twitter">在 Twitter 关注我</string>
+    <string name="tasker_config_label">敲击背面两次</string>
+    <string name="action_tasker_task">Tasker 任务</string>
+    <string name="action_tasker_task_desc">执行特定的 Tasker 任务</string>
+    <string name="action_tasker_event_toast">未安装 Tasker 或已安装的版本不受支持</string>
+    <string name="bs_tasker_content">为了能够在不安装事件插件的情况下执行 Takser 任务，您必须在 Tasker 设置中「允许存储空间访问」。如果您没有这么做，此动作将一直会被跳过。</string>
+    <string name="bs_tasker_title">需要权限</string>
+    <string name="bs_tasker_negative">稍后</string>
+    <string name="bs_tasker_positive">打开 Tasker 设置</string>
+    <string name="picker_launch_camera">启动相机</string>
+    <string name="action_volume_panel">显示音量面板</string>
+    <string name="action_volume_panel_desc">显示系统音量面板，包含用于调整的音频流</string>
+    <string name="action_volume_up">提高音量</string>
+    <string name="action_volume_up_desc">提高当前音频流的音量</string>
+    <string name="action_volume_down">降低音量</string>
+    <string name="action_volume_down_desc">降低当前音频流的音量</string>
+    <string name="action_volume_toggle_mute">切换静音</string>
+    <string name="action_volume_toggle_mute_desc">切换当前音频流的静音状态</string>
+    <string name="action_wake_device">唤醒设备</string>
+    <string name="action_wake_device_desc">当屏幕关闭时唤醒设备。这会覆盖反馈设置中的条目，且在屏幕处于打开状态时被跳过。当您启用了「屏幕关闭时」门槛时，此项不会生效。</string>
 </resources>
