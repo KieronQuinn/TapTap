@@ -29,6 +29,9 @@
             android:layout_marginBottom="@dimen/margin_large"
             android:text="@string/fab_add_gate"
             android:textAllCaps="false"
+            app:backgroundTint="@color/colorAccent"
+            app:iconTint="@color/fab_icon"
+            android:textColor="@color/fab_text"
             app:icon="@drawable/ic_fab_add"/>
 
     </FrameLayout>

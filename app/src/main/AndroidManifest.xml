@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="net.dinglisch.android.tasker.PERMISSION_RUN_TASKS"/>
 
     <application
         android:allowBackup="true"
@@ -52,7 +53,7 @@
         <activity android:name=".activities.ActivityConfigTaskerEvent"
             android:exported="true"
             android:icon="@mipmap/ic_launcher"
-            android:label="Double Tapped Back">
+            android:label="@string/tasker_config_label">
             <intent-filter>
                 <action android:name="net.dinglisch.android.tasker.ACTION_EDIT_EVENT" />
             </intent-filter>

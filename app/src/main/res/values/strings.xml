@@ -26,16 +26,19 @@
     </string-array>
 
     <!-- Gates -->
-    <string name="gate_charging_state">充電時</string>
+    <<<<<<< master
+   <string name="gate_charging_state">充電時</string>
     <string name="gate_charging_state_desc">當手機插入充電時，暫時停用手勢半秒</string>
     <string name="gate_telephony_activity">通話時</string>
-    <string name="gate_telephony_activity_desc">當手機通話時，停用手勢. 僅支援標準電話 - 不支援網路電話 如. WhatsApp</string>
+    <string name="gate_telephony_activity_desc">當手機通話時，停用手勢. 僅支援標準電話 - 不支援網路電話 如.WhatsApp.</string>
     <string name="gate_usb_state">USB 設備</string>
     <string name="gate_usb_state_desc">當有 USB 設備插入時，停用手勢半秒鐘。例如：U盤插入</string>
     <string name="gate_camera_visibility">相機</string>
     <string name="gate_camera_visibility_desc">當相機啟動時停用手勢. 注意：這將在執行動作時跳過「啟動相機」動作.</string>
     <string name="gate_power_state">關閉熒幕</string>
     <string name="gate_power_state_desc">當熒幕關閉狀態停用手勢</string>
+    <string name="gate_power_state_inverse">啟動熒幕</string>
+    <string name="gate_power_state_inverse_desc">當熒幕開啟狀態停用手勢</string>
     <string name="gate_app_showing">應用程式前台</string>
     <string name="gate_app_showing_desc">在屏幕上顯示前台應用時停用手勢</string>
     <string name="gate_app_showing_desc_formatted">當 %1s 處於前台運行時，暫時停用手勢</string>
@@ -55,6 +58,12 @@
     <string name="action_screenshot_desc">使用系統擷取熒幕畫面</string>
     <string name="action_lock_screen">鎖定熒幕</string>
     <string name="action_lock_screen_desc">模擬按下電源鍵鎖定熒幕</string>
+    <string name="action_toggle_pause">播放/暫停</string>
+    <string name="action_toggle_pause_desc">播放/暫停當前播放的音頻</string>
+   <string name="action_previous">上一個</string>
+    <string name="action_previous_desc">播放前一首歌</string>
+    <string name="action_next">下一個</string>
+    <string name="action_next_desc">播放下首歌</string>
     <string name="fab_add_action">增加動作</string>
     <string name="fab_remove_action">移除</string>
     <string name="fab_remove_action_drop">鬆開以移除</string>
@@ -83,9 +92,9 @@
     <string name="help">幫助</string>
     <string name="action_launch_assistant">啟動助手</string>
     <string name="action_launch_assistant_desc">啟動你的默認助手程式</string>
-    <string name="action_tasker_event">定期任務活動</string>
+    <string name="action_tasker_event">任務活動</string>
     <string name="action_tasker_event_desc">觸發Tasker事件插件</string>
-    <string name="add_action_category_info">Tasker集成等高級操作即將推出!</string>
+    >>>>>>> master
 
     <string name="accessibility_info_off">無障礙服務未啟用</string>
     <string name="accessibility_info_off_desc">手勢無法工作. 點按以啟用</string>
@@ -98,10 +107,29 @@
 
     <string name="category_about">關於</string>
     <string name="about">%1s v%2s</string>
-    <string name="about_summary">由 Kieron Quinn / Quinny899 @ XDA 開發</string>
+    <string name="about_summary">由 Kieron Quinn / Quinny899 @ XDA 開發\並感謝社區的貢獻，包括: joaomgcd, timfedo, gcantoni</string>
     <string name="xda_thread">XDA 文章</string>
     <string name="github">GitHub</string>
     <string name="libraries">第三方資源庫</string>
     <string name="donate">捐贈</string>
-    <string name="twitter">關注我的Twitter</string>
+    <string name="twitter">在Twitter關注我</string>
+    <string name="tasker_config_label">輕按兩次</string>
+    <string name="action_tasker_task">Tasker任務</string>
+    <string name="action_tasker_task_desc">運行指定的Tasker任務</string>
+    <string name="action_tasker_event_toast">未安裝Tasker或不支持版本</string>
+    <string name="bs_tasker_content">為了在不使用事件插件的情況下啟動Tasker任務, 你必須啟用 \"允許外部訪問\" Tasker中的選項\'的設定. 如果您沒有啟用此選項, 此操作將始終被跳過.</string>
+    <string name="bs_tasker_title">需要權限</string>
+    <string name="bs_tasker_negative">稍後</string>
+    <string name="bs_tasker_positive">打開Tasker設定</string>
+    <string name="picker_launch_camera">啟動相機</string>
+    <string name="action_volume_panel">顯示音量面板</string>
+    <string name="action_volume_panel_desc">顯示系統音量面板，包含用於調整的聲音流</string>
+    <string name="action_volume_up">增加音量</string>
+    <string name="action_volume_up_desc">增加當前聲音流的音量</string>
+    <string name="action_volume_down">減小音量</string>
+    <string name="action_volume_down_desc">降低當前聲音流的音量</string>
+    <string name="action_volume_toggle_mute">切換靜音</string>
+    <string name="action_volume_toggle_mute_desc">打開/關閉當前聲音流的靜音</string>
+    <string name="action_wake_device">喚醒設備</string>
+    <string name="action_wake_device_desc">息屏喚醒設備. 這會覆蓋反饋設定中的選項,如果熒幕打開則跳過, 如果你有 \"關閉熒幕\" 的選項打開則不運行.</string>
 </resources>

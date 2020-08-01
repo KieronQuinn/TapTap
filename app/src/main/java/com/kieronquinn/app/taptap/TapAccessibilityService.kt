@@ -4,25 +4,22 @@ import android.accessibilityservice.AccessibilityService
 import android.app.ActivityManager
 import android.content.Context
 import android.content.SharedPreferences
-import android.os.Handler
+import android.media.AudioManager
 import android.util.Log
 import android.view.accessibility.AccessibilityEvent
 import com.android.internal.logging.MetricsLogger
 import com.android.systemui.keyguard.WakefulnessLifecycle
-import com.android.systemui.statusbar.policy.KeyguardStateController
-import com.google.android.systemui.columbus.*
+import com.google.android.systemui.columbus.ColumbusContentObserver
+import com.google.android.systemui.columbus.ColumbusService
+import com.google.android.systemui.columbus.ContentResolverWrapper
+import com.google.android.systemui.columbus.PowerManagerWrapper
 import com.google.android.systemui.columbus.actions.Action
 import com.google.android.systemui.columbus.feedback.FeedbackEffect
-import com.google.android.systemui.columbus.gates.*
 import com.google.android.systemui.columbus.sensors.GestureSensorImpl
 import com.google.android.systemui.columbus.sensors.config.GestureConfiguration
-import com.kieronquinn.app.taptap.columbus.actions.Flashlight
-import com.kieronquinn.app.taptap.columbus.actions.LaunchApp
-import com.kieronquinn.app.taptap.columbus.actions.LaunchAssistant
-import com.kieronquinn.app.taptap.columbus.actions.TaskerEvent
+import com.kieronquinn.app.taptap.columbus.actions.*
 import com.kieronquinn.app.taptap.columbus.feedback.HapticClickCompat
 import com.kieronquinn.app.taptap.columbus.feedback.WakeDevice
-import com.kieronquinn.app.taptap.columbus.gates.CameraVisibility
 import com.kieronquinn.app.taptap.impl.KeyguardStateControllerImpl
 import com.kieronquinn.app.taptap.models.ActionInternal
 import com.kieronquinn.app.taptap.models.TapAction
@@ -57,47 +54,18 @@ class TapAccessibilityService : AccessibilityService(),
         super.onCreate()
         Log.d(TAG, "onCreate")
         val context = this
-        val contentResolverWrapper = ContentResolverWrapper(context)
-        val activityManagerService = ActivityManager::class.java.getMethod("getService").invoke(null)
-        //val columbusContentObserver = ColumbusContentObserverCompat.Factory(contentResolverWrapper, activityManagerService)
+        val activityManagerService = try{
+            ActivityManager::class.java.getMethod("getService").invoke(null)
+        }catch (e: NoSuchMethodException){
+            val activityManagerNative = Class.forName("android.app.ActivityManagerNative")
+            activityManagerNative.getMethod("getDefault").invoke(null)
+        }
         val gestureConfiguration = createGestureConfiguration(context, activityManagerService)
         this.gestureSensorImpl = GestureSensorImpl(context, gestureConfiguration)
         val powerManagerWrapper = PowerManagerWrapper(context)
         val metricsLogger = MetricsLogger()
         val wakefulnessLifecycle = WakefulnessLifecycle()
         this.wakefulnessLifecycle = wakefulnessLifecycle
-        val mainHandler = Handler()
-
-        //Feedback
-        val hapticClick =
-            HapticClickCompat(
-                context
-            )
-
-        //Gates
-        val powerState = PowerState(context,
-            LazyWakefulness(wakefulnessLifecycle)
-        )
-
-        //We can't create this properly as it's missing some classes, so we'll hack it with reflection
-        val keyguardVisibility = KeyguardVisibility::class.java.getConstructor(Context::class.java, KeyguardStateController::class.java).newInstance(context, keyguardStateController)
-        //val cameraVisibility = CameraVisibility(context, emptyList(), keyguardVisibility, powerState, activityManagerService, mainHandler)
-
-        val chargingState = ChargingState(context, mainHandler, ColumbusModule.provideTransientGateDuration())
-        val telephonyActivity = TelephonyActivity(context)
-        val usbState = UsbState(context, mainHandler, ColumbusModule.provideTransientGateDuration())
-        //val vrMode = VrMode(context)
-
-        /*val navigationBarControllerClass = XposedHelpers.findClass("com.android.systemui.statusbar.NavigationBarController", classLoader)
-        val actualNavigationBarController = classLoader.getDependency(navigationBarControllerClass)
-        val navigationBarController = NavigationBarController(actualNavigationBarController, navigationBarControllerClass)
-
-        val navUndimEffect = NavUndimEffect::class.java.getConstructor(NavigationBarController::class.java).newInstance(navigationBarController)
-        val assistManagerClass = XposedHelpers.findClass("com.android.systemui.assist.AssistManager", classLoader)
-        val assistManager = classLoader.getDependency(assistManagerClass)
-        val assistInvocationEffect = AssistInvocationEffectCompat(assistManager, assistManagerClass)*/
-
-        val cameraVisibility = CameraVisibility(this)
 
         sharedPreferences.registerOnSharedPreferenceChangeListener(this)
 
@@ -105,51 +73,64 @@ class TapAccessibilityService : AccessibilityService(),
         SmaliCalls.setTapRtModel(TfModel.valueOf(sharedPreferences.getString(SHARED_PREFERENCES_KEY_MODEL, TfModel.PIXEL4.name) ?: TfModel.PIXEL4.name).model)
 
         //Create the service
-        //this.columbusService = ColumbusService(getColumbusActions(), getColumbusFeedback(), getGates(context), gestureSensorImpl, powerManagerWrapper, metricsLogger)
         this.columbusService = ColumbusService::class.java.constructors.first().newInstance(getColumbusActions(), getColumbusFeedback(), getGates(context), gestureSensorImpl, powerManagerWrapper, metricsLogger) as ColumbusService
     }
 
     private fun getColumbusActions() : List<Action> {
-        return ActionListFile.loadFromFile(this).toList().map { getActionForEnum(it) }
+        return ActionListFile.loadFromFile(this).toList().mapNotNull { getActionForEnum(it) }
     }
 
-    private fun getActionForEnum(action: ActionInternal) : Action {
-        return when(action.action){
-            TapAction.LAUNCH_CAMERA -> LaunchCameraLocal(
-                this
-            )
-            TapAction.BACK -> AccessibilityServiceGlobalAction(
-                this,
-                GLOBAL_ACTION_BACK
-            )
-            TapAction.HOME -> AccessibilityServiceGlobalAction(
-                this,
-                GLOBAL_ACTION_HOME
-            )
-            TapAction.LOCK_SCREEN -> AccessibilityServiceGlobalAction(
-                this,
-                GLOBAL_ACTION_LOCK_SCREEN
-            )
-            TapAction.RECENTS -> AccessibilityServiceGlobalAction(
-                this,
-                GLOBAL_ACTION_RECENTS
-            )
-            TapAction.SCREENSHOT -> AccessibilityServiceGlobalAction(
-                this,
-                GLOBAL_ACTION_TAKE_SCREENSHOT
-            )
-            TapAction.QUICK_SETTINGS -> AccessibilityServiceGlobalAction(
-                this,
-                GLOBAL_ACTION_QUICK_SETTINGS
-            )
-            TapAction.NOTIFICATIONS -> AccessibilityServiceGlobalAction(
-                this,
-                GLOBAL_ACTION_NOTIFICATIONS
-            )
-            TapAction.FLASHLIGHT -> Flashlight(this)
-            TapAction.LAUNCH_APP -> LaunchApp(this, action.data ?: "")
-            TapAction.LAUNCH_ASSISTANT -> LaunchAssistant(this)
-            TapAction.TASKER_EVENT -> TaskerEvent(this)
+    private fun getActionForEnum(action: ActionInternal) : Action? {
+        return try {
+            when (action.action) {
+                TapAction.LAUNCH_CAMERA -> LaunchCameraLocal(
+                    this
+                )
+                TapAction.BACK -> AccessibilityServiceGlobalAction(
+                    this,
+                    GLOBAL_ACTION_BACK
+                )
+                TapAction.HOME -> AccessibilityServiceGlobalAction(
+                    this,
+                    GLOBAL_ACTION_HOME
+                )
+                TapAction.LOCK_SCREEN -> AccessibilityServiceGlobalAction(
+                    this,
+                    GLOBAL_ACTION_LOCK_SCREEN
+                )
+                TapAction.RECENTS -> AccessibilityServiceGlobalAction(
+                    this,
+                    GLOBAL_ACTION_RECENTS
+                )
+                TapAction.SCREENSHOT -> AccessibilityServiceGlobalAction(
+                    this,
+                    GLOBAL_ACTION_TAKE_SCREENSHOT
+                )
+                TapAction.QUICK_SETTINGS -> AccessibilityServiceGlobalAction(
+                    this,
+                    GLOBAL_ACTION_QUICK_SETTINGS
+                )
+                TapAction.NOTIFICATIONS -> AccessibilityServiceGlobalAction(
+                    this,
+                    GLOBAL_ACTION_NOTIFICATIONS
+                )
+                TapAction.FLASHLIGHT -> Flashlight(this)
+                TapAction.LAUNCH_APP -> LaunchApp(this, action.data ?: "")
+                TapAction.LAUNCH_ASSISTANT -> LaunchAssistant(this)
+                TapAction.TASKER_EVENT -> TaskerEvent(this)
+                TapAction.TASKER_TASK -> TaskerTask(this, action.data ?: "")
+                TapAction.TOGGLE_PAUSE -> MusicAction(this, MusicAction.Command.TOGGLE_PAUSE)
+                TapAction.PREVIOUS -> MusicAction(this, MusicAction.Command.PREVIOUS)
+                TapAction.NEXT -> MusicAction(this, MusicAction.Command.NEXT)
+                TapAction.VOLUME_PANEL -> VolumeAction(this, AudioManager.ADJUST_SAME)
+                TapAction.VOLUME_UP -> VolumeAction(this, AudioManager.ADJUST_RAISE)
+                TapAction.VOLUME_DOWN -> VolumeAction(this, AudioManager.ADJUST_LOWER)
+                TapAction.VOLUME_TOGGLE_MUTE -> VolumeAction(this, AudioManager.ADJUST_TOGGLE_MUTE)
+                TapAction.WAKE_DEVICE -> WakeDeviceAction(this)
+            }
+        }catch (e: RuntimeException){
+            //Enum not found, probably a downgrade issue
+            null
         }
     }
 

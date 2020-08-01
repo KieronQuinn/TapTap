@@ -46,13 +46,9 @@ class ActionCategoryFragment : Fragment() {
     }
 
     private fun moveToCategory(category: TapActionCategory){
-        if(category == TapActionCategory.ADVANCED){
-            navController.navigate(R.id.action_actionCategoryFragment_to_actionCategoryInfoFragment)
-        }else {
-            val bundle = Bundle()
-            bundle.putSerializable("category", category)
-            navController.navigate(R.id.action_actionCategoryFragment_to_actionListFragment, bundle)
-        }
+        val bundle = Bundle()
+        bundle.putSerializable("category", category)
+        navController.navigate(R.id.action_actionCategoryFragment_to_actionListFragment, bundle)
     }
 
 }
