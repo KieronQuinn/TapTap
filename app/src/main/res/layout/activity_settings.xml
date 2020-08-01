@@ -19,6 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:animateLayoutChanges="true"
+        android:paddingStart="@dimen/margin_small"
         android:paddingEnd="@dimen/margin_small"
         android:id="@+id/toolbar">
 
@@ -31,6 +32,7 @@
             android:layout_gravity="center|bottom"
             android:gravity="center"
             android:paddingStart="@dimen/margin_small"
+            android:paddingEnd="@dimen/margin_small"
             tools:text="Toolbar title"/>
 
     </com.google.android.material.appbar.MaterialToolbar>
