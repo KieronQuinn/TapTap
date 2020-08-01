@@ -28,6 +28,8 @@
     <string name="gate_camera_visibility_desc">Блокирует жест при открытии любого приложения камеры. Примечание: это нарушит функциональность пропуска действия "Запустить камеру".</string>
     <string name="gate_power_state">Экран выключен</string>
     <string name="gate_power_state_desc">Блокирует жест, когда экран устройства выключен</string>
+    <string name="gate_power_state_inverse">Экран включен</string>
+    <string name="gate_power_state_inverse_desc">Блокирует жест, когда экран устройства включен</string>
     <string name="gate_app_showing">Показ приложения</string>
     <string name="gate_app_showing_desc">Блокирует жест, когда приложение отображается на экране</string>
     <string name="gate_app_showing_desc_formatted">Блокирует жест, когда %1s отображается на экране</string>
@@ -47,6 +49,12 @@
     <string name="action_screenshot_desc">Сделать скриншот, используя системный интерфейс</string>
     <string name="action_lock_screen">Заблокировать экран</string>
     <string name="action_lock_screen_desc">Блокировка экрана путем имитации нажатия кнопки питания</string>
+    <string name="action_toggle_pause">Воспроизведение / пауза</string>
+    <string name="action_toggle_pause_desc">Воспроизвести / приостановить текущее воспроизведение</string>
+    <string name="action_previous">Предыдущее</string>
+    <string name="action_previous_desc">Воспроизвести предыдущее аудио</string>
+    <string name="action_next">Следующее</string>
+    <string name="action_next_desc">Воспроизвести следующее аудио</string>
     <string name="fab_add_action">Добавить действие</string>
     <string name="fab_remove_action">Удалить</string>
     <string name="fab_remove_action_drop">Опустите, чтобы удалить</string>
@@ -73,9 +81,10 @@
     <string name="bs_help_gate">Запреты - это ситуации, которые могут заблокировать жест от выполнения каких-либо действий. Для выполнения любого действия все включенные запреты должны быть открыты. \nЕсли в данный момент выполняется сценарий, например, если экран выключен и запрет «Отключить отображение» включены, никакие действия не будут выполняться. Вы можете добавить столько запретов, сколько захотите, и включать / отключать их, используя переключатели (вместо того, чтобы удалять и повторно добавлять), чтобы сделать настройку быстрее и проще.</string>
     <string name="bs_help_gate_title">Что такое запреты?</string>
     <string name="help">Помощь</string>
+    <string name="action_tasker_event">Tasker Event</string>
+    <string name="action_tasker_event_desc">Запустить плагин Tasker Event</string>
     <string name="action_launch_assistant">Запустить ассистента</string>
     <string name="action_launch_assistant_desc">Запустите приложение-ассистент по умолчанию</string>
-    <string name="add_action_category_info">Расширенные действия, такие как интеграция с Tasker, скоро появятся!</string>
 
     <string name="accessibility_info_off">Служба доступности отключена</string>
     <string name="accessibility_info_off_desc">Жест в настоящее время не будет работать. Нажмите, чтобы включить</string>
@@ -87,8 +96,29 @@
     <string name="bs_alpha_title">Альфа</string>
 
     <string name="category_about">О приложении</string>
-    <string name="about_summary">Создано Kieron Quinn / Quinny899 @ XDA</string>
+    <string name="about_summary">Создано Kieron Quinn / Quinny899 @ XDA\nБлагодаря вкладу сообщества, в том числе: joaomgcd, timfedo, gcantoni</string>
     <string name="libraries">Сторонние библиотеки</string>
     <string name="donate">Пожертвовать</string>
     <string name="twitter">Подпишись на меня в Твиттере</string>
+    <string name="picker_launch_camera">Запустить камеру</string>
+    <string name="tasker_config_label">Двойной нажатие назад</string>
+    <string name="action_tasker_task">Задача Tasker</string>
+    <string name="action_tasker_task_desc">Запустите заданную задачу Tasker</string>
+    <string name="action_tasker_event_toast">Tasker не установлен или версия не поддерживается</string>
+    <string name="bs_tasker_content">Чтобы запустить задачу Tasker без использования подключаемого модуля «Событие», необходимо включить параметр «Разрешить внешний доступ» в настройках Tasker. Если эта опция не включена, это действие всегда будет пропущено.</string>
+    <string name="bs_tasker_title">Требуется разрешение</string>
+    <string name="bs_tasker_negative">Позже</string>
+    <string name="bs_tasker_positive">Открыть настройки Tasker</string>
+     <string name="action_volume_panel">Показать панель громкости</string>
+    <string name="action_volume_panel_desc">Show the system volume panel with the sound stream for adjustment showing</string>
+    <string name="action_volume_up">Увеличить громкость</string>
+    <string name="action_volume_up_desc">Увеличить громкость текущего звукового потока</string>
+    <string name="action_volume_down">Уменьшить громкость</string>
+    <string name="action_volume_down_desc">Уменьшить громкость текущего звукового потока</string>
+    <string name="action_volume_toggle_mute">Переключить звук</string>
+    <string name="action_volume_toggle_mute_desc">Включить / выключить звук для текущего звукового потока</string>
+    <string name="action_wake_device">Пробудить устройства</string>
+    <string name="action_wake_device_desc">Пробудить устройство, если экран выключен. Это переопределяет настройку в настройках обратной связи, пропускается, если дисплей включен, и не будет работать, если у вас включен параметр «Отключить отображение»</string>
+</resources> 
+
 </resources>
