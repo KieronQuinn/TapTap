@@ -116,6 +116,7 @@ class TapAccessibilityService : AccessibilityService(),
                 )
                 TapAction.FLASHLIGHT -> Flashlight(this)
                 TapAction.LAUNCH_APP -> LaunchApp(this, action.data ?: "")
+                TapAction.LAUNCH_SHORTCUT -> LaunchShortcut(this, action.data ?: "")
                 TapAction.LAUNCH_ASSISTANT -> LaunchAssistant(this)
                 TapAction.TASKER_EVENT -> TaskerEvent(this)
                 TapAction.TASKER_TASK -> TaskerTask(this, action.data ?: "")

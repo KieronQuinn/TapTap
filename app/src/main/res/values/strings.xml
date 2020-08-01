@@ -130,4 +130,9 @@
     <string name="action_volume_toggle_mute_desc">Turn mute on/off for the current sound stream</string>
     <string name="action_wake_device">Wake device</string>
     <string name="action_wake_device_desc">Wake the device up if the screen is off. This overrides the setting in the feedback settings, is skipped if the display is on, and will not work if you have the \"Display off\" gate enabled</string>
+    <string name="action_launch_shortcut">Launch a shortcut</string>
+    <string name="action_launch_shortcut_desc">Launch a shortcut such as Google Maps directions</string>
+    <string name="action_launch_shortcut_desc_formattable">Launch %1s (shortcut into the app)</string>
+    <string name="action_launch_shortcut_toast">This shortcut is currently not supported</string>
+    <string name="call_phone_permission_toast">You need to grant Tap, Tap the \"Phone\" permission to use this shortcut Action. Please grant it in your device\'s permission settings</string>
 </resources>

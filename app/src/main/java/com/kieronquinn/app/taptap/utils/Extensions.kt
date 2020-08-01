@@ -44,6 +44,9 @@ import com.kieronquinn.app.taptap.models.TapGate
 import com.kieronquinn.app.taptap.models.store.GateListFile
 import com.kieronquinn.app.taptap.providers.SharedPrefsProvider
 import de.robv.android.xposed.XposedHelpers
+import org.json.JSONArray
+import org.json.JSONException
+import org.json.JSONObject
 import java.io.InputStream
 import java.io.OutputStream
 import java.lang.reflect.Field
@@ -90,6 +93,127 @@ fun Context.isAppLaunchable(packageName: String): Boolean {
     }catch (e: Exception){
         false
     }
+}
+
+fun Intent.serialize(): String? {
+    //Serialize the Intent to a JSON object storing its data as much as we can (only basic data is currently supported)
+    val json = JSONObject()
+    action?.let {
+        json.put("action", it)
+    }
+    dataString?.let {
+        json.put("data", it)
+    }
+    val jsonCategories = JSONArray()
+    categories?.forEach {
+        jsonCategories.put(it)
+        json.put("categories", categories)
+    }
+    component?.let {
+        json.put("component", it?.flattenToString())
+    }
+    flags?.let {
+        json.put("flags", it)
+    }
+    val extras = JSONObject().apply {
+        extras?.keySet()?.forEach {
+            val extra = extras?.get(it)
+            if(extra is String || extra is Int || extra is Float || extra is Long || extra is Double || extra is Boolean){
+                put(it, JSONObject().apply {
+                    put("type", "string")
+                    put("value", extra)
+                })
+            }else if(extra is Int){
+                put(it, JSONObject().apply {
+                    put("type", "int")
+                    put("value", extra)
+                })
+            }else if(extra is Float){
+                put(it, JSONObject().apply {
+                    put("type", "float")
+                    put("value", extra.toString())
+                })
+            }else if(extra is Long){
+                put(it, JSONObject().apply {
+                    put("type", "long")
+                    put("value", extra)
+                })
+            }else if(extra is Double){
+                put(it, JSONObject().apply {
+                    put("type", "double")
+                    put("value", extra)
+                })
+            }else if(extra is Boolean){
+                put(it, JSONObject().apply {
+                    put("type", "boolean")
+                    put("value", extra)
+                })
+            }else{
+                Log.d("ISer", "$it is unsupported of type ${extra.toString()}")
+                //Unsupported value
+                return null
+            }
+        }
+    }
+    json.put("extras", extras)
+    return json.toString()
+}
+
+fun Intent.deserialize(jsonString: String){
+    //Deserialize an intent from a JSON string after the above was used to serialize it
+    val json = JSONObject(jsonString)
+    action = json.getStringOpt("action")
+    val dataString = json.getStringOpt("data")
+    dataString?.let {
+        data = Uri.parse(it)
+    }
+    if(json.has("categories")){
+        try {
+            json.getJSONArray("categories").run {
+                for (x in 0 until length()) {
+                    addCategory(getString(x))
+                }
+            }
+        }catch (e: JSONException){
+            //Not an array
+            addCategory(json.getString("categories"))
+        }
+    }
+    val componentFlattened = json.getStringOpt("component")
+    componentFlattened?.let {
+        component = ComponentName.unflattenFromString(it)
+    }
+    flags = json.getIntOpt("flags") ?: 0
+    if(json.has("extras")){
+        json.getJSONObject("extras").run{
+            for (key in keys()) {
+                getJSONObject(key).run {
+                    parseIntentExtra(key, this, this@deserialize)
+                }
+            }
+        }
+    }
+}
+
+private fun parseIntentExtra(key: String, jsonObject: JSONObject, intent: Intent){
+    when(jsonObject.getString("type")){
+        "string" -> intent.putExtra(key, jsonObject.getString("value"))
+        "int" -> intent.putExtra(key, jsonObject.getInt("value"))
+        "float" -> intent.putExtra(key, jsonObject.getString("value").toFloat())
+        "long" -> intent.putExtra(key, jsonObject.getLong("value"))
+        "double" -> intent.putExtra(key, jsonObject.getDouble("value"))
+        "boolean" -> intent.putExtra(key, jsonObject.getBoolean("value"))
+    }
+}
+
+fun JSONObject.getStringOpt(key: String): String? {
+    return if(has(key)) getString(key)
+    else null
+}
+
+fun JSONObject.getIntOpt(key: String): Int? {
+    return if(has(key)) getInt(key)
+    else null
 }
 
 fun ColumbusService.setActions(list: List<Action>){

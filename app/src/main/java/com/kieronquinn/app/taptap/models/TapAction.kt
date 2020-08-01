@@ -20,6 +20,7 @@ enum class TapAction(val clazz: Class<*>, @StringRes val nameRes: Int, @StringRe
     LOCK_SCREEN(AccessibilityServiceGlobalAction::class.java, R.string.action_lock_screen, R.string.action_lock_screen_desc, R.drawable.ic_power_state, minApi(28), true),
     FLASHLIGHT(AccessibilityServiceGlobalAction::class.java, R.string.action_flashlight, R.string.action_flashlight_desc, R.drawable.ic_action_category_utilities, true, true, dataType = ActionDataTypes.CAMERA_PERMISSION),
     LAUNCH_APP(LaunchApp::class.java, R.string.action_launch_app, R.string.action_launch_app_desc, R.drawable.ic_action_category_launch, true, true, R.string.action_launch_app_desc_formattable, ActionDataTypes.PACKAGE_NAME),
+    LAUNCH_SHORTCUT(LaunchApp::class.java, R.string.action_launch_shortcut, R.string.action_launch_shortcut_desc, R.drawable.ic_action_shortcut, true, true, R.string.action_launch_shortcut_desc_formattable, ActionDataTypes.SHORTCUT),
     TASKER_EVENT(TaskerEvent::class.java, R.string.action_tasker_event, R.string.action_tasker_event_desc, R.drawable.ic_action_tasker, true, true),
     TASKER_TASK(TaskerTask::class.java, R.string.action_tasker_task, R.string.action_tasker_task_desc, R.drawable.ic_action_tasker, true, true, dataType = ActionDataTypes.TASKER_TASK),
     TOGGLE_PAUSE(MusicAction::class.java, R.string.action_toggle_pause, R.string.action_toggle_pause_desc, R.drawable.ic_action_toggle_pause, true, true),
@@ -35,5 +36,6 @@ enum class TapAction(val clazz: Class<*>, @StringRes val nameRes: Int, @StringRe
 enum class ActionDataTypes {
     PACKAGE_NAME,
     CAMERA_PERMISSION,
-    TASKER_TASK
+    TASKER_TASK,
+    SHORTCUT
 }
