@@ -149,7 +149,7 @@ fun Intent.serialize(): String? {
                     put("value", extra)
                 })
             }else{
-                Log.d("ISer", "$it is unsupported of type ${extra.toString()}")
+                Log.d("TapTap", "$it is unsupported of type ${extra.toString()}")
                 //Unsupported value
                 return null
             }
