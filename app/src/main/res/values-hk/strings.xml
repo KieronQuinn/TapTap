@@ -1,24 +1,24 @@
 <resources>
     <string name="app_name">Tap, Tap</string>
-    <string name="xposed_desc">Columbus backport</string>
-    <string name="accessibility_service_description">TapTap Accessibility Service\n\n<b>Important Note: No data is collected from any of your apps, this service is simply used to keep the recognition active and provide interaction with the device</b></string>
-    <string name="toast_no_action_selected">No action has been selected</string>
-    <string name="launch_accessibility">Launch Accessibility</string>
-    <string name="setting_gesture">Gesture</string>
-    <string name="setting_gesture_desc">Tweak how the gesture works</string>
-    <string name="setting_actions">Actions</string>
-    <string name="settings_actions_desc">Set the actions to be run when the gesture is used</string>
-    <string name="setting_gates">Gates</string>
-    <string name="setting_gates_desc">Set situations when the gesture should not run an action</string>
-    <string name="setting_feedback">Feedback</string>
-    <string name="setting_feedback_desc">Set how the device notifies you when the gesture is run</string>
-    <string name="setting_gesture_model">Device Model</string>
-    <string name="setting_gesture_model_desc">Select which device\'s model to use for the machine learning component</string>
-    <string name="setting_feedback_vibrate">Vibrate</string>
-    <string name="setting_feedback_vibrate_desc">Vibrate once when the gesture is used and the action is run</string>
-    <string name="setting_feedback_wake">Wake Device</string>
-    <string name="setting_feedback_wake_desc">Wake the device up the screen is off (note: this will interfere with actions that turn the screen off!)</string>
-
+    <string name="xposed_desc">哥倫布後門</string>
+    <string name="accessibility_service_description">TapTap 無障礙設定\n\n<b>重要提示: 應用不會收集您的個資，此服務僅用於辨識手勢活動並提供與裝置的互動支援</b></string>
+    <string name="toast_no_action_selected">尚未選擇任何動作</string>
+    <string name="launch_accessibility">啟動輔助功能</string>
+    <string name="setting_gesture">手勢</string>
+    <string name="setting_gesture_desc">調整手勢的工作方式</string>
+    <string name="setting_actions">動作</string>
+    <string name="settings_actions_desc">設定使用手勢時要執行的動作</string>
+    <string name="setting_gates">閘閥</string>
+    <string name="setting_gates_desc">停用手勢在某些情況下被識別並激活動作</string>
+    <string name="setting_feedback">反饋</string>
+    <string name="setting_feedback_desc">設定手勢運行通知</string>
+    <string name="setting_gesture_model">裝置模型</string>
+    <string name="setting_gesture_model_desc">選擇機器學習組件使用的裝置模型</string>
+    <string name="setting_feedback_vibrate">震動</string>
+    <string name="setting_feedback_vibrate_desc">使用手勢並執行動作時振動一次</string>
+    <string name="setting_feedback_wake">喚醒設備</string>
+    <string name="setting_feedback_wake_desc">當熒幕關閉時喚醒設備 (注意：這會干擾關閉熒幕的操作!)</string>
+    
     <string-array name="device_model_keys">
         <item>Pixel 3 XL</item>
         <item>Pixel 4</item>
@@ -26,7 +26,7 @@
     </string-array>
 
     <!-- Gates -->
-    <string name="gate_charging_state">Charging</string>
+    <string name="gate_charging_state">充電時</string>
     <string name="gate_charging_state_desc">Blocks gesture for half a second after the device is plugged in</string>
     <string name="gate_telephony_activity">On call</string>
     <string name="gate_telephony_activity_desc">Blocks gesture when the device is on a call. Only standard calls are supported - not VoIP eg. WhatsApp</string>
