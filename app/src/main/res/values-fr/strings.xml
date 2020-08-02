@@ -14,7 +14,7 @@
     <string name="setting_feedback_desc">Paramétrer comment l'appareil vous informe que le geste est effectué</string>
     <string name="setting_gesture_model">Modèle d'Appareil</string>
     <string name="setting_gesture_model_desc">Sélectionner quel modèle d'appareil utiliser pour le composant de machine learning (apprentissage automatique)</string>
-    <string name="setting_feedback_vibrate">Vibrate</string>
+    <string name="setting_feedback_vibrate">Vibrer</string>
     <string name="setting_feedback_vibrate_desc">Vibrer une seule fois quand le geste est effectué et l'action déclenchée</string>
     <string name="setting_feedback_wake">Allumer l'Appareil</string>
     <string name="setting_feedback_wake_desc">Allumer l'écran de l'appareil (note: cela va interférer avec les actions qui éteignent l'écran !)</string>
