@@ -114,6 +114,10 @@ class TapAccessibilityService : AccessibilityService(),
                     this,
                     GLOBAL_ACTION_NOTIFICATIONS
                 )
+                TapAction.SPLIT_SCREEN -> AccessibilityServiceGlobalAction(
+                    this,
+                    GLOBAL_ACTION_TOGGLE_SPLIT_SCREEN
+                )
                 TapAction.FLASHLIGHT -> Flashlight(this)
                 TapAction.LAUNCH_APP -> LaunchApp(this, action.data ?: "")
                 TapAction.LAUNCH_SHORTCUT -> LaunchShortcut(this, action.data ?: "")

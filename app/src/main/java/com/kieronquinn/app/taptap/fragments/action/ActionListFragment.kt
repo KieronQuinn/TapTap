@@ -55,7 +55,7 @@ class ActionListFragment : Fragment() {
                listOf(TapAction.FLASHLIGHT).map { ActionInternal(it, ArrayList()) }
             }
             TapActionCategory.ACTIONS -> {
-               listOf(TapAction.SCREENSHOT, TapAction.NOTIFICATIONS, TapAction.QUICK_SETTINGS, TapAction.HOME, TapAction.BACK, TapAction.RECENTS, TapAction.LOCK_SCREEN, TapAction.WAKE_DEVICE, TapAction.TOGGLE_PAUSE, TapAction.PREVIOUS, TapAction.NEXT, TapAction.VOLUME_PANEL, TapAction.VOLUME_UP, TapAction.VOLUME_DOWN, TapAction.VOLUME_TOGGLE_MUTE).map { ActionInternal(it, ArrayList()) }
+               listOf(TapAction.SCREENSHOT, TapAction.NOTIFICATIONS, TapAction.QUICK_SETTINGS, TapAction.HOME, TapAction.BACK, TapAction.RECENTS, TapAction.LOCK_SCREEN, TapAction.SPLIT_SCREEN, TapAction.WAKE_DEVICE, TapAction.TOGGLE_PAUSE, TapAction.PREVIOUS, TapAction.NEXT, TapAction.VOLUME_PANEL, TapAction.VOLUME_UP, TapAction.VOLUME_DOWN, TapAction.VOLUME_TOGGLE_MUTE).map { ActionInternal(it, ArrayList()) }
             }
             TapActionCategory.ADVANCED -> {
                 listOf(TapAction.TASKER_EVENT, TapAction.TASKER_TASK).map { ActionInternal(it, ArrayList()) }

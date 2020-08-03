@@ -57,6 +57,8 @@
     <string name="action_screenshot_desc">Take a screenshot using the system screenshot UI</string>
     <string name="action_lock_screen">Lock the screen</string>
     <string name="action_lock_screen_desc">Lock the screen by simulating the power button being pressed</string>
+    <string name="action_split_screen">Toggle Split Screen</string>
+    <string name="action_split_screen_desc">Simulate pressing the toggle split screen button</string>
     <string name="action_toggle_pause">Play/Pause</string>
     <string name="action_toggle_pause_desc">Play/Pause current playing audio</string>
     <string name="action_previous">Previous</string>

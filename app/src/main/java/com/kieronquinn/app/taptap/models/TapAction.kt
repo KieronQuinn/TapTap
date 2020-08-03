@@ -18,6 +18,7 @@ enum class TapAction(val clazz: Class<*>, @StringRes val nameRes: Int, @StringRe
     QUICK_SETTINGS(AccessibilityServiceGlobalAction::class.java, R.string.action_quick_settings, R.string.action_quick_settings_desc, R.drawable.ic_action_quick_settings, true, true),
     SCREENSHOT(AccessibilityServiceGlobalAction::class.java, R.string.action_screenshot, R.string.action_screenshot_desc, R.drawable.ic_action_screenshot, minApi(28), true),
     LOCK_SCREEN(AccessibilityServiceGlobalAction::class.java, R.string.action_lock_screen, R.string.action_lock_screen_desc, R.drawable.ic_power_state, minApi(28), true),
+    SPLIT_SCREEN(AccessibilityServiceGlobalAction::class.java, R.string.action_split_screen, R.string.action_split_screen_desc, R.drawable.ic_action_split_screen, true, true),
     FLASHLIGHT(AccessibilityServiceGlobalAction::class.java, R.string.action_flashlight, R.string.action_flashlight_desc, R.drawable.ic_action_category_utilities, true, true, dataType = ActionDataTypes.CAMERA_PERMISSION),
     LAUNCH_APP(LaunchApp::class.java, R.string.action_launch_app, R.string.action_launch_app_desc, R.drawable.ic_action_category_launch, true, true, R.string.action_launch_app_desc_formattable, ActionDataTypes.PACKAGE_NAME),
     LAUNCH_SHORTCUT(LaunchApp::class.java, R.string.action_launch_shortcut, R.string.action_launch_shortcut_desc, R.drawable.ic_action_shortcut, true, true, R.string.action_launch_shortcut_desc_formattable, ActionDataTypes.SHORTCUT),
