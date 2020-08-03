@@ -90,4 +90,8 @@
         <item name="android:fontFamily">@font/hkgrotesk</item>
     </style>
 
+    <style name="ReachabilityTheme" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="android:windowBackground">@color/reachabilityBackground</item>
+    </style>
+
 </resources>

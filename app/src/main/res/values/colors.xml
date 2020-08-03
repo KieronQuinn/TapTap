@@ -15,6 +15,7 @@
     <color name="card_outlined">#DADCE0</color>
     <color name="accessibility_cross">#F44336</color>
     <color name="accessibility_check">#8BC34A</color>
+    <color name="reachabilityBackground">#000</color>
 
     <color name="icon_circle_0">#D7E5F8</color>
     <color name="icon_circle_1">#F8D7DF</color>
