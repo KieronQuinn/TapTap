@@ -59,6 +59,9 @@
                 <action android:name="net.dinglisch.android.tasker.ACTION_EDIT_EVENT" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".activities.ReachabilityActivity"
+            android:theme="@style/ReachabilityTheme"/>
     </application>
 
 </manifest>

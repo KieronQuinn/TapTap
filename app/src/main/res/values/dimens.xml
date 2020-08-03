@@ -12,4 +12,5 @@
     <dimen name="search_box_corners">24dp</dimen>
     <dimen name="activity_padding">16dp</dimen>
     <dimen name="toolbar_elevation">4dp</dimen>
+    <dimen name="reachability_button_size">36dp</dimen>
 </resources>

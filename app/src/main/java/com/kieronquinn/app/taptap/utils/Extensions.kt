@@ -2,6 +2,7 @@ package com.kieronquinn.app.taptap.utils
 
 import android.animation.ArgbEvaluator
 import android.animation.ValueAnimator
+import android.app.Activity
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
@@ -70,7 +71,11 @@ val DEFAULT_GATES = arrayOf(TapGate.POWER_STATE, TapGate.TELEPHONY_ACTIVITY)
 val ALL_NON_CONFIG_GATES = arrayOf(TapGate.POWER_STATE, TapGate.POWER_STATE_INVERSE, TapGate.USB_STATE, TapGate.TELEPHONY_ACTIVITY, TapGate.CHARGING_STATE)
 val CONFIGURABLE_GATES = arrayOf(TapGate.APP_SHOWING)
 
-val DEFAULT_ACTIONS = arrayOf(TapAction.LAUNCH_ASSISTANT, TapAction.SCREENSHOT)
+val DEFAULT_ACTIONS = if(TapAction.SCREENSHOT.isAvailable){
+    arrayOf(TapAction.LAUNCH_ASSISTANT, TapAction.SCREENSHOT)
+}else{
+    arrayOf(TapAction.LAUNCH_ASSISTANT, TapAction.HOME)
+}
 
 fun InputStream.copyFile(out: OutputStream) {
     val buffer = ByteArray(1024)
@@ -240,7 +245,7 @@ fun ColumbusService.setGates(set: Set<Gate>){
     run<Unit>("updateSensorListener")
 }
 
-fun minApi(api: Int): Boolean {
+fun minSdk(api: Int): Boolean {
     return Build.VERSION.SDK_INT >= api
 }
 
@@ -439,6 +444,9 @@ fun Context.isDarkTheme(): Boolean {
 
 val Fragment.sharedPreferences
     get() = context?.getSharedPreferences("${BuildConfig.APPLICATION_ID}_prefs", Context.MODE_PRIVATE)
+
+val Activity.sharedPreferences
+    get() = getSharedPreferences("${BuildConfig.APPLICATION_ID}_prefs", Context.MODE_PRIVATE)
 
 //Following methods based off https://code.highspec.ru/Mikanoshi/CustoMIUIzer
 fun stringPrefToUri(name: String): Uri {
