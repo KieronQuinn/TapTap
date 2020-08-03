@@ -57,7 +57,7 @@
     <string name="action_screenshot_desc">Robi zrzut ekranu za pomocą interfejsu systemu</string>
     <string name="action_lock_screen">Zablokuj ekran</string>
     <string name="action_lock_screen_desc">Blokuje ekran poprzez symulację naciśnięcia przycisku zasilania</string>
-    <string name="action_toggle_pause">Odtwarzanie/Pauza<</string>
+    <string name="action_toggle_pause">Odtwarzanie/Pauza</string>
     <string name="action_toggle_pause_desc">Odtwarza/wstrzymuje aktualnie odtwarzany dźwięk</string>
     <string name="action_previous">Poprzedni</string>
     <string name="action_previous_desc">Odtwarza poprzedni dźwięk</string>

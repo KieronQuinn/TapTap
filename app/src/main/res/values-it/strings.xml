@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Tap, Tap</string>
     <string name="xposed_desc">Columbus backport</string>
-    <string name="accessibility_service_description">Servizio accessibilità TapTap\n\n<b>Importante: Nessun dato è collezionato, questo servizio è usato semplicemente per mantenere attivo il riconoscimento dell'evento di tap</b></string>
+    <string name="accessibility_service_description">Servizio accessibilità TapTap\n\n<b>Importante: Nessun dato è collezionato, questo servizio è usato semplicemente per mantenere attivo il riconoscimento dell\'evento di tap</b></string>
     <string name="toast_no_action_selected">Nessuna azione è stata selezionata</string>
     <string name="launch_accessibility">Lancia accessibilità</string>
     <string name="setting_gesture">Gesture</string>
@@ -15,7 +15,7 @@
     <string name="setting_gesture_model">Modello dispositivo</string>
     <string name="setting_gesture_model_desc">Seleziona quale modello di dispositivo usare per il machine learning</string>
     <string name="setting_feedback_vibrate">Vibra</string>
-    <string name="setting_feedback_vibrate_desc">Vibra una sola volta quando la gesture è usata e l'azione è eseguita</string>
+    <string name="setting_feedback_vibrate_desc">Vibra una sola volta quando la gesture è usata e l\'azione è eseguita</string>
     <string name="setting_feedback_wake">Risveglia il dispositivo</string>
     <string name="setting_feedback_wake_desc">Risveglia il dispositivo quando lo schermo è spento (nota: questo interferirà con le azioni che spengono lo schermo!)</string>
 
@@ -33,7 +33,7 @@
     <string name="gate_usb_state">Dispositivo USB</string>
     <string name="gate_usb_state_desc">Blocca le gesture per mezzo secondo quando viene collegato un dispositivo USB</string>
     <string name="gate_camera_visibility">Fotocamera</string>
-    <string name="gate_camera_visibility_desc">Blocca le gesture quando viene aperta la Fotocamera. Nota: Questa impostazione renderà inutilizzabile l'azione per lanciare la Fotocamera.</string>
+    <string name="gate_camera_visibility_desc">Blocca le gesture quando viene aperta la Fotocamera. Nota: Questa impostazione renderà inutilizzabile l\'azione per lanciare la Fotocamera.</string>
     <string name="gate_power_state">Schermo spento</string>
     <string name="gate_power_state_desc">Blocca le gesture quando lo schermo è spento</string>
     <string name="gate_power_state_inverse">Schermo acceso</string>
@@ -104,7 +104,6 @@
     <string name="bs_alpha_title">Alpha</string>
 
     <string name="category_about">Info</string>
-    <string name="about">%1s v%2s</string>
     <string name="about_summary">Creata by Kieron Quinn / Quinny899 @ XDA\nCon ringraziamento per tutti i contributi dalla comunità, including: João Dias, timfedo, Giorgio Cantoni, Fedor Shatokhin, Rodrigo Souza, Petro Bilyi, Kevin Kung</string>
     <string name="xda_thread">XDA Forum</string>
     <string name="github">GitHub</string>
