@@ -105,7 +105,7 @@
 
     <string name="category_about">Acerca de</string>
     <string name="about">%1s v%2s</string>
-    <string name="about_summary">Creado por Kieron Quinn / Quinny899 @ XDA\nGracias a las contribuciones de la comunidad, incluyendo a: João Dias, timfedo, Giorgio Cantoni, Fedor Shatokhin, Rodrigo Souza, Petro Bilyi, Kevin Kung</string>
+    <string name="about_summary">Creado por Kieron Quinn / Quinny899 @ XDA\nGracias a las contribuciones de la comunidad, incluyendo a: João Dias, timfedo, Giorgio Cantoni, Fedor Shatokhin, Rodrigo Souza, Petro Bilyi, Kevin Kung, hjthhthjt, baldapps, NitroFuN, Arthur Fontaine, ZonaRMR, Khanh Le, Gregor Wünsch</string>
     <string name="xda_thread">Hilo en XDA</string>
     <string name="github">GitHub</string>
     <string name="libraries">Librerias de terceros</string>
@@ -135,4 +135,9 @@
     <string name="action_launch_shortcut_desc_formattable">Lanzar %1s (acceso directo en la aplicación)</string>
     <string name="action_launch_shortcut_toast">Este acceso directo actualmente no es compatible</string>
     <string name="call_phone_permission_toast">Debe otorgar el permiso \"Teléfono\" a Tap, Tap para usar esta acción de acceso directo. Concédelo en la configuración de permisos de tu dispositivo</string>
+    <string name="action_split_screen">Pantalla dividida</string>
+    <string name="action_split_screen_desc">Iniciar o detener el modo de pantalla dividida con la aplicación actual (no funciona cuando está en la pantalla de inicio)</string>
+    <string name="action_reachability">Iniciar Fácil alcanze</string>
+    <string name="action_reachability_desc">Experimental: inicie un modo alcanzable mediante Pantalla dividida, con la mitad superior vacía de la pantalla y la aplicación actual en la parte inferior. Nota: es posible que deba volver a abrir la aplicación actual al iniciar y finalizar este modo</string>
+    <string name="reachability_left_handed_info">Mantenga presionado el ícono de notificación para cambiar la posición del ícono</string>
 </resources>
