@@ -15,9 +15,9 @@
     <string name="setting_gesture_model">Modèle d'appareil</string>
     <string name="setting_gesture_model_desc">Sélectionner quel modèle d'appareil utiliser pour le composant de machine learning (apprentissage automatique)</string>
     <string name="setting_feedback_vibrate">Vibrer</string>
-    <string name="setting_feedback_vibrate_desc">Vibrer une seule fois quand le geste est effectué et l'action déclenchée</string>
+    <string name="setting_feedback_vibrate_desc">Vibre une seule fois quand le geste est effectué et l'action déclenchée</string>
     <string name="setting_feedback_wake">Allumer l'Appareil</string>
-    <string name="setting_feedback_wake_desc">Allumer l'écran de l'appareil (note: cela va interférer avec les actions qui éteignent l'écran !)</string>
+    <string name="setting_feedback_wake_desc">Allume l'écran de l'appareil (note: cela va interférer avec les actions qui éteignent l'écran !)</string>
 
     <string-array name="device_model_keys">
         <item>Pixel 3 XL</item>
@@ -27,19 +27,19 @@
 
     <!-- Gates -->
     <string name="gate_charging_state">En train de charger</string>
-    <string name="gate_charging_state_desc">Bloquer les gestes une demi seconde après que l'appareil soit branché</string>
+    <string name="gate_charging_state_desc">Bloque les gestes quand l'appareil est branché (actif au bout d'une demi-seconde)</string>
     <string name="gate_telephony_activity">En appel</string>
-    <string name="gate_telephony_activity_desc">Bloquer les gestes quand l'appreil est en train d'appeler. Seuls les stardards sont supportés - pas VoIP comme WhatsApp</string>
+    <string name="gate_telephony_activity_desc">Bloque les gestes quand l'appreil est en cours d'appel. Seuls les stardards sont supportés - les VoIP, comme WhatsApp, ne le sont pas</string>
     <string name="gate_usb_state">Appareil USB</string>
-    <string name="gate_usb_state_desc">Bloquer les gestes une demi seconde après qu'un appareil USB, comme une clé USB, soit branché</string>
+    <string name="gate_usb_state_desc">Bloque les gestes quand un appareil USB, comme une clé USB, est branché (actif au bout d'une demi-seconde)</string>
     <string name="gate_camera_visibility">Caméra</string>
-    <string name="gate_camera_visibility_desc">Bloquer les gestes quand la caméra est activée. Note: Cela empêche l'action Lancer la Caméra.</string>
+    <string name="gate_camera_visibility_desc">Bloque les gestes quand la caméra est activée. Note: Cela empêche l'action Lancer la Caméra.</string>
     <string name="gate_power_state">Écran éteint</string>
-    <string name="gate_power_state_desc">Bloquer les gestes quand l'écran de l'appareil est éteint</string>
+    <string name="gate_power_state_desc">Bloque les gestes quand l'écran de l'appareil est éteint</string>
     <string name="gate_power_state_inverse">Écran allumé</string>
-    <string name="gate_power_state_inverse_desc">Bloquer les gestes quand l'écran de l'appareil est allumé</string>
+    <string name="gate_power_state_inverse_desc">Bloque les gestes quand l'écran de l'appareil est allumé</string>
     <string name="gate_app_showing">Application lancée</string>
-    <string name="gate_app_showing_desc">Bloquer les gestes quand une application apparaît sur l'écran</string>
+    <string name="gate_app_showing_desc">Bloque les gestes quand une application apparaît sur l'écran</string>
     <string name="gate_app_showing_desc_formatted">Blocks gesture when an %1s is showing on screen</string>
     <string name="action_launch_camera">Lancer la caméra</string>
     <string name="action_launch_camera_desc">Lance l'application de caméra par défaut. Cette action ne se déclenchera pas si la caméra est déjà lancée.</string>
@@ -75,7 +75,7 @@
     <string name="action_launch_app">Lancer une application</string>
     <string name="action_launch_app_desc">Lance une application</string>
     <string name="action_launch_app_desc_formattable">Lancer %1s. Cette action ne se déclanchera pas si elle est déjà lancée.</string>
-    <string name="fab_add_gate">Ajouter une limite</string>
+    <string name="fab_add_gate">Ajouter une Barrière</string>
     <string name="add_gate_category_state">État</string>
     <string name="add_gate_category_action">Action</string>
     <string name="nothing_found">Rien n'a été trouvé</string>
