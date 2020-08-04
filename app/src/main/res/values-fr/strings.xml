@@ -105,7 +105,7 @@
 
     <string name="category_about">À propos</string>
     <string name="about">%1s v%2s</string>
-    <string name="about_summary">Créé par Kieron Quinn / Quinny899 @ XDA\nGrâce aux contributions de la communauté, dont: João Dias, timfedo, Giorgio Cantoni, Fedor Shatokhin, Rodrigo Souza, Petro Bilyi, Kevin Kung</string>
+    <string name="about_summary">Créé par Kieron Quinn / Quinny899 @ XDA\nÀ l'aide des contributions de la communauté, dont: João Dias, timfedo, Giorgio Cantoni, Fedor Shatokhin, Rodrigo Souza, Petro Bilyi, Kevin Kung, hjthhthjt, baldapps, NitroFuN, Arthur Fontaine, ZonaRMR, Khanh Le, Gregor Wünsch</string>
     <string name="xda_thread">Discussion XDA</string>
     <string name="github">GitHub</string>
     <string name="libraries">Librairies tierces</string>
@@ -135,4 +135,9 @@
     <string name="action_launch_shortcut_desc_formattable">Lance %1s (raccourci dans l'application)</string>
     <string name="action_launch_shortcut_toast">Ce raccourci n'est actuellement pas supporté</string>
     <string name="call_phone_permission_toast">Vous devez accorder à Tap, Tap la permission \"Téléphone\" pour utiliser cette Action raccourcie. S'il vous plaît, donner là dans les paramètres de permissions de votre appareil</string>
+    <string name="action_split_screen">Écran partagé</string>
+    <string name="action_split_screen_desc">Démarre ou arrête le mode écran partagé avec l'application démarréé (ne marche pas avec l'écran d'accueil)</string>
+    <string name="action_reachability">Lancer Disponible</string>
+    <string name="action_reachability_desc">Expérimental: Lance le mode disponible en utilisant l'écran partagé, avec une moitié supérieure de l'écran vide et l'application actuelle sur la partie inférieure. Note : Vous devrez peut-être réouvrir l'application démarrée en lançant et arrêtant ce mode</string>
+    <string name="reachability_left_handed_info">Appuyez longuement sur l'icône de la notification pour changer la position de l'icône</string>
 </resources>
