@@ -137,7 +137,7 @@
     <string name="call_phone_permission_toast">Vous devez accorder à Tap, Tap la permission \"Téléphone\" pour utiliser cette Action raccourcie. S'il vous plaît, donner là dans les paramètres de permissions de votre appareil</string>
     <string name="action_split_screen">Écran partagé</string>
     <string name="action_split_screen_desc">Démarre ou arrête le mode écran partagé avec l'application démarréé (ne marche pas avec l'écran d'accueil)</string>
-    <string name="action_reachability">Lancer Disponible</string>
-    <string name="action_reachability_desc">Expérimental: Lance le mode disponible en utilisant l'écran partagé, avec une moitié supérieure de l'écran vide et l'application actuelle sur la partie inférieure. Note : Vous devrez peut-être réouvrir l'application démarrée en lançant et arrêtant ce mode</string>
+    <string name="action_reachability">Lancer le mode une seule main</string>
+    <string name="action_reachability_desc">Expérimental: Lance le mode une seule main en utilisant l'écran partagé, avec une moitié supérieure de l'écran vide et l'application actuelle sur la partie inférieure. Note : Vous devrez peut-être réouvrir l'application démarrée en lançant et arrêtant ce mode</string>
     <string name="reachability_left_handed_info">Appuyez longuement sur l'icône de la notification pour changer la position de l'icône</string>
 </resources>
