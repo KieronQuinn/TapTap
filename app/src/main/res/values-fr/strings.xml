@@ -1,18 +1,18 @@
 <resources>
     <string name="app_name">Tap, Tap</string>
     <string name="xposed_desc">Columbus backport</string>
-    <string name="accessibility_service_description">Service d'Accessibilité de TapTap\n\n<b>Important : Aucune donnée n'est collectée depuis vos applications, ce service est simplement utilisé pour garder la reconnaissance active et fournir un interraction avec l'appareil</b></string>
+    <string name="accessibility_service_description">Le service d'Accessibilité de TapTap\n\n<b>Important : Aucune donnée n'est collectée depuis vos applications, ce service est simplement utilisé pour garder la reconnaissance active et fournir une interraction avec l'appareil</b></string>
     <string name="toast_no_action_selected">Aucune action n'a été sélectionnée</string>
     <string name="launch_accessibility">Ouvrir le menu Accessibilité</string>
-    <string name="setting_gesture">Geste</string>
-    <string name="setting_gesture_desc">Modifier le fonctionnement du gest</string>
+    <string name="setting_gesture">Double Tap</string>
+    <string name="setting_gesture_desc">Modifier le fonctionnement du Double Tap</string>
     <string name="setting_actions">Actions</string>
     <string name="settings_actions_desc">Paramétrer les actions à effectuer lorsque le geste est réalisé</string>
     <string name="setting_gates">Barrières</string>
     <string name="setting_gates_desc">Paramétrer les situations quand le geste ne doit pas déclencher une action</string>
     <string name="setting_feedback">Retour</string>
     <string name="setting_feedback_desc">Paramétrer comment l'appareil vous informe que le geste est effectué</string>
-    <string name="setting_gesture_model">Modèle d'Appareil</string>
+    <string name="setting_gesture_model">Modèle d'appareil</string>
     <string name="setting_gesture_model_desc">Sélectionner quel modèle d'appareil utiliser pour le composant de machine learning (apprentissage automatique)</string>
     <string name="setting_feedback_vibrate">Vibrer</string>
     <string name="setting_feedback_vibrate_desc">Vibrer une seule fois quand le geste est effectué et l'action déclenchée</string>
@@ -71,9 +71,9 @@
     <string name="add_action_category_actions">Actions</string>
     <string name="add_action_category_advanced">Avancé</string>
     <string name="action_flashlight">Lampe torche</string>
-    <string name="action_flashlight_desc">Basculer l'état de la lampe torche. Cette action échouera si la caméra est utilisé par une autre application.</string>
+    <string name="action_flashlight_desc">Bascule l'état de la lampe torche. Cette action échouera si la caméra est utilisé par une autre application.</string>
     <string name="action_launch_app">Lancer une application</string>
-    <string name="action_launch_app_desc">Lancer une application</string>
+    <string name="action_launch_app_desc">Lance une application</string>
     <string name="action_launch_app_desc_formattable">Lancer %1s. Cette action ne se déclanchera pas si elle est déjà lancée.</string>
     <string name="fab_add_gate">Ajouter une limite</string>
     <string name="add_gate_category_state">État</string>
@@ -83,8 +83,8 @@
     <string name="show_system_apps">Afficher les applications systèmes</string>
     <string name="select_an_app">Sélectionner une application</string>
     <string name="setting_gesture_sensitivity">Sensibilité</string>
-    <string name="setting_gesture_sensitivity_desc">La sensibilité n'est actuellement pas implémenter dans le code de Google qu'utilise cette application. Je cherche activement comment l'implémenter, et la fonctionnalité sera peut-être présente dans une future version.</string>
-    <string name="bs_help_action">Les actions sont des tâches qui se lancent quand vous tapez deux fois au dos de votre appareil. Les actions se lancent dans l'ordre de la liste - de haut en bas. Si une action est en mesure de se dérouler correctement, aucune autre action ne sera menée. Cependant, si une action est indisponible (ex. si l'assistant pour l'action "Lancer l'Assistant" est déjà en cours d'exécution), l'action du dessous se lancera, et ce jusqu'à ce qu'une se déroule avec succès.\n\nDans les futures versions de l'application, vous pourrez ajouter des barrières aux actions (voir le menu Barrières de l'application) pour permettre un meilleur contrôle du moment où certaines actions sont exécutées.</string>
+    <string name="setting_gesture_sensitivity_desc">La sensibilité n'est actuellement pas implémenter dans le code de Google qu'utilise cette application. Je recherche activement comment implémenter la fonctionnalité. Elle sera peut-être présente dans une future version.</string>
+    <string name="bs_help_action">Les actions sont des tâches qui se lancent quand vous tapez deux fois au dos de votre appareil. Les actions se lancent dans l'ordre de la liste - de haut en bas. Si une action est en mesure de se dérouler correctement, aucune autre action ne sera exécutée. Cependant, si une action est indisponible (ex. si l'assistant dans l'action "Lancer l'Assistant" est déjà en cours d'exécution), l'action du dessous se lancera, et ce jusqu'à ce qu'une se déroule avec succès.\n\nDans les futures versions de l'application, vous pourrez ajouter des barrières aux actions elles-mêmes (voir le menu Barrières de l'application) pour permettre un meilleur contrôle du moment où certaines actions sont exécutées.</string>
     <string name="bs_help_action_title">Que sont les Actions ?</string>
     <string name="bs_help_gate">Les barrières sont des situations qui peuvent bloquer le lancement d'une action. Pour qu'une action soit exécutée, toutes les barrières activées doivent être ouvertes.\nSi un scénatio est actuellement rencontré, par example si l'écran est éteint et la barrière "Écran éteint" est activée, aucune action ne sera lancée. Vous pouvez ajouter autant de barrière que vous le souhaiter, et les activer/désactiver en utilisant les boutons (plutôt qu'avoir à supprimer et ré-ajouter) pour rendre la configuration plus rapide et facile.</string>
     <string name="bs_help_gate_title">Que sont les barrières ?</string>
@@ -97,10 +97,10 @@
     <string name="accessibility_info_off">Service d'Accessibilité est désactivé</string>
     <string name="accessibility_info_off_desc">Le geste ne va actuellement pas fonctionner. Cliquer pour activer</string>
     <string name="accessibility_info_on">Service d'Accessibilité est activé</string>
-    <string name="accessibility_info_on_desc">Si vous voulez désactiver les gestes, cliquer pour désactiver le service</string>
-    <string name="accessibility_info_toast">Sélectionner "Tap, Tap" depuis la liste des Services d'Accessibilité, le basculer et retourner sur Tap, Tap pour continuer</string>
+    <string name="accessibility_info_on_desc">Si vous voulez désactiver les gestes, cliquez pour désactiver le service</string>
+    <string name="accessibility_info_toast">Sélectionner "Tap, Tap" depuis la liste des Services d'Accessibilité, l'activer et retourner sur Tap, Tap pour continuer</string>
     <string name="menu_alpha">Cette application est en Version Alpha. Cliquer pour plus d'info.</string>
-    <string name="bs_alpha">Cette application est en cours de développement et a été publiée dans un état "Alpha" pour permettre de tester sur beaucoup d'appreils. Si vous rencontrez un bug, s'il vous plaît, signalez le sur GitHub sous forme d'"issue". Si vous souhaitez demander une fonctionnalité, postez la sur la discussion XDA ou demandez là sur GitHub.\n\nVérifiez à nouveau sur XDA, soit sur Labs ou sur la discussion, pour les mises à jour aussitôt qu'elles sont disponibles.\n\nMerci pour votre patience durant le développement.</string>
+    <string name="bs_alpha">Cette application est en cours de développement et a été publiée dans une version "Alpha" pour permettre de tester sur beaucoup d'appreils. Si vous rencontrez un bug, s'il vous plaît, signalez le sur GitHub sous forme d'"issue". Si vous souhaitez demander une fonctionnalité, postez la sur la discussion XDA ou demandez la sur GitHub.\n\nVérifiez aussi sur XDA, soit sur Labs ou sur la discussion, pour les mises à jour aussitôt qu'elles sont disponibles.\n\nMerci pour votre patience durant le développement.</string>
     <string name="bs_alpha_title">Alpha</string>
 
     <string name="category_about">À propos</string>
@@ -113,7 +113,7 @@
     <string name="twitter">Me suivre sur Twitter</string>
     <string name="tasker_config_label">Double tappé au dos</string>
     <string name="action_tasker_task">Tâche Tasker</string>
-    <string name="action_tasker_task_desc">Lancer une tâche spécifique Tasker</string>
+    <string name="action_tasker_task_desc">Lance une tâche spécifique Tasker</string>
     <string name="action_tasker_event_toast">Tasker pas installé ou version non supportée</string>
     <string name="bs_tasker_content">Pour lancer une tâche Tasker sans utiliser le plugin d'évènement, vous devez activer l'option \"Allow External Access\" dans les paramètres Tasker. Si cette option n'est pas activée, cette Action sera toujours ignorée.</string>
     <string name="bs_tasker_title">Permission Requise</string>
@@ -131,7 +131,7 @@
     <string name="action_wake_device">Allumer l'écran de l'appareil</string>
     <string name="action_wake_device_desc">Allume l'écran de l'appareil si il est éteint. Ce paramètre a priorité sur le paramètre de retour d'information, est ignoré si l'écran est allumé, et ne marchera pas si la barrière \"Écran éteint\" est activé</string>
     <string name="action_launch_shortcut">Lancer un raccourci</string>
-    <string name="action_launch_shortcut_desc">Lancer un raccourci comme un itinéraire Google Maps</string>
+    <string name="action_launch_shortcut_desc">Lance un raccourci comme un itinéraire Google Maps</string>
     <string name="action_launch_shortcut_desc_formattable">Lance %1s (raccourci dans l'application)</string>
     <string name="action_launch_shortcut_toast">Ce raccourci n'est actuellement pas supporté</string>
     <string name="call_phone_permission_toast">Vous devez accorder à Tap, Tap la permission \"Téléphone\" pour utiliser cette Action raccourcie. S'il vous plaît, donner là dans les paramètres de permissions de votre appareil</string>
