@@ -33,6 +33,7 @@ import com.google.android.systemui.columbus.actions.Action
 import com.google.android.systemui.columbus.feedback.FeedbackEffect
 import com.google.android.systemui.columbus.gates.*
 import com.google.android.systemui.columbus.sensors.GestureSensorImpl
+import com.google.android.systemui.columbus.sensors.PeakDetector
 import com.google.android.systemui.columbus.sensors.TapRT
 import com.google.android.systemui.columbus.sensors.TfClassifier
 import com.kieronquinn.app.taptap.BuildConfig
@@ -62,10 +63,19 @@ const val SHARED_PREFERENCES_KEY_MODEL = "model"
 const val SHARED_PREFERENCES_KEY_FEEDBACK_VIBRATE = "feedback_vibrate"
 const val SHARED_PREFERENCES_KEY_FEEDBACK_WAKE = "feedback_wake"
 
-//Not currently implemented in Columbus (TODO figure out how the ML settings work and provide sensitivity options)
 const val SHARED_PREFERENCES_KEY_SENSITIVITY = "sensitivity"
 
 val SHARED_PREFERENCES_FEEDBACK_KEYS = arrayOf(SHARED_PREFERENCES_KEY_FEEDBACK_WAKE, SHARED_PREFERENCES_KEY_FEEDBACK_VIBRATE)
+
+/*
+    EXPERIMENTAL: SENSITIVITY
+    These values get applied to the model's noise reduction. The higher the value, the more reduction of 'noise', and therefore the harder the gesture is to run.
+    Anything from 0.0 to 0.1 should really work, but 0.75 is pretty hard to trigger so that's set to the maximum and values filled in from there
+    For > 0.05f, the values were initially even spaced, but that put too much weight on the higher values which made the force difference between 0.05 (default) the next value too great
+    Instead I made up some values that are semi-evenly spaced and seem to provide a decent weighting
+    For < 0.05f, the values are evenly spaced down to 0 which is no noise removal at all and really easy to trigger.
+ */
+val SENSITIVITY_VALUES = arrayOf(0.75f, 0.53f, 0.40f, 0.25f, 0.1f, 0.05f, 0.04f, 0.03f, 0.02f, 0.01f, 0.0f)
 
 val DEFAULT_GATES = arrayOf(TapGate.POWER_STATE, TapGate.TELEPHONY_ACTIVITY)
 val ALL_NON_CONFIG_GATES = arrayOf(TapGate.POWER_STATE, TapGate.POWER_STATE_INVERSE, TapGate.USB_STATE, TapGate.TELEPHONY_ACTIVITY, TapGate.CHARGING_STATE)
@@ -83,6 +93,11 @@ fun InputStream.copyFile(out: OutputStream) {
     while (this.read(buffer).also { read = it } != -1) {
         out.write(buffer, 0, read)
     }
+}
+
+public fun <T> Array<out T>.indexOfOrNull(element: T): Int? {
+    if(!contains(element)) return null
+    return indexOf(element)
 }
 
 //Replaces hidden API
@@ -300,6 +315,14 @@ fun GestureSensorImpl.setTfClassifier(assetManager: AssetManager, tfModel: Strin
     val tapRt = GestureSensorImpl::class.java.getDeclaredField("tap").setAccessibleR(true).get(this) as TapRT
     val tfClassifier = TfClassifier(assetManager, tfModel)
     TapRT::class.java.getDeclaredField("_tflite").setAccessibleR(true).set(tapRt, tfClassifier)
+}
+
+fun GestureSensorImpl.getTapRT(): TapRT {
+    return GestureSensorImpl::class.java.getDeclaredField("tap").setAccessibleR(true).get(this) as TapRT
+}
+
+fun PeakDetector.getMinNoiseToTolerate(): Float {
+    return PeakDetector::class.java.getDeclaredField("_minNoiseTolerate").setAccessibleR(true).getFloat(this)
 }
 
 fun Context.isPackageCamera(packageName: String): Boolean {

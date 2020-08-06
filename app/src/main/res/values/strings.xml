@@ -83,7 +83,7 @@
     <string name="show_system_apps">Show system apps</string>
     <string name="select_an_app">Select an app</string>
     <string name="setting_gesture_sensitivity">Sensitivity</string>
-    <string name="setting_gesture_sensitivity_desc">Sensitivity is not currently implemented in Google\'s code that this app uses. I\'m actively looking into how it might be possible, and it may become available in a future version.</string>
+    <string name="setting_gesture_sensitivity_desc"><b>Experimental:</b> Change the sensitivity of the gesture by adjusting how much force is filtered out as \'noise\'. A lower sensitivity means the gesture will be harder to do on most devices, whereas a higher sensitivity is more prone to false detection. Default is exactly in the middle.</string>
     <string name="bs_help_action">Actions are tasks that are run when you tap the back of your device twice. Actions are run in the order of the list - top to bottom. If an action is able to run successfully, no further actions will be run. However, if an action is unavailable (eg. if the assistant for a "Launch assistant" action is already running), the next action below it will be run, and so on until one is run successfully.\n\nIn future versions of this app, you will be able to add gates to actions (see the Gates menu of the app) to allow for more control of when certain actions are run.</string>
     <string name="bs_help_action_title">What are Actions?</string>
     <string name="bs_help_gate">Gates are situations that can block the gesture from running any actions. In order for any action to be run, all the enabled gates must be open.\nIf a scenario is currently met, for example if the screen is off and the "Display off" gate is enabled, no actions will be run. You can add as many gates as you like, and enable/disable them using the toggles (rather than having to delete and re-add) to make configuration quicker and easier.</string>
@@ -140,4 +140,11 @@
     <string name="action_reachability">Launch reachability</string>
     <string name="action_reachability_desc">Experimental: Launch a reachbility-esque mode using split screen, with an empty top half of the screen and the current app on the bottom. Note: You may be required to reopen the current app when starting and ending this mode</string>
     <string name="reachability_left_handed_info">Long press the notification icon to switch icon position</string>
+
+    <!-- Sensitivity slider labels -->
+    <string name="slider_sensitivity_very_low">Very low</string>
+    <string name="slider_sensitivity_low">Low</string>
+    <string name="slider_sensitivity_normal">Normal</string>
+    <string name="slider_sensitivity_high">High</string>
+    <string name="slider_sensitivity_very_high">Very high</string>
 </resources>

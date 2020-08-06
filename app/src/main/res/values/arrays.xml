@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="sensitivity_values">
+        <item>0.01</item>
+        <item>0.02</item>
+        <item>0.03</item>
+        <item>0.04</item>
+        <item>0.05</item>
+        <item>0.19</item>
+        <item>0.33</item>
+        <item>0.47</item>
+        <item>0.61</item>
+        <item>0.75</item>
+    </array>
+</resources>
