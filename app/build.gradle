@@ -12,10 +12,14 @@ android {
         applicationId "com.kieronquinn.app.taptap"
         minSdkVersion 24
         targetSdkVersion 29
-        versionCode 3
-        versionName "0.3 Alpha"
+        versionCode 4
+        versionName "0.4 Alpha"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            abiFilters 'armeabi-v7a', 'arm64-v8a'
+        }
     }
 
     buildTypes {
@@ -80,5 +84,7 @@ dependencies {
     implementation 'com.joaomgcd:taskerpluginlibrary:0.3.2'
     
     implementation 'androidx.browser:browser:1.2.0'
+
+    implementation 'org.tensorflow:tensorflow-lite:0.0.0-nightly'
 
 }

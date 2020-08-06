@@ -13,15 +13,15 @@
     <string name="setting_gesture_model">Модель устройства</string>
     <string name="setting_gesture_model_desc">Выберите модель устройства для использования в компоненте машинного обучения</string>
     <string name="setting_feedback_vibrate">Вибрация</string>
-    <string name="setting_feedback_vibrate_desc">Вибрировать один раз, когда используется жест, и действие выполняется</string>
+    <string name="setting_feedback_vibrate_desc">Вибрировать один раз, когда используется жест</string>
     <string name="setting_feedback_wake">Пробуждать устройство</string>
-    <string name="setting_feedback_wake_desc">Пробуждать устройство, экран выключен (обратите внимание: это будет мешать действиям, которые выключают экран!)</string>
+    <string name="setting_feedback_wake_desc">Пробуждать устройство, если экран выключен (обратите внимание: это будет мешать действиям, которые выключают экран!)</string>
 
     <!-- Gates -->
     <string name="gate_charging_state">Зарядка</string>
-    <string name="gate_charging_state_desc">Блокирует жест на полсекунды после подключения устройства</string>
+    <string name="gate_charging_state_desc">Блокирует жест на полсекунды после подключения к зарядному устройству</string>
     <string name="gate_telephony_activity">Во время звонка</string>
-    <string name="gate_telephony_activity_desc">Блокирует жест, когда устройство находится на вызове. Поддерживаются только стандартные звонки - не VoIP, например. WhatsApp</string>
+    <string name="gate_telephony_activity_desc">Блокирует жест во время вызовов. Поддерживаются только обычные звонки (в WhatsApp и т.п. работать не будет).</string>
     <string name="gate_usb_state">USB-устройство</string>
     <string name="gate_usb_state_desc">Блокирует жест на полсекунды при подключении USB-устройства, например флэш-накопителя</string>
     <string name="gate_camera_visibility">Камера</string>
@@ -34,7 +34,7 @@
     <string name="gate_app_showing_desc">Блокирует жест, когда приложение отображается на экране</string>
     <string name="gate_app_showing_desc_formatted">Блокирует жест, когда %1s отображается на экране</string>
     <string name="action_launch_camera">Запустить камеру</string>
-    <string name="action_launch_camera_desc">Запустите приложение камеры по умолчанию. Это действие будет пропущено, если камера уже работает.</string>
+    <string name="action_launch_camera_desc">Запустить приложение камеры по умолчанию. Это действие будет пропущено, если камера уже работает.</string>
     <string name="action_home">Домой</string>
     <string name="action_home_desc">Имитация нажатия кнопки домой</string>
     <string name="action_back">Назад</string>
@@ -75,7 +75,7 @@
     <string name="show_system_apps">Показать системные приложения</string>
     <string name="select_an_app">Выберите приложение</string>
     <string name="setting_gesture_sensitivity">Чувствительность</string>
-    <string name="setting_gesture_sensitivity_desc">Чувствительность в настоящее время не реализована в коде Google, который использует это приложение. Я активно изучаю, как это возможно, и это может стать доступным в будущей версии.</string>
+    <string name="setting_gesture_sensitivity_desc">Чувствительность в настоящее время не реализована в коде Google, который использует это приложение. Я активно изучаю, как возможно реализовать данную функцию, и это может стать доступным в будущей версии.</string>
     <string name="bs_help_action">Действия - это задачи, которые запускаются при двойном нажатии на заднюю часть устройства. Действия выполняются в порядке списка - сверху вниз. Если действие может быть успешно выполнено, дальнейшие действия выполняться не будут. Однако, если действие недоступно (например, если ассистент для действия «Запуск ассистента» уже запущен), будет выполнено следующее действие под ним и т.д., Пока оно не будет успешно выполнено. \n\nВ будущих версиях В этом приложении вы сможете добавлять запреты к действиям (см. меню «Запреты» приложения), чтобы обеспечить больший контроль над выполнением определенных действий.</string>
     <string name="bs_help_action_title">Что такое действия?</string>
     <string name="bs_help_gate">Запреты - это ситуации, которые могут заблокировать жест от выполнения каких-либо действий. Для выполнения любого действия все включенные запреты должны быть открыты. \nЕсли в данный момент выполняется сценарий, например, если экран выключен и запрет «Отключить отображение» включены, никакие действия не будут выполняться. Вы можете добавить столько запретов, сколько захотите, и включать / отключать их, используя переключатели (вместо того, чтобы удалять и повторно добавлять), чтобы сделать настройку быстрее и проще.</string>
@@ -84,7 +84,7 @@
     <string name="action_tasker_event">Tasker Event</string>
     <string name="action_tasker_event_desc">Запустить плагин Tasker Event</string>
     <string name="action_launch_assistant">Запустить ассистента</string>
-    <string name="action_launch_assistant_desc">Запустите приложение-ассистент по умолчанию</string>
+    <string name="action_launch_assistant_desc">Запустить приложение-ассистент по умолчанию</string>
 
     <string name="accessibility_info_off">Служба доступности отключена</string>
     <string name="accessibility_info_off_desc">Жест в настоящее время не будет работать. Нажмите, чтобы включить</string>
@@ -92,18 +92,18 @@
     <string name="accessibility_info_on_desc">Если вы хотите отключить жест, нажмите, чтобы отключить службу</string>
     <string name="accessibility_info_toast">Выберите «Tap, Tap» из списка услуг специальных возможностей, переключите его и вернитесь к Tap, нажмите, чтобы продолжить</string>
     <string name="menu_alpha">Это приложение в альфа тестировании. Нажмите для информации.</string>
-    <string name="bs_alpha">Это приложение находится на ранней стадии разработки и было выпущено в состоянии «Альфа», что позволяет проводить тестирование на многих устройствах. Если вы столкнулись с ошибкой, сообщите о ней на GitHub. Если вы хотите запросить функцию, опубликуйте ее в потоке XDA или запросите ее на GitHub. \n\nПроверьте на XDA, в лаборатории или в потоке, обновления, как только они станут доступны. \n\nСпасибо за терпение в процессе разработки.</string>
+    <string name="bs_alpha">Это приложение находится на ранней стадии разработки и было выпущено в состоянии «Альфа», что позволяет проводить тестирование на многих устройствах. Если вы столкнулись с ошибкой, сообщите о ней на GitHub. Если вы хотите запросить функцию, опубликуйте ее в теме XDA или запросите ее на GitHub. \n\nПроверьте на XDA, в лаборатории или в теме, обновления, как только они станут доступны. \n\nСпасибо за терпение в процессе разработки.</string>
     <string name="bs_alpha_title">Альфа</string>
 
     <string name="category_about">О приложении</string>
-    <string name="about_summary">Создано Kieron Quinn / Quinny899 @ XDA\nБлагодаря вкладу сообщества, в том числе: joaomgcd, timfedo, gcantoni</string>
+    <string name="about_summary">Создано Kieron Quinn / Quinny899 @ XDA\nБлагодаря вкладу сообщества, в том числе: João Dias, timfedo, Giorgio Cantoni, Fedor Shatokhin, Rodrigo Souza, Petro Bilyi, Kevin Kung</string>
     <string name="libraries">Сторонние библиотеки</string>
     <string name="donate">Пожертвовать</string>
-    <string name="twitter">Подпишись на меня в Твиттере</string>
+    <string name="twitter">Подпишитесь на меня в Твиттере</string>
     <string name="picker_launch_camera">Запустить камеру</string>
     <string name="tasker_config_label">Двойной нажатие назад</string>
     <string name="action_tasker_task">Задача Tasker</string>
-    <string name="action_tasker_task_desc">Запустите заданную задачу Tasker</string>
+    <string name="action_tasker_task_desc">Запустить заданную задачу Tasker</string>
     <string name="action_tasker_event_toast">Tasker не установлен или версия не поддерживается</string>
     <string name="bs_tasker_content">Чтобы запустить задачу Tasker без использования подключаемого модуля «Событие», необходимо включить параметр «Разрешить внешний доступ» в настройках Tasker. Если эта опция не включена, это действие всегда будет пропущено.</string>
     <string name="bs_tasker_title">Требуется разрешение</string>
@@ -118,5 +118,10 @@
     <string name="action_volume_toggle_mute">Переключить звук</string>
     <string name="action_volume_toggle_mute_desc">Включить / выключить звук для текущего звукового потока</string>
     <string name="action_wake_device">Пробудить устройства</string>
-    <string name="action_wake_device_desc">Пробудить устройство, если экран выключен. Это переопределяет настройку в настройках обратной связи, пропускается, если дисплей включен, и не будет работать, если у вас включен параметр «Отключить отображение»</string>
+    <string name="action_wake_device_desc">Пробудить устройство, если экран выключен. Это переопределяет настройку в настройках обратной связи. Пропускается, если дисплей включен, и не будет работать, если у вас включен параметр «Отключить отображение»</string>
+    <string name="action_launch_shortcut">Запустить действие в приложении</string>
+    <string name="action_launch_shortcut_desc">Запустить действие в приложении, например маршруты в Google Картах</string>
+    <string name="action_launch_shortcut_desc_formattable">Запустить %1s (действие в приложении)</string>
+    <string name="action_launch_shortcut_toast">Это действие не поддерживается в данный момент</string>
+    <string name="call_phone_permission_toast">Вам нужно предоставить разрешение на доступ Tap, Tap к телефону, чтобы использовать это действие. Пожалуйста, предоставьте его в настройках разрешения вашего устройства</string>
 </resources>

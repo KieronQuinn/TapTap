@@ -2,6 +2,7 @@ package com.kieronquinn.app.taptap.columbus.actions
 
 import android.content.Context
 import android.content.Intent
+import androidx.lifecycle.LifecycleOwner
 import com.google.android.systemui.columbus.actions.Action
 import com.google.android.systemui.columbus.sensors.GestureSensor
 import com.kieronquinn.app.taptap.TapAccessibilityService

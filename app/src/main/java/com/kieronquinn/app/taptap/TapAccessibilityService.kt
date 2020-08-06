@@ -102,6 +102,11 @@ class TapAccessibilityService : AccessibilityService(),
                     this,
                     GLOBAL_ACTION_RECENTS
                 )
+                TapAction.SPLIT_SCREEN -> AccessibilityServiceGlobalAction(
+                    this,
+                    GLOBAL_ACTION_TOGGLE_SPLIT_SCREEN
+                )
+                TapAction.REACHABILITY -> LaunchReachability(this)
                 TapAction.SCREENSHOT -> AccessibilityServiceGlobalAction(
                     this,
                     GLOBAL_ACTION_TAKE_SCREENSHOT
