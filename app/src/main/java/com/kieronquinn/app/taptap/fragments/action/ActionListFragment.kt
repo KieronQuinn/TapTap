@@ -47,20 +47,7 @@ class ActionListFragment : Fragment() {
     }
 
     private fun getActionsForCategory(category: TapActionCategory): MutableList<ActionInternal> {
-        return when(category){
-            TapActionCategory.LAUNCH -> {
-               listOf(TapAction.LAUNCH_APP, TapAction.LAUNCH_SHORTCUT, TapAction.LAUNCH_ASSISTANT, TapAction.LAUNCH_CAMERA).map { ActionInternal(it, ArrayList()) }
-            }
-            TapActionCategory.UTILITIES -> {
-               listOf(TapAction.FLASHLIGHT).map { ActionInternal(it, ArrayList()) }
-            }
-            TapActionCategory.ACTIONS -> {
-               listOf(TapAction.SCREENSHOT, TapAction.NOTIFICATIONS, TapAction.QUICK_SETTINGS, TapAction.HOME, TapAction.BACK, TapAction.RECENTS, TapAction.LOCK_SCREEN, TapAction.POWER_DIALOG, TapAction.WAKE_DEVICE, TapAction.TOGGLE_PAUSE, TapAction.PREVIOUS, TapAction.NEXT, TapAction.VOLUME_PANEL, TapAction.VOLUME_UP, TapAction.VOLUME_DOWN, TapAction.VOLUME_TOGGLE_MUTE).map { ActionInternal(it, ArrayList()) }
-            }
-            TapActionCategory.ADVANCED -> {
-                listOf(TapAction.TASKER_EVENT, TapAction.TASKER_TASK).map { ActionInternal(it, ArrayList()) }
-            }
-        }.toMutableList()
+        return TapAction.values().filter { it.category == category && it.isAvailable }.map { ActionInternal(it, ArrayList()) }.toMutableList()
     }
 
     fun getToolbarTitle(): String {

@@ -1,14 +1,14 @@
 <resources>
     <string name="app_name">Tap, Tap</string>
     <string name="xposed_desc">Columbus backport</string>
-    <string name="accessibility_service_description">Serviço de Acessibilidade do TapTap\n\n<b>Aviso Importante: Nenhum dado de seus aplicativos será coletado, este serviço é usado simplesmente para manter o reconhecimento ativo e providenciar a interação com o seu dispositivo</b></string>
+    <string name="accessibility_service_description">Serviço de Acessibilidade do TapTap\n\n<b>Aviso Importante: Nenhum dado de seus aplicativos será coletado, este serviço é utilizado simplesmente para manter o reconhecimento do gesto ativo e providenciar a interação com o seu dispositivo</b></string>
     <string name="toast_no_action_selected">Nenhuma ação selecionada</string>
     <string name="launch_accessibility">Abrir o menu de Acessibilidade</string>
     <string name="setting_gesture">Gesto</string>
     <string name="setting_gesture_desc">Ajustar como o gesto funciona</string>
     <string name="setting_actions">Ações</string>
     <string name="settings_actions_desc">Definir as ações a serem executadas quando o gesto for realizado</string>
-    <string name="setting_gates">Portões</string>
+    <string name="setting_gates">Barreiras</string>
     <string name="setting_gates_desc">Definir situações em que o gesto não deve executar uma ação</string>
     <string name="setting_feedback">Feedback</string>
     <string name="setting_feedback_desc">Definir como o dispositivo irá te avisar quando o gesto é executado</string>
@@ -45,10 +45,10 @@
     <string name="action_launch_camera_desc">Abrir o aplicativo de câmera padrão. Esta ação será ignorada se a câmera já estiver em execução.</string>
     <string name="action_home">Tela inicial</string>
     <string name="action_home_desc">Simular o pressionamento do botão tela de ínicio</string>
-    <string name="action_back">Back</string>
+    <string name="action_back">Voltar</string>
     <string name="action_back_desc">Simular o pressionamento do botão voltar</string>
     <string name="action_recents">Abrir recentes</string>
-    <string name="action_recents_desc">Abrir a tela de apps recentes simulando o pressionamento do botão recentes. Nos dispositivos compatíveis, o uso dessa ação quando a tela de apps recentes já estiver sendo exibida, mudará para o primeiro aplicativo em segundo plano</string>
+    <string name="action_recents_desc">Abrir a tela de apps recentes simulando o pressionamento do botão recentes. Nos dispositivos compatíveis, o uso dessa ação quando a tela de apps recentes já estiver sendo exibida, mudará para o primeiro aplicativo em segundo plano.</string>
     <string name="action_notifications">Abrir notificações</string>
     <string name="action_notifications_desc">Abrir o painel de notificações</string>
     <string name="action_quick_settings">Configurações rápidas</string>
@@ -75,7 +75,7 @@
     <string name="action_launch_app">Abrir app</string>
     <string name="action_launch_app_desc">Abrir um app</string>
     <string name="action_launch_app_desc_formattable">Abrir %1s. Esta ação será ignorada se este app já estiver em execução.</string>
-    <string name="fab_add_gate">Adicionar Portão</string>
+    <string name="fab_add_gate">Adicionar Barreira</string>
     <string name="add_gate_category_state">Estado</string>
     <string name="add_gate_category_action">Ação</string>
     <string name="nothing_found">Nada encontrado</string>
@@ -84,10 +84,10 @@
     <string name="select_an_app">Selecione um app</string>
     <string name="setting_gesture_sensitivity">Sensibilidade</string>
     <string name="setting_gesture_sensitivity_desc">No momento, sensibilidade não está implementada no código do Google usado por este aplicativo. Estou analisando ativamente como isso pode ser possível e deverá estar disponível em uma futura atualização.</string>
-    <string name="bs_help_action">Ações são tarefas executadas quando você toca na parte traseira do seu dispositivo duas vezes. As ações são executadas na ordem da lista - de cima para baixo. Se uma ação puder ser executada com êxito, nenhuma ação adicional será executada. No entanto, se uma ação não estiver disponível (por exemplo, se o assistente da ação "Abrir Assistente" já estiver em execução), a próxima ação abaixo será executada e assim sucessivamente até que uma seja executada com êxito.\n\nEm versões futuras deste aplicativo, você poderá adicionar portões às ações (consulte o menu Portões do aplicativo) para permitir mais controle sobre quando determinadas ações são executadas.</string>
+    <string name="bs_help_action">Ações são tarefas executadas quando você toca na parte traseira do seu dispositivo duas vezes. As ações são executadas na ordem da lista - de cima para baixo. Se uma ação puder ser executada com êxito, nenhuma ação adicional será executada. No entanto, se uma ação não estiver disponível (por exemplo, se o assistente da ação "Abrir Assistente" já estiver em execução), a próxima ação abaixo será executada e assim sucessivamente até que uma seja executada com êxito.\n\nEm versões futuras deste aplicativo, você poderá adicionar barreiras às ações (consulte o menu Barreiras do aplicativo) para permitir mais controle sobre quando determinadas ações são executadas.</string>
     <string name="bs_help_action_title">O que são Ações?</string>
-    <string name="bs_help_gate">Portões são situações que podem impedir o gesto de executar qualquer ação. Para que qualquer ação seja executada, todos os portões ativados devem estar abertos.\nSe uma situação ocorrer, por exemplo, se a tela estiver desligada e o portão "Tela desligada" estiver ativado, nenhuma ação será executada. Você pode adicionar quantas portas desejar e ativá-los/desativá-los usando os interruptores (em vez de precisar excluir e adicionar novamente) para tornar a configuração mais rápida e fácil.</string>
-    <string name="bs_help_gate_title">O que são Portões?</string>
+    <string name="bs_help_gate">Barreiras são situações que podem impedir o gesto de executar qualquer ação. Para que qualquer ação seja executada, todas as barreiras ativadas devem estar abertas.\nSe uma situação acontecer, por exemplo, se a tela estiver desligada e a barreira "Tela desligada" estiver ativada, nenhuma ação será executada. Você pode adicionar quantas barreiras desejar, e ativá-las ou desativá-las usando os interruptores (em vez de precisar excluir e adicionar novamente) para tornar a configuração mais rápida e fácil.</string>
+    <string name="bs_help_gate_title">O que são Barreiras?</string>
     <string name="help">Ajuda</string>
     <string name="action_launch_assistant">Abrir Assistente</string>
     <string name="action_launch_assistant_desc">Abrir o aplicativo de assistente padrão</string>
@@ -105,7 +105,7 @@
 
     <string name="category_about">Sobre</string>
     <string name="about">%1s v%2s</string>
-    <string name="about_summary">Criado por Kieron Quinn / Quinny899 @ XDA\nCom agradecimentos às contribuições da comunidade, incluindo: joaomgcd, timfedo, gcantoni</string>
+    <string name="about_summary">Criado por Kieron Quinn / Quinny899 @ XDA\nCom agradecimentos às contribuições da comunidade, incluindo: João Dias, timfedo, Giorgio Cantoni, Fedor Shatokhin, Rodrigo Souza, Petro Bilyi, Kevin Kung</string>
     <string name="xda_thread">Tópico do XDA</string>
     <string name="github">GitHub</string>
     <string name="libraries">Bibliotecas de terceiros</string>
@@ -113,7 +113,7 @@
     <string name="twitter">Me siga no Twitter</string>
     <string name="tasker_config_label">Toque Duplo na Traseira</string>
     <string name="action_tasker_task">Tarefa do Tasker</string>
-    <string name="action_tasker_task_desc">Rodar uma tarefa específica do Tasker</string>
+    <string name="action_tasker_task_desc">Executar uma tarefa específica do Tasker</string>
     <string name="action_tasker_event_toast">Tasker não instalado ou versão não suportada</string>
     <string name="bs_tasker_content">Para iniciar uma tarefa do Tasker sem usar o plugin de Evento, você deve habilitar a opção \"Permitir Acesso Externo\" nas configurações do Tasker. Se você não tiver esta opção ativada, esta ação será sempre ignorada.</string>
     <string name="bs_tasker_title">Permissão Necessária</string>
@@ -129,5 +129,10 @@
     <string name="action_volume_toggle_mute">Ativar/desativar som</string>
     <string name="action_volume_toggle_mute_desc">Ativar/desativar o som do stream de áudio atual</string>
     <string name="action_wake_device">Acordar dispositivo</string>
-    <string name="action_wake_device_desc">Ligar a tela o dispositivo se estiver desligada. Isso substitui a configuração nas configurações de feedback, é ignorado se a tela estiver ligada e não funcionará se você tiver o portão "Tela desligada" ativado</string>
+    <string name="action_wake_device_desc">Ligar a tela o dispositivo se estiver desligada. Isso substitui a configuração nas configurações de feedback, é ignorado se a tela estiver ligada e não funcionará caso a barreira "Tela desligada" estiver ativada.</string>
+    <string name="action_launch_shortcut">Abrir um atalho</string>
+    <string name="action_launch_shortcut_desc">Executar um atalho, como por exemplo: rotas do Google Maps</string>
+    <string name="action_launch_shortcut_desc_formattable">Abrir %1s (atalho do app)</string>
+    <string name="action_launch_shortcut_toast">Atualmente, este atalho não é suportado</string>
+    <string name="call_phone_permission_toast">Você precisa conceder ao Tap, Tap a permissão \"Telefone\" para usar este atalho como Ação. Faça isso nas configurações de permissões do seu dispositivo.</string>
 </resources>

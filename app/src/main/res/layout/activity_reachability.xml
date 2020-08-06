@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="bottom"
+    android:gravity="bottom|end"
+    android:id="@+id/reachability_container"
+    android:padding="@dimen/activity_padding">
+
+    <Button
+        android:id="@+id/reachability_notifications"
+        android:layout_width="@dimen/reachability_button_size"
+        android:layout_height="@dimen/reachability_button_size"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:foreground="@drawable/rounded_ripple_36"
+        android:layout_marginEnd="@dimen/margin_small"
+        app:iconTint="@android:color/white"
+        app:icon="@drawable/ic_action_notifications"/>
+
+    <Button
+        android:id="@+id/reachability_quick_settings"
+        android:layout_width="@dimen/reachability_button_size"
+        android:layout_height="@dimen/reachability_button_size"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:foreground="@drawable/rounded_ripple_36"
+        app:iconTint="@android:color/white"
+        app:icon="@drawable/ic_action_quick_settings"/>
+
+</LinearLayout>

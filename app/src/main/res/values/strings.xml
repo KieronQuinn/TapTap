@@ -107,7 +107,7 @@
 
     <string name="category_about">About</string>
     <string name="about">%1s v%2s</string>
-    <string name="about_summary">Created by Kieron Quinn / Quinny899 @ XDA\nWith thanks to contributions from the community, including: João Dias, timfedo, Giorgio Cantoni, Fedor Shatokhin, Rodrigo Souza, Petro Bilyi, Kevin Kung</string>
+    <string name="about_summary">Created by Kieron Quinn / Quinny899 @ XDA\nWith thanks to contributions from the community, including: João Dias, timfedo, Giorgio Cantoni, Fedor Shatokhin, Rodrigo Souza, Petro Bilyi, Kevin Kung, hjthhthjt, baldapps, NitroFuN, Arthur Fontaine, ZonaRMR, Khanh Le, Gregor Wünsch</string>
     <string name="xda_thread">XDA Thread</string>
     <string name="github">GitHub</string>
     <string name="libraries">Third party libraries</string>
@@ -137,4 +137,9 @@
     <string name="action_launch_shortcut_desc_formattable">Launch %1s (shortcut into the app)</string>
     <string name="action_launch_shortcut_toast">This shortcut is currently not supported</string>
     <string name="call_phone_permission_toast">You need to grant Tap, Tap the \"Phone\" permission to use this shortcut Action. Please grant it in your device\'s permission settings</string>
+    <string name="action_split_screen">Split screen</string>
+    <string name="action_split_screen_desc">Start or stop split screen mode with the current app (does not work when on the homescreen)</string>
+    <string name="action_reachability">Launch reachability</string>
+    <string name="action_reachability_desc">Experimental: Launch a reachbility-esque mode using split screen, with an empty top half of the screen and the current app on the bottom. Note: You may be required to reopen the current app when starting and ending this mode</string>
+    <string name="reachability_left_handed_info">Long press the notification icon to switch icon position</string>
 </resources>
