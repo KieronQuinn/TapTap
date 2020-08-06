@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Tap, Tap</string>
     <string name="xposed_desc">哥伦布后门</string>
-    <string name="accessibility_service_description">TapTap 无障碍服务\n\n<b>重要提示：应用不会收集您的数据，此服务仅用于识别手势活动并提供与设备的互动支持。</b></string>
+    <string name="accessibility_service_description">TapTap 无障碍服务\n\n<b>重要提示：应用不会收集您的数据。此服务仅用于识别手势活动，并提供与设备的互动支持。</b></string>
     <string name="toast_no_action_selected">没有选择任何动作</string>
     <string name="launch_accessibility">激活无障碍服务</string>
     <string name="setting_gesture">手势</string>
@@ -13,19 +13,17 @@
     <string name="setting_feedback">反馈</string>
     <string name="setting_feedback_desc">定制设备在识别到手势时通知您的方式</string>
     <string name="setting_gesture_model">设备模型</string>
-    <string name="setting_gesture_model_desc">选择机器学习组件使用的设备模型</string>
+    <string name="setting_gesture_model_desc">为机器学习组件选择要使用的设备模型</string>
     <string name="setting_feedback_vibrate">振动</string>
     <string name="setting_feedback_vibrate_desc">当识别到手势并执行动作时，振动一次</string>
     <string name="setting_feedback_wake">唤醒设备</string>
     <string name="setting_feedback_wake_desc">当屏幕关闭时唤醒设备（注意：这会干扰「锁屏」动作！）</string>
-
-    <!-- Gates -->
     <string name="gate_charging_state">充电时</string>
     <string name="gate_charging_state_desc">当设备刚处于充电状态时，暂时禁用手势半秒钟</string>
     <string name="gate_telephony_activity">通话时</string>
-    <string name="gate_telephony_activity_desc">当设备在通话时，禁用手势。仅支持标准电话，不支持网络电话，例如：WhatsApp</string>
+    <string name="gate_telephony_activity_desc">当设备在通话时，暂时禁用手势。仅支持标准电话，不支持如 WhatsApp 之类的网络电话</string>
     <string name="gate_usb_state">USB 设备</string>
-    <string name="gate_usb_state_desc">当有 USB 设备插入时，禁用手势半秒钟。例如：U 盘插入</string>
+    <string name="gate_usb_state_desc">当有 USB 设备插入时，暂时禁用手势半秒钟。例如：有 U 盘插入</string>
     <string name="gate_camera_visibility">相机启动时</string>
     <string name="gate_camera_visibility_desc">当相机开启时，暂时禁用手势。注意：这将在执行动作时跳过「启动相机」动作</string>
     <string name="gate_power_state">屏幕关闭时</string>
@@ -36,7 +34,7 @@
     <string name="gate_app_showing_desc">当指定应用处于前台时，暂时禁用手势</string>
     <string name="gate_app_showing_desc_formatted">当 %1s 处于前台运行时，暂时禁用手势</string>
     <string name="action_launch_camera">启动相机</string>
-    <string name="action_launch_camera_desc">启动您的默认相机应用。当相机已开启时，此动作将被跳过。此操作将在相机已处于启动状态时被跳过。</string>
+    <string name="action_launch_camera_desc">启动您的默认相机应用。此操作将在相机已处于启动状态时被跳过。</string>
     <string name="action_home">主页</string>
     <string name="action_home_desc">模拟按下主页键</string>
     <string name="action_back">返回</string>
@@ -51,12 +49,12 @@
     <string name="action_screenshot_desc">使用系统界面截图</string>
     <string name="action_lock_screen">锁屏</string>
     <string name="action_lock_screen_desc">通过模拟按下电源键将设备锁屏</string>
-    <string name="action_toggle_pause">Play/Pause</string>
-    <string name="action_toggle_pause_desc">Play/Pause current playing audio</string>
-    <string name="action_previous">Previous</string>
-    <string name="action_previous_desc">Play previous audio</string>
-    <string name="action_next">Next</string>
-    <string name="action_next_desc">Play next audio</string>
+    <string name="action_toggle_pause">播放/暂停</string>
+    <string name="action_toggle_pause_desc">播放/暂停当前播放的歌曲</string>
+    <string name="action_previous">上一首</string>
+    <string name="action_previous_desc">播放上一首歌曲</string>
+    <string name="action_next">下一首</string>
+    <string name="action_next_desc">播放下一首歌曲</string>
     <string name="fab_add_action">添加动作</string>
     <string name="fab_remove_action">移除</string>
     <string name="fab_remove_action_drop">松开以移除</string>
@@ -77,29 +75,27 @@
     <string name="show_system_apps">显示系统应用</string>
     <string name="select_an_app">选择一个应用</string>
     <string name="setting_gesture_sensitivity">灵敏度</string>
-    <string name="setting_gesture_sensitivity_desc">此应用所使用的 Google 代码目前没有实现灵敏度功能。我正在积极地研究如何实现它，在未来版本中它也许将可用。</string>
-    <string name="bs_help_action">当您敲击设备背面两次时运行的任务，即为「动作」。动作将按照列表顺序从上往下执行。如果某个动作成功运行了，则其他的动作将不会运行。然而，若是一个动作无法运行（例如：在已经启动了语音助手的情况下，想运行「启动语音助手」）时，将会运行它下面的那个任务，以此类推，直到其中一个动作成功运行为止。\n\n在该应用程序的未来版本中，您将能够向动作添加门槛(请参阅此应用的「门槛」菜单)，以允许对某些动作何时运行进行更为灵活的控制。</string>
+    <string name="setting_gesture_sensitivity_desc">此应用所使用的 Google 代码目前并没有实现灵敏度功能。我正在积极地研究如何去实现它，以后也许会有这个功能。</string>
+    <string name="bs_help_action">当您敲击设备背面两次时运行的任务，即为「动作」。动作将按照列表顺序从上往下执行，如果某个动作成功运行了，则其他的动作将不会运行。然而，若是一个动作无法运行（例如：在已经启动了语音助手的情况下，想运行「启动语音助手」）时，将会运行它下面的那个任务，以此类推，直到其中一个动作成功运行为止。\n\n在该应用程序的未来版本中，您将能够向动作添加门槛(请参阅此应用的「门槛」菜单)，以允许对某些动作在什么情况下可以运行进行更为灵活的控制。</string>
     <string name="bs_help_action_title">什么是动作？</string>
-    <string name="bs_help_gate">门槛可以阻止手势运行任何动作。为了运行任何动作，您必须打开所有已启用的门槛。\n如果当前满足某个场景，例如：屏幕处于关闭状态，而「屏幕关闭时」处于启用状态时，则不会运行任何动作。您可以添加任意数量的门槛，并使用开关来启用或者禁用它们（没有必要删掉它们再重新添加），以节省时间并提高效率。</string>
+    <string name="bs_help_gate">门槛可以阻止在识别到手势时运行任何动作。为了能够运行所有的动作，您必须启用所有的门槛。\n如果当前满足某个场景，例如：屏幕处于关闭状态，而「屏幕关闭时」处于启用状态时，则不会运行任何动作。您可以添加任意数量的门槛，并使用开关来启用或者禁用它们（没有必要删掉它们再重新添加），以节省时间并提高效率。</string>
     <string name="bs_help_gate_title">什么是门槛？</string>
     <string name="help">帮助</string>
     <string name="action_launch_assistant">启动语音助手</string>
     <string name="action_launch_assistant_desc">启动您默认的语音助手</string>
-    <string name="action_tasker_event">Tasker Event</string>
-    <string name="action_tasker_event_desc">Trigger the Tasker Event plugin</string>
-
+    <string name="action_tasker_event">Tasker 事件</string>
+    <string name="action_tasker_event_desc">触发 Tasker 事件插件</string>
     <string name="accessibility_info_off">无障碍服务被禁用</string>
     <string name="accessibility_info_off_desc">手势将无法工作。点击以启用</string>
     <string name="accessibility_info_on">无障碍服务已启用</string>
     <string name="accessibility_info_on_desc">如果您想禁用手势，点击以禁用服务</string>
     <string name="accessibility_info_toast">在无障碍服务列表中选择「Tap, Tap」启用它，然后返回应用以继续</string>
     <string name="menu_alpha">此应用处于 Alpha 阶段。点击了解详情。</string>
-    <string name="bs_alpha">这款应用程序还处于早期开发阶段，目前已经发布了 Alpha 版本，可在众多设备上进行测试。如果您遇到了 bug，请在 GitHub 上提交一个 issue。如果您希望能有一些新功能，可以在 XDA 上的帖子里告诉我，或者同样在 GitHub 上提交。\n\n请在 XDA 上查看，无论是在实验室还是在这个帖子里。一旦有新版本释出，就会立即更新。\n\n感谢您在开发过程中的耐心等候。</string>
+    <string name="bs_alpha">这款应用程序还处于早期开发阶段，目前已经发布了 Alpha 版本，可在众多设备上进行测试。如果您遇到了 bug，请在 GitHub 上提交一个 issue。如果您希望能有一些新功能，可以在 XDA 上的帖子里告诉我，或者同样在 GitHub 上提交。\n\n记得打开 XDA 看看，不管是看 Labs 还是浏览帖子。当有新版本释出时，它们会同步被更新。\n\n感谢您在开发过程中的耐心等候。</string>
     <string name="bs_alpha_title">Alpha</string>
-
     <string name="category_about">关于</string>
     <string name="about">%1s v%2s</string>
-    <string name="about_summary">由 Kieron Quinn / Quinny899 @ XDA 开发\n感谢 joaomgcd、timfedo、gcantoni 对社区的贡献</string>
+    <string name="about_summary">由 Kieron Quinn / Quinny899 @ XDA 开发\n感谢 João Dias, timfedo, Giorgio Cantoni, Fedor Shatokhin, Rodrigo Souza, Petro Bilyi, Kevin Kung, hjthhthjt, baldapps, NitroFuN, Arthur Fontaine, ZonaRMR, Khanh Le, Gregor Wünsch 对社区的贡献</string>
     <string name="xda_thread">XDA 帖子</string>
     <string name="github">GitHub</string>
     <string name="libraries">第三方库</string>
@@ -124,4 +120,14 @@
     <string name="action_volume_toggle_mute_desc">切换当前音频流的静音状态</string>
     <string name="action_wake_device">唤醒设备</string>
     <string name="action_wake_device_desc">当屏幕关闭时唤醒设备。这会覆盖反馈设置中的条目，且在屏幕处于打开状态时被跳过。当您启用了「屏幕关闭时」门槛时，此项不会生效。</string>
+    <string name="action_launch_shortcut">启动快捷方式</string>
+    <string name="action_launch_shortcut_desc">启动一个快捷方式，例如绿色守护的「立即休眠」</string>
+    <string name="action_launch_shortcut_desc_formattable">启动 %1s 的快捷方式</string>
+    <string name="action_launch_shortcut_toast">暂不支持此快捷方式</string>
+    <string name="call_phone_permission_toast">您必须授予 Tap, Tap「电话权限」后才能使用此快捷方式动作，在设备权限设置中授予。</string>
+    <string name="action_split_screen">分屏</string>
+    <string name="action_split_screen_desc">将当前应用以分屏状态运行（在主屏幕上时不会生效）</string>
+    <string name="action_reachability">启动触达</string>
+    <string name="action_reachability_desc">实验性：使用分屏功能启动「触达」，它将会将上半部分的应用置空，下半部分保持为当前应用。注意：进入和退出此模式时，可能需要重新打开当前的应用程序。</string>
+    <string name="reachability_left_handed_info">长按通知图标可切换图标位置</string>
 </resources>
