@@ -83,7 +83,6 @@
     <string name="show_system_apps">Pokaż aplikacje systemowe</string>
     <string name="select_an_app">Wybierz aplikację</string>
     <string name="setting_gesture_sensitivity">Czułość</string>
-    <string name="setting_gesture_sensitivity_desc">Czułość nie jest obecnie zaimplementowana w kodzie Google używanym przez tę aplikację. Aktualnie zastanawiam się, jak to może być możliwe i może stać się dostępne w przyszłej wersji.</string>
     <string name="bs_help_action_title">Czym są Akcje?</string>
     <string name="bs_help_gate">Bramy to sytuacje, które mogą zablokować gest przed uruchomieniem jakichkolwiek działań. Aby jakakolwiek akcja mogła zostać uruchomiona, wszystkie włączone bramki muszą być otwarte. \nJeśli scenariusz jest spełniony, na przykład jeśli ekran jest wyłączony, a bramka "Wyłączony ekran" jest włączona, żadne akcje nie zostaną wykonane. Możesz dodać dowolną liczbę bramek i włączać/wyłączać je za pomocą przełączników (zamiast konieczności usuwania i ponownego dodawania), aby konfiguracja była szybsza i łatwiejsza.</string>
     <string name="bs_help_gate_title">Czym są Bramy?</string>

@@ -9,6 +9,13 @@
         android:summary="@string/setting_feedback_vibrate_desc"/>
 
     <com.kieronquinn.app.taptap.preferences.SwitchPreference
+        android:icon="@drawable/ic_feedback_override_dnd"
+        android:key="feedback_override_dnd"
+        android:defaultValue="false"
+        android:title="@string/setting_feedback_override_dnd"
+        android:summary="@string/setting_feedback_override_dnd_desc"/>
+
+    <com.kieronquinn.app.taptap.preferences.SwitchPreference
         android:icon="@drawable/ic_wake_from_sleep"
         android:key="feedback_wake"
         android:defaultValue="true"

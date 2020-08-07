@@ -8,7 +8,7 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:windowBackground">@color/windowBackground</item>
-        <item name="searchBoxBackground">@color/sheet_color</item>
+        <item name="searchBoxBackground">@color/search_color</item>
     </style>
 
     <style name="TransparentActivity" parent="android:Theme">
