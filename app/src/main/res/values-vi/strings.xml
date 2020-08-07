@@ -17,7 +17,7 @@
     <string name="setting_feedback_vibrate">Rung</string>
     <string name="setting_feedback_vibrate_desc">Rung một lần khi sử dụng cử chỉ và hành động được thực hiện</string>
     <string name="setting_feedback_wake">Đánh thưc thiết bị</string>
-    <string name="setting_feedback_wake_desc">Đánh thức thiết bị khi màn hình đang tắt (lưu ý: điều này sẽ làm cản trở hành động "tắt màn hình"!)</string>
+    <string name="setting_feedback_wake_desc">Đánh thức thiết bị khi màn hình đang tắt (lưu ý: điều này sẽ làm cản trở hành động \"Tắt màn hình\"!)</string>
 
     <string-array name="device_model_keys">
         <item>Pixel 3 XL</item>
@@ -33,7 +33,7 @@
     <string name="gate_usb_state">Thiết bị USB</string>
     <string name="gate_usb_state_desc">Chặn cử chỉ trong nửa giây khi thiết bị USB được cắm vào, VD: USB</string>
     <string name="gate_camera_visibility">Máy ảnh</string>
-    <string name="gate_camera_visibility_desc">Chặn cử chỉ khi mở bất kỳ ứng dụng máy ảnh nào. Lưu ý: Điều này sẽ làm hỏng tính năng bỏ qua nêu máy ảnh đang chạy của hành động "bật máy ảnh".</string>
+    <string name="gate_camera_visibility_desc">Chặn cử chỉ khi mở bất kỳ ứng dụng máy ảnh nào. Lưu ý: Điều này sẽ làm hỏng tính năng bỏ qua nêu máy ảnh đang chạy của hành động \"Bật máy ảnh\".</string>
     <string name="gate_power_state">Khi tắt màn hình</string>
     <string name="gate_power_state_desc">Chặn cử chỉ khi màn hình thiết bị tắt</string>
     <string name="gate_power_state_inverse">Khi bật màn hình</string>
@@ -66,7 +66,7 @@
     <string name="fab_add_action">Thêm hành động</string>
     <string name="fab_remove_action">Xóa</string>
     <string name="fab_remove_action_drop">Thả để xóa</string>
-    <string name="add_action_category_launch">Khởi động</string>
+    <string name="add_action_category_launch">Khởi chạy</string>
     <string name="add_action_category_utilities">Tiện ích</string>
     <string name="add_action_category_actions">Hành động</string>
     <string name="add_action_category_advanced">Nâng cao</string>
@@ -85,7 +85,7 @@
     <string name="setting_gesture_sensitivity">Độ nhạy</string>
     <string name="bs_help_action">Hành động là các tác vụ được chạy khi bạn chạm vào mặt sau của thiết bị hai lần. Hành động sẽ được thực hiện theo thứ tự từ trên xuống. Nếu một hành động được thực hiện thành công thì sẽ không có hành động được thực hiện tiếp. Tuy nhiên, Nếu một hành động không thể chạy được (Ví dụ: "Gọi trợ lý" khi trợ lý đã được kích hoạt), hành động bên dưới sẽ được thực hiện cho đến khi có một hành động chạy thành công.\n\nTrong tương lai, bạn sẽ có thể thêm cổng vào hành động (xem menu cổng của ứng dụng) để cho phép kiểm soát nhiều hơn khi hành động nhất định được chạy.</string>
     <string name="bs_help_action_title">Hành động là gì?</string>
-    <string name="bs_help_gate">Cổng là nhứng tình huống để chặn không cho cự chỉ thực hiện bất kỳ hành động nào. Để mọi hành động được thực hiện, tất cả các cổng đã được thêm vào phải ở trang thái cho phép.\nNếu đúng như dự tính, ví dụ như nếu màn hình đang tắt và cổng "Khi tắt màn hình" đang được bật, không hành động nào sẽ được chạy. Bạn có thể thêm bao nhiêu cổng tùy thích, và bật tắt chúng (thay vì phải xóa và thêm lại) để kiểm soát nhanh và dễ dàng hơn.</string>
+    <string name="bs_help_gate">Cổng là nhứng tình huống để chặn không cho cự chỉ thực hiện bất kỳ hành động nào. Để mọi hành động được thực hiện, tất cả các cổng đã được thêm vào phải ở trang thái cho phép.\nNếu đúng như dự tính, ví dụ như nếu màn hình đang tắt và cổng \"Khi tắt màn hình\" đang được bật, không hành động nào sẽ được chạy. Bạn có thể thêm bao nhiêu cổng tùy thích, và bật tắt chúng (thay vì phải xóa và thêm lại) để kiểm soát nhanh và dễ dàng hơn.</string>
     <string name="bs_help_gate_title">Cổng là gì?</string>
     <string name="help">Trợ giúp</string>
     <string name="action_launch_assistant">Gọi trợ lý</string>
@@ -97,20 +97,20 @@
     <string name="accessibility_info_off_desc">Hiện tại cử chỉ sẽ không hoạt động. Chạm để kích hoạt</string>
     <string name="accessibility_info_on">Dịch vụ trợ năng đang được kích hoạt</string>
     <string name="accessibility_info_on_desc">Nếu bạn muốn tắt cử chỉ, chạm vào để tắt dịch vụ</string>
-    <string name="accessibility_info_toast">Chọn "Tap, Tap" từ danh sách dịch vụ hỗ trợ tiếp cận, bật nó và quay lại Tap, Tap để tiếp tục</string>
+    <string name="accessibility_info_toast">Chọn \"Tap, Tap\" từ danh sách dịch vụ hỗ trợ tiếp cận, bật nó và quay lại Tap, Tap để tiếp tục</string>
     <string name="menu_alpha">Ứng dụng này đang ở trong phiên bản Alpha. Nhấn để biết thêm thông tin.</string>
-    <string name="bs_alpha">Ứng dụng này đang trong giai đoạn phát triển ban đầu và đã được phát hành ở trạng thái "Alpha" để cho phép thử nghiệm trên nhiều thiết bị. Nếu bạn gặp lỗi, vui lòng báo cáo về mục issue trên GitHub. Nếu bạn muốn yêu cầu một tính năng, hãy đăng nó lên XDA thread hoặc trên GitHub.\n\nKiểm tra trên XDA, Labs hoặc trong thread, để nhận được bản cập nhập sớm nhất.\n\nCảm ơn sự kiên nhẫn của bạn trong quá trình phát triển.</string>
+    <string name="bs_alpha">Ứng dụng này đang trong giai đoạn phát triển ban đầu và đã được phát hành ở trạng thái \"Alpha\" để cho phép thử nghiệm trên nhiều thiết bị. Nếu bạn gặp lỗi, vui lòng báo cáo về mục issue trên GitHub. Nếu bạn muốn yêu cầu một tính năng, hãy đăng nó lên XDA thread hoặc trên GitHub.\n\nKiểm tra trên XDA, Labs hoặc trong thread, để nhận được bản cập nhập sớm nhất.\n\nCảm ơn sự kiên nhẫn của bạn trong quá trình phát triển.</string>
     <string name="bs_alpha_title">Alpha</string>
 
     <string name="category_about">Về ứng dụng</string>
     <string name="about">%1s v%2s</string>
-    <string name="about_summary">Được tạo bở Kieron Quinn / Quinny899 @ XDA\nVới sự đóng góp của cộng đồng, bao gồm: João Dias, timfedo, Giorgio Cantoni, Fedor Shatokhin, Rodrigo Souza, Petro Bilyi, Kevin Kung</string>
+    <string name="about_summary">Được tạo bởi Kieron Quinn / Quinny899 @ XDA\nVới sự đóng góp của cộng đồng, bao gồm: João Dias, timfedo, Giorgio Cantoni, Fedor Shatokhin, Rodrigo Souza, Petro Bilyi, Kevin Kung, hjthhthjt, baldapps, NitroFuN, Arthur Fontaine, ZonaRMR, Khanh Le, Gregor Wünsch</string>
     <string name="xda_thread">XDA Thread</string>
     <string name="github">GitHub</string>
     <string name="libraries">Thư viện bên thứ ba</string>
     <string name="donate">Donate</string>
     <string name="twitter">Theo dõi tôi trên Twitter</string>
-    <string name="tasker_config_label">Chạm hai lần vào mặt lunhw</string>
+    <string name="tasker_config_label">Chạm hai lần vào mặt lưng</string>
     <string name="action_tasker_task">Tác vụ Tasker</string>
     <string name="action_tasker_task_desc">Chạy một tác vụ Tasker được chỉ định</string>
     <string name="action_tasker_event_toast">Tasker không được cài đặt hoặc phiên bản không được hỗ trợ</string>
@@ -128,10 +128,15 @@
     <string name="action_volume_toggle_mute">Tắt âm</string>
     <string name="action_volume_toggle_mute_desc">Bật tắt âm cho luồng âm thanh hiện tại</string>
     <string name="action_wake_device">Đánh thức thiết bị</string>
-    <string name="action_wake_device_desc">Đánh thức thiết bị khi màn hình tắt. Cài đặt này sẽ ghi đè các mục trong cài đặt phản hồi và sẽ bị bỏ qua khi màn hình được bật. Mục này sẽ không có hiệu lực khi bạn bật "Khi tắt màn hình" ở cài đặt cổng</string>
+    <string name="action_wake_device_desc">Đánh thức thiết bị khi màn hình tắt. Cài đặt này sẽ ghi đè các mục trong cài đặt phản hồi và sẽ bị bỏ qua khi màn hình được bật. Mục này sẽ không có hiệu lực khi bạn bật \"Khi tắt màn hình\" ở cài đặt cổng</string>
     <string name="action_launch_shortcut">Khởi chạy một phím tắt</string>
-    <string name="action_launch_shortcut_desc">Khởi chạy một phím tắt như chỉ đường của Google Maps</string>
+    <string name="action_launch_shortcut_desc">Khởi chạy một phím tắt ví dụ như chỉ đường của Google Maps</string>
     <string name="action_launch_shortcut_desc_formattable">Khởi chạy %1s (phím tắt vào ứng dụng)</string>
     <string name="action_launch_shortcut_toast">Phím tắt này hiện không được hỗ trợ</string>
-    <string name="call_phone_permission_toast">Bạn cần cấp quyền "Điện thoại" cho Tap, Tap để sử dụng phím tắt này . Truy cập vào "Trình quản lý quyền" trên thiết bị của bạn để cấp quyền này</string>
+    <string name="call_phone_permission_toast">Bạn cần cấp quyền \"Điện thoại\" cho Tap, Tap để sử dụng phím tắt này . Truy cập vào \"Trình quản lý quyền\" trên thiết bị của bạn để cấp quyền này</string>
+	  <string name="action_split_screen">Chia đôi màn hình</string>
+    <string name="action_split_screen_desc">Bắt đầu hoặc tạm dừng tính năng chia đôi màn hình với ứng dụng hiện tại (không hoạt động khi ở màn hình chính)</string>
+    <string name="action_reachability">Chế độ một tay</string>
+    <string name="action_reachability_desc">Thử nghiệm: Kích hoạt chế độ một tay bằng cách sử dụng chia đôi màn hình, với ứng dụng hiện tại ở phía dưới và nữa màn hình chống ở phía trên. Lưu ý: Bạn phải mở lại ứng dụng hiện tai khi chế độ này bắt đầu hoặc kết thúc</string>
+    <string name="reachability_left_handed_info">Nhấn giữ vào biểu tượng thông báo để để chuyển vị trí biểu tượng</string>
 </resources>
