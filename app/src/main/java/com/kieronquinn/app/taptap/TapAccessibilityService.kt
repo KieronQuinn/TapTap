@@ -74,6 +74,7 @@ class TapAccessibilityService : AccessibilityService(),
 
         //Create the service
         this.columbusService = ColumbusService::class.java.constructors.first().newInstance(getColumbusActions(), getColumbusFeedback(), getGates(context), gestureSensorImpl, powerManagerWrapper, metricsLogger) as ColumbusService
+        configureTap()
     }
 
     private fun getColumbusActions() : List<Action> {
@@ -186,6 +187,11 @@ class TapAccessibilityService : AccessibilityService(),
             //Refresh actions
             refreshColumbusActions()
         }
+        if(key == SHARED_PREFERENCES_KEY_SENSITIVITY){
+            //Reconfigure
+            configureTap()
+        }
+
     }
 
     private fun refreshColumbusFeedback(){
@@ -211,5 +217,13 @@ class TapAccessibilityService : AccessibilityService(),
 
     fun getCurrentPackageName(): String {
         return currentPackageName
+    }
+
+    private fun configureTap(){
+        gestureSensorImpl?.getTapRT()?.run {
+            val sensitivity = sharedPreferences.getString(SHARED_PREFERENCES_KEY_SENSITIVITY, "0.05")?.toFloatOrNull() ?: 0.05f
+            Log.d("TapRT", "getMinNoiseToTolerate ${positivePeakDetector.getMinNoiseToTolerate()} sensitivity $sensitivity")
+            positivePeakDetector.setMinNoiseTolerate(sensitivity)
+        }
     }
 }
