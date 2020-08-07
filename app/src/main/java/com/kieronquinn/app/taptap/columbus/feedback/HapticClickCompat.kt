@@ -1,7 +1,3 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by Fernflower decompiler)
-//
 package com.kieronquinn.app.taptap.columbus.feedback
 
 import android.annotation.SuppressLint
