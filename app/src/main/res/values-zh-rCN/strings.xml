@@ -76,7 +76,6 @@
     <string name="show_system_apps">显示系统应用</string>
     <string name="select_an_app">选择一个应用</string>
     <string name="setting_gesture_sensitivity">灵敏度</string>
-    <string name="setting_gesture_sensitivity_desc">此应用所使用的 Google 代码目前并没有实现灵敏度功能。我正在积极地研究如何去实现它，以后也许会有这个功能。</string>
     <string name="bs_help_action">当您敲击设备背面两次时运行的任务，即为「动作」。动作将按照列表顺序从上往下执行，如果某个动作成功运行了，则其他的动作将不会运行。然而，若是一个动作无法运行（例如：在已经启动了语音助手的情况下，想运行「启动语音助手」）时，将会运行它下面的那个任务，以此类推，直到其中一个动作成功运行为止。\n\n在该应用程序的未来版本中，您将能够向动作添加门槛(请参阅此应用的「门槛」菜单)，以允许对某些动作在什么情况下可以运行进行更为灵活的控制。</string>
     <string name="bs_help_action_title">什么是动作？</string>
     <string name="bs_help_gate">门槛可以阻止在识别到手势时运行任何动作。为了能够运行所有的动作，您必须启用所有的门槛。\n如果当前满足某个场景，例如：屏幕处于关闭状态，而「屏幕关闭时」处于启用状态时，则不会运行任何动作。您可以添加任意数量的门槛，并使用开关来启用或者禁用它们（没有必要删掉它们再重新添加），以节省时间并提高效率。</string>
