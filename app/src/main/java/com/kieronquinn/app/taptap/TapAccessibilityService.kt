@@ -120,6 +120,10 @@ class TapAccessibilityService : AccessibilityService(),
                     this,
                     GLOBAL_ACTION_NOTIFICATIONS
                 )
+                TapAction.POWER_DIALOG -> AccessibilityServiceGlobalAction(
+                    this,
+                    GLOBAL_ACTION_POWER_DIALOG
+                )
                 TapAction.FLASHLIGHT -> Flashlight(this)
                 TapAction.LAUNCH_APP -> LaunchApp(this, action.data ?: "")
                 TapAction.LAUNCH_SHORTCUT -> LaunchShortcut(this, action.data ?: "")
