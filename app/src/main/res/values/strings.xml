@@ -147,4 +147,6 @@
     <string name="slider_sensitivity_normal">Normal</string>
     <string name="slider_sensitivity_high">High</string>
     <string name="slider_sensitivity_very_high">Very high</string>
+    <string name="setting_feedback_override_dnd">Vibrate when do not disturb is enabled</string>
+    <string name="setting_feedback_override_dnd_desc">Ignore the device\'s DND setting and always vibrate when triggered</string>
 </resources>

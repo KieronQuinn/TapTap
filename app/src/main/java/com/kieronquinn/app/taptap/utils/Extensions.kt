@@ -4,6 +4,7 @@ import android.animation.ArgbEvaluator
 import android.animation.ValueAnimator
 import android.app.Activity
 import android.content.ComponentName
+import android.content.ContentResolver
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ApplicationInfo
@@ -62,6 +63,7 @@ const val SHARED_PREFERENCES_KEY_GATES = "gates"
 const val SHARED_PREFERENCES_KEY_MODEL = "model"
 const val SHARED_PREFERENCES_KEY_FEEDBACK_VIBRATE = "feedback_vibrate"
 const val SHARED_PREFERENCES_KEY_FEEDBACK_WAKE = "feedback_wake"
+const val SHARED_PREFERENCES_KEY_FEEDBACK_OVERRIDE_DND = "feedback_override_dnd"
 
 const val SHARED_PREFERENCES_KEY_SENSITIVITY = "sensitivity"
 
@@ -98,6 +100,14 @@ fun InputStream.copyFile(out: OutputStream) {
 public fun <T> Array<out T>.indexOfOrNull(element: T): Int? {
     if(!contains(element)) return null
     return indexOf(element)
+}
+
+fun settingsGlobalGetIntOrNull(contentResolver: ContentResolver, key: String): Int? {
+    return try {
+        Settings.Global.getInt(contentResolver, key)
+    }catch (e: Settings.SettingNotFoundException){
+        null
+    }
 }
 
 //Replaces hidden API
