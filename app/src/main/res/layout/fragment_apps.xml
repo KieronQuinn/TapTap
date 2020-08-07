@@ -12,7 +12,6 @@
         app:layout_constraintTop_toTopOf="parent"
         android:elevation="@dimen/toolbar_elevation"
         android:id="@+id/search_container"
-        android:outlineProvider="background"
         android:background="?android:windowBackground"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

@@ -6,6 +6,7 @@
     <color name="windowBackground">#ffffff</color>
     <color name="toolbarColor">#D9ffffff</color>
     <color name="sheet_color">@color/windowBackground</color>
+    <color name="search_color">#f5f5f5</color>
     <color name="fab_color">@color/colorAccent</color>
     <color name="fab_color_delete">#F44336</color>
     <color name="fab_icon">@color/windowBackground</color>
@@ -15,6 +16,8 @@
     <color name="card_outlined">#DADCE0</color>
     <color name="accessibility_cross">#F44336</color>
     <color name="accessibility_check">#8BC34A</color>
+    <color name="accessibility_check_circle">#dcedc8</color>
+    <color name="accessibility_cross_circle">#ffcdd2</color>
     <color name="reachabilityBackground">#000</color>
 
     <color name="icon_circle_0">#D7E5F8</color>

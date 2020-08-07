@@ -28,6 +28,7 @@ class AppsFragment : Fragment() {
 
     companion object {
         const val KEY_SELECTED_APP = "selected_app"
+        const val KEY_SHOW_ALL = "show_all"
     }
 
     private val job = Job()
@@ -37,9 +38,13 @@ class AppsFragment : Fragment() {
     private var shouldShowSystemApps: Boolean = true
     private var searchTerm: String? = null
 
+    private val shouldShowAll by lazy {
+        activity?.intent?.getBooleanExtra(KEY_SHOW_ALL, false) ?: false
+    }
+
     private val apps: List<App>? by lazy {
         context?.packageManager?.run {
-            getInstalledApplications(0).filter { getLaunchIntentForPackage(it.packageName) != null }.map {
+            getInstalledApplications(0).filter { shouldShowAll || getLaunchIntentForPackage(it.packageName) != null }.map {
                 App(it.packageName, it.loadLabel(this), it.isSystemApp)
             }.sortedBy { it.appName.toString().toLowerCase(Locale.getDefault()) }
         } ?: kotlin.run {

@@ -18,6 +18,7 @@
     <string name="setting_feedback_vibrate_desc">当识别到手势并执行动作时，振动一次</string>
     <string name="setting_feedback_wake">唤醒设备</string>
     <string name="setting_feedback_wake_desc">当屏幕关闭时唤醒设备（注意：这会干扰「锁屏」动作！）</string>
+
     <string name="gate_charging_state">充电时</string>
     <string name="gate_charging_state_desc">当设备刚处于充电状态时，暂时禁用手势半秒钟</string>
     <string name="gate_telephony_activity">通话时</string>
