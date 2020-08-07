@@ -37,10 +37,12 @@
             android:id="@+id/item_action_icon"/>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium.TapTap"
             tools:text="Action Name"
+            android:ellipsize="end"
+            android:maxLines="1"
             android:id="@+id/item_action_name"
             app:layout_constraintTop_toTopOf="@id/item_action_handle"
             app:layout_constraintBottom_toBottomOf="@id/item_action_handle"

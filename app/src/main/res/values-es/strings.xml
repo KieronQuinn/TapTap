@@ -103,7 +103,7 @@
 
     <string name="category_about">Acerca de</string>
     <string name="about">%1s v%2s</string>
-    <string name="about_summary">Creado por Kieron Quinn / Quinny899 @ XDA\nGracias a las contribuciones de la comunidad, incluyendo a: João Dias, timfedo, Giorgio Cantoni, Fedor Shatokhin, Rodrigo Souza, Petro Bilyi, Kevin Kung, hjthhthjt, baldapps, NitroFuN, Arthur Fontaine, ZonaRMR, Khanh Le, Gregor Wünsch</string>
+    <string name="about_summary">Creado por Kieron Quinn / Quinny899 @ XDA\nGracias a las contribuciones de la comunidad, incluyendo a: %1s</string>
     <string name="xda_thread">Hilo en XDA</string>
     <string name="github">GitHub</string>
     <string name="libraries">Librerias de terceros</string>

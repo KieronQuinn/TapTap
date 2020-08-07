@@ -102,7 +102,7 @@
     <string name="bs_alpha_title">Alpha</string>
 
     <string name="category_about">Hakkında</string>
-    <string name="about_summary">XDA üyesi Kieron Quinn / Quinny899 tarafından oluşturulmuştur\nKatkıda bulunanlara teşekkürler: João Dias, timfedo, Giorgio Cantoni, Fedor Shatokhin, Rodrigo Souza, Petro Bilyi, Kevin Kung, hjthhthjt, baldapps, NitroFuN, Arthur Fontaine, ZonaRMR, Khanh Le, Gregor Wünsch, Fatih Fırıncı</string>
+    <string name="about_summary">XDA üyesi Kieron Quinn / Quinny899 tarafından oluşturulmuştur\nKatkıda bulunanlara teşekkürler: %1s</string>
     <string name="xda_thread">XDA Konusu</string>
     <string name="github">GitHub</string>
     <string name="libraries">Üçüncü taraf kütüphaneleri</string>

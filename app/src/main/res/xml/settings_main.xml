@@ -44,7 +44,6 @@
 
         <com.kieronquinn.app.taptap.preferences.Preference
             android:title="@string/about"
-            android:summary="@string/about_summary"
             android:icon="@drawable/ic_info_round"
             android:key="about_about"/>
 

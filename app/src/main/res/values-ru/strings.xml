@@ -95,7 +95,7 @@
     <string name="bs_alpha_title">Альфа</string>
 
     <string name="category_about">О приложении</string>
-    <string name="about_summary">Создано Kieron Quinn / Quinny899 @ XDA\nБлагодаря вкладу сообщества, в том числе: João Dias, timfedo, Giorgio Cantoni, Fedor Shatokhin, Rodrigo Souza, Petro Bilyi, Kevin Kung</string>
+    <string name="about_summary">Создано Kieron Quinn / Quinny899 @ XDA\nБлагодаря вкладу сообщества, в том числе: %1s</string>
     <string name="libraries">Сторонние библиотеки</string>
     <string name="donate">Пожертвовать</string>
     <string name="twitter">Подпишитесь на меня в Твиттере</string>
