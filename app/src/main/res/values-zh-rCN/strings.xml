@@ -17,7 +17,13 @@
     <string name="setting_feedback_vibrate">振动</string>
     <string name="setting_feedback_vibrate_desc">当识别到手势并执行动作时，振动一次</string>
     <string name="setting_feedback_wake">唤醒设备</string>
-    <string name="setting_feedback_wake_desc">当屏幕关闭时唤醒设备（注意：这会干扰「锁屏」动作！）</string>
+    <string name="setting_feedback_wake_desc">当屏幕关闭时唤醒设备（注意：这会干扰会关闭屏幕的动作！）</string>
+
+    <string-array name="device_model_keys">
+        <item>Pixel 3 XL</item>
+        <item>Pixel 4</item>
+        <item>Pixel 4 XL</item>
+    </string-array>
 
     <!-- Gates -->
     <string name="gate_charging_state">充电时</string>
@@ -51,12 +57,12 @@
     <string name="action_screenshot_desc">使用系统界面截图</string>
     <string name="action_lock_screen">锁屏</string>
     <string name="action_lock_screen_desc">通过模拟按下电源键将设备锁屏</string>
-    <string name="action_toggle_pause">Play/Pause</string>
-    <string name="action_toggle_pause_desc">Play/Pause current playing audio</string>
-    <string name="action_previous">Previous</string>
-    <string name="action_previous_desc">Play previous audio</string>
-    <string name="action_next">Next</string>
-    <string name="action_next_desc">Play next audio</string>
+    <string name="action_toggle_pause">播放/暂停</string>
+    <string name="action_toggle_pause_desc">播放/暂停当前正播放的音频</string>
+    <string name="action_previous">上一首</string>
+    <string name="action_previous_desc">播放上一段音频</string>
+    <string name="action_next">下一首</string>
+    <string name="action_next_desc">播放下一段音频</string>
     <string name="fab_add_action">添加动作</string>
     <string name="fab_remove_action">移除</string>
     <string name="fab_remove_action_drop">松开以移除</string>
@@ -85,8 +91,8 @@
     <string name="help">帮助</string>
     <string name="action_launch_assistant">启动语音助手</string>
     <string name="action_launch_assistant_desc">启动您默认的语音助手</string>
-    <string name="action_tasker_event">Tasker Event</string>
-    <string name="action_tasker_event_desc">Trigger the Tasker Event plugin</string>
+    <string name="action_tasker_event">Tasker 事件</string>
+    <string name="action_tasker_event_desc">触发 Tasker 事件插件</string>
 
     <string name="accessibility_info_off">无障碍服务被禁用</string>
     <string name="accessibility_info_off_desc">手势将无法工作。点击以启用</string>
@@ -124,4 +130,14 @@
     <string name="action_volume_toggle_mute_desc">切换当前音频流的静音状态</string>
     <string name="action_wake_device">唤醒设备</string>
     <string name="action_wake_device_desc">当屏幕关闭时唤醒设备。这会覆盖反馈设置中的条目，且在屏幕处于打开状态时被跳过。当您启用了「屏幕关闭时」门槛时，此项不会生效。</string>
+    <string name="action_launch_shortcut">启动快捷方式</string>
+    <string name="action_launch_shortcut_desc">启动一个快捷方式，如 Google 地图的路线</string>
+    <string name="action_launch_shortcut_desc_formattable">启动 %1s (应用内的快捷方式)</string>
+    <string name="action_launch_shortcut_toast">此快捷方式目前不受支持</string>
+    <string name="call_phone_permission_toast">您需要授予 Tap, Tap「电话」权限来使用此快捷方式动作。请在您设备的权限设置中授予本应用权限</string>
+    <string name="action_split_screen">分屏</string>
+    <string name="action_split_screen_desc">对当前应用启动或停止分屏模式 (位于主屏幕时不生效)</string>
+    <string name="action_reachability">启动易操控模式</string>
+    <string name="action_reachability_desc">实验性: 使用分屏来模拟单手操作的模式, 启动时当前 app 位于屏幕下半部分，上半部分则为空。 注意：在启动或停止本模式时您可能需要重新打开当前应用</string>
+    <string name="reachability_left_handed_info">长按通知图标来切换图标位置</string>
 </resources>
