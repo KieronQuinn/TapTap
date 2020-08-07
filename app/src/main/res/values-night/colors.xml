@@ -6,6 +6,7 @@
     <color name="windowBackground">#202124</color>
     <color name="toolbarColor">#D9202124</color>
     <color name="sheet_color">@color/windowBackground</color>
+    <color name="search_color">#616161</color>
     <color name="fab_color">@color/colorAccent</color>
     <color name="fab_color_delete">#F4928B</color>
     <color name="fab_icon">@color/windowBackground</color>

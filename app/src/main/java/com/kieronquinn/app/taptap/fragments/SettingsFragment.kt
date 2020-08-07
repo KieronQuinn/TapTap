@@ -74,11 +74,11 @@ class SettingsFragment : BaseSettingsFragment() {
             if(isServiceEnabled){
                 it.title = getString(R.string.accessibility_info_on)
                 it.summary = getString(R.string.accessibility_info_on_desc)
-                it.icon = ContextCompat.getDrawable(it.context, R.drawable.ic_accessibility_check)
+                it.icon = ContextCompat.getDrawable(it.context, R.drawable.ic_accessibility_check_round)
             }else{
                 it.title = getString(R.string.accessibility_info_off)
                 it.summary = getString(R.string.accessibility_info_off_desc)
-                it.icon = ContextCompat.getDrawable(it.context, R.drawable.ic_accessibility_cross)
+                it.icon = ContextCompat.getDrawable(it.context, R.drawable.ic_accessibility_cross_round)
             }
             it.setOnPreferenceClickListener { _ ->
                 startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))
