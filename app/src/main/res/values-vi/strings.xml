@@ -103,7 +103,7 @@
 
     <string name="category_about">Về ứng dụng</string>
     <string name="about">%1s v%2s</string>
-    <string name="about_summary">Được tạo bởi Kieron Quinn / Quinny899 @ XDA\nVới sự đóng góp của cộng đồng, bao gồm: João Dias, timfedo, Giorgio Cantoni, Fedor Shatokhin, Rodrigo Souza, Petro Bilyi, Kevin Kung, hjthhthjt, baldapps, NitroFuN, Arthur Fontaine, ZonaRMR, Khanh Le, Gregor Wünsch</string>
+    <string name="about_summary">Được tạo bởi Kieron Quinn / Quinny899 @ XDA\nVới sự đóng góp của cộng đồng, bao gồm: %1s</string>
     <string name="xda_thread">XDA Thread</string>
     <string name="github">GitHub</string>
     <string name="libraries">Thư viện bên thứ ba</string>

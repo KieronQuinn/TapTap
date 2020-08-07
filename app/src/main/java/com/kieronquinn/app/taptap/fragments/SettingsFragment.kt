@@ -78,6 +78,7 @@ class SettingsFragment : BaseSettingsFragment() {
 
         findPreference<Preference>("about_about")?.apply {
             title = getString(R.string.about, getString(R.string.app_name), BuildConfig.VERSION_NAME)
+            summary = getString(R.string.about_summary, getString(R.string.about_summary_contributors))
         }
         findPreference<Preference>("about_libraries")?.apply {
             setOnPreferenceClickListener {

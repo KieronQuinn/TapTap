@@ -103,7 +103,7 @@
 
     <string name="category_about">關於</string>
     <string name="about">%1s v%2s</string>
-    <string name="about_summary">由 Kieron Quinn / Quinny899 @ XDA開發\並感謝社區的貢獻，包括: João Dias, timfedo, Giorgio Cantoni, Fedor Shatokhin, Rodrigo Souza, Petro Bilyi, Kevin Kung, hjthhthjt, baldapps, NitroFuN, Arthur Fontaine, ZonaRMR, Khanh Le, Gregor Wünsch</string>
+    <string name="about_summary">由 Kieron Quinn / Quinny899 @ XDA開發\並感謝社區的貢獻，包括: %1s</string>
     <string name="xda_thread">XDA 文章</string>
     <string name="github">GitHub</string>
     <string name="libraries">第三方資源庫</string>

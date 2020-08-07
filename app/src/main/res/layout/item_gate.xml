@@ -36,10 +36,12 @@
             android:id="@+id/item_gate_icon"/>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium.TapTap"
             tools:text="Gate Name"
+            android:ellipsize="end"
+            android:maxLines="1"
             android:id="@+id/item_gate_name"
             app:layout_constraintTop_toTopOf="@id/item_gate_switch"
             app:layout_constraintBottom_toBottomOf="@id/item_gate_switch"

@@ -97,7 +97,7 @@
 
     <string name="category_about">Про</string>
     <string name="about">%1s v%2s</string>
-    <string name="about_summary">Створено Kieron Quinn / Quinny899 @ XDA\nЗавдяки внескам громади, в тому числі: joaomgcd, timfedo, gcantoni</string>
+    <string name="about_summary">Створено Kieron Quinn / Quinny899 @ XDA\nЗавдяки внескам громади, в тому числі: %1s</string>
     <string name="xda_thread">XDA Thread</string>
     <string name="github">GitHub</string>
     <string name="libraries">Сторонні бібліотеки</string>
