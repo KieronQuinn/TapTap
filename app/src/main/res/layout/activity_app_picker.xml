@@ -9,7 +9,7 @@
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="?android:actionBarSize"
-        android:elevation="@dimen/toolbar_elevation"
+        android:elevation="0dp"
         android:background="?android:windowBackground"
         android:id="@+id/toolbar"
         android:animateLayoutChanges="true"

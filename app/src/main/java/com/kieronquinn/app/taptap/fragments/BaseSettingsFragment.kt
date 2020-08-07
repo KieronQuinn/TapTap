@@ -9,6 +9,7 @@ import androidx.preference.SwitchPreference
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.activities.SettingsActivity
 import com.kieronquinn.app.taptap.preferences.Preference
+import com.kieronquinn.app.taptap.preferences.SliderPreference
 import com.kieronquinn.app.taptap.utils.SHARED_PREFERENCES_NAME
 import com.kieronquinn.app.taptap.utils.getToolbarHeight
 import dev.chrisbanes.insetter.applySystemWindowInsetsToPadding
@@ -59,6 +60,10 @@ abstract class BaseSettingsFragment : PreferenceFragmentCompat(), View.OnScrollC
 
     fun getSwitchPreference(key: String, invoke: (SwitchPreference) -> Unit) {
         findPreference<SwitchPreference>(key)?.run(invoke)
+    }
+
+    fun getSliderPreference(key: String, invoke: (SliderPreference) -> Unit) {
+        findPreference<SliderPreference>(key)?.run(invoke)
     }
 
     fun navigate(@IdRes navigationAction: Int, options: Bundle? = null){
