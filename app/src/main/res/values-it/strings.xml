@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Tap, Tap</string>
-    <string name="xposed_desc">Columbus backport</string>
     <string name="accessibility_service_description">Servizio accessibilità TapTap\n\n<b>Importante: Nessun dato è collezionato, questo servizio è usato semplicemente per mantenere attivo il riconoscimento dell\'evento di tap</b></string>
     <string name="toast_no_action_selected">Nessuna azione è stata selezionata</string>
     <string name="launch_accessibility">Lancia accessibilità</string>

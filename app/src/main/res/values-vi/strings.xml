@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Tap, Tap</string>
-    <string name="xposed_desc">Columbus backport</string>
     <string name="accessibility_service_description">Cài đặt trợ năng TapTap\n\n<b>Lưu ý: Ứng dụng không thu thập thông tin cá nhân của bạn. Dịch vụ này chỉ được sử dụng để nhận dạng cử chỉ và cung cấp hỗ trợ tương tác với thiết bị</b></string>
     <string name="toast_no_action_selected">Không có hành động nào được chọn</string>
     <string name="launch_accessibility">Mở menu Trợ năng</string>

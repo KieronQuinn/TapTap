@@ -21,7 +21,6 @@ import com.google.android.systemui.columbus.sensors.config.GestureConfiguration
 import com.kieronquinn.app.taptap.columbus.actions.*
 import com.kieronquinn.app.taptap.columbus.feedback.HapticClickCompat
 import com.kieronquinn.app.taptap.columbus.feedback.WakeDevice
-import com.kieronquinn.app.taptap.impl.KeyguardStateControllerImpl
 import com.kieronquinn.app.taptap.models.ActionInternal
 import com.kieronquinn.app.taptap.models.TapAction
 import com.kieronquinn.app.taptap.models.TfModel
@@ -41,10 +40,6 @@ class TapAccessibilityService : AccessibilityService(),
     private var gestureSensorImpl: GestureSensorImpl? = null
 
     private var currentPackageName: String = "android"
-
-    private val keyguardStateController by lazy {
-        KeyguardStateControllerImpl()
-    }
 
     private var wakefulnessLifecycle: WakefulnessLifecycle? = null
 

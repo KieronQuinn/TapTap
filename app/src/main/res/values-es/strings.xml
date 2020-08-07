@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Tap, Tap</string>
-    <string name="xposed_desc">Columbus backport</string>
     <string name="accessibility_service_description">Servicio de accesibilidad de Tap, Tap\n\n<b>Nota importante: no se recopilan datos de ninguna de sus aplicaciones, este servicio simplemente se utiliza para mantener el reconocimiento activo y proporcionar interacción con el dispositivo</b></string>
     <string name="toast_no_action_selected">No se ha seleccionado ninguna acción.</string>
     <string name="launch_accessibility">Lanzar accesibilidad</string>

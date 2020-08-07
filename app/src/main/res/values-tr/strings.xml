@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Tap, Tap</string>
-    <string name="xposed_desc">Columbus backport</string>
     <string name="accessibility_service_description">TapTap Erişilebilirlik Hizmeti\n\n<b>Önemli Not: Uygulamalarınızın hiçbirinden veri toplanmaz, bu hizmet yalnızca tanıma özelliğini etkin tutmak ve cihazla etkileşim sağlamak için kullanılır</b></string>
     <string name="toast_no_action_selected">Hiçbir eylem seçilmedi</string>
     <string name="launch_accessibility">Erişilebilirliği Başlat</string>

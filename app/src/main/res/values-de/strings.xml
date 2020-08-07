@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Tap, Tap</string>
-    <string name="xposed_desc">Columbus-Backport</string>
     <string name="accessibility_service_description">TapTap als Bedienungshilfe\n\n<b>Wichtiger Hinweis: Über keine deiner Apps werden Daten gesammelt. Dieser Dienst wird nur genutzt, um die Erkennung aktiv zu halten und Interaktionen mit dem Gerät zu ermöglichen.</b></string>
     <string name="toast_no_action_selected">Es wurde keine Aktion ausgewählt</string>
     <string name="launch_accessibility">Starte Bedienungshilfen</string>

@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Tap, Tap</string>
-    <string name="xposed_desc">哥倫布後門</string>
     <string name="accessibility_service_description">TapTap 無障礙設定\n\n<b>重要提示: 應用不會收集您的個資，此服務僅用於辨識手勢活動並提供與裝置的互動支援</b></string>
     <string name="toast_no_action_selected">尚未選擇任何動作</string>
     <string name="launch_accessibility">啟動輔助功能</string>

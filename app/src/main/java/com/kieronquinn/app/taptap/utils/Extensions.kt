@@ -45,7 +45,6 @@ import com.kieronquinn.app.taptap.models.TapAction
 import com.kieronquinn.app.taptap.models.TapGate
 import com.kieronquinn.app.taptap.models.store.GateListFile
 import com.kieronquinn.app.taptap.providers.SharedPrefsProvider
-import de.robv.android.xposed.XposedHelpers
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -389,21 +388,6 @@ fun Field.setAccessibleR(accessible: Boolean): Field {
 fun Method.setAccessibleR(accessible: Boolean): Method {
     this.isAccessible = accessible
     return this
-}
-
-/*
-    Utility method to call Dependency.get(Class) from Dagger in SystemUI
- */
-fun ClassLoader.getDependency(clazz: Class<*>): Any{
-    val dependency = XposedHelpers.findClass("com.android.systemui.Dependency", this)
-    val getMethod = dependency.getMethod("get", Class::class.java)
-    return getMethod.invoke(null, clazz)
-}
-
-fun ClassLoader.doubleCheck(instance: Any): Any {
-    val doubleCheck = XposedHelpers.findClass("dagger.internal.DoubleCheck", this)
-    val provider = XposedHelpers.findClass("javax.inject.Provider", this)
-    return doubleCheck.getConstructor(provider).newInstance(instance)
 }
 
 fun Context.dip(value: Int): Int = (value * resources.displayMetrics.density).toInt()
