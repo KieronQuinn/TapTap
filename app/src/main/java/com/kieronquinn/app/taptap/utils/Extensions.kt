@@ -38,9 +38,8 @@ import com.google.android.systemui.columbus.sensors.PeakDetector
 import com.google.android.systemui.columbus.sensors.TapRT
 import com.google.android.systemui.columbus.sensors.TfClassifier
 import com.kieronquinn.app.taptap.BuildConfig
-import com.kieronquinn.app.taptap.columbus.gates.AppVisibility
+import com.kieronquinn.app.taptap.columbus.gates.*
 import com.kieronquinn.app.taptap.columbus.gates.CameraVisibility
-import com.kieronquinn.app.taptap.columbus.gates.PowerStateInverse
 import com.kieronquinn.app.taptap.models.GateInternal
 import com.kieronquinn.app.taptap.models.TapAction
 import com.kieronquinn.app.taptap.models.TapGate
@@ -303,6 +302,9 @@ fun getGates(context: Context): Set<Gate> {
             TapGate.CAMERA_VISIBILITY -> CameraVisibility(context)
             TapGate.USB_STATE -> UsbState(context, Handler(), ColumbusModule.provideTransientGateDuration())
             TapGate.APP_SHOWING -> AppVisibility(context, gate.data!!)
+            TapGate.KEYBOARD_VISIBILITY -> KeyboardVisibility(context)
+            TapGate.ORIENTATION_LANDSCAPE -> Orientation(context, Configuration.ORIENTATION_LANDSCAPE)
+            TapGate.ORIENTATION_PORTRAIT -> Orientation(context, Configuration.ORIENTATION_PORTRAIT)
         })
     }
     return gates

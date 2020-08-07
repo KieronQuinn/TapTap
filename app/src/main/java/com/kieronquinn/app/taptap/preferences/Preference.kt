@@ -1,9 +1,18 @@
 package com.kieronquinn.app.taptap.preferences
 
 import android.content.Context
+import android.content.res.ColorStateList
+import android.graphics.BlendMode
+import android.graphics.PorterDuff
 import android.util.AttributeSet
+import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.annotation.ColorInt
+import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
+import androidx.core.view.marginTop
+import androidx.core.view.updateLayoutParams
 import androidx.preference.PreferenceViewHolder
 import com.kieronquinn.app.taptap.R
 
@@ -27,6 +36,7 @@ class Preference : androidx.preference.Preference {
     constructor(context: Context) : super(context) {}
 
     private var hasClickListener = false
+    private var root: LinearLayout? = null
 
     override fun setOnPreferenceClickListener(onPreferenceClickListener: OnPreferenceClickListener?) {
         super.setOnPreferenceClickListener(onPreferenceClickListener)
@@ -42,6 +52,29 @@ class Preference : androidx.preference.Preference {
         summaryView?.maxLines = Int.MAX_VALUE
         holder.itemView.post {
             if(!hasClickListener) holder.itemView.isClickable = false
+        }
+        root = summaryView?.parent?.parent as LinearLayout
+        setBackgroundTint(null)
+    }
+
+    fun setBackgroundTint(@ColorInt tintColor: Int?){
+        root?.run {
+            if(tintColor != null) {
+                background = ContextCompat.getDrawable(context, R.drawable.background_preference)
+                backgroundTintList = ColorStateList.valueOf(tintColor)
+                foreground = ContextCompat.getDrawable(context, R.drawable.foreground_preference_tinted)
+                updateLayoutParams<ViewGroup.MarginLayoutParams> {
+                    topMargin = resources.getDimension(R.dimen.margin_extra_small).toInt()
+                    bottomMargin = resources.getDimension(R.dimen.margin_extra_small).toInt()
+                }
+            }else{
+                background = null
+                foreground = ContextCompat.getDrawable(context, R.drawable.foreground_preference)
+                updateLayoutParams<ViewGroup.MarginLayoutParams> {
+                    topMargin = 0
+                    bottomMargin = 0
+                }
+            }
         }
     }
 

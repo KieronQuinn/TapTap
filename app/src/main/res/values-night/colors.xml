@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="baseColor">#000</color>
     <color name="colorPrimary">#82B1FF</color>
     <color name="colorPrimaryDark">#8082B1FF</color>
     <color name="colorAccent">#82B1FF</color>
@@ -15,7 +16,9 @@
     <color name="card_background">@color/windowBackground</color>
     <color name="card_outlined">#5F6368</color>
     <color name="accessibility_cross">#F4928B</color>
+    <color name="accessibility_cross_circle">#3C282E</color>
     <color name="accessibility_check">#A2C37B</color>
+    <color name="accessibility_check_circle">#273D35</color>
 
     <color name="icon_circle_0">#27303F</color>
     <color name="icon_circle_1">#3C282E</color>
@@ -27,6 +30,8 @@
     <color name="icon_circle_7">#232d36</color>
     <color name="icon_circle_8">#1D2C36</color>
     <color name="icon_circle_9">#3C283A</color>
+    <color name="icon_circle_10">#3C3B2A</color>
+    <color name="icon_circle_11">#a23900</color>
 
     <color name="icon_inside_0">#7EABF5</color>
     <color name="icon_inside_1">#F57E96</color>
@@ -38,4 +43,6 @@
     <color name="icon_inside_7">#3C5F7C</color>
     <color name="icon_inside_8">#80C7F2</color>
     <color name="icon_inside_9">#F57ED7</color>
+    <color name="icon_inside_10">#ffc77d</color>
+    <color name="icon_inside_11">#ffbc57</color>
 </resources>

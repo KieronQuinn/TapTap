@@ -1,6 +1,7 @@
 package com.kieronquinn.app.taptap.preferences
 
 import android.content.Context
+import android.content.res.ColorStateList
 import android.graphics.Typeface
 import android.util.AttributeSet
 import android.view.View
@@ -8,8 +9,10 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
+import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.preference.CheckBoxPreference
 import androidx.preference.PreferenceViewHolder
@@ -60,6 +63,8 @@ class RadioButtonPreference : CheckBoxPreference {
         clearButtons()
         addButtonsInternal()
         containerView?.invalidate()
+        root = summaryView?.parent?.parent as LinearLayout
+        setBackgroundTint(null)
     }
 
     fun clearButtons() {
@@ -174,6 +179,20 @@ class RadioButtonPreference : CheckBoxPreference {
 
     private fun View.removeView(){
         (this.parent as? ViewGroup)?.removeView(this)
+    }
+
+    private lateinit var root: LinearLayout
+    fun setBackgroundTint(@ColorInt tintColor: Int?){
+        root.run {
+            if(tintColor != null) {
+                background = ContextCompat.getDrawable(context, R.drawable.background_preference)
+                backgroundTintList = ColorStateList.valueOf(tintColor)
+                foreground = ContextCompat.getDrawable(context, R.drawable.foreground_preference_tinted)
+            }else{
+                background = null
+                foreground = ContextCompat.getDrawable(context, R.drawable.foreground_preference)
+            }
+        }
     }
 
 }

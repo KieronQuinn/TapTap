@@ -3,6 +3,7 @@ package com.kieronquinn.app.taptap
 import android.accessibilityservice.AccessibilityService
 import android.app.ActivityManager
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.media.AudioManager
 import android.util.Log
@@ -33,6 +34,7 @@ class TapAccessibilityService : AccessibilityService(),
 
     companion object {
         private const val TAG = "TAS"
+        val KEY_ACCESSIBILITY_START = "accessibility_start"
     }
 
     private var columbusService: ColumbusService? = null
@@ -75,6 +77,8 @@ class TapAccessibilityService : AccessibilityService(),
         //Create the service
         this.columbusService = ColumbusService::class.java.constructors.first().newInstance(getColumbusActions(), getColumbusFeedback(), getGates(context), gestureSensorImpl, powerManagerWrapper, metricsLogger) as ColumbusService
         configureTap()
+
+        sendBroadcast(Intent(KEY_ACCESSIBILITY_START).setPackage(packageName))
     }
 
     private fun getColumbusActions() : List<Action> {
