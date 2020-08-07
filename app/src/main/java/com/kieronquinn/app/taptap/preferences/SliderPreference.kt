@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
@@ -51,6 +52,8 @@ class SliderPreference : Preference {
             addRule(RelativeLayout.BELOW, android.R.id.summary)
         }
         container.addView(slider)
+        val root = summaryView?.parent?.parent as LinearLayout
+        root.background = null
     }
 
     fun getSlider(): Slider {

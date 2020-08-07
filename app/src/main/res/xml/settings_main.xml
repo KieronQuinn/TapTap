@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.kieronquinn.app.taptap.preferences.Preference
         android:icon="@drawable/ic_accessibility_cross"
         android:key="accessibility"
         android:title="@string/accessibility_info_off"
         android:summary="@string/accessibility_info_off_desc"/>
+
+    <com.kieronquinn.app.taptap.preferences.Preference
+        android:icon="@drawable/ic_warning_round"
+        android:key="battery_optimisation"
+        app:isPreferenceVisible="false"
+        android:title="@string/battery_optimisation"
+        android:summary="@string/battery_optimisation_desc"/>
 
     <com.kieronquinn.app.taptap.preferences.Preference
         android:icon="@drawable/ic_gesture_round"
@@ -39,6 +47,12 @@
             android:summary="@string/about_summary"
             android:icon="@drawable/ic_info_round"
             android:key="about_about"/>
+
+        <com.kieronquinn.app.taptap.preferences.Preference
+            android:title="@string/battery_and_optimisation"
+            android:summary="@string/battery_and_optimisation_desc"
+            android:icon="@drawable/ic_battery_round"
+            android:key="about_battery"/>
 
         <com.kieronquinn.app.taptap.preferences.Preference
             android:title="@string/xda_thread"

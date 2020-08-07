@@ -1,7 +1,13 @@
 package com.kieronquinn.app.taptap.fragments
 
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
+import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
+import android.os.PowerManager
 import android.provider.Settings
 import android.view.Menu
 import android.view.MenuInflater
@@ -12,12 +18,20 @@ import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.kieronquinn.app.taptap.BuildConfig
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.TapAccessibilityService
+import com.kieronquinn.app.taptap.activities.SettingsActivity
 import com.kieronquinn.app.taptap.fragments.bottomsheets.GenericBottomSheetFragment
 import com.kieronquinn.app.taptap.preferences.Preference
 import com.kieronquinn.app.taptap.utils.Links
 import com.kieronquinn.app.taptap.utils.isAccessibilityServiceEnabled
 
 class SettingsFragment : BaseSettingsFragment() {
+
+    private val returnReceiver = object: BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent) {
+            context?.unregisterReceiver(this)
+            startActivity(Intent(context, SettingsActivity::class.java))
+        }
+    }
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         super.onCreatePreferences(savedInstanceState, rootKey)
@@ -43,6 +57,21 @@ class SettingsFragment : BaseSettingsFragment() {
         getPreference("feedback"){
             it.setOnPreferenceClickListener {
                 navigate(R.id.action_settingsFragment_to_settingsFeedbackFragment)
+                true
+            }
+        }
+        getPreference("battery_optimisation"){
+            it.setOnPreferenceClickListener {
+                val intent = Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS).apply {
+                    data = Uri.parse("package:${BuildConfig.APPLICATION_ID}")
+                }
+                startActivity(intent)
+                true
+            }
+        }
+        getPreference("about_battery"){
+            it.setOnPreferenceClickListener {
+                showBatteryInfoBottomSheet()
                 true
             }
         }
@@ -81,9 +110,28 @@ class SettingsFragment : BaseSettingsFragment() {
                 it.icon = ContextCompat.getDrawable(it.context, R.drawable.ic_accessibility_cross_round)
             }
             it.setOnPreferenceClickListener { _ ->
+                context?.registerReceiver(returnReceiver, IntentFilter(TapAccessibilityService.KEY_ACCESSIBILITY_START))
                 startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))
+                activity?.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
                 Toast.makeText(it.context, R.string.accessibility_info_toast, Toast.LENGTH_LONG).show()
                 true
+            }
+        }
+        val powerManager = context?.getSystemService(Context.POWER_SERVICE) as PowerManager
+        getPreference("battery_optimisation"){
+            it.isVisible = !powerManager.isIgnoringBatteryOptimizations(BuildConfig.APPLICATION_ID)
+        }
+
+        view?.post {
+            getPreference("accessibility"){
+                if(isServiceEnabled) {
+                    it.setBackgroundTint(null)
+                }else{
+                    it.setBackgroundTint(ContextCompat.getColor(it.context, R.color.accessibility_cross_circle))
+                }
+            }
+            getPreference("battery_optimisation"){
+                it.setBackgroundTint(ContextCompat.getColor(it.context, R.color.icon_circle_10))
             }
         }
     }
@@ -100,6 +148,10 @@ class SettingsFragment : BaseSettingsFragment() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun showBatteryInfoBottomSheet(){
+        GenericBottomSheetFragment.create(getString(R.string.bs_battery_content), R.string.battery_and_optimisation, android.R.string.ok, R.string.bs_battery_positive, "https://dontkillmyapp.com/").show(childFragmentManager, "bs_alpha")
     }
 
 }

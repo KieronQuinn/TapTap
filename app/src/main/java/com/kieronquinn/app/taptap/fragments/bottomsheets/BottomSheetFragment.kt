@@ -50,6 +50,17 @@ open class BottomSheetFragment : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        okLabel?.let {
+            bottom_sheet_ok.text = getString(it)
+        }
+        cancelLabel?.let {
+            bottom_sheet_cancel.text = getString(it)
+        }
+        showListener?.invoke(view)
+    }
+
+    override fun onResume() {
+        super.onResume()
         if(okListener != null){
             bottom_sheet_ok.visibility = View.VISIBLE
             bottom_sheet_ok.setOnClickListener {
@@ -74,13 +85,6 @@ open class BottomSheetFragment : BottomSheetDialogFragment() {
                 }
             }
         }
-        okLabel?.let {
-            bottom_sheet_ok.text = getString(it)
-        }
-        cancelLabel?.let {
-            bottom_sheet_cancel.text = getString(it)
-        }
-        showListener?.invoke(view)
     }
 
     override fun getTheme(): Int {

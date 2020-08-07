@@ -35,7 +35,7 @@ class Links {
             }
         }
 
-        private fun startCCT(context: Context, link: String){
+        fun startCCT(context: Context, link: String){
             val customTabsIntent = CustomTabsIntent.Builder()
                 .setShowTitle(true)
                 .setToolbarColor(ContextCompat.getColor(context, R.color.windowBackground))

@@ -149,6 +149,21 @@
     <string name="slider_sensitivity_normal">Normal</string>
     <string name="slider_sensitivity_high">High</string>
     <string name="slider_sensitivity_very_high">Very high</string>
+
     <string name="setting_feedback_override_dnd">Vibrate when do not disturb is enabled</string>
     <string name="setting_feedback_override_dnd_desc">Ignore the device\'s DND setting and always vibrate when triggered</string>
+    <string name="gate_keyboard_visibility">Keyboard open</string>
+    <string name="gate_keyboard_visibility_desc">Blocks gesture when the keyboard is open and in use. Note that this may not always work if you are not actively typing.</string>
+    <string name="battery_optimisation">Disable Battery Optimisation</string>
+    <string name="battery_optimisation_desc">This will help keep Tap, Tap running (but not guarantee that it will always work, see the battery option below). Tap to disable.</string>
+
+    <string name="battery_and_optimisation">Battery &amp; Optimisation</string>
+    <string name="battery_and_optimisation_desc">Info on why Tap, Tap uses battery, and why it may be killed by your device when run in the background (and how to fix that)</string>
+    <string name="bs_battery_content">Tap, Tap uses a background accessibility service to stay running and always be \'listening\' for taps on the back of the device using the Accelerometer and Gyroscope. For this reason, Tap, Tap may use some battery while running in the background.\n\nDue to its early development state, Tap, Tap has not been fully optimised yet, and battery life may improve through options in the future, but currently a slightly lower battery life is a consequence of having this feature.\n\nAdditionally, some OEM firmwares, such as MIUI or OneUI, are more aggressive at killing background tasks (including accessibility services) than Google recommends they should be. If Tap, Tap stops working on your device after being closed even with Battery Optimisation disabled, please try the following:\n• Locking the app into memory (usually from the recent apps)\n• Disabling any further battery optimisation for an app (usually under Settings > Apps or Settings > Battery)\n• Disabling MIUI Optimization in the Developer Options (MIUI only)\n\nMore info on apps being killed by the system and suggestions on how to resolve it for your device can be found at dontkillmyapp.com</string>
+    <string name="bs_battery_positive">Go to dontkillmyapp.com</string>
+
+    <string name="gate_orientation_landscape">Landscape orientation</string>
+    <string name="gate_orientation_landscape_desc">Blocks gesture when the phone is in landscape orientation</string>
+    <string name="gate_orientation_portrait">Portrait orientation</string>
+    <string name="gate_orientation_portrait_desc">Blocks gesture when the phone is in portrait orientation</string>
 </resources>
