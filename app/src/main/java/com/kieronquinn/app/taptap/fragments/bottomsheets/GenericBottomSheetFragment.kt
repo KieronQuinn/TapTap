@@ -1,10 +1,14 @@
 package com.kieronquinn.app.taptap.fragments.bottomsheets
 
+import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.widget.FrameLayout
 import androidx.annotation.StringRes
 import androidx.core.os.bundleOf
 import com.kieronquinn.app.taptap.R
+import dev.chrisbanes.insetter.Insetter
+import dev.chrisbanes.insetter.applySystemGestureInsetsToMargin
 import kotlinx.android.synthetic.main.bottom_sheet_buttons.*
 import kotlinx.android.synthetic.main.fragment_bottomsheet_generic.*
 
@@ -28,7 +32,7 @@ class GenericBottomSheetFragment : BottomSheetFragment() {
     init {
         layout = R.layout.fragment_bottomsheet_generic
         okListener = {true}
-        isCancelable = true
+        isSwipeable = true
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -41,11 +45,35 @@ class GenericBottomSheetFragment : BottomSheetFragment() {
         text.text = message
         bs_toolbar_title.text = getString(title)
         bottom_sheet_ok.text = getString(okLabel!!)
+        view.applySystemGestureInsetsToMargin(bottom = true)
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putAll(savedData)
+    }
+
+    //Hacks to make the bottom sheet draw below the nav bar
+    override fun onStart() {
+        super.onStart()
+        dialog?.window?.let { window ->
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                window.findViewById<View>(com.google.android.material.R.id.container).fitsSystemWindows = false
+                window.decorView.run {
+                    //systemUiVisibility = systemUiVisibility or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+                    Insetter.setEdgeToEdgeSystemUiFlags(this, true)
+                }
+            }
+            //Fix the sheet drawing behind the status bar
+            window.findViewById<View>(com.google.android.material.R.id.coordinator).setOnApplyWindowInsetsListener { v, insets ->
+                v.layoutParams.apply {
+                    this as FrameLayout.LayoutParams
+                    topMargin = insets.systemWindowInsetTop
+                }
+                insets
+            }
+        }
+
     }
 
 }
