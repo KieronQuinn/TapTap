@@ -172,7 +172,7 @@ class GateBottomSheetFragment : BottomSheetDialogFragment(), NavController.OnDes
         when(dataTypes){
             GateDataTypes.PACKAGE_NAME -> {
                 startActivityForResult(
-                    Intent(requireContext(), AppPickerActivity::class.java),
+                    Intent(requireContext(), AppPickerActivity::class.java).putExtra(AppsFragment.KEY_SHOW_ALL, true),
                     REQUEST_CODE_SELECT_APP
                 )
             }

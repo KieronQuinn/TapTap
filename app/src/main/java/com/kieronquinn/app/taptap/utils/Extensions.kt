@@ -114,7 +114,7 @@ fun settingsGlobalGetIntOrNull(contentResolver: ContentResolver, key: String): I
 val ApplicationInfo.isSystemApp: Boolean
     get() {
         val mask = ApplicationInfo.FLAG_SYSTEM or ApplicationInfo.FLAG_UPDATED_SYSTEM_APP;
-        return (flags and mask) == 0;
+        return (flags and mask) != 0;
     }
 
 fun Context.isAppLaunchable(packageName: String): Boolean {
