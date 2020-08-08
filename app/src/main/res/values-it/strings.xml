@@ -132,4 +132,33 @@
     <string name="action_launch_shortcut_desc_formattable">Lancia %1s</string>
     <string name="action_launch_shortcut_toast">Questo shortcut non è al momento supportato</string>
     <string name="call_phone_permission_toast">Devi concedere a Tap, Tap il permesso \"Telefono\" per usare questo shortcut. Per favore concedi l\'autorizzazione nelle impostazioni del dispositivo</string>
+        <string name="action_split_screen">Schermo diviso</string>
+    <string name="action_split_screen_desc">Attiva o disattiva lo schermo diviso per l\'app corrente (non funziona sull\'homescreen)</string>
+    <string name="action_reachability">Lancia schermo diviso app corrente</string>
+    <string name="action_reachability_desc">Sperimentale: Lancia una modalità schermo diviso con una metà vuota e l\'altra con l\'app corrente. Nota: Potresti aver bisogno di riaprire l\'app corrente quando si attiva e si termina questa modalità</string>
+    <string name="reachability_left_handed_info">Long press the notification icon to switch icon position</string>
+
+    <!-- Sensitivity slider labels -->
+    <string name="slider_sensitivity_very_low">Molto bassa</string>
+    <string name="slider_sensitivity_low">Bassa</string>
+    <string name="slider_sensitivity_normal">Normale</string>
+    <string name="slider_sensitivity_high">Alta</string>
+    <string name="slider_sensitivity_very_high">Molto alta</string>
+
+    <string name="setting_feedback_override_dnd">Vibra quando la modalità non disturbare è abilitata</string>
+    <string name="setting_feedback_override_dnd_desc">Ignora le impostazioni non disturbare e vibra sempre</string>
+    <string name="gate_keyboard_visibility">Tastiera aperta</string>
+    <string name="gate_keyboard_visibility_desc">Blocca le gesture quando la tastiera è aperta e in uso. Nota che questo potrebbe non funzionare sempre se tu non stai scrivendo ma la tastiera è comunque aperta.</string>
+    <string name="battery_optimisation">Disattiva ottimizzazioni batteria</string>
+    <string name="battery_optimisation_desc">Questo aiuterà Tap, Tap ad essere in esecuzione (ma non funzionerà sempre, vedi le opzioni batteria sotto). Tap per disattivare.</string>
+
+    <string name="battery_and_optimisation">Batteria &amp; Ottimizzazioni</string>
+    <string name="battery_and_optimisation_desc">Info sul perché Tap, Tap consuma la batteria e perché potrebbe essere chiusa dal tuo dispositivo quando in esecuzione in background (e come risolvere)</string>
+    <string name="bs_battery_content">Tap, Tap usa un servizio di accessiblità per rimanere in esecuzione e \'ascoltare\' i tap sul retro del dispositivo usando i sensori come accelerometro e giroscopio. Per questa ragione, Tap, Tap potrebbe usare batteria mentre in esecuzione in background.\n\nPer via del suo stato ancora sperimentale, Tap, Tap non è ancora stata pienamente ottimizzata e il consumo batteria sarà ottimizzato in futuro, ma al momento una leggera incremento del consumo batteria è una conseguenza di aver installato questa app.\n\nIn aggiunta, alcuni firmwares, come MIUI o OneUI, sono molto aggressivi nel chiudere processi in background (incluso i servizi di accessibilità) rispetto a quanto raccomanda Google. Se Tap, Tap non funziona più sul tuo dispositivo anche con le ottimizzazioni batteria disattivate, prova in questo modo:\n• Blocca l\'app in memoria (di solito dal menù app recenti)\n• Disattivare ogni altra ottimizzazione batteria per un app (di solito in Impostazioni > App o Impostazioni > Batteria)\n• Disattiva le ottimizzazioni MIUI nelle opzioni sviluppatori (solo per MIUI)\n\nPiù informazioni sulle app che vengono chiuse e altri suggerimenti su dontkillmyapp.com</string>
+    <string name="bs_battery_positive">Vai su dontkillmyapp.com</string>
+
+    <string name="gate_orientation_landscape">Orientamento panoramico</string>
+    <string name="gate_orientation_landscape_desc">Blocca le gesture quando il telefono è in orizzontale</string>
+    <string name="gate_orientation_portrait">Orientamento verticale</string>
+    <string name="gate_orientation_portrait_desc">Blocca le gesture quando il telefono è in verticale</string>
 </resources>
