@@ -131,6 +131,8 @@
     <string name="action_volume_toggle_mute_desc">Turn mute on/off for the current sound stream</string>
     <string name="action_wake_device">Wake device</string>
     <string name="action_wake_device_desc">Wake the device up if the screen is off. This overrides the setting in the feedback settings, is skipped if the display is on, and will not work if you have the \"Display off\" gate enabled</string>
+    <string name="actions_sound_profile">Switch sound profiles</string>
+    <string name="actions_sound_profile_desc">Switch between sound profiles of your device: Vibrate/Silent/Loud</string>
     <string name="action_launch_shortcut">Launch a shortcut</string>
     <string name="action_launch_shortcut_desc">Launch a shortcut such as Google Maps directions</string>
     <string name="action_launch_shortcut_desc_formattable">Launch %1s (shortcut into the app)</string>
@@ -165,4 +167,7 @@
     <string name="gate_orientation_landscape_desc">Blocks gesture when the phone is in landscape orientation</string>
     <string name="gate_orientation_portrait">Portrait orientation</string>
     <string name="gate_orientation_portrait_desc">Blocks gesture when the phone is in portrait orientation</string>
+    <string name="dnd_access">DND access is required to make some of the actions to work in the app.</string>
+    <string name="dnd_access_title">DND Access</string>
+    <string name="dnd_info_toast">Select \"Tap, Tap\" from the dnd allowed list, toggle it and return to Tap, Tap to continue</string>
 </resources>

@@ -136,6 +136,7 @@ class TapAccessibilityService : AccessibilityService(),
                 TapAction.VOLUME_UP -> VolumeAction(this, AudioManager.ADJUST_RAISE)
                 TapAction.VOLUME_DOWN -> VolumeAction(this, AudioManager.ADJUST_LOWER)
                 TapAction.VOLUME_TOGGLE_MUTE -> VolumeAction(this, AudioManager.ADJUST_TOGGLE_MUTE)
+                TapAction.SOUND_PROFILER -> SoundProfileAction(this)
                 TapAction.WAKE_DEVICE -> WakeDeviceAction(this)
             }
         }catch (e: RuntimeException){

@@ -16,6 +16,13 @@
         android:summary="@string/battery_optimisation_desc"/>
 
     <com.kieronquinn.app.taptap.preferences.Preference
+        android:icon="@drawable/ic_dnd_access_round"
+        android:key="dnd_access"
+        app:isPreferenceVisible="true"
+        android:title="@string/dnd_access_title"
+        android:summary="@string/dnd_access"/>
+
+    <com.kieronquinn.app.taptap.preferences.Preference
         android:icon="@drawable/ic_gesture_round"
         android:key="gesture"
         android:title="@string/setting_gesture"
