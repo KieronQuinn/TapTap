@@ -6,7 +6,7 @@
     <string name="setting_gesture">Geste</string>
     <string name="setting_gesture_desc">Passe die Einstellungen für die Geste an</string>
     <string name="setting_actions">Aktionen</string>
-    <string name="settings_actions_desc">Konfiguriere die Aktionen, die bei Erkennung der Geste ausgeführt werden sollen</string>
+    <string name="settings_actions_desc">Konfiguriere die Aktionen, die bei Erkennung der Geste ausgeführt werden sollen</string>blio
     <string name="setting_gates">Ausnahmen</string>
     <string name="setting_gates_desc">Stelle Situationen ein, in denen die Geste keine Aktion auslösen soll</string>
     <string name="setting_feedback">Feedback</string>
@@ -103,7 +103,7 @@
     <string name="about_summary">Erstellt von Kieron Quinn / Quinny899 @ XDA\nMit Dank an Mitwirkungen durch die Community, unter anderem: %1s</string>
     <string name="xda_thread">XDA-Thread</string>
     <string name="github">GitHub</string>
-    <string name="libraries">Third-Party-Bibliotheken</string>
+    <string name="libraries">Drittanbieter-Bibliotheken</string>
     <string name="donate">Spenden</string>
     <string name="twitter">Folge mir auf Twitter</string>
     <string name="tasker_config_label">Rückseite doppelt angetippt</string>
