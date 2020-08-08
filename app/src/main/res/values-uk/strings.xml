@@ -50,6 +50,8 @@
     <string name="action_screenshot_desc">Зробіть знімок екрана за допомогою інтерфейсу скріншоту системи</string>
     <string name="action_lock_screen">Блокування екрана</string>
     <string name="action_lock_screen_desc">Заблокуйте екран, імітуючи натискання кнопки живлення</string>
+    <string name="action_power_dialog">Меню живлення</string>
+    <string name="action_power_dialog_desc">Відкриває діалогове вікно живлення, імітуючи утримання кнопки живлення</string>
     <string name="action_toggle_pause">Відтворення/Пауза</string>
     <string name="action_toggle_pause_desc">Відтворення/Пауза поточного відтворення аудіо</string>
     <string name="action_previous">Попередній</string>
@@ -76,6 +78,7 @@
     <string name="show_system_apps">Показати системні додатки</string>
     <string name="select_an_app">Виберіть додаток</string>
     <string name="setting_gesture_sensitivity">Чутливість</string>
+    <string name="setting_gesture_sensitivity_desc"><b>Експериментально:</b> Змініть чутливість жесту, регулюючи, скільки сили відфільтрувати як "шум". Зниження чутливості означає, що цей жест буде складніше зробити на більшості пристроїв, тоді як більша чутливість більш схильна до помилкового виявлення. За замовчуванням — саме посередині.</string>
     <string name="bs_help_action">Дії — це завдання, які виконуються при подвійному натисканні на задню частину пристрою. Дії виконуються в порядку списку — зверху до низу. Якщо дія може бути успішно виконано, подальші дії не виконуватимуться. Однак, якщо дія недоступно (наприклад, якщо асистент для дії \"Запуск асистента\" вже запущено), буде виконано такі дії під ним і т.д., Поки воно не буде успішно виконано. \n\nВ майбутніх версіях У цьому додатку ви зможете додавати заборони до дій (див. Меню «Заборони» додатка), щоб забезпечити більший контроль над виконанням певних дій.</string>
     <string name="bs_help_action_title">Що таке Дії?</string>
     <string name="bs_help_gate">Заборони — це ситуації, які можуть блокувати жест від виконання будь-яких дій. Для виконання будь-якої дії всі включені заборони не повинні справджуватися. \nЯкщо сценарій наразі виконується, наприклад, якщо екран вимкнено та параметр \"Екран вимкнений\", жодні дії не виконуватимуться. Ви можете додати скільки завгодно заборон і включити/відключити їх за допомогою перемикачів (замість того, щоб видаляти та повторно додавати), щоб зробити налаштування швидшим та простішим.</string>
@@ -96,7 +99,6 @@
     <string name="bs_alpha_title">Альфа</string>
 
     <string name="category_about">Про</string>
-    <string name="about">%1s v%2s</string>
     <string name="about_summary">Створено Kieron Quinn / Quinny899 @ XDA\nЗавдяки внескам громади, в тому числі: %1s</string>
     <string name="xda_thread">XDA Thread</string>
     <string name="github">GitHub</string>
@@ -122,4 +124,38 @@
     <string name="action_volume_toggle_mute_desc">Увімкнення/вимкнення звуку для поточного звукового потоку</string>
     <string name="action_wake_device">Пробудити пристрої</string>
     <string name="action_wake_device_desc">Пробудити пристрій, якщо екран вимкнений. Це накладається на налаштування зворотного зв\'язку, пропускається, якщо дисплей увімкнено, і не працюватиме, якщо у вас увімкнено заборону \"Екран вимкнений\"і</string>
+    <string name="action_launch_shortcut">Виконати дію в додатку</string>
+    <string name="action_launch_shortcut_desc">Виконання дії в додатку, наприклад маршрути в Google Картах</string>
+    <string name="action_launch_shortcut_desc_formattable">Виконати %1s (дію в додатку)</string>
+    <string name="action_launch_shortcut_toast">Це дія не підтримується в цей момент</string>
+    <string name="call_phone_permission_toast">Вам потрібно надати дозвіл на доступ Tap, Tap до телефону, щоб використовувати цю дію. Будь ласка, надайте його в налаштуваннях дозволу вашого пристрою</string>
+    <string name="action_split_screen">Розділений екран</string>
+    <string name="action_split_screen_desc">Запуск або зупинення режиму розділеного екрана в активному додатку (не працює, коли на головному екрані)</string>
+    <string name="action_reachability">Запуск досяжності</string>
+    <string name="action_reachability_desc">Експериментально: Запустіть режим досяжності, використовуючи розділений екран, із порожньою верхньою половиною екрана та поточним додатком у нижній частині. Примітка. Можливо, вам потрібно буде знову відкрити поточний додаток під час запуску та закінчення цього режиму</string>
+    <string name="reachability_left_handed_info">Довго натискайте піктограму сповіщення, щоб змінити положення значка</string>
+
+    <!-- Sensitivity slider labels -->
+    <string name="slider_sensitivity_very_low">Дуже низька</string>
+    <string name="slider_sensitivity_low">Низька</string>
+    <string name="slider_sensitivity_normal">Нормальна</string>
+    <string name="slider_sensitivity_high">Висока</string>
+    <string name="slider_sensitivity_very_high">Дуже висока</string>
+
+    <string name="setting_feedback_override_dnd">Вібрувати в режимі не турбувати</string>
+    <string name="setting_feedback_override_dnd_desc">Ігноруйте налаштування звуку пристрою та завжди вібрувати при спрацьовуванні</string>
+    <string name="gate_keyboard_visibility">Клавіатура відкрита</string>
+    <string name="gate_keyboard_visibility_desc">Блокує жести, коли клавіатура відкрита та використовується. Зауважте, що це може не завжди працювати, якщо ви не активно набираєте текст.</string>
+    <string name="battery_optimisation">Вимкнути оптимізацію батареї</string>
+    <string name="battery_optimisation_desc">Це допоможе Tap, Tap працювати (але не гарантує, що він завжди працюватиме, див. опції акумулятора нижче). Торкніться, щоб відключити.</string>
+
+    <string name="battery_and_optimisation">Акумулятор та оптимізація</string>
+    <string name="battery_and_optimisation_desc">Інформація про те, чому Tap, Tap використовує акумулятор і чому його може вбити ваш пристрій під час роботи у фоновому режимі (і як це виправити)</string>
+    <string name="bs_battery_content">Tap, Tap використовує фонову службу доступності, щоб продовжувати працювати та завжди \"слухати\" натиснення по задній панелі пристрою за допомогою акселерометра та гіроскопа. З цієї причини під час роботи у фоновому режимі Tap, Tap може використовувати трохи акумулятора.\n\nЧерез те що Tap, Tap знаходиться на стадії раннього розвитку він ще не був повністю оптимізований, і час роботи акумулятора може покращитися у майбутньому, але тепер трохи менший час роботи акумулятора є наслідком наявності цієї функції.\n\nКрім того, деякі OEM прошивки, такі як MIUI або OneUI, є більш агресивними щодо вбивства фонових завдань (включаючи службу доступності), ніж рекомендує Google. Якщо Tap, Tap перестає працювати на вашому пристрої після закриття, навіть якщо вимкнено оптимізацію батареї, спробуйте наступне:\n• Заблокуйте програму в пам\'яті (як правило, з останніх програм)\n• Вимкнення будь-якої подальшої оптимізації акумулятора для додатка (як правило, у розділі Налаштування > Програми або Параметри > Акумулятор)\n• Вимкнення оптимізації MIUI у параметрах розробника (лише MIUI)\n\nБільше інформації про те, що програми вбиваються системою, та пропозиції щодо вирішення для вашого пристрою можна знайти на dontkillmyapp.com</string>
+    <string name="bs_battery_positive">Перейти до dontkillmyapp.com</string>
+
+    <string name="gate_orientation_landscape">Альбомна орієнтація</string>
+    <string name="gate_orientation_landscape_desc">Блокує жести, коли телефон перебуває в альбомній орієнтації</string>
+    <string name="gate_orientation_portrait">Портретна орієнтація</string>
+    <string name="gate_orientation_portrait_desc">Блокує жести, коли телефон перебуває в портретній орієнтації</string>
 </resources>
