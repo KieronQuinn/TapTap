@@ -54,8 +54,8 @@
     <string name="action_quick_settings_desc">Apri il pannello delle impostazioni rapide</string>
     <string name="action_screenshot">Screenshot</string>
     <string name="action_screenshot_desc">Fai uno screenshot</string>
-    <string name="action_lock_screen">Lock the screen</string>
-    <string name="action_lock_screen_desc">Lock lo schermo simulando la pressione del tasto accensione</string>
+    <string name="action_lock_screen">Blocca lo schermo</string>
+    <string name="action_lock_screen_desc">Blocca lo schermo simulando la pressione del tasto accensione</string>
     <string name="action_toggle_pause">Metti in esecuzione/Metti in pausa</string>
     <string name="action_toggle_pause_desc">Metti in esecuzione/Metti in pausa la traccia audio corrente</string>
     <string name="action_previous">Precedente</string>
@@ -64,7 +64,7 @@
     <string name="action_next_desc">Metti in esecuzione la traccia audio successiva</string>
     <string name="fab_add_action">Aggiungi azione</string>
     <string name="fab_remove_action">Rimuovi</string>
-    <string name="fab_remove_action_drop">Cancella per rimuovere</string>
+    <string name="fab_remove_action_drop">Qui per rimuovere</string>
     <string name="add_action_category_launch">Lancia</string>
     <string name="add_action_category_utilities">Utilità</string>
     <string name="add_action_category_actions">Azioni</string>
@@ -87,7 +87,7 @@
     <string name="bs_help_gate">Le eccezioni sono situazioni che possono bloccare le gesture dall\'eseguire azioni. Per eseguire qualsiasi azione, tutte le eccezioni impostate non devono essere verificate.\nSe una cerca condizione è verificata, ad esempio lo schermo è spento l\'eccezione "Schermo spento" è stata attivata, nessuna azione sarà eseguita. Puoi aggiungere un numero illimitato di eccezioni e abilitare o disabilitare singolarmente (invece di cancellarle e di ricrearle di nuovo)  per avere una configurazione più facile e veloce.</string>
     <string name="bs_help_gate_title">Cosa sono le eccezioni?</string>
     <string name="help">Aiuto</string>
-    <string name="action_launch_assistant">Lancia Assistente</string>
+    <string name="action_launch_assistant">Lancia Assistant</string>
     <string name="action_launch_assistant_desc">Lancia la tua app di assistenza di default</string>
     <string name="action_tasker_event">Evento Tasker</string>
     <string name="action_tasker_event_desc">Segnala un evento tramite il plugin Tasker</string>
@@ -111,7 +111,7 @@
     <string name="tasker_config_label">Doppio tap sul retro</string>
     <string name="action_tasker_task">Task di Tasker</string>
     <string name="action_tasker_task_desc">Esegui uno specifico task di Tasker</string>
-    <string name="action_tasker_event_toast">Tasker not installato o versione non supportata</string>
+    <string name="action_tasker_event_toast">Tasker non installato o versione non supportata</string>
     <string name="bs_tasker_content">Per lanciare un task di Tasker senza usare un plugin, devi abilitare l\'opzione \"Permetti accesso esterno\" nelle opzioni di Tasker. Se non hai questa opzione abilitata, questa azione verrà sempre saltata.</string>
     <string name="bs_tasker_title">Permesso richiesto</string>
     <string name="bs_tasker_negative">Dopo</string>
