@@ -98,6 +98,10 @@
     <string name="action_launch_assistant">Запустить ассистента</string>
     <string name="action_launch_assistant_desc">Запустить приложение-ассистент по умолчанию</string>
 
+    <string name="battery_optimisation">Отключить энергосбережение</string>
+    <string name="battery_and_optimisation">Батарея &amp; Энергосбережение</string>
+    <string name="battery_and_optimisation_desc">Информация о том, почему Tap, Tap расходует батарею и почему оно может быть убито устройством при работе в фоновом режиме (и как это исправить)</string>
+    <string name="bs_battery_positive">Перейти на dontkillmyapp.com</string>
     <string name="accessibility_info_off">Служба доступности отключена</string>
     <string name="accessibility_info_off_desc">Жест в настоящее время не будет работать. Нажмите, чтобы включить</string>
     <string name="accessibility_info_on">Служба специальных возможностей включена</string>
