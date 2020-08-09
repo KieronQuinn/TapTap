@@ -21,26 +21,26 @@
 
     <!-- Gates -->
     <string name="gate_charging_state">Зарядка</string>
-    <string name="gate_charging_state_desc">Блокирует жест на полсекунды после подключения к зарядному устройству</string>
+    <string name="gate_charging_state_desc">Блокировать жест на полсекунды после подключения к зарядному устройству</string>
     <string name="gate_telephony_activity">Во время звонка</string>
-    <string name="gate_telephony_activity_desc">Блокирует жест во время вызовов. Поддерживаются только обычные звонки (в WhatsApp и т.п. работать не будет).</string>
+    <string name="gate_telephony_activity_desc">Блокировать жест во время вызовов. Поддерживаются только обычные звонки (в WhatsApp и т.п. работать не будет).</string>
     <string name="gate_usb_state">USB-устройство</string>
-    <string name="gate_usb_state_desc">Блокирует жест на полсекунды при подключении USB-устройства, например флэш-накопителя</string>
+    <string name="gate_usb_state_desc">Блокировать жест на полсекунды при подключении USB-устройства, например флэш-накопителя</string>
     <string name="gate_camera_visibility">Камера</string>
-    <string name="gate_camera_visibility_desc">Блокирует жест при открытии любого приложения камеры. Примечание: это нарушит функциональность пропуска действия "Запустить камеру".</string>
+    <string name="gate_camera_visibility_desc">Блокировать жест при открытии любого приложения камеры. Примечание: это нарушит функциональность пропуска действия "Запустить камеру".</string>
     <string name="gate_power_state">Экран выключен</string>
-    <string name="gate_power_state_desc">Блокирует жест, когда экран устройства выключен</string>
+    <string name="gate_power_state_desc">Блокировать жест, когда экран устройства выключен</string>
     <string name="gate_power_state_inverse">Экран включен</string>
-    <string name="gate_power_state_inverse_desc">Блокирует жест, когда экран устройства включен</string>
+    <string name="gate_power_state_inverse_desc">Блокировать жест, когда экран устройства включен</string>
     <string name="gate_app_showing">Показ приложения</string>
-    <string name="gate_app_showing_desc">Блокирует жест, когда приложение отображается на экране</string>
-    <string name="gate_app_showing_desc_formatted">Блокирует жест, когда %1s отображается на экране</string>
+    <string name="gate_app_showing_desc">Блокировать жест, когда приложение отображается на экране</string>
+    <string name="gate_app_showing_desc_formatted">Блокировать жест, когда %1s отображается на экране</string>
     <string name="action_launch_camera">Запустить камеру</string>
     <string name="action_launch_camera_desc">Запустить приложение камеры по умолчанию. Это действие будет пропущено, если камера уже работает.</string>
     <string name="action_home">Домой</string>
-    <string name="action_home_desc">Имитация нажатия кнопки домой</string>
+    <string name="action_home_desc">Имитировать нажатия кнопки домой</string>
     <string name="action_back">Назад</string>
-    <string name="action_back_desc">Имитация нажатия кнопки назад</string>
+    <string name="action_back_desc">Имитировать нажатия кнопки назад</string>
     <string name="action_recents">Открыть меню недавних приложений</string>
     <string name="action_recents_desc">Открыть меню недавних приложений, имитируя нажатие кнопки недавние. На устройствах, которые его поддерживают, использование этого действия, когда меню недавних уже открыто, переключится на первое фоновое приложение</string>
     <string name="action_notifications">Открыть уведомления</string>
@@ -50,7 +50,7 @@
     <string name="action_screenshot">Снимок экрана</string>
     <string name="action_screenshot_desc">Сделать скриншот, используя системный интерфейс</string>
     <string name="action_lock_screen">Заблокировать экран</string>
-    <string name="action_lock_screen_desc">Блокировка экрана путем имитации нажатия кнопки питания</string>
+    <string name="action_lock_screen_desc">Блокировать экрана путем имитации нажатия кнопки питания</string>
     <string name="action_toggle_pause">Воспроизведение / пауза</string>
     <string name="action_toggle_pause_desc">Воспроизвести / приостановить текущее воспроизведение</string>
     <string name="action_previous">Предыдущее</string>
@@ -76,6 +76,8 @@
     <string name="search">Поиск</string>
     <string name="show_system_apps">Показать системные приложения</string>
     <string name="select_an_app">Выберите приложение</string>
+    <string name="action_split_screen">Разделить экран</string>
+    <string name="action_split_screen_desc">Начать или остановить разделение экрана с текущим приложением (не рабаотает на домашнем экране)</string>
     <string name="setting_gesture_sensitivity">Чувствительность</string>
     <string name="slider_sensitivity_very_low">Очень низкая</string>
     <string name="slider_sensitivity_low">Низкая</string>
@@ -83,11 +85,11 @@
     <string name="slider_sensitivity_high">Высокая</string>
     <string name="slider_sensitivity_very_high">Очень высокая</string>
     <string name="gate_keyboard_visibility">Открыта клавиатура</string>
-    <string name="gate_keyboard_visibility_desc">Блокирует жест, когда клавиатура открыта и используется. Может работать не всегда, если Вы печатаете неактивно.</string>
+    <string name="gate_keyboard_visibility_desc">Блокировать жест, когда клавиатура открыта и используется. Может работать не всегда, если Вы печатаете неактивно.</string>
     <string name="gate_orientation_landscape">Горизонтальная ориентация</string>
-    <string name="gate_orientation_landscape_desc">Блокирует жест, когда телефон повернут горизонтально</string>
+    <string name="gate_orientation_landscape_desc">Блокировать жест, когда устройство повернуто горизонтально</string>
     <string name="gate_orientation_portrait">Вертикальная ориентация</string>
-    <string name="gate_orientation_portrait_desc">Блокирует жест, когда телефон повернут вертикально</string>
+    <string name="gate_orientation_portrait_desc">Блокировать жест, когда устройство повернуто вертикально</string>
     <string name="bs_help_action">Действия - это задачи, которые запускаются при двойном нажатии на заднюю часть устройства. Действия выполняются в порядке списка - сверху вниз. Если действие может быть успешно выполнено, дальнейшие действия выполняться не будут. Однако, если действие недоступно (например, если ассистент для действия «Запуск ассистента» уже запущен), будет выполнено следующее действие под ним и т.д., Пока оно не будет успешно выполнено. \n\nВ будущих версиях В этом приложении вы сможете добавлять запреты к действиям (см. меню «Запреты» приложения), чтобы обеспечить больший контроль над выполнением определенных действий.</string>
     <string name="bs_help_action_title">Что такое действия?</string>
     <string name="bs_help_gate">Запреты - это ситуации, которые могут заблокировать жест от выполнения каких-либо действий. Для выполнения любого действия все включенные запреты должны быть открыты. \nЕсли в данный момент выполняется сценарий, например, если экран выключен и запрет «Отключить отображение» включены, никакие действия не будут выполняться. Вы можете добавить столько запретов, сколько захотите, и включать / отключать их, используя переключатели (вместо того, чтобы удалять и повторно добавлять), чтобы сделать настройку быстрее и проще.</string>
@@ -105,8 +107,8 @@
     <string name="accessibility_info_off">Служба доступности отключена</string>
     <string name="accessibility_info_off_desc">Жест в настоящее время не будет работать. Нажмите, чтобы включить</string>
     <string name="accessibility_info_on">Служба специальных возможностей включена</string>
-    <string name="accessibility_info_on_desc">Если вы хотите отключить жест, нажмите, чтобы отключить службу</string>
-    <string name="accessibility_info_toast">Выберите «Tap, Tap» из списка услуг специальных возможностей, переключите его и вернитесь к Tap, нажмите, чтобы продолжить</string>
+    <string name="accessibility_info_on_desc">Если Вы хотите отключить жест, нажмите, чтобы отключить службу</string>
+    <string name="accessibility_info_toast">Выберите Tap, Tap из списка услуг специальных возможностей, переключите его и вернитесь к Tap, Tap нажмите, чтобы продолжить</string>
     <string name="menu_alpha">Это приложение в альфа тестировании. Нажмите для информации.</string>
     <string name="bs_alpha">Это приложение находится на ранней стадии разработки и было выпущено в состоянии «Альфа», что позволяет проводить тестирование на многих устройствах. Если вы столкнулись с ошибкой, сообщите о ней на GitHub. Если вы хотите запросить функцию, опубликуйте ее в теме XDA или запросите ее на GitHub. \n\nПроверьте на XDA, в лаборатории или в теме, обновления, как только они станут доступны. \n\nСпасибо за терпение в процессе разработки.</string>
     <string name="bs_alpha_title">Альфа</string>
@@ -117,7 +119,7 @@
     <string name="donate">Пожертвовать</string>
     <string name="twitter">Подпишитесь на меня в Твиттере</string>
     <string name="picker_launch_camera">Запустить камеру</string>
-    <string name="tasker_config_label">Двойной нажатие назад</string>
+    <string name="tasker_config_label">Двойное нажатие назад</string>
     <string name="action_tasker_task">Задача Tasker</string>
     <string name="action_tasker_task_desc">Запустить заданную задачу Tasker</string>
     <string name="action_tasker_event_toast">Tasker не установлен или версия не поддерживается</string>
@@ -139,5 +141,5 @@
     <string name="action_launch_shortcut_desc">Запустить действие в приложении, например маршруты в Google Картах</string>
     <string name="action_launch_shortcut_desc_formattable">Запустить %1s (действие в приложении)</string>
     <string name="action_launch_shortcut_toast">Это действие не поддерживается в данный момент</string>
-    <string name="call_phone_permission_toast">Вам нужно предоставить разрешение на доступ Tap, Tap к телефону, чтобы использовать это действие. Пожалуйста, предоставьте его в настройках разрешения вашего устройства</string>
+    <string name="call_phone_permission_toast">Чтобы использовать это действие, предостваьте доступ Tap, Tap к телефону в настройках разрешений вашего устройства</string>
 </resources>
