@@ -41,7 +41,7 @@
     <string name="action_back">Zurück</string>
     <string name="action_back_desc">Simuliere das Drücken des Zurück-Buttons</string>
     <string name="action_recents">Letzte Apps öffnen</string>
-    <string name="action_recents_desc">Öffne die Letzte-Apps-Übersicht durch das Simulieren des Drückens des \"Recents"-Buttons. Wenn das Gerät es unterstützt, wird bei bereits geöffneter Übersicht zur letzten Hintergrund-App gewechselt</string>
+    <string name="action_recents_desc">Öffne die Letzte-Apps-Übersicht durch das Simulieren des Drückens des \"Recents\"-Buttons. Wenn das Gerät es unterstützt, wird bei bereits geöffneter Übersicht zur letzten Hintergrund-App gewechselt</string>
     <string name="action_notifications">Benachrichtigungen öffnen</string>
     <string name="action_notifications_desc">Öffne die Benachrichtigungsübersicht</string>
     <string name="action_quick_settings">Schnelleinstellungen</string>
@@ -81,7 +81,7 @@
     <string name="setting_gesture_sensitivity_desc"><b>Experimentell:</b> Passe die Empfindlichkeit für das Erkennen der Geste an, indem du einstellst, wie viel Kraft als \'Rauschen\' herausgefiltert wird. Eine geringere Empfindlichkeit bedeutet, dass es schwerer wird, die Geste auszuführen, während eine hohe Empfindlichkeit anfälliger für eine falsche Erkennung ist. Der Standard liegt genau in der Mitte</string>
     <string name="bs_help_action">Aktionen sind Aufgaben, die ausgeführt werden, wenn du zweimal auf den Geräterücken tippst. Aktionen werden in der Reihenfolge der Liste ausgeführt: Von oben nach unten. Wenn eine Aktion erfolgreich ausgeführt werden kann, werden keine weiteren ausgeführt. Nur wenn eine Aktion nicht verfügbar ist (z. B. wenn der Assistant für \"Assistant starten\" bereits geöffnet ist), wird versucht, die nächste Aktion darunter auszuführen, und so weiter, bis eine erfolgreich ausgeführt wird.\n\nIn zukünftigen Versionen dieser App wird es dir möglich sein, Ausnahmen zu bestimmten Aktionen hinzuzufügen (siehe das Ausnahmen-Menü der App), um mehr Kontrolle über die Ausführung von Aktionen zu ermöglichen</string>
     <string name="bs_help_action_title">Was sind Aktionen?</string>
-    <string name="bs_help_gate">Ausnahmen sind Situationen, in denen das Ausführen der Aktionen bei Erkennung der Geste blockiert wird. Damit eine Aktion ausgeführt werden kann, darf keine aktivierte Ausnahme erfüllt sein.\nFalls ein Ausnahmeszenario erfüllt ist, z. B. wenn der Bildschrim aus ist und die \"Bildschirm aus"-Ausnahme aktiviert ist, wird keine Aktion ausgeführt. Du kannst so viele Ausnahmen, wie du willst, hinzufügen und sie über die Schalter einzeln aktivieren/deaktivieren (statt sie jedes Mal zu löschen bzw. neu hinzuzufügen), um die Konfiguration schneller und einfacher zu machen</string>
+    <string name="bs_help_gate">Ausnahmen sind Situationen, in denen das Ausführen der Aktionen bei Erkennung der Geste blockiert wird. Damit eine Aktion ausgeführt werden kann, darf keine aktivierte Ausnahme erfüllt sein.\nFalls ein Ausnahmeszenario erfüllt ist, z. B. wenn der Bildschrim aus ist und die \"Bildschirm aus\"-Ausnahme aktiviert ist, wird keine Aktion ausgeführt. Du kannst so viele Ausnahmen, wie du willst, hinzufügen und sie über die Schalter einzeln aktivieren/deaktivieren (statt sie jedes Mal zu löschen bzw. neu hinzuzufügen), um die Konfiguration schneller und einfacher zu machen</string>
     <string name="bs_help_gate_title">Was sind Ausnahmen?</string>
     <string name="help">Hilfe</string>
     <string name="action_launch_assistant">Assistant starten</string>
@@ -95,7 +95,7 @@
     <string name="accessibility_info_on_desc">Falls du die Geste deaktivieren möchtest, tippe zum Deaktivieren des Services</string>
     <string name="accessibility_info_toast">Wähle \"Tap, Tap\" von der Bedienungshilfen-Service-Liste aus, schalte es ein und kehre zu \"Tap, Tap\" zurück, um fortzufahren</string>
     <string name="menu_alpha">Diese App ist eine Alpha-Version. Tippe für Infos</string>
-    <string name="bs_alpha">Diese App ist in den frühen Stufen ihrer Entwicklung und wurde in einem \"Alpha"-Stadium veröffentlich, damit sie auf möglichst vielen Geräten getestet werden kann. Falls du einen Bug (Fehler) bemerkst, melde ihn bitte als \"Issue\" auf GitHub. Wenn du gerne eine neue Funktion haben würdest, poste sie im XDA-Thread oder frage sie in GitHub an.\n\nSchaue auf XDA, entweder in \"Labs\" oder im Thread, nach Updates, um sie zu erhalten, sobald sie verfügbar sind.\n\nVielen Dank für deine Geduld während der Entwicklung</string>
+    <string name="bs_alpha">Diese App ist in den frühen Stufen ihrer Entwicklung und wurde in einem \"Alpha\"-Stadium veröffentlich, damit sie auf möglichst vielen Geräten getestet werden kann. Falls du einen Bug (Fehler) bemerkst, melde ihn bitte als \"Issue\" auf GitHub. Wenn du gerne eine neue Funktion haben würdest, poste sie im XDA-Thread oder frage sie in GitHub an.\n\nSchaue auf XDA, entweder in \"Labs\" oder im Thread, nach Updates, um sie zu erhalten, sobald sie verfügbar sind.\n\nVielen Dank für deine Geduld während der Entwicklung</string>
     <string name="bs_alpha_title">Alpha</string>
 
     <string name="category_about">Über</string>
@@ -110,7 +110,7 @@
     <string name="action_tasker_task">Tasker-Task</string>
     <string name="action_tasker_task_desc">Führe einen ausgewählten Tasker-Task aus</string>
     <string name="action_tasker_event_toast">Tasker nicht installiert oder Version nicht unterstützt</string>
-    <string name="bs_tasker_content">Um einen Tasker-Task zu starten, ohne das Event-Plugin zu nutzen, muss die \"Allow External Acces"-Option in den Tasker-Einstellungen aktiviert sein. Wenn diese Option nicht aktiviert ist, wird diese Aktion immer übersprungen</string>
+    <string name="bs_tasker_content">Um einen Tasker-Task zu starten, ohne das Event-Plugin zu nutzen, muss die \"Allow External Acces\"-Option in den Tasker-Einstellungen aktiviert sein. Wenn diese Option nicht aktiviert ist, wird diese Aktion immer übersprungen</string>
     <string name="bs_tasker_title">Berechtigung benötigt</string>
     <string name="bs_tasker_negative">Später</string>
     <string name="bs_tasker_positive">Tasker-Einstellungen öffnen</string>
@@ -129,7 +129,7 @@
     <string name="action_launch_shortcut_desc">Starte einen Shortcut, wie Google Maps Anweisungen</string>
     <string name="action_launch_shortcut_desc_formattable">Starte %1s (Shortcut in die App)</string>
     <string name="action_launch_shortcut_toast">Dieser Shortcut wird momentan nicht unterstützt</string>
-    <string name="call_phone_permission_toast">Du musst Tap, Tap die \"Telefon"-Berechtigung gewähren, um diese Shortcut-Aktion benutzen zu können. Bitte gewähre sie in den Berechtigungseinstellungen des Geräts</string>
+    <string name="call_phone_permission_toast">Du musst Tap, Tap die \"Telefon\"-Berechtigung gewähren, um diese Shortcut-Aktion benutzen zu können. Bitte gewähre sie in den Berechtigungseinstellungen des Geräts</string>
     <string name="action_split_screen">Split-Screen</string>
     <string name="action_split_screen_desc">Starte oder beende den \"Split-Screen\" modus mit der aktuellen App (funktioniert nicht, wenn man auf dem \"Home-Screen\" ist)</string>
     <string name="action_reachability">Starte Einhandmodus</string>
@@ -144,11 +144,11 @@
     <string name="slider_sensitivity_very_high">Sehr Hoch</string>
 
     <string name="setting_feedback_override_dnd">Vibriere auch, wenn \"Nicht Stören\" aktiv ist</string>
-    <string name="setting_feedback_override_dnd_desc">Ignoriere die \"Nicht Stören\" Einstellung des Geräts und vibriere immer bei Aktivierung</string>
+    <string name="setting_feedback_override_dnd_desc">Ignoriere die \"Nicht Stören\" Einstellung des Geräts und vibriere immer bei Aktivierung der Geste</string>
     <string name="gate_keyboard_visibility">Tastatur offen</string>
     <string name="gate_keyboard_visibility_desc">Blockiert die Geste, wenn die Tastatur offen ist und benutzt wird. Dies kann manchmal nicht funktionieren, wenn du nicht aktiv tippst</string>
     <string name="battery_optimisation">Deaktiviere Akku-Optimierung</string>
-    <string name="battery_optimisation_desc">Dies hilft, dass \"Tasp-Tap\" dauerhaft läuft (es kann passieren, dass das nicht zuverlässig funktioniert, siehe dazu die Akku-Option unten)</string>
+    <string name="battery_optimisation_desc">Dies hilft, dass \"Tap-Tap\" dauerhaft läuft (es kann passieren, dass das nicht zuverlässig funktioniert, siehe dazu die Akku-Option unten)</string>
 
     <string name="battery_and_optimisation">Akku &amp; Optimierung</string>
     <string name="battery_and_optimisation_desc">Informationen, warum \"Tap, Tap\" Strom verbaucht und warum es vielleicht von deinem Gerät beendet wird, wenn es im Hintergrund läuft (und wie man dies beheben kann)</string>
