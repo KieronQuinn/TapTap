@@ -50,7 +50,7 @@
     <string name="action_screenshot">Снимок экрана</string>
     <string name="action_screenshot_desc">Сделать скриншот, используя системный интерфейс</string>
     <string name="action_lock_screen">Заблокировать экран</string>
-    <string name="action_lock_screen_desc">Блокировать экрана путем имитации нажатия кнопки питания</string>
+    <string name="action_lock_screen_desc">Заблокировать экран путем имитации нажатия кнопки питания</string>
     <string name="action_toggle_pause">Воспроизведение / пауза</string>
     <string name="action_toggle_pause_desc">Воспроизвести / приостановить текущее воспроизведение</string>
     <string name="action_previous">Предыдущее</string>
