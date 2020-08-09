@@ -5,12 +5,10 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.os.PowerManager
 import android.provider.Settings
-import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -21,7 +19,6 @@ import com.kieronquinn.app.taptap.BuildConfig
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.TapAccessibilityService
 import com.kieronquinn.app.taptap.activities.SettingsActivity
-import com.kieronquinn.app.taptap.columbus.actions.SoundProfileAction
 import com.kieronquinn.app.taptap.fragments.bottomsheets.GenericBottomSheetFragment
 import com.kieronquinn.app.taptap.preferences.Preference
 import com.kieronquinn.app.taptap.utils.Links
@@ -32,7 +29,6 @@ class SettingsFragment : BaseSettingsFragment() {
     private  val TAG = "SettingsFragment"
     private val returnReceiver = object: BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent) {
-            Log.d(TAG, "onReceive: + dnd recieved")
             context?.unregisterReceiver(this)
             startActivity(Intent(context, SettingsActivity::class.java))
         }
@@ -125,7 +121,6 @@ class SettingsFragment : BaseSettingsFragment() {
         }
         getPreference("dnd_access") {
             it.setOnPreferenceClickListener { _ ->
-                context?.registerReceiver(returnReceiver, IntentFilter(TapAccessibilityService.KEY_ACCESSIBILITY_START))
                 startActivity(Intent(Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS))
                 activity?.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
                 Toast.makeText(it.context, R.string.dnd_info_toast, Toast.LENGTH_LONG).show()
