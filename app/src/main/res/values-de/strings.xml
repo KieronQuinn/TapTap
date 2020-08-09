@@ -6,7 +6,7 @@
     <string name="setting_gesture">Geste</string>
     <string name="setting_gesture_desc">Passe die Einstellungen für die Geste an</string>
     <string name="setting_actions">Aktionen</string>
-    <string name="settings_actions_desc">Konfiguriere die Aktionen, die bei Erkennung der Geste ausgeführt werden sollen</string>blio
+    <string name="settings_actions_desc">Konfiguriere die Aktionen, die bei Erkennung der Geste ausgeführt werden sollen</string>
     <string name="setting_gates">Ausnahmen</string>
     <string name="setting_gates_desc">Stelle Situationen ein, in denen die Geste keine Aktion auslösen soll</string>
     <string name="setting_feedback">Feedback</string>
