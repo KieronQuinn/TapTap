@@ -137,7 +137,7 @@
     <string name="action_volume_toggle_mute_desc">Включить / выключить звук для текущего звукового потока</string>
     <string name="action_wake_device">Пробудить устройства</string>
     <string name="action_wake_device_desc">Пробудить устройство, если экран выключен. Это переопределяет настройку в настройках обратной связи. Пропускается, если дисплей включен, и не будет работать, если у вас включен параметр «Отключить отображение»</string>
-    <string name="action_launch_shortcut">Запустить действие в приложении</string>
+    <string name="action_launch_shortcut">Запустить действие</string>
     <string name="action_launch_shortcut_desc">Запустить действие в приложении, например маршруты в Google Картах</string>
     <string name="action_launch_shortcut_desc_formattable">Запустить %1s (действие в приложении)</string>
     <string name="action_launch_shortcut_toast">Это действие не поддерживается в данный момент</string>
