@@ -38,15 +38,13 @@ import com.google.android.systemui.columbus.sensors.PeakDetector
 import com.google.android.systemui.columbus.sensors.TapRT
 import com.google.android.systemui.columbus.sensors.TfClassifier
 import com.kieronquinn.app.taptap.BuildConfig
-import com.kieronquinn.app.taptap.columbus.gates.AppVisibility
+import com.kieronquinn.app.taptap.columbus.gates.*
 import com.kieronquinn.app.taptap.columbus.gates.CameraVisibility
-import com.kieronquinn.app.taptap.columbus.gates.PowerStateInverse
 import com.kieronquinn.app.taptap.models.GateInternal
 import com.kieronquinn.app.taptap.models.TapAction
 import com.kieronquinn.app.taptap.models.TapGate
 import com.kieronquinn.app.taptap.models.store.GateListFile
 import com.kieronquinn.app.taptap.providers.SharedPrefsProvider
-import de.robv.android.xposed.XposedHelpers
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -303,6 +301,9 @@ fun getGates(context: Context): Set<Gate> {
             TapGate.CAMERA_VISIBILITY -> CameraVisibility(context)
             TapGate.USB_STATE -> UsbState(context, Handler(), ColumbusModule.provideTransientGateDuration())
             TapGate.APP_SHOWING -> AppVisibility(context, gate.data!!)
+            TapGate.KEYBOARD_VISIBILITY -> KeyboardVisibility(context)
+            TapGate.ORIENTATION_LANDSCAPE -> Orientation(context, Configuration.ORIENTATION_LANDSCAPE)
+            TapGate.ORIENTATION_PORTRAIT -> Orientation(context, Configuration.ORIENTATION_PORTRAIT)
         })
     }
     return gates
@@ -387,21 +388,6 @@ fun Field.setAccessibleR(accessible: Boolean): Field {
 fun Method.setAccessibleR(accessible: Boolean): Method {
     this.isAccessible = accessible
     return this
-}
-
-/*
-    Utility method to call Dependency.get(Class) from Dagger in SystemUI
- */
-fun ClassLoader.getDependency(clazz: Class<*>): Any{
-    val dependency = XposedHelpers.findClass("com.android.systemui.Dependency", this)
-    val getMethod = dependency.getMethod("get", Class::class.java)
-    return getMethod.invoke(null, clazz)
-}
-
-fun ClassLoader.doubleCheck(instance: Any): Any {
-    val doubleCheck = XposedHelpers.findClass("dagger.internal.DoubleCheck", this)
-    val provider = XposedHelpers.findClass("javax.inject.Provider", this)
-    return doubleCheck.getConstructor(provider).newInstance(instance)
 }
 
 fun Context.dip(value: Int): Int = (value * resources.displayMetrics.density).toInt()

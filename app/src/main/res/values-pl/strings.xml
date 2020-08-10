@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Tap, Tap</string>
-    <string name="xposed_desc">Columbus backport</string>
     <string name="accessibility_service_description">Usługa ułatwień dostępu TapTap\n\n<b>Ważna informacja: Żadne dane nie są zbierane z żadnej z Twoich aplikacji, ta usługa służy po prostu do utrzymywania aktywności rozpoznawania i zapewnienia interakcji z urządzeniem</b></string>
     <string name="toast_no_action_selected">Nie wybrano żadnej akcji</string>
     <string name="launch_accessibility">Włącz dostępność</string>
@@ -103,7 +102,7 @@
 
     <string name="category_about">O</string>
     <string name="about">%1s v%2s</string>
-    <string name="about_summary">Stworzona przez Kieron Quinn / Quinny899 @ XDA\nZ podziękowaniami dla społeczności, w tym: João Dias, timfedo, Giorgio Cantoni, Fedor Shatokhin, Rodrigo Souza, Petro Bilyi, Kevin Kung</string>
+    <string name="about_summary">Stworzona przez Kieron Quinn / Quinny899 @ XDA\nZ podziękowaniami dla społeczności, w tym: %1s</string>
     <string name="xda_thread">Temat XDA</string>
     <string name="github">GitHub</string>
     <string name="libraries">Zewnętrzne biblioteki</string>

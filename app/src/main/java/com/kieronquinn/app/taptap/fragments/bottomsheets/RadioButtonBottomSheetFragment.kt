@@ -1,11 +1,15 @@
 package com.kieronquinn.app.taptap.fragments.bottomsheets
 
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.CompoundButton
+import android.widget.FrameLayout
 import com.google.android.material.radiobutton.MaterialRadioButton
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.utils.sharedPreferences
+import dev.chrisbanes.insetter.Insetter
+import dev.chrisbanes.insetter.applySystemGestureInsetsToMargin
 import kotlinx.android.synthetic.main.fragment_bottomsheet_radio_buttons.*
 import kotlinx.android.synthetic.main.item_radio_button.view.*
 
@@ -63,6 +67,7 @@ class RadioButtonBottomSheetFragment : BottomSheetFragment(), CompoundButton.OnC
                 }
             }
         }
+        view.applySystemGestureInsetsToMargin(bottom = true)
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -82,6 +87,29 @@ class RadioButtonBottomSheetFragment : BottomSheetFragment(), CompoundButton.OnC
             it.isChecked = false
         }
         buttonView.isChecked = true
+    }
+
+    //Hacks to make the bottom sheet draw below the nav bar
+    override fun onStart() {
+        super.onStart()
+        dialog?.window?.let { window ->
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                window.findViewById<View>(com.google.android.material.R.id.container).fitsSystemWindows = false
+                window.decorView.run {
+                    //systemUiVisibility = systemUiVisibility or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+                    Insetter.setEdgeToEdgeSystemUiFlags(this, true)
+                }
+            }
+            //Fix the sheet drawing behind the status bar
+            window.findViewById<View>(com.google.android.material.R.id.coordinator).setOnApplyWindowInsetsListener { v, insets ->
+                v.layoutParams.apply {
+                    this as FrameLayout.LayoutParams
+                    topMargin = insets.systemWindowInsetTop
+                }
+                insets
+            }
+        }
+
     }
 
 }

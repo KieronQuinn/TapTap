@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Tap, Tap</string>
-    <string name="xposed_desc">Columbus backport</string>
     <string name="accessibility_service_description">Служба доступності TapTap\n\n<b>Важливе примітка: дані із жодного з ваших додатків не збираються. Ця служба просто використовується для підтримки активного розпізнавання і взаємодії з пристроєм.</b></string>
     <string name="toast_no_action_selected">Не вибрано жодної дії</string>
     <string name="launch_accessibility">Запустити Доступності</string>
@@ -98,7 +97,7 @@
 
     <string name="category_about">Про</string>
     <string name="about">%1s v%2s</string>
-    <string name="about_summary">Створено Kieron Quinn / Quinny899 @ XDA\nЗавдяки внескам громади, в тому числі: joaomgcd, timfedo, gcantoni</string>
+    <string name="about_summary">Створено Kieron Quinn / Quinny899 @ XDA\nЗавдяки внескам громади, в тому числі: %1s</string>
     <string name="xda_thread">XDA Thread</string>
     <string name="github">GitHub</string>
     <string name="libraries">Сторонні бібліотеки</string>

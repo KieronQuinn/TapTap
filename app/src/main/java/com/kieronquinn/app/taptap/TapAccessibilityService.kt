@@ -3,6 +3,7 @@ package com.kieronquinn.app.taptap
 import android.accessibilityservice.AccessibilityService
 import android.app.ActivityManager
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.media.AudioManager
 import android.util.Log
@@ -20,7 +21,6 @@ import com.google.android.systemui.columbus.sensors.config.GestureConfiguration
 import com.kieronquinn.app.taptap.columbus.actions.*
 import com.kieronquinn.app.taptap.columbus.feedback.HapticClickCompat
 import com.kieronquinn.app.taptap.columbus.feedback.WakeDevice
-import com.kieronquinn.app.taptap.impl.KeyguardStateControllerImpl
 import com.kieronquinn.app.taptap.models.ActionInternal
 import com.kieronquinn.app.taptap.models.TapAction
 import com.kieronquinn.app.taptap.models.TfModel
@@ -33,16 +33,13 @@ class TapAccessibilityService : AccessibilityService(),
 
     companion object {
         private const val TAG = "TAS"
+        val KEY_ACCESSIBILITY_START = "accessibility_start"
     }
 
     private var columbusService: ColumbusService? = null
     private var gestureSensorImpl: GestureSensorImpl? = null
 
     private var currentPackageName: String = "android"
-
-    private val keyguardStateController by lazy {
-        KeyguardStateControllerImpl()
-    }
 
     private var wakefulnessLifecycle: WakefulnessLifecycle? = null
 
@@ -75,6 +72,8 @@ class TapAccessibilityService : AccessibilityService(),
         //Create the service
         this.columbusService = ColumbusService::class.java.constructors.first().newInstance(getColumbusActions(), getColumbusFeedback(), getGates(context), gestureSensorImpl, powerManagerWrapper, metricsLogger) as ColumbusService
         configureTap()
+
+        sendBroadcast(Intent(KEY_ACCESSIBILITY_START).setPackage(packageName))
     }
 
     private fun getColumbusActions() : List<Action> {

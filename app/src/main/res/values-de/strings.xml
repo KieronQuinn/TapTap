@@ -1,13 +1,12 @@
 <resources>
     <string name="app_name">Tap, Tap</string>
-    <string name="xposed_desc">Columbus-Backport</string>
     <string name="accessibility_service_description">TapTap als Bedienungshilfe\n\n<b>Wichtiger Hinweis: Über keine deiner Apps werden Daten gesammelt. Dieser Dienst wird nur genutzt, um die Erkennung aktiv zu halten und Interaktionen mit dem Gerät zu ermöglichen.</b></string>
-    <string name="toast_no_action_selected">Keine Aktion wurde ausgewählt</string>
-    <string name="launch_accessibility">Bedienungshilfen starten</string>
+    <string name="toast_no_action_selected">Es wurde keine Aktion ausgewählt</string>
+    <string name="launch_accessibility">Starte Bedienungshilfen</string>
     <string name="setting_gesture">Geste</string>
-    <string name="setting_gesture_desc">Optimieren, wie die Geste funktioniert</string>
+    <string name="setting_gesture_desc">Passe die Einstellungen für die Geste an</string>
     <string name="setting_actions">Aktionen</string>
-    <string name="settings_actions_desc">Stelle die Aktionen ein, die bei Erkennung der Geste ausgeführt werden sollen</string>
+    <string name="settings_actions_desc">Konfiguriere die Aktionen, die bei Erkennung der Geste ausgeführt werden sollen</string>
     <string name="setting_gates">Ausnahmen</string>
     <string name="setting_gates_desc">Stelle Situationen ein, in denen die Geste keine Aktion auslösen soll</string>
     <string name="setting_feedback">Feedback</string>
@@ -17,7 +16,7 @@
     <string name="setting_feedback_vibrate">Vibrieren</string>
     <string name="setting_feedback_vibrate_desc">Vibriere einmal, wenn die Geste erkannt wurde und die Aktion ausgeführt wird</string>
     <string name="setting_feedback_wake">Gerät aufwecken</string>
-    <string name="setting_feedback_wake_desc">Wecke das Gerät bei ausgeschaltetem Bildschrim auf (Hinweis: Das wird mit Aktionen kollidieren, die den Bildschirm ausschalten!)</string>
+    <string name="setting_feedback_wake_desc">Wecke das Gerät bei ausgeschaltetem Bildschrim auf (Hinweis: Dies funktioniert nicht mit Aktionen, die den Bildschirm auschalten!)</string>
 
     <!-- Gates -->
     <string name="gate_charging_state">Aufladen</string>
@@ -25,24 +24,24 @@
     <string name="gate_telephony_activity">Im Anruf</string>
     <string name="gate_telephony_activity_desc">Blockiert die Geste während eines Anrufs. Nur Standard-Anrufe werden unterstützt – kein VoIP, wie bspw. WhatsApp</string>
     <string name="gate_usb_state">USB-Geräte</string>
-    <string name="gate_usb_state_desc">Blockiert die Geste für eine halbe Sekunde, wenn ein USB-Gerät wie ein USB-Stick eingesteckt wird</string>
+    <string name="gate_usb_state_desc">Blockiert die Geste für eine halbe Sekunde, wenn ein USB-Gerät, z.B. wie ein USB-Stick eingesteckt wird</string>
     <string name="gate_camera_visibility">Kamera</string>
-    <string name="gate_camera_visibility_desc">Blockiert die Geste, wenn eine Kamera-App geöffnet ist. Hinweis: Das wird die Überspringen-Funktion der Kamera-Starten-Aktion ersetzen.</string>
+    <string name="gate_camera_visibility_desc">Blockiert die Geste, wenn eine Kamera-App geöffnet ist (Hinweis: Ersetzt die Überspringen-Funktion der Kamera-Starten-Aktion)</string>
     <string name="gate_power_state">Bildschirm aus</string>
     <string name="gate_power_state_desc">Blockiert die Geste, wenn der Gerätebildschirm ausgeschaltet ist</string>
     <string name="gate_power_state_inverse">Bildschirm an</string>
-    <string name="gate_power_state_inverse_desc">Blockiert die Geste, wenn der Gerätebildschirm an ist</string>
+    <string name="gate_power_state_inverse_desc">Blockiert die Geste, wenn der Gerätebildschirm eingeschaltet ist</string>
     <string name="gate_app_showing">App angezeigt</string>
     <string name="gate_app_showing_desc">Blockiert die Geste, wenn eine bestimmte App auf dem Bildschirm angezeigt wird</string>
     <string name="gate_app_showing_desc_formatted">Blockiert die Geste, wenn %1s auf dem Bildschirm angezeigt wird</string>
     <string name="action_launch_camera">Kamera öffnen</string>
-    <string name="action_launch_camera_desc">Öffne deine Standard-Kamera-App. Diese Aktion wird übersprungen, wenn wenn die Kamera-App bereits geöffnet App.</string>
+    <string name="action_launch_camera_desc">Öffne deine Standard-Kamera-App. Diese Aktion wird übersprungen, wenn wenn die Kamera-App bereits geöffnet ist</string>
     <string name="action_home">Home</string>
     <string name="action_home_desc">Simuliere das Drücken des Home-Buttons</string>
     <string name="action_back">Zurück</string>
     <string name="action_back_desc">Simuliere das Drücken des Zurück-Buttons</string>
     <string name="action_recents">Letzte Apps öffnen</string>
-    <string name="action_recents_desc">Öffne die Letzte-Apps-Übersicht durch das Simulieren des Drückens des „Recents“-Buttons. Wenn das Gerät es unterstützt, wird bei bereits geöffneter Übersicht die Geste zur letzten Hintergrund-App wechseln.</string>
+    <string name="action_recents_desc">Öffne die Letzte-Apps-Übersicht durch das Simulieren des Drückens des "Recents"-Buttons. Wenn das Gerät es unterstützt, wird bei bereits geöffneter Übersicht zur letzten Hintergrund-App gewechselt</string>
     <string name="action_notifications">Benachrichtigungen öffnen</string>
     <string name="action_notifications_desc">Öffne die Benachrichtigungsübersicht</string>
     <string name="action_quick_settings">Schnelleinstellungen</string>
@@ -65,7 +64,7 @@
     <string name="add_action_category_actions">Aktionen</string>
     <string name="add_action_category_advanced">Fortgeschritten</string>
     <string name="action_flashlight">Taschenlampe</string>
-    <string name="action_flashlight_desc">Die Taschenlampe ein-/ausschalten. Diese Aktion wird nicht funktionieren, wenn die Kamera gerade von einer App verwendet wird.</string>
+    <string name="action_flashlight_desc">Die Taschenlampe ein-/ausschalten. Diese Aktion wird nicht funktionieren, wenn die Kamera gerade von einer App verwendet wird</string>
     <string name="action_launch_app">App öffnen</string>
     <string name="action_launch_app_desc">Eine App öffnen</string>
     <string name="action_launch_app_desc_formattable">%1s öffnen. Diese Aktion wird übersprungen, wenn die App bereits geöffnet ist.</string>
@@ -77,9 +76,9 @@
     <string name="show_system_apps">Zeige System-Apps</string>
     <string name="select_an_app">Wähle eine App aus</string>
     <string name="setting_gesture_sensitivity">Empfindlichkeit</string>
-    <string name="bs_help_action">Aktionen sind Aufgaben, die ausgeführt werden, wenn du zweimal auf den Geräterücken tipps. Aktionen werden in der Reihenfolge der Liste ausgeführt: Von oben nach unten. Wenn eine Aktion erfolgreich ausgeführt werden kann, werden keine weiteren ausgeführt. Nur wenn eine Aktion nicht verfügbar ist (z. B. wenn der Assistant für „Assistant starten“ bereits geöffnet ist), wird versucht, die nächste Aktion darunter auszuführen, und so weiter, bis eine erfolgreich ausgeführt wird.\n\nIn zukünftigen Versionen dieser App wird es dir möglich sein, Ausnahmen bestimmten Aktionen hinzuzufügen (siehe das Aunshamen-Menü der App), um mehr Kontrolle über die Ausführung von Aktionen zu ermöglichen.</string>
+    <string name="bs_help_action">Aktionen sind Aufgaben, die ausgeführt werden, wenn du zweimal auf den Geräterücken tippst. Aktionen werden in der Reihenfolge der Liste ausgeführt: Von oben nach unten. Wenn eine Aktion erfolgreich ausgeführt werden kann, werden keine weiteren ausgeführt. Nur wenn eine Aktion nicht verfügbar ist (z. B. wenn der Assistant für "Assistant starten" bereits geöffnet ist), wird versucht, die nächste Aktion darunter auszuführen, und so weiter, bis eine erfolgreich ausgeführt wird.\n\nIn zukünftigen Versionen dieser App wird es dir möglich sein, Ausnahmen zu bestimmten Aktionen hinzuzufügen (siehe das Aunshamen-Menü der App), um mehr Kontrolle über die Ausführung von Aktionen zu ermöglichen.</string>
     <string name="bs_help_action_title">Was sind Aktionen?</string>
-    <string name="bs_help_gate">Ausnahmen sind Situationen, in denen das Ausführen der Aktionen bei Erkennung der Geste blockiert wird. Damit eine Aktion ausgeführt werden kann, darf keine aktivierte Ausnahme erfüllt sein.\nFalls ein Ausnahmeszenario erfüllt ist, z. B. wenn der Bildschrim aus ist und die „Bildschirm aus“-Ausnahme aktiviert ist, wird keine Aktion ausgeführt. Du kannst so viele Ausnahmen, wie du willst, hinzufügen und sie über die Schalter einzeln aktivieren/deaktivieren (statt sie jedes Mal zu löschen bzw. neu hinzuzufügen), um die Konfiguration schneller und einfacher zu machen.</string>
+    <string name="bs_help_gate">Ausnahmen sind Situationen, in denen das Ausführen der Aktionen bei Erkennung der Geste blockiert wird. Damit eine Aktion ausgeführt werden kann, darf keine aktivierte Ausnahme erfüllt sein.\nFalls ein Ausnahmeszenario erfüllt ist, z. B. wenn der Bildschrim aus ist und die "Bildschirm aus"-Ausnahme aktiviert ist, wird keine Aktion ausgeführt. Du kannst so viele Ausnahmen, wie du willst, hinzufügen und sie über die Schalter einzeln aktivieren/deaktivieren (statt sie jedes Mal zu löschen bzw. neu hinzuzufügen), um die Konfiguration schneller und einfacher zu machen.</string>
     <string name="bs_help_gate_title">Was sind Ausnahmen?</string>
     <string name="help">Hilfe</string>
     <string name="action_launch_assistant">Assistant starten</string>
@@ -89,16 +88,16 @@
 
     <string name="accessibility_info_off">Bedienungshilfen-Service ist nicht aktiviert</string>
     <string name="accessibility_info_off_desc">Die Geste wird momentan nicht funktionieren. Tippen zum Aktivieren</string>
-    <string name="accessibility_info_on">Bedienungshilfen-Serivce ist aktivier</string>
+    <string name="accessibility_info_on">Bedienungshilfen-Service ist aktiviert</string>
     <string name="accessibility_info_on_desc">Falls du die Geste deaktivieren möchtest, tippe zum Deaktivieren des Services</string>
-    <string name="accessibility_info_toast">Wähle „Tap, Tap“ von der Bedienungshilfen-Service-Liste aus, schalte es ein und kehre zu Tap, Tap zurück, um fortzufahren</string>
+    <string name="accessibility_info_toast">Wähle "Tap, Tap" von der Bedienungshilfen-Service-Liste aus, schalte es ein und kehre zu "Tap, Tap" zurück, um fortzufahren</string>
     <string name="menu_alpha">Diese App ist eine Alpha-Version. Tippe für Infos</string>
-    <string name="bs_alpha">Diese App ist in den frühen Stufen ihrer Entwicklung und wurde in einem „Alpha“-Stadium veröffentlich, damit sie auf möglichst vielen Geräten getestet werden kann. Falls du einen Bug (Fehler) bemerkst, melde ihn bitte als „Issue“ auf GitHub. Wenn du gerne eine neue Funktion haben würdest, poste sie im XDA-Thread oder frage sie in GitHub an.\n\nSchaue auf XDA, entweder in „Labs“ oder im Thread, nach Updates, um sie zu erhalten, sobald sie verfügbar sind.\n\nVielen Dank für deine Geduld während der Entwicklung.</string>
+    <string name="bs_alpha">Diese App ist in den frühen Stufen ihrer Entwicklung und wurde in einem "Alpha"-Stadium veröffentlich, damit sie auf möglichst vielen Geräten getestet werden kann. Falls du einen Bug (Fehler) bemerkst, melde ihn bitte als "Issue" auf GitHub. Wenn du gerne eine neue Funktion haben würdest, poste sie im XDA-Thread oder frage sie in GitHub an.\n\nSchaue auf XDA, entweder in "Labs" oder im Thread, nach Updates, um sie zu erhalten, sobald sie verfügbar sind.\n\nVielen Dank für deine Geduld während der Entwicklung.</string>
     <string name="bs_alpha_title">Alpha</string>
 
     <string name="category_about">Über</string>
     <string name="about">%1s v%2s</string>
-    <string name="about_summary">Erstellt von Kieron Quinn / Quinny899 @ XDA\nMit Dank an Mitwirkungen durch die Community, unter anderem: João Dias, timfedo, Giorgio Cantoni, Fedor Shatokhin, Rodrigo Souza, Petro Bilyi, Kevin Kung</string>
+    <string name="about_summary">Erstellt von Kieron Quinn / Quinny899 @ XDA\nMit Dank an Mitwirkungen durch die Community, unter anderem: %1s</string>
     <string name="xda_thread">XDA-Thread</string>
     <string name="github">GitHub</string>
     <string name="libraries">Third-Party-Bibliotheken</string>
@@ -108,24 +107,24 @@
     <string name="action_tasker_task">Tasker-Task</string>
     <string name="action_tasker_task_desc">Führe einen ausgewählten Tasker-Task aus</string>
     <string name="action_tasker_event_toast">Tasker nicht installiert oder Version nicht unterstützt</string>
-    <string name="bs_tasker_content">Um einen Tasker-Task zu starten, ohne das Event-Plugin zu nutzen, muss die „Allow External Acces“-Option in den Tasker-Einstellungen aktiviert sein. Wenn diese Option nicht aktiviert ist, wird diese Aktion immer übersprungen.</string>
+    <string name="bs_tasker_content">Um einen Tasker-Task zu starten, ohne das Event-Plugin zu nutzen, muss die "Allow External Acces"-Option in den Tasker-Einstellungen aktiviert sein. Wenn diese Option nicht aktiviert ist, wird diese Aktion immer übersprungen.</string>
     <string name="bs_tasker_title">Berechtigung benötigt</string>
     <string name="bs_tasker_negative">Später</string>
     <string name="bs_tasker_positive">Tasker-Einstellungen öffnen</string>
     <string name="picker_launch_camera">Kamera öffnen</string>
     <string name="action_volume_panel">Lautstärke-Regler anzeigen</string>
-    <string name="action_volume_panel_desc">Zeige den Lautstärke-Regler des System mit dem Sound-Stream zur Anpassung angezeigt</string>
-    <string name="action_volume_up">Lautstärke hoch</string>
-    <string name="action_volume_up_desc">Erhöhe die Lautstärke des aktuellen Sound-Stream</string>
-    <string name="action_volume_down">Lautstärke runter</string>
-    <string name="action_volume_down_desc">Erniedrige die Lautstärke des aktuellen Sound-Streams</string>
+    <string name="action_volume_panel_desc">Zeige den Lautstärke-Regler des Systems an für die aktuelle Tonausgabe an</string>
+    <string name="action_volume_up">Lautstärke erhöhen</string>
+    <string name="action_volume_up_desc">Erhöhe die Lautstärke, der aktuellen Tonausgabe</string>
+    <string name="action_volume_down">Lautstärke verringern</string>
+    <string name="action_volume_down_desc">Verringere die Lautstärke, der aktuellen Tonausgabe</string>
     <string name="action_volume_toggle_mute">Stummschaltung umschalten</string>
-    <string name="action_volume_toggle_mute_desc">Schalte die Stummschaltung des aktuellen Sound-Stream an/aus</string>
+    <string name="action_volume_toggle_mute_desc">Schalte die aktuelle Tonausgabe stumm oder wieder auf laut, wenn sie stumm war</string>
     <string name="action_wake_device">Gerät aufwecken</string>
-    <string name="action_wake_device_desc">Weckt das Gerät auf, wenn der Bildschirm ausgeschaltet ist. Das überschreibt die gleichnamige Einstellung unter „Feedback“, wird bei eingeschaltetem Display übersprungen und wird nicht funktionieren, wenn die Ausnahme bei „Display aus“ aktiviert ist.</string>
+    <string name="action_wake_device_desc">Weckt das Gerät auf, wenn der Bildschirm ausgeschaltet ist. Das überschreibt die gleichnamige Einstellung unter "Feedback". Diese Aktion wird bei eingeschaltetem Display übersprungen und wird nicht funktionieren, wenn die Ausnahme "Display aus" aktiviert ist.</string>
     <string name="action_launch_shortcut">Shortcut starten</string>
     <string name="action_launch_shortcut_desc">Starte einen Shortcut, wie Google Maps Anweisungen</string>
     <string name="action_launch_shortcut_desc_formattable">Starte %1s (Shortcut in die App)</string>
     <string name="action_launch_shortcut_toast">Dieser Shortcut wird momentan nicht unterstützt</string>
-    <string name="call_phone_permission_toast">Du musst Tap, Tap die „Telefon“-Berechtigung gewähren, um diese Shortcut-Aktion benutzen zu können. Bitte gewähre sie in den Berechtigungseinstellungen des Geräts.</string>
+    <string name="call_phone_permission_toast">Du musst Tap, Tap die "Telefon"-Berechtigung gewähren, um diese Shortcut-Aktion benutzen zu können. Bitte gewähre sie in den Berechtigungseinstellungen des Geräts.</string>
 </resources>

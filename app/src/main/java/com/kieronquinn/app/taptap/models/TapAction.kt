@@ -22,7 +22,7 @@ enum class TapAction(val clazz: Class<*>, val category: TapActionCategory, @Stri
     BACK(AccessibilityServiceGlobalAction::class.java, TapActionCategory.ACTIONS, R.string.action_back, R.string.action_back_desc, R.drawable.ic_action_back, true, true),
     RECENTS(AccessibilityServiceGlobalAction::class.java, TapActionCategory.ACTIONS, R.string.action_recents, R.string.action_recents_desc, R.drawable.ic_action_recent, true, true),
     SPLIT_SCREEN(AccessibilityServiceGlobalAction::class.java, TapActionCategory.ACTIONS, R.string.action_split_screen, R.string.action_split_screen_desc, R.drawable.ic_action_split_screen, true, true),
-    REACHABILITY(LaunchReachability::class.java, TapActionCategory.ACTIONS, R.string.action_reachability, R.string.action_reachability_desc, R.drawable.ic_action_reachability, true, true),
+    REACHABILITY(LaunchReachability::class.java, TapActionCategory.UTILITIES, R.string.action_reachability, R.string.action_reachability_desc, R.drawable.ic_action_reachability, true, true),
     POWER_DIALOG(AccessibilityServiceGlobalAction::class.java, TapActionCategory.ACTIONS, R.string.action_power_dialog, R.string.action_power_dialog_desc, R.drawable.ic_action_power_dialog, true, true),
     FLASHLIGHT(Flashlight::class.java, TapActionCategory.UTILITIES, R.string.action_flashlight, R.string.action_flashlight_desc, R.drawable.ic_action_category_utilities, true, true, dataType = ActionDataTypes.CAMERA_PERMISSION),
     TASKER_EVENT(TaskerEvent::class.java, TapActionCategory.ADVANCED, R.string.action_tasker_event, R.string.action_tasker_event_desc, R.drawable.ic_action_tasker, true, true),

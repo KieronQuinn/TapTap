@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Tap, Tap</string>
-    <string name="xposed_desc">Columbus backport</string>
     <string name="accessibility_service_description">TapTap Erişilebilirlik Hizmeti\n\n<b>Önemli Not: Uygulamalarınızın hiçbirinden veri toplanmaz, bu hizmet yalnızca tanıma özelliğini etkin tutmak ve cihazla etkileşim sağlamak için kullanılır</b></string>
     <string name="toast_no_action_selected">Hiçbir eylem seçilmedi</string>
     <string name="launch_accessibility">Erişilebilirliği Başlat</string>
@@ -75,7 +74,7 @@
     <string name="action_launch_app">Uygulamayı başlat</string>
     <string name="action_launch_app_desc">Bir uygulama başlatır</string>
     <string name="action_launch_app_desc_formattable">%1s uygulamasını başlatır. Bu eylem zaten çalışıyorsa atlanır.</string>
-    <string name="fab_add_gate">Geçit ekle/string>
+    <string name="fab_add_gate">Geçit ekle</string>
     <string name="add_gate_category_state">Durum</string>
     <string name="add_gate_category_action">Eylem</string>
     <string name="nothing_found">Hiçbir şey bulunamadı</string>
@@ -83,7 +82,6 @@
     <string name="show_system_apps">Sistem uygulamalarını göster</string>
     <string name="select_an_app">Bir uygulama seç</string>
     <string name="setting_gesture_sensitivity">Duyarlılık</string>
-    <string name="setting_gesture_sensitivity_desc">Duyarlılık şu anda bu uygulamanın kullandığı Google'ın kodunda uygulanmadı. Aktif olarak nasıl mümkün olabileceğini araştırıyorum ve gelecekteki bir sürümde mevcut olabilir.</string>
     <string name="bs_help_action">Eylemler, cihazınızın arkasına iki kez dokunduğunuzda yürütülen görevlerdir. Eylemler listeye göre yukarıdan aşağıya doğru yürütülür. Bir eylem başarıyla çalıştırılabilirse, başka eylem gerçekleştirilmez. Bununla birlikte, bir eylem kullanılamıyorsa (örneğin, bir "Asistanı başlat" eylemi zaten çalışıyorsa), bir sonraki eylem başarıyla gerçekleştirilinceye kadar devam eder.\n\nBu uygulamanın gelecekteki sürümlerinde, belirli eylemlerin ne zaman gerçekleştirileceği konusunda daha fazla kontrole izin vermek için eylemlere geçitler ekleyebileceksiniz (uygulamanın Geçitler menüsüne bakın).</string>
     <string name="bs_help_action_title">Eylemler nedir?</string>
     <string name="bs_help_gate">Geçitler, hareketin herhangi bir eylem gerçekleştirmesini engelleyebilecek durumlardır. Herhangi bir eylemin gerçekleştirilebilmesi için, etkinleştirilmiş tüm geçitler açık olmalıdır.\nÖrneğin ekran kapalıysa ve "Ekran kapalı" geçidi etkinse, herhangi bir eylem yapılmaz. İstediğiniz sayıda geçit ekleyebilir ve yapılandırmayı daha hızlı ve kolay hale getirmek için anahtarları kullanarak (silmek ve yeniden eklemek yerine) etkinleştirebilir/devre dışı bırakabilirsiniz.</string>
@@ -100,12 +98,11 @@
     <string name="accessibility_info_on_desc">Hareketi devre dışı bırakmak istiyorsanız, hizmeti devre dışı bırakmak için dokunun</string>
     <string name="accessibility_info_toast">Erişilebilirlik hizmeti listesinden "Tap, Tap"i seçin, anahtarı açın ve devam etmek için Tap, Tap\'e dönün</string>
     <string name="menu_alpha">Bu uygulama alphadır. Bilgi için dokunun.</string>
-    <string name="bs_alpha">Bu uygulama geliştirmenin ilk aşamasındadır ve birçok cihazda test edilmesine izin vermek için "Alpha" durumunda piyasaya sürülmüştür. Bir hatayla karşılaşırsanız, lütfen Github'da bir sorun olarak bildirin. Bir özellik istemek isterseniz, XDA konusuna yazın veya Github'da isteyin.\n\nGüncellemeler için Labs veya XDA konusunu tekrar kontrol edin.\n\nGeliştirme sırasında gösterdiğiniz sabır için teşekkürler.</string>
+    <string name="bs_alpha">Bu uygulama geliştirmenin ilk aşamasındadır ve birçok cihazda test edilmesine izin vermek için "Alpha" durumunda piyasaya sürülmüştür. Bir hatayla karşılaşırsanız, lütfen Github\'da bir sorun olarak bildirin. Bir özellik istemek isterseniz, XDA konusuna yazın veya Github\'da isteyin.\n\nGüncellemeler için Labs veya XDA konusunu tekrar kontrol edin.\n\nGeliştirme sırasında gösterdiğiniz sabır için teşekkürler.</string>
     <string name="bs_alpha_title">Alpha</string>
 
     <string name="category_about">Hakkında</string>
-    <string name="about">%1s v%2s</string>
-    <string name="about_summary">XDA üyesi Kieron Quinn / Quinny899 tarafından oluşturulmuştur\nKatkıda bulunanlara teşekkürler: João Dias, timfedo, Giorgio Cantoni, Fedor Shatokhin, Rodrigo Souza, Petro Bilyi, Kevin Kung, hjthhthjt, baldapps, NitroFuN, Arthur Fontaine, ZonaRMR, Khanh Le, Gregor Wünsch, Fatih Fırıncı</string>
+    <string name="about_summary">XDA üyesi Kieron Quinn / Quinny899 tarafından oluşturulmuştur\nKatkıda bulunanlara teşekkürler: %1s</string>
     <string name="xda_thread">XDA Konusu</string>
     <string name="github">GitHub</string>
     <string name="libraries">Üçüncü taraf kütüphaneleri</string>
