@@ -1,13 +1,13 @@
 <resources>
     <string name="accessibility_service_description">Служба доступности TapTap\n\n<b>Важное примечание: данные не собираются ни от одного из ваших приложений. Этот сервис просто используется для поддержания активного распознавания и взаимодействия с устройством.</b></string>
-    <string name="toast_no_action_selected">Действие не выбрано</string>
+    <string name="toast_no_action_selected">Действие не выбрано, так не пойдёт</string>
     <string name="launch_accessibility">Доступность запуска</string>
     <string name="setting_gesture">Жесты</string>
     <string name="setting_gesture_desc">Настройте работу жестов</string>
     <string name="setting_actions">Действия</string>
     <string name="settings_actions_desc">Установите действия, которые будут выполняться при использовании жеста</string>
     <string name="setting_gates">Запреты</string>
-    <string name="setting_gates_desc">Установите ситуации, когда жест не должен запускать действие</string>
+    <string name="setting_gates_desc">Выберите ситуации, действие не будет запускаться</string>
     <string name="setting_feedback">Обратная связь</string>
     <string name="setting_feedback_desc">Установите, как устройство уведомляет вас о запуске жеста</string>
     <string name="setting_gesture_model">Модель устройства</string>
@@ -41,15 +41,15 @@
     <string name="action_home_desc">Имитировать нажатия кнопки домой</string>
     <string name="action_back">Назад</string>
     <string name="action_back_desc">Имитировать нажатия кнопки назад</string>
-    <string name="action_recents">Открыть меню недавних приложений</string>
+    <string name="action_recents">Меню недавних приложений</string>
     <string name="action_recents_desc">Открыть меню недавних приложений, имитируя нажатие кнопки недавние. На устройствах, которые его поддерживают, использование этого действия, когда меню недавних уже открыто, переключится на первое фоновое приложение</string>
-    <string name="action_notifications">Открыть уведомления</string>
+    <string name="action_notifications">Уведомления</string>
     <string name="action_notifications_desc">Открыть шторку уведомлений</string>
     <string name="action_quick_settings">Быстрые настройки</string>
     <string name="action_quick_settings_desc">Открыть панель быстрых настроек</string>
     <string name="action_screenshot">Снимок экрана</string>
     <string name="action_screenshot_desc">Сделать скриншот, используя системный интерфейс</string>
-    <string name="action_lock_screen">Заблокировать экран</string>
+    <string name="action_lock_screen">Блокировка экрана</string>
     <string name="action_lock_screen_desc">Заблокировать экран путем имитации нажатия кнопки питания</string>
     <string name="action_toggle_pause">Воспроизведение / пауза</string>
     <string name="action_toggle_pause_desc">Воспроизвести / приостановить текущее воспроизведение</string>
@@ -76,6 +76,8 @@
     <string name="search">Поиск</string>
     <string name="show_system_apps">Показать системные приложения</string>
     <string name="select_an_app">Выберите приложение</string>
+    <string name="action_power_dialog">Меню питания</string>
+    <string name="action_power_dialog_desc">Открыть меню питания, имитируя нажатие кноки питания</string>
     <string name="action_split_screen">Разделить экран</string>
     <string name="action_split_screen_desc">Начать или остановить разделение экрана с текущим приложением (не рабаотает на домашнем экране)</string>
     <string name="setting_gesture_sensitivity">Чувствительность</string>
@@ -102,14 +104,15 @@
 
     <string name="battery_optimisation">Отключить энергосбережение</string>
     <string name="battery_and_optimisation">Батарея &amp; Энергосбережение</string>
-    <string name="battery_and_optimisation_desc">Информация о том, почему Tap, Tap расходует батарею и почему оно может быть убито устройством при работе в фоновом режиме (и как это исправить)</string>
+    <string name="battery_and_optimisation_desc">Информация о том, почему Tap, Tap расходует батарею и почему оно может быть убито устройством при работе в фоновом режиме (а также как это исправить)</string>
+    <string name="bs_battery_content">Tap, Tap использует возможность работы в фоновом режиме, чтобы \'слушать'\ постукивания по задней части устройства, используя Акселерометр и Гироскоп. Поэтому Tap, Tap может потреблять совсем чуть-чуть батареи.\n\nВ силу ранней стадии разработки, Tap, Tap пока не оптимизирован полностью, и время работы батареи может улучшиться с помощью исправлений в будущем, но в настоящее время немного меньшее время автономной работы является следствием наличия этой функции.\n\nВдобавок, оболочки некоторых производителей, такие как MIUI или OneUI, болле агрессивны к работе в фоновом режиме (включая службу спец. возможностей) нежели рекомендует Google. Если Tap, Tap перестаёт работать на Вашем устройстве после закрытия даже после отключения энергосбережения в настройках спец. возможностей, пожалуста, попробуйте следущее:\n• Заблокируйте приложение в памяти (обычно это можно сделать в меню недавних приложений)\n• Отключите любое другое энергосбережение для приложения (обычно через Нстройки > Приложения > Батарея)\n• Отключите Оптимизацию MIUI в настройках для разработчиков (только для пользователей MIUI)\n\nБольше информации о приложениях, которые убивает система и предложения по исправлению на Вашем устройстве можно найти на dontkillmyapp.com</string>
     <string name="bs_battery_positive">Перейти на dontkillmyapp.com</string>
     <string name="accessibility_info_off">Служба доступности отключена</string>
     <string name="accessibility_info_off_desc">Жест в настоящее время не будет работать. Нажмите, чтобы включить</string>
     <string name="accessibility_info_on">Служба специальных возможностей включена</string>
     <string name="accessibility_info_on_desc">Если Вы хотите отключить жест, нажмите, чтобы отключить службу</string>
     <string name="accessibility_info_toast">Выберите «Tap, Tap» из списка услуг специальных возможностей, переключите его и вернитесь к Tap, Tap, чтобы продолжить</string>
-    <string name="menu_alpha">Это приложение в альфа тестировании. Нажмите для информации.</string>
+    <string name="menu_alpha">Это приложение на стадии альфа тестирования. Нажмите для информации.</string>
     <string name="bs_alpha">Это приложение находится на ранней стадии разработки и было выпущено в состоянии «Альфа», что позволяет проводить тестирование на многих устройствах. Если вы столкнулись с ошибкой, сообщите о ней на GitHub. Если вы хотите запросить функцию, опубликуйте ее в теме XDA или запросите ее на GitHub. \n\nПроверьте на XDA, в лаборатории или в теме, обновления, как только они станут доступны. \n\nСпасибо за терпение в процессе разработки.</string>
     <string name="bs_alpha_title">Альфа</string>
 
@@ -127,7 +130,7 @@
     <string name="bs_tasker_title">Требуется разрешение</string>
     <string name="bs_tasker_negative">Позже</string>
     <string name="bs_tasker_positive">Открыть настройки Tasker</string>
-     <string name="action_volume_panel">Показать панель громкости</string>
+     <string name="action_volume_panel">Панель громкости</string>
     <string name="action_volume_panel_desc">Показать панель громкости системы</string>
     <string name="action_volume_up">Увеличить громкость</string>
     <string name="action_volume_up_desc">Увеличить громкость текущего звукового потока</string>
@@ -135,10 +138,10 @@
     <string name="action_volume_down_desc">Уменьшить громкость текущего звукового потока</string>
     <string name="action_volume_toggle_mute">Переключить звук</string>
     <string name="action_volume_toggle_mute_desc">Включить / выключить звук для текущего звукового потока</string>
-    <string name="action_wake_device">Пробудить устройства</string>
+    <string name="action_wake_device">Пробудить устройство</string>
     <string name="action_wake_device_desc">Пробудить устройство, если экран выключен. Это переопределяет настройку в настройках обратной связи. Пропускается, если дисплей включен, и не будет работать, если у вас включен параметр «Отключить отображение»</string>
-    <string name="action_launch_shortcut">Запустить действие</string>
-    <string name="action_launch_shortcut_desc">Запустить действие в приложении, например маршруты в Google Картах</string>
+    <string name="action_launch_shortcut">Запустить быстрое действие</string>
+    <string name="action_launch_shortcut_desc">Запустить быстрое действие в приложении, например маршруты в Google Картах</string>
     <string name="action_launch_shortcut_desc_formattable">Запустить %1s (действие в приложении)</string>
     <string name="action_launch_shortcut_toast">Это действие не поддерживается в данный момент</string>
     <string name="call_phone_permission_toast">Чтобы использовать это действие, предостваьте доступ Tap, Tap к телефону в настройках разрешений вашего устройства</string>
