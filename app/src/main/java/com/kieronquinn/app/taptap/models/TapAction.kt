@@ -43,7 +43,7 @@ enum class TapAction(val clazz: Class<*>, val category: TapActionCategory, @Stri
     TOGGLE_PAUSE(MusicAction::class.java, TapActionCategory.ACTIONS, R.string.action_toggle_pause, R.string.action_toggle_pause_desc, R.drawable.ic_action_toggle_pause, true, true, true),
     PREVIOUS(MusicAction::class.java, TapActionCategory.ACTIONS, R.string.action_previous, R.string.action_previous_desc, R.drawable.ic_action_previous, true, true, true),
     NEXT(MusicAction::class.java, TapActionCategory.ACTIONS, R.string.action_next, R.string.action_next_desc, R.drawable.ic_action_next, true, true, true),
-    SOUND_PROFILER(SoundProfileAction::class.java, TapActionCategory.ACTIONS, R.string.actions_sound_profile, R.string.actions_sound_profile_desc, R.drawable.ic_baseline_vibration_24, true, true),
+    SOUND_PROFILER(SoundProfileAction::class.java, TapActionCategory.ACTIONS, R.string.actions_sound_profile, R.string.actions_sound_profile_desc, R.drawable.ic_baseline_vibration_24, true, true, true, dataType = ActionDataTypes.ACCESS_NOTIFICATION_POLICY),
     VOLUME_PANEL(VolumeAction::class.java, TapActionCategory.ACTIONS, R.string.action_volume_panel, R.string.action_volume_panel_desc, R.drawable.ic_action_volume_panel, true, true, true),
     VOLUME_UP(VolumeAction::class.java, TapActionCategory.ACTIONS, R.string.action_volume_up, R.string.action_volume_up_desc, R.drawable.ic_action_volume_up, true, true, true),
     VOLUME_DOWN(VolumeAction::class.java, TapActionCategory.ACTIONS, R.string.action_volume_down, R.string.action_volume_down_desc, R.drawable.ic_action_volume_down, true, true, true),
@@ -54,5 +54,6 @@ enum class ActionDataTypes {
     PACKAGE_NAME,
     CAMERA_PERMISSION,
     TASKER_TASK,
-    SHORTCUT
+    SHORTCUT,
+    ACCESS_NOTIFICATION_POLICY
 }

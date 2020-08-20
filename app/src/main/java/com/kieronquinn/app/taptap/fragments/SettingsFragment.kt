@@ -33,7 +33,6 @@ class SettingsFragment : BaseSettingsFragment() {
     private  val TAG = "SettingsFragment"
     private val returnReceiver = object: BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent) {
-            Log.d(TAG, "onReceive: + dnd recieved")
             context?.unregisterReceiver(this)
             try {
                 startActivity(Intent(context, SettingsActivity::class.java))
@@ -128,24 +127,12 @@ class SettingsFragment : BaseSettingsFragment() {
                 true
             }
         }
-        getPreference("dnd_access") {
-            it.setOnPreferenceClickListener { _ ->
-                context?.registerReceiver(returnReceiver, IntentFilter(TapAccessibilityService.KEY_ACCESSIBILITY_START))
-                startActivity(Intent(Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS))
-                activity?.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-                Toast.makeText(it.context, R.string.dnd_info_toast, Toast.LENGTH_LONG).show()
-                true
-            }
-        }
         val powerManager = context?.getSystemService(Context.POWER_SERVICE) as PowerManager
         getPreference("battery_optimisation"){
             it.isVisible = !powerManager.isIgnoringBatteryOptimizations(BuildConfig.APPLICATION_ID)
         }
 
         val notificationManager = context?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        getPreference("dnd_access"){
-            it.isVisible = !notificationManager.isNotificationPolicyAccessGranted
-        }
         view?.post {
             getPreference("accessibility"){
                 if(isServiceEnabled) {
@@ -156,9 +143,6 @@ class SettingsFragment : BaseSettingsFragment() {
             }
             getPreference("battery_optimisation"){
                 it.setBackgroundTint(ContextCompat.getColor(it.context, R.color.icon_circle_10))
-            }
-            getPreference("dnd_access"){
-                it.setBackgroundTint(ContextCompat.getColor(it.context, R.color.icon_circle_12))
             }
         }
     }

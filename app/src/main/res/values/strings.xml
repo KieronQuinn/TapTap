@@ -196,6 +196,13 @@
     <string name="item_action_when_add">Add…</string>
     <string name="item_action_blocked_info">This action will prevent any actions below it from being run as it is blocking (it will never be skipped).\nYou must add a requirement or remove this action if you want the actions below to be executed.</string>
     <string name="gate_music">Music Playing</string>
+    <string name="gate_music_inverse">No Music Playing</string>
+    <string name="gate_music_desc">Blocks the gesture when there is music playing</string>
     <string name="gate_music_desc_when">Run only when there is music playing</string>
-    <string name="gate_music_desc_inverse">Blocks the gesture when there is no music playing</string>
+    <string name="gate_music_desc_when_inverse">Blocks the gesture when there is no music playing</string>
+    <string name="gate_music_desc_inverse">Run only when there is no music playing</string>
+    <string name="notification_policy_grant">Continue</string>
+    <string name="bs_notification_policy_content">Changing the ringer mode requires Do Not Disturb access to be able to manage the Do Not Disturb state. Please grant the permission in the settings, by clicking below, selecting Tap, Tap, granting the permission and returning back to this screen.</string>
+
+
 </resources>
