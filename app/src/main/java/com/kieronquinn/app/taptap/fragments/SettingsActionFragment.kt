@@ -1,10 +1,13 @@
 package com.kieronquinn.app.taptap.fragments
 
+import android.animation.ValueAnimator
 import android.content.res.ColorStateList
 import android.graphics.Canvas
 import android.graphics.drawable.AnimatedVectorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.*
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.view.marginBottom
 import androidx.fragment.app.setFragmentResultListener
@@ -13,11 +16,17 @@ import androidx.recyclerview.widget.ItemTouchHelper.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.TransitionManager
+import com.google.android.material.snackbar.Snackbar
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.adapters.ActionAdapter
 import com.kieronquinn.app.taptap.fragments.bottomsheets.ActionBottomSheetFragment
+import com.kieronquinn.app.taptap.fragments.bottomsheets.GateBottomSheetFragment
 import com.kieronquinn.app.taptap.fragments.bottomsheets.GenericBottomSheetFragment
+import com.kieronquinn.app.taptap.fragments.gate.GateListFragment
 import com.kieronquinn.app.taptap.models.ActionInternal
+import com.kieronquinn.app.taptap.models.GateInternal
+import com.kieronquinn.app.taptap.models.TapGate
+import com.kieronquinn.app.taptap.models.WhenGateInternal
 import com.kieronquinn.app.taptap.models.store.ActionListFile
 import com.kieronquinn.app.taptap.utils.*
 import dev.chrisbanes.insetter.applySystemWindowInsetsToMargin
@@ -29,6 +38,7 @@ class SettingsActionFragment : BaseFragment() {
 
     companion object {
         const val addResultKey = "ADD_ACTION_RESULT"
+        const val addResultKeyGate = "ADD_ACTION_GATE_RESULT"
         const val PREF_KEY_ACTION_HELP_SHOWN = "action_help_shown"
     }
 
@@ -79,7 +89,7 @@ class SettingsActionFragment : BaseFragment() {
                         val adapter = recyclerView.adapter as ActionAdapter
                         val from = viewHolder.adapterPosition
                         val to = target.adapterPosition
-                        adapter.moveItem(from, to)
+                        adapter.moveItem(from, to, recyclerView)
                         adapter.notifyItemMoved(from, to)
                         saveToFile()
                         return true
@@ -96,7 +106,14 @@ class SettingsActionFragment : BaseFragment() {
                                 draggingViewHolder = viewHolder
                                 fakeCard.cloneSize(this)
                                 viewHolder.itemView.visibility = View.INVISIBLE
+                                fakeCard.item_action_when.visibility = viewHolder.itemView.item_action_when.visibility
+                                fakeCard.item_action_blocked_info.visibility = viewHolder.itemView.item_action_blocked_info.visibility
                                 fakeCard.visibility = View.VISIBLE
+                                fakeCard.item_action_chips.adapter = viewHolder.itemView.item_action_chips.adapter
+                                fakeCard.item_action_chips.layoutManager?.apply {
+                                    this as LinearLayoutManager
+                                    scrollToPositionWithOffset(0, -1 * viewHolder.itemView.item_action_chips.computeHorizontalScrollOffset())
+                                }
                                 fakeCard.item_action_name.text = item_action_name.text
                                 fakeCard.item_action_icon.setImageDrawable(item_action_icon.drawable)
                                 fakeCard.item_action_description.text = item_action_description.text
@@ -123,6 +140,11 @@ class SettingsActionFragment : BaseFragment() {
                         viewHolder.itemView.visibility = View.VISIBLE
                         fakeCard.visibility = View.GONE
                         setFabState(false)
+                        recyclerView.adapter?.run {
+                            this as ActionAdapter
+                            notifyItemChanged(viewHolder.adapterPosition)
+                            notifyAllItemsBelowBarrier()
+                        }
                     }
 
                     override fun onChildDrawOver(c: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder?, dX: Float, dY: Float, actionState: Int, isCurrentlyActive: Boolean) {
@@ -148,6 +170,18 @@ class SettingsActionFragment : BaseFragment() {
                     }
                 }
         ItemTouchHelper(simpleItemTouchCallback)
+    }
+
+    private fun notifyAllItemsBelowBarrier(){
+        recyclerView?.adapter?.run {
+            this as ActionAdapter
+            actions.find { it.isBlocking() }?.let {
+                val index = actions.indexOf(it)
+                for(i in index until itemCount){
+                    notifyItemChanged(i)
+                }
+            }
+        }
     }
 
     private fun setFabState(removeEnabled: Boolean) {
@@ -182,6 +216,17 @@ class SettingsActionFragment : BaseFragment() {
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = ActionAdapter(recyclerView.context, actions) {
             itemTouchHelper.startDrag(it)
+        }.apply {
+            chipAddCallback = { position, gates ->
+                showGateBottomSheet(position, gates)
+            }
+            chipClickCallback = {
+                Toast.makeText(context, getString(it.whenDescriptionRes), Toast.LENGTH_LONG).show()
+            }
+            saveCallback = {
+                saveToFile()
+                notifyAllItemsBelowBarrier()
+            }
         }
         fab.applySystemWindowInsetsToMargin(bottom = true)
         fab.post {
@@ -195,16 +240,46 @@ class SettingsActionFragment : BaseFragment() {
             val newItem = bundle.get(addResultKey) as ActionInternal
             actions.add(newItem)
             recyclerView.adapter?.notifyItemInserted(actions.size)
+            recyclerView.adapter?.run {
+                this as ActionAdapter
+                notifyItemChanged(currentInfoPosition ?: 0)
+            }
             recyclerView?.layoutManager?.scrollToPosition(actions.size - 1)
             saveToFile()
         }
         if (sharedPreferences?.getBoolean(PREF_KEY_ACTION_HELP_SHOWN, false) == false) {
             showHelpBottomSheet()
         }
+        //Disable fake card's action list
+        fakeCard.item_action_chips.setOnTouchListener { v, event -> true }
     }
 
     private fun showActionBottomSheet() {
         ActionBottomSheetFragment().show(parentFragmentManager, "bs_action")
+    }
+
+    private fun showGateBottomSheet(position: Int, currentGates: Array<TapGate>) {
+        setFragmentResultListener(addResultKeyGate){ key, bundle ->
+            val newItem = bundle.get(addResultKeyGate) as GateInternal
+            val convertedItem = WhenGateInternal(newItem.gate, false, newItem.data)
+            recyclerView?.adapter?.run {
+                this as ActionAdapter
+                actions[position].whenList.add(convertedItem)
+                recyclerView?.findViewHolderForAdapterPosition(position)?.itemView?.item_action_chips?.adapter?.run {
+                    notifyItemInserted(itemCount - 1)
+                }
+                notifyItemChanged(position)
+                notifyAllItemsBelowBarrier()
+                saveToFile()
+            }
+            Log.d("ConvertedItem", "Item ${convertedItem.gate.name} ${convertedItem.data}")
+        }
+        GateBottomSheetFragment().apply {
+            arguments = Bundle().apply {
+                putInt(GateListFragment.KEY_POSITION, position)
+                putSerializable(GateListFragment.KEY_PASSED_GATES, TapGate.values().filter { it.dataType != null || !currentGates.contains(it) }.toTypedArray())
+            }
+        }.show(parentFragmentManager, "bs_when_gates")
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -19,7 +19,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:alpha="0.75"
-        android:elevation="100dp">
+        android:elevation="100dp"
+        android:animateLayoutChanges="true">
 
         <include layout="@layout/item_action"
             android:layout_width="match_parent"
@@ -27,14 +28,16 @@
             android:elevation="100dp"
             android:id="@+id/fakeCard"
             android:visibility="gone"
+            android:animateLayoutChanges="true"
             android:layout_gravity="bottom"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
     </FrameLayout>
 
-    <FrameLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:id="@+id/coordinator"
         android:animateLayoutChanges="true">
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
@@ -51,6 +54,6 @@
             android:textColor="@color/fab_text"
             app:icon="@drawable/ic_fab_add"/>
 
-    </FrameLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </FrameLayout>

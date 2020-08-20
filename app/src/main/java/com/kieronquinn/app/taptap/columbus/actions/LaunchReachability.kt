@@ -7,8 +7,9 @@ import android.content.Intent
 import android.content.IntentFilter
 import com.kieronquinn.app.taptap.TapAccessibilityService
 import com.kieronquinn.app.taptap.activities.ReachabilityActivity
+import com.kieronquinn.app.taptap.models.WhenGateInternal
 
-class LaunchReachability(context: Context) : ActionBase(context) {
+class LaunchReachability(context: Context, whenGates: List<WhenGateInternal>) : ActionBase(context, whenGates) {
 
     companion object {
         const val INTENT_ACTION_START_SPLIT_SCREEN = "ACTION_START_SPLIT_SCREEN"
@@ -34,10 +35,6 @@ class LaunchReachability(context: Context) : ActionBase(context) {
                 INTENT_ACTION_ENDING -> context.unregisterReceiver(this)
             }
         }
-    }
-
-    override fun isAvailable(): Boolean {
-        return true
     }
 
     override fun onTrigger() {

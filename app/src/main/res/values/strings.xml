@@ -27,18 +27,25 @@
     <!-- Gates -->
     <string name="gate_charging_state">Charging</string>
     <string name="gate_charging_state_desc">Blocks gesture for half a second after the device is plugged in</string>
+    <string name="gate_charging_state_desc_when">Run only when the device has just been plugged in (half a second limit)</string>
     <string name="gate_telephony_activity">On call</string>
     <string name="gate_telephony_activity_desc">Blocks gesture when the device is on a call. Only standard calls are supported - not VoIP eg. WhatsApp</string>
+    <string name="gate_telephony_activity_desc_when">Run only when the device is on a call</string>
     <string name="gate_usb_state">USB device</string>
     <string name="gate_usb_state_desc">Blocks gesture for half a second when a USB device, such as a thumb drive, is plugged in</string>
+    <string name="gate_usb_state_desc_when">Run only when a USB device has just been plugged in (half a second limit)</string>
     <string name="gate_camera_visibility">Camera</string>
     <string name="gate_camera_visibility_desc">Blocks gesture when any camera app is opened. Note: This will break the skipping functionality of the Launch Camera action.</string>
+    <string name="gate_camera_visibility_desc_when">Run only when the camera app is open</string>
     <string name="gate_power_state">Display off</string>
     <string name="gate_power_state_desc">Blocks gesture when the device\'s screen is off</string>
+    <string name="gate_power_state_desc_when">Run only when the screen is off</string>
     <string name="gate_power_state_inverse">Display on</string>
     <string name="gate_power_state_inverse_desc">Blocks gesture when the device\'s screen is on</string>
+    <string name="gate_power_state_inverse_desc_when">Run only when the screen is on</string>
     <string name="gate_app_showing">App showing</string>
     <string name="gate_app_showing_desc">Blocks gesture when an app is showing on screen</string>
+    <string name="gate_app_showing_desc_when">Run only when an app is showing on screen</string>
     <string name="gate_app_showing_desc_formatted">Blocks gesture when an %1s is showing on screen</string>
     <string name="action_launch_camera">Launch camera</string>
     <string name="action_launch_camera_desc">Launch your default camera app. This action will be skipped if the camera is already running.</string>
@@ -77,6 +84,7 @@
     <string name="action_launch_app_desc">Launch an app</string>
     <string name="action_launch_app_desc_formattable">Launch %1s. This action will be skipped if it is already running.</string>
     <string name="fab_add_gate">Add Gate</string>
+    <string name="add_gate_when">Add Requirement</string>
     <string name="add_gate_category_state">State</string>
     <string name="add_gate_category_action">Action</string>
     <string name="nothing_found">Nothing found</string>
@@ -153,6 +161,7 @@
     <string name="setting_feedback_override_dnd_desc">Ignore the device\'s DND setting and always vibrate when triggered</string>
     <string name="gate_keyboard_visibility">Keyboard open</string>
     <string name="gate_keyboard_visibility_desc">Blocks gesture when the keyboard is open and in use. Note that this may not always work if you are not actively typing.</string>
+    <string name="gate_keyboard_visibility_desc_when">Run only when the keyboard is open and in use. Note that this may not always work if you are not actively typing.</string>
     <string name="battery_optimisation">Disable Battery Optimisation</string>
     <string name="battery_optimisation_desc">This will help keep Tap, Tap running (but not guarantee that it will always work, see the battery option below). Tap to disable.</string>
 
@@ -163,6 +172,31 @@
 
     <string name="gate_orientation_landscape">Landscape orientation</string>
     <string name="gate_orientation_landscape_desc">Blocks gesture when the phone is in landscape orientation</string>
+    <string name="gate_orientation_landscape_desc_when">Run only when the device is in landscape orientation</string>
     <string name="gate_orientation_portrait">Portrait orientation</string>
     <string name="gate_orientation_portrait_desc">Blocks gesture when the phone is in portrait orientation</string>
+    <string name="gate_orientation_portrait_desc_when">Run only when the device is in portrait orientation</string>
+    <string name="gate_table">Table</string>
+    <string name="gate_table_desc">Blocks the gesture when the device is placed down flat, for example on a table</string>
+    <string name="gate_table_desc_when">Run only when the device is flat, for example on a table</string>
+    <string name="gate_pocket">Pocket</string>
+    <string name="gate_pocket_desc">Blocks the gesture when the proximity sensor detects an object. This blocks the gesture when your device is in your pocket, or flipped on a table</string>
+    <string name="gate_pocket_desc_when">Run only when the proximity sensor detects an object. This happens when the device is in your pocket, or flipped on a table</string>
+    <string name="gate_headset_inverse">No Headset</string>
+    <string name="gate_headset_desc_inverse">Blocks the gesture when there is <b>no</b> wired or wireless headset connected. This is best used with the play/pause/skip controls to prevent music from playing over the speakers</string>
+    <string name="gate_headset_desc_when_inverse">Run only when there is <b>no</b> wired or wireless headset connected</string>
+    <string name="gate_headset">Headset</string>
+    <string name="gate_headset_desc">Blocks the gesture when there <b>is</b> a wired or wireless headset connected.</string>
+    <string name="gate_headset_desc_when">Run only when there <b>is</b> a wired or wireless headset connected</string>
+    <string name="item_action_when">Only run action when…</string>
+    <string name="item_action_when_multiple">Only run action when (any of)…</string>
+    <string name="item_action_when_add_empty">Add requirement…</string>
+    <string name="item_action_when_add">Add…</string>
+    <string name="item_action_blocked_info">This action will prevent any actions below it from being run as it is blocking (it will never be skipped).\nYou must add a requirement or remove this action if you want the actions below to be executed.</string>
+    <string name="gate_music">Music Playing</string>
+    <string name="gate_music_desc">Blocks the gesture when there is music playing</string>
+    <string name="gate_music_desc_when">Run only when there is music playing</string>
+    <string name="gate_music_inverse">Music Not Playing</string>
+    <string name="gate_music_desc_inverse">Blocks the gesture when there is no music playing</string>
+    <string name="gate_music_desc_when_inverse">Run only when there is no music playing</string>
 </resources>

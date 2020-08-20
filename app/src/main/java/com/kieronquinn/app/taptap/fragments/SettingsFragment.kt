@@ -23,13 +23,18 @@ import com.kieronquinn.app.taptap.fragments.bottomsheets.GenericBottomSheetFragm
 import com.kieronquinn.app.taptap.preferences.Preference
 import com.kieronquinn.app.taptap.utils.Links
 import com.kieronquinn.app.taptap.utils.isAccessibilityServiceEnabled
+import java.lang.RuntimeException
 
 class SettingsFragment : BaseSettingsFragment() {
 
     private val returnReceiver = object: BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent) {
             context?.unregisterReceiver(this)
-            startActivity(Intent(context, SettingsActivity::class.java))
+            try {
+                startActivity(Intent(context, SettingsActivity::class.java))
+            }catch (e: RuntimeException){
+                //Fragment isn't attached
+            }
         }
     }
 

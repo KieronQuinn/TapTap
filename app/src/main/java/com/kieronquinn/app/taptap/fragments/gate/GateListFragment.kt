@@ -26,6 +26,17 @@ class GateListFragment : Fragment(), GateAdapter.GateCallback {
 
     private var itemClickListener: ((GateInternal) -> Unit)? = null
 
+    companion object {
+        const val KEY_PASSED_GATES = "passed_gates"
+        const val KEY_POSITION = "position"
+    }
+
+    private val passedGates by lazy {
+        if(arguments?.containsKey(KEY_PASSED_GATES) == true) {
+            arguments?.getSerializable(KEY_PASSED_GATES) as Array<TapGate>
+        }else null
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_add_action_list, container, false)
     }
@@ -36,10 +47,18 @@ class GateListFragment : Fragment(), GateAdapter.GateCallback {
         recyclerView.layoutManager = LinearLayoutManager(recyclerView.context)
         val currentGates = GateListFile.loadFromFile(recyclerView.context).map { it.gate }
         val gates = TapGate.values().mapNotNull {
-            if(!CONFIGURABLE_GATES.contains(it) && currentGates.contains(it)) null
-            else GateInternal(it, false)
+            if(passedGates != null){
+                if(passedGates?.contains(it) == true){
+                    GateInternal(it, false)
+                }else{
+                    null
+                }
+            }else{
+                if(!CONFIGURABLE_GATES.contains(it) && currentGates.contains(it)) null
+                else GateInternal(it, false)
+            }
         }.toMutableList()
-        val adapter = GateAdapter(recyclerView.context, gates, true, this)
+        val adapter = GateAdapter(recyclerView.context, gates, true, this, passedGates != null)
         recyclerView.adapter = adapter
         recyclerView.setOnScrollChangeListener { _, _, _, _, _ ->
             toolbarListener?.invoke(recyclerView.computeVerticalScrollOffset() > 0)
@@ -51,7 +70,7 @@ class GateListFragment : Fragment(), GateAdapter.GateCallback {
     }
 
     fun getToolbarTitle(): String {
-        return getString(R.string.fab_add_gate)
+        return if(passedGates != null) getString(R.string.add_gate_when) else getString(R.string.fab_add_gate)
     }
 
     fun setToolbarListener(listener: (Boolean) -> Unit){

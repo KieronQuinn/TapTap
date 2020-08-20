@@ -20,6 +20,7 @@
     <color name="accessibility_check_circle">#dcedc8</color>
     <color name="accessibility_cross_circle">#ffcdd2</color>
     <color name="reachabilityBackground">#000</color>
+    <color name="divider">#809E9E9E</color>
 
     <color name="icon_circle_0">#D7E5F8</color>
     <color name="icon_circle_1">#F8D7DF</color>

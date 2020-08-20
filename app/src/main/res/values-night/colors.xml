@@ -19,6 +19,7 @@
     <color name="accessibility_cross_circle">#3C282E</color>
     <color name="accessibility_check">#A2C37B</color>
     <color name="accessibility_check_circle">#273D35</color>
+    <color name="divider">#80212121</color>
 
     <color name="icon_circle_0">#27303F</color>
     <color name="icon_circle_1">#3C282E</color>
