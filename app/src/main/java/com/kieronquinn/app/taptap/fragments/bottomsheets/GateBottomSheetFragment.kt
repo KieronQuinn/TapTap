@@ -59,7 +59,7 @@ class GateBottomSheetFragment : BottomSheetDialogFragment(), NavController.OnDes
 
     private val resultKey by lazy {
         if(arguments?.containsKey(GateListFragment.KEY_PASSED_GATES) == true) SettingsActionFragment.addResultKeyGate
-        else SettingsActionFragment.addResultKey
+        else SettingsGateFragment.addResultKey
     }
 
     override fun getTheme(): Int {
