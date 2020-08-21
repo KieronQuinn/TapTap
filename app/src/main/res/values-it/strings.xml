@@ -54,8 +54,8 @@
     <string name="action_quick_settings_desc">Apri il pannello delle impostazioni rapide</string>
     <string name="action_screenshot">Screenshot</string>
     <string name="action_screenshot_desc">Fai uno screenshot</string>
-    <string name="action_lock_screen">Lock the screen</string>
-    <string name="action_lock_screen_desc">Lock lo schermo simulando la pressione del tasto accensione</string>
+    <string name="action_lock_screen">Blocca lo schermo</string>
+    <string name="action_lock_screen_desc">Blocca lo schermo simulando la pressione del tasto accensione</string>
     <string name="action_toggle_pause">Metti in esecuzione/Metti in pausa</string>
     <string name="action_toggle_pause_desc">Metti in esecuzione/Metti in pausa la traccia audio corrente</string>
     <string name="action_previous">Precedente</string>
@@ -64,7 +64,7 @@
     <string name="action_next_desc">Metti in esecuzione la traccia audio successiva</string>
     <string name="fab_add_action">Aggiungi azione</string>
     <string name="fab_remove_action">Rimuovi</string>
-    <string name="fab_remove_action_drop">Cancella per rimuovere</string>
+    <string name="fab_remove_action_drop">Qui per rimuovere</string>
     <string name="add_action_category_launch">Lancia</string>
     <string name="add_action_category_utilities">Utilità</string>
     <string name="add_action_category_actions">Azioni</string>
@@ -86,7 +86,7 @@
     <string name="bs_help_gate">Le eccezioni sono situazioni che possono bloccare le gesture dall\'eseguire azioni. Per eseguire qualsiasi azione, tutte le eccezioni impostate non devono essere verificate.\nSe una cerca condizione è verificata, ad esempio lo schermo è spento l\'eccezione "Schermo spento" è stata attivata, nessuna azione sarà eseguita. Puoi aggiungere un numero illimitato di eccezioni e abilitare o disabilitare singolarmente (invece di cancellarle e di ricrearle di nuovo)  per avere una configurazione più facile e veloce.</string>
     <string name="bs_help_gate_title">Cosa sono le eccezioni?</string>
     <string name="help">Aiuto</string>
-    <string name="action_launch_assistant">Lancia Assistente</string>
+    <string name="action_launch_assistant">Lancia Assistant</string>
     <string name="action_launch_assistant_desc">Lancia la tua app di assistenza di default</string>
     <string name="action_tasker_event">Evento Tasker</string>
     <string name="action_tasker_event_desc">Segnala un evento tramite il plugin Tasker</string>
@@ -110,7 +110,7 @@
     <string name="tasker_config_label">Doppio tap sul retro</string>
     <string name="action_tasker_task">Task di Tasker</string>
     <string name="action_tasker_task_desc">Esegui uno specifico task di Tasker</string>
-    <string name="action_tasker_event_toast">Tasker not installato o versione non supportata</string>
+    <string name="action_tasker_event_toast">Tasker non installato o versione non supportata</string>
     <string name="bs_tasker_content">Per lanciare un task di Tasker senza usare un plugin, devi abilitare l\'opzione \"Permetti accesso esterno\" nelle opzioni di Tasker. Se non hai questa opzione abilitata, questa azione verrà sempre saltata.</string>
     <string name="bs_tasker_title">Permesso richiesto</string>
     <string name="bs_tasker_negative">Dopo</string>
@@ -131,4 +131,33 @@
     <string name="action_launch_shortcut_desc_formattable">Lancia %1s</string>
     <string name="action_launch_shortcut_toast">Questo shortcut non è al momento supportato</string>
     <string name="call_phone_permission_toast">Devi concedere a Tap, Tap il permesso \"Telefono\" per usare questo shortcut. Per favore concedi l\'autorizzazione nelle impostazioni del dispositivo</string>
+        <string name="action_split_screen">Schermo diviso</string>
+    <string name="action_split_screen_desc">Attiva o disattiva lo schermo diviso per l\'app corrente (non funziona sull\'homescreen)</string>
+    <string name="action_reachability">Lancia schermo diviso app corrente</string>
+    <string name="action_reachability_desc">Sperimentale: Lancia una modalità schermo diviso con una metà vuota e l\'altra con l\'app corrente. Nota: Potresti aver bisogno di riaprire l\'app corrente quando si attiva e si termina questa modalità</string>
+    <string name="reachability_left_handed_info">Long press the notification icon to switch icon position</string>
+
+    <!-- Sensitivity slider labels -->
+    <string name="slider_sensitivity_very_low">Molto bassa</string>
+    <string name="slider_sensitivity_low">Bassa</string>
+    <string name="slider_sensitivity_normal">Normale</string>
+    <string name="slider_sensitivity_high">Alta</string>
+    <string name="slider_sensitivity_very_high">Molto alta</string>
+
+    <string name="setting_feedback_override_dnd">Vibra quando la modalità non disturbare è abilitata</string>
+    <string name="setting_feedback_override_dnd_desc">Ignora le impostazioni non disturbare e vibra sempre</string>
+    <string name="gate_keyboard_visibility">Tastiera aperta</string>
+    <string name="gate_keyboard_visibility_desc">Blocca le gesture quando la tastiera è aperta e in uso. Nota che questo potrebbe non funzionare sempre se tu non stai scrivendo ma la tastiera è comunque aperta.</string>
+    <string name="battery_optimisation">Disattiva ottimizzazioni batteria</string>
+    <string name="battery_optimisation_desc">Questo aiuterà Tap, Tap ad essere in esecuzione (ma non funzionerà sempre, vedi le opzioni batteria sotto). Tap per disattivare.</string>
+
+    <string name="battery_and_optimisation">Batteria &amp; Ottimizzazioni</string>
+    <string name="battery_and_optimisation_desc">Info sul perché Tap, Tap consuma la batteria e perché potrebbe essere chiusa dal tuo dispositivo quando in esecuzione in background (e come risolvere)</string>
+    <string name="bs_battery_content">Tap, Tap usa un servizio di accessiblità per rimanere in esecuzione e \'ascoltare\' i tap sul retro del dispositivo usando i sensori come accelerometro e giroscopio. Per questa ragione, Tap, Tap potrebbe usare batteria mentre in esecuzione in background.\n\nPer via del suo stato ancora sperimentale, Tap, Tap non è ancora stata pienamente ottimizzata e il consumo batteria sarà ottimizzato in futuro, ma al momento una leggera incremento del consumo batteria è una conseguenza di aver installato questa app.\n\nIn aggiunta, alcuni firmwares, come MIUI o OneUI, sono molto aggressivi nel chiudere processi in background (incluso i servizi di accessibilità) rispetto a quanto raccomanda Google. Se Tap, Tap non funziona più sul tuo dispositivo anche con le ottimizzazioni batteria disattivate, prova in questo modo:\n• Blocca l\'app in memoria (di solito dal menù app recenti)\n• Disattivare ogni altra ottimizzazione batteria per un app (di solito in Impostazioni > App o Impostazioni > Batteria)\n• Disattiva le ottimizzazioni MIUI nelle opzioni sviluppatori (solo per MIUI)\n\nPiù informazioni sulle app che vengono chiuse e altri suggerimenti su dontkillmyapp.com</string>
+    <string name="bs_battery_positive">Vai su dontkillmyapp.com</string>
+
+    <string name="gate_orientation_landscape">Orientamento panoramico</string>
+    <string name="gate_orientation_landscape_desc">Blocca le gesture quando il telefono è in orizzontale</string>
+    <string name="gate_orientation_portrait">Orientamento verticale</string>
+    <string name="gate_orientation_portrait_desc">Blocca le gesture quando il telefono è in verticale</string>
 </resources>

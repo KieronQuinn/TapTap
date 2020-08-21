@@ -56,6 +56,8 @@
     <string name="action_screenshot_desc">Sistem ekran görüntüsü arayüzünü kullanarak ekran görüntüsü alır</string>
     <string name="action_lock_screen">Ekranı kilitle</string>
     <string name="action_lock_screen_desc">Güç düğmesine basmayı taklit ederek ekranı kilitler</string>
+    <string name="action_power_dialog">Güç Menüsü</string>
+    <string name="action_power_dialog_desc">Güç düğmesine basılı tutulmuş gibi güç menüsünü açar</string>
     <string name="action_toggle_pause">Çal/Duraklat</string>
     <string name="action_toggle_pause_desc">Mevcut çalan müziği Çal/Duraklat</string>
     <string name="action_previous">Önceki</string>
@@ -82,6 +84,8 @@
     <string name="show_system_apps">Sistem uygulamalarını göster</string>
     <string name="select_an_app">Bir uygulama seç</string>
     <string name="setting_gesture_sensitivity">Duyarlılık</string>
+    <string name="setting_gesture_sensitivity_desc"><b>Deneysel:</b> Ne kadar kuvvetin \'gürültü\' olarak filtreleneceğini ayarlayarak hareketin hassasiyetini değiştirir. Daha düşük bir hassasiyet, hareketin çoğu cihazda daha zor olacağı anlamına gelirken, daha yüksek bir hassasiyet yanlış algılamaya daha yatkındır. Varsayılan tam olarak ortadadır.</string>
+
     <string name="bs_help_action_title">Eylemler nedir?</string>
     <string name="bs_help_gate">Geçitler, hareketin herhangi bir eylem gerçekleştirmesini engelleyebilecek durumlardır. Herhangi bir eylemin gerçekleştirilebilmesi için, etkinleştirilmiş tüm geçitler açık olmalıdır.\nÖrneğin ekran kapalıysa ve "Ekran kapalı" geçidi etkinse, herhangi bir eylem yapılmaz. İstediğiniz sayıda geçit ekleyebilir ve yapılandırmayı daha hızlı ve kolay hale getirmek için anahtarları kullanarak (silmek ve yeniden eklemek yerine) etkinleştirebilir/devre dışı bırakabilirsiniz.</string>
     <string name="bs_help_gate_title">Geçitler nedir?</string>
@@ -136,4 +140,28 @@
     <string name="action_reachability">Ulaşılabilirliği başlat</string>
     <string name="action_reachability_desc">Deneysel: Ekranın üst yarısı ve geçerli uygulama altta olacak şekilde bölünmüş ekran kullanarak ulaşılabilirlik-vari modunu başlatır. Not: Bu modu başlatırken ve sonlandırırken mevcut uygulamayı yeniden açmanız gerekebilir</string>
     <string name="reachability_left_handed_info">Simge konumunu değiştirmek için bildirim simgesine uzun basın</string>
+
+    <!-- Sensitivity slider labels -->
+    <string name="slider_sensitivity_very_low">Çok düşük</string>
+    <string name="slider_sensitivity_low">Düşük</string>
+    <string name="slider_sensitivity_normal">Normal</string>
+    <string name="slider_sensitivity_high">Yüksek</string>
+    <string name="slider_sensitivity_very_high">Çok yüksek</string>
+
+    <string name="setting_feedback_override_dnd">Rahatsız etmeyin etkinleştirildiğinde titret</string>
+    <string name="setting_feedback_override_dnd_desc">Cihazın DND ayarını yok sayar ve tetiklendiğinde daima titretir</string>
+    <string name="gate_keyboard_visibility">Klavye açıkken</string>
+    <string name="gate_keyboard_visibility_desc">Klavye açıkken ve kullanımdayken hareketi engeller. Aktif olarak yazmıyorsanız, bunun her zaman işe yaramayabileceğini unutmayın.</string>
+    <string name="battery_optimisation">Pil Optimizasyonunu Devre Dışı Bırak</string>
+    <string name="battery_optimisation_desc">Bu, Tap, Tap\'in çalışmaya devam etmesine yardımcı olur (ancak her zaman çalışacağını garanti etmez, aşağıdaki pil seçeneğine bakın). Devre dışı bırakmak için dokunun.</string>
+
+    <string name="battery_and_optimisation">Pil &amp; Optimizasyon</string>
+    <string name="battery_and_optimisation_desc">Tap, Tap\'in neden pil kullandığı ve arka planda çalıştırıldığında cihazınız tarafından neden sonlandırıldığı (ve bunu nasıl düzeltebileceğiniz) hakkında bilgi</string>
+    <string name="bs_battery_content">Tap, Tap, çalışmaya devam etmek için bir arka plan erişilebilirlik hizmeti kullanır ve İvmeölçer ve Jiroskop kullanarak cihazın arkasındaki dokunuşları her zaman \"dinler\". Bu nedenle, Tap, Tap arka planda çalışırken biraz pil kullanabilir.\n\nErken geliştirme durumu nedeniyle, Tap, Tap henüz tam olarak optimize edilmemiştir ve gelecekte seçenekler yoluyla pil ömrü iyileşebilir, ancak şu anda biraz daha düşük pil ömrü, bu özelliğe sahip olmanın bir sonucudur.\n\nEk olarak, MIUI veya OneUI gibi bazı OEM yazılımları, arka plan görevlerini (erişilebilirlik hizmetleri dahil) sonlandırmada Google\'ın önerdiğinden daha agresiftir. Tap, Tap, Pil Optimizasyonu devre dışıyken bile kapatıldıktan sonra cihazınızda çalışmayı durdurursa, lütfen şunları deneyin:\n• Uygulamayı belleğe kilitleme (genellikle son uygulamalardan)\n• Bir uygulama için daha fazla pil optimizasyonunu devre dışı bırakma (genellikle Ayarlar > Uygulamalar veya Ayarlar > Pil altında)\n• Geliştirici Seçeneklerinde MIUI Optimizasyonunu Devre Dışı Bırakma (yalnızca MIUI))\n\nSistem tarafından sonlandırılan uygulamalar hakkında daha fazla bilgi ve bunu cihazınız için nasıl çözeceğinize dair öneriler dontkillmyapp.com adresinde bulunabilir.</string>
+    <string name="bs_battery_positive">dontkillmyapp.com\'a git</string>
+
+    <string name="gate_orientation_landscape">Yatay yönlendirme</string>
+    <string name="gate_orientation_landscape_desc">Telefon yatay yöndeyken hareketi engeller</string>
+    <string name="gate_orientation_portrait">Dikey yönlendirme</string>
+    <string name="gate_orientation_portrait_desc">Telefon dikey yöndeyken hareketi engeller</string>
 </resources>
