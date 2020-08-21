@@ -20,6 +20,7 @@
     <color name="accessibility_check_circle">#dcedc8</color>
     <color name="accessibility_cross_circle">#ffcdd2</color>
     <color name="reachabilityBackground">#000</color>
+    <color name="divider">#809E9E9E</color>
 
     <color name="icon_circle_0">#D7E5F8</color>
     <color name="icon_circle_1">#F8D7DF</color>
@@ -33,6 +34,7 @@
     <color name="icon_circle_9">#EDD7F8</color>
     <color name="icon_circle_10">#ffddb0</color>
     <color name="icon_circle_11">#ffe2b6</color>
+    <color name="icon_circle_12">#b2ebf2</color>
 
     <color name="icon_inside_0">#1A6CD9</color>
     <color name="icon_inside_1">#D91A4A</color>
@@ -46,4 +48,5 @@
     <color name="icon_inside_9">#981AD9</color>
     <color name="icon_inside_10">#ffaf49</color>
     <color name="icon_inside_11">#ffbc57</color>
+    <color name="icon_inside_12">#0097a7</color>
 </resources>

@@ -5,9 +5,10 @@ import android.media.AudioManager
 import android.view.KeyEvent
 import com.google.android.systemui.columbus.actions.Action
 import com.google.android.systemui.columbus.sensors.GestureSensor
+import com.kieronquinn.app.taptap.models.WhenGateInternal
 
 
-class MusicAction(context: Context, private val command: Command) : ActionBase(context) {
+class MusicAction(context: Context, private val command: Command, whenGates: List<WhenGateInternal>) : ActionBase(context, whenGates) {
 
     enum class Command(val rawCommand: Int) {
         TOGGLE_PAUSE(KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE),
@@ -18,7 +19,7 @@ class MusicAction(context: Context, private val command: Command) : ActionBase(c
     private val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager?
 
     override fun isAvailable(): Boolean {
-        return audioManager != null
+        return audioManager != null && super.isAvailable()
     }
 
     override fun onTrigger() {

@@ -20,15 +20,15 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/container"
         android:paddingTop="@dimen/margin_small"
-        android:paddingBottom="@dimen/margin_large"
-        android:paddingEnd="@dimen/margin_large"
-        android:paddingStart="@dimen/margin_small">
+        android:paddingBottom="@dimen/margin_large">
 
         <ImageView
             android:layout_width="48dp"
             android:layout_height="wrap_content"
             android:padding="@dimen/margin_small"
+            android:layout_marginStart="@dimen/margin_small"
             android:scaleType="centerCrop"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/item_action_handle"
@@ -44,6 +44,7 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:id="@+id/item_action_name"
+            android:layout_marginEnd="@dimen/margin_large"
             app:layout_constraintTop_toTopOf="@id/item_action_handle"
             app:layout_constraintBottom_toBottomOf="@id/item_action_handle"
             app:layout_constraintStart_toEndOf="@+id/item_action_icon"
@@ -61,6 +62,7 @@
             android:paddingTop="@dimen/margin_medium"
             android:paddingBottom="@dimen/margin_medium"
             android:layout_marginStart="@dimen/margin_large"
+            android:layout_marginEnd="@dimen/activity_padding"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
@@ -68,10 +70,45 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_extra_small"
-            android:layout_marginStart="@dimen/margin_small"
+            android:layout_marginStart="@dimen/activity_padding"
+            android:layout_marginEnd="@dimen/margin_large"
             app:layout_constraintTop_toBottomOf="@id/item_action_handle"
             android:id="@+id/item_action_description"
             tools:text="This is the action's description. It can be very long or very short" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/item_action_when"
+            android:text="@string/item_action_when"
+            android:layout_marginStart="@dimen/activity_padding"
+            android:layout_marginTop="@dimen/margin_small"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/item_action_description"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/item_action_chips"
+            android:layout_marginTop="@dimen/margin_extra_small"
+            android:paddingEnd="@dimen/activity_padding"
+            android:paddingStart="@dimen/activity_padding"
+            android:clipToPadding="false"
+            app:layout_constraintTop_toBottomOf="@id/item_action_when"
+            tools:listitem="@layout/item_action_chip"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="horizontal"/>
+
+        <include layout="@layout/include_item_action_blocked_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/item_action_blocked_info"
+            android:visibility="gone"
+            tools:visibility="visible"
+            android:layout_marginStart="@dimen/margin_small"
+            android:layout_marginEnd="@dimen/margin_small"
+            app:layout_constraintTop_toBottomOf="@id/item_action_chips"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

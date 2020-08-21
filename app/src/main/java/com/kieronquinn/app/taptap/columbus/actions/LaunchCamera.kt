@@ -2,19 +2,21 @@
 // Source code recreated from a .class file by IntelliJ IDEA
 // (powered by Fernflower decompiler)
 //
-package com.kieronquinn.app.taptap.utils
+package com.kieronquinn.app.taptap.columbus.actions
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import com.google.android.systemui.columbus.actions.Action
 import com.google.android.systemui.columbus.sensors.GestureSensor.DetectionProperties
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.TapAccessibilityService
+import com.kieronquinn.app.taptap.models.WhenGateInternal
+import com.kieronquinn.app.taptap.utils.getCameraLaunchIntent
+import com.kieronquinn.app.taptap.utils.isPackageCamera
 import kotlin.jvm.internal.Intrinsics
 
-class LaunchCameraLocal(var1: Context) : Action(var1, null) {
+class LaunchCamera(var1: Context, whenGates: List<WhenGateInternal>) : ActionBase(var1, whenGates) {
     private val cameraAvailable: Boolean
     fun setTriggerListener(listener: TriggerListener?) {
         triggerListener = listener
@@ -29,7 +31,7 @@ class LaunchCameraLocal(var1: Context) : Action(var1, null) {
 
     override fun isAvailable(): Boolean {
         val accessibilityService = context as TapAccessibilityService
-        return cameraAvailable && !context.isPackageCamera(accessibilityService.getCurrentPackageName())
+        return cameraAvailable && !context.isPackageCamera(accessibilityService.getCurrentPackageName()) && super.isAvailable()
     }
 
     override fun onProgress(var1: Int, var2: DetectionProperties?) {

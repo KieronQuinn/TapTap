@@ -83,60 +83,32 @@ class TapAccessibilityService : AccessibilityService(),
     private fun getActionForEnum(action: ActionInternal) : Action? {
         return try {
             when (action.action) {
-                TapAction.LAUNCH_CAMERA -> LaunchCameraLocal(
-                    this
-                )
-                TapAction.BACK -> AccessibilityServiceGlobalAction(
-                    this,
-                    GLOBAL_ACTION_BACK
-                )
-                TapAction.HOME -> AccessibilityServiceGlobalAction(
-                    this,
-                    GLOBAL_ACTION_HOME
-                )
-                TapAction.LOCK_SCREEN -> AccessibilityServiceGlobalAction(
-                    this,
-                    GLOBAL_ACTION_LOCK_SCREEN
-                )
-                TapAction.RECENTS -> AccessibilityServiceGlobalAction(
-                    this,
-                    GLOBAL_ACTION_RECENTS
-                )
-                TapAction.SPLIT_SCREEN -> AccessibilityServiceGlobalAction(
-                    this,
-                    GLOBAL_ACTION_TOGGLE_SPLIT_SCREEN
-                )
-                TapAction.REACHABILITY -> LaunchReachability(this)
-                TapAction.SCREENSHOT -> AccessibilityServiceGlobalAction(
-                    this,
-                    GLOBAL_ACTION_TAKE_SCREENSHOT
-                )
-                TapAction.QUICK_SETTINGS -> AccessibilityServiceGlobalAction(
-                    this,
-                    GLOBAL_ACTION_QUICK_SETTINGS
-                )
-                TapAction.NOTIFICATIONS -> AccessibilityServiceGlobalAction(
-                    this,
-                    GLOBAL_ACTION_NOTIFICATIONS
-                )
-                TapAction.POWER_DIALOG -> AccessibilityServiceGlobalAction(
-                    this,
-                    GLOBAL_ACTION_POWER_DIALOG
-                )
-                TapAction.FLASHLIGHT -> Flashlight(this)
-                TapAction.LAUNCH_APP -> LaunchApp(this, action.data ?: "")
-                TapAction.LAUNCH_SHORTCUT -> LaunchShortcut(this, action.data ?: "")
-                TapAction.LAUNCH_ASSISTANT -> LaunchAssistant(this)
-                TapAction.TASKER_EVENT -> TaskerEvent(this)
-                TapAction.TASKER_TASK -> TaskerTask(this, action.data ?: "")
-                TapAction.TOGGLE_PAUSE -> MusicAction(this, MusicAction.Command.TOGGLE_PAUSE)
-                TapAction.PREVIOUS -> MusicAction(this, MusicAction.Command.PREVIOUS)
-                TapAction.NEXT -> MusicAction(this, MusicAction.Command.NEXT)
-                TapAction.VOLUME_PANEL -> VolumeAction(this, AudioManager.ADJUST_SAME)
-                TapAction.VOLUME_UP -> VolumeAction(this, AudioManager.ADJUST_RAISE)
-                TapAction.VOLUME_DOWN -> VolumeAction(this, AudioManager.ADJUST_LOWER)
-                TapAction.VOLUME_TOGGLE_MUTE -> VolumeAction(this, AudioManager.ADJUST_TOGGLE_MUTE)
-                TapAction.WAKE_DEVICE -> WakeDeviceAction(this)
+                TapAction.LAUNCH_CAMERA -> LaunchCamera(this, action.whenList)
+                TapAction.BACK -> AccessibilityServiceGlobalAction(this, GLOBAL_ACTION_BACK, action.whenList)
+                TapAction.HOME -> AccessibilityServiceGlobalAction(this, GLOBAL_ACTION_HOME, action.whenList)
+                TapAction.LOCK_SCREEN -> AccessibilityServiceGlobalAction(this, GLOBAL_ACTION_LOCK_SCREEN, action.whenList)
+                TapAction.RECENTS -> AccessibilityServiceGlobalAction(this, GLOBAL_ACTION_RECENTS, action.whenList)
+                TapAction.SPLIT_SCREEN -> AccessibilityServiceGlobalAction(this, GLOBAL_ACTION_TOGGLE_SPLIT_SCREEN, action.whenList)
+                TapAction.REACHABILITY -> LaunchReachability(this, action.whenList)
+                TapAction.SCREENSHOT -> AccessibilityServiceGlobalAction(this, GLOBAL_ACTION_TAKE_SCREENSHOT, action.whenList)
+                TapAction.QUICK_SETTINGS -> AccessibilityServiceGlobalAction(this, GLOBAL_ACTION_QUICK_SETTINGS, action.whenList)
+                TapAction.NOTIFICATIONS -> AccessibilityServiceGlobalAction(this, GLOBAL_ACTION_NOTIFICATIONS, action.whenList)
+                TapAction.POWER_DIALOG -> AccessibilityServiceGlobalAction(this, GLOBAL_ACTION_POWER_DIALOG, action.whenList)
+                TapAction.FLASHLIGHT -> Flashlight(this, action.whenList)
+                TapAction.LAUNCH_APP -> LaunchApp(this, action.data ?: "", action.whenList)
+                TapAction.LAUNCH_SHORTCUT -> LaunchShortcut(this, action.data ?: "", action.whenList)
+                TapAction.LAUNCH_ASSISTANT -> LaunchAssistant(this, action.whenList)
+                TapAction.TASKER_EVENT -> TaskerEvent(this, action.whenList)
+                TapAction.TASKER_TASK -> TaskerTask(this, action.data ?: "", action.whenList)
+                TapAction.TOGGLE_PAUSE -> MusicAction(this, MusicAction.Command.TOGGLE_PAUSE, action.whenList)
+                TapAction.PREVIOUS -> MusicAction(this, MusicAction.Command.PREVIOUS, action.whenList)
+                TapAction.NEXT -> MusicAction(this, MusicAction.Command.NEXT, action.whenList)
+                TapAction.VOLUME_PANEL -> VolumeAction(this, AudioManager.ADJUST_SAME, action.whenList)
+                TapAction.VOLUME_UP -> VolumeAction(this, AudioManager.ADJUST_RAISE, action.whenList)
+                TapAction.VOLUME_DOWN -> VolumeAction(this, AudioManager.ADJUST_LOWER, action.whenList)
+                TapAction.VOLUME_TOGGLE_MUTE -> VolumeAction(this, AudioManager.ADJUST_TOGGLE_MUTE, action.whenList)
+                TapAction.SOUND_PROFILER -> SoundProfileAction(this, action.whenList)
+                TapAction.WAKE_DEVICE -> WakeDeviceAction(this, action.whenList)
             }
         }catch (e: RuntimeException){
             //Enum not found, probably a downgrade issue

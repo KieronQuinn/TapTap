@@ -7,10 +7,11 @@ import com.google.android.systemui.columbus.actions.Action
 import com.google.android.systemui.columbus.sensors.GestureSensor
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.TapAccessibilityService
+import com.kieronquinn.app.taptap.models.WhenGateInternal
 import com.kieronquinn.app.taptap.utils.deserialize
 import com.kieronquinn.app.taptap.utils.isAppLaunchable
 
-class LaunchShortcut(context: Context, private val launchIntentString: String) : ActionBase(context) {
+class LaunchShortcut(context: Context, private val launchIntentString: String, whenGates: List<WhenGateInternal>) : ActionBase(context, whenGates) {
 
     override fun isAvailable(): Boolean {
         val accessibilityService = context as TapAccessibilityService
@@ -24,7 +25,7 @@ class LaunchShortcut(context: Context, private val launchIntentString: String) :
             launchActivity.forEach {
                 if(it.activityInfo.packageName == currentPackage) return false
             }
-            return true
+            return super.isAvailable()
         }catch (e: Exception){
             e.printStackTrace()
             return false

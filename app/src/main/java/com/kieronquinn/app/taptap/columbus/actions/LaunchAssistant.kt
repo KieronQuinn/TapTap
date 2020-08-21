@@ -5,14 +5,15 @@ import android.content.Intent
 import com.google.android.systemui.columbus.actions.Action
 import com.google.android.systemui.columbus.sensors.GestureSensor
 import com.kieronquinn.app.taptap.TapAccessibilityService
+import com.kieronquinn.app.taptap.models.WhenGateInternal
 import com.kieronquinn.app.taptap.utils.isAppLaunchable
 import com.kieronquinn.app.taptap.utils.isPackageAssistant
 
-class LaunchAssistant(context: Context) : ActionBase(context) {
+class LaunchAssistant(context: Context, whenGates: List<WhenGateInternal>) : ActionBase(context, whenGates) {
 
     override fun isAvailable(): Boolean {
         val accessibilityService = context as TapAccessibilityService
-        return !context.isPackageAssistant(accessibilityService.getCurrentPackageName())
+        return !context.isPackageAssistant(accessibilityService.getCurrentPackageName()) && super.isAvailable()
     }
 
 

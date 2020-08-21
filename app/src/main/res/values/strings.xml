@@ -27,18 +27,25 @@
     <!-- Gates -->
     <string name="gate_charging_state">Charging</string>
     <string name="gate_charging_state_desc">Blocks gesture for half a second after the device is plugged in</string>
+    <string name="gate_charging_state_desc_when">Run only when the device has just been plugged in (half a second limit)</string>
     <string name="gate_telephony_activity">On call</string>
     <string name="gate_telephony_activity_desc">Blocks gesture when the device is on a call. Only standard calls are supported - not VoIP eg. WhatsApp</string>
+    <string name="gate_telephony_activity_desc_when">Run only when the device is on a call</string>
     <string name="gate_usb_state">USB device</string>
     <string name="gate_usb_state_desc">Blocks gesture for half a second when a USB device, such as a thumb drive, is plugged in</string>
+    <string name="gate_usb_state_desc_when">Run only when a USB device has just been plugged in (half a second limit)</string>
     <string name="gate_camera_visibility">Camera</string>
     <string name="gate_camera_visibility_desc">Blocks gesture when any camera app is opened. Note: This will break the skipping functionality of the Launch Camera action.</string>
+    <string name="gate_camera_visibility_desc_when">Run only when the camera app is open</string>
     <string name="gate_power_state">Display off</string>
     <string name="gate_power_state_desc">Blocks gesture when the device\'s screen is off</string>
+    <string name="gate_power_state_desc_when">Run only when the screen is off</string>
     <string name="gate_power_state_inverse">Display on</string>
     <string name="gate_power_state_inverse_desc">Blocks gesture when the device\'s screen is on</string>
+    <string name="gate_power_state_inverse_desc_when">Run only when the screen is on</string>
     <string name="gate_app_showing">App showing</string>
     <string name="gate_app_showing_desc">Blocks gesture when an app is showing on screen</string>
+    <string name="gate_app_showing_desc_when">Run only when an app is showing on screen</string>
     <string name="gate_app_showing_desc_formatted">Blocks gesture when an %1s is showing on screen</string>
     <string name="action_launch_camera">Launch camera</string>
     <string name="action_launch_camera_desc">Launch your default camera app. This action will be skipped if the camera is already running.</string>
@@ -77,6 +84,7 @@
     <string name="action_launch_app_desc">Launch an app</string>
     <string name="action_launch_app_desc_formattable">Launch %1s. This action will be skipped if it is already running.</string>
     <string name="fab_add_gate">Add Gate</string>
+    <string name="add_gate_when">Add Requirement</string>
     <string name="add_gate_category_state">State</string>
     <string name="add_gate_category_action">Action</string>
     <string name="nothing_found">Nothing found</string>
@@ -85,7 +93,8 @@
     <string name="select_an_app">Select an app</string>
     <string name="setting_gesture_sensitivity">Sensitivity</string>
     <string name="setting_gesture_sensitivity_desc"><b>Experimental:</b> Change the sensitivity of the gesture by adjusting how much force is filtered out as \'noise\'. A lower sensitivity means the gesture will be harder to do on most devices, whereas a higher sensitivity is more prone to false detection. Default is exactly in the middle.</string>
-    <string name="bs_help_action">Actions are tasks that are run when you tap the back of your device twice. Actions are run in the order of the list - top to bottom. If an action is able to run successfully, no further actions will be run. However, if an action is unavailable (eg. if the assistant for a "Launch assistant" action is already running), the next action below it will be run, and so on until one is run successfully.\n\nIn future versions of this app, you will be able to add gates to actions (see the Gates menu of the app) to allow for more control of when certain actions are run.</string>
+    <string name="help_action">Actions are tasks that are run when you tap the back of your device twice. Actions are run in the order of the list - top to bottom, and only if requirements are met.\nTap for more info.</string>
+    <string name="bs_help_action">Actions are tasks that are run when you tap the back of your device twice. Actions are run in the order of the list - top to bottom. If an action is able to run successfully, no further actions will be run. However, if an action is unavailable (eg. if the assistant for a "Launch assistant" action is already running, or if the requirements are not met), the next action below it will be run, and so on until one is run successfully.</string>
     <string name="bs_help_action_title">What are Actions?</string>
     <string name="bs_help_gate">Gates are situations that can block the gesture from running any actions. In order for any action to be run, all the enabled gates must be open.\nIf a scenario is currently met, for example if the screen is off and the "Display off" gate is enabled, no actions will be run. You can add as many gates as you like, and enable/disable them using the toggles (rather than having to delete and re-add) to make configuration quicker and easier.</string>
     <string name="bs_help_gate_title">What are Gates?</string>
@@ -131,6 +140,8 @@
     <string name="action_volume_toggle_mute_desc">Turn mute on/off for the current sound stream</string>
     <string name="action_wake_device">Wake device</string>
     <string name="action_wake_device_desc">Wake the device up if the screen is off. This overrides the setting in the feedback settings, is skipped if the display is on, and will not work if you have the \"Display off\" gate enabled</string>
+    <string name="actions_sound_profile">Switch sound profiles</string>
+    <string name="actions_sound_profile_desc">Switch between sound profiles of your device: Vibrate/Silent/Loud</string>
     <string name="action_launch_shortcut">Launch a shortcut</string>
     <string name="action_launch_shortcut_desc">Launch a shortcut such as Google Maps directions</string>
     <string name="action_launch_shortcut_desc_formattable">Launch %1s (shortcut into the app)</string>
@@ -153,6 +164,7 @@
     <string name="setting_feedback_override_dnd_desc">Ignore the device\'s DND setting and always vibrate when triggered</string>
     <string name="gate_keyboard_visibility">Keyboard open</string>
     <string name="gate_keyboard_visibility_desc">Blocks gesture when the keyboard is open and in use. Note that this may not always work if you are not actively typing.</string>
+    <string name="gate_keyboard_visibility_desc_when">Run only when the keyboard is open and in use. Note that this may not always work if you are not actively typing.</string>
     <string name="battery_optimisation">Disable Battery Optimisation</string>
     <string name="battery_optimisation_desc">This will help keep Tap, Tap running (but not guarantee that it will always work, see the battery option below). Tap to disable.</string>
 
@@ -163,6 +175,35 @@
 
     <string name="gate_orientation_landscape">Landscape orientation</string>
     <string name="gate_orientation_landscape_desc">Blocks gesture when the phone is in landscape orientation</string>
+    <string name="gate_orientation_landscape_desc_when">Run only when the device is in landscape orientation</string>
     <string name="gate_orientation_portrait">Portrait orientation</string>
     <string name="gate_orientation_portrait_desc">Blocks gesture when the phone is in portrait orientation</string>
+    <string name="gate_orientation_portrait_desc_when">Run only when the device is in portrait orientation</string>
+    <string name="gate_table">Table</string>
+    <string name="gate_table_desc">Blocks the gesture when the device is placed down flat, for example on a table</string>
+    <string name="gate_table_desc_when">Run only when the device is flat, for example on a table</string>
+    <string name="gate_pocket">Pocket</string>
+    <string name="gate_pocket_desc">Blocks the gesture when the proximity sensor detects an object. This blocks the gesture when your device is in your pocket, or flipped on a table</string>
+    <string name="gate_pocket_desc_when">Run only when the proximity sensor detects an object. This happens when the device is in your pocket, or flipped on a table</string>
+    <string name="gate_headset_inverse">No Headset</string>
+    <string name="gate_headset_desc_inverse">Blocks the gesture when there is <b>no</b> wired or wireless headset connected. This is best used with the play/pause/skip controls to prevent music from playing over the speakers</string>
+    <string name="gate_headset_desc_when_inverse">Run only when there is <b>no</b> wired or wireless headset connected</string>
+    <string name="gate_headset">Headset</string>
+    <string name="gate_headset_desc">Blocks the gesture when there <b>is</b> a wired or wireless headset connected.</string>
+    <string name="gate_headset_desc_when">Run only when there <b>is</b> a wired or wireless headset connected</string>
+    <string name="item_action_when">Only run action when…</string>
+    <string name="item_action_when_multiple">Only run action when (any of)…</string>
+    <string name="item_action_when_add_empty">Add requirement…</string>
+    <string name="item_action_when_add">Add…</string>
+    <string name="item_action_blocked_info">This action will prevent any actions below it from being run as it is blocking (it will never be skipped).\nYou must add a requirement or remove this action if you want the actions below to be executed.</string>
+    <string name="gate_music">Music Playing</string>
+    <string name="gate_music_inverse">No Music Playing</string>
+    <string name="gate_music_desc">Blocks the gesture when there is music playing</string>
+    <string name="gate_music_desc_when">Run only when there is music playing</string>
+    <string name="gate_music_desc_when_inverse">Blocks the gesture when there is no music playing</string>
+    <string name="gate_music_desc_inverse">Run only when there is no music playing</string>
+    <string name="notification_policy_grant">Continue</string>
+    <string name="bs_notification_policy_content">Changing the ringer mode requires Do Not Disturb access to be able to manage the Do Not Disturb state. Please grant the permission in the settings, by clicking below, selecting Tap, Tap, granting the permission and returning back to this screen.</string>
+
+
 </resources>

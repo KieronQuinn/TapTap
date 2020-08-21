@@ -82,7 +82,6 @@
     <string name="show_system_apps">顯示系統應用</string>
     <string name="select_an_app">選擇一個應用</string>
     <string name="setting_gesture_sensitivity">靈敏度</string>
-    <string name="bs_help_action">當敲擊設備背面兩次時運行的任務，即為「動作」. 動作將按照列表順序從上往下執行。如果某個動作成功運行，則其他的動作不會運行。然而，若是一個動作無法運行（例如：在已經啟動了語音助手的情況下，想運行「啟動語音助手」）時，將會運行它下面的那個任務，以此類推，直到其中一個動作成功運行為止。 \n\n在該應用程式的未來版本中，您將能夠向動作添加門檻(請參閱此應用的「門檻」菜單)，以允許對某些動作何時運行進行更為靈活的控制.</string>
     <string name="bs_help_action_title">何為動作？</string>
     <string name="bs_help_gate">門檻可阻止手勢運行任何動作。為了運行任何動作，您必須打開所有已啟用的門檻。 \n如果當前滿足某個場景，例如：熒幕處於關閉狀態，而「熒幕關閉時」處於啟用狀態時，則不會運行任何動作。您可以添加任意數量的門檻，並使用開關來啟用或者禁用它們（沒有必要刪掉它們再重新添加），以節省時間並提高效率。 </string>
     <string name="bs_help_gate_title">何為門檻？</string>

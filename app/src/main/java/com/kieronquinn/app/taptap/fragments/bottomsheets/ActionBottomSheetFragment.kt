@@ -3,11 +3,14 @@ package com.kieronquinn.app.taptap.fragments.bottomsheets
 import android.Manifest
 import android.animation.ValueAnimator
 import android.app.Activity
+import android.app.NotificationManager
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.drawable.GradientDrawable
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
@@ -47,8 +50,15 @@ class ActionBottomSheetFragment : BottomSheetDialogFragment(), NavController.OnD
         private const val REQUEST_CODE_SHORTCUT_SECOND = 1005
     }
 
+    private val isNotificationAccessGranted: Boolean
+        get() {
+            val notificationManager = requireContext().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            return notificationManager.isNotificationPolicyAccessGranted
+        }
+
     private var storedAction: ActionInternal? = null
     private var storedActionCallback: ((ActionInternal) -> Unit)? = null
+    private var isWaitingForNotificationPermission = false
 
     private val navHostFragment by lazy {
         childFragmentManager.findFragmentById(R.id.bs_nav_host_fragment) as NavHostFragment
@@ -184,6 +194,16 @@ class ActionBottomSheetFragment : BottomSheetDialogFragment(), NavController.OnD
             ActionDataTypes.SHORTCUT -> {
                 launchShortcutPicker(action, callback)
             }
+            ActionDataTypes.ACCESS_NOTIFICATION_POLICY -> {
+                if(!isNotificationAccessGranted) {
+                    isWaitingForNotificationPermission = true
+                    NotificationPolicyBottomSheetFragment().show(childFragmentManager, "bs_notification_policy")
+                }else{
+                    callback.invoke(action)
+                    storedActionCallback = null
+                    storedAction = null
+                }
+            }
         }
     }
 
@@ -218,6 +238,18 @@ class ActionBottomSheetFragment : BottomSheetDialogFragment(), NavController.OnD
         if(result) {
             storedActionCallback = null
             storedAction = null
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        //startActivityForResult & onActivityResult don't seem to work for the policy permissions screen as it fires off a second activity and thus briefly returns to the app before it's done
+        if(isWaitingForNotificationPermission && isNotificationAccessGranted){
+            val storedAction = this.storedAction ?: return
+            storedActionCallback?.invoke(storedAction)
+            this.storedAction = null
+            storedActionCallback = null
+            isWaitingForNotificationPermission = false
         }
     }
 
