@@ -75,6 +75,7 @@ class ActionAdapter(private val context: Context, val actions: MutableList<Actio
     }
 
     override fun getItemViewType(position: Int): Int {
+        if(isAdd) return ItemType.ACTION.ordinal
         return when(position){
             0 -> ItemType.HEADER.ordinal
             else -> ItemType.ACTION.ordinal
