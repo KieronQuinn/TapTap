@@ -1,6 +1,5 @@
 package com.kieronquinn.app.taptap.fragments
 
-import android.animation.ValueAnimator
 import android.content.res.ColorStateList
 import android.graphics.Canvas
 import android.graphics.drawable.AnimatedVectorDrawable
@@ -16,17 +15,13 @@ import androidx.recyclerview.widget.ItemTouchHelper.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.TransitionManager
-import com.google.android.material.snackbar.Snackbar
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.adapters.ActionAdapter
 import com.kieronquinn.app.taptap.fragments.bottomsheets.ActionBottomSheetFragment
 import com.kieronquinn.app.taptap.fragments.bottomsheets.GateBottomSheetFragment
 import com.kieronquinn.app.taptap.fragments.bottomsheets.GenericBottomSheetFragment
 import com.kieronquinn.app.taptap.fragments.gate.GateListFragment
-import com.kieronquinn.app.taptap.models.ActionInternal
-import com.kieronquinn.app.taptap.models.GateInternal
-import com.kieronquinn.app.taptap.models.TapGate
-import com.kieronquinn.app.taptap.models.WhenGateInternal
+import com.kieronquinn.app.taptap.models.*
 import com.kieronquinn.app.taptap.models.store.ActionListFile
 import com.kieronquinn.app.taptap.utils.*
 import dev.chrisbanes.insetter.applySystemWindowInsetsToMargin
@@ -89,7 +84,8 @@ class SettingsActionFragment : BaseFragment() {
                         val adapter = recyclerView.adapter as ActionAdapter
                         val from = viewHolder.adapterPosition
                         val to = target.adapterPosition
-                        adapter.moveItem(from, to, recyclerView)
+                        if(to == 0 || from == 0) return false
+                        adapter.moveItem(from, to)
                         adapter.notifyItemMoved(from, to)
                         saveToFile()
                         return true
@@ -102,7 +98,9 @@ class SettingsActionFragment : BaseFragment() {
                         super.onSelectedChanged(viewHolder, actionState)
                         if (actionState == ACTION_STATE_DRAG) {
                             viewHolder?.itemView?.run {
-                                draggingItem = actions[viewHolder.adapterPosition]
+                                val position = viewHolder.adapterPositionAdjusted(true)
+                                if(position < 0) return
+                                draggingItem = actions[position]
                                 draggingViewHolder = viewHolder
                                 fakeCard.cloneSize(this)
                                 viewHolder.itemView.visibility = View.INVISIBLE
@@ -142,7 +140,7 @@ class SettingsActionFragment : BaseFragment() {
                         setFabState(false)
                         recyclerView.adapter?.run {
                             this as ActionAdapter
-                            notifyItemChanged(viewHolder.adapterPosition)
+                            notifyItemChanged(viewHolder.adapterPositionAdjusted(true))
                             notifyAllItemsBelowBarrier()
                         }
                     }
@@ -168,6 +166,11 @@ class SettingsActionFragment : BaseFragment() {
                         }
                         super.onChildDrawOver(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
                     }
+
+                    override fun getMovementFlags(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder): Int {
+                        if (viewHolder is ActionAdapter.HeaderViewHolder) return 0
+                        return super.getMovementFlags(recyclerView, viewHolder)
+                    }
                 }
         ItemTouchHelper(simpleItemTouchCallback)
     }
@@ -178,7 +181,7 @@ class SettingsActionFragment : BaseFragment() {
             actions.find { it.isBlocking() }?.let {
                 val index = actions.indexOf(it)
                 for(i in index until itemCount){
-                    notifyItemChanged(i)
+                    notifyItemChanged(i + 1)
                 }
             }
         }
@@ -227,6 +230,9 @@ class SettingsActionFragment : BaseFragment() {
                 saveToFile()
                 notifyAllItemsBelowBarrier()
             }
+            headerCallback = {
+                showHelpBottomSheet()
+            }
         }
         fab.applySystemWindowInsetsToMargin(bottom = true)
         fab.post {
@@ -244,7 +250,7 @@ class SettingsActionFragment : BaseFragment() {
                 this as ActionAdapter
                 notifyItemChanged(currentInfoPosition ?: 0)
             }
-            recyclerView?.layoutManager?.scrollToPosition(actions.size - 1)
+            recyclerView?.layoutManager?.scrollToPosition(actions.size)
             saveToFile()
         }
         if (sharedPreferences?.getBoolean(PREF_KEY_ACTION_HELP_SHOWN, false) == false) {
@@ -265,10 +271,10 @@ class SettingsActionFragment : BaseFragment() {
             recyclerView?.adapter?.run {
                 this as ActionAdapter
                 actions[position].whenList.add(convertedItem)
-                recyclerView?.findViewHolderForAdapterPosition(position)?.itemView?.item_action_chips?.adapter?.run {
+                recyclerView?.findViewHolderForAdapterPosition(position + 1)?.itemView?.item_action_chips?.adapter?.run {
                     notifyItemInserted(itemCount - 1)
                 }
-                notifyItemChanged(position)
+                notifyItemChanged(position + 1)
                 notifyAllItemsBelowBarrier()
                 saveToFile()
             }
@@ -294,22 +300,6 @@ class SettingsActionFragment : BaseFragment() {
     private fun showHelpBottomSheet() {
         GenericBottomSheetFragment.create(getString(R.string.bs_help_action), R.string.bs_help_action_title, android.R.string.ok).show(childFragmentManager, "bs_help")
         sharedPreferences?.edit()?.putBoolean(PREF_KEY_ACTION_HELP_SHOWN, true)?.apply()
-    }
-
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.menu_help, menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.menu_help -> {
-                showHelpBottomSheet()
-                return true
-            }
-        }
-        return super.onOptionsItemSelected(item)
     }
 
 }

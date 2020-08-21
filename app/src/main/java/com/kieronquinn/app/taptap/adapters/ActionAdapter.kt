@@ -12,10 +12,16 @@ import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.models.ActionInternal
 import com.kieronquinn.app.taptap.models.ActionDataTypes
 import com.kieronquinn.app.taptap.models.TapGate
+import com.kieronquinn.app.taptap.utils.adapterPositionAdjusted
 import com.kieronquinn.app.taptap.utils.deserialize
 import kotlinx.android.synthetic.main.item_action.view.*
 
 class ActionAdapter(private val context: Context, val actions: MutableList<ActionInternal>, private val isAdd: Boolean = false, private val onItemTouchListener: (ViewHolder) -> Unit) : RecyclerView.Adapter<ActionAdapter.ViewHolder>() {
+
+    enum class ItemType {
+        HEADER,
+        ACTION
+    }
 
     private val layoutInflater by lazy {
         context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
@@ -24,6 +30,7 @@ class ActionAdapter(private val context: Context, val actions: MutableList<Actio
     var chipAddCallback: ((Int, Array<TapGate>) -> Unit)? = null
     var saveCallback: (() -> Unit)? = null
     var chipClickCallback: ((TapGate) -> Unit)? = null
+    var headerCallback: (() -> Unit)? = null
 
     private val observer = object: RecyclerView.AdapterDataObserver() {
         override fun onChanged() {
@@ -60,21 +67,41 @@ class ActionAdapter(private val context: Context, val actions: MutableList<Actio
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(layoutInflater.inflate(R.layout.item_action, parent, false))
+        return when(viewType){
+            ItemType.HEADER.ordinal -> HeaderViewHolder(layoutInflater.inflate(R.layout.item_action_header, parent, false))
+            ItemType.ACTION.ordinal -> ViewHolder(layoutInflater.inflate(R.layout.item_action, parent, false))
+            else -> ViewHolder(View(context))
+        }
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return when(position){
+            0 -> ItemType.HEADER.ordinal
+            else -> ItemType.ACTION.ordinal
+        }
     }
 
     override fun getItemCount(): Int {
-        return actions.size
+        if(isAdd) return actions.size
+        return actions.size + 1
     }
 
-    fun moveItem(from: Int, to: Int, recyclerView: RecyclerView) {
-        val fromAction = actions[from]
-        actions.set(from, actions[to])
-        actions.set(to, fromAction)
+    fun moveItem(from: Int, to: Int) {
+        val fromAction = actions[from - 1]
+        actions[from - 1] = actions[to - 1]
+        actions[to - 1] = fromAction
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = actions[position]
+        if(!isAdd && position == 0){
+            holder.itemView.setOnClickListener {
+                headerCallback?.invoke()
+            }
+            return
+        }else{
+            holder.itemView.setOnClickListener(null)
+        }
+        val item = actions[if(isAdd) position else position - 1]
         holder.itemView.apply {
             item_action_name.text = context.getString(item.action.nameRes)
             if(item.action.formattableDescription != null && item.data != null){
@@ -101,14 +128,14 @@ class ActionAdapter(private val context: Context, val actions: MutableList<Actio
                     layoutManager =
                         LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
                     adapter = ActionChipAdapter(context, item.whenList, chipClickCallback){ gates ->
-                        chipAddCallback?.invoke(holder.adapterPosition, gates)
+                        chipAddCallback?.invoke(holder.adapterPositionAdjusted(isAdd), gates)
                     }.apply {
                         chipRemoveCallback = {
-                            actions[holder.adapterPosition].whenList.removeAt(it)
+                            actions[holder.adapterPositionAdjusted(isAdd)].whenList.removeAt(it)
                             notifyItemRemoved(it)
                             //Update Add... if needed
                             notifyItemChanged(itemCount - 1)
-                            this@ActionAdapter.notifyItemChanged(holder.adapterPosition)
+                            this@ActionAdapter.notifyItemChanged(holder.adapterPositionAdjusted(isAdd))
                             saveCallback?.invoke()
                         }
                     }
@@ -123,7 +150,7 @@ class ActionAdapter(private val context: Context, val actions: MutableList<Actio
                     }
                     holder.itemView.item_action_when.visibility = View.VISIBLE
                 }
-                if(holder.adapterPosition == currentInfoPosition && holder.adapterPosition != itemCount - 1){
+                if(holder.adapterPositionAdjusted(isAdd) == currentInfoPosition && holder.adapterPositionAdjusted(isAdd) != actions.size - 1){
                     holder.itemView.item_action_blocked_info.visibility = View.VISIBLE
                 }else{
                     holder.itemView.item_action_blocked_info.visibility = View.GONE
@@ -164,5 +191,6 @@ class ActionAdapter(private val context: Context, val actions: MutableList<Actio
         return context.getString(item.action.formattableDescription!!, formattedText)
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+    open class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+    class HeaderViewHolder(itemView: View) : ViewHolder(itemView)
 }

@@ -27,6 +27,7 @@ import android.util.TypedValue
 import android.view.View
 import androidx.annotation.ColorInt
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
 import com.android.systemui.keyguard.WakefulnessLifecycle
 import com.google.android.systemui.columbus.ColumbusModule
 import com.google.android.systemui.columbus.ColumbusService
@@ -318,6 +319,10 @@ fun getGate(context: Context, tapGate: TapGate, data: String?): Gate {
         TapGate.MUSIC -> Music(context)
         TapGate.MUSIC_INVERSE -> MusicInverse(context)
     }
+}
+
+fun RecyclerView.ViewHolder.adapterPositionAdjusted(hasHeader: Boolean = true): Int {
+    return adapterPosition - 1
 }
 
 fun getFormattedDataForGate(context: Context, gate: TapGate, data: String?): CharSequence? {
