@@ -1,3 +1,7 @@
+# OS files
+.DS_Store
+._.DS_Store
+
 # Built application files
 *.apk
 *.ap_
@@ -13,8 +17,7 @@
 bin/
 gen/
 out/
-#  Uncomment the following line in case you need and you don't have the release build type files in your app
-# release/
+release/
 
 # Gradle files
 .gradle/
