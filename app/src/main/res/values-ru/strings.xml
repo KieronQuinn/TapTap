@@ -7,7 +7,7 @@
     <string name="setting_actions">Действия</string>
     <string name="settings_actions_desc">Установите действия, которые будут запускаться при использовании жеста</string>
     <string name="setting_gates">Запреты</string>
-    <string name="setting_gates_desc">Выберите ситуации, действие не будет запускаться</string>
+    <string name="setting_gates_desc">Выберите ситуации, когда действие не будет запускаться</string>
     <string name="setting_feedback">Обратная связь</string>
     <string name="setting_feedback_desc">Установите, как устройство уведомляет вас о запуске жеста</string>
     <string name="setting_gesture_model">Модель устройства</string>
