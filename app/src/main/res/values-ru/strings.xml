@@ -107,7 +107,7 @@
     <string name="gate_orientation_portrait">Вертикальная ориентация</string>
     <string name="gate_orientation_portrait_desc">Блокировать жест, когда устройство повернуто вертикально</string>
     <string name="gate_orientation_portrait_desc_when">Запускать только когда устройство повернуто вертикально</string>
-    <string name="gate_table">На столе</string>
+    <string name="gate_table">Стол</string>
     <string name="gate_table_desc">Блокировать жест, когда устройство лежит на плоской поверхности, например на столе</string>
     <string name="gate_table_desc_when">Запускать только когда устройство лежит на плоской поверхности, например на столе</string>
     <string name="gate_pocket">В кармане</string>
