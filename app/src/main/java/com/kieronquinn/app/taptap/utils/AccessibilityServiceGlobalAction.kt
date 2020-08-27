@@ -10,10 +10,12 @@ import android.content.Context
 import android.util.Log
 import com.google.android.systemui.columbus.actions.Action
 import com.google.android.systemui.columbus.sensors.GestureSensor.DetectionProperties
+import com.kieronquinn.app.taptap.columbus.actions.ActionBase
+import com.kieronquinn.app.taptap.models.WhenGateInternal
 import com.topjohnwu.superuser.Shell
 import kotlin.jvm.internal.Intrinsics
 
-class AccessibilityServiceGlobalAction(private val accessiblityService: AccessibilityService, private val globalAction: Int) : Action(accessiblityService, null) {
+class AccessibilityServiceGlobalAction(private val accessiblityService: AccessibilityService, private val globalAction: Int, whenGates: List<WhenGateInternal>) : ActionBase(accessiblityService, whenGates) {
 
     fun setTriggerListener(listener: TriggerListener?) {
         triggerListener = listener
@@ -25,10 +27,6 @@ class AccessibilityServiceGlobalAction(private val accessiblityService: Accessib
 
     private var triggerListener: TriggerListener? =
         null
-
-    override fun isAvailable(): Boolean {
-        return true
-    }
 
     override fun onProgress(var1: Int, var2: DetectionProperties?) {
         if (var1 == 3) {

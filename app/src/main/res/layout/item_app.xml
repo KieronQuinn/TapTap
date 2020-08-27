@@ -21,6 +21,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:maxLines="2"
+        android:ellipsize="end"
         android:layout_gravity="center_vertical"
         tools:text="App Name"
         android:textColor="?android:textColorPrimary"

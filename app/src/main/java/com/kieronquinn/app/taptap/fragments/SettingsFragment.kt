@@ -1,5 +1,6 @@
 package com.kieronquinn.app.taptap.fragments
 
+import android.app.NotificationManager
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -9,6 +10,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.PowerManager
 import android.provider.Settings
+import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -19,17 +21,24 @@ import com.kieronquinn.app.taptap.BuildConfig
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.TapAccessibilityService
 import com.kieronquinn.app.taptap.activities.SettingsActivity
+import com.kieronquinn.app.taptap.columbus.actions.SoundProfileAction
 import com.kieronquinn.app.taptap.fragments.bottomsheets.GenericBottomSheetFragment
 import com.kieronquinn.app.taptap.preferences.Preference
 import com.kieronquinn.app.taptap.utils.Links
 import com.kieronquinn.app.taptap.utils.isAccessibilityServiceEnabled
+import java.lang.RuntimeException
 
 class SettingsFragment : BaseSettingsFragment() {
 
+    private  val TAG = "SettingsFragment"
     private val returnReceiver = object: BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent) {
             context?.unregisterReceiver(this)
-            startActivity(Intent(context, SettingsActivity::class.java))
+            try {
+                startActivity(Intent(context, SettingsActivity::class.java))
+            }catch (e: RuntimeException){
+                //Fragment isn't attached
+            }
         }
     }
 
@@ -123,6 +132,7 @@ class SettingsFragment : BaseSettingsFragment() {
             it.isVisible = !powerManager.isIgnoringBatteryOptimizations(BuildConfig.APPLICATION_ID)
         }
 
+        val notificationManager = context?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         view?.post {
             getPreference("accessibility"){
                 if(isServiceEnabled) {

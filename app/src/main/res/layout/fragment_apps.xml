@@ -64,6 +64,7 @@
             android:orientation="vertical"
             android:paddingTop="@dimen/margin_small"
             android:paddingBottom="@dimen/margin_small"
+            android:paddingEnd="@dimen/activity_padding"
             app:fastScrollEnabled="true"
             app:fastScrollHorizontalThumbDrawable="@drawable/thumb_drawable"
             app:fastScrollHorizontalTrackDrawable="@drawable/line_drawable"

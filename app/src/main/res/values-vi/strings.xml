@@ -82,7 +82,6 @@
     <string name="show_system_apps">Hiện thị ứng dụng hệ thống</string>
     <string name="select_an_app">Chọn ứng dụng</string>
     <string name="setting_gesture_sensitivity">Độ nhạy</string>
-    <string name="bs_help_action">Hành động là các tác vụ được chạy khi bạn chạm vào mặt sau của thiết bị hai lần. Hành động sẽ được thực hiện theo thứ tự từ trên xuống. Nếu một hành động được thực hiện thành công thì sẽ không có hành động được thực hiện tiếp. Tuy nhiên, Nếu một hành động không thể chạy được (Ví dụ: "Gọi trợ lý" khi trợ lý đã được kích hoạt), hành động bên dưới sẽ được thực hiện cho đến khi có một hành động chạy thành công.\n\nTrong tương lai, bạn sẽ có thể thêm cổng vào hành động (xem menu cổng của ứng dụng) để cho phép kiểm soát nhiều hơn khi hành động nhất định được chạy.</string>
     <string name="bs_help_action_title">Hành động là gì?</string>
     <string name="bs_help_gate">Cổng là nhứng tình huống để chặn không cho cự chỉ thực hiện bất kỳ hành động nào. Để mọi hành động được thực hiện, tất cả các cổng đã được thêm vào phải ở trang thái cho phép.\nNếu đúng như dự tính, ví dụ như nếu màn hình đang tắt và cổng \"Khi tắt màn hình\" đang được bật, không hành động nào sẽ được chạy. Bạn có thể thêm bao nhiêu cổng tùy thích, và bật tắt chúng (thay vì phải xóa và thêm lại) để kiểm soát nhanh và dễ dàng hơn.</string>
     <string name="bs_help_gate_title">Cổng là gì?</string>

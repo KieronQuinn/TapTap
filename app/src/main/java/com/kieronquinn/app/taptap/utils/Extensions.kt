@@ -27,6 +27,7 @@ import android.util.TypedValue
 import android.view.View
 import androidx.annotation.ColorInt
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
 import com.android.systemui.keyguard.WakefulnessLifecycle
 import com.google.android.systemui.columbus.ColumbusModule
 import com.google.android.systemui.columbus.ColumbusService
@@ -40,6 +41,7 @@ import com.google.android.systemui.columbus.sensors.TfClassifier
 import com.kieronquinn.app.taptap.BuildConfig
 import com.kieronquinn.app.taptap.columbus.gates.*
 import com.kieronquinn.app.taptap.columbus.gates.CameraVisibility
+import com.kieronquinn.app.taptap.models.GateDataTypes
 import com.kieronquinn.app.taptap.models.GateInternal
 import com.kieronquinn.app.taptap.models.TapAction
 import com.kieronquinn.app.taptap.models.TapGate
@@ -293,20 +295,44 @@ fun getGates(context: Context): Set<Gate> {
     val gatesInternal = getGatesInternal(context)
     for(gate in gatesInternal){
         if(!gate.isActivated) continue
-        gates.add(when (gate.gate) {
-            TapGate.POWER_STATE -> PowerState(context, wakefulnessLifecycle)
-            TapGate.POWER_STATE_INVERSE -> PowerStateInverse(context)
-            TapGate.CHARGING_STATE -> ChargingState(context, Handler(), ColumbusModule.provideTransientGateDuration())
-            TapGate.TELEPHONY_ACTIVITY -> TelephonyActivity(context)
-            TapGate.CAMERA_VISIBILITY -> CameraVisibility(context)
-            TapGate.USB_STATE -> UsbState(context, Handler(), ColumbusModule.provideTransientGateDuration())
-            TapGate.APP_SHOWING -> AppVisibility(context, gate.data!!)
-            TapGate.KEYBOARD_VISIBILITY -> KeyboardVisibility(context)
-            TapGate.ORIENTATION_LANDSCAPE -> Orientation(context, Configuration.ORIENTATION_LANDSCAPE)
-            TapGate.ORIENTATION_PORTRAIT -> Orientation(context, Configuration.ORIENTATION_PORTRAIT)
-        })
+        gates.add(getGate(context, gate.gate, gate.data))
     }
     return gates
+}
+
+fun getGate(context: Context, tapGate: TapGate, data: String?): Gate {
+    return when (tapGate) {
+        TapGate.POWER_STATE -> PowerState(context, wakefulnessLifecycle)
+        TapGate.POWER_STATE_INVERSE -> PowerStateInverse(context)
+        TapGate.CHARGING_STATE -> ChargingState(context, Handler(), ColumbusModule.provideTransientGateDuration())
+        TapGate.TELEPHONY_ACTIVITY -> TelephonyActivity(context)
+        TapGate.CAMERA_VISIBILITY -> CameraVisibility(context)
+        TapGate.USB_STATE -> UsbState(context, Handler(), ColumbusModule.provideTransientGateDuration())
+        TapGate.APP_SHOWING -> AppVisibility(context, data!!)
+        TapGate.KEYBOARD_VISIBILITY -> KeyboardVisibility(context)
+        TapGate.ORIENTATION_LANDSCAPE -> Orientation(context, Configuration.ORIENTATION_LANDSCAPE)
+        TapGate.ORIENTATION_PORTRAIT -> Orientation(context, Configuration.ORIENTATION_PORTRAIT)
+        TapGate.TABLE -> TableDetection(context)
+        TapGate.POCKET -> PocketDetection(context)
+        TapGate.HEADSET -> Headset(context)
+        TapGate.HEADSET_INVERSE -> HeadsetInverse(context)
+        TapGate.MUSIC -> Music(context)
+        TapGate.MUSIC_INVERSE -> MusicInverse(context)
+    }
+}
+
+fun RecyclerView.ViewHolder.adapterPositionAdjusted(hasHeader: Boolean = true): Int {
+    return adapterPosition - 1
+}
+
+fun getFormattedDataForGate(context: Context, gate: TapGate, data: String?): CharSequence? {
+    return when(gate.dataType){
+        GateDataTypes.PACKAGE_NAME -> {
+            val applicationInfo = context.packageManager.getApplicationInfo(data, 0)
+            applicationInfo.loadLabel(context.packageManager)
+        }
+        else -> null
+    } ?: return null
 }
 
 val wakefulnessLifecycle by lazy {

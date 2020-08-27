@@ -9,8 +9,9 @@ import android.os.Handler
 import android.util.Log
 import com.google.android.systemui.columbus.actions.Action
 import com.google.android.systemui.columbus.sensors.GestureSensor
+import com.kieronquinn.app.taptap.models.WhenGateInternal
 
-class Flashlight(context: Context) : ActionBase(context) {
+class Flashlight(context: Context, whenGates: List<WhenGateInternal>) : ActionBase(context, whenGates) {
 
     private var isFlashlightOn = false
 
@@ -36,7 +37,7 @@ class Flashlight(context: Context) : ActionBase(context) {
 
     override fun isAvailable(): Boolean {
         if(!context.packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH)) return false
-        return true
+        return super.isAvailable()
     }
 
     override fun onTrigger() {

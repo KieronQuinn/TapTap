@@ -1,9 +1,15 @@
 package com.kieronquinn.app.taptap.activities
 
 import android.animation.ValueAnimator
+import android.content.Context
 import android.content.res.Configuration
 import android.graphics.Color
+import android.hardware.Sensor
+import android.hardware.SensorEvent
+import android.hardware.SensorEventListener
+import android.hardware.SensorManager
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -44,6 +50,18 @@ class SettingsActivity : AppCompatActivity(), NavController.OnDestinationChanged
         }
         toolbar.applySystemWindowInsetsToPadding(top = true)
         setToolbarElevationEnabled(false)
+        val sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        val proximity = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY)
+        sensorManager.registerListener(object: SensorEventListener {
+            override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
+
+            }
+
+            override fun onSensorChanged(event: SensorEvent?) {
+                Log.d("TapProximity", "Proximity state ${event!!.values!![0]}")
+            }
+
+        }, proximity, SensorManager.SENSOR_DELAY_NORMAL)
     }
 
     override fun onDestinationChanged(controller: NavController, destination: NavDestination, arguments: Bundle?) {
