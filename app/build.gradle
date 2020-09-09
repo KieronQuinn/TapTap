@@ -6,7 +6,7 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'com.google.android.gms.oss-licenses-plugin'
 
 def gitCommitHash = 'git rev-parse --verify --short HEAD'.execute().text.trim()
-def tagName = '0.6.1_alpha'
+def tagName = '0.7_alpha'
 
 android {
     compileSdkVersion 29
@@ -18,7 +18,7 @@ android {
         targetSdkVersion 29
         versionCode 6
         
-        versionName "0.6.1 Alpha"
+        versionName "0.7 Alpha"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
