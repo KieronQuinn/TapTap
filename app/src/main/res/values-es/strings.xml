@@ -94,7 +94,6 @@
     <string name="accessibility_info_off">El servicio de accesibilidad está deshabilitado</string>
     <string name="accessibility_info_off_desc">El gesto no funcionará actualmente. Toca para habilitar</string>
     <string name="accessibility_info_on">El servicio de accesibilidad está habilitado</string>
-    <string name="accessibility_info_on_desc">Si deseas deshabilitar el gesto, toca para deshabilitar el servicio</string>
     <string name="accessibility_info_toast">Seleccione "Tap, Tap" de la lista de servicios de accesibilidad, actívalo y regresa a Tap, Tap para continuar</string>
     <string name="menu_alpha">Esta aplicación está en versión Alfa. Toca para obtener información.</string>
     <string name="bs_alpha">Esta aplicación se encuentra en las primeras etapas de desarrollo y se ha lanzado en un estado Alfa para permitir la prueba en muchos dispositivos. Si encuentra un error, infórmelo en GitHub como un problema. Si desea solicitar una función, publíquela en el hilo de XDA o solicítela en GitHub.\n\nCompruebe nuevamente en XDA, ya sea en Labs o en el hilo, para obtener actualizaciones tan pronto como estén disponibles.\n\nGracias por tu paciencia durante el desarrollo.</string>

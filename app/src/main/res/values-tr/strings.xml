@@ -106,7 +106,6 @@
     <string name="accessibility_info_off">Erişilebilirlik Hizmeti devre dışı</string>
     <string name="accessibility_info_off_desc">Hareket şu anda çalışamaz. Etkinleştirmek için dokunun</string>
     <string name="accessibility_info_on">Erişilebilirlik Hizmeti etkin</string>
-    <string name="accessibility_info_on_desc">Hareketi devre dışı bırakmak istiyorsanız, hizmeti devre dışı bırakmak için dokunun</string>
     <string name="accessibility_info_toast">Erişilebilirlik hizmeti listesinden "Tap, Tap"i seçin, anahtarı açın ve devam etmek için Tap, Tap\'e dönün</string>
     <string name="menu_alpha">Bu uygulama alphadır. Bilgi için dokunun.</string>
     <string name="bs_alpha">Bu uygulama geliştirmenin ilk aşamasındadır ve birçok cihazda test edilmesine izin vermek için "Alpha" durumunda piyasaya sürülmüştür. Bir hatayla karşılaşırsanız, lütfen Github\'da bir sorun olarak bildirin. Bir özellik istemek isterseniz, XDA konusuna yazın veya Github\'da isteyin.\n\nGüncellemeler için Labs veya XDA konusunu tekrar kontrol edin.\n\nGeliştirme sırasında gösterdiğiniz sabır için teşekkürler.</string>
