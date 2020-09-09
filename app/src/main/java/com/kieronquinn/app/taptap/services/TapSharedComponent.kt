@@ -1,4 +1,4 @@
-package com.kieronquinn.app.taptap
+package com.kieronquinn.app.taptap.services
 
 import android.accessibilityservice.AccessibilityService
 import android.app.ActivityManager
@@ -7,7 +7,6 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.media.AudioManager
 import android.util.Log
-import android.view.accessibility.AccessibilityEvent
 import com.android.internal.logging.MetricsLogger
 import com.android.systemui.keyguard.WakefulnessLifecycle
 import com.google.android.systemui.columbus.ColumbusContentObserver
@@ -28,32 +27,229 @@ import com.kieronquinn.app.taptap.models.store.ActionListFile
 import com.kieronquinn.app.taptap.smaliint.SmaliCalls
 import com.kieronquinn.app.taptap.utils.*
 
-class TapAccessibilityService : AccessibilityService(),
+class TapSharedComponent(private val context: Context) :
     SharedPreferences.OnSharedPreferenceChangeListener {
 
     companion object {
-        private const val TAG = "TAS"
-        val KEY_ACCESSIBILITY_START = "accessibility_start"
+        private const val TAG = "TapService"
+        private const val MESSAGE_START = 1001
     }
 
     private var columbusService: ColumbusService? = null
     private var gestureSensorImpl: GestureSensorImpl? = null
 
-    private var currentPackageName: String = "android"
-
     private var wakefulnessLifecycle: WakefulnessLifecycle? = null
 
+    lateinit var accessibilityService: TapAccessibilityService
+
     private val sharedPreferences by lazy {
-        getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
+        context.getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
     }
 
-    override fun onCreate() {
-        super.onCreate()
-        Log.d(TAG, "onCreate")
-        val context = this
-        val activityManagerService = try{
+    private fun getColumbusActions(): List<Action> {
+        return ActionListFile.loadFromFile(accessibilityService).toList().mapNotNull {
+            getActionForEnum(it).apply {
+                (this as? ActionBase)?.triggerListener = {
+                    Log.d(TAG, "action trigger from type ${context.javaClass.simpleName}")
+                }
+            }
+        }
+    }
+
+    init {
+        sharedPreferences.registerOnSharedPreferenceChangeListener(this)
+    }
+
+    private fun getActionForEnum(action: ActionInternal): Action? {
+        val context = accessibilityService
+        return try {
+            when (action.action) {
+                TapAction.LAUNCH_CAMERA -> LaunchCamera(context, action.whenList)
+                TapAction.BACK -> AccessibilityServiceGlobalAction(
+                    context,
+                    AccessibilityService.GLOBAL_ACTION_BACK,
+                    action.whenList
+                )
+                TapAction.HOME -> AccessibilityServiceGlobalAction(
+                    context,
+                    AccessibilityService.GLOBAL_ACTION_HOME,
+                    action.whenList
+                )
+                TapAction.LOCK_SCREEN -> AccessibilityServiceGlobalAction(
+                    context,
+                    AccessibilityService.GLOBAL_ACTION_LOCK_SCREEN,
+                    action.whenList
+                )
+                TapAction.RECENTS -> AccessibilityServiceGlobalAction(
+                    context,
+                    AccessibilityService.GLOBAL_ACTION_RECENTS,
+                    action.whenList
+                )
+                TapAction.SPLIT_SCREEN -> AccessibilityServiceGlobalAction(
+                    context,
+                    AccessibilityService.GLOBAL_ACTION_TOGGLE_SPLIT_SCREEN,
+                    action.whenList
+                )
+                TapAction.REACHABILITY -> LaunchReachability(context, action.whenList)
+                TapAction.SCREENSHOT -> AccessibilityServiceGlobalAction(
+                    context,
+                    AccessibilityService.GLOBAL_ACTION_TAKE_SCREENSHOT,
+                    action.whenList
+                )
+                TapAction.QUICK_SETTINGS -> AccessibilityServiceGlobalAction(
+                    context,
+                    AccessibilityService.GLOBAL_ACTION_QUICK_SETTINGS,
+                    action.whenList
+                )
+                TapAction.NOTIFICATIONS -> AccessibilityServiceGlobalAction(
+                    context,
+                    AccessibilityService.GLOBAL_ACTION_NOTIFICATIONS,
+                    action.whenList
+                )
+                TapAction.POWER_DIALOG -> AccessibilityServiceGlobalAction(
+                    context,
+                    AccessibilityService.GLOBAL_ACTION_POWER_DIALOG,
+                    action.whenList
+                )
+                TapAction.FLASHLIGHT -> Flashlight(context, action.whenList)
+                TapAction.LAUNCH_APP -> LaunchApp(context, action.data ?: "", action.whenList)
+                TapAction.LAUNCH_SHORTCUT -> LaunchShortcut(
+                    context,
+                    action.data ?: "",
+                    action.whenList
+                )
+                TapAction.LAUNCH_ASSISTANT -> LaunchAssistant(context, action.whenList)
+                TapAction.TASKER_EVENT -> TaskerEvent(context, action.whenList)
+                TapAction.TASKER_TASK -> TaskerTask(context, action.data ?: "", action.whenList)
+                TapAction.TOGGLE_PAUSE -> MusicAction(
+                    context,
+                    MusicAction.Command.TOGGLE_PAUSE,
+                    action.whenList
+                )
+                TapAction.PREVIOUS -> MusicAction(
+                    context,
+                    MusicAction.Command.PREVIOUS,
+                    action.whenList
+                )
+                TapAction.NEXT -> MusicAction(context, MusicAction.Command.NEXT, action.whenList)
+                TapAction.VOLUME_PANEL -> VolumeAction(
+                    context,
+                    AudioManager.ADJUST_SAME,
+                    action.whenList
+                )
+                TapAction.VOLUME_UP -> VolumeAction(
+                    context,
+                    AudioManager.ADJUST_RAISE,
+                    action.whenList
+                )
+                TapAction.VOLUME_DOWN -> VolumeAction(
+                    context,
+                    AudioManager.ADJUST_LOWER,
+                    action.whenList
+                )
+                TapAction.VOLUME_TOGGLE_MUTE -> VolumeAction(
+                    context,
+                    AudioManager.ADJUST_TOGGLE_MUTE,
+                    action.whenList
+                )
+                TapAction.SOUND_PROFILER -> SoundProfileAction(context, action.whenList)
+                TapAction.WAKE_DEVICE -> WakeDeviceAction(context, action.whenList)
+                TapAction.GOOGLE_VOICE_ACCESS -> GoogleVoiceAccessAction(context, action.whenList)
+                TapAction.LAUNCH_SEARCH -> LaunchSearch(context, action.whenList)
+            }
+        } catch (e: RuntimeException) {
+            //Enum not found, probably a downgrade issue
+            null
+        }
+    }
+
+    private fun refreshColumbusActions() {
+        columbusService?.setActions(getColumbusActions())
+    }
+
+    private fun createGestureConfiguration(
+        context: Context,
+        activityManager: Any
+    ): GestureConfiguration {
+        val contentResolverWrapper = ContentResolverWrapper(context)
+        val factory = ColumbusContentObserver.Factory::class.java.constructors.first()
+            .newInstance(contentResolverWrapper, activityManager) as ColumbusContentObserver.Factory
+        return GestureConfiguration(context, emptySet(), factory)
+    }
+
+    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String) {
+        refreshColumbusActions()
+        if (key == SHARED_PREFERENCES_KEY_MODEL) {
+            val model = TfModel.valueOf(
+                sharedPreferences.getString(
+                    SHARED_PREFERENCES_KEY_MODEL,
+                    TfModel.PIXEL4.name
+                ) ?: TfModel.PIXEL4.name
+            )
+            gestureSensorImpl?.setTfClassifier(context.assets, model.model)
+        }
+        if (SHARED_PREFERENCES_FEEDBACK_KEYS.contains(key)) {
+            //Refresh feedback options
+            refreshColumbusFeedback()
+        }
+        if (key == SHARED_PREFERENCES_KEY_GATES) {
+            //Refresh gates
+            refreshColumbusGates(accessibilityService)
+        }
+        if (key == SHARED_PREFERENCES_KEY_ACTIONS_TIME) {
+            //Refresh actions
+            refreshColumbusActions()
+        }
+        if (key == SHARED_PREFERENCES_KEY_SENSITIVITY) {
+            //Reconfigure
+            configureTap()
+        }
+
+    }
+
+    private fun refreshColumbusFeedback() {
+        val feedbackSet = getColumbusFeedback()
+        Log.d(TAG, "Setting feedback to ${feedbackSet.joinToString(", ")}")
+        columbusService?.setFeedback(feedbackSet)
+    }
+
+    private fun getColumbusFeedback(): Set<FeedbackEffect> {
+        val isVibrateEnabled =
+            sharedPreferences.getBoolean(SHARED_PREFERENCES_KEY_FEEDBACK_VIBRATE, true)
+        val isWakeEnabled = sharedPreferences.getBoolean(SHARED_PREFERENCES_KEY_FEEDBACK_WAKE, true)
+        val feedbackList = ArrayList<FeedbackEffect>()
+        if (isVibrateEnabled) feedbackList.add(HapticClickCompat(context))
+        if (isWakeEnabled) feedbackList.add(WakeDevice(context))
+        return feedbackList.toSet()
+    }
+
+    private fun refreshColumbusGates(context: Context) {
+        val gatesSet = getGates(context)
+        Log.d(TAG, "setting gates to ${gatesSet.joinToString(", ")}")
+        columbusService?.setGates(gatesSet)
+    }
+
+    fun getCurrentPackageName(): String {
+        return accessibilityService.getCurrentPackageName()
+    }
+
+    private fun configureTap() {
+        gestureSensorImpl?.getTapRT()?.run {
+            val sensitivity =
+                sharedPreferences.getString(SHARED_PREFERENCES_KEY_SENSITIVITY, "0.05")
+                    ?.toFloatOrNull() ?: 0.05f
+            Log.d(
+                "TapRT",
+                "getMinNoiseToTolerate ${positivePeakDetector.getMinNoiseToTolerate()} sensitivity $sensitivity"
+            )
+            positivePeakDetector.setMinNoiseTolerate(sensitivity)
+        }
+    }
+
+    fun startTap() {
+        val activityManagerService = try {
             ActivityManager::class.java.getMethod("getService").invoke(null)
-        }catch (e: NoSuchMethodException){
+        } catch (e: NoSuchMethodException) {
             val activityManagerNative = Class.forName("android.app.ActivityManagerNative")
             activityManagerNative.getMethod("getDefault").invoke(null)
         }
@@ -64,142 +260,35 @@ class TapAccessibilityService : AccessibilityService(),
         val wakefulnessLifecycle = WakefulnessLifecycle()
         this.wakefulnessLifecycle = wakefulnessLifecycle
 
-        sharedPreferences.registerOnSharedPreferenceChangeListener(this)
-
         //Set model from prefs
-        SmaliCalls.setTapRtModel(TfModel.valueOf(sharedPreferences.getString(SHARED_PREFERENCES_KEY_MODEL, TfModel.PIXEL4.name) ?: TfModel.PIXEL4.name).model)
+        SmaliCalls.setTapRtModel(
+            TfModel.valueOf(
+                sharedPreferences.getString(
+                    SHARED_PREFERENCES_KEY_MODEL, TfModel.PIXEL4.name
+                ) ?: TfModel.PIXEL4.name
+            ).model
+        )
 
         //Create the service
-        this.columbusService = ColumbusService::class.java.constructors.first().newInstance(getColumbusActions(), getColumbusFeedback(), getGates(context), gestureSensorImpl, powerManagerWrapper, metricsLogger) as ColumbusService
+        this.columbusService = ColumbusService::class.java.constructors.first().newInstance(
+            getColumbusActions(),
+            getColumbusFeedback(),
+            getGates(accessibilityService),
+            gestureSensorImpl,
+            powerManagerWrapper,
+            metricsLogger
+        ) as ColumbusService
         configureTap()
 
-        sendBroadcast(Intent(KEY_ACCESSIBILITY_START).setPackage(packageName))
+        context.sendBroadcast(
+            Intent(TapAccessibilityService.KEY_ACCESSIBILITY_START).setPackage(
+                context.packageName
+            )
+        )
     }
 
-    private fun getColumbusActions() : List<Action> {
-        return ActionListFile.loadFromFile(this).toList().mapNotNull { getActionForEnum(it) }
-    }
-
-    private fun getActionForEnum(action: ActionInternal) : Action? {
-        return try {
-            when (action.action) {
-                TapAction.LAUNCH_CAMERA -> LaunchCamera(this, action.whenList)
-                TapAction.BACK -> AccessibilityServiceGlobalAction(this, GLOBAL_ACTION_BACK, action.whenList)
-                TapAction.HOME -> AccessibilityServiceGlobalAction(this, GLOBAL_ACTION_HOME, action.whenList)
-                TapAction.LOCK_SCREEN -> AccessibilityServiceGlobalAction(this, GLOBAL_ACTION_LOCK_SCREEN, action.whenList)
-                TapAction.RECENTS -> AccessibilityServiceGlobalAction(this, GLOBAL_ACTION_RECENTS, action.whenList)
-                TapAction.SPLIT_SCREEN -> AccessibilityServiceGlobalAction(this, GLOBAL_ACTION_TOGGLE_SPLIT_SCREEN, action.whenList)
-                TapAction.REACHABILITY -> LaunchReachability(this, action.whenList)
-                TapAction.SCREENSHOT -> AccessibilityServiceGlobalAction(this, GLOBAL_ACTION_TAKE_SCREENSHOT, action.whenList)
-                TapAction.QUICK_SETTINGS -> AccessibilityServiceGlobalAction(this, GLOBAL_ACTION_QUICK_SETTINGS, action.whenList)
-                TapAction.NOTIFICATIONS -> AccessibilityServiceGlobalAction(this, GLOBAL_ACTION_NOTIFICATIONS, action.whenList)
-                TapAction.POWER_DIALOG -> AccessibilityServiceGlobalAction(this, GLOBAL_ACTION_POWER_DIALOG, action.whenList)
-                TapAction.FLASHLIGHT -> Flashlight(this, action.whenList)
-                TapAction.LAUNCH_APP -> LaunchApp(this, action.data ?: "", action.whenList)
-                TapAction.LAUNCH_SHORTCUT -> LaunchShortcut(this, action.data ?: "", action.whenList)
-                TapAction.LAUNCH_ASSISTANT -> LaunchAssistant(this, action.whenList)
-                TapAction.LAUNCH_SEARCH -> LaunchSearch(this, action.whenList)
-                TapAction.TASKER_EVENT -> TaskerEvent(this, action.whenList)
-                TapAction.TASKER_TASK -> TaskerTask(this, action.data ?: "", action.whenList)
-                TapAction.TOGGLE_PAUSE -> MusicAction(this, MusicAction.Command.TOGGLE_PAUSE, action.whenList)
-                TapAction.PREVIOUS -> MusicAction(this, MusicAction.Command.PREVIOUS, action.whenList)
-                TapAction.NEXT -> MusicAction(this, MusicAction.Command.NEXT, action.whenList)
-                TapAction.VOLUME_PANEL -> VolumeAction(this, AudioManager.ADJUST_SAME, action.whenList)
-                TapAction.VOLUME_UP -> VolumeAction(this, AudioManager.ADJUST_RAISE, action.whenList)
-                TapAction.VOLUME_DOWN -> VolumeAction(this, AudioManager.ADJUST_LOWER, action.whenList)
-                TapAction.VOLUME_TOGGLE_MUTE -> VolumeAction(this, AudioManager.ADJUST_TOGGLE_MUTE, action.whenList)
-                TapAction.SOUND_PROFILER -> SoundProfileAction(this, action.whenList)
-                TapAction.WAKE_DEVICE -> WakeDeviceAction(this, action.whenList)
-            }
-        }catch (e: RuntimeException){
-            //Enum not found, probably a downgrade issue
-            null
-        }
-    }
-
-    private fun refreshColumbusActions(){
-        columbusService?.setActions(getColumbusActions())
-    }
-
-    private fun createGestureConfiguration(context: Context, activityManager: Any): GestureConfiguration {
-        val contentResolverWrapper = ContentResolverWrapper(context)
-        val factory = ColumbusContentObserver.Factory::class.java.constructors.first().newInstance(contentResolverWrapper, activityManager) as ColumbusContentObserver.Factory
-        return GestureConfiguration(context, emptySet(), factory)
-    }
-
-    override fun onInterrupt() {
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.d(TAG, "onDestroy")
-        //Stop the service to prevent listeners still being attached
+    fun stopTap() {
         columbusService?.stop()
     }
 
-    override fun onAccessibilityEvent(event: AccessibilityEvent) {
-        if(event.eventType == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED && event.packageName?.toString() != currentPackageName) {
-            if(event.packageName?.toString() == "android") return
-            currentPackageName = event.packageName?.toString() ?: "android"
-            Log.d(TAG, "package $currentPackageName isCamera ${isPackageCamera(currentPackageName)}")
-        }
-    }
-
-    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String) {
-        refreshColumbusActions()
-        if(key == SHARED_PREFERENCES_KEY_MODEL){
-            val model = TfModel.valueOf(sharedPreferences.getString(SHARED_PREFERENCES_KEY_MODEL, TfModel.PIXEL4.name) ?: TfModel.PIXEL4.name)
-            gestureSensorImpl?.setTfClassifier(assets, model.model)
-        }
-        if(SHARED_PREFERENCES_FEEDBACK_KEYS.contains(key)){
-            //Refresh feedback options
-            refreshColumbusFeedback()
-        }
-        if(key == SHARED_PREFERENCES_KEY_GATES){
-            //Refresh gates
-            refreshColumbusGates(this)
-        }
-        if(key == SHARED_PREFERENCES_KEY_ACTIONS_TIME){
-            //Refresh actions
-            refreshColumbusActions()
-        }
-        if(key == SHARED_PREFERENCES_KEY_SENSITIVITY){
-            //Reconfigure
-            configureTap()
-        }
-
-    }
-
-    private fun refreshColumbusFeedback(){
-        val feedbackSet = getColumbusFeedback()
-        Log.d(TAG, "Setting feedback to ${feedbackSet.joinToString(", ")}")
-        columbusService?.setFeedback(feedbackSet)
-    }
-
-    private fun getColumbusFeedback(): Set<FeedbackEffect> {
-        val isVibrateEnabled = sharedPreferences.getBoolean(SHARED_PREFERENCES_KEY_FEEDBACK_VIBRATE, true)
-        val isWakeEnabled = sharedPreferences.getBoolean(SHARED_PREFERENCES_KEY_FEEDBACK_WAKE, true)
-        val feedbackList = ArrayList<FeedbackEffect>()
-        if(isVibrateEnabled) feedbackList.add(HapticClickCompat(this))
-        if(isWakeEnabled) feedbackList.add(WakeDevice(this))
-        return feedbackList.toSet()
-    }
-
-    private fun refreshColumbusGates(context: Context){
-        val gatesSet = getGates(context)
-        Log.d(TAG, "setting gates to ${gatesSet.joinToString(", ")}")
-        columbusService?.setGates(gatesSet)
-    }
-
-    fun getCurrentPackageName(): String {
-        return currentPackageName
-    }
-
-    private fun configureTap(){
-        gestureSensorImpl?.getTapRT()?.run {
-            val sensitivity = sharedPreferences.getString(SHARED_PREFERENCES_KEY_SENSITIVITY, "0.05")?.toFloatOrNull() ?: 0.05f
-            Log.d("TapRT", "getMinNoiseToTolerate ${positivePeakDetector.getMinNoiseToTolerate()} sensitivity $sensitivity")
-            positivePeakDetector.setMinNoiseTolerate(sensitivity)
-        }
-    }
 }
