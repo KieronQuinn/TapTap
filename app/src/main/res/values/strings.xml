@@ -101,6 +101,8 @@
     <string name="help">Help</string>
     <string name="action_launch_assistant">Launch Assistant</string>
     <string name="action_launch_assistant_desc">Launch your default assistant app</string>
+    <string name="action_launch_search">Launch search</string>
+    <string name="action_launch_search_desc">Start a Google Search</string>
     <string name="action_tasker_event">Tasker Event</string>
     <string name="action_tasker_event_desc">Trigger the Tasker Event plugin</string>
 

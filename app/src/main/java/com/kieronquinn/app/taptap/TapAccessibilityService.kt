@@ -98,6 +98,7 @@ class TapAccessibilityService : AccessibilityService(),
                 TapAction.LAUNCH_APP -> LaunchApp(this, action.data ?: "", action.whenList)
                 TapAction.LAUNCH_SHORTCUT -> LaunchShortcut(this, action.data ?: "", action.whenList)
                 TapAction.LAUNCH_ASSISTANT -> LaunchAssistant(this, action.whenList)
+                TapAction.LAUNCH_SEARCH -> LaunchSearch(this, action.whenList)
                 TapAction.TASKER_EVENT -> TaskerEvent(this, action.whenList)
                 TapAction.TASKER_TASK -> TaskerTask(this, action.data ?: "", action.whenList)
                 TapAction.TOGGLE_PAUSE -> MusicAction(this, MusicAction.Command.TOGGLE_PAUSE, action.whenList)
