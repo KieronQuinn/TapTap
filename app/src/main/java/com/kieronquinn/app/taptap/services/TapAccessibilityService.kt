@@ -79,7 +79,6 @@ class TapAccessibilityService : AccessibilityService(), SharedPreferences.OnShar
 
     override fun onAccessibilityEvent(event: AccessibilityEvent) {
         if(event.eventType == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED && event.packageName?.toString() != currentPackageName) {
-            Log.d("TASP", event.packageName.toString())
             if(event.packageName?.toString() == "android") return
             currentPackageName = event.packageName?.toString() ?: "android"
         }
