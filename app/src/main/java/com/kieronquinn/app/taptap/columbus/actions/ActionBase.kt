@@ -1,28 +1,26 @@
 package com.kieronquinn.app.taptap.columbus.actions
 
 import android.content.Context
-import android.content.Intent
 import android.util.Log
-import androidx.lifecycle.LifecycleOwner
 import com.google.android.systemui.columbus.actions.Action
 import com.google.android.systemui.columbus.sensors.GestureSensor
-import com.kieronquinn.app.taptap.TapAccessibilityService
 import com.kieronquinn.app.taptap.models.WhenGateInternal
 import com.kieronquinn.app.taptap.utils.getGate
-import com.kieronquinn.app.taptap.utils.isAppLaunchable
-import com.kieronquinn.app.taptap.utils.isPackageAssistant
 
 abstract class ActionBase(context: Context, private val whenGates: List<WhenGateInternal>) : Action(context, emptyList()) {
 
     private val loadedGates by lazy {
-        whenGates.map { getGate(context, it.gate, it.data).apply { activate() } }
+        whenGates.mapNotNull { getGate(context, it.gate, it.data)?.apply { activate() } }
     }
 
     override fun onProgress(var1: Int, var2: GestureSensor.DetectionProperties?) {
         if(var1 != 3) return
 
         onTrigger()
+        triggerListener?.invoke()
     }
+
+    var triggerListener: (() -> Unit)? = null
 
     override fun isAvailable(): Boolean {
         if(whenGates.isEmpty()) return true

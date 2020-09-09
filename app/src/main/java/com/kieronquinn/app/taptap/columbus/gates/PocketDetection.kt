@@ -7,7 +7,9 @@ import android.hardware.SensorEventCallback
 import android.hardware.SensorManager
 import android.os.Handler
 import android.os.HandlerThread
+import android.util.Log
 import com.google.android.systemui.columbus.gates.Gate
+import java.util.*
 
 /*
     This one is slightly odd as a sensor listener doesn't stay running in the background to allow for asynchronous listening.
@@ -15,8 +17,12 @@ import com.google.android.systemui.columbus.gates.Gate
  */
 
 class PocketDetection(context: Context) : Gate(context) {
+    companion object {
+        private const val TIMEOUT = 25L
+    }
 
     private lateinit var handlerThread: HandlerThread
+
     private val sensorManager by lazy {
         context.getSystemService(Context.SENSOR_SERVICE) as SensorManager
     }
@@ -35,12 +41,16 @@ class PocketDetection(context: Context) : Gate(context) {
     override fun onDeactivate() {}
     override fun isBlocked(): Boolean {
         val proximity = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY)
-        this.handlerThread = HandlerThread(PocketDetection::class.java.simpleName)
+        this.handlerThread = HandlerThread(UUID.randomUUID().toString())
         this.handlerThread.start()
         val handler = Handler(this.handlerThread.looper)
         sensorManager.registerListener(sensorListener, proximity, SensorManager.SENSOR_DELAY_NORMAL, handler)
-        while(isSensorBlocking == null){}
-        return isSensorBlocking!!
+        val startTime = System.currentTimeMillis()
+        while(isSensorBlocking == null){
+            if(System.currentTimeMillis() - startTime > TIMEOUT) break
+        }
+        Log.d("PocketDetection", "isSensorBlocking $isSensorBlocking in ${System.currentTimeMillis() - startTime}")
+        return isSensorBlocking ?: false
     }
 
 }

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <com.kieronquinn.app.taptap.preferences.Preference
+        android:icon="@drawable/ic_warning"
+        android:title="@string/setting_advanced_warning"
+        android:summary="@string/setting_advanced_warning_desc" />
+
+    <com.kieronquinn.app.taptap.preferences.SwitchPreference
+        android:icon="@drawable/ic_advanced_split_service"
+        android:key="advanced_split_service"
+        android:defaultValue="false"
+        android:title="@string/setting_advanced_split_service"
+        android:summary="@string/setting_advanced_split_service_desc" />
+
+    <com.kieronquinn.app.taptap.preferences.SwitchPreference
+        android:icon="@drawable/ic_advanced_restart_service"
+        android:key="advanced_restart_service"
+        android:defaultValue="false"
+        android:title="@string/setting_advanced_restart_service"
+        android:summary="@string/setting_advanced_restart_service_desc" />
+
+</PreferenceScreen>

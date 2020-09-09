@@ -25,12 +25,19 @@ abstract class BaseSettingsFragment : PreferenceFragmentCompat(), View.OnScrollC
         super.onViewCreated(view, savedInstanceState)
         listView.applySystemWindowInsetsToPadding(top = true, bottom = true, left = true, right = true)
         listView.post {
-            listView.setPadding(listView.paddingLeft, listView.paddingTop + (context?.getToolbarHeight() ?: 0), listView.paddingRight, listView.paddingBottom)
+            val topPadding = if(this is SettingsFragment) ((context?.getToolbarHeight() ?: 0) * 2) + resources.getDimension(R.dimen.margin_small).toInt()
+            else context?.getToolbarHeight()
+            listView.setPadding(listView.paddingLeft, listView.paddingTop + (topPadding ?: 0), listView.paddingRight, listView.paddingBottom)
             listView.setOnScrollChangeListener(this)
             listView.overScrollMode = View.OVER_SCROLL_NEVER
             listView.smoothScrollToPosition( 0)
         }
         setToolbarElevationEnabled(false)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as? SettingsActivity)?.setSwitchVisible(this is SettingsFragment)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -4,7 +4,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.columbus.actions.*
-import com.kieronquinn.app.taptap.utils.AccessibilityServiceGlobalAction
+import com.kieronquinn.app.taptap.columbus.actions.AccessibilityServiceGlobalAction
 import com.kieronquinn.app.taptap.columbus.actions.LaunchCamera
 import com.kieronquinn.app.taptap.utils.minSdk
 
@@ -40,7 +40,7 @@ enum class TapAction(val clazz: Class<*>, val category: TapActionCategory, @Stri
     POWER_DIALOG(AccessibilityServiceGlobalAction::class.java, TapActionCategory.ACTIONS, R.string.action_power_dialog, R.string.action_power_dialog_desc, R.drawable.ic_action_power_dialog, true, true, true),
     FLASHLIGHT(Flashlight::class.java, TapActionCategory.UTILITIES, R.string.action_flashlight, R.string.action_flashlight_desc, R.drawable.ic_action_category_utilities, true, true, true, dataType = ActionDataTypes.CAMERA_PERMISSION),
     TASKER_EVENT(TaskerEvent::class.java, TapActionCategory.ADVANCED, R.string.action_tasker_event, R.string.action_tasker_event_desc, R.drawable.ic_action_tasker, true, true, true),
-    TASKER_TASK(TaskerTask::class.java, TapActionCategory.ADVANCED, R.string.action_tasker_task, R.string.action_tasker_task_desc, R.drawable.ic_action_tasker, true, true, true, dataType = ActionDataTypes.TASKER_TASK),
+    TASKER_TASK(TaskerTask::class.java, TapActionCategory.ADVANCED, R.string.action_tasker_task, R.string.action_tasker_task_desc, R.drawable.ic_action_tasker, true, true, true, R.string.action_tasker_task_desc_formatted, dataType = ActionDataTypes.TASKER_TASK),
     TOGGLE_PAUSE(MusicAction::class.java, TapActionCategory.ACTIONS, R.string.action_toggle_pause, R.string.action_toggle_pause_desc, R.drawable.ic_action_toggle_pause, true, true, true),
     PREVIOUS(MusicAction::class.java, TapActionCategory.ACTIONS, R.string.action_previous, R.string.action_previous_desc, R.drawable.ic_action_previous, true, true, true),
     NEXT(MusicAction::class.java, TapActionCategory.ACTIONS, R.string.action_next, R.string.action_next_desc, R.drawable.ic_action_next, true, true, true),
@@ -48,7 +48,8 @@ enum class TapAction(val clazz: Class<*>, val category: TapActionCategory, @Stri
     VOLUME_PANEL(VolumeAction::class.java, TapActionCategory.ACTIONS, R.string.action_volume_panel, R.string.action_volume_panel_desc, R.drawable.ic_action_volume_panel, true, true, true),
     VOLUME_UP(VolumeAction::class.java, TapActionCategory.ACTIONS, R.string.action_volume_up, R.string.action_volume_up_desc, R.drawable.ic_action_volume_up, true, true, true),
     VOLUME_DOWN(VolumeAction::class.java, TapActionCategory.ACTIONS, R.string.action_volume_down, R.string.action_volume_down_desc, R.drawable.ic_action_volume_down, true, true, true),
-    VOLUME_TOGGLE_MUTE(VolumeAction::class.java, TapActionCategory.ACTIONS, R.string.action_volume_toggle_mute, R.string.action_volume_toggle_mute_desc, R.drawable.ic_action_volume_toggle_mute, true, true, true)
+    VOLUME_TOGGLE_MUTE(VolumeAction::class.java, TapActionCategory.ACTIONS, R.string.action_volume_toggle_mute, R.string.action_volume_toggle_mute_desc, R.drawable.ic_action_volume_toggle_mute, true, true, true),
+    GOOGLE_VOICE_ACCESS(GoogleVoiceAccessAction::class.java, TapActionCategory.ACTIONS, R.string.action_google_voice_access, R.string.action_google_voice_access_desc, R.drawable.ic_action_google_voice_access, true, true, true)
 }
 
 enum class ActionDataTypes {

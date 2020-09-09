@@ -34,7 +34,6 @@
     <string name="gate_usb_state">USB aygıtı</string>
     <string name="gate_usb_state_desc">Flash sürücü gibi bir USB aygıtı takıldığında hareketi yarım saniye engeller</string>
     <string name="gate_usb_state_desc_when">Yalnızca bir USB cihazı yeni takıldığında çalıştır (yarım saniye sınır)</string>
-    <string 
     <string name="gate_camera_visibility">Kamera</string>
     <string name="gate_camera_visibility_desc">Herhangi bir kamera uygulaması açıldığında hareketi engeller. Not: Bu, Kamerayı Başlat eyleminin atlama işlevini bozacaktır.</string>
     <string name="gate_camera_visibility_desc_when">Yalnızca kamera uygulaması açıkken çalıştır</string>
