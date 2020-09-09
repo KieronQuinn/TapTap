@@ -131,6 +131,7 @@ class GateBottomSheetFragment : BottomSheetDialogFragment(), NavController.OnDes
                 setToolbarElevationEnabled(elevationEnabled)
             }
             it.setItemClickListener { gate ->
+                gate.isActivated = true
                 val dataType = gate.gate.dataType
                 if(dataType != null){
                     //Fire off to data picker

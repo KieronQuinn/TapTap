@@ -4,12 +4,8 @@ import android.app.KeyguardManager
 import android.content.Context
 import android.content.Intent
 import android.os.PowerManager
-import com.google.android.systemui.columbus.actions.Action
-import com.google.android.systemui.columbus.sensors.GestureSensor
-import com.kieronquinn.app.taptap.TapAccessibilityService
 import com.kieronquinn.app.taptap.activities.WakeUpActivity
 import com.kieronquinn.app.taptap.models.WhenGateInternal
-import com.kieronquinn.app.taptap.utils.isAppLaunchable
 
 class WakeDeviceAction(context: Context, whenGates: List<WhenGateInternal>) : ActionBase(context, whenGates) {
 

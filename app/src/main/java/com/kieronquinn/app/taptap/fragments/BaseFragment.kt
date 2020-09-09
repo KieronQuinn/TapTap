@@ -29,6 +29,11 @@ abstract class BaseFragment : Fragment() {
         setHomeAsUpEnabled(false)
     }
 
+    override fun onResume() {
+        super.onResume()
+        (activity as? SettingsActivity)?.setSwitchVisible(false)
+    }
+
     private fun setToolbarElevationEnabled(enabled: Boolean){
         (activity as? SettingsActivity)?.setToolbarElevationEnabled(enabled)
     }

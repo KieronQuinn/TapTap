@@ -5,25 +5,24 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.os.PowerManager
 import android.provider.Settings
-import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.kieronquinn.app.taptap.BuildConfig
 import com.kieronquinn.app.taptap.R
-import com.kieronquinn.app.taptap.TapAccessibilityService
+import com.kieronquinn.app.taptap.services.TapAccessibilityService
 import com.kieronquinn.app.taptap.activities.SettingsActivity
-import com.kieronquinn.app.taptap.columbus.actions.SoundProfileAction
 import com.kieronquinn.app.taptap.fragments.bottomsheets.GenericBottomSheetFragment
 import com.kieronquinn.app.taptap.preferences.Preference
+import com.kieronquinn.app.taptap.services.TapForegroundService
 import com.kieronquinn.app.taptap.utils.Links
 import com.kieronquinn.app.taptap.utils.isAccessibilityServiceEnabled
 import java.lang.RuntimeException
@@ -66,6 +65,12 @@ class SettingsFragment : BaseSettingsFragment() {
         getPreference("feedback"){
             it.setOnPreferenceClickListener {
                 navigate(R.id.action_settingsFragment_to_settingsFeedbackFragment)
+                true
+            }
+        }
+        getPreference("advanced"){
+            it.setOnPreferenceClickListener {
+                navigate(R.id.action_settingsFragment_to_settingsAdvancedFragment)
                 true
             }
         }
@@ -112,7 +117,7 @@ class SettingsFragment : BaseSettingsFragment() {
         getPreference("accessibility"){
             if(isServiceEnabled){
                 it.title = getString(R.string.accessibility_info_on)
-                it.summary = getString(R.string.accessibility_info_on_desc)
+                it.summary = getString(R.string.accessibility_info_on_desc_2)
                 it.icon = ContextCompat.getDrawable(it.context, R.drawable.ic_accessibility_check_round)
             }else{
                 it.title = getString(R.string.accessibility_info_off)
@@ -132,7 +137,6 @@ class SettingsFragment : BaseSettingsFragment() {
             it.isVisible = !powerManager.isIgnoringBatteryOptimizations(BuildConfig.APPLICATION_ID)
         }
 
-        val notificationManager = context?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         view?.post {
             getPreference("accessibility"){
                 if(isServiceEnabled) {
@@ -150,12 +154,21 @@ class SettingsFragment : BaseSettingsFragment() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.menu_main, menu)
+        (activity as? SettingsActivity)?.updateChecker?.newUpdate?.run {
+            observe(this@SettingsFragment, Observer {
+                menu.findItem(R.id.menu_update).isVisible = it != null
+            })
+            menu.findItem(R.id.menu_update).isVisible = this.value != null
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.menu_alpha -> {
                 GenericBottomSheetFragment.create(getString(R.string.bs_alpha), R.string.bs_alpha_title, android.R.string.ok).show(childFragmentManager, "bs_alpha")
+            }
+            R.id.menu_update -> {
+                (activity as? SettingsActivity)?.showUpdateBottomSheet()
             }
         }
         return super.onOptionsItemSelected(item)

@@ -1,32 +1,30 @@
 package com.kieronquinn.app.taptap.activities
 
 import android.animation.ValueAnimator
-import android.content.Context
+import android.content.SharedPreferences
 import android.content.res.Configuration
-import android.graphics.Color
-import android.hardware.Sensor
-import android.hardware.SensorEvent
-import android.hardware.SensorEventListener
-import android.hardware.SensorManager
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
+import android.widget.CompoundButton
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.os.bundleOf
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.fragments.BaseFragment
-import com.kieronquinn.app.taptap.utils.animateColorChange
-import com.kieronquinn.app.taptap.utils.animateElevationChange
-import com.kieronquinn.app.taptap.utils.dip
+import com.kieronquinn.app.taptap.fragments.bottomsheets.UpdateBottomSheetFragment
+import com.kieronquinn.app.taptap.utils.*
+import com.kieronquinn.app.taptap.workers.UpdateCheckWorker
 import dev.chrisbanes.insetter.Insetter
+import dev.chrisbanes.insetter.applySystemWindowInsetsToMargin
 import dev.chrisbanes.insetter.applySystemWindowInsetsToPadding
 import kotlinx.android.synthetic.main.activity_settings.*
 
-class SettingsActivity : AppCompatActivity(), NavController.OnDestinationChangedListener {
+class SettingsActivity : AppCompatActivity(), NavController.OnDestinationChangedListener, SharedPreferences.OnSharedPreferenceChangeListener {
 
     private val isLightTheme
         get() = resources.configuration.uiMode.and(Configuration.UI_MODE_NIGHT_MASK) != Configuration.UI_MODE_NIGHT_YES
@@ -34,6 +32,8 @@ class SettingsActivity : AppCompatActivity(), NavController.OnDestinationChanged
     private val navController by lazy {
         findNavController(R.id.nav_host_fragment)
     }
+
+    val updateChecker by lazy { UpdateChecker() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,19 +49,29 @@ class SettingsActivity : AppCompatActivity(), NavController.OnDestinationChanged
             window.decorView.systemUiVisibility = window.decorView.systemUiVisibility.or(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR).or(View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR)
         }
         toolbar.applySystemWindowInsetsToPadding(top = true)
+        switch_main.applySystemWindowInsetsToMargin(top = true)
         setToolbarElevationEnabled(false)
-        val sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
-        val proximity = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY)
-        sensorManager.registerListener(object: SensorEventListener {
-            override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
-
+        sharedPreferences.registerOnSharedPreferenceChangeListener(this)
+        switch_main.isChecked = isMainEnabled
+        switch_main.setOnCheckedChangeListener(checkListener)
+        updateChecker.getLatestRelease { success, updateChecker ->
+            if(success){
+                updateChecker.newUpdate.value?.let {
+                    //New update available!
+                    showUpdateBottomSheet(it)
+                }
+            }else{
+                Toast.makeText(this, getString(R.string.update_error), Toast.LENGTH_LONG).show()
             }
+        }
+        UpdateCheckWorker.queueCheckWorker(this)
+    }
 
-            override fun onSensorChanged(event: SensorEvent?) {
-                Log.d("TapProximity", "Proximity state ${event!!.values!![0]}")
-            }
-
-        }, proximity, SensorManager.SENSOR_DELAY_NORMAL)
+    fun showUpdateBottomSheet(update: UpdateChecker.Update? = updateChecker.newUpdate.value) {
+        update ?: return
+        UpdateBottomSheetFragment().apply {
+            arguments = bundleOf(UpdateBottomSheetFragment.KEY_UPDATE to update)
+        }.show(supportFragmentManager, "bs_update")
     }
 
     override fun onDestinationChanged(controller: NavController, destination: NavDestination, arguments: Bundle?) {
@@ -90,7 +100,13 @@ class SettingsActivity : AppCompatActivity(), NavController.OnDestinationChanged
         toolbarColorAnimation?.cancel()
         toolbarElevationAnimation?.cancel()
         toolbarColorAnimation = toolbar.animateColorChange(beforeColor = initialBeforeColor, afterColor = toolbarColor)
+        switch_main.animateColorChange(beforeColor = initialBeforeColor, afterColor = toolbarColor)
         toolbarElevationAnimation = toolbar.animateElevationChange(elevation)
+        switch_main.animateElevationChange(elevation)
+    }
+
+    fun setSwitchVisible(visible: Boolean){
+        switch_main?.visibility = if(visible) View.VISIBLE else View.GONE
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -111,6 +127,19 @@ class SettingsActivity : AppCompatActivity(), NavController.OnDestinationChanged
             if (result != true) super.onBackPressed()
         } else {
             super.onBackPressed()
+        }
+    }
+
+    private val checkListener =
+        CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
+            sharedPreferences.edit().putBoolean(SHARED_PREFERENCES_KEY_MAIN_SWITCH, isChecked).apply()
+        }
+
+    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
+        if(key == SHARED_PREFERENCES_KEY_MAIN_SWITCH) {
+            switch_main.setOnCheckedChangeListener(null)
+            switch_main.isChecked = isMainEnabled
+            switch_main.setOnCheckedChangeListener(checkListener)
         }
     }
 

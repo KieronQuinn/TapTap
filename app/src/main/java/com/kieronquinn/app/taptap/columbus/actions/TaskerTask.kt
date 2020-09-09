@@ -1,17 +1,8 @@
 package com.kieronquinn.app.taptap.columbus.actions
 
 import android.content.Context
-import android.content.Intent
 import android.util.Log
-import com.google.android.systemui.columbus.actions.Action
-import com.google.android.systemui.columbus.sensors.GestureSensor
-import com.joaomgcd.taskerpluginlibrary.extensions.requestQuery
-import com.kieronquinn.app.taptap.TapAccessibilityService
-import com.kieronquinn.app.taptap.activities.ActivityConfigTaskerEvent
-import com.kieronquinn.app.taptap.activities.TaskerEventUpdate
 import com.kieronquinn.app.taptap.models.WhenGateInternal
-import com.kieronquinn.app.taptap.utils.isAppLaunchable
-import com.kieronquinn.app.taptap.utils.isPackageAssistant
 import net.dinglisch.android.tasker.TaskerIntent
 
 class TaskerTask(context: Context, private val taskName: String, whenGates: List<WhenGateInternal>) : ActionBase(context, whenGates) {

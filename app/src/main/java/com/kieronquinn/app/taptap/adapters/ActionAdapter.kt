@@ -187,6 +187,9 @@ class ActionAdapter(private val context: Context, val actions: MutableList<Actio
                     null
                 }
             }
+            ActionDataTypes.TASKER_TASK -> {
+                item.data
+            }
             else -> null
         } ?: return null
         return context.getString(item.action.formattableDescription!!, formattedText)

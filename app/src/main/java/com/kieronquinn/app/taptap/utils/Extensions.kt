@@ -2,7 +2,6 @@ package com.kieronquinn.app.taptap.utils
 
 import android.animation.ArgbEvaluator
 import android.animation.ValueAnimator
-import android.app.Activity
 import android.content.ComponentName
 import android.content.ContentResolver
 import android.content.Context
@@ -18,8 +17,11 @@ import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Build
 import android.os.Handler
+import android.os.Looper
 import android.provider.MediaStore
 import android.provider.Settings
+import android.text.Html
+import android.text.Spanned
 import android.text.TextUtils
 import android.util.ArraySet
 import android.util.Log
@@ -33,14 +35,16 @@ import com.google.android.systemui.columbus.ColumbusModule
 import com.google.android.systemui.columbus.ColumbusService
 import com.google.android.systemui.columbus.actions.Action
 import com.google.android.systemui.columbus.feedback.FeedbackEffect
-import com.google.android.systemui.columbus.gates.*
+import com.google.android.systemui.columbus.gates.ChargingState
+import com.google.android.systemui.columbus.gates.Gate
+import com.google.android.systemui.columbus.gates.PowerState
+import com.google.android.systemui.columbus.gates.UsbState
 import com.google.android.systemui.columbus.sensors.GestureSensorImpl
 import com.google.android.systemui.columbus.sensors.PeakDetector
 import com.google.android.systemui.columbus.sensors.TapRT
 import com.google.android.systemui.columbus.sensors.TfClassifier
 import com.kieronquinn.app.taptap.BuildConfig
 import com.kieronquinn.app.taptap.columbus.gates.*
-import com.kieronquinn.app.taptap.columbus.gates.CameraVisibility
 import com.kieronquinn.app.taptap.models.GateDataTypes
 import com.kieronquinn.app.taptap.models.GateInternal
 import com.kieronquinn.app.taptap.models.TapAction
@@ -56,6 +60,7 @@ import java.lang.reflect.Field
 import java.lang.reflect.Method
 
 const val SHARED_PREFERENCES_NAME = "${BuildConfig.APPLICATION_ID}_prefs"
+const val SHARED_PREFERENCES_KEY_MAIN_SWITCH = "main_enabled"
 const val SHARED_PREFERENCES_KEY_ACTION = "action"
 const val SHARED_PREFERENCES_KEY_ACTIONS_TIME = "actions_time"
 const val SHARED_PREFERENCES_KEY_GATES_TIME = "gates_time"
@@ -64,6 +69,8 @@ const val SHARED_PREFERENCES_KEY_MODEL = "model"
 const val SHARED_PREFERENCES_KEY_FEEDBACK_VIBRATE = "feedback_vibrate"
 const val SHARED_PREFERENCES_KEY_FEEDBACK_WAKE = "feedback_wake"
 const val SHARED_PREFERENCES_KEY_FEEDBACK_OVERRIDE_DND = "feedback_override_dnd"
+const val SHARED_PREFERENCES_KEY_SPLIT_SERVICE = "advanced_split_service"
+const val SHARED_PREFERENCES_KEY_RESTART_SERVICE = "advanced_restart_service"
 
 const val SHARED_PREFERENCES_KEY_SENSITIVITY = "sensitivity"
 
@@ -88,6 +95,15 @@ val DEFAULT_ACTIONS = if(TapAction.SCREENSHOT.isAvailable){
 }else{
     arrayOf(TapAction.LAUNCH_ASSISTANT, TapAction.HOME)
 }
+
+val Context.isSplitService: Boolean
+    get() = sharedPreferences.getBoolean(SHARED_PREFERENCES_KEY_SPLIT_SERVICE, false)
+
+val Context.isMainEnabled: Boolean
+    get() = sharedPreferences.getBoolean(SHARED_PREFERENCES_KEY_MAIN_SWITCH, true)
+
+val Context.isRestartEnabled: Boolean
+    get() = sharedPreferences.getBoolean(SHARED_PREFERENCES_KEY_RESTART_SERVICE, false)
 
 fun InputStream.copyFile(out: OutputStream) {
     val buffer = ByteArray(1024)
@@ -295,12 +311,33 @@ fun getGates(context: Context): Set<Gate> {
     val gatesInternal = getGatesInternal(context)
     for(gate in gatesInternal){
         if(!gate.isActivated) continue
-        gates.add(getGate(context, gate.gate, gate.data))
+        gates.add(getGate(context, gate.gate, gate.data) ?: continue)
     }
     return gates
 }
 
-fun getGate(context: Context, tapGate: TapGate, data: String?): Gate {
+fun String.formatChangelog(): String {
+    return this.replace("\n", "<br>")
+}
+
+fun requireBackgroundThread(){
+    if(Looper.myLooper() == Looper.getMainLooper()) throw RuntimeException("Not background thread")
+}
+
+fun getSpannedText(text: String): Spanned {
+    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        Html.fromHtml(text, Html.FROM_HTML_MODE_COMPACT)
+    } else {
+        Html.fromHtml(text)
+    }
+}
+
+fun runOnUiThread(run: () -> Unit){
+    Handler(Looper.getMainLooper()).post { run.invoke() }
+}
+
+fun getGate(context: Context, tapGate: TapGate?, data: String?): Gate? {
+    tapGate ?: return null
     return when (tapGate) {
         TapGate.POWER_STATE -> PowerState(context, wakefulnessLifecycle)
         TapGate.POWER_STATE_INVERSE -> PowerStateInverse(context)
@@ -490,7 +527,7 @@ fun Context.isDarkTheme(): Boolean {
 val Fragment.sharedPreferences
     get() = context?.getSharedPreferences("${BuildConfig.APPLICATION_ID}_prefs", Context.MODE_PRIVATE)
 
-val Activity.sharedPreferences
+val Context.sharedPreferences
     get() = getSharedPreferences("${BuildConfig.APPLICATION_ID}_prefs", Context.MODE_PRIVATE)
 
 //Following methods based off https://code.highspec.ru/Mikanoshi/CustoMIUIzer
