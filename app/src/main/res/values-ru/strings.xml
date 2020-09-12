@@ -43,7 +43,7 @@
     <string name="gate_app_showing_desc_when">Запускать только когда на экране отображается приложение</string>
     <string name="gate_app_showing_desc_formatted">Блокировать жест, когда %1s отображается на экране</string>
     <string name="action_launch_camera">Камера</string>
-    <string name="action_launch_camera_desc">Запустить приложение камеры по умолчанию. Это действие будет пропущено, если камера уже работает.</string>
+    <string name="action_launch_camera_desc">Запустить приложение камеры по умолчанию. Действие будет пропущено, если камера уже работает.</string>
     <string name="action_home">Домой</string>
     <string name="action_home_desc">Имитировать нажатие кнопки домой</string>
     <string name="action_back">Назад</string>
@@ -73,10 +73,10 @@
     <string name="add_action_category_actions">Действия</string>
     <string name="add_action_category_advanced">Дополнительные</string>
     <string name="action_flashlight">Фонарик</string>
-    <string name="action_flashlight_desc">Переключить фонарик. Это действие не будет выполнено, если камера используется другим приложением.</string>
+    <string name="action_flashlight_desc">Включить/выключить фонарик. Действие не будет выполнено, если камера используется другим приложением.</string>
     <string name="action_launch_app">Запустить приложения</string>
     <string name="action_launch_app_desc">Запустить приложения</string>
-    <string name="action_launch_app_desc_formattable">Запустить %1s. Это действие будет пропущено, если оно уже запущено.</string>
+    <string name="action_launch_app_desc_formattable">Запустить %1s. Действие будет пропущено, если оно уже запущено.</string>
     <string name="fab_add_gate">Добавить запрет</string>
     <string name="add_gate_category_state">Состояние</string>
     <string name="add_gate_category_action">Действие</string>
@@ -170,8 +170,8 @@
     <string name="accessibility_info_on">Спец. возможности включены</string>
     <string name="accessibility_info_on_desc_2">Служба спец. возможностей нужна для работы жеста.</string>
     <string name="accessibility_info_toast">Выберите «Tap, Tap» из списка сервисов со специальными возможностями, переключите "Использовать сервис" и вернитесь к Tap, Tap, чтобы продолжить</string>
-    <string name="menu_alpha">Это приложение на стадии альфа тестирования. Нажмите, чтобы узнать больше.</string>
-    <string name="bs_alpha">Это приложение находится на ранней стадии разработки и было выпущено в состоянии «Альфа», что позволяет проводить тестирование на многих устройствах. Если вы столкнулись с ошибкой, сообщите о ней на GitHub. Если вы хотите предложить функцию, опубликуйте её в треде на XDA или предложите её на GitHub. \n\nПроверьте обновления на XDA, в лаборатории или в треде, как только их выпустят. \n\nСпасибо за терпение в процессе разработки.</string>
+    <string name="menu_alpha">Это приложение находится в альфа-версии. Нажмите, чтобы узнать больше.</string>
+    <string name="bs_alpha">Это приложение находится на ранней стадии разработки находится на стадии «Альфа», что позволяет проводить тестирование на многих устройствах. Если вы столкнулись с ошибкой, сообщите о ней на GitHub. Если вы хотите предложить функцию, опубликуйте её в треде на XDA или предложите её на GitHub. \n\nПроверьте обновления на XDA, в лаборатории или в треде, как только их выпустят. \n\nСпасибо за терпение в процессе разработки.</string>
     <string name="bs_alpha_title">Альфа</string>
 
     <string name="category_about">О приложении</string>
@@ -183,7 +183,8 @@
     <string name="picker_launch_camera">Запустить камеру</string>
     <string name="tasker_config_label">Двойное нажатие назад</string>
     <string name="action_tasker_task">Задача Tasker</string>
-    <string name="action_tasker_task_desc">Запустить заданную задачу Tasker</string>
+    <string name="action_tasker_event">Событие Tasker</string>
+    <string name="action_tasker_task_desc">Запустить задачу Tasker</string>
     <string name="action_tasker_task_desc_formatted">Запустить задачу Tasker (%1s)</string>
     <string name="action_tasker_event_toast">Tasker не установлен или версия не поддерживается</string>
     <string name="bs_tasker_content">Чтобы запустить задачу Tasker без использования подключаемого модуля «Событие», необходимо включить параметр «Разрешить внешний доступ» в настройках Tasker. Если эта опция не включена, это действие всегда будет пропущено.</string>
