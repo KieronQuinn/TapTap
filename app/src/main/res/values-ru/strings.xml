@@ -1,7 +1,7 @@
 <resources>
-    <string name="accessibility_service_description">Служба доступности TapTap\n\n<b>Важное примечание: данные ни от одного из ваших приложений не собираются. Эта служба используется только для поддержания активного распознавания и взаимодействия с устройством.</b></string>
+    <string name="accessibility_service_description">Служба спец. возможностей TapTap\n\n<b>Важное примечание: данные ни от одного из ваших приложений не собираются. Эта служба используется только для поддержания активного распознавания и взаимодействия с устройством.</b></string>
     <string name="toast_no_action_selected">Действие не выбрано, так не пойдёт</string>
-    <string name="launch_accessibility">Доступность запуска</string>
+    <string name="launch_accessibility">запустить службу спец. возможностей</string>
     <string name="setting_gesture">Жест</string>
     <string name="setting_gesture_desc">Настройте работу жеста</string>
     <string name="setting_actions">Действия</string>
