@@ -11,7 +11,7 @@
     <string name="setting_feedback">Обратная связь</string>
     <string name="setting_feedback_desc">Установите, как устройство уведомляет вас о запуске жеста</string>
     <string name="setting_gesture_model">Модель устройства</string>
-    <string name="setting_gesture_model_desc">Выберите модель устройства для использования в компоненте машинного обучения</string>
+    <string name="setting_gesture_model_desc">Выберите модель устройства для машинного обучения</string>
     <string name="setting_feedback_vibrate">Вибрация</string>
     <string name="setting_feedback_vibrate_desc">Вибрировать один раз, когда используется жест</string>
     <string name="setting_feedback_override_dnd">Вибрировать, когда включен беззвучный режим</string>
