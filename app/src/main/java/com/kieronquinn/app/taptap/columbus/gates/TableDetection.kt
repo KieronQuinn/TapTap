@@ -5,7 +5,10 @@ import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
+import android.os.Handler
+import android.os.HandlerThread
 import com.google.android.systemui.columbus.gates.Gate
+import java.util.*
 import kotlin.math.acos
 import kotlin.math.roundToInt
 import kotlin.math.sqrt
@@ -17,9 +20,13 @@ class TableDetection(context: Context) : Gate(context), SensorEventListener {
     private val accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
 
     private var isFlat = false
+    private lateinit var handlerThread: HandlerThread
 
     override fun onActivate() {
-        sensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_NORMAL)
+        this.handlerThread = HandlerThread(UUID.randomUUID().toString())
+        this.handlerThread.start()
+        val handler = Handler(this.handlerThread.looper)
+        sensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_NORMAL, handler)
     }
 
     override fun onDeactivate() {

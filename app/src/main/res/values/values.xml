@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- DO NOT TRANSLATE THESE -->
-    <string name="about_summary_contributors" translatable="false">João Dias, timfedo, Giorgio Cantoni, Fedor Shatokhin, Rodrigo Souza, Petro Bilyi, Kevin Kung, hjthhthjt, baldapps, NitroFuN, Arthur Fontaine, ZonaRMR, Khanh Le, Gregor Wünsch, Zeanon, eroneko, Fatih Fırıncı, Ashutosh Singh, Adrian Campos, Ilya Kataev</string>
+    <string name="about_summary_contributors" translatable="false">João Dias, timfedo, Giorgio Cantoni, Fedor Shatokhin, Rodrigo Souza, Petro Bilyi, Kevin Kung, hjthjthjt, baldapps, NitroFuN, Arthur Fontaine, ZonaRMR, Khanh Le, Gregor Wünsch, Zeanon, eroneko, Fatih Fırıncı, Ashutosh Singh, Adrian Campos, Ilya Kataev</string>
 </resources>

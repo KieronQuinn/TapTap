@@ -6,6 +6,7 @@ import com.google.android.systemui.columbus.gates.*
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.columbus.gates.*
 import com.kieronquinn.app.taptap.columbus.gates.CameraVisibility
+import com.kieronquinn.app.taptap.columbus.gates.TelephonyActivity
 
 /*
     Tap Gates (wrapping the Gate class) contain details on how the gate will be shown in the settings

@@ -27,7 +27,7 @@ object GateListFile {
         if(!file.exists()) return defaultGates
         val fileData = file.readText(Charset.defaultCharset())
         if(fileData.isEmpty()) return defaultGates
-        return Gson().fromJson(fileData, Array<GateInternal>::class.java)
+        return Gson().fromJson(fileData, Array<GateInternal>::class.java).mapNotNull { if(it.gate == null) null else it }.toTypedArray()
     }
 
     private fun createGateInternalForGate(gate: TapGate, isActivated: Boolean): GateInternal {

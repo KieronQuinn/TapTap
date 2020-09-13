@@ -3,13 +3,10 @@ package com.kieronquinn.app.taptap.columbus.actions
 import android.content.Context
 import android.content.Intent
 import android.widget.Toast
-import com.google.android.systemui.columbus.actions.Action
-import com.google.android.systemui.columbus.sensors.GestureSensor
 import com.kieronquinn.app.taptap.R
-import com.kieronquinn.app.taptap.TapAccessibilityService
+import com.kieronquinn.app.taptap.services.TapAccessibilityService
 import com.kieronquinn.app.taptap.models.WhenGateInternal
 import com.kieronquinn.app.taptap.utils.deserialize
-import com.kieronquinn.app.taptap.utils.isAppLaunchable
 
 class LaunchShortcut(context: Context, private val launchIntentString: String, whenGates: List<WhenGateInternal>) : ActionBase(context, whenGates) {
 

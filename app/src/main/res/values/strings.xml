@@ -101,13 +101,15 @@
     <string name="help">Help</string>
     <string name="action_launch_assistant">Launch Assistant</string>
     <string name="action_launch_assistant_desc">Launch your default assistant app</string>
+    <string name="action_launch_search">Launch search</string>
+    <string name="action_launch_search_desc">Start a Google Search</string>
     <string name="action_tasker_event">Tasker Event</string>
     <string name="action_tasker_event_desc">Trigger the Tasker Event plugin</string>
 
     <string name="accessibility_info_off">Accessibility Service is disabled</string>
     <string name="accessibility_info_off_desc">The gesture will not currently work. Tap to enable</string>
     <string name="accessibility_info_on">Accessibility Service is enabled</string>
-    <string name="accessibility_info_on_desc">If you want to disable the gesture, tap to disable the service</string>
+    <string name="accessibility_info_on_desc_2">This service is required for the gesture to work.</string>
     <string name="accessibility_info_toast">Select "Tap, Tap" from the accessibility service list, toggle it and return to Tap, Tap to continue</string>
     <string name="menu_alpha">This app is in Alpha. Tap for info.</string>
     <string name="bs_alpha">This app is in the early stages of development and has been released in an "Alpha" state to allow for testing on lots of devices. If you encounter a bug, please report it on the GitHub as an issue. If you would like to request a feature, post it on the XDA thread or request it on GitHub.\n\nCheck back on XDA, either on Labs or in the thread, for updates as soon as they\'re available.\n\nThank you for your patience during development.</string>
@@ -124,6 +126,7 @@
     <string name="tasker_config_label">Double Tapped Back</string>
     <string name="action_tasker_task">Tasker Task</string>
     <string name="action_tasker_task_desc">Run a specified Tasker task</string>
+    <string name="action_tasker_task_desc_formatted">Run a Tasker task (%1s)</string>
     <string name="action_tasker_event_toast">Tasker not installed or version not supported</string>
     <string name="bs_tasker_content">In order to launch a Tasker task without using the Event plugin, you must enable the \"Allow External Access\" option in Tasker\'s settings. If you do not have this option enabled, this Action will always be skipped.</string>
     <string name="bs_tasker_title">Permission Required</string>
@@ -170,7 +173,7 @@
 
     <string name="battery_and_optimisation">Battery &amp; Optimisation</string>
     <string name="battery_and_optimisation_desc">Info on why Tap, Tap uses battery, and why it may be killed by your device when run in the background (and how to fix that)</string>
-    <string name="bs_battery_content">Tap, Tap uses a background accessibility service to stay running and always be \'listening\' for taps on the back of the device using the Accelerometer and Gyroscope. For this reason, Tap, Tap may use some battery while running in the background.\n\nDue to its early development state, Tap, Tap has not been fully optimised yet, and battery life may improve through options in the future, but currently a slightly lower battery life is a consequence of having this feature.\n\nAdditionally, some OEM firmwares, such as MIUI or OneUI, are more aggressive at killing background tasks (including accessibility services) than Google recommends they should be. If Tap, Tap stops working on your device after being closed even with Battery Optimisation disabled, please try the following:\n• Locking the app into memory (usually from the recent apps)\n• Disabling any further battery optimisation for an app (usually under Settings > Apps or Settings > Battery)\n• Disabling MIUI Optimization in the Developer Options (MIUI only)\n\nMore info on apps being killed by the system and suggestions on how to resolve it for your device can be found at dontkillmyapp.com</string>
+    <string name="bs_battery_content">Tap, Tap uses a background accessibility service to stay running and always be \'listening\' for taps on the back of the device using the Accelerometer and Gyroscope. For this reason, Tap, Tap may use some battery while running in the background.\n\nDue to its early development state, Tap, Tap has not been fully optimised yet, and battery life may improve through options in the future, but currently a slightly lower battery life is a consequence of having this feature.\n\nAdditionally, some OEM firmwares, such as MIUI or OneUI, are more aggressive at killing background tasks (including accessibility services) than Google recommends they should be. If Tap, Tap stops working on your device after being closed even with Battery Optimisation disabled, please try the following:\n• Locking the app into memory (usually from the recent apps)\n• Disabling any further battery optimisation for an app (usually under Settings > Apps or Settings > Battery)\n• Disabling MIUI Optimization in the Developer Options (MIUI only)\n• Setting Battery optimisation to \"Don\'t optimise\" in the app info (OnePlus only)\n\nMore info on apps being killed by the system and suggestions on how to resolve it for your device can be found at dontkillmyapp.com</string>
     <string name="bs_battery_positive">Go to dontkillmyapp.com</string>
 
     <string name="gate_orientation_landscape">Landscape orientation</string>
@@ -200,10 +203,34 @@
     <string name="gate_music_inverse">No Music Playing</string>
     <string name="gate_music_desc">Blocks the gesture when there is music playing</string>
     <string name="gate_music_desc_when">Run only when there is music playing</string>
-    <string name="gate_music_desc_when_inverse">Blocks the gesture when there is no music playing</string>
-    <string name="gate_music_desc_inverse">Run only when there is no music playing</string>
+    <string name="gate_music_desc_when_inverse">Run only when there is no music playing</string>
+    <string name="gate_music_desc_inverse">Blocks the gesture when there is no music playing</string>
     <string name="notification_policy_grant">Continue</string>
     <string name="bs_notification_policy_content">Changing the ringer mode requires Do Not Disturb access to be able to manage the Do Not Disturb state. Please grant the permission in the settings, by clicking below, selecting Tap, Tap, granting the permission and returning back to this screen.</string>
+    <string name="tap_notification_title">Tap, Tap Service</string>
+    <string name="tap_notification_content">Tap, Tap is running in the background. Tap to hide.</string>
+    <string name="tap_notification_channel_title">Background notification</string>
+    <string name="tap_notification_channel_description">Notification used to keep Tap, Tap running in the background when the option to use a separate service is enabled</string>
+    <string name="setting_advanced">Advanced</string>
+    <string name="setting_advanced_desc">Advanced settings and tweaks to change performance and more</string>
+    <string name="setting_advanced_split_service">Use split services</string>
+    <string name="setting_advanced_split_service_desc">This setting enables the use of a second service that runs alongside the accessibility service. While seeming counter-intuitive, this may help the app not be killed by the system on some devices, as it is a foreground service and leaves the accessibilty service doing very little, relying on the second service for recognition and execution. You may need to reboot for this to take full effect.</string>
+    <string name="setting_advanced_warning">Here be dragons</string>
+    <string name="setting_advanced_warning_desc">These settings are experimental and may not work on your device, or may cause Tap, Tap to stop working entirely. If you find this happens, turn the settings to <b>off</b> and reboot your device, which should reset the service.</string>
+    <string name="switch_main">Enable Gesture</string>
+    <string name="setting_advanced_restart_service">Auto-restart service</string>
+    <string name="setting_advanced_restart_service_desc">Attempt to automatically restart the Tap, Tap listener component once an hour. If you have split services enabled, the foreground service will be restarted too. Note: The Accessibility service <b>cannot</b> be auto-restarted, so if it is killed or disabled, this will not work.</string>
+    <string name="update_error">Error checking for updates</string>
+    <string name="bs_update_download">Download</string>
+    <string name="bs_update_later">Remind me later</string>
+    <string name="bs_update_title">Update available!</string>
+    <string name="bs_update_content"><![CDATA[<h2>A new update is available</h2><br><b>Current version:</b> %1s<br><b>New version:</b> %1s<br><b>Update date:</b> %1s<br><b>Changelog:</b><br>%1s]]></string>
+    <string name="tap_update_notification_channel_title">Update notifications</string>
+    <string name="tap_update_notification_channel_description">Notifications shown when the app checks for updates once a day</string>
+    <string name="tap_update_notification_title">Tap, Tap update available</string>
+    <string name="tap_update_notification_content">An update is available for Tap, Tap (%1s to %1s)</string>
+    <string name="action_google_voice_access">Trigger Google Voice Access</string>
+    <string name="action_google_voice_access_desc">Triggers the Google Voice Access <b>accessibility app</b>, if it is running (this is NOT assistant or voice search)</string>
 
 
 </resources>

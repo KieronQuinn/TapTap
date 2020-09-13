@@ -3,8 +3,16 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/menu_update"
+        android:title="@string/bs_update_title"
+        android:icon="@drawable/ic_update"
+        android:visible="false"
+        app:showAsAction="always" />
+
+    <item
         android:id="@+id/menu_alpha"
         android:title="@string/menu_alpha"
         android:icon="@drawable/ic_alpha"
         app:showAsAction="always" />
+
 </menu>

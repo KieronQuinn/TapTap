@@ -1,6 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.kieronquinn.app.taptap">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <uses-permission android:name="android.permission.VIBRATE"/>
@@ -24,6 +25,10 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE_PREFERENCES"/>
+            </intent-filter>
         </activity>
 
         <activity android:name=".activities.WakeUpActivity"
@@ -31,7 +36,7 @@
 
         <activity android:name=".activities.AppPickerActivity" />
 
-        <service android:name="com.kieronquinn.app.taptap.TapAccessibilityService"
+        <service android:name="com.kieronquinn.app.taptap.services.TapAccessibilityService"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
             <intent-filter>
                 <action android:name="android.accessibilityservice.AccessibilityService" />
@@ -64,6 +69,19 @@
 
         <activity android:name=".activities.ReachabilityActivity"
             android:theme="@style/ReachabilityTheme"/>
+
+        <service android:name=".services.TapForegroundService" />
+
+        <service
+            android:name=".services.TapQSTile"
+            android:icon="@drawable/ic_taptap_logo"
+            android:label="@string/app_name"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action
+                    android:name="android.service.quicksettings.action.QS_TILE"/>
+            </intent-filter>
+        </service>
 
     </application>
 

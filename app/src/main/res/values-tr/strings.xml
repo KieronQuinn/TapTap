@@ -27,18 +27,25 @@
     <!-- Gates -->
     <string name="gate_charging_state">Şarj</string>
     <string name="gate_charging_state_desc">Cihaz şarja takıldıktan sonra hareketi yarım saniye engeller</string>
+    <string name="gate_charging_state_desc_when">Yalnızca cihaz yeni şarja takıldığında çalıştır (yarım saniye sınır)</string>
     <string name="gate_telephony_activity">Arama</string>
     <string name="gate_telephony_activity_desc">Cihaz bir aramadayken hareketi engeller. Yalnızca standart aramalar desteklenir - WhatsApp gibi uygulamalar değil</string>
+    <string name="gate_telephony_activity_desc_when">Yalnızca cihaz bir aramadayken çalıştır</string>
     <string name="gate_usb_state">USB aygıtı</string>
     <string name="gate_usb_state_desc">Flash sürücü gibi bir USB aygıtı takıldığında hareketi yarım saniye engeller</string>
+    <string name="gate_usb_state_desc_when">Yalnızca bir USB cihazı yeni takıldığında çalıştır (yarım saniye sınır)</string>
     <string name="gate_camera_visibility">Kamera</string>
     <string name="gate_camera_visibility_desc">Herhangi bir kamera uygulaması açıldığında hareketi engeller. Not: Bu, Kamerayı Başlat eyleminin atlama işlevini bozacaktır.</string>
+    <string name="gate_camera_visibility_desc_when">Yalnızca kamera uygulaması açıkken çalıştır</string>
     <string name="gate_power_state">Ekran kapalı</string>
     <string name="gate_power_state_desc">Cihazın ekranı kapalıyken hareketi engeller</string>
+    <string name="gate_power_state_desc_when">Yalnızca ekran kapalıyken çalıştır</string>
     <string name="gate_power_state_inverse">Ekran açık</string>
     <string name="gate_power_state_inverse_desc">Cihazın ekranı açıkken hareketi engeller</string>
+    <string name="gate_power_state_inverse_desc_when">Yalnızca ekran açıkken çalıştır</string>
     <string name="gate_app_showing">Uygulama görüntülendiğinde</string>
     <string name="gate_app_showing_desc">Bir uygulama ekranda görüntülendiğinde hareketi engeller</string>
+    <string name="gate_app_showing_desc_when">Yalnızca ekranda bir uygulama gösterildiğinde çalıştır</string>
     <string name="gate_app_showing_desc_formatted">%1s ekranda görüntülendiğinde hareketi engeller</string>
     <string name="action_launch_camera">Kamerayı başlat</string>
     <string name="action_launch_camera_desc">Varsayılan kamera uygulamanızı başlatır. Kamera zaten çalışıyorsa bu eylem atlanır.</string>
@@ -77,6 +84,7 @@
     <string name="action_launch_app_desc">Bir uygulama başlatır</string>
     <string name="action_launch_app_desc_formattable">%1s uygulamasını başlatır. Bu eylem zaten çalışıyorsa atlanır.</string>
     <string name="fab_add_gate">Geçit ekle</string>
+    <string name="add_gate_when">Gereksinim Ekle</string>
     <string name="add_gate_category_state">Durum</string>
     <string name="add_gate_category_action">Eylem</string>
     <string name="nothing_found">Hiçbir şey bulunamadı</string>
@@ -98,7 +106,6 @@
     <string name="accessibility_info_off">Erişilebilirlik Hizmeti devre dışı</string>
     <string name="accessibility_info_off_desc">Hareket şu anda çalışamaz. Etkinleştirmek için dokunun</string>
     <string name="accessibility_info_on">Erişilebilirlik Hizmeti etkin</string>
-    <string name="accessibility_info_on_desc">Hareketi devre dışı bırakmak istiyorsanız, hizmeti devre dışı bırakmak için dokunun</string>
     <string name="accessibility_info_toast">Erişilebilirlik hizmeti listesinden "Tap, Tap"i seçin, anahtarı açın ve devam etmek için Tap, Tap\'e dönün</string>
     <string name="menu_alpha">Bu uygulama alphadır. Bilgi için dokunun.</string>
     <string name="bs_alpha">Bu uygulama geliştirmenin ilk aşamasındadır ve birçok cihazda test edilmesine izin vermek için "Alpha" durumunda piyasaya sürülmüştür. Bir hatayla karşılaşırsanız, lütfen Github\'da bir sorun olarak bildirin. Bir özellik istemek isterseniz, XDA konusuna yazın veya Github\'da isteyin.\n\nGüncellemeler için Labs veya XDA konusunu tekrar kontrol edin.\n\nGeliştirme sırasında gösterdiğiniz sabır için teşekkürler.</string>
@@ -130,6 +137,8 @@
     <string name="action_volume_toggle_mute_desc">Mevcut ses akışı için sesi açın/kapatın</string>
     <string name="action_wake_device">Cihazı uyandır</string>
     <string name="action_wake_device_desc">Ekran kapalıysa cihazı uyandırır. Bu, geri bildirim ayarlarındaki ayarı geçersiz kılar, ekran açıksa atlanır ve \"Ekran kapalı\" geçidi etkinleştirilmişse çalışmaz</string>
+    <string name="actions_sound_profile">Ses profillerini değiştir</string>
+    <string name="actions_sound_profile_desc">Cihazınızın ses profilleri arasında geçiş yapın: Titreşim/Sessiz/Sesli</string>
     <string name="action_launch_shortcut">Kısayol başlat</string>
     <string name="action_launch_shortcut_desc">Google Haritalar yol tarifleri gibi bir kısayol başlatır</string>
     <string name="action_launch_shortcut_desc_formattable">%1s kısayolunu başlat (uygulamaya kısayol)</string>
@@ -162,6 +171,34 @@
 
     <string name="gate_orientation_landscape">Yatay yönlendirme</string>
     <string name="gate_orientation_landscape_desc">Telefon yatay yöndeyken hareketi engeller</string>
+    <string name="gate_orientation_landscape_desc_when">Yalnızca cihaz yatay yöndeyken çalıştır</string>
     <string name="gate_orientation_portrait">Dikey yönlendirme</string>
     <string name="gate_orientation_portrait_desc">Telefon dikey yöndeyken hareketi engeller</string>
+    <string name="gate_orientation_portrait_desc_when">Yalnızca cihaz dikey yöndeyken çalıştır</string>
+    <string name="gate_table">Masa</string>
+    <string name="gate_table_desc">Cihaz düz bir yere, örneğin bir masaya yerleştirildiğinde hareketi engeller</string>
+    <string name="gate_table_desc_when">Yalnızca cihaz düz olduğunda, örneğin bir masa üzerinde çalıştır</string>
+    <string name="gate_pocket">Cep</string>
+    <string name="gate_pocket_desc">Yakınlık sensörü bir nesne algıladığında hareketi engeller. Bu, cihazınız cebinizdeyken veya bir masaya ters koyulduğunda hareketi engeller</string>
+    <string name="gate_pocket_desc_when">Yalnızca yakınlık sensörü bir nesne algıladığında çalıştır. Bu, cihaz cebinizde olduğunda veya bir masaya ters koyulduğunda gerçekleşir</string>
+    <string name="gate_headset_inverse">Kulaklık Yok</string>
+    <string name="gate_headset_desc_inverse">Bağlı kablolu veya kablosuz kulaklık <b>olmadığında</b> hareketi engeller. Bu, müziğin hoparlörlerden çalınmasını önlemek için en iyi oynatma/duraklatma/atlama kontrolleriyle birlikte kullanılır</string>
+    <string name="gate_headset_desc_when_inverse">Yalnızca bağlı kablolu veya kablosuz kulaklık <b>olmadığında</b> çalıştır</string>
+    <string name="gate_headset">Kulaklık</string>
+    <string name="gate_headset_desc">Bağlı bir kablolu veya kablosuz kulaklık <b>olduğunda</b> hareketi engeller.</string>
+    <string name="gate_headset_desc_when">Yalnızca bağlı bir kablolu veya kablosuz kulaklık <b>olduğunda</b> çalıştır</string>
+    <string name="item_action_when">Yalnızca şu durumlarda eylemi çalıştır…</string>
+    <string name="item_action_when_multiple">Yalnızca (herhangi biri) olduğunda eylemi çalıştır…</string>
+    <string name="item_action_when_add_empty">Gereksinim ekle…</string>
+    <string name="item_action_when_add">Ekle…</string>
+    <string name="item_action_blocked_info">Bu eylem, engellerken altındaki herhangi bir eylemin çalıştırılmasını önleyecektir (asla atlanmayacaktır).\nAşağıdaki eylemlerin yürütülmesini istiyorsanız bir gereksinim eklemeli veya bu eylemi kaldırmalısınız.</string>
+    <string name="gate_music">Müzik Çalıyor</string>
+    <string name="gate_music_inverse">Müzik Çalmıyor</string>
+    <string name="gate_music_desc">Müzik çalarken hareketi engeller</string>
+    <string name="gate_music_desc_when">Yalnızca müzik çalarken çalıştır</string>
+    <string name="gate_music_desc_when_inverse">Müzik çalınmadığında hareketi engeller</string>
+    <string name="gate_music_desc_inverse">Sadece müzik çalmıyorken çalıştır</string>
+    <string name="notification_policy_grant">Devam et</string>
+    <string name="bs_notification_policy_content">Zil modunun değiştirilmesi, Rahatsız Etmeyin durumunu yönetebilmek için Rahatsız Etmeyin erişimini gerektirir. Lütfen aşağıya tıklayarak, Tap, Tap\'ı seçerek ayarlardan izin verin ve bu ekrana geri dönün.</string>
+
 </resources>

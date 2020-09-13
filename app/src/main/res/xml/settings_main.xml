@@ -39,6 +39,12 @@
         android:title="@string/setting_feedback"
         android:summary="@string/setting_feedback_desc"/>
 
+    <com.kieronquinn.app.taptap.preferences.Preference
+        android:icon="@drawable/ic_advanced_round"
+        android:key="advanced"
+        android:title="@string/setting_advanced"
+        android:summary="@string/setting_advanced_desc"/>
+
     <com.kieronquinn.app.taptap.preferences.PreferenceCategory
         android:title="@string/category_about">
 

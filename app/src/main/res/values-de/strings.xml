@@ -92,7 +92,6 @@
     <string name="accessibility_info_off">Bedienungshilfen-Service ist nicht aktiviert</string>
     <string name="accessibility_info_off_desc">Die Geste wird momentan nicht funktionieren. Tippen zum Aktivieren</string>
     <string name="accessibility_info_on">Bedienungshilfen-Service ist aktiviert</string>
-    <string name="accessibility_info_on_desc">Falls du die Geste deaktivieren möchtest, tippe zum Deaktivieren des Services</string>
     <string name="accessibility_info_toast">Wähle \"Tap, Tap\" von der Bedienungshilfen-Service-Liste aus, schalte es ein und kehre zu \"Tap, Tap\" zurück, um fortzufahren</string>
     <string name="menu_alpha">Diese App ist eine Alpha-Version. Tippe für Infos</string>
     <string name="bs_alpha">Diese App ist in den frühen Stufen ihrer Entwicklung und wurde in einem \"Alpha\"-Stadium veröffentlich, damit sie auf möglichst vielen Geräten getestet werden kann. Falls du einen Bug (Fehler) bemerkst, melde ihn bitte als \"Issue\" auf GitHub. Wenn du gerne eine neue Funktion haben würdest, poste sie im XDA-Thread oder frage sie in GitHub an.\n\nSchaue auf XDA, entweder in \"Labs\" oder im Thread, nach Updates, um sie zu erhalten, sobald sie verfügbar sind.\n\nVielen Dank für deine Geduld während der Entwicklung</string>
