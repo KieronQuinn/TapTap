@@ -24,7 +24,7 @@
     <string name="gate_charging_state_desc">Блокировать жест на полсекунды после подключения к зарядному устройству</string>
     <string name="gate_charging_state_desc_when">Запускать на полсекунды после подключения к зарядному устройству</string>
     <string name="gate_telephony_activity">Звонок</string>
-    <string name="gate_telephony_activity_desc">Блокировать жест во время вызовов. Поддерживаются только обычные звонки, в WhatsApp и т.п. не будет работать.</string>
+    <string name="gate_telephony_activity_desc">Блокировать жест во время вызовов. Поддерживаются только обычные звонки, в WhatsApp и т.п. не работает.</string>
     <string name="gate_telephony_activity_desc_when">Запускать только во время звонка</string>
     <string name="gate_usb_state">USB-устройство</string>
     <string name="gate_usb_state_desc">Блокировать жест на полсекунды при подключении USB-устройства, например флэшки</string>
