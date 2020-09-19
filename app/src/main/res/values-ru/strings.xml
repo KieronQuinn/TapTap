@@ -5,7 +5,6 @@
     <string name="setting_gesture">Жест</string>
     <string name="setting_gesture_desc">Настройте работу жеста</string>
     <string name="setting_actions">Действия</string>
-    <string name="settings_actions_desc">Установите действия, которые будут запускаться при использовании жеста</string>
     <string name="setting_gates">Запреты</string>
     <string name="setting_gates_desc">Выберите ситуации, когда действие не будет запускаться</string>
     <string name="setting_feedback">Обратная связь</string>
@@ -147,7 +146,7 @@
     <string name="bs_update_download">Скачать</string>
     <string name="bs_update_later">Напомнить попозже</string>
     <string name="bs_update_title">Доступно обновление!</string>
-    <string name="bs_update_content"><![CDATA[<h2>Доступно новое обновление</h2><br><b>Текущая версия:</b> %1s<br><b>Новая версия:</b> %1s<br><b>Дата обновления:</b> %1s<br><b>Список изменений:</b><br>%1s]]></string>
+    <string name="bs_update_content" formatted="false"><![CDATA[<h2>Доступно новое обновление</h2><br><b>Текущая версия:</b> %1s<br><b>Новая версия:</b> %1s<br><b>Дата обновления:</b> %1s<br><b>Список изменений:</b><br>%1s]]></string>
     <string name="tap_update_notification_channel_title">Уведомления об обновлениях</string>
     <string name="tap_update_notification_channel_description">Уведомления отображаются раз в день, когда проверяется наличие обновлений</string>
     <string name="tap_update_notification_title">Доступно обновление Tap, Tap</string>
@@ -157,7 +156,6 @@
     <string name="bs_help_gate">Запреты - это ситуации, которые могут заблокировать жест от выполнения каких-либо действий. Для выполнения любого действия все включенные запреты должны быть открыты. \nЕсли в данный момент выполняется сценарий, например, если экран выключен и запрет «Отключить отображение» включены, никакие действия не будут выполняться. Вы можете добавить столько запретов, сколько захотите, и включать / отключать их, используя переключатели (вместо того, чтобы удалять и повторно добавлять), чтобы сделать настройку быстрее и проще.</string>
     <string name="bs_help_gate_title">Что такое запреты?</string>
     <string name="help">Помощь</string>
-    <string name="action_tasker_event">Tasker Event</string>
     <string name="action_tasker_event_desc">Запустить плагин Tasker Event</string>
     <string name="action_launch_assistant">Запустить голосового помощника</string>
     <string name="action_launch_assistant_desc">Запустить приложение-помощник по умолчанию</string>
@@ -174,10 +172,6 @@
     <string name="accessibility_info_on">Спец. возможности включены</string>
     <string name="accessibility_info_on_desc_2">Служба спец. возможностей нужна для работы жеста.</string>
     <string name="accessibility_info_toast">Выберите «Tap, Tap» из списка сервисов со специальными возможностями, переключите "Использовать сервис" и вернитесь к Tap, Tap, чтобы продолжить</string>
-    <string name="menu_alpha">Это приложение находится в альфа-версии. Нажмите, чтобы узнать больше.</string>
-    <string name="bs_alpha">Это приложение находится на ранней стадии разработки находится на стадии «Альфа», что позволяет проводить тестирование на многих устройствах. Если вы столкнулись с ошибкой, сообщите о ней на GitHub. Если вы хотите предложить функцию, опубликуйте её в треде на XDA или предложите её на GitHub. \n\nПроверьте обновления на XDA, в лаборатории или в треде, как только их выпустят. \n\nСпасибо за терпение в процессе разработки.</string>
-    <string name="bs_alpha_title">Альфа</string>
-
     <string name="category_about">О приложении</string>
     <string name="about_summary">Созданo Kieron Quinn / Quinny899 @ XDA\nБлагодаря вкладу сообщества, в том числе: %1s</string>
     <string name="xda_thread">Тред на XDA</string>

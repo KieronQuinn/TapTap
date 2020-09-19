@@ -6,7 +6,6 @@
     <string name="setting_gesture">Cử chỉ</string>
     <string name="setting_gesture_desc">Điều chỉnh cách cử chỉ hoạt động</string>
     <string name="setting_actions">Hành động</string>
-    <string name="settings_actions_desc">Đặt các hành động được thực hiện khi sử dụng cử chỉ</string>
     <string name="setting_gates">Cổng</string>
     <string name="setting_gates_desc">Đặt tình huống khi cử chỉ không thực hiện một hành động</string>
     <string name="setting_feedback">Phản hồi</string>
@@ -95,9 +94,6 @@
     <string name="accessibility_info_off_desc">Hiện tại cử chỉ sẽ không hoạt động. Chạm để kích hoạt</string>
     <string name="accessibility_info_on">Dịch vụ trợ năng đang được kích hoạt</string>
     <string name="accessibility_info_toast">Chọn \"Tap, Tap\" từ danh sách dịch vụ hỗ trợ tiếp cận, bật nó và quay lại Tap, Tap để tiếp tục</string>
-    <string name="menu_alpha">Ứng dụng này đang ở trong phiên bản Alpha. Nhấn để biết thêm thông tin.</string>
-    <string name="bs_alpha">Ứng dụng này đang trong giai đoạn phát triển ban đầu và đã được phát hành ở trạng thái \"Alpha\" để cho phép thử nghiệm trên nhiều thiết bị. Nếu bạn gặp lỗi, vui lòng báo cáo về mục issue trên GitHub. Nếu bạn muốn yêu cầu một tính năng, hãy đăng nó lên XDA thread hoặc trên GitHub.\n\nKiểm tra trên XDA, Labs hoặc trong thread, để nhận được bản cập nhập sớm nhất.\n\nCảm ơn sự kiên nhẫn của bạn trong quá trình phát triển.</string>
-    <string name="bs_alpha_title">Alpha</string>
 
     <string name="category_about">Về ứng dụng</string>
     <string name="about">%1s v%2s</string>

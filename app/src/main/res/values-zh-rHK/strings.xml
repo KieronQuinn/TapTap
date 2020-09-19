@@ -6,7 +6,6 @@
     <string name="setting_gesture">手勢</string>
     <string name="setting_gesture_desc">調整手勢的工作方式</string>
     <string name="setting_actions">動作</string>
-    <string name="settings_actions_desc">設定使用手勢時要執行的動作</string>
     <string name="setting_gates">閘閥</string>
     <string name="setting_gates_desc">停用手勢在某些情況下被識別並激活動作</string>
     <string name="setting_feedback">反饋</string>
@@ -95,9 +94,6 @@
     <string name="accessibility_info_off_desc">手勢無法工作. 點按以啟用</string>
     <string name="accessibility_info_on">已啟用無障礙服務</string>
     <string name="accessibility_info_toast">在無障礙列表選擇「Tap, Tap」並啟用它, 然後返回應用以繼續</string>
-    <string name="menu_alpha">此应用处于 Alpha 阶段，点击了解详情。</string>
-    <string name="bs_alpha">該應用程序仍處於早期開發階段，目前已發佈 Alpha 版本，可在眾多設備上進行測試。 若遇到錯誤, 請在Github報告錯誤。 如有新功能建議, 請將其發佈在XDA線程上或在GitHub上提交.\n\n在 XDA 上查看, 無論是在實驗室或此文章, 都將竭盡所能更新.\n\n感謝您在開發過程中的耐心等候。</string>
-    <string name="bs_alpha_title">Alpha</string>
 
     <string name="category_about">關於</string>
     <string name="about">%1s v%2s</string>

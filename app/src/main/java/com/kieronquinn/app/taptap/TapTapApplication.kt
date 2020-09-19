@@ -10,6 +10,8 @@ class TapTapApplication : Application() {
 
     var accessibilityService: MutableLiveData<TapAccessibilityService?> = MutableLiveData(null)
 
+    var disableWake = false
+
     override fun onCreate() {
         super.onCreate()
         Picasso.setSingletonInstance(Picasso.Builder(this)

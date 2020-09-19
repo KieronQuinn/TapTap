@@ -8,6 +8,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.CompoundButton
 import android.widget.Toast
+import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
@@ -25,6 +26,11 @@ import dev.chrisbanes.insetter.applySystemWindowInsetsToPadding
 import kotlinx.android.synthetic.main.activity_settings.*
 
 class SettingsActivity : AppCompatActivity(), NavController.OnDestinationChangedListener, SharedPreferences.OnSharedPreferenceChangeListener {
+
+    companion object {
+        const val TAG_SWITCH_MAIN = "switch_main"
+        const val TAG_SWITCH_TRIPLE_TAP = "switch_triple_tap"
+    }
 
     private val isLightTheme
         get() = resources.configuration.uiMode.and(Configuration.UI_MODE_NIGHT_MASK) != Configuration.UI_MODE_NIGHT_YES
@@ -109,8 +115,20 @@ class SettingsActivity : AppCompatActivity(), NavController.OnDestinationChanged
         switch_main?.visibility = if(visible) View.VISIBLE else View.GONE
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when(item?.itemId){
+    fun setSwitchChecked(checked: Boolean){
+        switch_main?.isChecked = checked
+    }
+
+    fun setSwitchText(@StringRes textRes: Int){
+        switch_main?.text = getString(textRes)
+    }
+
+    fun setSwitchTag(tag: String){
+        switch_main?.tag = tag
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
             android.R.id.home -> {
                 navController.navigateUp()
                 return true
@@ -132,13 +150,21 @@ class SettingsActivity : AppCompatActivity(), NavController.OnDestinationChanged
 
     private val checkListener =
         CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
-            sharedPreferences.edit().putBoolean(SHARED_PREFERENCES_KEY_MAIN_SWITCH, isChecked).apply()
+            if(buttonView.tag == TAG_SWITCH_MAIN) {
+                sharedPreferences.edit().putBoolean(SHARED_PREFERENCES_KEY_MAIN_SWITCH, isChecked).apply()
+            }else{
+                sharedPreferences.edit().putBoolean(SHARED_PREFERENCES_KEY_TRIPLE_TAP_SWITCH, isChecked).apply()
+            }
         }
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
-        if(key == SHARED_PREFERENCES_KEY_MAIN_SWITCH) {
+        if(key == SHARED_PREFERENCES_KEY_MAIN_SWITCH && switch_main?.tag == TAG_SWITCH_MAIN) {
             switch_main.setOnCheckedChangeListener(null)
             switch_main.isChecked = isMainEnabled
+            switch_main.setOnCheckedChangeListener(checkListener)
+        }else if(key == SHARED_PREFERENCES_KEY_TRIPLE_TAP_SWITCH && switch_main?.tag == TAG_SWITCH_TRIPLE_TAP) {
+            switch_main.setOnCheckedChangeListener(null)
+            switch_main.isChecked = isTripleTapEnabled
             switch_main.setOnCheckedChangeListener(checkListener)
         }
     }

@@ -5,6 +5,7 @@ import android.app.ActivityManager
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.hardware.SensorEvent
 import android.media.AudioManager
 import android.util.Log
 import com.android.internal.logging.MetricsLogger
@@ -15,7 +16,10 @@ import com.google.android.systemui.columbus.ContentResolverWrapper
 import com.google.android.systemui.columbus.PowerManagerWrapper
 import com.google.android.systemui.columbus.actions.Action
 import com.google.android.systemui.columbus.feedback.FeedbackEffect
+import com.google.android.systemui.columbus.sensors.CustomTapRT
+import com.google.android.systemui.columbus.sensors.GestureSensor
 import com.google.android.systemui.columbus.sensors.GestureSensorImpl
+import com.google.android.systemui.columbus.sensors.config.Adjustment
 import com.google.android.systemui.columbus.sensors.config.GestureConfiguration
 import com.kieronquinn.app.taptap.columbus.actions.*
 import com.kieronquinn.app.taptap.columbus.feedback.HapticClickCompat
@@ -23,7 +27,8 @@ import com.kieronquinn.app.taptap.columbus.feedback.WakeDevice
 import com.kieronquinn.app.taptap.models.ActionInternal
 import com.kieronquinn.app.taptap.models.TapAction
 import com.kieronquinn.app.taptap.models.TfModel
-import com.kieronquinn.app.taptap.models.store.ActionListFile
+import com.kieronquinn.app.taptap.models.store.DoubleTapActionListFile
+import com.kieronquinn.app.taptap.models.store.TripleTapActionListFile
 import com.kieronquinn.app.taptap.smaliint.SmaliCalls
 import com.kieronquinn.app.taptap.utils.*
 
@@ -32,7 +37,12 @@ class TapSharedComponent(private val context: Context) :
 
     companion object {
         private const val TAG = "TapService"
-        private const val MESSAGE_START = 1001
+        private var INSTANCE: TapSharedComponent? = null
+
+        fun getInstance(context: Context): TapSharedComponent {
+            if(INSTANCE == null) INSTANCE = TapSharedComponent(context)
+            return INSTANCE!!
+        }
     }
 
     private var columbusService: ColumbusService? = null
@@ -47,13 +57,23 @@ class TapSharedComponent(private val context: Context) :
     }
 
     private fun getColumbusActions(): List<Action> {
-        return ActionListFile.loadFromFile(accessibilityService).toList().mapNotNull {
+        return DoubleTapActionListFile.loadFromFile(accessibilityService).toList().mapNotNull {
             getActionForEnum(it).apply {
                 (this as? ActionBase)?.triggerListener = {
                     Log.d(TAG, "action trigger from type ${context.javaClass.simpleName}")
                 }
             }
         }
+    }
+
+    private fun getColumbusActionsTriple(): MutableList<Action> {
+        return TripleTapActionListFile.loadFromFile(accessibilityService).toList().mapNotNull {
+            getActionForEnum(it).apply {
+                (this as? ActionBase)?.triggerListener = {
+                    Log.d(TAG, "action trigger from type ${context.javaClass.simpleName}")
+                }
+            }
+        }.toMutableList()
     }
 
     init {
@@ -156,6 +176,11 @@ class TapSharedComponent(private val context: Context) :
                 TapAction.WAKE_DEVICE -> WakeDeviceAction(context, action.whenList)
                 TapAction.GOOGLE_VOICE_ACCESS -> GoogleVoiceAccessAction(context, action.whenList)
                 TapAction.LAUNCH_SEARCH -> LaunchSearch(context, action.whenList)
+                TapAction.HAMBURGER -> HamburgerAction(accessibilityService, action.whenList)
+                TapAction.APP_DRAWER -> AccessibilityServiceGlobalAction(context, 14, action.whenList)
+                TapAction.ACCESSIBILITY_BUTTON_CHOOSER -> AccessibilityServiceGlobalAction(context, 12, action.whenList)
+                TapAction.ACCESSIBILITY_SHORTCUT -> AccessibilityServiceGlobalAction(context, 13, action.whenList)
+                TapAction.ACCESSIBILITY_BUTTON -> AccessibilityServiceGlobalAction(context, 11, action.whenList)
             }
         } catch (e: RuntimeException) {
             //Enum not found, probably a downgrade issue
@@ -167,6 +192,10 @@ class TapSharedComponent(private val context: Context) :
         columbusService?.setActions(getColumbusActions())
     }
 
+    private fun refreshColumbusActionsTriple() {
+        columbusService?.setActionsTriple(getColumbusActionsTriple())
+    }
+
     private fun createGestureConfiguration(
         context: Context,
         activityManager: Any
@@ -174,7 +203,7 @@ class TapSharedComponent(private val context: Context) :
         val contentResolverWrapper = ContentResolverWrapper(context)
         val factory = ColumbusContentObserver.Factory::class.java.constructors.first()
             .newInstance(contentResolverWrapper, activityManager) as ColumbusContentObserver.Factory
-        return GestureConfiguration(context, emptySet(), factory)
+        return GestureConfiguration(context, emptySet<Adjustment>(), factory)
     }
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String) {
@@ -199,6 +228,14 @@ class TapSharedComponent(private val context: Context) :
         if (key == SHARED_PREFERENCES_KEY_ACTIONS_TIME) {
             //Refresh actions
             refreshColumbusActions()
+        }
+        if (key == SHARED_PREFERENCES_KEY_ACTIONS_TRIPLE_TIME) {
+            //Refresh triple tap actions
+            refreshColumbusActionsTriple()
+        }
+        if(key == SHARED_PREFERENCES_KEY_TRIPLE_TAP_SWITCH){
+            //Set triple tap enabled
+            (gestureSensorImpl?.getTapRT() as? CustomTapRT)?.isTripleTapEnabled = context.isTripleTapEnabled
         }
         if (key == SHARED_PREFERENCES_KEY_SENSITIVITY) {
             //Reconfigure
@@ -243,6 +280,7 @@ class TapSharedComponent(private val context: Context) :
                 "getMinNoiseToTolerate ${positivePeakDetector.getMinNoiseToTolerate()} sensitivity $sensitivity"
             )
             positivePeakDetector.setMinNoiseTolerate(sensitivity)
+            //TAP_TIMEOUT = 500000000L
         }
     }
 
@@ -254,7 +292,58 @@ class TapSharedComponent(private val context: Context) :
             activityManagerNative.getMethod("getDefault").invoke(null)
         }
         val gestureConfiguration = createGestureConfiguration(context, activityManagerService)
-        this.gestureSensorImpl = GestureSensorImpl(context, gestureConfiguration)
+        this.gestureSensorImpl = GestureSensorImpl(context, gestureConfiguration).apply {
+            (getTapRT() as? CustomTapRT)?.isTripleTapEnabled = context.isTripleTapEnabled
+            sensorEventListener = object: GestureSensorImpl.GestureSensorEventListener(){
+
+                init {
+                    GestureSensorImpl.GestureSensorEventListener::class.java.getDeclaredField("this\$0").setAccessibleR(true).set(this, this@apply)
+                }
+
+                override fun onSensorChanged(arg14: SensorEvent) {
+                    val sensor = arg14.sensor
+                    val v14 = this@apply.tap.run {
+                        updateData(sensor.type, arg14.values[0], arg14.values[1], arg14.values[2], arg14.timestamp, samplingIntervalNs, isRunningInLowSamplingRate)
+                        checkDoubleTapTiming(arg14.timestamp)
+                    }
+                    if(v14 == 1){
+                        val handler = this@apply.handler
+                        val timeout = this.onTimeout
+                        handler.removeCallbacks(timeout)
+                        handler.post {
+                            if(listener != null){
+                                val detectionProperties = GestureSensor.DetectionProperties(false, true, 1)
+                                listener.onGestureProgress(this@apply, 1, detectionProperties)
+                            }
+                            handler.postDelayed(timeout, GestureSensorImpl.TIMEOUT_MS)
+                        }
+                    }else if(v14 == 2){
+                        val handler = this@apply.handler
+                        val timeout = this.onTimeout
+                        handler.removeCallbacks(timeout)
+                        handler.post {
+                            if(listener != null){
+                                val detectionProperties = GestureSensor.DetectionProperties(false, false, 2)
+                                listener.onGestureProgress(this@apply, 3, detectionProperties)
+                            }
+                            `reset$vendor__unbundled_google__packages__SystemUIGoogle__android_common__sysuig`()
+                        }
+                    }else if(v14 == 3){
+                        val handler = this@apply.handler
+                        val timeout = this.onTimeout
+                        handler.removeCallbacks(timeout)
+                        handler.post {
+                            if(listener != null){
+                                val detectionProperties = GestureSensor.DetectionProperties(false, false, 3)
+                                listener.onGestureProgress(this@apply, 3, detectionProperties)
+                            }
+                            `reset$vendor__unbundled_google__packages__SystemUIGoogle__android_common__sysuig`()
+                        }
+                    }
+                }
+
+            }
+        }
         val powerManagerWrapper = PowerManagerWrapper(context)
         val metricsLogger = MetricsLogger()
         val wakefulnessLifecycle = WakefulnessLifecycle()
@@ -270,21 +359,17 @@ class TapSharedComponent(private val context: Context) :
         )
 
         //Create the service
-        this.columbusService = ColumbusService::class.java.constructors.first().newInstance(
+        this.columbusService = TapColumbusService(
+            context,
             getColumbusActions(),
+            getColumbusActionsTriple(),
             getColumbusFeedback(),
             getGates(accessibilityService),
-            gestureSensorImpl,
-            powerManagerWrapper,
-            metricsLogger
-        ) as ColumbusService
-        configureTap()
-
-        context.sendBroadcast(
-            Intent(TapAccessibilityService.KEY_ACCESSIBILITY_START).setPackage(
-                context.packageName
-            )
+            gestureSensorImpl!!,
+            powerManagerWrapper
         )
+
+        configureTap()
     }
 
     fun stopTap() {

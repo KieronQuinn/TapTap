@@ -6,7 +6,6 @@
     <string name="setting_gesture">Gesture</string>
     <string name="setting_gesture_desc">Personalizza come funzionano le gesture</string>
     <string name="setting_actions">Azioni</string>
-    <string name="settings_actions_desc">Imposta le azioni che vengono eseguite quando la gesture è usata</string>
     <string name="setting_gates">Eccezioni</string>
     <string name="setting_gates_desc">Imposta le situazioni quando le gesture non dovrebbero eseguire un\'azione</string>
     <string name="setting_feedback">Notifica</string>
@@ -95,9 +94,6 @@
     <string name="accessibility_info_off_desc">Il rilevamento della gesture non è attivo. Tap per abilitare</string>
     <string name="accessibility_info_on">Il servizio di accessibilità è attivo</string>
     <string name="accessibility_info_toast">Seleziona "Tap, Tap" dalla lista dei servizi di accessiblità, attivalo e ritorna in Tap, Tap per continuare</string>
-    <string name="menu_alpha">Questa app è in Alpha. Tap per informazioni.</string>
-    <string name="bs_alpha">Questa app è in una fase prelimianre di sviluppo ed è rilasciata in stato "Alpha" per permettere il test su vari dispositivi. Se rilevi un bug, per favore riportalo nella pagina issue di GitHub. Se desideri avere una funzionalità aggiuntiva, fai un post sul forum di XDA oppure richiedila su GitHub.\n\nControlla su XDA o su Labs o sul forum, per aggiornamenti appena essi saranno disponibili.\n\nGrazie per la tua pazienza durante lo sviluppo.</string>
-    <string name="bs_alpha_title">Alpha</string>
 
     <string name="category_about">Info</string>
     <string name="about_summary">Creata by Kieron Quinn / Quinny899 @ XDA\nCon ringraziamento per tutti i contributi dalla comunità, including: %1s</string>

@@ -6,7 +6,10 @@
     <string name="setting_gesture">Gesture</string>
     <string name="setting_gesture_desc">Tweak how the gesture works</string>
     <string name="setting_actions">Actions</string>
-    <string name="settings_actions_desc">Set the actions to be run when the gesture is used</string>
+    <string name="setting_actions_double">Double Tap Actions</string>
+    <string name="setting_actions_triple">Triple Tap Actions</string>
+    <string name="settings_actions_desc_double">Set the actions to be run when you tap on the back of your device twice</string>
+    <string name="settings_actions_desc_triple">Set the actions to be run when you tap on the back of your device three times</string>
     <string name="setting_gates">Gates</string>
     <string name="setting_gates_desc">Set situations when the gesture should not run an action</string>
     <string name="setting_feedback">Feedback</string>
@@ -56,9 +59,9 @@
     <string name="action_recents">Open recents</string>
     <string name="action_recents_desc">Open the recents by simulating pressing the recents button. On devices that support it, using this action when recents is already open will switch to the first backgrounded app</string>
     <string name="action_notifications">Open notifications</string>
-    <string name="action_notifications_desc">Open the notification shade</string>
+    <string name="action_notifications_desc">Open the notification shade. On supported devices, this will close the notification shade if it\'s open.</string>
     <string name="action_quick_settings">Quick settings</string>
-    <string name="action_quick_settings_desc">Open the quick settings shade</string>
+    <string name="action_quick_settings_desc">Open the quick settings shade. On supported devices, this will close the quick settings shade if it\'s open</string>
     <string name="action_screenshot">Screenshot</string>
     <string name="action_screenshot_desc">Take a screenshot using the system screenshot UI</string>
     <string name="action_lock_screen">Lock the screen</string>
@@ -111,9 +114,9 @@
     <string name="accessibility_info_on">Accessibility Service is enabled</string>
     <string name="accessibility_info_on_desc_2">This service is required for the gesture to work.</string>
     <string name="accessibility_info_toast">Select "Tap, Tap" from the accessibility service list, toggle it and return to Tap, Tap to continue</string>
-    <string name="menu_alpha">This app is in Alpha. Tap for info.</string>
-    <string name="bs_alpha">This app is in the early stages of development and has been released in an "Alpha" state to allow for testing on lots of devices. If you encounter a bug, please report it on the GitHub as an issue. If you would like to request a feature, post it on the XDA thread or request it on GitHub.\n\nCheck back on XDA, either on Labs or in the thread, for updates as soon as they\'re available.\n\nThank you for your patience during development.</string>
-    <string name="bs_alpha_title">Alpha</string>
+    <string name="menu_beta">This app is in Beta. Tap for info.</string>
+    <string name="bs_beta">This app is in development and has been released in a "Beta" state to allow for testing on lots of devices and suggestions from users. If you encounter a bug, please report it on the GitHub as an issue. If you would like to request a feature, post it on the XDA thread or request it on GitHub.\n\nThank you for your patience during development.</string>
+    <string name="bs_beta_title">Beta</string>
 
     <string name="category_about">About</string>
     <string name="about">%1s v%2s</string>
@@ -231,6 +234,21 @@
     <string name="tap_update_notification_content">An update is available for Tap, Tap (%1s to %1s)</string>
     <string name="action_google_voice_access">Trigger Google Voice Access</string>
     <string name="action_google_voice_access_desc">Triggers the Google Voice Access <b>accessibility app</b>, if it is running (this is NOT assistant or voice search)</string>
-
+    <string name="switch_triple">Enable Triple Tap</string>
+    <string name="help_action_triple">Note: When triple tap is enabled, the double tap action may be slower to respond. This is due to the fact that it has to wait to see if a third tap will be performed before running the action.</string>
+    <string name="action_hamburger">Hamburger Menu / Back</string>
+    <string name="action_hamburger_desc">This action presses the screen at the position the hamburger menu usually is.\n<b>Important warning</b>: This will tap <b>anything</b> at the position where the menu usually is (top left), so will also sometimes go back, and may even tap other elements on the screen in that position, including other buttons. <b>Use with extreme caution</b>, consider using triple tap and app requirements to limit it.</string>
+    <string name="action_accessibility_button">Trigger Accessibility Button</string>
+    <string name="action_accessibility_button_desc">Simulate the accessibility button, which can be used to trigger other services such as Select to Speak</string>
+    <string name="action_accessibility_button_chooser">Accessibility Button Chooser</string>
+    <string name="action_accessibility_button_chooser_desc">Bring up the Accessibility Button\'s chooser menu</string>
+    <string name="action_accessibility_shortcut">Trigger Accessibility Shortcut</string>
+    <string name="action_accessibility_shortcut_desc">Trigger the Accessibility Shortcut. Make sure Tap, Tap is not set to use the shortcut before using this action!</string>
+    <string name="action_app_drawer">App Drawer</string>
+    <string name="action_app_drawer_desc">Open the app drawer of a <b>supported launcher</b>. This only works on launchers based on Android 11.</string>
+    <string name="tasker_config_label_triple">Triple Tapped Back</string>
+    <string name="tasker_triple_tap">Triple tap</string>
+    <string name="tasker_description_double">Will trigger when the back of the phone is tapped twice</string>
+    <string name="tasker_description_triple">Will trigger when the back of the phone is tapped three times</string>
 
 </resources>

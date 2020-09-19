@@ -10,9 +10,9 @@
         app:showAsAction="always" />
 
     <item
-        android:id="@+id/menu_alpha"
-        android:title="@string/menu_alpha"
-        android:icon="@drawable/ic_alpha"
+        android:id="@+id/menu_beta"
+        android:title="@string/menu_beta"
+        android:icon="@drawable/ic_beta"
         app:showAsAction="always" />
 
 </menu>

@@ -6,22 +6,22 @@ import com.google.android.systemui.columbus.gates.Gate
 import com.google.gson.Gson
 import com.kieronquinn.app.taptap.models.ActionInternal
 import com.kieronquinn.app.taptap.models.TapAction
-import com.kieronquinn.app.taptap.utils.DEFAULT_ACTIONS
-import com.kieronquinn.app.taptap.utils.SHARED_PREFERENCES_KEY_ACTIONS_TIME
+import com.kieronquinn.app.taptap.utils.DEFAULT_ACTIONS_TRIPLE
+import com.kieronquinn.app.taptap.utils.SHARED_PREFERENCES_KEY_ACTIONS_TRIPLE_TIME
 import java.io.File
 import java.nio.charset.Charset
 
-object ActionListFile {
+object TripleTapActionListFile {
 
     private fun getActionListFile(context: Context): File {
-        return File(context.filesDir, "actions.json")
+        return File(context.filesDir, "actions_triple.json")
     }
 
     fun loadFromFile(context: Context): Array<ActionInternal> {
         val file = getActionListFile(context)
-        if(!file.exists()) return DEFAULT_ACTIONS.map { createActionInternalForAction(it) }.toTypedArray()
+        if(!file.exists()) return DEFAULT_ACTIONS_TRIPLE.map { createActionInternalForAction(it) }.toTypedArray()
         val fileData = file.readText(Charset.defaultCharset())
-        if(fileData.isEmpty()) return DEFAULT_ACTIONS.map { createActionInternalForAction(it) }.toTypedArray()
+        if(fileData.isEmpty()) return DEFAULT_ACTIONS_TRIPLE.map { createActionInternalForAction(it) }.toTypedArray()
         return Gson().fromJson(fileData, Array<ActionInternal>::class.java)
     }
 
@@ -35,7 +35,7 @@ object ActionListFile {
         file.writeText(json, Charset.defaultCharset())
         sharedPreferences?.run {
             //Put the current time in the shared prefs as a bit of a hacky way to trigger an update on the accessibility service
-            edit().putLong(SHARED_PREFERENCES_KEY_ACTIONS_TIME, System.currentTimeMillis()).apply()
+            edit().putLong(SHARED_PREFERENCES_KEY_ACTIONS_TRIPLE_TIME, System.currentTimeMillis()).apply()
         }
     }
 

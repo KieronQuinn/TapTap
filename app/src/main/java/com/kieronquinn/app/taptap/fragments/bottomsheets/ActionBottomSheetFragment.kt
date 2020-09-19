@@ -31,7 +31,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.activities.AppPickerActivity
 import com.kieronquinn.app.taptap.fragments.AppsFragment
-import com.kieronquinn.app.taptap.fragments.SettingsActionFragment
+import com.kieronquinn.app.taptap.fragments.BaseActionFragment
 import com.kieronquinn.app.taptap.fragments.action.ActionListFragment
 import com.kieronquinn.app.taptap.models.ActionInternal
 import com.kieronquinn.app.taptap.models.ActionDataTypes
@@ -144,14 +144,14 @@ class ActionBottomSheetFragment : BottomSheetDialogFragment(), NavController.OnD
                             checkTaskerAccessPermission()
                         }
                         val bundle = Bundle()
-                        bundle.putParcelable(SettingsActionFragment.addResultKey, completedAction)
-                        setFragmentResult(SettingsActionFragment.addResultKey, bundle)
+                        bundle.putParcelable(BaseActionFragment.addResultKey, completedAction)
+                        setFragmentResult(BaseActionFragment.addResultKey, bundle)
                         dismiss()
                     }
                 }else {
                     val bundle = Bundle()
-                    bundle.putParcelable(SettingsActionFragment.addResultKey, action)
-                    setFragmentResult(SettingsActionFragment.addResultKey, bundle)
+                    bundle.putParcelable(BaseActionFragment.addResultKey, action)
+                    setFragmentResult(BaseActionFragment.addResultKey, bundle)
                     dismiss()
                 }
             }

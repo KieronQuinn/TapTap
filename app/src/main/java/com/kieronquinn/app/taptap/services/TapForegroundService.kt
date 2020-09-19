@@ -27,7 +27,7 @@ class TapForegroundService : LifecycleService(), ServiceConnection, SharedPrefer
     private var serviceHandler: ServiceHandler? = null
 
     private val tapSharedComponent by lazy {
-        TapSharedComponent(this)
+        TapSharedComponent.getInstance(this)
     }
 
     private val application by lazy {

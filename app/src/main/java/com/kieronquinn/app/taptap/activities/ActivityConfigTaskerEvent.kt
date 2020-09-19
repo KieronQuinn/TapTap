@@ -12,6 +12,7 @@ import com.joaomgcd.taskerpluginlibrary.input.TaskerInputRoot
 import com.joaomgcd.taskerpluginlibrary.output.TaskerOutputObject
 import com.joaomgcd.taskerpluginlibrary.runner.TaskerPluginResultCondition
 import com.joaomgcd.taskerpluginlibrary.runner.TaskerPluginResultConditionSatisfied
+import com.kieronquinn.app.taptap.R
 
 
 class TaskerEventHelper(config: TaskerPluginConfig<TaskerEventInput>) : TaskerPluginConfigHelper<TaskerEventInput, TaskerEventOutput, TaskerEventActionRunner>(config) {
@@ -22,7 +23,7 @@ class TaskerEventHelper(config: TaskerPluginConfig<TaskerEventInput>) : TaskerPl
         input: TaskerInput<TaskerEventInput>,
         blurbBuilder: StringBuilder
     ) {
-        blurbBuilder.append("Will trigger when the back of the phone is tapped twice")
+        blurbBuilder.append(config.context.getString(R.string.tasker_description_double))
     }
 }
 

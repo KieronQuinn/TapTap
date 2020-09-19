@@ -67,6 +67,15 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".activities.ActivityConfigTaskerEventTriple"
+            android:exported="true"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/tasker_config_label_triple">
+            <intent-filter>
+                <action android:name="net.dinglisch.android.tasker.ACTION_EDIT_EVENT" />
+            </intent-filter>
+        </activity>
+
         <activity android:name=".activities.ReachabilityActivity"
             android:theme="@style/ReachabilityTheme"/>
 

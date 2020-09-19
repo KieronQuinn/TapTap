@@ -1,11 +1,9 @@
 package com.kieronquinn.app.taptap.fragments
 
 import android.app.NotificationManager
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
-import android.content.IntentFilter
+import android.content.*
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.os.PowerManager
 import android.provider.Settings
@@ -23,13 +21,15 @@ import com.kieronquinn.app.taptap.activities.SettingsActivity
 import com.kieronquinn.app.taptap.fragments.bottomsheets.GenericBottomSheetFragment
 import com.kieronquinn.app.taptap.preferences.Preference
 import com.kieronquinn.app.taptap.services.TapForegroundService
+import com.kieronquinn.app.taptap.utils.EXTRA_FRAGMENT_ARG_KEY
+import com.kieronquinn.app.taptap.utils.EXTRA_SHOW_FRAGMENT_ARGUMENTS
 import com.kieronquinn.app.taptap.utils.Links
 import com.kieronquinn.app.taptap.utils.isAccessibilityServiceEnabled
 import java.lang.RuntimeException
 
 class SettingsFragment : BaseSettingsFragment() {
 
-    private  val TAG = "SettingsFragment"
+    private val TAG = "SettingsFragment"
     private val returnReceiver = object: BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent) {
             context?.unregisterReceiver(this)
@@ -53,6 +53,12 @@ class SettingsFragment : BaseSettingsFragment() {
         getPreference("actions"){
             it.setOnPreferenceClickListener {
                 navigate(R.id.action_settingsFragment_to_settingsActionFragment)
+                true
+            }
+        }
+        getPreference("actions_triple"){
+            it.setOnPreferenceClickListener {
+                navigate(R.id.action_settingsFragment_to_settingsActionTripleFragment)
                 true
             }
         }
@@ -126,7 +132,13 @@ class SettingsFragment : BaseSettingsFragment() {
             }
             it.setOnPreferenceClickListener { _ ->
                 context?.registerReceiver(returnReceiver, IntentFilter(TapAccessibilityService.KEY_ACCESSIBILITY_START))
-                startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))
+                startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS).apply {
+                    val bundle = Bundle()
+                    val componentName = ComponentName(BuildConfig.APPLICATION_ID, TapAccessibilityService::class.java.name).flattenToString()
+                    bundle.putString(EXTRA_FRAGMENT_ARG_KEY, componentName)
+                    putExtra(EXTRA_FRAGMENT_ARG_KEY, componentName)
+                    putExtra(EXTRA_SHOW_FRAGMENT_ARGUMENTS, bundle)
+                })
                 activity?.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
                 Toast.makeText(it.context, R.string.accessibility_info_toast, Toast.LENGTH_LONG).show()
                 true
@@ -164,8 +176,8 @@ class SettingsFragment : BaseSettingsFragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
-            R.id.menu_alpha -> {
-                GenericBottomSheetFragment.create(getString(R.string.bs_alpha), R.string.bs_alpha_title, android.R.string.ok).show(childFragmentManager, "bs_alpha")
+            R.id.menu_beta -> {
+                GenericBottomSheetFragment.create(getString(R.string.bs_beta), R.string.bs_beta_title, android.R.string.ok).show(childFragmentManager, "bs_alpha")
             }
             R.id.menu_update -> {
                 (activity as? SettingsActivity)?.showUpdateBottomSheet()

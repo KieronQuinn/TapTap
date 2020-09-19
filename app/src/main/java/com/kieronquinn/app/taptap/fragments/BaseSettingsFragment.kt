@@ -12,6 +12,8 @@ import com.kieronquinn.app.taptap.preferences.Preference
 import com.kieronquinn.app.taptap.preferences.SliderPreference
 import com.kieronquinn.app.taptap.utils.SHARED_PREFERENCES_NAME
 import com.kieronquinn.app.taptap.utils.getToolbarHeight
+import com.kieronquinn.app.taptap.utils.isMainEnabled
+import com.kieronquinn.app.taptap.utils.isTripleTapEnabled
 import dev.chrisbanes.insetter.applySystemWindowInsetsToPadding
 import kotlinx.android.synthetic.main.activity_settings.*
 
@@ -37,7 +39,16 @@ abstract class BaseSettingsFragment : PreferenceFragmentCompat(), View.OnScrollC
 
     override fun onResume() {
         super.onResume()
-        (activity as? SettingsActivity)?.setSwitchVisible(this is SettingsFragment)
+        (activity as? SettingsActivity)?.run {
+            if(this@BaseSettingsFragment is SettingsFragment){
+                setSwitchVisible(true)
+                setSwitchTag(SettingsActivity.TAG_SWITCH_MAIN)
+                setSwitchChecked(isMainEnabled)
+                setSwitchText(R.string.switch_main)
+            }else{
+                setSwitchVisible(false)
+            }
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

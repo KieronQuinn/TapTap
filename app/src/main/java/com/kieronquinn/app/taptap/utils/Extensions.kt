@@ -10,6 +10,7 @@ import android.content.pm.ApplicationInfo
 import android.content.res.AssetManager
 import android.content.res.ColorStateList
 import android.content.res.Configuration
+import android.content.res.Resources
 import android.database.Cursor
 import android.graphics.Color
 import android.graphics.Rect
@@ -31,7 +32,6 @@ import androidx.annotation.ColorInt
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.android.systemui.keyguard.WakefulnessLifecycle
-import com.google.android.systemui.columbus.ColumbusModule
 import com.google.android.systemui.columbus.ColumbusService
 import com.google.android.systemui.columbus.actions.Action
 import com.google.android.systemui.columbus.feedback.FeedbackEffect
@@ -51,6 +51,8 @@ import com.kieronquinn.app.taptap.models.TapAction
 import com.kieronquinn.app.taptap.models.TapGate
 import com.kieronquinn.app.taptap.models.store.GateListFile
 import com.kieronquinn.app.taptap.providers.SharedPrefsProvider
+import com.kieronquinn.app.taptap.services.TapAccessibilityService
+import com.kieronquinn.app.taptap.services.TapColumbusService
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -58,11 +60,14 @@ import java.io.InputStream
 import java.io.OutputStream
 import java.lang.reflect.Field
 import java.lang.reflect.Method
+import kotlin.math.ceil
 
 const val SHARED_PREFERENCES_NAME = "${BuildConfig.APPLICATION_ID}_prefs"
 const val SHARED_PREFERENCES_KEY_MAIN_SWITCH = "main_enabled"
+const val SHARED_PREFERENCES_KEY_TRIPLE_TAP_SWITCH = "triple_tap_enabled"
 const val SHARED_PREFERENCES_KEY_ACTION = "action"
 const val SHARED_PREFERENCES_KEY_ACTIONS_TIME = "actions_time"
+const val SHARED_PREFERENCES_KEY_ACTIONS_TRIPLE_TIME = "actions_triple_time"
 const val SHARED_PREFERENCES_KEY_GATES_TIME = "gates_time"
 const val SHARED_PREFERENCES_KEY_GATES = "gates"
 const val SHARED_PREFERENCES_KEY_MODEL = "model"
@@ -96,11 +101,16 @@ val DEFAULT_ACTIONS = if(TapAction.SCREENSHOT.isAvailable){
     arrayOf(TapAction.LAUNCH_ASSISTANT, TapAction.HOME)
 }
 
+val DEFAULT_ACTIONS_TRIPLE = arrayOf(TapAction.NOTIFICATIONS)
+
 val Context.isSplitService: Boolean
     get() = sharedPreferences.getBoolean(SHARED_PREFERENCES_KEY_SPLIT_SERVICE, false)
 
 val Context.isMainEnabled: Boolean
     get() = sharedPreferences.getBoolean(SHARED_PREFERENCES_KEY_MAIN_SWITCH, true)
+
+val Context.isTripleTapEnabled: Boolean
+    get() = sharedPreferences.getBoolean(SHARED_PREFERENCES_KEY_TRIPLE_TAP_SWITCH, false)
 
 val Context.isRestartEnabled: Boolean
     get() = sharedPreferences.getBoolean(SHARED_PREFERENCES_KEY_RESTART_SERVICE, false)
@@ -262,12 +272,43 @@ fun JSONObject.getIntOpt(key: String): Int? {
     else null
 }
 
+val EXTRA_FRAGMENT_ARG_KEY = ":settings:fragment_args_key";
+val EXTRA_SHOW_FRAGMENT_ARGUMENTS = ":settings:show_fragment_args";
+
+val Int.dp: Int
+    get() = (this / Resources.getSystem().displayMetrics.density).toInt()
+val Int.px: Int
+    get() = (this * Resources.getSystem().displayMetrics.density).toInt()
+
+val Float.dp: Float
+    get() = (this / Resources.getSystem().displayMetrics.density)
+val Float.px: Float
+    get() = (this * Resources.getSystem().displayMetrics.density)
+
+//This is for the normal size ONLY and should NEVER be used when windowInsets are available
+fun getStaticStatusBarHeight(context: Context): Int {
+    val resources: Resources = context.resources
+    val resourceId: Int = resources.getIdentifier("status_bar_height", "dimen", "android")
+    return if (resourceId > 0) resources.getDimensionPixelSize(resourceId) else ceil(
+        ((if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) 24 else 25) * resources.displayMetrics.density).toDouble()
+    ).toInt()
+}
+
 fun ColumbusService.setActions(list: List<Action>){
-    ColumbusService::class.java.getDeclaredField("actions").setAccessibleR(true).set(this, list)
+    (this as TapColumbusService).setActions(list)
+}
+
+fun ColumbusService.setActionsTriple(list: List<Action>){
+    this as TapColumbusService
+    tripleTapActions.apply {
+        clear()
+        addAll(list)
+    }
 }
 
 fun ColumbusService.setFeedback(set: Set<FeedbackEffect>){
-    ColumbusService::class.java.getDeclaredField("effects").setAccessibleR(true).set(this, set)
+    effects.clear()
+    effects.addAll(set)
 }
 
 fun ColumbusService.setGates(set: Set<Gate>){
@@ -283,7 +324,7 @@ fun ColumbusService.setGates(set: Set<Gate>){
     gates.forEach {
         it.listener = gateListener
     }
-    run<Unit>("updateSensorListener")
+    updateSensorListener()
 }
 
 fun minSdk(api: Int): Boolean {
@@ -299,7 +340,7 @@ private fun <T> ColumbusService.run(methodName: String): T {
 }
 
 fun ColumbusService.stop(){
-    run<Unit>("stopListening")
+    stopListening()
 }
 
 fun getGatesInternal(context: Context): List<GateInternal> {
@@ -341,10 +382,10 @@ fun getGate(context: Context, tapGate: TapGate?, data: String?): Gate? {
     return when (tapGate) {
         TapGate.POWER_STATE -> PowerState(context, wakefulnessLifecycle)
         TapGate.POWER_STATE_INVERSE -> PowerStateInverse(context)
-        TapGate.CHARGING_STATE -> ChargingState(context, Handler(), ColumbusModule.provideTransientGateDuration())
+        TapGate.CHARGING_STATE -> ChargingState(context, Handler(), 500L)
         TapGate.TELEPHONY_ACTIVITY -> TelephonyActivity(context)
         TapGate.CAMERA_VISIBILITY -> CameraVisibility(context)
-        TapGate.USB_STATE -> UsbState(context, Handler(), ColumbusModule.provideTransientGateDuration())
+        TapGate.USB_STATE -> UsbState(context, Handler(), 500L)
         TapGate.APP_SHOWING -> AppVisibility(context, data!!)
         TapGate.KEYBOARD_VISIBILITY -> KeyboardVisibility(context)
         TapGate.ORIENTATION_LANDSCAPE -> Orientation(context, Configuration.ORIENTATION_LANDSCAPE)
@@ -365,7 +406,7 @@ fun RecyclerView.ViewHolder.adapterPositionAdjusted(hasHeader: Boolean = true): 
 fun getFormattedDataForGate(context: Context, gate: TapGate, data: String?): CharSequence? {
     return when(gate.dataType){
         GateDataTypes.PACKAGE_NAME -> {
-            val applicationInfo = context.packageManager.getApplicationInfo(data, 0)
+            val applicationInfo = context.packageManager.getApplicationInfo(data!!, 0)
             applicationInfo.loadLabel(context.packageManager)
         }
         else -> null
@@ -386,17 +427,16 @@ fun String.splitToArray(): Array<String> {
 
 fun GestureSensorImpl.setTfClassifier(assetManager: AssetManager, tfModel: String){
     Log.d("TAS", "setTfClassifier $tfModel")
-    val tapRt = GestureSensorImpl::class.java.getDeclaredField("tap").setAccessibleR(true).get(this) as TapRT
     val tfClassifier = TfClassifier(assetManager, tfModel)
-    TapRT::class.java.getDeclaredField("_tflite").setAccessibleR(true).set(tapRt, tfClassifier)
+    tap._tflite = tfClassifier
 }
 
 fun GestureSensorImpl.getTapRT(): TapRT {
-    return GestureSensorImpl::class.java.getDeclaredField("tap").setAccessibleR(true).get(this) as TapRT
+    return tap
 }
 
 fun PeakDetector.getMinNoiseToTolerate(): Float {
-    return PeakDetector::class.java.getDeclaredField("_minNoiseTolerate").setAccessibleR(true).getFloat(this)
+    return _minNoiseTolerate
 }
 
 fun Context.isPackageCamera(packageName: String): Boolean {

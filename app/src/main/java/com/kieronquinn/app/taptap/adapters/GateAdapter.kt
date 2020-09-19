@@ -53,11 +53,11 @@ class GateAdapter(private val context: Context, private val items: MutableList<G
                 getFormattedDataForGate(context, item.gate, item.data)?.let {
                     item_gate_description.text = context.getString(item.gate.formattableDescription, it)
                 } ?: run {
-                    item_gate_description.text = context.getString(descriptionRes)
+                    item_gate_description.text = context.getText(descriptionRes)
                 }
 
             }else{
-                item_gate_description.text = context.getString(descriptionRes)
+                item_gate_description.text = context.getText(descriptionRes)
             }
             item_gate_icon.setImageResource(item.gate.iconRes)
             if(isAdd){

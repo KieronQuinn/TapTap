@@ -1,24 +1,19 @@
 package com.kieronquinn.app.taptap.fragments.gate
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.setFragmentResult
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.kieronquinn.app.taptap.R
-import com.kieronquinn.app.taptap.adapters.ActionAdapter
 import com.kieronquinn.app.taptap.adapters.GateAdapter
-import com.kieronquinn.app.taptap.fragments.SettingsActionFragment
-import com.kieronquinn.app.taptap.models.*
+import com.kieronquinn.app.taptap.models.GateInternal
+import com.kieronquinn.app.taptap.models.TapGate
 import com.kieronquinn.app.taptap.models.store.GateListFile
 import com.kieronquinn.app.taptap.utils.CONFIGURABLE_GATES
 import com.kieronquinn.app.taptap.utils.dip
-import dev.chrisbanes.insetter.applySystemGestureInsetsToPadding
 
 class GateListFragment : Fragment(), GateAdapter.GateCallback {
 
