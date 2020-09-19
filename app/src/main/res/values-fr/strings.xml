@@ -101,12 +101,15 @@
     <string name="help">Aide</string>
     <string name="action_launch_assistant">Lancer l\'Assistant</string>
     <string name="action_launch_assistant_desc">Lance votre application assistant par défaut</string>
+    <string name="action_launch_search">Lancer une recherche</string>
+    <string name="action_launch_search_desc">Démarrer une recherche Google</string>
     <string name="action_tasker_event">Évènement Tasker</string>
     <string name="action_tasker_event_desc">Déclenche le plugin d\'évènement Tasker</string>
 
     <string name="accessibility_info_off">Service d\'Accessibilité est désactivé</string>
     <string name="accessibility_info_off_desc">Le geste ne va actuellement pas fonctionner. Cliquer pour activer</string>
     <string name="accessibility_info_on">Service d\'Accessibilité est activé</string>
+    <string name="accessibility_info_on_desc_2">Ce service est requis pour que le geste fonctionne.</string>
     <string name="accessibility_info_toast">Sélectionner "Tap, Tap" depuis la liste des Services d\'Accessibilité, l\'activer et retourner sur Tap, Tap pour continuer</string>
     <string name="menu_alpha">Cette application est en Version Alpha. Cliquer pour plus d\'info.</string>
     <string name="bs_alpha">Cette application est en cours de développement et a été publiée dans une version "Alpha" pour permettre de tester sur beaucoup d\'appreils. Si vous rencontrez un bug, s\'il vous plaît, signalez le sur GitHub sous forme d\'"issue". Si vous souhaitez demander une fonctionnalité, postez la sur la discussion XDA ou demandez la sur GitHub.\n\nVérifiez aussi sur XDA, soit sur Labs ou sur la discussion, pour les mises à jour aussitôt qu\'elles sont disponibles.\n\nMerci pour votre patience durant le développement.</string>
@@ -123,6 +126,7 @@
     <string name="action_tasker_task">Tâche Tasker</string>
     <string name="action_tasker_task_desc">Lance une tâche spécifique Tasker</string>
     <string name="action_tasker_event_toast">Tasker pas installé ou version non supportée</string>
+    <string name="action_tasker_task_desc_formatted">Lancer une tâche Tasker (%1s)</string>
     <string name="bs_tasker_content">Pour lancer une tâche Tasker sans utiliser le plugin d\'évènement, vous devez activer l\'option \"Allow External Access\" dans les paramètres Tasker. Si cette option n\'est pas activée, cette Action sera toujours ignorée.</string>
     <string name="bs_tasker_title">Permission Requise</string>
     <string name="bs_tasker_negative">Plus tard</string>
@@ -167,8 +171,8 @@
     <string name="battery_and_optimisation">Batterie &amp; Optimisation</string>
     <string name="battery_and_optimisation_desc">Information sur pourquoi Tap, Tap utilise de la batterie, et pourquoi l\'application sera peut-être \"tuée\" par votre appareil quand elle est lancée en arrière-plan (et comment réparer cela)</string>
     <string name="bs_battery_content">Tap, Tap utilise un service d\'accessibilité d\'arrière-plan pour rester lancé et toujours être \"à l\'écoute\" des tapotements au dos de votre appareil en utilisant l\'Accéléromètre et le Gyroscope. Pour cette raison, Tap, Tap peut utilisé beaucoup de batterie lorsqu\'il est lancé en arrière-plan.\n\nÀ cause de ce stade de développement précoce, Tap, Tap n\'a pas encore été optimisé, et la durée de vie de la batterie sera peut-être amélioré à travers des options dans le futur, mais actuellement une durée de vie de la batterie est une conséquence d\'avoir cette fonctionnalité.\n\nDe plus, quelques firmwares de fabriquant, comme MIUI ou OneUI, sont plus \"aggresifs\" à tuer des tâches d\'arrière-plan (dont les services d\'accessibilité) car Google recommande de le faire. Si Tap, Tap s\'arrête de marcher sur votre appareil après avoir été fermé même avec l\'Optimisation Batterie désactivée, s\'il vous plaît, essayez ce qui suit:\n• Bloquez l\'application en mémoire (habituellement depuis les applications récentes)\n• Désactivez toute autre optimisation de batterie pour une application (habituellement en navigant à Paramètres > Applications ou Paramètres > Batterie)\n• Désactivez l\'optimisation MIUI dans les Options pour les développeurs (Seulement MIUI)\n\nPlus d\'informations sur les applications \"tuées\" par le système et les suggestions sur comment le résoudre pour votre appareil peuvent être trouvée sur dontkillmyapp.com</string>
-    <string name="bs_battery_positive">Aller sur dontkillmyapp.com</string>
 
+    <string name="bs_battery_positive">Aller sur dontkillmyapp.com</string>
     <string name="gate_orientation_landscape">Orientation en mode paysage</string>
     <string name="gate_orientation_landscape_desc">Bloque le geste quand le téléphone est en mode paysage</string>
     <string name="gate_orientation_portrait">Orientation en mode portrait</string>
@@ -200,4 +204,28 @@
     <string name="gate_music_desc_when_inverse">Lance le geste seulement quand il n\'y a pas de musique est en cours de lecture</string>
     <string name="notification_policy_grant">Continuer</string>
     <string name="bs_notification_policy_content">Changer le mode de sonnerie nécessite l\'accès au mode Ne pas déranger pour être capable de gérer l\'état du mode Ne pas déranger. Veuillez donner la permission dans les paramètres, en cliquant ci-dessous, en sélectionnat Tap, Tap, en donnant la permission et en retournant à cet écran.</string>
+    <string name="tap_notification_title">Service Tap, Tap</string>
+    <string name="tap_notification_content">Tap, Tap est lancé en arrière-plan. Cliquer pour cacher.</string>
+    <string name="tap_notification_channel_title">Notification d'arrière-plan</string>
+    <string name="tap_notification_channel_description">Notification utilisée pour laisser Tap, Tap lancé en arrière-plan quand l\'option pour utiliser un service séparé est activé</string>
+    <string name="setting_advanced">Avancé</string>
+    <string name="setting_advanced_desc">Paramètres avancés et ajustements pour changer les performances et plus</string>
+    <string name="setting_advanced_split_service">Utiliser des services séparés</string>
+    <string name="setting_advanced_split_service_desc">Ce paramètre active l\'utilisation d'un second service qui est lancé aux côtés du service d\'accessibilité. Même si cela peut sembler contre-intuitif, cela aidera peut-être l\'application à ne pas être \"tuée\" par le système sur certains appareils, puisqu\'il s\'agit d'un service de premier plan et que le service d'accessibilité n\'aide que très peu, en s'appuyant sur un second service de reconnaissance et d\'éxécution. Vous devrez peut-être redémarrer votre appareil pour que cela prenne effet.</string>
+    <string name="setting_advanced_warning">Ici, les dragons</string>
+    <string name="setting_advanced_warning_desc">Ces paramètres sont expérimentaux et peuvent ne pas marcher sur votre appareil, ou peuvent empêcher Tap, Tap de fonctionner. Si cela arrive, <b>désactivez</b> le paramètre et redémarrez votre appareil, ce qui réinitialisera le service.</string>
+    <string name="switch_main">Activer les Gestes</string>
+    <string name="setting_advanced_restart_service">Redémarrer automatiquement le service</string>
+    <string name="setting_advanced_restart_service_desc">Tentez de redémarrer automatiquement le composant \"d\'écouteur\" de Tap, Tap toutes les heures. Si vous avez les services séparées d\'activé, le service de premier-plan sera aussi redémarré. Note : Le Service d\'Accessibilité <b>ne peut pas</b> être redémarré automatiquement, donc si il est \"tué\" ou désactivé, cela ne marchera pas.</string>
+    <string name="update_error">Error lors de la vérification de mises à jour</string>
+    <string name="bs_update_download">Télécharger</string>
+    <string name="bs_update_later">Me le rappeler plus tard</string>
+    <string name="bs_update_title">Mise à jour disponible !</string>
+    <string name="bs_update_content"><![CDATA[<h2>Une nouvelle mise à jour est disponible !</h2><br><b>Version actuelle :</b> %1s<br><b>Nouvelle version :</b> %1s<br><b>Date de mise à jour :</b> %1s<br><b>Journal de changement :</b><br>%1s]]></string>
+    <string name="tap_update_notification_channel_title">Notifications de mise à jour</string>
+    <string name="tap_update_notification_channel_description">Les notifications apparaîssent quand l\'application vérifie si de nouvelles mises à jour sont disponibles une fois par jour</string>
+    <string name="tap_update_notification_title">Une mise à jour de Tap, Tap est disponible</string>
+    <string name="tap_update_notification_content">Une mise à jour est disponible pour Tap, Tap (%1s to %1s)</string>
+    <string name="action_google_voice_access">Déclencher le Google Voice Access</string>
+    <string name="action_google_voice_access_desc">Déclenche l\'<b>application d\'accessibilité</b> Google Voice Access, si il est lancé (ce n'est PAS l'assistant ou la recherche vocale)</string>
 </resources>
