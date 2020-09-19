@@ -202,12 +202,12 @@
     <string name="bs_notification_policy_content">Changer le mode de sonnerie nécessite l\'accès au mode Ne pas déranger pour être capable de gérer l\'état du mode Ne pas déranger. Veuillez donner la permission dans les paramètres, en cliquant ci-dessous, en sélectionnat Tap, Tap, en donnant la permission et en retournant à cet écran.</string>
     <string name="tap_notification_title">Service Tap, Tap</string>
     <string name="tap_notification_content">Tap, Tap est lancé en arrière-plan. Cliquer pour cacher.</string>
-    <string name="tap_notification_channel_title">Notification d'arrière-plan</string>
+    <string name="tap_notification_channel_title">Notification d\'arrière-plan</string>
     <string name="tap_notification_channel_description">Notification utilisée pour laisser Tap, Tap lancé en arrière-plan quand l\'option pour utiliser un service séparé est activé</string>
     <string name="setting_advanced">Avancé</string>
     <string name="setting_advanced_desc">Paramètres avancés et ajustements pour changer les performances et plus</string>
     <string name="setting_advanced_split_service">Utiliser des services séparés</string>
-    <string name="setting_advanced_split_service_desc">Ce paramètre active l\'utilisation d'un second service qui est lancé aux côtés du service d\'accessibilité. Même si cela peut sembler contre-intuitif, cela aidera peut-être l\'application à ne pas être \"tuée\" par le système sur certains appareils, puisqu\'il s\'agit d'un service de premier plan et que le service d'accessibilité n\'aide que très peu, en s'appuyant sur un second service de reconnaissance et d\'éxécution. Vous devrez peut-être redémarrer votre appareil pour que cela prenne effet.</string>
+    <string name="setting_advanced_split_service_desc">Ce paramètre active l\'utilisation d\'un second service qui est lancé aux côtés du service d\'accessibilité. Même si cela peut sembler contre-intuitif, cela aidera peut-être l\'application à ne pas être \"tuée\" par le système sur certains appareils, puisqu\'il s\'agit d\'un service de premier plan et que le service d\'accessibilité n\'aide que très peu, en s\'appuyant sur un second service de reconnaissance et d\'éxécution. Vous devrez peut-être redémarrer votre appareil pour que cela prenne effet.</string>
     <string name="setting_advanced_warning">Ici, les dragons</string>
     <string name="setting_advanced_warning_desc">Ces paramètres sont expérimentaux et peuvent ne pas marcher sur votre appareil, ou peuvent empêcher Tap, Tap de fonctionner. Si cela arrive, <b>désactivez</b> le paramètre et redémarrez votre appareil, ce qui réinitialisera le service.</string>
     <string name="switch_main">Activer les Gestes</string>
@@ -223,5 +223,5 @@
     <string name="tap_update_notification_title">Une mise à jour de Tap, Tap est disponible</string>
     <string name="tap_update_notification_content">Une mise à jour est disponible pour Tap, Tap (%1s to %1s)</string>
     <string name="action_google_voice_access">Déclencher le Google Voice Access</string>
-    <string name="action_google_voice_access_desc">Déclenche l\'<b>application d\'accessibilité</b> Google Voice Access, si il est lancé (ce n'est PAS l'assistant ou la recherche vocale)</string>
+    <string name="action_google_voice_access_desc">Déclenche l\'<b>application d\'accessibilité</b> Google Voice Access, si il est lancé (ce n\'est PAS l\'assistant ou la recherche vocale)</string>
 </resources>

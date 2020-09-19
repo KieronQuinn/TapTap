@@ -1,5 +1,5 @@
 # Columbus module, which contains Smali and compilation logic that becomes columbus.jar. This won't be uploaded to GitHub (publicly anyway) as the code isn't in AOSP (yet?)
-columbus/
+/columbus
 
 # OS files
 .DS_Store
