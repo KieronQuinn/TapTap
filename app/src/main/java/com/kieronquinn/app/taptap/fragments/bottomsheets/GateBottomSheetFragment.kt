@@ -26,7 +26,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.activities.AppPickerActivity
 import com.kieronquinn.app.taptap.fragments.AppsFragment
-import com.kieronquinn.app.taptap.fragments.SettingsActionFragment
+import com.kieronquinn.app.taptap.fragments.BaseActionFragment
 import com.kieronquinn.app.taptap.fragments.SettingsGateFragment
 import com.kieronquinn.app.taptap.fragments.gate.GateListFragment
 import com.kieronquinn.app.taptap.models.ActionDataTypes
@@ -58,7 +58,7 @@ class GateBottomSheetFragment : BottomSheetDialogFragment(), NavController.OnDes
     }
 
     private val resultKey by lazy {
-        if(arguments?.containsKey(GateListFragment.KEY_PASSED_GATES) == true) SettingsActionFragment.addResultKeyGate
+        if(arguments?.containsKey(GateListFragment.KEY_PASSED_GATES) == true) BaseActionFragment.addResultKeyGate
         else SettingsGateFragment.addResultKey
     }
 

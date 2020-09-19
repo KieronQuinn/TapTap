@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.activities.SettingsActivity
 import com.kieronquinn.app.taptap.utils.getToolbarHeight
+import com.kieronquinn.app.taptap.utils.isMainEnabled
+import com.kieronquinn.app.taptap.utils.isTripleTapEnabled
 import dev.chrisbanes.insetter.applySystemWindowInsetsToPadding
 
 abstract class BaseFragment : Fragment() {
@@ -31,7 +33,9 @@ abstract class BaseFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        (activity as? SettingsActivity)?.setSwitchVisible(false)
+        (activity as? SettingsActivity)?.run {
+            setSwitchVisible(false)
+        }
     }
 
     private fun setToolbarElevationEnabled(enabled: Boolean){

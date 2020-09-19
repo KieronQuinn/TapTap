@@ -16,20 +16,21 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.TransitionManager
 import com.kieronquinn.app.taptap.R
+import com.kieronquinn.app.taptap.activities.SettingsActivity
 import com.kieronquinn.app.taptap.adapters.ActionAdapter
 import com.kieronquinn.app.taptap.fragments.bottomsheets.ActionBottomSheetFragment
 import com.kieronquinn.app.taptap.fragments.bottomsheets.GateBottomSheetFragment
 import com.kieronquinn.app.taptap.fragments.bottomsheets.GenericBottomSheetFragment
 import com.kieronquinn.app.taptap.fragments.gate.GateListFragment
 import com.kieronquinn.app.taptap.models.*
-import com.kieronquinn.app.taptap.models.store.ActionListFile
+import com.kieronquinn.app.taptap.models.store.DoubleTapActionListFile
 import com.kieronquinn.app.taptap.utils.*
 import dev.chrisbanes.insetter.applySystemWindowInsetsToMargin
 import kotlinx.android.synthetic.main.fragment_actions.*
 import kotlinx.android.synthetic.main.item_action.view.*
 import java.lang.RuntimeException
 
-class SettingsActionFragment : BaseFragment() {
+abstract class BaseActionFragment : BaseFragment() {
 
     companion object {
         const val addResultKey = "ADD_ACTION_RESULT"
@@ -37,11 +38,11 @@ class SettingsActionFragment : BaseFragment() {
         const val PREF_KEY_ACTION_HELP_SHOWN = "action_help_shown"
     }
 
-    private val recyclerView by lazy {
+    internal val recyclerView by lazy {
         recycler_view
     }
 
-    private val fab by lazy {
+    internal val fab by lazy {
         fab_action
     }
 
@@ -59,16 +60,7 @@ class SettingsActionFragment : BaseFragment() {
         }
     }
 
-    private val actions by lazy {
-        ActionListFile.loadFromFile(requireContext()).mapNotNull {
-            try {
-                if(it.action == null) null
-                else it
-            } catch (e: RuntimeException) {
-                null
-            }
-        }.toMutableList()
-    }
+    abstract val actions: MutableList<ActionInternal>
 
     private val itemTouchHelper by lazy {
 
@@ -217,7 +209,7 @@ class SettingsActionFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
         recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.adapter = ActionAdapter(recyclerView.context, actions) {
+        recyclerView.adapter = ActionAdapter(recyclerView.context, actions, isTripleTap = this is SettingsActionTripleFragment) {
             itemTouchHelper.startDrag(it)
         }.apply {
             chipAddCallback = { position, gates ->
@@ -236,7 +228,7 @@ class SettingsActionFragment : BaseFragment() {
         }
         fab.applySystemWindowInsetsToMargin(bottom = true)
         fab.post {
-            setupRecyclerView(recyclerView, extraBottomPadding = fab.height + fab.marginBottom)
+            setupRecyclerView(recyclerView, extraTopPadding = if(this is SettingsActionTripleFragment) context?.getToolbarHeight() ?: 0 else 0, extraBottomPadding = fab.height + fab.marginBottom)
         }
         fab.setOnClickListener {
             showActionBottomSheet()
@@ -293,9 +285,7 @@ class SettingsActionFragment : BaseFragment() {
         setHomeAsUpEnabled(true)
     }
 
-    private fun saveToFile() {
-        ActionListFile.saveToFile(recyclerView.context, actions.toTypedArray(), sharedPreferences)
-    }
+    abstract fun saveToFile()
 
     private fun showHelpBottomSheet() {
         GenericBottomSheetFragment.create(getString(R.string.bs_help_action), R.string.bs_help_action_title, android.R.string.ok).show(childFragmentManager, "bs_help")

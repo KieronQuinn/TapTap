@@ -1,0 +1,183 @@
+import org.apache.commons.io.FileUtils
+
+import java.nio.file.FileSystem
+import java.nio.file.FileSystems
+import java.nio.file.Files
+import java.nio.file.Paths
+import java.util.zip.ZipFile
+
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+def btv = "30.0.2"
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion btv
+
+    defaultConfig {
+        minSdkVersion 24
+        targetSdkVersion 30
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildTypes {
+        flavorDimensions "default"
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main { java.srcDirs = ['src/main/java', 'src/main/smali']
+        }
+    }
+
+    sourceCompatibility = "1.7"
+    targetCompatibility = "1.7"
+}
+
+def createJar() {
+    def smaliVersion = "2.4.0"
+    def dex2jarVersion = "2.1-20190905-lanchon"
+    def toolsPath = projectDir.getAbsolutePath() + "/tools"
+    def outputsPath = projectDir.getAbsolutePath() + "/outputs"
+    def jarOutputPath = projectDir.parentFile.getAbsolutePath() + "/app/libs/columbus.jar"
+
+    def ignoredSourceFiles = ['com.kieronquinn.app.taptap.smaliint.SmaliCalls']
+
+    File toolsDir = new File(toolsPath)
+    File outputsDir = new File(outputsPath)
+    File aarExtractDir = new File(outputsPath, "aarExtract")
+    if(aarExtractDir.exists()) FileUtils.deleteDirectory(aarExtractDir)
+    if(!aarExtractDir.exists()) aarExtractDir.mkdirs()
+
+    File aarFile = new File(projectDir.getAbsolutePath() + "/build/outputs/aar", "columbus-debug.aar")
+    boolean isBuildingAar = aarFile.exists()
+    if(isBuildingAar){
+        unzipFile(aarFile, aarExtractDir)
+    }
+
+    String smaliPath = projectDir.getAbsolutePath() + "/src/main/smali"
+    File smaliDir = new File(smaliPath)
+    if (!smaliDir.exists()) smaliDir.mkdirs()
+    if (!toolsDir.exists()) toolsDir.mkdirs()
+    if (!outputsDir.exists()) outputsDir.mkdirs()
+
+    File smaliJar = new File(toolsDir, "smali.jar")
+    File dex2jarDir = new File(toolsDir, "dex2jar")
+    File dex2jarZip = new File(dex2jarDir, "dex2jar.zip")
+    File dex2jarScript
+    if (System.properties['os.name'].toLowerCase().contains('windows')) {
+        dex2jarScript = new File(toolsPath + "/dex2jar/dex-tools-$dex2jarVersion/d2j-dex2jar.bat")
+    } else {
+        dex2jarScript = new File(toolsPath + "/dex2jar/dex-tools-$dex2jarVersion/d2j-dex2jar.sh")
+    }
+    if (!dex2jarDir.exists()) dex2jarDir.mkdirs()
+
+    if (!smaliJar.exists()) {
+        //Download Smali jar from Bitbucket
+        download("https://bitbucket.org/JesusFreke/smali/downloads/smali-${smaliVersion}.jar", smaliJar)
+    } else {
+        System.out.println("Smali already exists, skipping download")
+    }
+
+    if (!dex2jarZip.exists()) {
+        //Download d2j zip from GitHub
+        download("https://github.com/DexPatcher/dex2jar/releases/download/v$dex2jarVersion/dex-tools-${dex2jarVersion}.zip", dex2jarZip)
+        unzipFile(dex2jarZip, dex2jarDir)
+    } else {
+        System.out.println("Dex2jar already exists, skipping download")
+    }
+
+    //Create dex from Smali
+    System.out.println("Building Smali into Dex")
+    "java -jar smali.jar a ../src/main/smali -o ../outputs/classes.dex".execute(null, toolsDir).waitFor()
+
+    //Convert dex to jar
+    System.out.println("Converting Dex to Jar")
+    File outputJar = new File(outputsDir, "classes.jar")
+    outputJar.delete()
+    "${dex2jarScript.absolutePath} ../../../outputs/classes.dex -o ../../../outputs/classes.jar".execute(null, dex2jarScript.parentFile).waitFor()
+
+    //Extract AAR's classes.jar
+    if(isBuildingAar) {
+        File aarClassesExtract = new File(aarExtractDir, "classes")
+        aarClassesExtract.mkdirs()
+        unzipFile(new File(aarExtractDir, "classes.jar"), aarClassesExtract)
+        ignoredSourceFiles.forEach {
+            boolean success = new File(aarClassesExtract, it.replace(".", "/") + ".class").delete()
+            System.out.println("Deleting $aarClassesExtract.absolutePath/${it.replace(".", "/") + ".class"} success $success")
+        }
+
+        //Extract generated classes.jar
+        File jarClassesExtract = new File(outputsDir, "jarExtract")
+        if (jarClassesExtract.exists()) FileUtils.deleteDirectory(jarClassesExtract)
+        jarClassesExtract.mkdirs()
+        unzipFile(outputJar, jarClassesExtract)
+
+        //Merge two folders together giving priority to AAR
+        FileUtils.copyDirectory(aarClassesExtract, jarClassesExtract)
+
+        //Re-create JARs
+        File finalOutputJar = new File(jarOutputPath)
+        outputJar.delete()
+        finalOutputJar.delete()
+        zipFile(jarClassesExtract, outputJar)
+        //Copy Jar
+        FileUtils.copyFile(outputJar, finalOutputJar)
+    }
+}
+
+task createJar {
+    createJar()
+}
+
+def cleanCustomBuilds() {
+    def outputsPath = projectDir.getAbsolutePath() + "/outputs"
+    File outputsDir = new File(outputsPath)
+    FileUtils.forceDelete(outputsDir)
+}
+
+tasks['assemble'].doFirst {
+    createJar()
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    kapt 'com.google.dagger:dagger-compiler:2.28.3'
+    implementation 'com.google.dagger:dagger:2.28.3'
+    implementation 'org.tensorflow:tensorflow-lite:0.0.0-nightly'
+    provided files('outputs/classes.jar')
+}
+
+tasks['clean'].doFirst({
+    cleanCustomBuilds()
+})
+
+static def download(def address, File output) {
+    System.out.println("Downloading $address to ${output.absolutePath}")
+    output.withOutputStream { out ->
+        new URL(address).withInputStream { from -> out << from; }
+    }
+}
+
+static def unzipFile(File file, File output) {
+    def ant = new groovy.util.AntBuilder()
+    ant.unzip(src: file.absolutePath,
+            dest: output.absolutePath,
+            overwrite: "true")
+}
+
+static def zipFile(File file, File output) {
+    def ant = new groovy.util.AntBuilder()
+    ant.zip(basedir: file.absolutePath,
+            destFile: output.absolutePath)
+}

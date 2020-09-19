@@ -33,7 +33,7 @@ class ActionListFragment : Fragment() {
         val recyclerView = view as RecyclerView
         recyclerView.layoutManager = LinearLayoutManager(recyclerView.context)
         val actions = getActionsForCategory(category)
-        val adapter = ActionAdapter(recyclerView.context, actions, true){
+        val adapter = ActionAdapter(recyclerView.context, actions, isAdd = true, isTripleTap = false){
             itemClickListener?.invoke(actions[it.adapterPosition])
         }
         recyclerView.adapter = adapter

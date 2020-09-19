@@ -6,7 +6,6 @@
     <string name="setting_gesture">Gesty</string>
     <string name="setting_gesture_desc">Zmieniaj sposób działania gestów</string>
     <string name="setting_actions">Akcje</string>
-    <string name="settings_actions_desc">Ustaw akcje, które mają być wykonywane, gdy używany jest gest</string>
     <string name="setting_gates">Bramy</string>
     <string name="setting_gates_desc">Ustaw sytuacje, w których gest nie powinien uruchamiać akcji</string>
     <string name="setting_feedback">Reakcja</string>
@@ -95,9 +94,6 @@
     <string name="accessibility_info_off_desc">Gest obecnie nie działa. Dotknij, aby włączyć</string>
     <string name="accessibility_info_on">Usługa ułatwień dostępu jest włączona</string>
     <string name="accessibility_info_toast">Wybierz "Tap, Tap" z listy usług ułatwień dostępu, przełącz ją i wróć do Tap, Tap, aby kontynuować</string>
-    <string name="menu_alpha">Ta aplikacja jest w fazie Alpha. Kliknij, aby dowiedzieć się więcej.</string>
-    <string name="bs_alpha">Ta aplikacja jest we wczesnym etapie rozwoju i została wydana w stanie „alpha”, aby umożliwić testowanie na wielu urządzeniach. Jeśli napotkasz błąd, zgłoś go na GitHub jako problem. Jeśli chcesz poprosić o funkcję, opublikuj ją w wątku XDA lub poproś o nią na GitHub.\n\nSprawdź ponownie XDA, w XDA Labs lub w wątku, aby uzyskać aktualizacje, gdy tylko będą dostępne.\n\nDziękuję za cierpliwość w czasie tworzenia tej aplikacji.</string>
-    <string name="bs_alpha_title">Alpha</string>
 
     <string name="category_about">O</string>
     <string name="about">%1s v%2s</string>

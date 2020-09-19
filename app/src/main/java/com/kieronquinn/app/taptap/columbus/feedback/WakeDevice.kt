@@ -1,7 +1,3 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by Fernflower decompiler)
-//
 package com.kieronquinn.app.taptap.columbus.feedback
 
 import android.app.KeyguardManager
@@ -10,6 +6,7 @@ import android.content.Intent
 import android.util.Log
 import com.google.android.systemui.columbus.feedback.FeedbackEffect
 import com.google.android.systemui.columbus.sensors.GestureSensor.DetectionProperties
+import com.kieronquinn.app.taptap.TapTapApplication
 import com.kieronquinn.app.taptap.activities.WakeUpActivity
 
 
@@ -17,7 +14,11 @@ class WakeDevice(private val context: Context) : FeedbackEffect {
 
     override fun onProgress(var1: Int, var2: DetectionProperties?) {
         if (var2 != null && !var2.isHapticConsumed) {
-            wakeUpDevice()
+            if((context.applicationContext as? TapTapApplication)?.disableWake == true){
+                (context.applicationContext as? TapTapApplication)?.disableWake = false
+            }else {
+                wakeUpDevice()
+            }
         }
     }
 

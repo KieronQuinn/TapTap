@@ -14,10 +14,16 @@ abstract class ActionBase(context: Context, private val whenGates: List<WhenGate
     }
 
     override fun onProgress(var1: Int, var2: GestureSensor.DetectionProperties?) {
+        Log.d("ActionBase", "onProgress $var1")
         if(var1 != 3) return
 
         onTrigger()
+        onTrigger(var2)
         triggerListener?.invoke()
+    }
+
+    open fun onTrigger(detectionProperties: GestureSensor.DetectionProperties?){
+        //Optional override for if the event cares if it's double or triple tap
     }
 
     var triggerListener: (() -> Unit)? = null

@@ -6,7 +6,6 @@
     <string name="setting_gesture">Жест</string>
     <string name="setting_gesture_desc">Налаштуйте, як працює жест</string>
     <string name="setting_actions">Дії</string>
-    <string name="settings_actions_desc">Встановіть дії, які слід виконувати, коли використовується жест</string>
     <string name="setting_gates">Заборони</string>
     <string name="setting_gates_desc">Визначте ситуації, коли жест не повинен виконувати дію</string>
     <string name="setting_feedback">Зворотний зв\'язок</string>
@@ -93,9 +92,6 @@
     <string name="accessibility_info_off_desc">Зараз жест не працюватиме. Торкніться, щоб увімкнути</string>
     <string name="accessibility_info_on">Служба доступності увімкнена</string>
     <string name="accessibility_info_toast">Виберіть \"Tap, Tap\" зі списку служб доступності, увімкніть його та поверніться до \"Tap, Tap\", щоб продовжити</string>
-    <string name="menu_alpha">Ця програма знаходиться альфа-тестуванні. Натисніть для інформації.</string>
-    <string name="bs_alpha">Цей додаток знаходиться на ранніх стадіях розробки й був випущений у стані \"Альфа\", що дозволяє проводити тестування на багатьох пристроях, що дозволяє проводити тестування на багатьох пристроях. Якщо ви хочете подати запит на функцію, опублікуйте її у вітці XDA або надішліть її на GitHub. \n\nСлідкуйте в лабораторії або вітці XDA за оновленнями. \n\nДякую за терпіння в процесі розробки.</string>
-    <string name="bs_alpha_title">Альфа</string>
 
     <string name="category_about">Про</string>
     <string name="about_summary">Створено Kieron Quinn / Quinny899 @ XDA\nЗавдяки внескам громади, в тому числі: %1s</string>

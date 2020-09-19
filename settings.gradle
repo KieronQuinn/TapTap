@@ -1,2 +1,6 @@
+//Locally I have a module called "columbus" which contains the smali and generation for columbus.jar, but this will not be uploaded to GitHub (publicly anyway) as it's not on AOSP (yet?)
+if(file('columbus').exists()) {
+    include ':columbus'
+}
 include ':app'
 rootProject.name = "TapTap"

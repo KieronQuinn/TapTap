@@ -44,6 +44,13 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_settingsFragment_to_settingsActionTripleFragment"
+            app:destination="@id/settingsActionTripleFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/settingsGestureFragment"
@@ -60,8 +67,13 @@
         tools:layout="@layout/fragment_gates" />
     <fragment
         android:id="@+id/settingsActionFragment"
-        android:name="com.kieronquinn.app.taptap.fragments.SettingsActionFragment"
-        android:label="@string/setting_actions"
+        android:name="com.kieronquinn.app.taptap.fragments.SettingsActionDoubleFragment"
+        android:label="@string/setting_actions_double"
+        tools:layout="@layout/fragment_actions" />
+    <fragment
+        android:id="@+id/settingsActionTripleFragment"
+        android:name="com.kieronquinn.app.taptap.fragments.SettingsActionTripleFragment"
+        android:label="@string/setting_actions_triple"
         tools:layout="@layout/fragment_actions" />
     <fragment
         android:id="@+id/settingsAdvancedFragment"

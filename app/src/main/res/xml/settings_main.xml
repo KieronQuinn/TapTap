@@ -24,8 +24,14 @@
     <com.kieronquinn.app.taptap.preferences.Preference
         android:icon="@drawable/ic_actions_round"
         android:key="actions"
-        android:title="@string/setting_actions"
-        android:summary="@string/settings_actions_desc"/>
+        android:title="@string/setting_actions_double"
+        android:summary="@string/settings_actions_desc_double"/>
+
+    <com.kieronquinn.app.taptap.preferences.Preference
+        android:icon="@drawable/ic_actions_triple_round"
+        android:key="actions_triple"
+        android:title="@string/setting_actions_triple"
+        android:summary="@string/settings_actions_desc_triple"/>
 
     <com.kieronquinn.app.taptap.preferences.Preference
         android:icon="@drawable/ic_gates_round"

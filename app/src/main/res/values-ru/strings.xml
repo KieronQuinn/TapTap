@@ -174,10 +174,6 @@
     <string name="accessibility_info_on">Спец. возможности включены</string>
     <string name="accessibility_info_on_desc_2">Служба спец. возможностей нужна для работы жеста.</string>
     <string name="accessibility_info_toast">Выберите «Tap, Tap» из списка сервисов со специальными возможностями, переключите "Использовать сервис" и вернитесь к Tap, Tap, чтобы продолжить</string>
-    <string name="menu_alpha">Это приложение находится в альфа-версии. Нажмите, чтобы узнать больше.</string>
-    <string name="bs_alpha">Это приложение находится на ранней стадии разработки находится на стадии «Альфа», что позволяет проводить тестирование на многих устройствах. Если вы столкнулись с ошибкой, сообщите о ней на GitHub. Если вы хотите предложить функцию, опубликуйте её в треде на XDA или предложите её на GitHub. \n\nПроверьте обновления на XDA, в лаборатории или в треде, как только их выпустят. \n\nСпасибо за терпение в процессе разработки.</string>
-    <string name="bs_alpha_title">Альфа</string>
-
     <string name="category_about">О приложении</string>
     <string name="about_summary">Созданo Kieron Quinn / Quinny899 @ XDA\nБлагодаря вкладу сообщества, в том числе: %1s</string>
     <string name="xda_thread">Тред на XDA</string>

@@ -6,19 +6,19 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'com.google.android.gms.oss-licenses-plugin'
 
 def gitCommitHash = 'git rev-parse --verify --short HEAD'.execute().text.trim()
-def tagName = '0.7.1_alpha'
+def tagName = '0.8_beta'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.3"
+    compileSdkVersion 30
+    buildToolsVersion "30.0.2"
 
     defaultConfig {
         applicationId "com.kieronquinn.app.taptap"
         minSdkVersion 24
-        targetSdkVersion 29
-        versionCode 7
+        targetSdkVersion 30
+        versionCode 8
         
-        versionName "0.7.1 Alpha"
+        versionName "0.8 Beta"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -52,8 +52,10 @@ android {
     }
 }
 
-repositories {
-    maven { url 'https://jitpack.io' }
+allprojects {
+    repositories {
+        maven { url 'https://jitpack.io' }
+    }
 }
 
 dependencies {

@@ -6,7 +6,6 @@
     <string name="setting_gesture">Double Tap</string>
     <string name="setting_gesture_desc">Modifier le fonctionnement du Double Tap</string>
     <string name="setting_actions">Actions</string>
-    <string name="settings_actions_desc">Paramétrer les actions à effectuer lorsque le geste est réalisé</string>
     <string name="setting_gates">Barrières</string>
     <string name="setting_gates_desc">Paramétrer les situations quand le geste ne doit pas déclencher une action</string>
     <string name="setting_feedback">Retour</string>
@@ -111,9 +110,6 @@
     <string name="accessibility_info_on">Service d\'Accessibilité est activé</string>
     <string name="accessibility_info_on_desc_2">Ce service est requis pour que le geste fonctionne.</string>
     <string name="accessibility_info_toast">Sélectionner "Tap, Tap" depuis la liste des Services d\'Accessibilité, l\'activer et retourner sur Tap, Tap pour continuer</string>
-    <string name="menu_alpha">Cette application est en Version Alpha. Cliquer pour plus d\'info.</string>
-    <string name="bs_alpha">Cette application est en cours de développement et a été publiée dans une version "Alpha" pour permettre de tester sur beaucoup d\'appreils. Si vous rencontrez un bug, s\'il vous plaît, signalez le sur GitHub sous forme d\'"issue". Si vous souhaitez demander une fonctionnalité, postez la sur la discussion XDA ou demandez la sur GitHub.\n\nVérifiez aussi sur XDA, soit sur Labs ou sur la discussion, pour les mises à jour aussitôt qu\'elles sont disponibles.\n\nMerci pour votre patience durant le développement.</string>
-    <string name="bs_alpha_title">Alpha</string>
 
     <string name="category_about">À propos</string>
     <string name="about_summary">Créé par Kieron Quinn / Quinny899 @ XDA\nÀ l\'aide des contributions de la communauté, dont: %1s</string>

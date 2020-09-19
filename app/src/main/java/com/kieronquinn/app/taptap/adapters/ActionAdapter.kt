@@ -16,7 +16,7 @@ import com.kieronquinn.app.taptap.utils.adapterPositionAdjusted
 import com.kieronquinn.app.taptap.utils.deserialize
 import kotlinx.android.synthetic.main.item_action.view.*
 
-class ActionAdapter(private val context: Context, val actions: MutableList<ActionInternal>, private val isAdd: Boolean = false, private val onItemTouchListener: (ViewHolder) -> Unit) : RecyclerView.Adapter<ActionAdapter.ViewHolder>() {
+class ActionAdapter(private val context: Context, val actions: MutableList<ActionInternal>, private val isAdd: Boolean = false, private val isTripleTap: Boolean, private val onItemTouchListener: (ViewHolder) -> Unit) : RecyclerView.Adapter<ActionAdapter.ViewHolder>() {
 
     enum class ItemType {
         HEADER,
@@ -68,7 +68,7 @@ class ActionAdapter(private val context: Context, val actions: MutableList<Actio
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return when(viewType){
-            ItemType.HEADER.ordinal -> HeaderViewHolder(layoutInflater.inflate(R.layout.item_action_header, parent, false))
+            ItemType.HEADER.ordinal -> HeaderViewHolder(if(isTripleTap) layoutInflater.inflate(R.layout.item_action_header_triple, parent, false) else layoutInflater.inflate(R.layout.item_action_header, parent, false))
             ItemType.ACTION.ordinal -> ViewHolder(layoutInflater.inflate(R.layout.item_action, parent, false))
             else -> ViewHolder(View(context))
         }
@@ -95,8 +95,10 @@ class ActionAdapter(private val context: Context, val actions: MutableList<Actio
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         if(!isAdd && position == 0){
-            holder.itemView.setOnClickListener {
-                headerCallback?.invoke()
+            if(!isTripleTap) {
+                holder.itemView.setOnClickListener {
+                    headerCallback?.invoke()
+                }
             }
             return
         }else{
@@ -106,9 +108,9 @@ class ActionAdapter(private val context: Context, val actions: MutableList<Actio
         holder.itemView.apply {
             item_action_name.text = context.getString(item.action.nameRes)
             if(item.action.formattableDescription != null && item.data != null){
-                item_action_description.text = getFormattedDescriptionForAction(item) ?: context.getString(item.action.descriptionRes)
+                item_action_description.text = getFormattedDescriptionForAction(item) ?: context.getText(item.action.descriptionRes)
             }else{
-                item_action_description.text = context.getString(item.action.descriptionRes)
+                item_action_description.text = context.getText(item.action.descriptionRes)
             }
             item_action_icon.setImageResource(item.action.iconRes)
             if(isAdd){
@@ -166,7 +168,7 @@ class ActionAdapter(private val context: Context, val actions: MutableList<Actio
     private fun getFormattedDescriptionForAction(item: ActionInternal): CharSequence? {
         val formattedText = when(item.action.dataType){
             ActionDataTypes.PACKAGE_NAME -> {
-                val applicationInfo = context.packageManager.getApplicationInfo(item.data, 0)
+                val applicationInfo = context.packageManager.getApplicationInfo(item.data!!, 0)
                 applicationInfo.loadLabel(context.packageManager)
             }
             ActionDataTypes.SHORTCUT -> {
