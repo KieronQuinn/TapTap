@@ -5,6 +5,10 @@
     <string name="setting_gesture">Жест</string>
     <string name="setting_gesture_desc">Настройте работу жеста</string>
     <string name="setting_actions">Действия</string>
+    <string name="setting_actions_double">Действия по двойному постукиванию</string>
+    <string name="setting_actions_triple">Действия по тройному постукиванию</string>
+    <string name="settings_actions_desc_double">Установите действия, которые будут запускаться по двойному постукиванию по задней части устройства</string>
+    <string name="settings_actions_desc_triple">Установите действия, которые будут запускаться по тройному постукиванию по задней части устройства</string>
     <string name="setting_gates">Запреты</string>
     <string name="setting_gates_desc">Выберите ситуации, когда действие не будет запускаться</string>
     <string name="setting_feedback">Обратная связь</string>
@@ -48,11 +52,11 @@
     <string name="action_back">Назад</string>
     <string name="action_back_desc">Имитировать нажатие кнопки назад</string>
     <string name="action_recents">Меню недавних приложений</string>
-    <string name="action_recents_desc">Открыть меню недавних приложений, имитируя нажатие кнопки недавние. На устройствах, которые его поддерживают, использование этого действия, когда меню недавних уже открыто, переключится на первое фоновое приложение</string>
+    <string name="action_recents_desc">Открыть меню недавних приложений, имитируя нажатие кнопки \"Недавние"\. На некоторых устройствах, если меню недавних приложений уже открыто, откроется последнее фоновое приложение</string>
     <string name="action_notifications">Уведомления</string>
-    <string name="action_notifications_desc">Открыть шторку уведомлений</string>
+    <string name="action_notifications_desc">Открыть шторку уведомлений. На некоторых устройствах действие закроет шторку, если она открыта.</string>
     <string name="action_quick_settings">Быстрые настройки</string>
-    <string name="action_quick_settings_desc">Открыть панель быстрых настроек</string>
+    <string name="action_quick_settings_desc">Открыть панель быстрых настроек. На некоторых устройствах действие закроет панель, если она открыта.</string>
     <string name="action_screenshot">Снимок экрана</string>
     <string name="action_screenshot_desc">Сделать скриншот, используя системный интерфейс</string>
     <string name="action_lock_screen">Блокировка экрана</string>
@@ -151,6 +155,13 @@
     <string name="tap_update_notification_channel_description">Уведомления отображаются раз в день, когда проверяется наличие обновлений</string>
     <string name="tap_update_notification_title">Доступно обновление Tap, Tap</string>
     <string name="tap_update_notification_content">Для Tap, Tap доступно обновление (%1s to %1s)</string>
+    <string name="switch_triple">Включить тройное постукивание</string>
+    <string name="help_action_triple">Примечание: Когда тройное постукивание включено, двойное постукивание может срабатывать медленее. Это связано с тем, что приложению нужно дождаться, чтобы узнать, будет ли третье постукивание.</string>
+    <string name="tasker_triple_tap">Тройное постукивание</string>
+    <string name="tasker_description_double">Срабатывать по двойному постукиванию по задней части устройства</string>
+    <string name="tasker_description_triple">Срабатывать по тройному постукиванию по задней части устройства</string>
+    <string name="actions_empty_state">А действия кто добавлять будет?</string>
+    <string name="gates_empty_state">А про запреты не забыли?</string>
 
     <string name="bs_help_action_title">Что такое действия?</string>
     <string name="bs_help_gate">Запреты - это ситуации, которые могут заблокировать жест от выполнения каких-либо действий. Для выполнения любого действия все включенные запреты должны быть открыты. \nЕсли в данный момент выполняется сценарий, например, если экран выключен и запрет «Отключить отображение» включены, никакие действия не будут выполняться. Вы можете добавить столько запретов, сколько захотите, и включать / отключать их, используя переключатели (вместо того, чтобы удалять и повторно добавлять), чтобы сделать настройку быстрее и проще.</string>
@@ -172,6 +183,9 @@
     <string name="accessibility_info_on">Спец. возможности включены</string>
     <string name="accessibility_info_on_desc_2">Служба спец. возможностей нужна для работы жеста.</string>
     <string name="accessibility_info_toast">Выберите «Tap, Tap» из списка сервисов со специальными возможностями, переключите "Использовать сервис" и вернитесь к Tap, Tap, чтобы продолжить</string>
+    <string name="menu_beta">Приложение на стадии бета тестирования. Нажмите, чтобы узнать больше.</string>
+    <string name="bs_beta">Приложение находится в разработке и выпущено в \"Бета"\ версии, что позволяет проводить тестирование на многих устройствах и принимать предложения от пользователей. Если вы столкнулись с ошибкой, сообщите о ней на GitHub. Если вы хотите запросить функцию, опубликуйте ее в теме XDA или запросите ее на GitHub. \n\nСпасибо за терпение в процессе разработки.</string>
+    <string name="bs_beta_title">Бета</string>
     <string name="category_about">О приложении</string>
     <string name="about_summary">Созданo Kieron Quinn / Quinny899 @ XDA\nБлагодаря вкладу сообщества, в том числе: %1s</string>
     <string name="xda_thread">Тред на XDA</string>
