@@ -1,7 +1,6 @@
 package com.kieronquinn.app.taptap.fragments
 
 import android.os.Bundle
-import android.widget.Toast
 import com.google.android.material.slider.Slider
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.fragments.bottomsheets.RadioButtonBottomSheetFragment

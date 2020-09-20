@@ -28,6 +28,8 @@ import android.util.ArraySet
 import android.util.Log
 import android.util.TypedValue
 import android.view.View
+import android.view.animation.AlphaAnimation
+import android.view.animation.Animation
 import androidx.annotation.ColorInt
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
@@ -61,6 +63,7 @@ import java.io.OutputStream
 import java.lang.reflect.Field
 import java.lang.reflect.Method
 import kotlin.math.ceil
+import kotlin.collections.MutableSet
 
 const val SHARED_PREFERENCES_NAME = "${BuildConfig.APPLICATION_ID}_prefs"
 const val SHARED_PREFERENCES_KEY_MAIN_SWITCH = "main_enabled"
@@ -307,8 +310,7 @@ fun ColumbusService.setActionsTriple(list: List<Action>){
 }
 
 fun ColumbusService.setFeedback(set: Set<FeedbackEffect>){
-    effects.clear()
-    effects.addAll(set)
+    this.effects = set
 }
 
 fun ColumbusService.setGates(set: Set<Gate>){
@@ -325,6 +327,56 @@ fun ColumbusService.setGates(set: Set<Gate>){
         it.listener = gateListener
     }
     updateSensorListener()
+}
+
+fun View.fadeIn(callback: (() -> Unit)? = null) {
+
+    //Don't run animation if the view is already visible
+    if (visibility == View.VISIBLE)
+        return
+
+    val fadeInAnimation = AlphaAnimation(0f, 1f)
+    fadeInAnimation.duration = 500
+    fadeInAnimation.fillAfter = true
+    fadeInAnimation.setAnimationListener(object : Animation.AnimationListener {
+        override fun onAnimationRepeat(animation: Animation?) {
+        }
+
+        override fun onAnimationStart(animation: Animation?) {
+        }
+
+        override fun onAnimationEnd(animation: Animation?) {
+            callback?.invoke()
+        }
+    })
+    visibility = View.VISIBLE
+    startAnimation(fadeInAnimation)
+}
+
+fun View.fadeOut(endVisibility: Int = View.INVISIBLE, callback: (() -> Unit)? = null) {
+
+    //Don't run animation if the view is already invisible
+    if (visibility != View.VISIBLE)
+        return
+
+    val fadeOutAnimation = AlphaAnimation(1f, 0f)
+    fadeOutAnimation.duration = 500
+    fadeOutAnimation.fillAfter = true
+    fadeOutAnimation.fillBefore = false
+    fadeOutAnimation.setAnimationListener(object : Animation.AnimationListener {
+        override fun onAnimationRepeat(animation: Animation?) {
+        }
+
+        override fun onAnimationEnd(animation: Animation?) {
+            callback?.invoke()
+        }
+
+        override fun onAnimationStart(animation: Animation?) {
+            visibility = endVisibility
+        }
+
+    })
+    startAnimation(fadeOutAnimation)
 }
 
 fun minSdk(api: Int): Boolean {
