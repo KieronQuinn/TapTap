@@ -250,5 +250,7 @@
     <string name="tasker_triple_tap">Triple tap</string>
     <string name="tasker_description_double">Will trigger when the back of the phone is tapped twice</string>
     <string name="tasker_description_triple">Will trigger when the back of the phone is tapped three times</string>
+    <string name="actions_empty_state">No actions added yet</string>
+    <string name="gates_empty_state">No gates added yet</string>
 
 </resources>

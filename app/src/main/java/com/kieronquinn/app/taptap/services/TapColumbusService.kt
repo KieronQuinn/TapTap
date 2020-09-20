@@ -48,7 +48,7 @@ class TapColumbusService(private val context: Context, doubleTapActions: List<Ac
         private fun onTripleTapGesture(detectionProperties: DetectionProperties){
             if (!isGated(columbusService.gates)) {
                 columbusService.wakeLock.acquire(2000.toLong())
-                val var5: Action = columbusService.updateActiveActionTriple()
+                val var5: Action? = columbusService.updateActiveActionTriple()
                 if (var5 != null) {
                     val var6 = StringBuilder()
                     var6.append("Triggering ")
@@ -60,7 +60,7 @@ class TapColumbusService(private val context: Context, doubleTapActions: List<Ac
         }
     }
 
-    private fun updateActiveActionTriple(): Action {
+    private fun updateActiveActionTriple(): Action? {
         val var1 = firstAvailableActionTriple()
         val var2 = lastActiveActionTriple
         if (var2 != null && var1 !== var2) {
@@ -76,7 +76,7 @@ class TapColumbusService(private val context: Context, doubleTapActions: List<Ac
         return var1
     }
 
-    private fun firstAvailableActionTriple(): Action {
+    private fun firstAvailableActionTriple(): Action? {
         val var1: Iterator<*> = tripleTapActions.iterator()
         var var2: Any?
         do {
@@ -86,7 +86,7 @@ class TapColumbusService(private val context: Context, doubleTapActions: List<Ac
             }
             var2 = var1.next()
         } while (!(var2 as Action?)!!.isAvailable)
-        return var2 as Action
+        return var2 as? Action
     }
 
     fun setActions(actions: List<Action>){

@@ -285,6 +285,11 @@ class TapSharedComponent(private val context: Context) :
     }
 
     fun startTap() {
+        //Stop previous one if valid
+        gestureSensorImpl?.run {
+            stopTap()
+            stopListening()
+        }
         val activityManagerService = try {
             ActivityManager::class.java.getMethod("getService").invoke(null)
         } catch (e: NoSuchMethodException) {
@@ -373,6 +378,7 @@ class TapSharedComponent(private val context: Context) :
     }
 
     fun stopTap() {
+        gestureSensorImpl?.stopListening()
         columbusService?.stop()
     }
 

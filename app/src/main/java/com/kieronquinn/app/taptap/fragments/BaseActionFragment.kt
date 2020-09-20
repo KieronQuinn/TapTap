@@ -117,6 +117,10 @@ abstract class BaseActionFragment : BaseFragment() {
                                     ?: -1
                             actions.remove(action)
                             recyclerView.adapter?.notifyItemRemoved(position)
+                            recyclerView.adapter?.run {
+                                this as ActionAdapter
+                                notifyListener()
+                            }
                             //Fix for item hanging around after removal
                             draggedViewHolder.itemView.run {
                                 (parent as ViewGroup).removeView(this)
@@ -225,6 +229,19 @@ abstract class BaseActionFragment : BaseFragment() {
             headerCallback = {
                 showHelpBottomSheet()
             }
+            listChangeListener = {
+                if(it > 1){
+                    if(recyclerView.visibility != View.VISIBLE){
+                        empty_state.fadeOut{}
+                        recyclerView.fadeIn{}
+                    }
+                }else{
+                    if(recyclerView.visibility == View.VISIBLE){
+                        recyclerView.fadeOut {}
+                        empty_state.fadeIn{}
+                    }
+                }
+            }
         }
         fab.applySystemWindowInsetsToMargin(bottom = true)
         fab.post {
@@ -241,6 +258,7 @@ abstract class BaseActionFragment : BaseFragment() {
             recyclerView.adapter?.run {
                 this as ActionAdapter
                 notifyItemChanged(currentInfoPosition ?: 0)
+                notifyListener()
             }
             recyclerView?.layoutManager?.scrollToPosition(actions.size)
             saveToFile()

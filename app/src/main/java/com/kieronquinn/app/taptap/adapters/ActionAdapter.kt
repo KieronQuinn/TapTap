@@ -2,6 +2,7 @@ package com.kieronquinn.app.taptap.adapters
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -31,12 +32,17 @@ class ActionAdapter(private val context: Context, val actions: MutableList<Actio
     var saveCallback: (() -> Unit)? = null
     var chipClickCallback: ((TapGate) -> Unit)? = null
     var headerCallback: (() -> Unit)? = null
+    var listChangeListener: ((Int) -> Unit)? = null
 
     private val observer = object: RecyclerView.AdapterDataObserver() {
         override fun onChanged() {
             super.onChanged()
             updateInfoPosition()
         }
+    }
+
+    fun notifyListener(){
+        listChangeListener?.invoke(itemCount)
     }
 
     private fun updateInfoPosition() : Int {
@@ -50,6 +56,7 @@ class ActionAdapter(private val context: Context, val actions: MutableList<Actio
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         super.onAttachedToRecyclerView(recyclerView)
         registerAdapterDataObserver(observer)
+        notifyListener()
     }
 
     override fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {
