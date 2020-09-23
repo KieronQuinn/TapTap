@@ -234,4 +234,6 @@
     <string name="help_action_triple">Nota: quando il triplo tocco è abilitato, la azione del doppio tocco potrebbe essere più lenta a rispondere. Questo è dovuto al fatto che bisogna aspettare per controllare se ci sarà un terzo tocco prima di eseguire la azione corrispondente al secondo tocco.</string>
     <string name="bs_update_content"><![CDATA[<h2>Un nuovo aggiornamento è disponibile</h2><br><b>Versione corrente:</b> %1s<br><b>Nuova versione:</b> %1s<br><b>Data di aggiornamento:</b> %1s<br><b>Note di aggiornamento:</b><br>%1s]]></string>
     <string name="setting_gesture_sensitivity_desc"><b>Sperimentale:</b> cambia la sensibilità della gesture regolando la quantità di forza filtrata come \"rumore\". Una sensibilità minore significa che la gesture sarà più difficile da rilevare su la maggior parte dei dispositivi, mentre una sensibilità maggiore è più soggetta a falsi rilevamenti. L\'impostazione predefinita è esattamente al centro.</string>
+    <string name="gates_empty_state">Nessuna eccezione ancora aggiunta</string>
+    <string name="actions_empty_state">Nessuna azione ancora aggiunta</string>
 </resources>
