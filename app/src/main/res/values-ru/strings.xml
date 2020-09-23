@@ -57,8 +57,8 @@
     <string name="action_notifications_desc">Открыть шторку уведомлений. На некоторых устройствах действие закроет шторку, если она открыта.</string>
     <string name="action_quick_settings">Быстрые настройки</string>
     <string name="action_quick_settings_desc">Открыть панель быстрых настроек. На некоторых устройствах действие закроет панель, если она открыта.</string>
-    <string name="action_screenshot">Снимок экрана</string>
-    <string name="action_screenshot_desc">Сделать скриншот, используя системный интерфейс</string>
+    <string name="action_screenshot">Скриншот</string>
+    <string name="action_screenshot_desc">Сделать снимок экрана, используя системный интерфейс</string>
     <string name="action_lock_screen">Блокировка экрана</string>
     <string name="action_lock_screen_desc">Заблокировать экран, имитируя нажатие кнопки питания</string>
     <string name="action_toggle_pause">Воспроизведение / пауза</string>
@@ -74,7 +74,7 @@
     <string name="add_action_category_launch">Запуск</string>
     <string name="add_action_category_utilities">Утилиты</string>
     <string name="add_action_category_actions">Действия</string>
-    <string name="add_action_category_advanced">Дополнительные</string>
+    <string name="add_action_category_advanced">Дополнительно</string>
     <string name="action_flashlight">Фонарик</string>
     <string name="action_flashlight_desc">Включить/выключить фонарик. Действие не будет выполнено, если камера используется другим приложением.</string>
     <string name="action_launch_app">Запустить приложения</string>
