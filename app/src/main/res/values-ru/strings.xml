@@ -172,6 +172,8 @@
     <string name="action_launch_assistant_desc">Запустить приложение-помощник по умолчанию</string>
     <string name="action_launch_search">Запустить поиск</string>
     <string name="action_launch_search_desc">Запустить Поиск Google</string>
+    <string name="action_google_voice_access">Вызвать Google Voice Access</string>
+    <string name="action_google_voice_access_desc">Вызвать the Google Voice Access, если он запущен (это не голосовой помощник или поиск)</string>
 
     <string name="battery_and_optimisation">Батарея &amp; Энергосбережение</string>
     <string name="battery_and_optimisation_desc">Информация о том, почему Tap, Tap расходует батарею и почему он может быть убит устройством при работе в фоновом режиме (и как это исправить)</string>
@@ -213,7 +215,7 @@
     <string name="action_volume_toggle_mute_desc">Включить / выключить звук для текущего звукового потока</string>
     <string name="action_wake_device">Пробудить устройство</string>
     <string name="action_wake_device_desc">Пробудить устройство, если экран выключен. Это действие переопределяет настройку в настройках обратной связи. Оно пропускается, если дисплей включен, а также не будет работать, если включен параметр «Отключить отображение»</string>
-    <string name="actions_sound_profile">Изменить звуковые профили</string>
+    <string name="actions_sound_profile">Звуковые профили</string>
     <string name="actions_sound_profile_desc">Изменить звуковые профили: Вибрация/Без звука/Звонок</string>
     <string name="action_launch_shortcut">Запустить быстрое действие</string>
     <string name="action_launch_shortcut_desc">Запустить быстрое действие в приложении, например маршруты в Google Картах</string>
