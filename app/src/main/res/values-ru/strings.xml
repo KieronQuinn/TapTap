@@ -217,7 +217,7 @@
     <string name="action_wake_device_desc">Пробудить устройство, если экран выключен. Это действие переопределяет настройку в настройках обратной связи. Оно пропускается, если дисплей включен, а также не будет работать, если включен параметр «Отключить отображение»</string>
     <string name="actions_sound_profile">Звуковые профили</string>
     <string name="actions_sound_profile_desc">Изменить звуковые профили: Вибрация/Без звука/Звонок</string>
-    <string name="action_launch_shortcut">Запустить быстрое действие</string>
+    <string name="action_launch_shortcut">Быстрое действие</string>
     <string name="action_launch_shortcut_desc">Запустить быстрое действие в приложении, например маршруты в Google Картах</string>
     <string name="action_launch_shortcut_desc_formattable">Запустить %1s (действие в приложении)</string>
     <string name="action_launch_shortcut_toast">Это действие не поддерживается в данный момент</string>
