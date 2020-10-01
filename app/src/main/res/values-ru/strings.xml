@@ -48,10 +48,10 @@
     <string name="action_launch_camera">Камера</string>
     <string name="action_launch_camera_desc">Запустить приложение камеры по умолчанию. Действие будет пропущено, если камера уже работает.</string>
     <string name="action_home">Домой</string>
-    <string name="action_home_desc">Имитировать нажатие кнопки домой</string>
+    <string name="action_home_desc">Имитировать нажатие кнопки "\Домой"\</string>
     <string name="action_back">Назад</string>
-    <string name="action_back_desc">Имитировать нажатие кнопки назад</string>
-    <string name="action_recents">Меню недавних приложений</string>
+    <string name="action_back_desc">Имитировать нажатие кнопки \"Назад"\</string>
+    <string name="action_recents">Недавние приложения</string>
     <string name="action_recents_desc">Открыть меню недавних приложений, имитируя нажатие кнопки \"Недавние"\. На некоторых устройствах, если меню недавних приложений уже открыто, откроется последнее фоновое приложение</string>
     <string name="action_notifications">Уведомления</string>
     <string name="action_notifications_desc">Открыть шторку уведомлений. На некоторых устройствах действие закроет шторку, если она открыта.</string>
