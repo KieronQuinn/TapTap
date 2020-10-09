@@ -4,7 +4,11 @@
     <color name="colorPrimary">#1472FF</color>
     <color name="colorPrimaryDark">#801472FF</color>
     <color name="colorAccent">#1472FF</color>
-    <color name="windowBackground">#ffffff</color>
+    <color name="colorLottie">@android:color/black</color>
+    <color name="windowBackground">@color/windowBackgroundLight</color>
+    <color name="windowBackgroundLight">#ffffff</color>
+    <color name="windowBackgroundDark">#202124</color>
+    <color name="windowBackground80">#80ffffff</color>
     <color name="toolbarColor">#D9ffffff</color>
     <color name="sheet_color">@color/windowBackground</color>
     <color name="search_color">#f5f5f5</color>
@@ -21,6 +25,7 @@
     <color name="accessibility_cross_circle">#ffcdd2</color>
     <color name="reachabilityBackground">#000</color>
     <color name="divider">#809E9E9E</color>
+    <color name="ripple_circle">#EAE9ED</color>
 
     <color name="icon_circle_0">#D7E5F8</color>
     <color name="icon_circle_1">#F8D7DF</color>

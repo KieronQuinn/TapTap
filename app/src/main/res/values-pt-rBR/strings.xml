@@ -10,8 +10,6 @@
     <string name="setting_gates_desc">Definir situações em que o gesto não deve executar uma ação</string>
     <string name="setting_feedback">Feedback</string>
     <string name="setting_feedback_desc">Definir como o dispositivo irá te avisar quando o gesto é executado</string>
-    <string name="setting_gesture_model">Modelo do Dispositivo</string>
-    <string name="setting_gesture_model_desc">Selecionar qual modelo de dispositivo usar para o componente de machine learning</string>
     <string name="setting_feedback_vibrate">Vibrar</string>
     <string name="setting_feedback_vibrate_desc">Vibrar quando o gesto é realizado e a ação é executada</string>
     <string name="setting_feedback_wake">Acordar Dispositivo</string>

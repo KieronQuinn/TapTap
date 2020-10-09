@@ -4,8 +4,10 @@ import android.Manifest
 import android.animation.ValueAnimator
 import android.app.Activity
 import android.app.NotificationManager
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.graphics.drawable.GradientDrawable
 import android.os.Build
@@ -30,15 +32,19 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.activities.AppPickerActivity
+import com.kieronquinn.app.taptap.activities.SettingsActivity
 import com.kieronquinn.app.taptap.fragments.AppsFragment
 import com.kieronquinn.app.taptap.fragments.BaseActionFragment
 import com.kieronquinn.app.taptap.fragments.action.ActionListFragment
 import com.kieronquinn.app.taptap.models.ActionInternal
 import com.kieronquinn.app.taptap.models.ActionDataTypes
+import com.kieronquinn.app.taptap.services.TapAccessibilityService
+import com.kieronquinn.app.taptap.services.TapGestureAccessibilityService
 import com.kieronquinn.app.taptap.utils.*
 import dev.chrisbanes.insetter.Insetter
 import kotlinx.android.synthetic.main.fragment_bottomsheet_action.*
 import net.dinglisch.android.tasker.TaskerIntent
+import java.lang.RuntimeException
 
 class ActionBottomSheetFragment : BottomSheetDialogFragment(), NavController.OnDestinationChangedListener {
 
@@ -55,6 +61,21 @@ class ActionBottomSheetFragment : BottomSheetDialogFragment(), NavController.OnD
             val notificationManager = requireContext().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             return notificationManager.isNotificationPolicyAccessGranted
         }
+
+    private var isWaitingForAccessibility = false
+
+    private val returnReceiver = object: BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent) {
+            context?.unregisterReceiverOpt(this)
+            try {
+                startActivity(Intent(context, SettingsActivity::class.java).apply {
+                    flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+                })
+            }catch (e: RuntimeException){
+                //Fragment isn't attached
+            }
+        }
+    }
 
     private var storedAction: ActionInternal? = null
     private var storedActionCallback: ((ActionInternal) -> Unit)? = null
@@ -161,7 +182,7 @@ class ActionBottomSheetFragment : BottomSheetDialogFragment(), NavController.OnD
     private fun checkTaskerAccessPermission() {
         if(TaskerIntent.testStatus(context) == TaskerIntent.Status.AccessBlocked){
             //User does not have Misc > Allow External Access enabled
-            TaskerPermissionBottomSheetFragment().show(parentFragmentManager, "bs_tasker")
+            MaterialBottomSheetDialogFragment.create(TaskerPermissionBottomSheetFragment(), childFragmentManager, "bs_tasker"){}
         }
     }
 
@@ -197,7 +218,17 @@ class ActionBottomSheetFragment : BottomSheetDialogFragment(), NavController.OnD
             ActionDataTypes.ACCESS_NOTIFICATION_POLICY -> {
                 if(!isNotificationAccessGranted) {
                     isWaitingForNotificationPermission = true
-                    NotificationPolicyBottomSheetFragment().show(childFragmentManager, "bs_notification_policy")
+                    MaterialBottomSheetDialogFragment.create(NotificationPolicyBottomSheetFragment(), childFragmentManager, "bs_notification_policy"){}
+                }else{
+                    callback.invoke(action)
+                    storedActionCallback = null
+                    storedAction = null
+                }
+            }
+            ActionDataTypes.SECONDARY_GESTURE_SERVICE -> {
+                if(!isAccessibilityServiceEnabled(requireContext(), TapGestureAccessibilityService::class.java)){
+                    isWaitingForAccessibility = true
+                    MaterialBottomSheetDialogFragment.create(SecondaryServiceBottomSheetFragment(), childFragmentManager, "bs_secondary_service"){}
                 }else{
                     callback.invoke(action)
                     storedActionCallback = null
@@ -243,14 +274,26 @@ class ActionBottomSheetFragment : BottomSheetDialogFragment(), NavController.OnD
 
     override fun onResume() {
         super.onResume()
+        requireContext().registerReceiver(returnReceiver, IntentFilter(TapAccessibilityService.KEY_ACCESSIBILITY_START))
         //startActivityForResult & onActivityResult don't seem to work for the policy permissions screen as it fires off a second activity and thus briefly returns to the app before it's done
-        if(isWaitingForNotificationPermission && isNotificationAccessGranted){
+        if((isWaitingForNotificationPermission && isNotificationAccessGranted) || (isWaitingForAccessibility && isAccessibilityServiceEnabled(requireContext(), TapGestureAccessibilityService::class.java))){
             val storedAction = this.storedAction ?: return
             storedActionCallback?.invoke(storedAction)
             this.storedAction = null
             storedActionCallback = null
             isWaitingForNotificationPermission = false
+            isWaitingForAccessibility = false
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        if(!isWaitingForAccessibility) requireContext().unregisterReceiverOpt(returnReceiver)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        requireContext().unregisterReceiverOpt(returnReceiver)
     }
 
     private fun handleShortcutIntent(data: Intent?) {

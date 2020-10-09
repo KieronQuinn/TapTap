@@ -3,6 +3,6 @@
     android:accessibilityEventTypes="typeWindowStateChanged"
     android:accessibilityFeedbackType="feedbackGeneric"
     android:accessibilityFlags="flagReportViewIds"
-    android:canPerformGestures="true"
     android:canRetrieveWindowContent="true"
+    android:settingsActivity="com.kieronquinn.app.taptap.activities.SettingsActivity"
     android:description="@string/accessibility_service_description" />

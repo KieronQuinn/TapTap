@@ -72,18 +72,6 @@ abstract class BaseSettingsFragment : PreferenceFragmentCompat(), View.OnScrollC
         setToolbarElevationEnabled(listView.computeVerticalScrollOffset() > 0)
     }
 
-    fun getPreference(key: String, invoke: (Preference) -> Unit) {
-        findPreference<Preference>(key)?.run(invoke)
-    }
-
-    fun getSwitchPreference(key: String, invoke: (SwitchPreference) -> Unit) {
-        findPreference<SwitchPreference>(key)?.run(invoke)
-    }
-
-    fun getSliderPreference(key: String, invoke: (SliderPreference) -> Unit) {
-        findPreference<SliderPreference>(key)?.run(invoke)
-    }
-
     fun navigate(@IdRes navigationAction: Int, options: Bundle? = null){
         findNavController().navigate(navigationAction, options)
     }
