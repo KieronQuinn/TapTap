@@ -10,8 +10,6 @@
     <string name="setting_gates_desc">Stelle Situationen ein, in denen die Geste keine Aktion auslösen soll</string>
     <string name="setting_feedback">Feedback</string>
     <string name="setting_feedback_desc">Stelle ein, wie das Gerät dich darauf aufmerksam machen soll, dass die Geste verwendet wurde</string>
-    <string name="setting_gesture_model">Gerätemodell</string>
-    <string name="setting_gesture_model_desc">Wähle aus, welches Geräte-Modell für die Machine-Learning-Komponente eingesetzt werden soll</string>
     <string name="setting_feedback_vibrate">Vibrieren</string>
     <string name="setting_feedback_vibrate_desc">Vibriere einmal, wenn die Geste erkannt wurde und die Aktion ausgeführt wird</string>
     <string name="setting_feedback_wake">Gerät aufwecken</string>
@@ -77,7 +75,7 @@
     <string name="show_system_apps">Zeige System-Apps</string>
     <string name="select_an_app">Wähle eine App aus</string>
     <string name="setting_gesture_sensitivity">Empfindlichkeit</string>
-    <string name="setting_gesture_sensitivity_desc"><b>Experimentell:</b> Passe die Empfindlichkeit für das Erkennen der Geste an, indem du einstellst, wie viel Kraft als \'Rauschen\' herausgefiltert wird. Eine geringere Empfindlichkeit bedeutet, dass es schwerer wird, die Geste auszuführen, während eine hohe Empfindlichkeit anfälliger für eine falsche Erkennung ist. Der Standard liegt genau in der Mitte</string>
+    <string name="setting_gesture_sensitivity_desc">Passe die Empfindlichkeit für das Erkennen der Geste an, indem du einstellst, wie viel Kraft als \'Rauschen\' herausgefiltert wird. Eine geringere Empfindlichkeit bedeutet, dass es schwerer wird, die Geste auszuführen, während eine hohe Empfindlichkeit anfälliger für eine falsche Erkennung ist. Der Standard liegt genau in der Mitte</string>
 
     <string name="bs_help_action_title">Was sind Aktionen?</string>
     <string name="bs_help_gate">Ausnahmen sind Situationen, in denen das Ausführen der Aktionen bei Erkennung der Geste blockiert wird. Damit eine Aktion ausgeführt werden kann, darf keine aktivierte Ausnahme erfüllt sein.\nFalls ein Ausnahmeszenario erfüllt ist, z. B. wenn der Bildschrim aus ist und die \"Bildschirm aus\"-Ausnahme aktiviert ist, wird keine Aktion ausgeführt. Du kannst so viele Ausnahmen, wie du willst, hinzufügen und sie über die Schalter einzeln aktivieren/deaktivieren (statt sie jedes Mal zu löschen bzw. neu hinzuzufügen), um die Konfiguration schneller und einfacher zu machen</string>

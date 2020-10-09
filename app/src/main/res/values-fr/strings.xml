@@ -10,8 +10,6 @@
     <string name="setting_gates_desc">Paramétrer les situations quand le geste ne doit pas déclencher une action</string>
     <string name="setting_feedback">Retour</string>
     <string name="setting_feedback_desc">Paramétrer comment l\'appareil vous informe que le geste est effectué</string>
-    <string name="setting_gesture_model">Modèle d\'appareil</string>
-    <string name="setting_gesture_model_desc">Sélectionner quel modèle d\'appareil utiliser pour le composant de machine learning (apprentissage automatique)</string>
     <string name="setting_feedback_vibrate">Vibrer</string>
     <string name="setting_feedback_vibrate_desc">Vibre une seule fois quand le geste est effectué et l\'action déclenchée</string>
     <string name="setting_feedback_wake">Allumer l\'écran de l\'appareil</string>
@@ -91,7 +89,7 @@
     <string name="show_system_apps">Afficher les applications systèmes</string>
     <string name="select_an_app">Sélectionner une application</string>
     <string name="setting_gesture_sensitivity">Sensibilité</string>
-    <string name="setting_gesture_sensitivity_desc"><b>Expérimental :</b> Change la sensibilité du geste en ajustant la quantité de force traitée comme \"parasite\". Un sensibilité plus basse signifie que le geste sera plus dur à faire sur la plupart des appareils, tandis qu\'un sensibilité plus haute est plus enclin à de fausses détection. Par défaut, la sensibilité est exactement au milieu.</string>
+    <string name="setting_gesture_sensitivity_desc">Change la sensibilité du geste en ajustant la quantité de force traitée comme \"parasite\". Un sensibilité plus basse signifie que le geste sera plus dur à faire sur la plupart des appareils, tandis qu\'un sensibilité plus haute est plus enclin à de fausses détection. Par défaut, la sensibilité est exactement au milieu.</string>
     <string name="help_action">Les actions sont des tâches qui sont exécutées quand vous tappez deux fois à l\'arrière de votre appareil. Les actions sont lancées dans l\'ordre de la liste - de haut en bas, et seulement si un requis correspond.\nCliquer pour plus d\'info.</string>
     <string name="bs_help_action">Les actions sont des tâches qui sont exécutées quand vous tappez deux fois à l\'arrière de votre appareil. Les actions sont lancées dans l\'ordre de la liste - de haut en bas. Si une action est capable de se dérouler correctement, les autres actions ne seront pas lancées. Cependant, si une action est indisponible (ex. si l\'assistant pour l\'action "Lancer l\'Assistant" est déjà en cours d\'exécution, ou si un requis ne correspond pas), l\'action dessous sera exécutée, et ainsi jusqu\'à ce une se déroule correctement.</string>
     <string name="bs_help_action_title">Que sont les Actions ?</string>

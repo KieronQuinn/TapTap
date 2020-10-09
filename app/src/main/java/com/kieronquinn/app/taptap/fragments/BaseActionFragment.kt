@@ -16,19 +16,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.TransitionManager
 import com.kieronquinn.app.taptap.R
-import com.kieronquinn.app.taptap.activities.SettingsActivity
 import com.kieronquinn.app.taptap.adapters.ActionAdapter
 import com.kieronquinn.app.taptap.fragments.bottomsheets.ActionBottomSheetFragment
 import com.kieronquinn.app.taptap.fragments.bottomsheets.GateBottomSheetFragment
-import com.kieronquinn.app.taptap.fragments.bottomsheets.GenericBottomSheetFragment
+import com.kieronquinn.app.taptap.fragments.bottomsheets.MaterialBottomSheetDialogFragment
 import com.kieronquinn.app.taptap.fragments.gate.GateListFragment
 import com.kieronquinn.app.taptap.models.*
-import com.kieronquinn.app.taptap.models.store.DoubleTapActionListFile
 import com.kieronquinn.app.taptap.utils.*
 import dev.chrisbanes.insetter.applySystemWindowInsetsToMargin
 import kotlinx.android.synthetic.main.fragment_actions.*
 import kotlinx.android.synthetic.main.item_action.view.*
-import java.lang.RuntimeException
 
 abstract class BaseActionFragment : BaseFragment() {
 
@@ -306,7 +303,10 @@ abstract class BaseActionFragment : BaseFragment() {
     abstract fun saveToFile()
 
     private fun showHelpBottomSheet() {
-        GenericBottomSheetFragment.create(getString(R.string.bs_help_action), R.string.bs_help_action_title, android.R.string.ok).show(childFragmentManager, "bs_help")
+        MaterialBottomSheetDialogFragment.create(MaterialBottomSheetDialogFragment(), childFragmentManager, "bs_help"){
+            it.title(R.string.bs_help_action_title)
+            it.message(R.string.bs_help_action)
+        }
         sharedPreferences?.edit()?.putBoolean(PREF_KEY_ACTION_HELP_SHOWN, true)?.apply()
     }
 

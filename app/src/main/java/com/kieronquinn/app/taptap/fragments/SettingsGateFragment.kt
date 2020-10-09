@@ -11,7 +11,7 @@ import androidx.transition.TransitionManager
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.adapters.GateAdapter
 import com.kieronquinn.app.taptap.fragments.bottomsheets.GateBottomSheetFragment
-import com.kieronquinn.app.taptap.fragments.bottomsheets.GenericBottomSheetFragment
+import com.kieronquinn.app.taptap.fragments.bottomsheets.MaterialBottomSheetDialogFragment
 import com.kieronquinn.app.taptap.models.GateInternal
 import com.kieronquinn.app.taptap.models.store.GateListFile
 import com.kieronquinn.app.taptap.utils.animateBackgroundStateChange
@@ -159,7 +159,10 @@ class SettingsGateFragment : BaseFragment(), GateAdapter.GateCallback {
     }
 
     private fun showHelpBottomSheet(){
-        GenericBottomSheetFragment.create(getString(R.string.bs_help_gate), R.string.bs_help_gate_title, android.R.string.ok).show(childFragmentManager, "bs_help")
+        MaterialBottomSheetDialogFragment.create(MaterialBottomSheetDialogFragment(), childFragmentManager, "bs_help") {
+            it.title(R.string.bs_help_gate_title)
+            it.message(R.string.bs_help_gate)
+        }
         sharedPreferences?.edit()?.putBoolean(PREF_KEY_GATE_HELP_SHOWN, true)?.apply()
     }
 

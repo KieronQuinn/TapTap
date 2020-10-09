@@ -11,7 +11,9 @@
     <dimen name="search_box_height">48dp</dimen>
     <dimen name="search_box_corners">24dp</dimen>
     <dimen name="activity_padding">16dp</dimen>
+    <dimen name="activity_padding_large">24dp</dimen>
     <dimen name="toolbar_elevation">4dp</dimen>
     <dimen name="reachability_button_size">36dp</dimen>
     <dimen name="chip_height">56dp</dimen>
+    <dimen name="configuration_button_height">72dp</dimen>
 </resources>

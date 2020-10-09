@@ -10,8 +10,6 @@
     <string name="setting_gates_desc">Imposta le situazioni quando le gesture non dovrebbero eseguire un\'azione</string>
     <string name="setting_feedback">Notifica</string>
     <string name="setting_feedback_desc">Imposta come il dispositivo ti notifica che le gesture sono in esecuzione</string>
-    <string name="setting_gesture_model">Modello dispositivo</string>
-    <string name="setting_gesture_model_desc">Seleziona quale modello di dispositivo usare per il machine learning</string>
     <string name="setting_feedback_vibrate">Vibra</string>
     <string name="setting_feedback_vibrate_desc">Vibra una sola volta quando la gesture è usata e l\'azione è eseguita</string>
     <string name="setting_feedback_wake">Risveglia il dispositivo</string>

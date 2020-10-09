@@ -21,6 +21,8 @@ import com.kieronquinn.app.taptap.columbus.gates.TelephonyActivity
 enum class TapGate(val clazz: Class<*>, @StringRes val nameRes: Int, @StringRes val descriptionRes: Int, @DrawableRes val iconRes: Int, @StringRes val whenDescriptionRes: Int, @StringRes val formattableDescription: Int? = null, val dataType: GateDataTypes? = null) {
     POWER_STATE(PowerState::class.java, R.string.gate_power_state, R.string.gate_power_state_desc, R.drawable.ic_power_state, R.string.gate_power_state_desc_when),
     POWER_STATE_INVERSE(PowerStateInverse::class.java, R.string.gate_power_state_inverse, R.string.gate_power_state_inverse_desc, R.drawable.ic_gate_power_state_inverse, R.string.gate_power_state_inverse_desc_when),
+    LOCK_SCREEN(LockScreenState::class.java, R.string.gate_lock_screen_showing, R.string.gate_lock_screen_showing_desc, R.drawable.ic_gate_locked, R.string.gate_lock_screen_showing_desc_when),
+    LOCK_SCREEN_INVERSE(LockScreenState::class.java, R.string.gate_lock_screen_showing_inverse, R.string.gate_lock_screen_showing_inverse_desc, R.drawable.ic_gate_unlocked, R.string.gate_lock_screen_showing_inverse_desc_when),
     CHARGING_STATE(ChargingState::class.java, R.string.gate_charging_state, R.string.gate_charging_state_desc, R.drawable.ic_charging_state, R.string.gate_charging_state_desc_when),
     USB_STATE(UsbState::class.java, R.string.gate_usb_state, R.string.gate_usb_state_desc, R.drawable.ic_usb_state, R.string.gate_usb_state_desc_when),
     CAMERA_VISIBILITY(CameraVisibility::class.java, R.string.gate_camera_visibility, R.string.gate_camera_visibility_desc, R.drawable.ic_camera_visibility, R.string.gate_camera_visibility_desc_when),
@@ -34,7 +36,8 @@ enum class TapGate(val clazz: Class<*>, @StringRes val nameRes: Int, @StringRes 
     HEADSET(Headset::class.java, R.string.gate_headset, R.string.gate_headset_desc, R.drawable.ic_gate_headset_inverse, R.string.gate_headset_desc_when),
     HEADSET_INVERSE(HeadsetInverse::class.java, R.string.gate_headset_inverse, R.string.gate_headset_desc_inverse, R.drawable.ic_gate_headset, R.string.gate_headset_desc_when_inverse),
     MUSIC(Music::class.java, R.string.gate_music, R.string.gate_music_desc, R.drawable.ic_gate_music, R.string.gate_music_desc_when),
-    MUSIC_INVERSE(MusicInverse::class.java, R.string.gate_music_inverse, R.string.gate_music_desc_inverse, R.drawable.ic_gate_music_inverse, R.string.gate_music_desc_when_inverse)
+    MUSIC_INVERSE(MusicInverse::class.java, R.string.gate_music_inverse, R.string.gate_music_desc_inverse, R.drawable.ic_gate_music_inverse, R.string.gate_music_desc_when_inverse),
+    ALARM(Alarm::class.java, R.string.gate_alarm, R.string.gate_alarm_desc, R.drawable.ic_gate_alarm, R.string.gate_alarm_desc_when)
 }
 
 enum class GateDataTypes {

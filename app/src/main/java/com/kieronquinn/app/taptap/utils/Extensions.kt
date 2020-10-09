@@ -2,10 +2,7 @@ package com.kieronquinn.app.taptap.utils
 
 import android.animation.ArgbEvaluator
 import android.animation.ValueAnimator
-import android.content.ComponentName
-import android.content.ContentResolver
-import android.content.Context
-import android.content.Intent
+import android.content.*
 import android.content.pm.ApplicationInfo
 import android.content.res.AssetManager
 import android.content.res.ColorStateList
@@ -19,19 +16,28 @@ import android.net.Uri
 import android.os.Build
 import android.os.Handler
 import android.os.Looper
+import android.os.VibrationEffect
 import android.provider.MediaStore
 import android.provider.Settings
 import android.text.Html
+import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.text.TextUtils
+import android.text.style.CharacterStyle
 import android.util.ArraySet
+import android.util.DisplayMetrics
 import android.util.Log
 import android.util.TypedValue
 import android.view.View
+import android.view.WindowManager
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
+import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
+import androidx.annotation.ColorRes
 import androidx.fragment.app.Fragment
+import androidx.preference.PreferenceFragmentCompat
+import androidx.preference.SwitchPreference
 import androidx.recyclerview.widget.RecyclerView
 import com.android.systemui.keyguard.WakefulnessLifecycle
 import com.google.android.systemui.columbus.ColumbusService
@@ -52,6 +58,8 @@ import com.kieronquinn.app.taptap.models.GateInternal
 import com.kieronquinn.app.taptap.models.TapAction
 import com.kieronquinn.app.taptap.models.TapGate
 import com.kieronquinn.app.taptap.models.store.GateListFile
+import com.kieronquinn.app.taptap.preferences.Preference
+import com.kieronquinn.app.taptap.preferences.SliderPreference
 import com.kieronquinn.app.taptap.providers.SharedPrefsProvider
 import com.kieronquinn.app.taptap.services.TapAccessibilityService
 import com.kieronquinn.app.taptap.services.TapColumbusService
@@ -60,18 +68,18 @@ import org.json.JSONException
 import org.json.JSONObject
 import java.io.InputStream
 import java.io.OutputStream
+import java.lang.IllegalArgumentException
 import java.lang.reflect.Field
 import java.lang.reflect.Method
 import kotlin.math.ceil
 import kotlin.collections.MutableSet
+import kotlin.math.sqrt
 
 const val SHARED_PREFERENCES_NAME = "${BuildConfig.APPLICATION_ID}_prefs"
 const val SHARED_PREFERENCES_KEY_MAIN_SWITCH = "main_enabled"
 const val SHARED_PREFERENCES_KEY_TRIPLE_TAP_SWITCH = "triple_tap_enabled"
-const val SHARED_PREFERENCES_KEY_ACTION = "action"
 const val SHARED_PREFERENCES_KEY_ACTIONS_TIME = "actions_time"
 const val SHARED_PREFERENCES_KEY_ACTIONS_TRIPLE_TIME = "actions_triple_time"
-const val SHARED_PREFERENCES_KEY_GATES_TIME = "gates_time"
 const val SHARED_PREFERENCES_KEY_GATES = "gates"
 const val SHARED_PREFERENCES_KEY_MODEL = "model"
 const val SHARED_PREFERENCES_KEY_FEEDBACK_VIBRATE = "feedback_vibrate"
@@ -79,6 +87,7 @@ const val SHARED_PREFERENCES_KEY_FEEDBACK_WAKE = "feedback_wake"
 const val SHARED_PREFERENCES_KEY_FEEDBACK_OVERRIDE_DND = "feedback_override_dnd"
 const val SHARED_PREFERENCES_KEY_SPLIT_SERVICE = "advanced_split_service"
 const val SHARED_PREFERENCES_KEY_RESTART_SERVICE = "advanced_restart_service"
+const val SHARED_PREFERENCES_KEY_HAS_SEEN_SETUP = "has_seen_setup"
 
 const val SHARED_PREFERENCES_KEY_SENSITIVITY = "sensitivity"
 
@@ -98,6 +107,8 @@ val DEFAULT_GATES = arrayOf(TapGate.POWER_STATE, TapGate.TELEPHONY_ACTIVITY)
 val ALL_NON_CONFIG_GATES = arrayOf(TapGate.POWER_STATE, TapGate.POWER_STATE_INVERSE, TapGate.USB_STATE, TapGate.TELEPHONY_ACTIVITY, TapGate.CHARGING_STATE)
 val CONFIGURABLE_GATES = arrayOf(TapGate.APP_SHOWING)
 
+val GESTURE_REQUIRING_ACTIONS = arrayOf(TapAction.HAMBURGER)
+
 val DEFAULT_ACTIONS = if(TapAction.SCREENSHOT.isAvailable){
     arrayOf(TapAction.LAUNCH_ASSISTANT, TapAction.SCREENSHOT)
 }else{
@@ -107,7 +118,7 @@ val DEFAULT_ACTIONS = if(TapAction.SCREENSHOT.isAvailable){
 val DEFAULT_ACTIONS_TRIPLE = arrayOf(TapAction.NOTIFICATIONS)
 
 val Context.isSplitService: Boolean
-    get() = sharedPreferences.getBoolean(SHARED_PREFERENCES_KEY_SPLIT_SERVICE, false)
+    get() = sharedPreferences.getBoolean(SHARED_PREFERENCES_KEY_SPLIT_SERVICE, true)
 
 val Context.isMainEnabled: Boolean
     get() = sharedPreferences.getBoolean(SHARED_PREFERENCES_KEY_MAIN_SWITCH, true)
@@ -118,12 +129,26 @@ val Context.isTripleTapEnabled: Boolean
 val Context.isRestartEnabled: Boolean
     get() = sharedPreferences.getBoolean(SHARED_PREFERENCES_KEY_RESTART_SERVICE, false)
 
+val Context.hasSeenSetup: Boolean
+    get() {
+        if(sharedPreferences.getBoolean(SHARED_PREFERENCES_KEY_HAS_SEEN_SETUP, false)) return true
+        if(sharedPreferences.contains(SHARED_PREFERENCES_KEY_ACTIONS_TIME)) return true
+        if(sharedPreferences.contains(SHARED_PREFERENCES_KEY_ACTIONS_TRIPLE_TIME)) return true
+        return false
+    }
+
 fun InputStream.copyFile(out: OutputStream) {
     val buffer = ByteArray(1024)
     var read: Int
     while (this.read(buffer).also { read = it } != -1) {
         out.write(buffer, 0, read)
     }
+}
+
+fun getVibrationEffect(effectId: Int): VibrationEffect? {
+    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+        VibrationEffect.createPredefined(effectId)
+    } else null
 }
 
 public fun <T> Array<out T>.indexOfOrNull(element: T): Int? {
@@ -139,6 +164,7 @@ fun settingsGlobalGetIntOrNull(contentResolver: ContentResolver, key: String): I
     }
 }
 
+
 //Replaces hidden API
 val ApplicationInfo.isSystemApp: Boolean
     get() {
@@ -153,6 +179,14 @@ fun Context.isAppLaunchable(packageName: String): Boolean {
         false
     }
 }
+
+fun getSystemProperty(key: String): String {
+    val systemProperties = Class.forName("android.os.SystemProperties")
+    return systemProperties.getMethod("get", String::class.java).invoke(null, key) as String
+}
+
+val isMiui: Boolean
+    get() = getSystemProperty("ro.miui.ui.version.code").isNotEmpty()
 
 fun Intent.serialize(): String? {
     //Serialize the Intent to a JSON object storing its data as much as we can (only basic data is currently supported)
@@ -275,6 +309,15 @@ fun JSONObject.getIntOpt(key: String): Int? {
     else null
 }
 
+fun isAudioStreamActive(audioStream: Int): Boolean {
+    runCatching {
+        val clazz = Class.forName("android.media.AudioSystem")
+        val isStreamActive = clazz.getDeclaredMethod("isStreamActive", Integer.TYPE, Integer.TYPE)
+        return isStreamActive.invoke(null, audioStream, 0) as Boolean
+    }
+    return false
+}
+
 val EXTRA_FRAGMENT_ARG_KEY = ":settings:fragment_args_key";
 val EXTRA_SHOW_FRAGMENT_ARGUMENTS = ":settings:show_fragment_args";
 
@@ -332,7 +375,7 @@ fun ColumbusService.setGates(set: Set<Gate>){
 fun View.fadeIn(callback: (() -> Unit)? = null) {
 
     //Don't run animation if the view is already visible
-    if (visibility == View.VISIBLE)
+    if (visibility == View.VISIBLE && alpha == 1f)
         return
 
     val fadeInAnimation = AlphaAnimation(0f, 1f)
@@ -378,6 +421,24 @@ fun View.fadeOut(endVisibility: Int = View.INVISIBLE, callback: (() -> Unit)? = 
     })
     startAnimation(fadeOutAnimation)
 }
+
+fun View.animateBackgroundTint(@ColorInt toColor: Int){
+    val fromColor = backgroundTintList?.defaultColor ?: Color.TRANSPARENT
+    ValueAnimator().apply {
+        setIntValues(fromColor, toColor)
+        setEvaluator(ArgbEvaluator())
+        addUpdateListener {
+            this@animateBackgroundTint.backgroundTintList = ColorStateList.valueOf(it.animatedValue as Int)
+        }
+        duration = 1000L
+    }.start()
+}
+
+val View.centerX
+    get() = x + (measuredWidth / 2)
+
+val View.centerY
+    get() = y + (measuredHeight / 2)
 
 fun minSdk(api: Int): Boolean {
     return Build.VERSION.SDK_INT >= api
@@ -434,6 +495,8 @@ fun getGate(context: Context, tapGate: TapGate?, data: String?): Gate? {
     return when (tapGate) {
         TapGate.POWER_STATE -> PowerState(context, wakefulnessLifecycle)
         TapGate.POWER_STATE_INVERSE -> PowerStateInverse(context)
+        TapGate.LOCK_SCREEN -> LockScreenState(context)
+        TapGate.LOCK_SCREEN_INVERSE -> LockScreenStateInverse(context)
         TapGate.CHARGING_STATE -> ChargingState(context, Handler(), 500L)
         TapGate.TELEPHONY_ACTIVITY -> TelephonyActivity(context)
         TapGate.CAMERA_VISIBILITY -> CameraVisibility(context)
@@ -448,6 +511,7 @@ fun getGate(context: Context, tapGate: TapGate?, data: String?): Gate? {
         TapGate.HEADSET_INVERSE -> HeadsetInverse(context)
         TapGate.MUSIC -> Music(context)
         TapGate.MUSIC_INVERSE -> MusicInverse(context)
+        TapGate.ALARM -> Alarm(context)
     }
 }
 
@@ -555,6 +619,23 @@ fun Context.getToolbarHeight(): Int {
     return 0
 }
 
+@ColorRes
+fun Context.resolveColorAttribute(@AttrRes res: Int): Int {
+    val tv = TypedValue()
+    if (theme.resolveAttribute(res, tv, true)) {
+        return tv.resourceId
+    }
+    return 0
+}
+
+fun Context.unregisterReceiverOpt(receiver: BroadcastReceiver){
+    try {
+        unregisterReceiver(receiver)
+    }catch (e: IllegalArgumentException){
+        //Do nothing, already unregistered
+    }
+}
+
 fun View.animateColorChange(@ColorInt beforeColor: Int? = null, @ColorInt afterColor: Int): ValueAnimator {
     val before = beforeColor ?: (background as? ColorDrawable)?.color ?: Color.TRANSPARENT
     return ValueAnimator.ofObject(ArgbEvaluator(), before, afterColor).apply {
@@ -616,6 +697,16 @@ fun Context.isDarkTheme(): Boolean {
     return resources.configuration.uiMode.and(Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
 }
 
+fun Context.getPhysicalScreenSize(): Double {
+    val manager = getSystemService(Context.WINDOW_SERVICE) as WindowManager
+    val displayMetrics = DisplayMetrics()
+    manager.defaultDisplay.getMetrics(displayMetrics)
+    val widthInInches : Float = displayMetrics.widthPixels / displayMetrics.xdpi
+    val heightInInches : Float = displayMetrics.heightPixels / displayMetrics.ydpi
+    val ab = (widthInInches * widthInInches) + (heightInInches * heightInInches).toDouble()
+    return sqrt(ab)
+}
+
 val Fragment.sharedPreferences
     get() = context?.getSharedPreferences("${BuildConfig.APPLICATION_ID}_prefs", Context.MODE_PRIVATE)
 
@@ -667,4 +758,16 @@ fun getSharedBoolPref(context: Context, name: String, defValue: Boolean): Boolea
         cursor.close()
         prefValue == 1
     } else defValue
+}
+
+fun PreferenceFragmentCompat.getPreference(key: String, invoke: (Preference) -> Unit) {
+    findPreference<Preference>(key)?.run(invoke)
+}
+
+fun PreferenceFragmentCompat.getSwitchPreference(key: String, invoke: (SwitchPreference) -> Unit) {
+    findPreference<SwitchPreference>(key)?.run(invoke)
+}
+
+fun PreferenceFragmentCompat.getSliderPreference(key: String, invoke: (SliderPreference) -> Unit) {
+    findPreference<SliderPreference>(key)?.run(invoke)
 }

@@ -10,8 +10,6 @@
     <string name="setting_gates_desc">Establecer situaciones en las que el gesto no debe ejecutar una acción</string>
     <string name="setting_feedback">Respuesta</string>
     <string name="setting_feedback_desc">Establece cómo el dispositivo te notifica cuando se ejecuta el gesto</string>
-    <string name="setting_gesture_model">Modelo del dispositivo</string>
-    <string name="setting_gesture_model_desc">Seleccione qué modelo de dispositivo usar para el componente de aprendizaje automático</string>
     <string name="setting_feedback_vibrate">Vibrar</string>
     <string name="setting_feedback_vibrate_desc">Vibrar una vez cuando se usa el gesto y se ejecuta la acción</string>
     <string name="setting_feedback_wake">Despertar Dispositivo</string>

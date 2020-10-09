@@ -14,14 +14,14 @@ class AccessibilityServiceGlobalAction(private val accessiblityService: TapAcces
 
     @SuppressLint("WrongConstant")
     override fun onTrigger() {
-        if(globalAction == AccessibilityService.GLOBAL_ACTION_NOTIFICATIONS && accessiblityService.isNotificationShadeOpen){
+        if (globalAction == AccessibilityService.GLOBAL_ACTION_NOTIFICATIONS && accessiblityService.isNotificationShadeOpen) {
             accessiblityService.performGlobalAction(AccessibilityService.GLOBAL_ACTION_BACK)
             Handler().postDelayed({
                 accessiblityService.isNotificationShadeOpen = false
             }, 500)
             return
         }
-        if(globalAction == AccessibilityService.GLOBAL_ACTION_QUICK_SETTINGS && accessiblityService.isQuickSettingsOpen){
+        if (globalAction == AccessibilityService.GLOBAL_ACTION_QUICK_SETTINGS && accessiblityService.isQuickSettingsOpen) {
             accessiblityService.performGlobalAction(AccessibilityService.GLOBAL_ACTION_BACK)
             Handler().postDelayed({
                 accessiblityService.isQuickSettingsOpen = false
@@ -31,7 +31,7 @@ class AccessibilityServiceGlobalAction(private val accessiblityService: TapAcces
             return
         }
         //Override wake device if we're sending device to sleep
-        if(globalAction == AccessibilityService.GLOBAL_ACTION_LOCK_SCREEN){
+        if (globalAction == AccessibilityService.GLOBAL_ACTION_LOCK_SCREEN) {
             (context.applicationContext as? TapTapApplication)?.disableWake = true
         }
         accessiblityService.performGlobalAction(globalAction)

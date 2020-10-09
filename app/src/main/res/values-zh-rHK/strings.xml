@@ -10,8 +10,6 @@
     <string name="setting_gates_desc">停用手勢在某些情況下被識別並激活動作</string>
     <string name="setting_feedback">反饋</string>
     <string name="setting_feedback_desc">設定手勢運行通知</string>
-    <string name="setting_gesture_model">裝置模型</string>
-    <string name="setting_gesture_model_desc">選擇機器學習組件使用的裝置模型</string>
     <string name="setting_feedback_vibrate">震動</string>
     <string name="setting_feedback_vibrate_desc">使用手勢並執行動作時振動一次</string>
     <string name="setting_feedback_wake">喚醒設備</string>

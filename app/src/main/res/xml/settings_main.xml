@@ -9,6 +9,13 @@
         android:summary="@string/accessibility_info_off_desc"/>
 
     <com.kieronquinn.app.taptap.preferences.Preference
+        android:icon="@drawable/ic_accessibility_cross"
+        android:key="accessibility_gesture"
+        android:title="@string/accessibility_info_off_gesture"
+        android:summary="@string/accessibility_info_off_gesture_desc"
+        app:isPreferenceVisible="false" />
+
+    <com.kieronquinn.app.taptap.preferences.Preference
         android:icon="@drawable/ic_warning_round"
         android:key="battery_optimisation"
         app:isPreferenceVisible="false"

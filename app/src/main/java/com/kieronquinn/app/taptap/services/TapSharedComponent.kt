@@ -2,6 +2,7 @@ package com.kieronquinn.app.taptap.services
 
 import android.accessibilityservice.AccessibilityService
 import android.app.ActivityManager
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -27,6 +28,7 @@ import com.kieronquinn.app.taptap.columbus.feedback.WakeDevice
 import com.kieronquinn.app.taptap.models.ActionInternal
 import com.kieronquinn.app.taptap.models.TapAction
 import com.kieronquinn.app.taptap.models.TfModel
+import com.kieronquinn.app.taptap.models.getDefaultTfModel
 import com.kieronquinn.app.taptap.models.store.DoubleTapActionListFile
 import com.kieronquinn.app.taptap.models.store.TripleTapActionListFile
 import com.kieronquinn.app.taptap.smaliint.SmaliCalls
@@ -172,12 +174,15 @@ class TapSharedComponent(private val context: Context) :
                     AudioManager.ADJUST_TOGGLE_MUTE,
                     action.whenList
                 )
+                TapAction.ALARM_TIMER -> AlarmTimerAction(context, action.whenList)
+                TapAction.ALARM_SNOOZE -> AlarmSnoozeAction(context, action.whenList)
                 TapAction.SOUND_PROFILER -> SoundProfileAction(context, action.whenList)
                 TapAction.WAKE_DEVICE -> WakeDeviceAction(context, action.whenList)
                 TapAction.GOOGLE_VOICE_ACCESS -> GoogleVoiceAccessAction(context, action.whenList)
                 TapAction.LAUNCH_SEARCH -> LaunchSearch(context, action.whenList)
                 TapAction.HAMBURGER -> HamburgerAction(accessibilityService, action.whenList)
                 TapAction.APP_DRAWER -> AccessibilityServiceGlobalAction(context, 14, action.whenList)
+                TapAction.ALT_TAB -> AltTabAction(context, action.whenList)
                 TapAction.ACCESSIBILITY_BUTTON_CHOOSER -> AccessibilityServiceGlobalAction(context, 12, action.whenList)
                 TapAction.ACCESSIBILITY_SHORTCUT -> AccessibilityServiceGlobalAction(context, 13, action.whenList)
                 TapAction.ACCESSIBILITY_BUTTON -> AccessibilityServiceGlobalAction(context, 11, action.whenList)
@@ -354,12 +359,13 @@ class TapSharedComponent(private val context: Context) :
         val wakefulnessLifecycle = WakefulnessLifecycle()
         this.wakefulnessLifecycle = wakefulnessLifecycle
 
+        val defaultModel = context.getDefaultTfModel()
         //Set model from prefs
         SmaliCalls.setTapRtModel(
             TfModel.valueOf(
                 sharedPreferences.getString(
-                    SHARED_PREFERENCES_KEY_MODEL, TfModel.PIXEL4.name
-                ) ?: TfModel.PIXEL4.name
+                    SHARED_PREFERENCES_KEY_MODEL, defaultModel.name
+                ) ?: defaultModel.name
             ).model
         )
 
