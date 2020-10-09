@@ -5,6 +5,10 @@
     <string name="setting_gesture">Жест</string>
     <string name="setting_gesture_desc">Настройте работу жеста</string>
     <string name="setting_actions">Действия</string>
+    <string name="setting_actions_double">Действия по двойному постукиванию</string>
+    <string name="setting_actions_triple">Действия по тройному постукиванию</string>
+    <string name="settings_actions_desc_double">Установите действия, которые будут запускаться по двойному постукиванию по задней части устройства</string>
+    <string name="settings_actions_desc_triple">Установите действия, которые будут запускаться по тройному постукиванию по задней части устройства</string>
     <string name="setting_gates">Запреты</string>
     <string name="setting_gates_desc">Выберите ситуации, когда действие не будет запускаться</string>
     <string name="setting_feedback">Обратная связь</string>
@@ -44,17 +48,17 @@
     <string name="action_launch_camera">Камера</string>
     <string name="action_launch_camera_desc">Запустить приложение камеры по умолчанию. Действие будет пропущено, если камера уже работает.</string>
     <string name="action_home">Домой</string>
-    <string name="action_home_desc">Имитировать нажатие кнопки домой</string>
+    <string name="action_home_desc">Имитировать нажатие кнопки "\Домой"\</string>
     <string name="action_back">Назад</string>
-    <string name="action_back_desc">Имитировать нажатие кнопки назад</string>
-    <string name="action_recents">Меню недавних приложений</string>
-    <string name="action_recents_desc">Открыть меню недавних приложений, имитируя нажатие кнопки недавние. На устройствах, которые его поддерживают, использование этого действия, когда меню недавних уже открыто, переключится на первое фоновое приложение</string>
+    <string name="action_back_desc">Имитировать нажатие кнопки \"Назад"\</string>
+    <string name="action_recents">Недавние приложения</string>
+    <string name="action_recents_desc">Открыть меню недавних приложений, имитируя нажатие кнопки \"Недавние"\. На некоторых устройствах, если меню недавних приложений уже открыто, откроется последнее фоновое приложение</string>
     <string name="action_notifications">Уведомления</string>
-    <string name="action_notifications_desc">Открыть шторку уведомлений</string>
+    <string name="action_notifications_desc">Открыть шторку уведомлений. На некоторых устройствах действие закроет шторку, если она открыта.</string>
     <string name="action_quick_settings">Быстрые настройки</string>
-    <string name="action_quick_settings_desc">Открыть панель быстрых настроек</string>
-    <string name="action_screenshot">Снимок экрана</string>
-    <string name="action_screenshot_desc">Сделать скриншот, используя системный интерфейс</string>
+    <string name="action_quick_settings_desc">Открыть панель быстрых настроек. На некоторых устройствах действие закроет панель, если она открыта.</string>
+    <string name="action_screenshot">Скриншот</string>
+    <string name="action_screenshot_desc">Сделать снимок экрана, используя системный интерфейс</string>
     <string name="action_lock_screen">Блокировка экрана</string>
     <string name="action_lock_screen_desc">Заблокировать экран, имитируя нажатие кнопки питания</string>
     <string name="action_toggle_pause">Воспроизведение / пауза</string>
@@ -70,7 +74,7 @@
     <string name="add_action_category_launch">Запуск</string>
     <string name="add_action_category_utilities">Утилиты</string>
     <string name="add_action_category_actions">Действия</string>
-    <string name="add_action_category_advanced">Дополнительные</string>
+    <string name="add_action_category_advanced">Дополнительно</string>
     <string name="action_flashlight">Фонарик</string>
     <string name="action_flashlight_desc">Включить/выключить фонарик. Действие не будет выполнено, если камера используется другим приложением.</string>
     <string name="action_launch_app">Запустить приложения</string>
@@ -85,10 +89,10 @@
     <string name="select_an_app">Выберите приложение</string>
     <string name="action_power_dialog">Меню питания</string>
     <string name="action_power_dialog_desc">Открыть меню питания, имитируя нажатие кнопки питания</string>
-    <string name="action_split_screen">Разделить экран</string>
+    <string name="action_split_screen">Разделение экран</string>
     <string name="action_split_screen_desc">Начать или остановить разделение экрана с текущим приложением (не рабаотает на домашнем экране)</string>
     <string name="help_action">Действия - это задачи, которые выполняются, когда Вы дважды постукиваете по задней части устройства. Действия выполняются в порядке очереди - сверху вниз и только если требования выполнены.\nНажмите, чтобы узнать больше.</string>
-    <string name="bs_help_action">Действия - это задачи, которые запускаются, когда Вы дважды постукиваете по задней части устройства. Действия выполняются в порядке очереди - сверху вниз. Если действие успешно выполнено, то никакие другие действия не будут выпоняться. Тем не менее, если действие не доступно (например, если помощник для действия "Запустить помощника" уже запущен или требования не выполнены), запустится следущее снизу действие, и так до конца.</string>
+    <string name="bs_help_action">Действия - это задачи, которые запускаются, когда Вы дважды постукиваете по задней части устройства. Действия выполняются в порядке очереди - сверху вниз. Если действие успешно выполнено, то никакие другие действия не будут выпоняться. Тем не менее, если действие не доступно (например, если голосовой помощник для действия "Запустить помощника" уже запущен или требования не выполнены), запустится следущее снизу действие, и так до конца.</string>
 
     <!-- Sensitivity slider labels -->
     <string name="setting_gesture_sensitivity">Чувствительность</string>
@@ -138,7 +142,7 @@
     <string name="setting_advanced_split_service">Использовать разделенные службы</string>
     <string name="setting_advanced_split_service_desc">Этот параметр позволяет использовать вторую службу, работающую вместе со службой спец. возможностей. Может показаться нелогичным, но тем не менее это поможет приложению не быть убитым системой на некоторых устройствах, поскольку служба спец. возможностей делает очень мало, полагаясь на вторую службу для распознавания и выполнения. Для вступления в силу может потребоваться перезагрузка.</string>
     <string name="setting_advanced_warning">Тут обитают драконы</string>
-    <string name="setting_advanced_warning_desc">Эти настройки являются экспериментальными, поэтому они могут не работать на Вашем устройстве или привести к тому, что Tap, Tap полностью перестанет работать. Если Вы обнаружили это, <b>выключите</b> эти настройки и перезагрузите устройство. Это должно помочь.</string>
+    <string name="setting_advanced_warning_desc">Эти настройки являются экспериментальными, поэтому они могут не работать на Вашем устройстве или привести к тому, что Tap, Tap полностью перестанет работать. Если Вы обнаружили подобное, <b>выключите</b> эти настройки и перезагрузите устройство. Должно помочь.</string>
     <string name="switch_main">Включить Жест</string>
     <string name="setting_advanced_restart_service">Автозапуск службы</string>
     <string name="setting_advanced_restart_service_desc">Попытка автоматически перезапустить компонент прослушивания Tap, Tap производится раз в час. Если у вас включены разделенные службы, служба переднего плана также будет перезапущена. Примечание: службу специальных возможностей <b>нельзя</b> перезапустить автоматически, поэтому, если она будет убита или отключена, перезагрузка не произойдёт.</string>
@@ -151,16 +155,25 @@
     <string name="tap_update_notification_channel_description">Уведомления отображаются раз в день, когда проверяется наличие обновлений</string>
     <string name="tap_update_notification_title">Доступно обновление Tap, Tap</string>
     <string name="tap_update_notification_content">Для Tap, Tap доступно обновление (%1s to %1s)</string>
+    <string name="switch_triple">Включить тройное постукивание</string>
+    <string name="help_action_triple">Примечание: Когда тройное постукивание включено, двойное постукивание может срабатывать медленее. Это связано с тем, что приложению нужно дождаться, чтобы узнать, будет ли третье постукивание.</string>
+    <string name="tasker_triple_tap">Тройное постукивание</string>
+    <string name="tasker_description_double">Срабатывать по двойному постукиванию по задней части устройства</string>
+    <string name="tasker_description_triple">Срабатывать по тройному постукиванию по задней части устройства</string>
+    <string name="actions_empty_state">А действия кто добавлять будет?</string>
+    <string name="gates_empty_state">А про запреты не забыли?</string>
 
     <string name="bs_help_action_title">Что такое действия?</string>
     <string name="bs_help_gate">Запреты - это ситуации, которые могут заблокировать жест от выполнения каких-либо действий. Для выполнения любого действия все включенные запреты должны быть открыты. \nЕсли в данный момент выполняется сценарий, например, если экран выключен и запрет «Отключить отображение» включены, никакие действия не будут выполняться. Вы можете добавить столько запретов, сколько захотите, и включать / отключать их, используя переключатели (вместо того, чтобы удалять и повторно добавлять), чтобы сделать настройку быстрее и проще.</string>
     <string name="bs_help_gate_title">Что такое запреты?</string>
     <string name="help">Помощь</string>
     <string name="action_tasker_event_desc">Запустить плагин Tasker Event</string>
-    <string name="action_launch_assistant">Запустить голосового помощника</string>
+    <string name="action_launch_assistant">Голосовой помощник</string>
     <string name="action_launch_assistant_desc">Запустить приложение-помощник по умолчанию</string>
-    <string name="action_launch_search">Запустить поиск</string>
+    <string name="action_launch_search">Поиск</string>
     <string name="action_launch_search_desc">Запустить Поиск Google</string>
+    <string name="action_google_voice_access">Вызвать Google Voice Access</string>
+    <string name="action_google_voice_access_desc">Вызвать the Google Voice Access, если он запущен (это не голосовой помощник или поиск)</string>
 
     <string name="battery_and_optimisation">Батарея &amp; Энергосбережение</string>
     <string name="battery_and_optimisation_desc">Информация о том, почему Tap, Tap расходует батарею и почему он может быть убит устройством при работе в фоновом режиме (и как это исправить)</string>
@@ -172,6 +185,9 @@
     <string name="accessibility_info_on">Спец. возможности включены</string>
     <string name="accessibility_info_on_desc_2">Служба спец. возможностей нужна для работы жеста.</string>
     <string name="accessibility_info_toast">Выберите «Tap, Tap» из списка сервисов со специальными возможностями, переключите "Использовать сервис" и вернитесь к Tap, Tap, чтобы продолжить</string>
+    <string name="menu_beta">Приложение на стадии бета тестирования. Нажмите, чтобы узнать больше.</string>
+    <string name="bs_beta">Приложение находится в разработке и выпущено в \"Бета"\ версии, что позволяет проводить тестирование на многих устройствах и принимать предложения от пользователей. Если вы столкнулись с ошибкой, сообщите о ней на GitHub. Если вы хотите запросить функцию, опубликуйте ее в теме XDA или запросите ее на GitHub. \n\nСпасибо за терпение в процессе разработки.</string>
+    <string name="bs_beta_title">Бета</string>
     <string name="category_about">О приложении</string>
     <string name="about_summary">Созданo Kieron Quinn / Quinny899 @ XDA\nБлагодаря вкладу сообщества, в том числе: %1s</string>
     <string name="xda_thread">Тред на XDA</string>
@@ -199,9 +215,9 @@
     <string name="action_volume_toggle_mute_desc">Включить / выключить звук для текущего звукового потока</string>
     <string name="action_wake_device">Пробудить устройство</string>
     <string name="action_wake_device_desc">Пробудить устройство, если экран выключен. Это действие переопределяет настройку в настройках обратной связи. Оно пропускается, если дисплей включен, а также не будет работать, если включен параметр «Отключить отображение»</string>
-    <string name="actions_sound_profile">Изменить звуковые профили</string>
+    <string name="actions_sound_profile">Звуковые профили</string>
     <string name="actions_sound_profile_desc">Изменить звуковые профили: Вибрация/Без звука/Звонок</string>
-    <string name="action_launch_shortcut">Запустить быстрое действие</string>
+    <string name="action_launch_shortcut">Быстрое действие</string>
     <string name="action_launch_shortcut_desc">Запустить быстрое действие в приложении, например маршруты в Google Картах</string>
     <string name="action_launch_shortcut_desc_formattable">Запустить %1s (действие в приложении)</string>
     <string name="action_launch_shortcut_toast">Это действие не поддерживается в данный момент</string>
