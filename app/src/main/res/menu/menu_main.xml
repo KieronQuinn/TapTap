@@ -15,4 +15,9 @@
         android:icon="@drawable/ic_beta"
         app:showAsAction="always" />
 
+    <item
+        android:id="@+id/menu_setup_wizard"
+        android:title="@string/menu_setup_wizard"
+        app:showAsAction="never" />
+
 </menu>

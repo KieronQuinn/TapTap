@@ -10,8 +10,6 @@
     <string name="setting_gates_desc">Ustaw sytuacje, w których gest nie powinien uruchamiać akcji</string>
     <string name="setting_feedback">Reakcja</string>
     <string name="setting_feedback_desc">Ustaw sposób, w jaki urządzenie powiadamia Cię o wykonaniu gestu</string>
-    <string name="setting_gesture_model">Model urządzenia</string>
-    <string name="setting_gesture_model_desc">Wybierz model urządzenia, który ma być używany dla składnika uczenia maszynowego</string>
     <string name="setting_feedback_vibrate">Wibracja</string>
     <string name="setting_feedback_vibrate_desc">Wibruj raz, gdy gest jest używany i akcja jest wykonywana</string>
     <string name="setting_feedback_wake">Wybudź urządzenie</string>

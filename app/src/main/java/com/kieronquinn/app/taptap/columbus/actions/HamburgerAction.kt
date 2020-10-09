@@ -13,9 +13,9 @@ import kotlin.jvm.internal.Intrinsics
 class HamburgerAction(private val accessiblityService: TapAccessibilityService, whenGates: List<WhenGateInternal>) : ActionBase(accessiblityService, whenGates) {
 
     override fun onTrigger() {
-        accessiblityService.rootInActiveWindow?.run {
+        accessiblityService.gestureAccessibilityService?.rootInActiveWindow?.run {
             val gesture = createClick(25f.px, getStaticStatusBarHeight(context) + 25f.px)
-            accessiblityService.dispatchGesture(gesture, null, null)
+            accessiblityService.gestureAccessibilityService?.dispatchGesture(gesture, null, null)
         }
     }
 
@@ -37,5 +37,9 @@ class HamburgerAction(private val accessiblityService: TapAccessibilityService, 
 
     init {
         Intrinsics.checkParameterIsNotNull(accessiblityService, "context")
+    }
+
+    override fun isAvailable(): Boolean {
+        return accessiblityService.gestureAccessibilityService != null
     }
 }

@@ -1,6 +1,7 @@
 package com.kieronquinn.app.taptap.services
 
 import android.accessibilityservice.AccessibilityService
+import android.accessibilityservice.AccessibilityServiceInfo
 import android.content.Intent
 import android.content.SharedPreferences
 import android.util.Log
@@ -8,6 +9,8 @@ import android.view.accessibility.AccessibilityEvent
 import android.view.accessibility.AccessibilityNodeInfo
 import androidx.lifecycle.MutableLiveData
 import com.kieronquinn.app.taptap.TapTapApplication
+import com.kieronquinn.app.taptap.models.store.DoubleTapActionListFile
+import com.kieronquinn.app.taptap.models.store.TripleTapActionListFile
 import com.kieronquinn.app.taptap.utils.*
 import com.kieronquinn.app.taptap.workers.RestartWorker
 import java.lang.Exception
@@ -22,6 +25,9 @@ class TapAccessibilityService : AccessibilityService(), SharedPreferences.OnShar
     private val application by lazy {
         applicationContext as TapTapApplication
     }
+
+    val gestureAccessibilityService
+        get() = application.gestureAccessibilityService.value
 
     private val notificationShadeAccessibilityDesc by lazy {
         val default = "Notification shade."

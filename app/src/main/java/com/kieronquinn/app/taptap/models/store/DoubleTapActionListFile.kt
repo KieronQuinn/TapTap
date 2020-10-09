@@ -7,6 +7,7 @@ import com.google.gson.Gson
 import com.kieronquinn.app.taptap.models.ActionInternal
 import com.kieronquinn.app.taptap.models.TapAction
 import com.kieronquinn.app.taptap.utils.DEFAULT_ACTIONS
+import com.kieronquinn.app.taptap.utils.GESTURE_REQUIRING_ACTIONS
 import com.kieronquinn.app.taptap.utils.SHARED_PREFERENCES_KEY_ACTIONS_TIME
 import java.io.File
 import java.nio.charset.Charset
@@ -37,6 +38,10 @@ object DoubleTapActionListFile {
             //Put the current time in the shared prefs as a bit of a hacky way to trigger an update on the accessibility service
             edit().putLong(SHARED_PREFERENCES_KEY_ACTIONS_TIME, System.currentTimeMillis()).apply()
         }
+    }
+
+    fun isGestureServiceRequired(context: Context): Boolean {
+        return loadFromFile(context).any { GESTURE_REQUIRING_ACTIONS.contains(it.action) }
     }
 
 }

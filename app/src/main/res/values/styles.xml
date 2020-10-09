@@ -9,6 +9,12 @@
         <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:windowBackground">@color/windowBackground</item>
         <item name="searchBoxBackground">@color/search_color</item>
+        <item name="md_font_title">@font/hkgrotesk</item>
+        <item name="md_font_body">@font/hkgrotesk</item>
+        <item name="md_font_button">@font/hkgrotesk</item>
+        <item name="md_button_casing">literal</item>
+        <item name="android:actionOverflowButtonStyle">@style/ActionButtonOverflow</item>
+        <item name="actionOverflowButtonStyle">@style/ActionButtonOverflow</item>
     </style>
 
     <style name="TransparentActivity" parent="android:Theme">
@@ -92,6 +98,21 @@
 
     <style name="ReachabilityTheme" parent="Theme.MaterialComponents.NoActionBar">
         <item name="android:windowBackground">@color/reachabilityBackground</item>
+    </style>
+
+    <style name="ActionButtonOverflow" parent="Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:tint">?android:textColorPrimary</item>
+    </style>
+
+    <style name="Widget.MaterialComponents.TextInputLayout.OutlinedBox.TapTap" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="hintTextAppearance">@style/TextAppearance.Design.Hint.TapTap</item>
+        <item name="fontFamily">@font/hkgrotesk</item>
+        <item name="android:fontFamily">@font/hkgrotesk</item>
+    </style>
+
+    <style name="TextAppearance.Design.Hint.TapTap" parent="TextAppearance.Design.Hint">
+        <item name="fontFamily">@font/hkgrotesk</item>
+        <item name="android:fontFamily">@font/hkgrotesk</item>
     </style>
 
 </resources>

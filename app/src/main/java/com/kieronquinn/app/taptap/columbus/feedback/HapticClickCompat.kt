@@ -13,6 +13,7 @@ import com.google.android.systemui.columbus.feedback.FeedbackEffect
 import com.google.android.systemui.columbus.sensors.GestureSensor.DetectionProperties
 import com.kieronquinn.app.taptap.utils.SHARED_PREFERENCES_KEY_FEEDBACK_OVERRIDE_DND
 import com.kieronquinn.app.taptap.utils.SHARED_PREFERENCES_NAME
+import com.kieronquinn.app.taptap.utils.getVibrationEffect
 import com.kieronquinn.app.taptap.utils.settingsGlobalGetIntOrNull
 
 class HapticClickCompat(private val context: Context) : FeedbackEffect {
@@ -28,7 +29,7 @@ class HapticClickCompat(private val context: Context) : FeedbackEffect {
 
     companion object {
         @SuppressLint("WrongConstant")
-        private val SONIFICATION_AUDIO_ATTRIBUTES = AudioAttributes.Builder().setContentType(4).setUsage(13).build()
+        val SONIFICATION_AUDIO_ATTRIBUTES = AudioAttributes.Builder().setContentType(4).setUsage(13).build()
     }
 
     override fun onProgress(var1: Int, var2: DetectionProperties?) {
@@ -47,11 +48,5 @@ class HapticClickCompat(private val context: Context) : FeedbackEffect {
                 }
             }
         }
-    }
-
-    private fun getVibrationEffect(effectId: Int): VibrationEffect? {
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            VibrationEffect.createPredefined(effectId)
-        } else null
     }
 }

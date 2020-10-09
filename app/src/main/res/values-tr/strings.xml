@@ -10,8 +10,6 @@
     <string name="setting_gates_desc">Hareketin bir eylem yürütmemesi gereken durumları ayarlayın</string>
     <string name="setting_feedback">Geri bildirim</string>
     <string name="setting_feedback_desc">Hareket çalıştırıldığında cihazın size nasıl bildirimde bulunacağını ayarlayın</string>
-    <string name="setting_gesture_model">Cihaz Modeli</string>
-    <string name="setting_gesture_model_desc">Makine öğrenimi bileşeni için hangi cihaz modelini kullanacağınızı seçin</string>
     <string name="setting_feedback_vibrate">Titret</string>
     <string name="setting_feedback_vibrate_desc">Hareket kullanıldığında ve eylem yürütüldüğünde bir kez titret</string>
     <string name="setting_feedback_wake">Cihazı Uyandır</string>
@@ -91,7 +89,7 @@
     <string name="show_system_apps">Sistem uygulamalarını göster</string>
     <string name="select_an_app">Bir uygulama seç</string>
     <string name="setting_gesture_sensitivity">Duyarlılık</string>
-    <string name="setting_gesture_sensitivity_desc"><b>Deneysel:</b> Ne kadar kuvvetin \'gürültü\' olarak filtreleneceğini ayarlayarak hareketin hassasiyetini değiştirir. Daha düşük bir hassasiyet, hareketin çoğu cihazda daha zor olacağı anlamına gelirken, daha yüksek bir hassasiyet yanlış algılamaya daha yatkındır. Varsayılan tam olarak ortadadır.</string>
+    <string name="setting_gesture_sensitivity_desc">Ne kadar kuvvetin \'gürültü\' olarak filtreleneceğini ayarlayarak hareketin hassasiyetini değiştirir. Daha düşük bir hassasiyet, hareketin çoğu cihazda daha zor olacağı anlamına gelirken, daha yüksek bir hassasiyet yanlış algılamaya daha yatkındır. Varsayılan tam olarak ortadadır.</string>
 
     <string name="bs_help_action_title">Eylemler nedir?</string>
     <string name="bs_help_gate">Geçitler, hareketin herhangi bir eylem gerçekleştirmesini engelleyebilecek durumlardır. Herhangi bir eylemin gerçekleştirilebilmesi için, etkinleştirilmiş tüm geçitler açık olmalıdır.\nÖrneğin ekran kapalıysa ve "Ekran kapalı" geçidi etkinse, herhangi bir eylem yapılmaz. İstediğiniz sayıda geçit ekleyebilir ve yapılandırmayı daha hızlı ve kolay hale getirmek için anahtarları kullanarak (silmek ve yeniden eklemek yerine) etkinleştirebilir/devre dışı bırakabilirsiniz.</string>

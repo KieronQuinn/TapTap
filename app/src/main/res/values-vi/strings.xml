@@ -10,8 +10,6 @@
     <string name="setting_gates_desc">Đặt tình huống khi cử chỉ không thực hiện một hành động</string>
     <string name="setting_feedback">Phản hồi</string>
     <string name="setting_feedback_desc">Đặt cách thiết bị phản hồi cho bạn khi cử chỉ được thực hiện</string>
-    <string name="setting_gesture_model">Kiểu thiết bị</string>
-    <string name="setting_gesture_model_desc">Chọn kiểu thiết bị để phục vụ cho machine learning component</string>
     <string name="setting_feedback_vibrate">Rung</string>
     <string name="setting_feedback_vibrate_desc">Rung một lần khi sử dụng cử chỉ và hành động được thực hiện</string>
     <string name="setting_feedback_wake">Đánh thưc thiết bị</string>
