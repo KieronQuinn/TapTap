@@ -32,10 +32,12 @@ import androidx.navigation.findNavController
 import com.airbnb.lottie.LottieProperty
 import com.airbnb.lottie.model.KeyPath
 import com.kieronquinn.app.taptap.R
+import com.kieronquinn.app.taptap.core.TapSharedPreferences
+import com.kieronquinn.app.taptap.core.TapSharedPreferences.Companion.SHARED_PREFERENCES_KEY_MAIN_SWITCH
+import com.kieronquinn.app.taptap.core.TapSharedPreferences.Companion.SHARED_PREFERENCES_KEY_TRIPLE_TAP_SWITCH
 import com.kieronquinn.app.taptap.fragments.BaseFragment
 import com.kieronquinn.app.taptap.fragments.bottomsheets.MaterialBottomSheetDialogFragment
 import com.kieronquinn.app.taptap.fragments.bottomsheets.UpdateBottomSheetFragment
-import com.kieronquinn.app.taptap.fragments.setup.BaseSetupFragment
 import com.kieronquinn.app.taptap.utils.*
 import com.kieronquinn.app.taptap.workers.UpdateCheckWorker
 import dev.chrisbanes.insetter.Insetter
@@ -44,6 +46,7 @@ import dev.chrisbanes.insetter.applySystemWindowInsetsToPadding
 import dev.chrisbanes.insetter.setEdgeToEdgeSystemUiFlags
 import kotlinx.android.synthetic.main.activity_settings.*
 import kotlinx.android.synthetic.main.activity_setup.*
+import org.koin.android.ext.android.inject
 import kotlin.math.max
 
 class SettingsActivity : AppCompatActivity(), NavController.OnDestinationChangedListener, SharedPreferences.OnSharedPreferenceChangeListener {
@@ -70,6 +73,8 @@ class SettingsActivity : AppCompatActivity(), NavController.OnDestinationChanged
         findNavController(R.id.nav_host_fragment)
     }
 
+    private val tapSharedPreferences by inject<TapSharedPreferences>()
+
     private var isFirstStart = true
 
     val updateChecker by lazy { UpdateChecker() }
@@ -84,7 +89,7 @@ class SettingsActivity : AppCompatActivity(), NavController.OnDestinationChanged
             finish()
             return
         }
-        if(hasSeenSetup && !forceRerunSetup){
+        if(tapSharedPreferences.hasSeenSetup && !forceRerunSetup){
             showSettingsUi()
         }else{
             startSetupFlow(savedInstanceState)
@@ -106,8 +111,8 @@ class SettingsActivity : AppCompatActivity(), NavController.OnDestinationChanged
         toolbar.applySystemWindowInsetsToPadding(top = true)
         switch_main.applySystemWindowInsetsToMargin(top = true)
         setToolbarElevationEnabled(false)
-        sharedPreferences.registerOnSharedPreferenceChangeListener(this)
-        switch_main.isChecked = isMainEnabled
+        sharedPreferences?.registerOnSharedPreferenceChangeListener(this)
+        switch_main.isChecked = tapSharedPreferences.isMainEnabled
         switch_main.setOnCheckedChangeListener(checkListener)
         updateChecker.getLatestRelease { success, updateChecker ->
             if(success){
@@ -234,20 +239,20 @@ class SettingsActivity : AppCompatActivity(), NavController.OnDestinationChanged
     private val checkListener =
         CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
             if(buttonView.tag == TAG_SWITCH_MAIN) {
-                sharedPreferences.edit().putBoolean(SHARED_PREFERENCES_KEY_MAIN_SWITCH, isChecked).apply()
+                sharedPreferences?.edit()?.putBoolean(SHARED_PREFERENCES_KEY_MAIN_SWITCH, isChecked)?.apply()
             }else{
-                sharedPreferences.edit().putBoolean(SHARED_PREFERENCES_KEY_TRIPLE_TAP_SWITCH, isChecked).apply()
+                sharedPreferences?.edit()?.putBoolean(SHARED_PREFERENCES_KEY_TRIPLE_TAP_SWITCH, isChecked)?.apply()
             }
         }
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
         if(key == SHARED_PREFERENCES_KEY_MAIN_SWITCH && switch_main?.tag == TAG_SWITCH_MAIN) {
             switch_main.setOnCheckedChangeListener(null)
-            switch_main.isChecked = isMainEnabled
+            switch_main.isChecked = tapSharedPreferences.isMainEnabled
             switch_main.setOnCheckedChangeListener(checkListener)
         }else if(key == SHARED_PREFERENCES_KEY_TRIPLE_TAP_SWITCH && switch_main?.tag == TAG_SWITCH_TRIPLE_TAP) {
             switch_main.setOnCheckedChangeListener(null)
-            switch_main.isChecked = isTripleTapEnabled
+            switch_main.isChecked = tapSharedPreferences.isTripleTapEnabled
             switch_main.setOnCheckedChangeListener(checkListener)
         }
     }
@@ -277,23 +282,6 @@ class SettingsActivity : AppCompatActivity(), NavController.OnDestinationChanged
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putBoolean(HAS_RUN_ANIMATION, true)
-    }
-
-    private fun onHomeAsUpPressed(){
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
-        if (navHostFragment?.childFragmentManager != null) {
-            val currentFragment = navHostFragment.childFragmentManager.fragments[0]
-            val result = (currentFragment as? BaseSetupFragment)?.onHomeAsUpPressed()
-            if (result != true){
-                if(!findNavController(R.id.nav_host_fragment).navigateUp()){
-                    finishAfterTransition()
-                }
-            }
-        } else {
-            if(!findNavController(R.id.nav_host_fragment).navigateUp()){
-                finishAfterTransition()
-            }
-        }
     }
 
     private fun doesDeviceHaveGyroscope(): Boolean {

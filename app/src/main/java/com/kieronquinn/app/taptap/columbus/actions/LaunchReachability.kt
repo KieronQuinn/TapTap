@@ -5,7 +5,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import com.kieronquinn.app.taptap.services.TapAccessibilityService
+import com.kieronquinn.app.taptap.core.services.TapAccessibilityService
 import com.kieronquinn.app.taptap.activities.ReachabilityActivity
 import com.kieronquinn.app.taptap.models.WhenGateInternal
 

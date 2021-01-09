@@ -15,6 +15,8 @@ import com.kieronquinn.app.taptap.utils.ExtensionsKt;
 
 import java.util.Set;
 
+import static com.kieronquinn.app.taptap.core.TapSharedPreferences.SHARED_PREFERENCES_KEY_SENSITIVITY;
+
 public class SmaliCalls {
 
     private static String tapRtModel = "tap7cls_pixel4.tflite";
@@ -26,11 +28,11 @@ public class SmaliCalls {
 
     public static Uri getConfigSettingsUri(){
         Log.d("TapTap", "getConfigSettingsUri");
-        return ExtensionsKt.stringPrefToUri(ExtensionsKt.SHARED_PREFERENCES_KEY_SENSITIVITY);
+        return ExtensionsKt.stringPrefToUri(SHARED_PREFERENCES_KEY_SENSITIVITY);
     }
 
     public static float getConfigSettingValue(Context context){
-        String floatSetting = ExtensionsKt.getSharedStringPref(context, ExtensionsKt.SHARED_PREFERENCES_KEY_SENSITIVITY, "0.5");
+        String floatSetting = ExtensionsKt.getSharedStringPref(context, SHARED_PREFERENCES_KEY_SENSITIVITY, "0.5");
         if(floatSetting == null) floatSetting = "0.5";
         Log.d("TapTap", "getConfigSettingValue, returning " + floatSetting);
         return Float.parseFloat(floatSetting);

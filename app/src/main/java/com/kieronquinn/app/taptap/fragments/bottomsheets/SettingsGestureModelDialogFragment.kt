@@ -3,10 +3,10 @@ package com.kieronquinn.app.taptap.fragments.bottomsheets
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.list.listItemsSingleChoice
 import com.kieronquinn.app.taptap.R
+import com.kieronquinn.app.taptap.core.TapSharedPreferences.Companion.SHARED_PREFERENCES_KEY_MODEL
 import com.kieronquinn.app.taptap.models.TfModel
 import com.kieronquinn.app.taptap.models.getCurrentTapModel
 import com.kieronquinn.app.taptap.models.getDefaultTfModel
-import com.kieronquinn.app.taptap.utils.SHARED_PREFERENCES_KEY_MODEL
 import com.kieronquinn.app.taptap.utils.sharedPreferences
 
 class SettingsGestureModelDialogFragment: MaterialBottomSheetDialogFragment() {

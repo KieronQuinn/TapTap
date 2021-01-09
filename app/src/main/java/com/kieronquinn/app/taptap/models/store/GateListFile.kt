@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.google.android.systemui.columbus.gates.Gate
 import com.google.gson.Gson
+import com.kieronquinn.app.taptap.core.TapSharedPreferences.Companion.SHARED_PREFERENCES_KEY_GATES
 import com.kieronquinn.app.taptap.models.ActionInternal
 import com.kieronquinn.app.taptap.models.GateInternal
 import com.kieronquinn.app.taptap.models.TapAction

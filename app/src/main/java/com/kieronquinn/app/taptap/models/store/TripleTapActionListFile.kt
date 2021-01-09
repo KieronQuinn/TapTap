@@ -4,11 +4,11 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.google.android.systemui.columbus.gates.Gate
 import com.google.gson.Gson
+import com.kieronquinn.app.taptap.core.TapSharedPreferences.Companion.SHARED_PREFERENCES_KEY_ACTIONS_TRIPLE_TIME
 import com.kieronquinn.app.taptap.models.ActionInternal
 import com.kieronquinn.app.taptap.models.TapAction
 import com.kieronquinn.app.taptap.utils.DEFAULT_ACTIONS_TRIPLE
 import com.kieronquinn.app.taptap.utils.GESTURE_REQUIRING_ACTIONS
-import com.kieronquinn.app.taptap.utils.SHARED_PREFERENCES_KEY_ACTIONS_TRIPLE_TIME
 import java.io.File
 import java.nio.charset.Charset
 

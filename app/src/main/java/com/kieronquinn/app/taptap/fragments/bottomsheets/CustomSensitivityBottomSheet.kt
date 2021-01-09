@@ -6,7 +6,7 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
 import com.afollestad.materialdialogs.customview.getCustomView
 import com.kieronquinn.app.taptap.R
-import com.kieronquinn.app.taptap.utils.SHARED_PREFERENCES_KEY_SENSITIVITY
+import com.kieronquinn.app.taptap.core.TapSharedPreferences.Companion.SHARED_PREFERENCES_KEY_SENSITIVITY
 import com.kieronquinn.app.taptap.utils.sharedPreferences
 import kotlinx.android.synthetic.main.fragment_bottomsheet_input.*
 import kotlinx.android.synthetic.main.fragment_bottomsheet_input.view.*

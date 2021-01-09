@@ -20,10 +20,8 @@ import android.os.VibrationEffect
 import android.provider.MediaStore
 import android.provider.Settings
 import android.text.Html
-import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.text.TextUtils
-import android.text.style.CharacterStyle
 import android.util.ArraySet
 import android.util.DisplayMetrics
 import android.util.Log
@@ -61,8 +59,6 @@ import com.kieronquinn.app.taptap.models.store.GateListFile
 import com.kieronquinn.app.taptap.preferences.Preference
 import com.kieronquinn.app.taptap.preferences.SliderPreference
 import com.kieronquinn.app.taptap.providers.SharedPrefsProvider
-import com.kieronquinn.app.taptap.services.TapAccessibilityService
-import com.kieronquinn.app.taptap.services.TapColumbusService
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -72,36 +68,8 @@ import java.lang.IllegalArgumentException
 import java.lang.reflect.Field
 import java.lang.reflect.Method
 import kotlin.math.ceil
-import kotlin.collections.MutableSet
 import kotlin.math.sqrt
 
-const val SHARED_PREFERENCES_NAME = "${BuildConfig.APPLICATION_ID}_prefs"
-const val SHARED_PREFERENCES_KEY_MAIN_SWITCH = "main_enabled"
-const val SHARED_PREFERENCES_KEY_TRIPLE_TAP_SWITCH = "triple_tap_enabled"
-const val SHARED_PREFERENCES_KEY_ACTIONS_TIME = "actions_time"
-const val SHARED_PREFERENCES_KEY_ACTIONS_TRIPLE_TIME = "actions_triple_time"
-const val SHARED_PREFERENCES_KEY_GATES = "gates"
-const val SHARED_PREFERENCES_KEY_MODEL = "model"
-const val SHARED_PREFERENCES_KEY_FEEDBACK_VIBRATE = "feedback_vibrate"
-const val SHARED_PREFERENCES_KEY_FEEDBACK_WAKE = "feedback_wake"
-const val SHARED_PREFERENCES_KEY_FEEDBACK_OVERRIDE_DND = "feedback_override_dnd"
-const val SHARED_PREFERENCES_KEY_SPLIT_SERVICE = "advanced_split_service"
-const val SHARED_PREFERENCES_KEY_RESTART_SERVICE = "advanced_restart_service"
-const val SHARED_PREFERENCES_KEY_HAS_SEEN_SETUP = "has_seen_setup"
-
-const val SHARED_PREFERENCES_KEY_SENSITIVITY = "sensitivity"
-
-val SHARED_PREFERENCES_FEEDBACK_KEYS = arrayOf(SHARED_PREFERENCES_KEY_FEEDBACK_WAKE, SHARED_PREFERENCES_KEY_FEEDBACK_VIBRATE)
-
-/*
-    EXPERIMENTAL: SENSITIVITY
-    These values get applied to the model's noise reduction. The higher the value, the more reduction of 'noise', and therefore the harder the gesture is to run.
-    Anything from 0.0 to 0.1 should really work, but 0.75 is pretty hard to trigger so that's set to the maximum and values filled in from there
-    For > 0.05f, the values were initially even spaced, but that put too much weight on the higher values which made the force difference between 0.05 (default) the next value too great
-    Instead I made up some values that are semi-evenly spaced and seem to provide a decent weighting
-    For < 0.05f, the values are evenly spaced down to 0 which is no noise removal at all and really easy to trigger.
- */
-val SENSITIVITY_VALUES = arrayOf(0.75f, 0.53f, 0.40f, 0.25f, 0.1f, 0.05f, 0.04f, 0.03f, 0.02f, 0.01f, 0.0f)
 
 val DEFAULT_GATES = arrayOf(TapGate.POWER_STATE, TapGate.TELEPHONY_ACTIVITY)
 val ALL_NON_CONFIG_GATES = arrayOf(TapGate.POWER_STATE, TapGate.POWER_STATE_INVERSE, TapGate.USB_STATE, TapGate.TELEPHONY_ACTIVITY, TapGate.CHARGING_STATE)
@@ -116,26 +84,6 @@ val DEFAULT_ACTIONS = if(TapAction.SCREENSHOT.isAvailable){
 }
 
 val DEFAULT_ACTIONS_TRIPLE = arrayOf(TapAction.NOTIFICATIONS)
-
-val Context.isSplitService: Boolean
-    get() = sharedPreferences.getBoolean(SHARED_PREFERENCES_KEY_SPLIT_SERVICE, true)
-
-val Context.isMainEnabled: Boolean
-    get() = sharedPreferences.getBoolean(SHARED_PREFERENCES_KEY_MAIN_SWITCH, true)
-
-val Context.isTripleTapEnabled: Boolean
-    get() = sharedPreferences.getBoolean(SHARED_PREFERENCES_KEY_TRIPLE_TAP_SWITCH, false)
-
-val Context.isRestartEnabled: Boolean
-    get() = sharedPreferences.getBoolean(SHARED_PREFERENCES_KEY_RESTART_SERVICE, false)
-
-val Context.hasSeenSetup: Boolean
-    get() {
-        if(sharedPreferences.getBoolean(SHARED_PREFERENCES_KEY_HAS_SEEN_SETUP, false)) return true
-        if(sharedPreferences.contains(SHARED_PREFERENCES_KEY_ACTIONS_TIME)) return true
-        if(sharedPreferences.contains(SHARED_PREFERENCES_KEY_ACTIONS_TRIPLE_TIME)) return true
-        return false
-    }
 
 fun InputStream.copyFile(out: OutputStream) {
     val buffer = ByteArray(1024)
@@ -338,38 +286,6 @@ fun getStaticStatusBarHeight(context: Context): Int {
     return if (resourceId > 0) resources.getDimensionPixelSize(resourceId) else ceil(
         ((if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) 24 else 25) * resources.displayMetrics.density).toDouble()
     ).toInt()
-}
-
-fun ColumbusService.setActions(list: List<Action>){
-    (this as TapColumbusService).setActions(list)
-}
-
-fun ColumbusService.setActionsTriple(list: List<Action>){
-    this as TapColumbusService
-    tripleTapActions.apply {
-        clear()
-        addAll(list)
-    }
-}
-
-fun ColumbusService.setFeedback(set: Set<FeedbackEffect>){
-    this.effects = set
-}
-
-fun ColumbusService.setGates(set: Set<Gate>){
-    //Remove current gates' listeners
-    gates.forEach {
-        it.listener = null
-        it.deactivate()
-    }
-    //Set new gates
-    gates.clear()
-    gates.addAll(set)
-    val gateListener = ColumbusService::class.java.getDeclaredField("gateListener").setAccessibleR(true).get(this) as Gate.Listener
-    gates.forEach {
-        it.listener = gateListener
-    }
-    updateSensorListener()
 }
 
 fun View.fadeIn(callback: (() -> Unit)? = null) {
@@ -710,7 +626,7 @@ fun Context.getPhysicalScreenSize(): Double {
 val Fragment.sharedPreferences
     get() = context?.getSharedPreferences("${BuildConfig.APPLICATION_ID}_prefs", Context.MODE_PRIVATE)
 
-val Context.sharedPreferences
+val Context.sharedPreferences: SharedPreferences?
     get() = getSharedPreferences("${BuildConfig.APPLICATION_ID}_prefs", Context.MODE_PRIVATE)
 
 //Following methods based off https://code.highspec.ru/Mikanoshi/CustoMIUIzer

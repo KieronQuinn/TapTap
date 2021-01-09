@@ -15,7 +15,6 @@ import com.afollestad.materialdialogs.bottomsheets.expandBottomSheet
 import com.afollestad.materialdialogs.list.listItemsSingleChoice
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.models.TfModel
-import com.kieronquinn.app.taptap.utils.SHARED_PREFERENCES_KEY_MODEL
 import com.kieronquinn.app.taptap.utils.applyTapTheme
 import com.kieronquinn.app.taptap.utils.sharedPreferences
 

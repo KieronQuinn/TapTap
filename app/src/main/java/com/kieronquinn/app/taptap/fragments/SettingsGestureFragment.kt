@@ -3,6 +3,8 @@ package com.kieronquinn.app.taptap.fragments
 import android.os.Bundle
 import com.google.android.material.slider.Slider
 import com.kieronquinn.app.taptap.R
+import com.kieronquinn.app.taptap.core.TapSharedPreferences.Companion.SENSITIVITY_VALUES
+import com.kieronquinn.app.taptap.core.TapSharedPreferences.Companion.SHARED_PREFERENCES_KEY_SENSITIVITY
 import com.kieronquinn.app.taptap.fragments.bottomsheets.MaterialBottomSheetDialogFragment
 import com.kieronquinn.app.taptap.fragments.bottomsheets.SettingsGestureModelDialogFragment
 import com.kieronquinn.app.taptap.utils.*
