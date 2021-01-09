@@ -2,24 +2,15 @@ package com.kieronquinn.app.taptap.fragments.bottomsheets
 
 import android.content.ComponentName
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
-import android.view.View
-import android.widget.FrameLayout
 import android.widget.Toast
-import androidx.annotation.StringRes
-import androidx.core.os.bundleOf
 import com.afollestad.materialdialogs.MaterialDialog
 import com.kieronquinn.app.taptap.BuildConfig
 import com.kieronquinn.app.taptap.R
-import com.kieronquinn.app.taptap.services.TapGestureAccessibilityService
+import com.kieronquinn.app.taptap.core.services.TapGestureAccessibilityService
 import com.kieronquinn.app.taptap.utils.EXTRA_FRAGMENT_ARG_KEY
 import com.kieronquinn.app.taptap.utils.EXTRA_SHOW_FRAGMENT_ARGUMENTS
-import dev.chrisbanes.insetter.Insetter
-import dev.chrisbanes.insetter.applySystemGestureInsetsToMargin
-import kotlinx.android.synthetic.main.bottom_sheet_buttons.*
-import kotlinx.android.synthetic.main.fragment_bottomsheet_generic.*
 import java.lang.Exception
 
 class SecondaryServiceBottomSheetFragment : MaterialBottomSheetDialogFragment() {

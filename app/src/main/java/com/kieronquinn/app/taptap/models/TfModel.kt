@@ -2,7 +2,7 @@ package com.kieronquinn.app.taptap.models
 
 import android.content.Context
 import com.kieronquinn.app.taptap.R
-import com.kieronquinn.app.taptap.utils.SHARED_PREFERENCES_KEY_MODEL
+import com.kieronquinn.app.taptap.core.TapSharedPreferences.Companion.SHARED_PREFERENCES_KEY_MODEL
 import com.kieronquinn.app.taptap.utils.getPhysicalScreenSize
 import com.kieronquinn.app.taptap.utils.sharedPreferences
 

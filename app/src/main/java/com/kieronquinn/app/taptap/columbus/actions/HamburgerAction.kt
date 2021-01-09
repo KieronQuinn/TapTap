@@ -4,18 +4,17 @@ import android.accessibilityservice.GestureDescription
 import android.accessibilityservice.GestureDescription.StrokeDescription
 import android.graphics.Path
 import com.kieronquinn.app.taptap.models.WhenGateInternal
-import com.kieronquinn.app.taptap.services.TapAccessibilityService
+import com.kieronquinn.app.taptap.core.services.TapGestureAccessibilityService
 import com.kieronquinn.app.taptap.utils.getStaticStatusBarHeight
 import com.kieronquinn.app.taptap.utils.px
-import kotlin.jvm.internal.Intrinsics
 
 
-class HamburgerAction(private val accessiblityService: TapAccessibilityService, whenGates: List<WhenGateInternal>) : ActionBase(accessiblityService, whenGates) {
+class HamburgerAction(private val gestureAccessibilityService: TapGestureAccessibilityService, whenGates: List<WhenGateInternal>) : ActionBase(gestureAccessibilityService, whenGates) {
 
     override fun onTrigger() {
-        accessiblityService.gestureAccessibilityService?.rootInActiveWindow?.run {
+        gestureAccessibilityService?.rootInActiveWindow?.run {
             val gesture = createClick(25f.px, getStaticStatusBarHeight(context) + 25f.px)
-            accessiblityService.gestureAccessibilityService?.dispatchGesture(gesture, null, null)
+            gestureAccessibilityService.dispatchGesture(gesture, null, null)
         }
     }
 
@@ -35,11 +34,7 @@ class HamburgerAction(private val accessiblityService: TapAccessibilityService, 
         return var1.toString()
     }
 
-    init {
-        Intrinsics.checkParameterIsNotNull(accessiblityService, "context")
-    }
-
     override fun isAvailable(): Boolean {
-        return accessiblityService.gestureAccessibilityService != null
+        return true
     }
 }

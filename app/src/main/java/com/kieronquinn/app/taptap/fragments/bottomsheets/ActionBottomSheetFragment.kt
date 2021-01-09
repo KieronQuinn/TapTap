@@ -12,7 +12,6 @@ import android.content.pm.PackageManager
 import android.graphics.drawable.GradientDrawable
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
@@ -38,8 +37,8 @@ import com.kieronquinn.app.taptap.fragments.BaseActionFragment
 import com.kieronquinn.app.taptap.fragments.action.ActionListFragment
 import com.kieronquinn.app.taptap.models.ActionInternal
 import com.kieronquinn.app.taptap.models.ActionDataTypes
-import com.kieronquinn.app.taptap.services.TapAccessibilityService
-import com.kieronquinn.app.taptap.services.TapGestureAccessibilityService
+import com.kieronquinn.app.taptap.core.services.TapAccessibilityService
+import com.kieronquinn.app.taptap.core.services.TapGestureAccessibilityService
 import com.kieronquinn.app.taptap.utils.*
 import dev.chrisbanes.insetter.Insetter
 import kotlinx.android.synthetic.main.fragment_bottomsheet_action.*

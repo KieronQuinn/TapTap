@@ -1,16 +1,22 @@
 package com.kieronquinn.app.taptap.workers
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkManager
 import androidx.work.Worker
 import androidx.work.WorkerParameters
-import com.kieronquinn.app.taptap.TapTapApplication
-import com.kieronquinn.app.taptap.utils.isRestartEnabled
+import com.kieronquinn.app.taptap.core.TapSharedPreferences
+import com.kieronquinn.app.taptap.core.services.TapForegroundService
+import com.kieronquinn.app.taptap.utils.isServiceRunning
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 import java.util.concurrent.TimeUnit
 
-class RestartWorker(private val context: Context, workerParams: WorkerParameters): Worker(context, workerParams) {
+class RestartWorker(private val context: Context, workerParams: WorkerParameters): Worker(context, workerParams), KoinComponent {
+
+    private val tapSharedPreferences by inject<TapSharedPreferences>()
 
     companion object {
         private const val RESTART_SERVICE_WORK_TAG = "restart_service"
@@ -29,10 +35,14 @@ class RestartWorker(private val context: Context, workerParams: WorkerParameters
     }
 
     override fun doWork(): Result {
-        val application = context.applicationContext as? TapTapApplication ?: return Result.failure()
-        val accessibilityService = application.accessibilityService.value ?: return Result.failure()
-        accessibilityService.restartService()
-        if(context.isRestartEnabled){
+        if(!context.isServiceRunning(TapForegroundService::class.java)){
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                context.startForegroundService(Intent(context, TapForegroundService::class.java))
+            }else{
+                context.startService(Intent(context, TapForegroundService::class.java))
+            }
+        }
+        if(tapSharedPreferences.isRestartEnabled){
             queueRestartWorker(context)
         }
         return Result.success()

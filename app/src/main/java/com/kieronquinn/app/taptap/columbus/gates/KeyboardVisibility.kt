@@ -4,7 +4,7 @@ import android.content.ComponentName
 import android.content.Context
 import android.provider.Settings
 import com.google.android.systemui.columbus.gates.Gate
-import com.kieronquinn.app.taptap.services.TapAccessibilityService
+import com.kieronquinn.app.taptap.core.services.TapAccessibilityService
 
 class KeyboardVisibility(context: Context) : Gate(context) {
 

@@ -4,7 +4,6 @@ import android.content.*
 import android.net.Uri
 import android.os.Bundle
 import android.os.PowerManager
-import android.provider.AlarmClock
 import android.provider.Settings
 import android.view.Menu
 import android.view.MenuInflater
@@ -15,14 +14,14 @@ import androidx.lifecycle.Observer
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.kieronquinn.app.taptap.BuildConfig
 import com.kieronquinn.app.taptap.R
-import com.kieronquinn.app.taptap.services.TapAccessibilityService
+import com.kieronquinn.app.taptap.core.services.TapAccessibilityService
 import com.kieronquinn.app.taptap.activities.SettingsActivity
 import com.kieronquinn.app.taptap.fragments.bottomsheets.BatteryOptimisationBottomSheetFragment
 import com.kieronquinn.app.taptap.fragments.bottomsheets.MaterialBottomSheetDialogFragment
 import com.kieronquinn.app.taptap.models.store.DoubleTapActionListFile
 import com.kieronquinn.app.taptap.models.store.TripleTapActionListFile
 import com.kieronquinn.app.taptap.preferences.Preference
-import com.kieronquinn.app.taptap.services.TapGestureAccessibilityService
+import com.kieronquinn.app.taptap.core.services.TapGestureAccessibilityService
 import com.kieronquinn.app.taptap.utils.*
 import java.lang.RuntimeException
 

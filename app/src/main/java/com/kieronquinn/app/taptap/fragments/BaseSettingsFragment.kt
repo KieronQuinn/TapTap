@@ -8,16 +8,18 @@ import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreference
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.activities.SettingsActivity
+import com.kieronquinn.app.taptap.core.TapSharedPreferences
+import com.kieronquinn.app.taptap.core.TapSharedPreferences.Companion.SHARED_PREFERENCES_NAME
 import com.kieronquinn.app.taptap.preferences.Preference
 import com.kieronquinn.app.taptap.preferences.SliderPreference
-import com.kieronquinn.app.taptap.utils.SHARED_PREFERENCES_NAME
 import com.kieronquinn.app.taptap.utils.getToolbarHeight
-import com.kieronquinn.app.taptap.utils.isMainEnabled
-import com.kieronquinn.app.taptap.utils.isTripleTapEnabled
 import dev.chrisbanes.insetter.applySystemWindowInsetsToPadding
 import kotlinx.android.synthetic.main.activity_settings.*
+import org.koin.android.ext.android.inject
 
 abstract class BaseSettingsFragment : PreferenceFragmentCompat(), View.OnScrollChangeListener {
+
+    private val tapSharedPreferences by inject<TapSharedPreferences>()
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         preferenceManager.sharedPreferencesName = SHARED_PREFERENCES_NAME
@@ -43,7 +45,7 @@ abstract class BaseSettingsFragment : PreferenceFragmentCompat(), View.OnScrollC
             if(this@BaseSettingsFragment is SettingsFragment){
                 setSwitchVisible(true)
                 setSwitchTag(SettingsActivity.TAG_SWITCH_MAIN)
-                setSwitchChecked(isMainEnabled)
+                setSwitchChecked(tapSharedPreferences.isMainEnabled)
                 setSwitchText(R.string.switch_main)
             }else{
                 setSwitchVisible(false)

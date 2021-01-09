@@ -4,7 +4,7 @@ import android.accessibilityservice.AccessibilityService
 import android.os.Handler
 import com.google.android.systemui.columbus.sensors.GestureSensor
 import com.kieronquinn.app.taptap.models.WhenGateInternal
-import com.kieronquinn.app.taptap.services.TapAccessibilityService
+import com.kieronquinn.app.taptap.core.services.TapAccessibilityService
 
 class AltTabAction(private val accessiblityService: TapAccessibilityService, whenGates: List<WhenGateInternal>) : ActionBase(accessiblityService, whenGates) {
 

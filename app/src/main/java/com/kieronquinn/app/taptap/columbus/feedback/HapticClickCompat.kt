@@ -11,12 +11,15 @@ import android.provider.Settings
 import android.provider.Settings.SettingNotFoundException
 import com.google.android.systemui.columbus.feedback.FeedbackEffect
 import com.google.android.systemui.columbus.sensors.GestureSensor.DetectionProperties
-import com.kieronquinn.app.taptap.utils.SHARED_PREFERENCES_KEY_FEEDBACK_OVERRIDE_DND
-import com.kieronquinn.app.taptap.utils.SHARED_PREFERENCES_NAME
+import com.kieronquinn.app.taptap.core.TapSharedPreferences
 import com.kieronquinn.app.taptap.utils.getVibrationEffect
 import com.kieronquinn.app.taptap.utils.settingsGlobalGetIntOrNull
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
-class HapticClickCompat(private val context: Context) : FeedbackEffect {
+class HapticClickCompat(private val context: Context, private val forceOverrideDnd: Boolean = false) : FeedbackEffect, KoinComponent {
+
+    private val tapSharedPreferences by inject<TapSharedPreferences>()
 
     private val progressVibrationEffect: VibrationEffect? = getVibrationEffect(0)
     private val contentResolver: ContentResolver = context.contentResolver
@@ -25,7 +28,7 @@ class HapticClickCompat(private val context: Context) : FeedbackEffect {
     private val dndMode
         get() = settingsGlobalGetIntOrNull(contentResolver, "zen_mode")
     private val overrideDnd
-        get() = context.getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE).getBoolean(SHARED_PREFERENCES_KEY_FEEDBACK_OVERRIDE_DND, false)
+        get() = tapSharedPreferences.overrideDnd || forceOverrideDnd
 
     companion object {
         @SuppressLint("WrongConstant")

@@ -1,7 +1,7 @@
 package com.kieronquinn.app.taptap.columbus.actions
 
 import android.content.Context
-import com.kieronquinn.app.taptap.services.TapAccessibilityService
+import com.kieronquinn.app.taptap.core.services.TapAccessibilityService
 import com.kieronquinn.app.taptap.models.WhenGateInternal
 import com.kieronquinn.app.taptap.utils.isAppLaunchable
 

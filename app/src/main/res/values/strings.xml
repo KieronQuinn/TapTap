@@ -296,6 +296,7 @@
     <string name="setup_battery_button_miui">Disable MIUI Optimisation</string>
     <string name="setup_battery_button_miui_disabled">MIUI Optimisation Disabled</string>
     <string name="setup_battery_button_miui_toast">Disable MIUI Optimisation (under "Apps")</string>
+    <string name="setup_battery_button_dont_kill">Steps to disable extra optimisation</string>
     <string name="setup_battery_button_oem">Open OEM battery settings</string>
     <string name="setup_battery_oem_info">Note: The OEM battery button cannot react to the optimisation being disabled. If you already disabled it, you may continue.</string>
     <string name="setup_battery_button_oem_toast">Error starting battery activity. Please find and disable the optimisation your devices settings yourself.</string>

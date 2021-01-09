@@ -41,11 +41,11 @@ class ReachabilityActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if(!sharedPreferences.contains(KEY_REACHABILITY_LEFT_HANDED)){
+        if(sharedPreferences?.contains(KEY_REACHABILITY_LEFT_HANDED) == false){
             Toast.makeText(this, R.string.reachability_left_handed_info, Toast.LENGTH_LONG).show()
-            sharedPreferences.edit().putBoolean(KEY_REACHABILITY_LEFT_HANDED, isLeftHanded).apply()
+            sharedPreferences?.edit()?.putBoolean(KEY_REACHABILITY_LEFT_HANDED, isLeftHanded)?.apply()
         }
-        isLeftHanded = sharedPreferences.getBoolean(KEY_REACHABILITY_LEFT_HANDED, false)
+        isLeftHanded = sharedPreferences?.getBoolean(KEY_REACHABILITY_LEFT_HANDED, false) ?: false
         sendBroadcast(Intent(LaunchReachability.INTENT_ACTION_START_SPLIT_SCREEN).apply {
             setPackage(packageName)
         })
@@ -56,7 +56,7 @@ class ReachabilityActivity : AppCompatActivity() {
             })
         }
         reachability_notifications.setOnLongClickListener {
-            sharedPreferences.edit().putBoolean(KEY_REACHABILITY_LEFT_HANDED, !isLeftHanded).apply()
+            sharedPreferences?.edit()?.putBoolean(KEY_REACHABILITY_LEFT_HANDED, !isLeftHanded)?.apply()
             isLeftHanded = !isLeftHanded
             updateHandedness()
             true
