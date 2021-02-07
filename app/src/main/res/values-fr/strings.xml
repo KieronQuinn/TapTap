@@ -1,11 +1,8 @@
 <resources>
     <string name="app_name">Tap, Tap</string>
     <string name="accessibility_service_description">Le service d\'Accessibilité de TapTap\n\n<b>Important : Aucune donnée n\'est collectée depuis vos applications, ce service est simplement utilisé pour garder la reconnaissance active et fournir une interraction avec l\'appareil</b></string>
-    <string name="toast_no_action_selected">Aucune action n\'a été sélectionnée</string>
-    <string name="launch_accessibility">Ouvrir le menu Accessibilité</string>
     <string name="setting_gesture">Double Tap</string>
     <string name="setting_gesture_desc">Modifier le fonctionnement du Double Tap</string>
-    <string name="setting_actions">Actions</string>
     <string name="setting_gates">Barrières</string>
     <string name="setting_gates_desc">Paramétrer les situations quand le geste ne doit pas déclencher une action</string>
     <string name="setting_feedback">Retour</string>
@@ -13,7 +10,7 @@
     <string name="setting_feedback_vibrate">Vibrer</string>
     <string name="setting_feedback_vibrate_desc">Vibre une seule fois quand le geste est effectué et l\'action déclenchée</string>
     <string name="setting_feedback_wake">Allumer l\'écran de l\'appareil</string>
-    <string name="setting_feedback_wake_desc">Allume l\'écran de l\'appareil (note: cela va interférer avec les actions qui éteignent l\'écran !)</string>
+    <string name="setting_feedback_wake_desc">Allume l\'écran de l\'appareil</string>
 
     <string-array name="device_model_keys">
         <item>Pixel 3 XL</item>
@@ -70,7 +67,6 @@
     <string name="action_next_desc">Joue le morceau suivant</string>
     <string name="fab_add_action">Ajouter une Action</string>
     <string name="fab_remove_action">Supprimer</string>
-    <string name="fab_remove_action_drop">Déposer pour supprimer</string>
     <string name="add_action_category_launch">Lancer</string>
     <string name="add_action_category_utilities">Utilitaires</string>
     <string name="add_action_category_actions">Actions</string>
@@ -81,9 +77,6 @@
     <string name="action_launch_app_desc">Lance une application</string>
     <string name="action_launch_app_desc_formattable">Lancer %1s. Cette action ne se déclanchera pas si elle est déjà lancée.</string>
     <string name="fab_add_gate">Ajouter une Barrière</string>
-    <string name="add_gate_when">Ajouter un Requis</string>
-    <string name="add_gate_category_state">État</string>
-    <string name="add_gate_category_action">Action</string>
     <string name="nothing_found">Rien n\'a été trouvé</string>
     <string name="search">Rechercher</string>
     <string name="show_system_apps">Afficher les applications systèmes</string>
@@ -95,7 +88,6 @@
     <string name="bs_help_action_title">Que sont les Actions ?</string>
     <string name="bs_help_gate">Les barrières sont des situations qui peuvent bloquer le lancement d\'une action. Pour qu\'une action soit exécutée, toutes les barrières activées doivent être ouvertes.\nSi un scénatio est actuellement rencontré, par exemple si l\'écran est éteint et la barrière "Écran éteint" est activée, aucune action ne sera lancée. Vous pouvez ajouter autant de barrière que vous le souhaiter, et les activer/désactiver en utilisant les boutons (plutôt qu\'avoir à supprimer et ré-ajouter) pour rendre la configuration plus rapide et facile.</string>
     <string name="bs_help_gate_title">Que sont les barrières ?</string>
-    <string name="help">Aide</string>
     <string name="action_launch_assistant">Lancer l\'Assistant</string>
     <string name="action_launch_assistant_desc">Lance votre application assistant par défaut</string>
     <string name="action_launch_search">Lancer une recherche</string>
@@ -107,10 +99,8 @@
     <string name="accessibility_info_off_desc">Le geste ne va actuellement pas fonctionner. Cliquer pour activer</string>
     <string name="accessibility_info_on">Service d\'Accessibilité est activé</string>
     <string name="accessibility_info_on_desc_2">Ce service est requis pour que le geste fonctionne.</string>
-    <string name="accessibility_info_toast">Sélectionner "Tap, Tap" depuis la liste des Services d\'Accessibilité, l\'activer et retourner sur Tap, Tap pour continuer</string>
 
     <string name="category_about">À propos</string>
-    <string name="about_summary">Créé par Kieron Quinn / Quinny899 @ XDA\nÀ l\'aide des contributions de la communauté, dont: %1s</string>
     <string name="xda_thread">Discussion XDA</string>
     <string name="github">GitHub</string>
     <string name="libraries">Librairies tierces</string>
@@ -119,11 +109,9 @@
     <string name="tasker_config_label">Double tappé au dos</string>
     <string name="action_tasker_task">Tâche Tasker</string>
     <string name="action_tasker_task_desc">Lance une tâche spécifique Tasker</string>
-    <string name="action_tasker_event_toast">Tasker pas installé ou version non supportée</string>
     <string name="action_tasker_task_desc_formatted">Lancer une tâche Tasker (%1s)</string>
     <string name="bs_tasker_content">Pour lancer une tâche Tasker sans utiliser le plugin d\'évènement, vous devez activer l\'option \"Allow External Access\" dans les paramètres Tasker. Si cette option n\'est pas activée, cette Action sera toujours ignorée.</string>
     <string name="bs_tasker_title">Permission Requise</string>
-    <string name="bs_tasker_negative">Plus tard</string>
     <string name="bs_tasker_positive">Ouvrir les paramètres de Tasker</string>
     <string name="picker_launch_camera">Lancer la Caméra</string>
     <string name="action_volume_panel">Afficher le panneau de volume</string>
@@ -164,9 +152,7 @@
     <string name="gate_keyboard_visibility_desc_when">Lance le geste seulement quand le clavier est ouvert et en cours d\'utilisation. Notez que ça peut ne pas toujours marcher si vous n\'écrivez pas.</string>
     <string name="battery_and_optimisation">Batterie &amp; Optimisation</string>
     <string name="battery_and_optimisation_desc">Information sur pourquoi Tap, Tap utilise de la batterie, et pourquoi l\'application sera peut-être \"tuée\" par votre appareil quand elle est lancée en arrière-plan (et comment réparer cela)</string>
-    <string name="bs_battery_content">Tap, Tap utilise un service d\'accessibilité d\'arrière-plan pour rester lancé et toujours être \"à l\'écoute\" des tapotements au dos de votre appareil en utilisant l\'Accéléromètre et le Gyroscope. Pour cette raison, Tap, Tap peut utilisé beaucoup de batterie lorsqu\'il est lancé en arrière-plan.\n\nÀ cause de ce stade de développement précoce, Tap, Tap n\'a pas encore été optimisé, et la durée de vie de la batterie sera peut-être amélioré à travers des options dans le futur, mais actuellement une durée de vie de la batterie est une conséquence d\'avoir cette fonctionnalité.\n\nDe plus, quelques firmwares de fabriquant, comme MIUI ou OneUI, sont plus \"aggresifs\" à tuer des tâches d\'arrière-plan (dont les services d\'accessibilité) car Google recommande de le faire. Si Tap, Tap s\'arrête de marcher sur votre appareil après avoir été fermé même avec l\'Optimisation Batterie désactivée, s\'il vous plaît, essayez ce qui suit:\n• Bloquez l\'application en mémoire (habituellement depuis les applications récentes)\n• Désactivez toute autre optimisation de batterie pour une application (habituellement en navigant à Paramètres > Applications ou Paramètres > Batterie)\n• Désactivez l\'optimisation MIUI dans les Options pour les développeurs (Seulement MIUI)\n\nPlus d\'informations sur les applications \"tuées\" par le système et les suggestions sur comment le résoudre pour votre appareil peuvent être trouvée sur dontkillmyapp.com</string>
 
-    <string name="bs_battery_positive">Aller sur dontkillmyapp.com</string>
     <string name="gate_orientation_landscape">Orientation en mode paysage</string>
     <string name="gate_orientation_landscape_desc">Bloque le geste quand le téléphone est en mode paysage</string>
     <string name="gate_orientation_portrait">Orientation en mode portrait</string>
@@ -187,7 +173,6 @@
     <string name="gate_headset_desc_when">Lance le geste seulement quand <b>il y a</b> des écouteurs avec ou sans-fil connecté</string>
     <string name="item_action_when">Lancer l\'action seulement quand...</string>
     <string name="item_action_when_multiple">Lancer l\'action seulement quand (tous parmi)…</string>
-    <string name="item_action_when_add_empty">Ajouter un requis...</string>
     <string name="item_action_when_add">Ajouter...</string>
     <string name="item_action_blocked_info">Cette action évitera toutes les actions d\'en-dessous d\'être lancées tant qu\'elle est bloquée (ce ne sera jamais passé).\nVous devez ajouter un requis ou supprimer cette action si vous voulez que les actions d\'en-dessous soient exécutées.</string>
     <string name="gate_music">Musique en cours de lecture</string>
@@ -204,16 +189,12 @@
     <string name="tap_notification_channel_description">Notification utilisée pour laisser Tap, Tap lancé en arrière-plan quand l\'option pour utiliser un service séparé est activé</string>
     <string name="setting_advanced">Avancé</string>
     <string name="setting_advanced_desc">Paramètres avancés et ajustements pour changer les performances et plus</string>
-    <string name="setting_advanced_split_service">Utiliser des services séparés</string>
-    <string name="setting_advanced_split_service_desc">Ce paramètre active l\'utilisation d\'un second service qui est lancé aux côtés du service d\'accessibilité. Même si cela peut sembler contre-intuitif, cela aidera peut-être l\'application à ne pas être \"tuée\" par le système sur certains appareils, puisqu\'il s\'agit d\'un service de premier plan et que le service d\'accessibilité n\'aide que très peu, en s\'appuyant sur un second service de reconnaissance et d\'éxécution. Vous devrez peut-être redémarrer votre appareil pour que cela prenne effet.</string>
     <string name="setting_advanced_warning">Ici, les dragons</string>
     <string name="setting_advanced_warning_desc">Ces paramètres sont expérimentaux et peuvent ne pas marcher sur votre appareil, ou peuvent empêcher Tap, Tap de fonctionner. Si cela arrive, <b>désactivez</b> le paramètre et redémarrez votre appareil, ce qui réinitialisera le service.</string>
     <string name="switch_main">Activer les Gestes</string>
     <string name="setting_advanced_restart_service">Redémarrer automatiquement le service</string>
     <string name="setting_advanced_restart_service_desc">Tentez de redémarrer automatiquement le composant \"d\'écouteur\" de Tap, Tap toutes les heures. Si vous avez les services séparées d\'activé, le service de premier-plan sera aussi redémarré. Note : Le Service d\'Accessibilité <b>ne peut pas</b> être redémarré automatiquement, donc si il est \"tué\" ou désactivé, cela ne marchera pas.</string>
-    <string name="update_error">Error lors de la vérification de mises à jour</string>
     <string name="bs_update_download">Télécharger</string>
-    <string name="bs_update_later">Me le rappeler plus tard</string>
     <string name="bs_update_title">Mise à jour disponible !</string>
     <string name="bs_update_content"><![CDATA[<h2>Une nouvelle mise à jour est disponible !</h2><br><b>Version actuelle :</b> %1s<br><b>Nouvelle version :</b> %1s<br><b>Date de mise à jour :</b> %1s<br><b>Journal de changement :</b><br>%1s]]></string>
     <string name="tap_update_notification_channel_title">Notifications de mise à jour</string>

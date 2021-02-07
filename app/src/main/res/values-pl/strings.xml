@@ -1,11 +1,8 @@
 <resources>
     <string name="app_name">Tap, Tap</string>
     <string name="accessibility_service_description">Usługa ułatwień dostępu TapTap\n\n<b>Ważna informacja: Żadne dane nie są zbierane z żadnej z Twoich aplikacji, ta usługa służy po prostu do utrzymywania aktywności rozpoznawania i zapewnienia interakcji z urządzeniem</b></string>
-    <string name="toast_no_action_selected">Nie wybrano żadnej akcji</string>
-    <string name="launch_accessibility">Włącz dostępność</string>
     <string name="setting_gesture">Gesty</string>
     <string name="setting_gesture_desc">Zmieniaj sposób działania gestów</string>
-    <string name="setting_actions">Akcje</string>
     <string name="setting_gates">Bramy</string>
     <string name="setting_gates_desc">Ustaw sytuacje, w których gest nie powinien uruchamiać akcji</string>
     <string name="setting_feedback">Reakcja</string>
@@ -13,7 +10,7 @@
     <string name="setting_feedback_vibrate">Wibracja</string>
     <string name="setting_feedback_vibrate_desc">Wibruj raz, gdy gest jest używany i akcja jest wykonywana</string>
     <string name="setting_feedback_wake">Wybudź urządzenie</string>
-    <string name="setting_feedback_wake_desc">Włącz ekran urządzenia, jeśli jest wyłączony (uwaga: będzie to zakłócać działania, które wyłączają ekran!)</string>
+    <string name="setting_feedback_wake_desc">Włącz ekran urządzenia, jeśli jest wyłączony</string>
 
     <string-array name="device_model_keys">
         <item>Pixel 3 XL</item>
@@ -61,7 +58,6 @@
     <string name="action_next_desc">Odtwarza następny dźwięk</string>
     <string name="fab_add_action">Dodaj akcje</string>
     <string name="fab_remove_action">Usuń</string>
-    <string name="fab_remove_action_drop">Upuść, aby usunąć</string>
     <string name="add_action_category_launch">Uruchom</string>
     <string name="add_action_category_utilities">Narzędzia</string>
     <string name="add_action_category_actions">Akcje</string>
@@ -72,8 +68,6 @@
     <string name="action_launch_app_desc">Uruchamia wybraną aplikację</string>
     <string name="action_launch_app_desc_formattable">Uruchamia %1s. Ta akcja zostanie pominięta, jeśli jest już włączona.</string>
     <string name="fab_add_gate">Dodaj bramę</string>
-    <string name="add_gate_category_state">Stan</string>
-    <string name="add_gate_category_action">Akcja</string>
     <string name="nothing_found">Nic nie znaleziono</string>
     <string name="search">Szukaj</string>
     <string name="show_system_apps">Pokaż aplikacje systemowe</string>
@@ -82,7 +76,6 @@
     <string name="bs_help_action_title">Czym są Akcje?</string>
     <string name="bs_help_gate">Bramy to sytuacje, które mogą zablokować gest przed uruchomieniem jakichkolwiek działań. Aby jakakolwiek akcja mogła zostać uruchomiona, wszystkie włączone bramki muszą być otwarte. \nJeśli scenariusz jest spełniony, na przykład jeśli ekran jest wyłączony, a bramka "Wyłączony ekran" jest włączona, żadne akcje nie zostaną wykonane. Możesz dodać dowolną liczbę bramek i włączać/wyłączać je za pomocą przełączników (zamiast konieczności usuwania i ponownego dodawania), aby konfiguracja była szybsza i łatwiejsza.</string>
     <string name="bs_help_gate_title">Czym są Bramy?</string>
-    <string name="help">Pomoc</string>
     <string name="action_launch_assistant">Uruchom Asystenta</string>
     <string name="action_launch_assistant_desc">Uruchamia domyślną aplikację asystenta</string>
     <string name="action_tasker_event">Zdarzenie Taskera</string>
@@ -91,11 +84,9 @@
     <string name="accessibility_info_off">Usługa ułatwień dostępu jest wyłączona</string>
     <string name="accessibility_info_off_desc">Gest obecnie nie działa. Dotknij, aby włączyć</string>
     <string name="accessibility_info_on">Usługa ułatwień dostępu jest włączona</string>
-    <string name="accessibility_info_toast">Wybierz "Tap, Tap" z listy usług ułatwień dostępu, przełącz ją i wróć do Tap, Tap, aby kontynuować</string>
 
     <string name="category_about">O</string>
     <string name="about">%1s v%2s</string>
-    <string name="about_summary">Stworzona przez Kieron Quinn / Quinny899 @ XDA\nZ podziękowaniami dla społeczności, w tym: %1s</string>
     <string name="xda_thread">Temat XDA</string>
     <string name="github">GitHub</string>
     <string name="libraries">Zewnętrzne biblioteki</string>
@@ -104,10 +95,8 @@
     <string name="tasker_config_label">Dwukrotne stuknięcie w tył</string>
     <string name="action_tasker_task">Zadanie Taskera</string>
     <string name="action_tasker_task_desc">Uruchamia określone zadanie Taskera</string>
-    <string name="action_tasker_event_toast">Tasker nie jest zainstalowany, bądź zainstalowana wersja nie jest wspierania</string>
     <string name="bs_tasker_content">Aby uruchomić zadanie Taskera bez korzystania z wtyczki Zdarzenie Taskera, Musisz włączyć opcję \"Zezwalaj na dostęp zewnętrzny\" w ustawieniach Taskera. Jeśli nie masz włączonej tej opcji, ta akcja będzie zawsze pomijana.</string>
     <string name="bs_tasker_title">Wymagane uprawnienie</string>
-    <string name="bs_tasker_negative">Później</string>
     <string name="bs_tasker_positive">Otwórz ustawienia Taskera</string>
     <string name="picker_launch_camera">Uruchom Aparat</string>
     <string name="action_volume_panel">Pokaż panel głośności</string>

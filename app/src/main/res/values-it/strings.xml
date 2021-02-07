@@ -4,11 +4,8 @@
 	<string name="accessibility_service_label_gesture">Tap, Tap Servizio secondario</string>
     <string name="accessibility_service_description">Servizio accessibilità TapTap\n\n<b>Importante: Nessun dato viene mantenuto, questo servizio è usato semplicemente per mantenere attivo il riconoscimento dell\'evento di tap</b></string>
 	<string name="accessibility_service_description_gesture">Tap, Tap Gesture Servizio di accessibiltà. \n\n<b>Non c\'è bisogno di attivare questo a meno che l\'app non te lo dica: è richiesto solo per alcune azioni.</b>\n\n<b>Nota Importante: nessun dato è mantenuto, questo servizio è semplicemente usato per l\'interazione con i gesti del dispositivo.\n\nÈ un servizio separato per aggirare un limite di Android per l\'interazione con la UI quando ci sono servizi che eseguono dei gesti. Ad esempio, su Chrome non sarà possibile nascondere la Omnibar quando questo servizio è attivo.</b></string>
-    <string name="toast_no_action_selected">Nessuna azione è stata selezionata</string>
-    <string name="launch_accessibility">Avvia accessibilità</string>
     <string name="setting_gesture">Gesti</string>
     <string name="setting_gesture_desc">Personalizza come funzionano i gesti</string>
-    <string name="setting_actions">Azioni</string>
     <string name="setting_gates">Eccezioni</string>
     <string name="setting_gates_desc">Imposta le situazioni in cui i gesti non dovrebbero eseguire un\'azione</string>
 	<string name="setting_gesture_model">Dimensione dispositivo</string>
@@ -18,7 +15,7 @@
     <string name="setting_feedback_vibrate">Vibra</string>
     <string name="setting_feedback_vibrate_desc">Vibra una sola volta quando la gesture è usata e l\'azione è eseguita</string>
     <string name="setting_feedback_wake">Risveglia il dispositivo</string>
-    <string name="setting_feedback_wake_desc">Risveglia il dispositivo quando lo schermo è spento (nota: questo interferirà con le azioni che spengono lo schermo!)</string>
+    <string name="setting_feedback_wake_desc">Risveglia il dispositivo quando lo schermo è spento</string>
     <string-array name="device_model_keys">
         <item>Largo</item>
         <item>Medio</item>
@@ -37,7 +34,7 @@
     <string name="gate_power_state_inverse">Schermo acceso</string>
     <string name="gate_power_state_inverse_desc">Blocca i gesti quando lo schermo è acceso</string>
     <string name="gate_app_showing">App aperta</string>
-    <string name="gate_app_showing_desc">Blocca i gesti quando un'app è aperta e in primo piano</string>
+    <string name="gate_app_showing_desc">Blocca i gesti quando un\'app è aperta e in primo piano</string>
     <string name="gate_app_showing_desc_formatted">Blocca i gesti quando %1s è mostrata sullo schermo</string>
     <string name="action_launch_camera">Lancia fotocamera</string>
     <string name="action_launch_camera_desc">Lancia la fotocamera. Questa azione non verrà eseguita se l\'app fotocamera è già aperta.</string>
@@ -63,7 +60,6 @@
     <string name="action_next_desc">Metti in esecuzione la traccia audio successiva</string>
     <string name="fab_add_action">Aggiungi azione</string>
     <string name="fab_remove_action">Rimuovi</string>
-    <string name="fab_remove_action_drop">Qui per rimuovere</string>
     <string name="add_action_category_launch">Lancia</string>
     <string name="add_action_category_utilities">Utilità</string>
     <string name="add_action_category_actions">Azioni</string>
@@ -74,8 +70,6 @@
     <string name="action_launch_app_desc">Lancia un\'app</string>
     <string name="action_launch_app_desc_formattable">Lancia %1s. Questa azione non verrà eseguita se l\'app è già in esecuzione.</string>
     <string name="fab_add_gate">Aggiungi eccezione</string>
-    <string name="add_gate_category_state">Stato</string>
-    <string name="add_gate_category_action">Azione</string>
     <string name="nothing_found">Non ho trovato nulla</string>
     <string name="search">Cerca</string>
     <string name="show_system_apps">Mostra le app di sistema</string>
@@ -84,7 +78,6 @@
     <string name="bs_help_action_title">Cosa sono le Azioni?</string>
     <string name="bs_help_gate">Le eccezioni sono situazioni che possono bloccare i gesti dall\'eseguire azioni. Per eseguire qualsiasi azione, tutte le eccezioni impostate non devono essere verificate.\nSe una certa condizione è verificata, ad esempio se lo schermo è spento e l\'eccezione "Schermo spento" è stata attivata, nessuna azione sarà eseguita. Puoi aggiungere un numero illimitato di eccezioni e abilitarle o disabilitarle singolarmente (invece di cancellarle e di ricrearle di nuovo) per avere una configurazione più facile e veloce.</string>
     <string name="bs_help_gate_title">Cosa sono le eccezioni?</string>
-    <string name="help">Aiuto</string>
     <string name="action_launch_assistant">Lancia Assistant</string>
     <string name="action_launch_assistant_desc">Lancia la tua app di assistenza di default</string>
     <string name="action_tasker_event">Evento Tasker</string>
@@ -92,9 +85,7 @@
     <string name="accessibility_info_off">Il servizio di accessibilità è disattivato</string>
     <string name="accessibility_info_off_desc">Il rilevamento della gesture non è attivo. Tap per abilitare</string>
     <string name="accessibility_info_on">Il servizio di accessibilità è attivo</string>
-    <string name="accessibility_info_toast">Seleziona "Tap, Tap" dalla lista dei servizi di accessibilità, attivalo e ritorna in Tap, Tap per continuare</string>
     <string name="category_about">Info</string>
-    <string name="about_summary">Creata by Kieron Quinn / Quinny899 @ XDA\nCon ringraziamento per tutti i contributi dalla comunità, including: %1s</string>
     <string name="xda_thread">Thread XDA</string>
     <string name="github">GitHub</string>
     <string name="libraries">Librerie di terze parti</string>
@@ -103,10 +94,8 @@
     <string name="tasker_config_label">Doppio tap sul retro</string>
     <string name="action_tasker_task">Task di Tasker</string>
     <string name="action_tasker_task_desc">Esegui uno specifico task di Tasker</string>
-    <string name="action_tasker_event_toast">Tasker non installato o versione non supportata</string>
     <string name="bs_tasker_content">Per lanciare un task di Tasker senza usare un plugin, devi abilitare l\'opzione \"Permetti accesso esterno\" nelle opzioni di Tasker. Se non hai questa opzione abilitata, questa azione verrà sempre saltata.</string>
     <string name="bs_tasker_title">Permesso richiesto</string>
-    <string name="bs_tasker_negative">Dopo</string>
     <string name="bs_tasker_positive">Apri impostazioni Tasker</string>
     <string name="picker_launch_camera">Lancia fotocamera</string>
     <string name="action_volume_panel">Mostra pannello volume</string>
@@ -142,8 +131,6 @@
     <string name="battery_optimisation_desc">Questo aiuterà Tap, Tap ad essere in esecuzione (ma non funzionerà sempre, vedi le opzioni batteria sotto). Tap per disattivare.</string>
     <string name="battery_and_optimisation">Batteria &amp; Ottimizzazioni</string>
     <string name="battery_and_optimisation_desc">Info sul perché Tap, Tap consuma la batteria e perché potrebbe essere chiusa dal tuo dispositivo quando in esecuzione in background (e come risolvere)</string>
-    <string name="bs_battery_content">Tap, Tap usa un servizio di accessibilità per rimanere in esecuzione e \'ascoltare\' i tap sul retro del dispositivo usando i sensori come accelerometro e giroscopio. Per questa ragione, Tap, Tap potrebbe usare batteria mentre in esecuzione in background.\n\nPer via del suo stato ancora sperimentale, Tap, Tap non è ancora stata pienamente ottimizzata e il consumo batteria sarà ottimizzato in futuro, ma al momento una leggera incremento del consumo batteria è una conseguenza di aver installato questa app.\n\nIn aggiunta, alcuni firmwares, come MIUI o OneUI, sono molto aggressivi nel chiudere processi in background (incluso i servizi di accessibilità) rispetto a quanto raccomanda Google. Se Tap, Tap non funziona più sul tuo dispositivo anche con le ottimizzazioni batteria disattivate, prova in questo modo:\n• Blocca l\'app in memoria (di solito dal menù app recenti)\n• Disattivare ogni altra ottimizzazione batteria per un app (di solito in Impostazioni > App o Impostazioni > Batteria)\n• Disattiva le ottimizzazioni MIUI nelle opzioni sviluppatori (solo per MIUI)\n\nPiù informazioni sulle app che vengono chiuse e altri suggerimenti su dontkillmyapp.com</string>
-    <string name="bs_battery_positive">Vai su dontkillmyapp.com</string>
     <string name="gate_orientation_landscape">Orientamento panoramico</string>
     <string name="gate_orientation_landscape_desc">Blocca i gesti quando il telefono è in orizzontale</string>
     <string name="gate_orientation_portrait">Orientamento verticale</string>
@@ -160,7 +147,6 @@
     <string name="gate_app_showing_desc_when">Esegui solo quando un\'app è mostrata nello schermo</string>
     <string name="action_power_dialog">Menù di spegnimento</string>
     <string name="action_power_dialog_desc">Apre il menù di spegnimento simulando il pulsante di accensione tenuto premuto</string>
-    <string name="add_gate_when">Aggiungi requisito</string>
     <string name="accessibility_info_on_desc_2">Questo servizio è richiesto per il funzionamento dei gesti.</string>
     <string name="settings_actions_desc_triple">Imposta le azioni che devono essere eseguite quando fai un triplo tocco sul retro del tuo dispositivo</string>
     <string name="action_app_drawer">Cassetto delle app</string>
@@ -168,7 +154,7 @@
     <string name="action_google_voice_access">Aziona Google Voice Access</string>
     <string name="action_google_voice_access_desc">Innesca la Google Voice Access <b>app di accessibilità</b>, se è in esecuzione (questo NON è Assistant o la ricerca vocale)</string>
     <string name="action_hamburger">Hamburger menu / Indietro</string>
-    <string name="action_hamburger_desc">Questa azione preme nel punto in cui di solito si trova il menù ad hamburger. <b>Avviso importante</b>: questo toccherà <b>qualsiasi elemento</b> che si troverà in quella posizione (in alto a sinistra), perciò alcune volte andrà indietro, o potrebbe toccare altri elementi in quel punto, anche pulsanti. <b>Usa con estrema attenzione</b> e considera l'uso del triplo tap o di vincoli per limtarla.</string>
+    <string name="action_hamburger_desc">Questa azione preme nel punto in cui di solito si trova il menù ad hamburger. <b>Avviso importante</b>: questo toccherà <b>qualsiasi elemento</b> che si troverà in quella posizione (in alto a sinistra), perciò alcune volte andrà indietro, o potrebbe toccare altri elementi in quel punto, anche pulsanti. <b>Usa con estrema attenzione</b> e considera l\'uso del triplo tap o di vincoli per limtarla.</string>
     <string name="action_launch_search">Lancia ricerca</string>
     <string name="action_launch_search_desc">Lancia una Ricerca Google</string>
     <string name="action_tasker_task_desc_formatted">Esegui un task di Tasker (%ls)</string>
@@ -177,7 +163,6 @@
     <string name="bs_beta">Questa app è in sviluppo ed è stata rilasciata in uno stato di Beta per permettere il test su tanti dispositivi e suggerimenti dagli utenti. Se riscontri un bug, ti chiediamo di segnalarlo su GitHub come issue. Se vuoi richiedere una funzione fallo nel thread su XDA oppure su GitHub.\\n\\nGrazie per la tua pazienza durante lo sviluppo.</string>
     <string name="bs_beta_title">Beta</string>
     <string name="bs_update_download">Scarica</string>
-    <string name="bs_update_later">Ricordamelo dopo</string>
     <string name="bs_update_title">Aggiornamento disponibile!</string>
     <string name="gate_headset">Cuffie</string>
     <string name="gate_headset_inverse">Nessuna cuffia</string>
@@ -194,14 +179,12 @@
     <string name="gate_table_desc_when">Esegui solo quando il dispositivo è su una superficie piana, ad esempio un tavolo.</string>
     <string name="item_action_when">Esegui l\'azione solo quando…</string>
     <string name="item_action_when_add">Aggiungi…</string>
-    <string name="item_action_when_add_empty">Aggiungi requisito…</string>
     <string name="item_action_when_multiple">Esegui l\'azione solo quando (nessuna di queste)…</string>
     <string name="menu_beta">Questa app è in Beta. Tocca per info.</string>
     <string name="notification_policy_grant">Continua</string>
     <string name="setting_advanced">Avanzate</string>
     <string name="setting_advanced_desc">Impostazioni avanzate e trucchi per migliorare le performance e altro</string>
     <string name="setting_advanced_restart_service">Servizio di riavvio automatico</string>
-    <string name="setting_advanced_split_service">Usa servizi separati</string>
     <string name="setting_advanced_warning">Ecco i draghi</string>
     <string name="switch_main">Abilita gesture</string>
     <string name="switch_triple">Abilita triplo tocco</string>
@@ -215,8 +198,6 @@
     <string name="tasker_config_label_triple">Triplo tap sul retro</string>
     <string name="tasker_description_double">Verrà innescato quando il retro del telefono sarà toccato due volte</string>
     <string name="tasker_description_triple">Verrà innescato quando il retro del telefono sarà toccato tre volte</string>
-    <string name="tasker_triple_tap">Triplo tocco</string>
-    <string name="update_error">Errore durante la ricerca di aggiornamenti</string>
     <string name="gate_music">Musica in riproduzione</string>
     <string name="help_action">Le Azioni sono dei task che vengono eseguiti quando tocchi il retro del tuo telefono due volte. Le Azioni vengono eseguite in ordine, come mostrate nella lista - dall\'alto verso il basso, e solamente se i requisiti sono rispettati. Tocca per più informazioni.</string>
     <string name="bs_help_action">Le Azioni sono dei task che vengono eseguiti quando tocchi il retro del tuo telefono due volte. Le Azioni vengono eseguite in ordine, come mostrate nella lista - dall\'alto verso il basso. Se una azione non può essere eseguita correttamente, nessun\'altra verrà eseguita. Però se una azione non è disponibile (es. se l\'assistente per l\'azione Lancia Assistente Google è già in uso oppure i requisiti non sono rispettati), verrà eseguita l\'azione successiva sotto di essa e così via fino a quando non verrà eseguita correttamente.</string>
@@ -231,10 +212,9 @@
     <string name="tap_notification_channel_description">Notifica usata per mantenere Tap, Tap in esecuzione in background quando l\'opzione per usare il servizio separato è abilitata.</string>
     <string name="about">%1s v%2s</string>
     <string name="gate_keyboard_visibility_desc_when">Esegui solo quando la tastiera è aperta ed in uso. Nota che questo potrebbe non funzionare sempre se non stai scrivendo attivamente.</string>
-    <string name="setting_advanced_split_service_desc">Questa impostazione abilita l\'uso di un secondo servizio a fianco di quello di accessibilità. Nonostante sembri controintuitivo, questo potrebbe aiutare l\'app a non essere chiusa dal sistema in alcuni dispositivi, poiché appare come un servizio in primo piano e lascia al servizio di accessibilità molto poco, affidandosi al secondo per il riconoscimento e per l\'esecuzione. Potresti necessitare un riavvio per farlo funzionare.</string>
     <string name="setting_advanced_warning_desc">Queste impostazioni sono sperimentali e potrebbero non funzionare sul tuo dispositivo, o causare il malfunzionamento di Tap, Tap fino a non farla funzionare completamente. Se questo accade, imposta tutte queste impostazioni su <b>off</b> e riavvia il tuo dispositivo, in modo da resettare il servizio.</string>
     <string name="setting_advanced_restart_service_desc">Tenta di riavviare automaticamente il servizio di riconoscimento di Tap, Tap ogni ora. Se hai il doppio servizio abilitato, verrà riavviato anche il servizio in primo piano. Il servizio di accessibilità <b>non</b> può essere riavviato automaticamente, quindi se viene chiuso o disabilitato, questo non funzionerà.</string>
-    <string name="help_action_triple">Nota: quando il triplo tocco è abilitato, l'azione del doppio tocco potrebbe essere più lenta a rispondere. Questo è dovuto al fatto che bisogna aspettare per controllare se ci sarà un terzo tocco prima di eseguire la azione corrispondente al secondo tocco.</string>
+    <string name="help_action_triple">Nota: quando il triplo tocco è abilitato, l\'azione del doppio tocco potrebbe essere più lenta a rispondere. Questo è dovuto al fatto che bisogna aspettare per controllare se ci sarà un terzo tocco prima di eseguire la azione corrispondente al secondo tocco.</string>
     <string name="bs_update_content"><![CDATA[<h2>Un nuovo aggiornamento è disponibile</h2><br><b>Versione corrente:</b> %1s<br><b>Nuova versione:</b> %1s<br><b>Data di aggiornamento:</b> %1s<br><b>Note di aggiornamento:</b><br>%1s]]></string>
     <string name="setting_gesture_sensitivity_desc"><b>Sperimentale:</b> cambia la sensibilità della gesture regolando la quantità di forza filtrata come \"rumore\". Una sensibilità minore significa che la gesture sarà più difficile da rilevare su la maggior parte dei dispositivi, mentre una sensibilità maggiore è più soggetta a falsi rilevamenti. L\'impostazione predefinita è esattamente al centro.</string>
     <string name="gates_empty_state">Nessuna eccezione ancora aggiunta</string>
@@ -267,7 +247,7 @@
     <string name="setup_accessibility_button">Abilita servizio</string>
     <string name="setup_accessibility_button_enabled">Servizio abilitato</string>
     <string name="setup_battery_title">Disabilita Ottimizzazioni batteria</string>
-    <string name="setup_battery_content">Tap, Tap ha bisogno delle ottimizzazioni della batteria disabilitate per lavorare in secondo piano e prevenire che essa sia terminata dal sistema. Mentre l'opzione per disabilitare l\'ottimizzazione predefinita di Android è disponibile qui sotto, potresti dover disabilitare altre opzioni sul tuo dispositivo. Quando è disponibile, ci sarà un bottone extra per farlo su alcuni dispositivi.</string>
+    <string name="setup_battery_content">Tap, Tap ha bisogno delle ottimizzazioni della batteria disabilitate per lavorare in secondo piano e prevenire che essa sia terminata dal sistema. Mentre l\'opzione per disabilitare l\'ottimizzazione predefinita di Android è disponibile qui sotto, potresti dover disabilitare altre opzioni sul tuo dispositivo. Quando è disponibile, ci sarà un bottone extra per farlo su alcuni dispositivi.</string>
     <string name="setup_battery_info_content">"Sui dispositivi con un accelleratore dedicato per ML (come l'Hexagon Tensor Accelerator di Qualcomm), il consumo della batteria sarà basso. Su dispositivi che non lo hanno, potresti avere un calo della batteria maggiore quando Tap, Tap è in esecuzione."</string>
     <string name="setup_battery_button">Disabilita Ottimizzazioni batteria</string>
     <string name="setup_battery_button_disabled">Ottimizzazioni batteria disabilitate</string>

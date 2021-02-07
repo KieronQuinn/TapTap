@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <com.kieronquinn.app.taptap.preferences.Preference
+    <com.kieronquinn.app.taptap.ui.preferences.Preference
         android:icon="@drawable/ic_gesture_device_size"
         android:key="gesture_device_model"
         android:title="@string/setting_gesture_model"
         android:summary="@string/setting_gesture_model_desc"/>
 
-    <com.kieronquinn.app.taptap.preferences.SliderPreference
+    <com.kieronquinn.app.taptap.ui.preferences.SliderPreference
         android:icon="@drawable/ic_gesture_sensitivity"
         android:title="@string/setting_gesture_sensitivity"
         android:key="gesture_sensitivity"

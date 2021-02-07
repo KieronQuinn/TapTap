@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/margin_small"
+    android:layout_marginBottom="@dimen/activity_padding">
+
+    <TextView
+        android:id="@+id/about_header_version"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/activity_padding"
+        android:gravity="center_horizontal"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small.TapTap"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/about_version" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/about_chip_github"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/activity_padding"
+        android:layout_marginEnd="@dimen/margin_small"
+        android:text="@string/github"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small.TapTap"
+        app:chipBackgroundColor="@color/icon_circle_6"
+        app:chipEndPadding="@dimen/margin_small"
+        app:chipIcon="@drawable/ic_github"
+        app:chipStartPadding="@dimen/margin_small"
+        app:layout_constraintEnd_toStartOf="@id/about_chip_xda"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/about_header_version" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/about_chip_xda"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_small"
+        android:layout_marginEnd="@dimen/activity_padding"
+        android:text="@string/xda_thread"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small.TapTap"
+        app:chipBackgroundColor="@color/icon_circle_5"
+        app:chipEndPadding="@dimen/margin_small"
+        app:chipIcon="@drawable/ic_xda"
+        app:chipStartPadding="@dimen/margin_small"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/about_chip_github"
+        app:layout_constraintTop_toBottomOf="@id/about_header_version" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/about_chip_libraries"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/activity_padding"
+        android:layout_marginEnd="@dimen/activity_padding"
+        android:text="@string/libraries"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small.TapTap"
+        app:chipBackgroundColor="@color/icon_circle_9"
+        app:chipEndPadding="@dimen/margin_small"
+        app:chipIcon="@drawable/ic_libraries"
+        app:chipStartPadding="@dimen/margin_small"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/about_chip_xda" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,59 +2,104 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:elevation="@dimen/toolbar_elevation"
-    android:animateLayoutChanges="true"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:orientation="vertical">
 
-    <FrameLayout
-        app:layout_constraintTop_toTopOf="parent"
-        android:elevation="@dimen/toolbar_elevation"
-        android:id="@+id/search_container"
-        android:background="?android:windowBackground"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/apps_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="true"
+        android:background="?android:windowBackground"
+        android:elevation="@dimen/toolbar_elevation"
+        app:contentInsetEnd="0dp"
+        app:contentInsetStart="0dp"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
-            android:layout_width="match_parent"
-            android:drawableStart="@drawable/ic_search"
-            android:paddingStart="@dimen/activity_padding"
-            android:paddingEnd="52dp"
-            android:hint="@string/search"
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:fontFamily="@font/hkgrotesk"
-            android:drawablePadding="@dimen/activity_padding"
-            android:layout_marginStart="@dimen/activity_padding"
-            android:layout_marginEnd="@dimen/activity_padding"
-            android:layout_marginTop="@dimen/margin_small"
-            android:layout_marginBottom="@dimen/margin_small"
-            android:layout_height="@dimen/search_box_height"
-            android:background="@drawable/search_box_background"
-            android:imeOptions="actionSearch"
-            android:inputType="text"
-            android:id="@+id/searchBox"/>
+            android:text="@string/select_an_app"
+            android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title" />
 
         <ImageView
-            android:src="@drawable/ic_close"
-            android:padding="@dimen/margin_small"
+            android:id="@+id/home"
+            android:layout_width="?actionBarSize"
+            android:layout_height="?actionBarSize"
+            android:layout_gravity="bottom"
             android:clickable="true"
+            android:elevation="4dp"
             android:focusable="true"
+            android:foreground="@drawable/rounded_ripple_28"
+            android:padding="@dimen/activity_padding"
+            android:src="@drawable/ic_back" />
+
+        <ImageView
+            android:id="@+id/menu"
+            android:layout_width="?actionBarSize"
+            android:layout_height="?actionBarSize"
+            android:layout_gravity="bottom|end"
+            android:clickable="true"
+            android:elevation="4dp"
+            android:focusable="true"
+            android:foreground="@drawable/rounded_ripple_28"
+            android:padding="@dimen/activity_padding"
+            android:src="@drawable/ic_dots" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <FrameLayout
+        android:id="@+id/search_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:windowBackground"
+        android:elevation="@dimen/toolbar_elevation"
+        app:layout_constraintTop_toBottomOf="@id/apps_toolbar">
+
+        <EditText
+            android:id="@+id/searchBox"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/search_box_height"
+            android:layout_marginStart="@dimen/activity_padding"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginEnd="@dimen/activity_padding"
+            android:layout_marginBottom="@dimen/margin_small"
+            android:background="@drawable/search_box_background"
+            android:drawableStart="@drawable/ic_search"
+            android:drawablePadding="@dimen/activity_padding"
+            android:fontFamily="@font/hkgrotesk"
+            android:hint="@string/search"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:paddingStart="@dimen/activity_padding"
+            android:paddingEnd="52dp" />
+
+        <ImageView
             android:id="@+id/search_clear"
-            android:foreground="@drawable/rounded_ripple_36"
+            android:layout_width="@dimen/clear_button_size"
+            android:layout_height="@dimen/clear_button_size"
             android:layout_gravity="end|center_vertical"
             android:layout_marginEnd="24dp"
-            android:layout_width="@dimen/clear_button_size"
-            android:layout_height="@dimen/clear_button_size"/>
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="@drawable/rounded_ripple_36"
+            android:padding="@dimen/margin_small"
+            android:src="@drawable/ic_close" />
 
     </FrameLayout>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefreshLayout"
-        app:layout_constraintTop_toBottomOf="@id/search_container"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:animateLayoutChanges="false"
         android:layout_width="match_parent"
-        android:layout_height="0dp">
+        android:layout_height="0dp"
+        android:animateLayoutChanges="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/search_container">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
@@ -63,8 +108,8 @@
             android:clipToPadding="false"
             android:orientation="vertical"
             android:paddingTop="@dimen/margin_small"
-            android:paddingBottom="@dimen/margin_small"
             android:paddingEnd="@dimen/activity_padding"
+            android:paddingBottom="@dimen/margin_small"
             app:fastScrollEnabled="true"
             app:fastScrollHorizontalThumbDrawable="@drawable/thumb_drawable"
             app:fastScrollHorizontalTrackDrawable="@drawable/line_drawable"
@@ -75,27 +120,27 @@
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <LinearLayout
-        android:orientation="vertical"
-        android:gravity="center"
         android:id="@+id/empty_list"
-        android:visibility="gone"
-        tools:visibility="visible"
         android:layout_width="match_parent"
-        app:layout_constraintTop_toBottomOf="@id/search_container"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_height="0dp">
+        app:layout_constraintTop_toBottomOf="@id/search_container"
+        tools:visibility="visible">
 
         <ImageView
             android:layout_width="56dp"
             android:layout_height="56dp"
-            android:src="@drawable/ic_search"/>
+            android:src="@drawable/ic_search" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_small"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium.TapTap"
-            android:text="@string/nothing_found"/>
+            android:text="@string/nothing_found"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium.TapTap" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

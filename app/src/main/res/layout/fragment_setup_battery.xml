@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+        android:id="@+id/battery_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?android:actionBarSize"
         android:elevation="8dp"
@@ -66,6 +66,7 @@
                 android:layout_marginTop="@dimen/activity_padding"
                 android:paddingStart="@dimen/activity_padding"
                 android:paddingEnd="@dimen/activity_padding"
+                android:gravity="center"
                 android:text="@string/setup_battery_content"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -142,6 +143,21 @@
                 tools:visibility="visible" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/setup_battery_button_dont_kill"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                android:fontFamily="@font/hkgrotesk"
+                android:text="@string/setup_battery_button_dont_kill"
+                android:textAllCaps="false"
+                android:visibility="gone"
+                app:icon="@drawable/ic_open_external"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/setup_battery_button_miui"
+                tools:visibility="visible" />
+
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/setup_battery_button_oem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -153,7 +169,7 @@
                 app:icon="@drawable/ic_next"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/setup_battery_button_miui"
+                app:layout_constraintTop_toBottomOf="@id/setup_battery_button_dont_kill"
                 tools:visibility="visible" />
 
             <TextView

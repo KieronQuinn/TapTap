@@ -1,0 +1,17 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="oval">
+            <solid
+                android:color="@color/icon_circle_15" />
+            <size
+                android:width="36dp"
+                android:height="36dp" />
+        </shape>
+    </item>
+    <item
+        android:width="24dp"
+        android:height="24dp"
+        android:start="6dp"
+        android:top="6dp"
+        android:drawable="@drawable/ic_backup_restore" />
+</layer-list>

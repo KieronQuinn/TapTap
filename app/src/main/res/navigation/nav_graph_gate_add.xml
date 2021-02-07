@@ -3,9 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph_action_add"
-    app:startDestination="@id/gateListFragment">
+    app:startDestination="@id/settingsGateAddCategoryFragment">
     <fragment
-        android:id="@+id/gateListFragment"
-        android:name="com.kieronquinn.app.taptap.fragments.gate.GateListFragment"
-        android:label="@string/fab_add_gate" />
+        android:id="@+id/settingsGateAddCategoryFragment"
+        android:name="com.kieronquinn.app.taptap.ui.screens.settings.gate.add.category.SettingsGateAddCategoryFragment"
+        android:label="SettingsGateAddCategoryFragment"
+        tools:layout="@layout/fragment_add_gate_category">
+        <action
+            android:id="@+id/action_settingsGateAddCategoryFragment_to_settingsGateAddListFragment"
+            app:destination="@id/settingsGateAddListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsGateAddListFragment"
+        android:name="com.kieronquinn.app.taptap.ui.screens.settings.gate.add.list.SettingsGateAddListFragment"
+        android:label="SettingsGateAddListFragment"
+        tools:layout="@layout/fragment_add_gate_list">
+        <argument
+            android:name="category"
+            app:argType="com.kieronquinn.app.taptap.models.TapGateCategory" />
+    </fragment>
 </navigation>

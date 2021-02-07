@@ -2,11 +2,13 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'koin'
+apply plugin: "androidx.navigation.safeargs.kotlin"
 
 apply plugin: 'com.google.android.gms.oss-licenses-plugin'
 
 def gitCommitHash = 'git rev-parse --verify --short HEAD'.execute().text.trim()
-def tagName = '0.9_beta'
+def tagName = '0.10_beta'
 
 android {
     compileSdkVersion 30
@@ -16,9 +18,9 @@ android {
         applicationId "com.kieronquinn.app.taptap"
         minSdkVersion 24
         targetSdkVersion 30
-        versionCode 9
+        versionCode 10
         
-        versionName "0.9 Beta"
+        versionName "0.10 Beta"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -50,6 +52,10 @@ android {
     aaptOptions {
         noCompress "tflite", 'so'
     }
+
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 allprojects {
@@ -63,45 +69,54 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
     //AndroidX
-    implementation 'androidx.core:core-ktx:1.3.1'
+    implementation 'androidx.core:core-ktx:1.3.2'
     implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.fragment:fragment-ktx:1.3.0-alpha08'
+    implementation 'androidx.fragment:fragment-ktx:1.3.0-rc01'
     implementation "androidx.lifecycle:lifecycle-common-java8:2.2.0"
     implementation "androidx.lifecycle:lifecycle-service:2.2.0"
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0"
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     implementation "androidx.work:work-runtime-ktx:2.4.0"
-    implementation 'androidx.preference:preference:1.1.1'
-    implementation 'androidx.browser:browser:1.2.0'
-    implementation "androidx.navigation:navigation-fragment-ktx:2.3.0"
-    implementation "androidx.navigation:navigation-ui-ktx:2.3.0"
+    implementation 'androidx.preference:preference-ktx:1.1.1'
+    implementation 'androidx.browser:browser:1.3.0'
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+    implementation "androidx.window:window:1.0.0-alpha02"
+    implementation 'androidx.documentfile:documentfile:1.0.1'
 
     //Core Library Desugaring: https://developer.android.com/studio/write/java8-support#library-desugaring
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.0.10'
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.1'
 
     //Google
     kapt 'com.google.dagger:dagger-compiler:2.28.3'
     implementation files('libs/columbus.jar')
-    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'com.google.android.material:material:1.3.0-rc01'
     implementation 'com.google.android.gms:play-services-oss-licenses:17.0.0'
     implementation 'com.google.dagger:dagger:2.28.3'
     implementation 'com.google.code.gson:gson:2.8.6'
-    implementation 'org.tensorflow:tensorflow-lite:0.0.0-nightly'
+    implementation 'org.tensorflow:tensorflow-lite:2.1.0'
+
+    //Koin
+    implementation "org.koin:koin-android:$koin_version"
+    implementation "org.koin:koin-android-scope:$koin_version"
+    implementation "org.koin:koin-android-viewmodel:$koin_version"
 
     //Third Party
-    implementation "dev.chrisbanes:insetter-ktx:0.3.0"
+    implementation "dev.chrisbanes:insetter-ktx:0.3.1"
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.joaomgcd:taskerpluginlibrary:0.3.2'
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.afollestad.material-dialogs:bottomsheets:3.3.0'
-    implementation "com.airbnb.android:lottie:3.4.0"
+    implementation "com.airbnb.android:lottie:3.5.0"
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.19'
     implementation 'me.saket:better-link-movement-method:2.2.0'
     implementation 'com.github.judemanutd:autostarter:1.0.8'
+    implementation 'com.github.tfcporciuncula.flow-preferences:flow-preferences:1.3.3'
 
     //Testing
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 }

@@ -1,13 +1,17 @@
 package com.kieronquinn.app.taptap.models
 
+import android.Manifest
+import android.app.NotificationManager
+import android.content.Context
 import android.os.Build
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.kieronquinn.app.taptap.R
-import com.kieronquinn.app.taptap.columbus.actions.*
-import com.kieronquinn.app.taptap.columbus.actions.AccessibilityServiceGlobalAction
-import com.kieronquinn.app.taptap.columbus.actions.LaunchCamera
-import com.kieronquinn.app.taptap.utils.minSdk
+import com.kieronquinn.app.taptap.core.columbus.actions.*
+import com.kieronquinn.app.taptap.core.services.TapGestureAccessibilityService
+import com.kieronquinn.app.taptap.utils.extensions.doesHavePermissions
+import com.kieronquinn.app.taptap.utils.extensions.isAccessibilityServiceEnabled
+import com.kieronquinn.app.taptap.utils.extensions.isTaskerInstalled
 
 /*
     Tap Actions (wrapping the Action class) contain details on how the action will be shown in the settings
@@ -58,14 +62,61 @@ enum class TapAction(val clazz: Class<*>, val category: TapActionCategory, @Stri
     ACCESSIBILITY_BUTTON(AccessibilityServiceGlobalAction::class.java, TapActionCategory.ACTIONS, R.string.action_accessibility_button, R.string.action_accessibility_button_desc, R.drawable.ic_action_accessibility, minSdk(Build.VERSION_CODES.R), true, true),
     ACCESSIBILITY_BUTTON_CHOOSER(AccessibilityServiceGlobalAction::class.java, TapActionCategory.ACTIONS, R.string.action_accessibility_button_chooser, R.string.action_accessibility_button_chooser_desc, R.drawable.ic_action_accessibility, minSdk(Build.VERSION_CODES.R), true, true),
     ACCESSIBILITY_SHORTCUT(AccessibilityServiceGlobalAction::class.java, TapActionCategory.ACTIONS, R.string.action_accessibility_shortcut, R.string.action_accessibility_shortcut_desc, R.drawable.ic_action_accessibility, minSdk(Build.VERSION_CODES.R), true, true),
-    HAMBURGER(HamburgerAction::class.java, TapActionCategory.ADVANCED, R.string.action_hamburger, R.string.action_hamburger_desc, R.drawable.ic_action_hamburger, minSdk(Build.VERSION_CODES.N), true, true, dataType = ActionDataTypes.SECONDARY_GESTURE_SERVICE)
+    HAMBURGER(HamburgerAction::class.java, TapActionCategory.ADVANCED, R.string.action_hamburger, R.string.action_hamburger_desc, R.drawable.ic_action_hamburger, minSdk(Build.VERSION_CODES.N), true, true, dataType = ActionDataTypes.SECONDARY_GESTURE_SERVICE),
+    ACCEPT_CALL(AcceptCall::class.java, TapActionCategory.ACTIONS, R.string.action_accept_call, R.string.action_accept_call_desc, R.drawable.ic_action_accept_call, minSdk(Build.VERSION_CODES.O), true, false, dataType = ActionDataTypes.ANSWER_PHONE_CALLS_PERMISSION),
+    REJECT_CALL(RejectCall::class.java, TapActionCategory.ACTIONS, R.string.action_reject_call, R.string.action_reject_call_desc, R.drawable.ic_action_reject_call, minSdk(Build.VERSION_CODES.P), true, false, dataType = ActionDataTypes.ANSWER_PHONE_CALLS_PERMISSION),
+    SWIPE_UP(SwipeAction::class.java, TapActionCategory.ADVANCED, R.string.action_swipe_up, R.string.action_swipe_up_desc, R.drawable.ic_action_swipe_up, minSdk(Build.VERSION_CODES.N), true, true, dataType = ActionDataTypes.SECONDARY_GESTURE_SERVICE),
+    SWIPE_DOWN(SwipeAction::class.java, TapActionCategory.ADVANCED, R.string.action_swipe_down, R.string.action_swipe_down_desc, R.drawable.ic_action_swipe_down, minSdk(Build.VERSION_CODES.N), true, true, dataType = ActionDataTypes.SECONDARY_GESTURE_SERVICE),
+    SWIPE_LEFT(SwipeAction::class.java, TapActionCategory.ADVANCED, R.string.action_swipe_left, R.string.action_swipe_left_desc, R.drawable.ic_action_swipe_left, minSdk(Build.VERSION_CODES.N), true, true, dataType = ActionDataTypes.SECONDARY_GESTURE_SERVICE),
+    SWIPE_RIGHT(SwipeAction::class.java, TapActionCategory.ADVANCED, R.string.action_swipe_right, R.string.action_swipe_right_desc, R.drawable.ic_action_swipe_right, minSdk(Build.VERSION_CODES.N), true, true, dataType = ActionDataTypes.SECONDARY_GESTURE_SERVICE)
 }
+
+val GESTURE_REQUIRING_ACTIONS = TapAction.values().filter { it.dataType == ActionDataTypes.SECONDARY_GESTURE_SERVICE }
+
+val DEFAULT_ACTIONS = if(TapAction.SCREENSHOT.isAvailable){
+    arrayOf(TapAction.LAUNCH_ASSISTANT, TapAction.SCREENSHOT)
+}else{
+    arrayOf(TapAction.LAUNCH_ASSISTANT, TapAction.HOME)
+}
+
+val DEFAULT_ACTIONS_TRIPLE = arrayOf(TapAction.NOTIFICATIONS)
 
 enum class ActionDataTypes {
     PACKAGE_NAME,
     CAMERA_PERMISSION,
+    ANSWER_PHONE_CALLS_PERMISSION,
     TASKER_TASK,
     SHORTCUT,
     ACCESS_NOTIFICATION_POLICY,
     SECONDARY_GESTURE_SERVICE
+}
+
+fun TapAction.isActionDataSatisfied(context: Context): Boolean {
+    return when(dataType){
+        ActionDataTypes.PACKAGE_NAME -> false
+        ActionDataTypes.CAMERA_PERMISSION -> context.doesHavePermissions(Manifest.permission.CAMERA)
+        ActionDataTypes.ANSWER_PHONE_CALLS_PERMISSION -> context.doesHavePermissions(Manifest.permission.READ_PHONE_STATE, Manifest.permission.ANSWER_PHONE_CALLS)
+        ActionDataTypes.TASKER_TASK -> false
+        ActionDataTypes.SHORTCUT -> false
+        ActionDataTypes.ACCESS_NOTIFICATION_POLICY -> {
+            val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.isNotificationPolicyAccessGranted
+        }
+        ActionDataTypes.SECONDARY_GESTURE_SERVICE -> isAccessibilityServiceEnabled(
+            context,
+            TapGestureAccessibilityService::class.java
+        )
+        else -> true
+    }
+}
+
+fun TapAction.isSupported(context: Context): Boolean {
+    return when(this){
+        TapAction.TASKER_EVENT, TapAction.TASKER_TASK -> context.isTaskerInstalled()
+        else -> this.isAvailable
+    }
+}
+
+private fun minSdk(api: Int): Boolean {
+    return Build.VERSION.SDK_INT >= api
 }

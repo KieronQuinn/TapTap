@@ -12,8 +12,8 @@
     app:cardElevation="0dp"
     app:cardBackgroundColor="@color/windowBackground"
     app:cardCornerRadius="@dimen/margin_small"
-    android:layout_marginStart="@dimen/margin_large"
-    android:layout_marginEnd="@dimen/margin_extra_small"
+    android:layout_marginStart="@dimen/activity_padding"
+    android:layout_marginEnd="@dimen/activity_padding"
     android:layout_marginTop="@dimen/margin_small"
     android:layout_marginBottom="@dimen/margin_small">
 
@@ -61,8 +61,8 @@
             app:showText="false"
             android:paddingTop="@dimen/margin_medium"
             android:paddingBottom="@dimen/margin_medium"
-            android:layout_marginStart="@dimen/margin_large"
-            android:layout_marginEnd="@dimen/activity_padding"
+            android:paddingStart="@dimen/margin_large"
+            android:paddingEnd="@dimen/activity_padding"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 

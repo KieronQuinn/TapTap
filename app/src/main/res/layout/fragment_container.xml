@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true">
+
+    <fragment
+        android:id="@+id/nav_host_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:defaultNavHost="true"/>
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="true"
+        android:paddingEnd="@dimen/margin_small"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="?android:actionBarSize"
+            android:layout_gravity="center|bottom"
+            android:fontFamily="@font/hkgrotesk"
+            android:gravity="center"
+            android:paddingStart="@dimen/margin_small"
+            android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+            tools:text="Toolbar title" />
+
+    </com.google.android.material.appbar.MaterialToolbar>
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/switch_main"
+        android:layout_width="match_parent"
+        android:layout_height="?android:actionBarSize"
+        android:paddingStart="@dimen/activity_padding"
+        android:paddingEnd="@dimen/activity_padding"
+        android:layout_marginTop="0dp"
+        android:paddingTop="0dp"
+        android:text="@string/switch_main"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium.TapTap"
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

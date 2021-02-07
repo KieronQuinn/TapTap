@@ -2,9 +2,9 @@ package com.kieronquinn.app.taptap.models
 
 import android.content.Context
 import com.kieronquinn.app.taptap.R
-import com.kieronquinn.app.taptap.utils.SHARED_PREFERENCES_KEY_MODEL
-import com.kieronquinn.app.taptap.utils.getPhysicalScreenSize
-import com.kieronquinn.app.taptap.utils.sharedPreferences
+import com.kieronquinn.app.taptap.core.TapSharedPreferences.Companion.SHARED_PREFERENCES_KEY_MODEL
+import com.kieronquinn.app.taptap.utils.extensions.getPhysicalScreenSize
+import com.kieronquinn.app.taptap.utils.extensions.sharedPreferences
 
 enum class TfModel(val model: String, internal val screenSizeLowerBound: Double, internal val screenSizeUpperBound: Double) {
     //Screen size: 6.3in

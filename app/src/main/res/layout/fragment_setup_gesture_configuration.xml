@@ -14,21 +14,21 @@
         android:background="@android:color/transparent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintTop_toBottomOf="@id/configuration_toolbar"
         tools:alpha="1" />
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.kieronquinn.app.taptap.utils.RippleView
+        <com.kieronquinn.app.taptap.ui.views.RippleView
             android:id="@+id/rippleView"
             android:layout_width="match_parent"
             android:layout_height="20dp" />
     </FrameLayout>
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+        android:id="@+id/configuration_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?android:actionBarSize"
         app:layout_constraintTop_toTopOf="parent">
@@ -143,7 +143,7 @@
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/settingsGestureAdjustmentFragment"
-            android:name="com.kieronquinn.app.taptap.fragments.setup.GestureConfigurationPreferenceFragment"
+            android:name="com.kieronquinn.app.taptap.ui.screens.setup.configuration.preference.SetupConfigurationPreferenceFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="@dimen/configuration_button_height" />

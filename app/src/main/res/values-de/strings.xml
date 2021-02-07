@@ -1,11 +1,8 @@
 <resources>
     <string name="app_name">Tap, Tap</string>
     <string name="accessibility_service_description">TapTap als Bedienungshilfe\n\n<b>Wichtiger Hinweis: Über keine deiner Apps werden Daten gesammelt. Dieser Dienst wird nur genutzt, um die Erkennung aktiv zu halten und Interaktionen mit dem Gerät zu ermöglichen.</b></string>
-    <string name="toast_no_action_selected">Es wurde keine Aktion ausgewählt</string>
-    <string name="launch_accessibility">Starte Bedienungshilfen</string>
     <string name="setting_gesture">Geste</string>
     <string name="setting_gesture_desc">Passe die Einstellungen für die Geste an</string>
-    <string name="setting_actions">Aktionen</string>
     <string name="setting_gates">Ausnahmen</string>
     <string name="setting_gates_desc">Stelle Situationen ein, in denen die Geste keine Aktion auslösen soll</string>
     <string name="setting_feedback">Feedback</string>
@@ -13,7 +10,7 @@
     <string name="setting_feedback_vibrate">Vibrieren</string>
     <string name="setting_feedback_vibrate_desc">Vibriere einmal, wenn die Geste erkannt wurde und die Aktion ausgeführt wird</string>
     <string name="setting_feedback_wake">Gerät aufwecken</string>
-    <string name="setting_feedback_wake_desc">Wecke das Gerät bei ausgeschaltetem Bildschrim auf (Hinweis: Dies funktioniert nicht mit Aktionen, die den Bildschirm auschalten!)</string>
+    <string name="setting_feedback_wake_desc">Wecke das Gerät bei ausgeschaltetem Bildschrim auf</string>
 
     <!-- Gates -->
     <string name="gate_charging_state">Aufladen</string>
@@ -57,7 +54,6 @@
     <string name="action_next_desc">Spiele den nächsten Audiotitel</string>
     <string name="fab_add_action">Aktion hinzufügen</string>
     <string name="fab_remove_action">Entfernen</string>
-    <string name="fab_remove_action_drop">Loslassen zum Entfernen</string>
     <string name="add_action_category_launch">Starten</string>
     <string name="add_action_category_utilities">Werkzeuge</string>
     <string name="add_action_category_actions">Aktionen</string>
@@ -68,8 +64,6 @@
     <string name="action_launch_app_desc">Eine App öffnen</string>
     <string name="action_launch_app_desc_formattable">%1s öffnen. Diese Aktion wird übersprungen, wenn die App bereits geöffnet ist</string>
     <string name="fab_add_gate">Ausnahmen hinzufügen</string>
-    <string name="add_gate_category_state">Zustand</string>
-    <string name="add_gate_category_action">Aktion</string>
     <string name="nothing_found">Nichts gefunden</string>
     <string name="search">Suchen</string>
     <string name="show_system_apps">Zeige System-Apps</string>
@@ -80,7 +74,6 @@
     <string name="bs_help_action_title">Was sind Aktionen?</string>
     <string name="bs_help_gate">Ausnahmen sind Situationen, in denen das Ausführen der Aktionen bei Erkennung der Geste blockiert wird. Damit eine Aktion ausgeführt werden kann, darf keine aktivierte Ausnahme erfüllt sein.\nFalls ein Ausnahmeszenario erfüllt ist, z. B. wenn der Bildschrim aus ist und die \"Bildschirm aus\"-Ausnahme aktiviert ist, wird keine Aktion ausgeführt. Du kannst so viele Ausnahmen, wie du willst, hinzufügen und sie über die Schalter einzeln aktivieren/deaktivieren (statt sie jedes Mal zu löschen bzw. neu hinzuzufügen), um die Konfiguration schneller und einfacher zu machen</string>
     <string name="bs_help_gate_title">Was sind Ausnahmen?</string>
-    <string name="help">Hilfe</string>
     <string name="action_launch_assistant">Assistant starten</string>
     <string name="action_launch_assistant_desc">Deine Standard-Assistant-App starten</string>
     <string name="action_tasker_event">Tasker-Event</string>
@@ -89,11 +82,9 @@
     <string name="accessibility_info_off">Bedienungshilfen-Service ist nicht aktiviert</string>
     <string name="accessibility_info_off_desc">Die Geste wird momentan nicht funktionieren. Tippen zum Aktivieren</string>
     <string name="accessibility_info_on">Bedienungshilfen-Service ist aktiviert</string>
-    <string name="accessibility_info_toast">Wähle \"Tap, Tap\" von der Bedienungshilfen-Service-Liste aus, schalte es ein und kehre zu \"Tap, Tap\" zurück, um fortzufahren</string>
 
     <string name="category_about">Über</string>
     <string name="about">%1s v%2s</string>
-    <string name="about_summary">Erstellt von Kieron Quinn / Quinny899 @ XDA\nMit Dank an Mitwirkungen durch die Community, unter anderem: %1s</string>
     <string name="xda_thread">XDA-Thread</string>
     <string name="github">GitHub</string>
     <string name="libraries">Drittanbieter-Bibliotheken</string>
@@ -102,10 +93,8 @@
     <string name="tasker_config_label">Rückseite doppelt angetippt</string>
     <string name="action_tasker_task">Tasker-Task</string>
     <string name="action_tasker_task_desc">Führe einen ausgewählten Tasker-Task aus</string>
-    <string name="action_tasker_event_toast">Tasker nicht installiert oder Version nicht unterstützt</string>
     <string name="bs_tasker_content">Um einen Tasker-Task zu starten, ohne das Event-Plugin zu nutzen, muss die \"Allow External Acces\"-Option in den Tasker-Einstellungen aktiviert sein. Wenn diese Option nicht aktiviert ist, wird diese Aktion immer übersprungen</string>
     <string name="bs_tasker_title">Berechtigung benötigt</string>
-    <string name="bs_tasker_negative">Später</string>
     <string name="bs_tasker_positive">Tasker-Einstellungen öffnen</string>
     <string name="picker_launch_camera">Kamera öffnen</string>
     <string name="action_volume_panel">Lautstärke-Regler anzeigen</string>
@@ -145,8 +134,6 @@
 
     <string name="battery_and_optimisation">Akku &amp; Optimierung</string>
     <string name="battery_and_optimisation_desc">Informationen, warum \"Tap, Tap\" Strom verbaucht und warum es vielleicht von deinem Gerät beendet wird, wenn es im Hintergrund läuft (und wie man dies beheben kann)</string>
-    <string name="bs_battery_content">Tap, Tap nutzt einen Hintergrund-Bedienungshilfen-Service, um aktiv zu bleiben une immer auf das Tippen auf die Rückseite der Gerätes mithilfe des Beschleunigungssensors und Gyroskops zu \'hören\'. Aus diesem Grund kann es passieren, dass \"Tap, Tap\" ein wenig Strom verbraucht, wenn es im Hintergrund aktiv ist.\n\nAufgrund des sehr frühen Entwicklungsstadiums ist \"Tap, Tap\" nicht vollständig optimiert und die Akku-Effizienz kann sich durch weitere Optionen in der Zukunft verbessern, aber momentan bedeutet die Nutzung dieser Möglichkeit, dass man ein wenig weniger Akkulaufzeit hat..\n\Zusätzlich sind manche Firmwares aggressiver, was das beenden von Hintergrund-Aufgaben (auch Bedienungshilfen-Services), als Google dies empfiehlt. Falls \"Tap, Tap\" trotz dessen, dass die Akku-Optimierung deaktiviert ist nicht richtig funktionier, versuche bitte folgendes:\n• Halte die App im Arbeitsspeicher (normalerweise vom \"Letzte-Apps\" Bildschirm aus möglich\n• Deaktivere alle zuätzliche Akku-Optimierung für eine App (Normalerweise bei Einstellungen > Apps oder Settings > Batterie oder Akku)\n• Deaktiviere MIUI-Optimierung in den Entwickleroptionen (nur für MIUI)\n\nMehr Informationen, warum Apps vom Betriebssystem beendet werden und wie sich das lösen lässt, findest du unter dontkillmyapp.com</string>
-    <string name="bs_battery_positive">Gehe auf dontkillmyapp.com</string>
 
     <string name="gate_orientation_landscape">Querformat</string>
     <string name="gate_orientation_landscape_desc">Blockiert die Geste, wenn das Telefon im Querformat-Modus ist</string>

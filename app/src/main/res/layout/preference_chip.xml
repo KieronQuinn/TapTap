@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:baselineAligned="false"
+    android:clipToPadding="false"
+    android:gravity="center_vertical"
+    android:focusable="false"
+    android:clickable="false"
+    android:paddingBottom="@dimen/margin_small"
+    android:id="@+id/preference_root"
+    android:minHeight="?android:attr/listPreferredItemHeightSmall">
+
+    <LinearLayout
+        android:id="@+id/preference_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
+        android:paddingRight="?android:attr/listPreferredItemPaddingRight"
+        android:layout_marginStart="2dp"
+        android:layout_marginLeft="2dp"
+        android:paddingStart="14dp"
+        android:paddingLeft="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <include layout="@layout/image_frame"/>
+
+        <RelativeLayout
+            android:layout_width="0.0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:paddingTop="16.0dp"
+            android:paddingBottom="16.0dp">
+
+            <TextView
+                android:id="@android:id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="marquee"
+                android:fontFamily="@font/hkgrotesk"
+                android:singleLine="true"
+                android:textAppearance="?android:attr/textAppearanceListItem"
+                tools:text="Title" />
+
+            <TextView
+                android:id="@android:id/summary"
+                style="@style/PreferenceSummaryTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@android:id/title"
+                android:layout_alignStart="@android:id/title"
+                android:layout_alignLeft="@android:id/title"
+                android:maxLines="10"
+                android:textAlignment="5"
+                android:textColor="?android:attr/textColorSecondary"
+                tools:text="Summary" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@android:id/widget_frame"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:paddingStart="16.0dp"
+            android:paddingLeft="16.0dp"
+            android:paddingEnd="0.0dp"
+            android:paddingRight="0.0dp" />
+
+    </LinearLayout>
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/preference_chip_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="72dp"
+        android:layout_marginEnd="@dimen/margin_small"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small.TapTap"
+        app:chipEndPadding="@dimen/margin_small"
+        app:chipStartPadding="@dimen/margin_small"
+        app:layout_constraintEnd_toStartOf="@id/preference_chip_2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/preference_container"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintHorizontal_bias="0"
+        tools:chipBackgroundColor="@color/icon_circle_6"
+        tools:chipIcon="@drawable/ic_github"
+        tools:text="Chip 1" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/preference_chip_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_small"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small.TapTap"
+        app:chipEndPadding="@dimen/margin_small"
+        app:chipStartPadding="@dimen/margin_small"
+        app:layout_constraintEnd_toStartOf="@id/preference_chip_3"
+        app:layout_constraintStart_toEndOf="@id/preference_chip_1"
+        app:layout_constraintTop_toBottomOf="@id/preference_container"
+        tools:chipBackgroundColor="@color/icon_circle_6"
+        tools:chipIcon="@drawable/ic_github"
+        tools:text="Chip 2" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/preference_chip_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small.TapTap"
+        app:chipEndPadding="@dimen/margin_small"
+        app:chipStartPadding="@dimen/margin_small"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/preference_chip_2"
+        app:layout_constraintTop_toBottomOf="@id/preference_container"
+        tools:chipBackgroundColor="@color/icon_circle_6"
+        tools:chipIcon="@drawable/ic_github"
+        tools:text="Chip 3" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

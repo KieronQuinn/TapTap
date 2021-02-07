@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/actionCategoryFragment"
-        android:name="com.kieronquinn.app.taptap.fragments.action.ActionCategoryFragment"
+        android:name="com.kieronquinn.app.taptap.ui.screens.settings.action.add.category.SettingsActionAddCategoryFragment"
         android:label="@string/fab_add_action"
         tools:layout="@layout/fragment_add_action_category" >
         <action
@@ -21,13 +21,42 @@
 
     <fragment
         android:id="@+id/actionListFragment"
-        android:name="com.kieronquinn.app.taptap.fragments.action.ActionListFragment"
+        android:name="com.kieronquinn.app.taptap.ui.screens.settings.action.add.list.SettingsActionAddListFragment"
         android:label="ActionListFragment"
         tools:layout="@layout/fragment_add_action_list">
         <argument
             android:name="category"
             app:argType="com.kieronquinn.app.taptap.models.TapActionCategory"
             android:defaultValue="LAUNCH" />
+        <action
+            android:id="@+id/action_actionListFragment_to_settingsActionAddNotificationPolicyBottomSheetFragment"
+            app:destination="@id/settingsActionAddNotificationPolicyBottomSheetFragment" />
+        <action
+            android:id="@+id/action_actionListFragment_to_settingsActionAddGestureServiceBottomSheetFragment"
+            app:destination="@id/settingsActionAddGestureServiceBottomSheetFragment" />
+        <action
+            android:id="@+id/action_actionListFragment_to_settingsActionAddTaskerBottomSheetFragment"
+            app:destination="@id/settingsActionAddTaskerBottomSheetFragment" />
     </fragment>
+    <dialog
+        android:id="@+id/settingsActionAddNotificationPolicyBottomSheetFragment"
+        android:name="com.kieronquinn.app.taptap.ui.screens.settings.action.add.list.permissionsheets.SettingsActionAddNotificationPolicyBottomSheetFragment"
+        android:label="SettingsActionAddNotificationPolicyBottomSheetFragment" >
+        <argument
+            android:name="action"
+            app:argType="com.kieronquinn.app.taptap.models.TapAction" />
+    </dialog>
+    <dialog
+        android:id="@+id/settingsActionAddGestureServiceBottomSheetFragment"
+        android:name="com.kieronquinn.app.taptap.ui.screens.settings.action.add.list.permissionsheets.SettingsActionAddGestureServiceBottomSheetFragment"
+        android:label="SettingsActionAddGestureServiceBottomSheetFragment" >
+        <argument
+            android:name="action"
+            app:argType="com.kieronquinn.app.taptap.models.TapAction" />
+    </dialog>
+    <dialog
+        android:id="@+id/settingsActionAddTaskerBottomSheetFragment"
+        android:name="com.kieronquinn.app.taptap.ui.screens.settings.action.add.list.permissionsheets.SettingsActionAddTaskerBottomSheetFragment"
+        android:label="SettingsActionAddTaskerBottomSheetFragment" />
 
 </navigation>
