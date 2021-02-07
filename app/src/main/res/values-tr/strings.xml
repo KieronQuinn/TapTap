@@ -1,24 +1,33 @@
 <resources>
     <string name="app_name">Tap, Tap</string>
-    <string name="accessibility_service_description">TapTap Erişilebilirlik Hizmeti\n\n<b>Önemli Not: Uygulamalarınızın hiçbirinden veri toplanmaz, bu hizmet yalnızca tanıma özelliğini etkin tutmak ve cihazla etkileşim sağlamak için kullanılır</b></string>
+    <string name="accessibility_service_label">Tap, Tap</string>
+    <string name="accessibility_service_label_gesture">Tap, Tap İkincil Hizmeti</string>
+    <string name="accessibility_service_description">Tap, Tap Erişilebilirlik Hizmeti\n\n<b>Önemli Not: Uygulamalarınızın hiçbirinden veri toplanmaz, bu hizmet yalnızca tanıma özelliğini etkin tutmak ve cihazla etkileşim sağlamak için kullanılır</b></string>
+    <string name="accessibility_service_description_gesture">Tap, Tap Hareket Erişilebilirlik Hizmeti. \n\n<b>Uygulama size söylemezse bunu etkinleştirmenize gerek yoktur. Yalnızca belirli eylemler için gereklidir.</b>\n\n<b>Önemli Not: Uygulamalarınızın hiçbirinden veri toplanmaz, bu hizmet yalnızca cihazla hareket etkileşimi sağlamak için kullanılır.\n\nBu, Android\'in nasıl çalıştığı ve hareketleri gerçekleştirebilen hizmetler etkinleştirildiğinde uygulamaların arayüzlerini nasıl uyarladığı nedeniyle ayrı bir hizmettir. Örneğin, Chrome, bu hizmet etkinken kaydırma sırasında Omnibar\'ı gizlemeyecektir.</b></string>
     <string name="toast_no_action_selected">Hiçbir eylem seçilmedi</string>
     <string name="launch_accessibility">Erişilebilirliği Başlat</string>
     <string name="setting_gesture">Hareket</string>
     <string name="setting_gesture_desc">Hareketin nasıl çalışacağını ayarlayın</string>
     <string name="setting_actions">Eylemler</string>
+    <string name="setting_actions_double">Çift Dokunma Eylemleri</string>
+    <string name="setting_actions_triple">Üçlü Dokunma Eylemleri</string>
+    <string name="settings_actions_desc_double">Cihazınızın arkasına iki kez dokunduğunuzda çalıştırılacak eylemleri ayarlayın</string>
+    <string name="settings_actions_desc_triple">Cihazınızın arkasına üç kez dokunduğunuzda çalıştırılacak eylemleri ayarlayın</string>
     <string name="setting_gates">Geçitler</string>
     <string name="setting_gates_desc">Hareketin bir eylem yürütmemesi gereken durumları ayarlayın</string>
     <string name="setting_feedback">Geri bildirim</string>
     <string name="setting_feedback_desc">Hareket çalıştırıldığında cihazın size nasıl bildirimde bulunacağını ayarlayın</string>
+    <string name="setting_gesture_model">Cihaz Boyutu</string>
+    <string name="setting_gesture_model_desc">Hareket modelini seçerken kullanılacak cihazın boyutunu ayarlayın.</string>
     <string name="setting_feedback_vibrate">Titret</string>
     <string name="setting_feedback_vibrate_desc">Hareket kullanıldığında ve eylem yürütüldüğünde bir kez titret</string>
     <string name="setting_feedback_wake">Cihazı Uyandır</string>
     <string name="setting_feedback_wake_desc">Cihazı ekran kapalıyken uyandırır (not: bu, ekranı kapatan eylemlere müdahale eder!)</string>
 
     <string-array name="device_model_keys">
-        <item>Pixel 3 XL</item>
-        <item>Pixel 4</item>
-        <item>Pixel 4 XL</item>
+        <item>Büyük</item>
+        <item>Orta</item>
+        <item>Küçük</item>
     </string-array>
 
     <!-- Gates -->
@@ -88,33 +97,47 @@
     <string name="search">Ara</string>
     <string name="show_system_apps">Sistem uygulamalarını göster</string>
     <string name="select_an_app">Bir uygulama seç</string>
-    <string name="setting_gesture_sensitivity">Duyarlılık</string>
+    <string name="setting_gesture_sensitivity">Hassasiyet</string>
     <string name="setting_gesture_sensitivity_desc">Ne kadar kuvvetin \'gürültü\' olarak filtreleneceğini ayarlayarak hareketin hassasiyetini değiştirir. Daha düşük bir hassasiyet, hareketin çoğu cihazda daha zor olacağı anlamına gelirken, daha yüksek bir hassasiyet yanlış algılamaya daha yatkındır. Varsayılan tam olarak ortadadır.</string>
-
+    <string name="help_action">Eylemler, cihazınızın arkasına iki kez dokunduğunuzda çalıştırılan görevlerdir. Eylemler liste sırasına göre - yukarıdan aşağıya ve yalnızca gereksinimler karşılanırsa çalıştırılır.\nDaha fazla bilgi için dokunun.</string>
+    <string name="bs_help_action">Eylemler, cihazınızın arkasına iki kez dokunduğunuzda çalıştırılan görevlerdir. Eylemler yukarıdan aşağıya liste sırasına göre çalıştırılır. Bir eylem başarılı bir şekilde yürütülebilirse, başka eylem yapılmayacaktır. Ancak, bir eylem mevcut değilse (örneğin, bir "Asistanı başlat" eylemi için asistan zaten çalışıyorsa veya gereksinimler karşılanmıyorsa), altındaki sonraki eylem çalıştırılacak ve biri başarıyla çalıştırılıncaya kadar bu böyle devam edecektir.</string>
     <string name="bs_help_action_title">Eylemler nedir?</string>
     <string name="bs_help_gate">Geçitler, hareketin herhangi bir eylem gerçekleştirmesini engelleyebilecek durumlardır. Herhangi bir eylemin gerçekleştirilebilmesi için, etkinleştirilmiş tüm geçitler açık olmalıdır.\nÖrneğin ekran kapalıysa ve "Ekran kapalı" geçidi etkinse, herhangi bir eylem yapılmaz. İstediğiniz sayıda geçit ekleyebilir ve yapılandırmayı daha hızlı ve kolay hale getirmek için anahtarları kullanarak (silmek ve yeniden eklemek yerine) etkinleştirebilir/devre dışı bırakabilirsiniz.</string>
     <string name="bs_help_gate_title">Geçitler nedir?</string>
     <string name="help">Yardım</string>
     <string name="action_launch_assistant">Asistanı başlat</string>
     <string name="action_launch_assistant_desc">Varsayılan asistan uygulamanızı başlatır</string>
+    <string name="action_launch_search">Aramayı başlat</string>
+    <string name="action_launch_search_desc">Google Aramayı başlatır</string>
     <string name="action_tasker_event">Tasker Etkinliği</string>
     <string name="action_tasker_event_desc">Tasker Etkinliği eklentisini tetikler</string>
 
     <string name="accessibility_info_off">Erişilebilirlik Hizmeti devre dışı</string>
+    <string name="accessibility_info_off_gesture">Hareket Erişilebilirlik Hizmeti devre dışı</string>
+    <string name="accessibility_info_on_gesture">Hareket Erişilebilirlik Hizmeti etkin, ancak devre dışı bırakılabilir</string>
     <string name="accessibility_info_off_desc">Hareket şu anda çalışamaz. Etkinleştirmek için dokunun</string>
+    <string name="accessibility_info_off_gesture_desc">Dokunma ve hareketler gibi ekranla etkileşim gerektiren eylemler şu anda çalışmayacaktır. Etkinleştirmek için dokunun.</string>
+    <string name="accessibility_info_on_gesture_desc">Chrome Omnibar\'ın kaydırılmaması gibi uygulama davranışıyla ilgili sorunlar yaşıyorsanız, bu hizmeti devre dışı bırakmak isteyebilirsiniz.</string>
     <string name="accessibility_info_on">Erişilebilirlik Hizmeti etkin</string>
+    <string name="accessibility_info_on_desc_2">Hareketin çalışması için bu hizmet gereklidir.</string>
     <string name="accessibility_info_toast">Erişilebilirlik hizmeti listesinden "Tap, Tap"i seçin, anahtarı açın ve devam etmek için Tap, Tap\'e dönün</string>
+    <string name="accessibility_info_toast_gesture">Erişilebilirlik hizmeti listesinden "Tap, Tap İkincil Hizmeti"ni seçin, anahtarı açın ve devam etmek için Tap, Tap\'e geri dönün</string>
+    <string name="menu_beta">Bu uygulama Beta sürümündedir. Bilgi için dokunun.</string>
+    <string name="bs_beta">Bu uygulama geliştirme aşamasındadır ve birçok cihazda test edilmesine ve kullanıcıların önerisine izin vermek için "Beta" durumunda yayınlanmıştır. Bir hatayla karşılaşırsanız, lütfen bunu GitHub\'da bir sorun olarak bildirin. Bir özellik talep etmek isterseniz, XDA başlığına gönderin veya GitHub\'da isteyin.\n\nGeliştirme sırasındaki sabrınız için teşekkürler.</string>
+    <string name="bs_beta_title">Beta</string>
 
     <string name="category_about">Hakkında</string>
+    <string name="about">%1s v%2s</string>
     <string name="about_summary">XDA üyesi Kieron Quinn / Quinny899 tarafından oluşturulmuştur\nKatkıda bulunanlara teşekkürler: %1s</string>
     <string name="xda_thread">XDA Konusu</string>
     <string name="github">GitHub</string>
     <string name="libraries">Üçüncü taraf kütüphaneleri</string>
     <string name="donate">Bağış yap</string>
     <string name="twitter">Beni Twitter\'da takip et</string>
-    <string name="tasker_config_label">Double Tapped Back</string>
+    <string name="tasker_config_label">Arkaya Çift Dokunma</string>
     <string name="action_tasker_task">Tasker Görevi</string>
     <string name="action_tasker_task_desc">Belirtilen bir Tasker görevini çalıştırır</string>
+    <string name="action_tasker_task_desc_formatted">Bir Tasker görevini (%1s) çalıştırır.</string>
     <string name="action_tasker_event_toast">Tasker yüklü değil veya sürüm desteklenmiyor</string>
     <string name="bs_tasker_content">Etkinlik eklentisini kullanmadan bir Tasker Görevini başlatmak için Tasker ayarlarında \"Harici Erişime İzin Ver\" seçeneğini etkinleştirmeniz gerekir. Bu seçeneği etkinleştirmediyseniz, bu Eylem her zaman atlanır.</string>
     <string name="bs_tasker_title">İzin Gerekli</string>
@@ -122,7 +145,7 @@
     <string name="bs_tasker_positive">Tasker Ayarlarını Aç</string>
     <string name="picker_launch_camera">Kamerayı Başlat</string>
     <string name="action_volume_panel">Ses panelini göster</string>
-    <string name="action_volume_panel_desc">Ses akışı ile sistem ses panelini gösterir</string>
+    <string name="action_volume_panel_desc">Ayar gösterimi için ses akışıyla birlikte sistem ses panelini gösterir</string>
     <string name="action_volume_up">Sesi artır</string>
     <string name="action_volume_up_desc">Mevcut ses akışının ses seviyesini artırın</string>
     <string name="action_volume_down">Sesi azalt</string>
@@ -155,13 +178,15 @@
     <string name="setting_feedback_override_dnd_desc">Cihazın DND ayarını yok sayar ve tetiklendiğinde daima titretir</string>
     <string name="gate_keyboard_visibility">Klavye açıkken</string>
     <string name="gate_keyboard_visibility_desc">Klavye açıkken ve kullanımdayken hareketi engeller. Aktif olarak yazmıyorsanız, bunun her zaman işe yaramayabileceğini unutmayın.</string>
+    <string name="gate_keyboard_visibility_desc_when">Yalnızca klavye açıkken ve kullanımdayken çalıştırır. Aktif olarak yazmıyorsanız bunun her zaman işe yaramayabileceğini unutmayın.</string>
     <string name="battery_optimisation">Pil Optimizasyonunu Devre Dışı Bırak</string>
     <string name="battery_optimisation_desc">Bu, Tap, Tap\'in çalışmaya devam etmesine yardımcı olur (ancak her zaman çalışacağını garanti etmez, aşağıdaki pil seçeneğine bakın). Devre dışı bırakmak için dokunun.</string>
 
     <string name="battery_and_optimisation">Pil &amp; Optimizasyon</string>
     <string name="battery_and_optimisation_desc">Tap, Tap\'in neden pil kullandığı ve arka planda çalıştırıldığında cihazınız tarafından neden sonlandırıldığı (ve bunu nasıl düzeltebileceğiniz) hakkında bilgi</string>
-    <string name="bs_battery_content">Tap, Tap, çalışmaya devam etmek için bir arka plan erişilebilirlik hizmeti kullanır ve İvmeölçer ve Jiroskop kullanarak cihazın arkasındaki dokunuşları her zaman \"dinler\". Bu nedenle, Tap, Tap arka planda çalışırken biraz pil kullanabilir.\n\nErken geliştirme durumu nedeniyle, Tap, Tap henüz tam olarak optimize edilmemiştir ve gelecekte seçenekler yoluyla pil ömrü iyileşebilir, ancak şu anda biraz daha düşük pil ömrü, bu özelliğe sahip olmanın bir sonucudur.\n\nEk olarak, MIUI veya OneUI gibi bazı OEM yazılımları, arka plan görevlerini (erişilebilirlik hizmetleri dahil) sonlandırmada Google\'ın önerdiğinden daha agresiftir. Tap, Tap, Pil Optimizasyonu devre dışıyken bile kapatıldıktan sonra cihazınızda çalışmayı durdurursa, lütfen şunları deneyin:\n• Uygulamayı belleğe kilitleme (genellikle son uygulamalardan)\n• Bir uygulama için daha fazla pil optimizasyonunu devre dışı bırakma (genellikle Ayarlar > Uygulamalar veya Ayarlar > Pil altında)\n• Geliştirici Seçeneklerinde MIUI Optimizasyonunu Devre Dışı Bırakma (yalnızca MIUI))\n\nSistem tarafından sonlandırılan uygulamalar hakkında daha fazla bilgi ve bunu cihazınız için nasıl çözeceğinize dair öneriler dontkillmyapp.com adresinde bulunabilir.</string>
+    <string name="bs_battery_content">Tap, Tap, çalışmaya devam etmek için bir arka plan erişilebilirlik hizmeti kullanır ve İvmeölçer ve Jiroskop kullanarak cihazın arkasındaki dokunuşları her zaman \"dinler\". Bu nedenle, Tap, Tap arka planda çalışırken biraz pil kullanabilir.\n\nErken geliştirme durumu nedeniyle, Tap, Tap henüz tam olarak optimize edilmemiştir ve gelecekte seçenekler yoluyla pil ömrü iyileşebilir, ancak şu anda biraz daha düşük pil ömrü, bu özelliğe sahip olmanın bir sonucudur.\n\nEk olarak, MIUI veya OneUI gibi bazı OEM yazılımları, arka plan görevlerini (erişilebilirlik hizmetleri dahil) sonlandırmada Google\'ın önerdiğinden daha agresiftir. Tap, Tap, Pil Optimizasyonu devre dışıyken bile kapatıldıktan sonra cihazınızda çalışmayı durdurursa, lütfen şunları deneyin:\n• Uygulamayı belleğe kilitleme (genellikle son uygulamalardan)\n• Bir uygulama için daha fazla pil optimizasyonunu devre dışı bırakma (genellikle Ayarlar > Uygulamalar veya Ayarlar > Pil altında)\n• Geliştirici Seçeneklerinde MIUI Optimizasyonunu Devre Dışı Bırakma (yalnızca MIUI)\n\nSistem tarafından sonlandırılan uygulamalar hakkında daha fazla bilgi ve bunu cihazınız için nasıl çözeceğinize dair öneriler dontkillmyapp.com adresinde bulunabilir.</string>
     <string name="bs_battery_positive">dontkillmyapp.com\'a git</string>
+    <string name="bs_battery_neutral">Pil Seçeneklerini Göster</string>
 
     <string name="gate_orientation_landscape">Yatay yönlendirme</string>
     <string name="gate_orientation_landscape_desc">Telefon yatay yöndeyken hareketi engeller</string>
@@ -193,6 +218,114 @@
     <string name="gate_music_desc_when_inverse">Müzik çalınmadığında hareketi engeller</string>
     <string name="gate_music_desc_inverse">Sadece müzik çalmıyorken çalıştır</string>
     <string name="notification_policy_grant">Devam et</string>
-    <string name="bs_notification_policy_content">Zil modunun değiştirilmesi, Rahatsız Etmeyin durumunu yönetebilmek için Rahatsız Etmeyin erişimini gerektirir. Lütfen aşağıya tıklayarak, Tap, Tap\'ı seçerek ayarlardan izin verin ve bu ekrana geri dönün.</string>
+    <string name="bs_notification_policy_content">Zil modunun değiştirilmesi, Rahatsız Etmeyin durumunu yönetebilmek için Rahatsız Etmeyin erişimini gerektirir. Lütfen aşağıya tıklayarak, Tap, Tap\'i seçerek ayarlardan izin verin ve bu ekrana geri dönün.</string>
+    <string name="tap_notification_title">Tap, Tap Hizmeti</string>
+    <string name="tap_notification_content">Tap, Tap arka planda çalışıyor. Gizlemek için dokunun.</string>
+    <string name="tap_notification_channel_title">Arka plan bildirimi</string>
+    <string name="tap_notification_channel_description">Ayrı bir hizmet kullanma seçeneği etkinleştirildiğinde Tap, Tap\'in arka planda çalışmasını sağlamak için kullanılan bildirim</string>
+    <string name="setting_advanced">Gelişmiş</string>
+    <string name="setting_advanced_desc">Performansı ve daha fazlasını değiştirmek için gelişmiş ayarlar ve ince ayarlar</string>
+    <string name="setting_advanced_split_service">Bölünmüş hizmetleri kullan</string>
+    <string name="setting_advanced_split_service_desc">Bu ayar, erişilebilirlik hizmetiyle birlikte çalışan ikinci bir hizmetin kullanılmasını sağlar. Karşıt-sezgisel görünmekle birlikte, bu bir ön plan hizmeti olduğundan ve erişilebilirlik hizmetini çok az şey yaparak tanıma ve yürütme için ikinci hizmete güvenerek uygulamanın bazı cihazlarda sistem tarafından sonlandırılmamasına yardımcı olabilir. Bunun tam olarak etkili olması için yeniden başlatmanız gerekebilir.</string>
+    <string name="setting_advanced_warning">İşte ejderhalar</string>
+    <string name="setting_advanced_warning_desc">Bu ayarlar deneyseldir ve cihazınızda çalışmayabilir veya Tap, Tap işlevinin tamamen durmasına neden olabilir. Bunun gerçekleştiğini fark ederseniz, ayarları <b>kapalı</b> konuma getirin ve cihazınızı yeniden başlatın, bu da hizmeti sıfırlamalıdır.</string>
+    <string name="switch_main">Hareketi Etkinleştir</string>
+    <string name="setting_advanced_restart_service">Hizmeti otomatik yeniden başlat</string>
+    <string name="setting_advanced_restart_service_desc">Tap, Tap dinleyici bileşenini saatte bir otomatik olarak yeniden başlatmayı dener. Bölünmüş hizmetleri etkinleştirdiyseniz, ön plan hizmeti de yeniden başlatılacaktır. Not: Erişilebilirlik hizmeti otomatik olarak <b>yeniden başlatılamaz</b>, bu nedenle kapatılırsa veya devre dışı bırakılırsa bu çalışmaz.</string>
+    <string name="update_error">Güncellemeler denetlenemedi</string>
+    <string name="bs_update_download">İndir</string>
+    <string name="bs_update_later">Daha sonra hatırlat</string>
+    <string name="bs_update_title">Güncelleme mevcut!</string>
+    <string name="bs_update_content"><![CDATA[<h2>A new update is available</h2><br><b>Mevcut sürüm:</b> %1s<br><b>Yeni sürüm:</b> %1s<br><b>Güncelleme tarihi:</b> %1s<br><b>Değişiklikler:</b><br>%1s]]></string>
+    <string name="tap_update_notification_channel_title">Güncelleme bildirimleri</string>
+    <string name="tap_update_notification_channel_description">Uygulama günde bir kez güncellemeleri kontrol ettiğinde gösterilen bildirimler</string>
+    <string name="tap_update_notification_title">Tap, Tap güncellemesi mevcut</string>
+    <string name="tap_update_notification_content">Tap, Tap (%1s to %1s) için bir güncelleme mevcut</string>
+    <string name="action_google_voice_access">Google Voice Erişimini Tetikle</string>
+    <string name="action_google_voice_access_desc">Çalışıyorsa, Google Voice Erişimini <b>erişilebilirlik uygulamasını</b> tetikler (bu yardımcı veya sesli arama DEĞİLDİR)</string>
+    <string name="switch_triple">Üçlü Dokunmayı Etkinleştir</string>
+    <string name="help_action_triple">Not: Üç kez dokunma etkinleştirildiğinde, çift dokunma eyleminin yanıt vermesi daha yavaş olabilir. Bunun nedeni, eylemi çalıştırmadan önce üçüncü bir dokunuşun gerçekleştirilip gerçekleştirilmeyeceğini görmek için beklemek zorunda olmasıdır.</string>
+    <string name="action_hamburger">Hamburger Menüsü / Geri</string>
+    <string name="action_hamburger_desc">Bu eylem, ekrana hamburger menüsünün genellikle bulunduğu konumda basar.\n<b> Önemli uyarı</b>: Bu, menünün genellikle bulunduğu konumda (sol üst) <b>herhangi bir şeye</b> dokunur, bu nedenle bazen geri döner ve hatta diğer düğmeler dahil olmak üzere ekrandaki diğer öğelere o konumda dokunabilir.<b>Son derece dikkatli kullanın</b>, sınırlamak için üçlü dokunma ve uygulama gereksinimlerini kullanmayı düşünün.</string>
+    <string name="action_accessibility_button">Erişilebilirlik Düğmesini Tetikle</string>
+    <string name="action_accessibility_button_desc">Seç ve Dinle gibi diğer hizmetleri tetiklemek için kullanılabilen erişilebilirlik düğmesini taklit eder</string>
+    <string name="action_accessibility_button_chooser">Erişilebilirlik Düğmesi Seçici</string>
+    <string name="action_accessibility_button_chooser_desc">Erişilebilirlik Düğmesinin seçici menüsünü açar</string>
+    <string name="action_accessibility_shortcut">Erişilebilirlik Kısayolunu Tetikle</string>
+    <string name="action_accessibility_shortcut_desc">Erişilebilirlik Kısayolunu Tetikler. Bu eylemi kullanmadan önce, Tap, Tap\'in kısayolu kullanacak şekilde ayarlanmadığından emin olun!</string>
+    <string name="action_app_drawer">Uygulama Menüsü</string>
+    <string name="action_app_drawer_desc"><b>Desteklenen bir başlatıcının</b> uygulama menüsünü açar. Bu yalnızca Android 11 tabanlı başlatıcılarda çalışır.</string>
+    <string name="tasker_config_label_triple">Arkaya Üçlü Dokunma</string>
+    <string name="tasker_triple_tap">Üçlü dokunma</string>
+    <string name="tasker_description_double">Telefonun arkasına iki kez dokunulduğunda tetiklenir</string>
+    <string name="tasker_description_triple">Telefonun arkasına üç kez dokunulduğunda tetiklenir</string>
+    <string name="actions_empty_state">Henüz eylem eklenmedi</string>
+    <string name="gates_empty_state">Henüz geçit eklenmedi</string>
+    <string name="landing_title">Tap, Tap\'e hoş geldiniz</string>
+    <string name="landing_button_get_started">Başlayalım</string>
+    <string name="landing_button_skip_setup">Kurulumu atla</string>
+
+    <string name="setup_gesture_configuration_title">Hareket</string>
+    <string name="setup_gesture_configuration_listening">Tap, Tap artık geçici olarak çift ve üçlü vuruşları dinliyor. Çalışıp çalışmadığını kontrol etmek için cihazınızın arkasına iki kez hafifçe vurmayı deneyin.</string>
+    <string name="setup_gesture_configuration_listening_found">Hareket tanındı. Yapılandırmayı aşağıdaki tercihinize uyacak şekilde ayarlayın, ardından İleri\'ye dokunun.</string>
+    <string name="setup_gesture_configuration_subtitle">Ayarlama</string>
+    <string name="setup_gesture_configuration_adjustment_sensitivity_desc">Daha düşük bir hassasiyet, hareketin çoğu cihazda daha zor olacağı anlamına gelirken, daha yüksek bir hassasiyet yanlış algılamaya daha yatkındır</string>
+    <string name="setup_gesture_configuration_adjustment_model_desc">Hareket modelini seçerken kullanılacak cihazın boyutunu ayarlayın. Şu anda seçilen: %1s</string>
+    <string name="configuration_button_troubleshooting">Sorun giderme</string>
+    <string name="configuration_button_next">İleri</string>
+    <string name="configuration_button_finish">Bitir</string>
+    <string name="bs_troubleshooting_title">Sorun giderme</string>
+    <string name="bs_troubleshooting_content">Hareket çalışmıyorsa, işte çalışmasını sağlamak için deneyebileceğiniz birkaç şey var:\n\n• Cihaz boyutunu değiştirmeyi deneyin. Tap, Tap, bir model seçerken kullanılacak en iyi boyutu tahmin etmeye çalışırken, bu her zaman doğru değildir\n\n• Hassasiyeti değiştirin - bazı cihazlar daha yüksek hassasiyet gerektirebilir\n\n• Arkada farklı bir konuma dokunmayı deneyin. Sensörler farklı cihazlarda farklı yerlerde bulunur, bu nedenle daha yükseğe, aşağıya veya bir köşeye dokunmanın yardımcı olduğunu görebilirsiniz.\n\n• Biraz daha sert dokunun. Bunu test ederken telefonunuzu sağlam bir şekilde tutun, böylece düşürmezsiniz, ancak sert bir dokunuş yumuşak bir dokunuştan daha kolaydır.\n\n• Hızlı bir şekilde iki kez dokunun, ancak çok hızlı değil - çok yavaşsanız, çift dokunuş olarak kaydedilmeyebilir (bekleme süresi yaklaşık bir saniyedir)</string>
+    <string name="setup_foss_info_title">Tap, Tap ücretsiz ve açık kaynaktır</string>
+    <string name="setup_foss_info_content"><![CDATA[Tap, Tap ücretsizdir ve her zaman ücretsiz olacaktır ve açık kaynak bileşenlerden oluşur. Kaynak kodu <a href=\"https://kieronquinn.co.uk/redirect/TapTap/github\">GitHub deposu</a>nda herkes tarafından görüntülenebilir ve düzenlenebilir. Uygulama için resmi ücretsiz indirmeler <b>yalnızca</b> <a href="https://kieronquinn.co.uk/redirect/TapTap/xda">XDA</a>, <a href="https://kieronquinn.co.uk/redirect/TapTap/github">GitHub deposu</a>, ve <a href="https://kieronquinn.co.uk/redirect/TapTap/apkmirror">APKMirror</a>\'da mevcuttur. Resmi uygulama her zaman otomatik olarak GitHub\'dan güncelleme indirmeyi teklif edecektir, ancak bağlantı direkt olabilir ve indirme başlamadan önce bir sayfa göremeyebilirsiniz.]]></string>
+    <string name="setup_foss_info_warning">Tap, Tap\'i yalnızca yukarıda bağlantısı verilen resmi kaynaklardan birinden yükleyin. <b>Başka bir kaynaktan indirdiyseniz, onu kaldırmanız ve yukarıdaki bağlantılardan birinden yeniden yüklemeniz kesinlikle önerilir</b>. Daha fazla bilgi için dokunun.</string>
+    <string name="setup_foss_info_bs_title">Uyarı</string>
+    <string name="setup_foss_info_bs_content">Tap, Tap bir Erişilebilirlik Hizmeti kullanır. Bu, cihazınızda otomatik olarak eylemler gerçekleştirmesine izin verir ve güvenmediğiniz uygulamalara verilmemelidir. Bu nedenle, Tap, Tap açık kaynaktır - böylece siz ve isteyen herkes koda bakabilir ve olmaması gereken hiçbir şey yapmadığını doğrulayabilirsiniz.\n\nAncak, APK\'yı resmi konumlar dışında bir kaynaktan indirdiyseniz bu garanti geçerli değildir. GitHub deposu, XDA veya APKMirror dışında herhangi bir yerden indirdiyseniz, hemen kaldırmanız ve resmi konumlardan birinden yeniden yüklemeniz şiddetle tavsiye edilir.</string>
+    <string name="setup_foss_info_content_lower">Tap, Tap uygulamasını beğendiyseniz ve bağış yapmak istiyorsanız, bunu yapmak için bağlantı ayarların alt kısmına yakındır. Bağış yapsanız da yapmasanız da paylaşımınız, desteğiniz ve Tap, Tap kullanımınız çok takdir ediliyor, teşekkürler!</string>
+    <string name="setup_accessibility_title">Erişilebilirlik Hizmetini Etkinleştir</string>
+    <string name="setup_accessibility_content">Tap, Tap, arka planda çalışmaya devam etmek, hangi uygulamanın çalıştığını bilmek ve düğmeye basma, tetikleme ve dokunma gibi olayları taklit etmek için bir erişilebilirlik hizmeti kullanır.</string>
+    <string name="setup_accessibility_info_content">Tap, Tap, uygulamalarınızdan asla veri toplamaz ve hareketi gerçekleştirmediğinizde cihazınızla asla etkileşime girmez.</string>
+    <string name="setup_accessibility_content_lower">Hizmeti etkinleştirmek için yukarıdaki düğmeye dokunun, açılan listeden \"Tap, Tap\"i seçin ve etkinleştirmek için anahtara dokunun.\n\nBu uygulamaya dönmek için iki kez geri basmanız gerekebilir.</string>
+    <string name="setup_accessibility_button">Hizmeti Etkinleştir</string>
+    <string name="setup_accessibility_button_enabled">Hizmet Etkinleştirildi</string>
+    <string name="setup_battery_title">Pil Optimizasyonunu Devre Dışı Bırak</string>
+    <string name="setup_battery_content">Sistemin arka plan hizmetini sonlandırmasını önlemek için Tap, Tap\'in pil optimizasyonunu devre dışı bırakması gerekir. Bunu yapmak için Android\'in dahili seçeneği aşağıdayken, cihazınızdaki diğer seçenekleri devre dışı bırakmanız gerekebilir. Mümkün olduğunda, bazı cihazlarda ayarları açmak için bir düğme sağlanır.</string>
+    <string name="setup_battery_info_content">"Makine öğrenimi için özel bir hızlandırıcıya (Qualcomm Hexagon Tensor Accelerator gibi) sahip cihazlarda pil kullanımı düşük olacaktır. Bunun olmadığı cihazlarda, Tap, Tap etkinken pilin daha hızlı tükenmesiyle karşılaşabilirsiniz."</string>
+    <string name="setup_battery_button">Pil Optimizasyonunu Devre Dışı Bırak</string>
+    <string name="setup_battery_button_disabled">Pil Optimizasyonu Devre Dışı</string>
+    <string name="setup_battery_button_miui">MIUI Optimizasyonunu Devre Dışı Bırak</string>
+    <string name="setup_battery_button_miui_disabled">MIUI Optimizasyonu Devre Dışı</string>
+    <string name="setup_battery_button_miui_toast">MIUI Optimizasyonunu Devre Dışı Bırak ("Uygulamalar" altında)</string>
+    <string name="setup_battery_button_oem">OEM pil ayarlarını aç</string>
+    <string name="setup_battery_oem_info">Not: OEM pil düğmesi, devre dışı bırakılan optimizasyona tepki veremez. Zaten devre dışı bıraktıysanız, devam edebilirsiniz.</string>
+    <string name="setup_battery_button_oem_toast">Pil etkinliğini başlatırken hata oluştu. Lütfen cihaz ayarlarınızın optimizasyonunu kendiniz bulun ve devre dışı bırakın.</string>
+    <string name="bs_secondary_service_title">İkincil Hizmet Gerekli</string>
+    <string name="bs_secondary_service_content">Bu eylem, ikincil (hareket) erişilebilirlik hizmetinin etkinleştirilmesini gerektirir.\n\n<b/>Not: Bu hizmetin etkinleştirilmesi, bazı uygulamalarda arayüz ve davranış değişikliklerine neden olabilir. Örneğin, Chrome\'un Omnibar\'ı kaydırıldığında gizlenmez.</string>
+    <string name="menu_setup_wizard">Kurulumu Yeniden Çalıştır</string>
+    <string name="modal_no_gyroscope_title">Cihaz Uyumsuz</string>
+    <string name="modal_no_gyroscope_content">Cihazınız, bu uygulamayı kullanmak için gerekli sensöre (jiroskop) sahip değil. Tap, Tap bu cihazda asla çalışmayacak.</string>
+    <string name="configuration_button_close">Kapat</string>
+    <string name="action_alt_tab">Son uygulamaya geç</string>
+    <string name="action_alt_tab_desc">Son uygulamalar düğmesine iki kez dokunmayı taklit ederek son uygulamaya geçer (yalnızca desteklenen cihazlarda)</string>
+    <string name="gate_lock_screen_showing">Kilit Ekranı gösterilirken</string>
+    <string name="gate_lock_screen_showing_desc">Kilit ekranı gösterilirken hareketi engeller</string>
+    <string name="gate_lock_screen_showing_desc_when">Yalnızca kilit ekranı gösterildiğinde çalıştır</string>
+    <string name="gate_lock_screen_showing_inverse">Kilit Ekranı görünmediğinde</string>
+    <string name="gate_lock_screen_showing_inverse_desc">Kilit ekranı görünmediğinde hareketi engeller</string>
+    <string name="gate_lock_screen_showing_inverse_desc_when">Yalnızca kilit ekranı görünmediğinde çalıştır</string>
+    <string name="bs_advanced_custom_sensitivity">Özel Hassasiyet</string>
+    <string name="bs_advanced_custom_sensitivity_negative">İptal</string>
+    <string name="bs_advanced_custom_sensitivity_positive">Ayarla</string>
+    <string name="bs_advanced_custom_sensitivity_neutral">Sıfırla</string>
+    <string name="setting_advanced_custom_sensitivity">Özel hassasiyet</string>
+    <string name="setting_advanced_custom_sensitivity_desc">Hareket için özel bir hassasiyet değeri ayarlayın.\nÖnemli: Bunu yalnızca yerleşik hassasiyet değerlerinden <b>hiçbiri</b> işinize yaramıyorsa kullanın</string>
+    <string name="bs_advanced_custom_sensitivity_hint">Hassasiyet</string>
+    <string name="gate_alarm">Alarm / Zamanlayıcı</string>
+    <string name="gate_alarm_desc">Bir alarm veya zamanlayıcı kapanıyorsa hareketi engeller</string>
+    <string name="gate_alarm_desc_when">Yalnızca bir alarm veya zamanlayıcı kapandığında çalıştır</string>
+    <string name="action_alarm_timer">Alarmı / Zamanlayıcıyı Kapat</string>
+    <string name="action_alarm_snooze">Alarmı Ertele</string>
+    <string name="action_alarm_timer_desc">Çalan alarmı veya zamanlayıcıyı kapatır (yalnızca desteklenen Saat uygulamalarında)</string>
+    <string name="action_alarm_snooze_desc">Çalan alarmı erteler (yalnızca desteklenen Saat uygulamalarında)</string>
 
 </resources>
