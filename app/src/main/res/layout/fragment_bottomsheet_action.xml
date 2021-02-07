@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bs"
-    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="?android:windowBackground"
     android:fitsSystemWindows="false"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="vertical">
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/bs_nav_host_fragment"
@@ -19,20 +19,39 @@
         tools:layout_marginTop="?android:actionBarSize" />
 
     <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/bs_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:animateLayoutChanges="true"
-        android:id="@+id/bs_toolbar">
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="?android:actionBarSize"
-            android:id="@+id/bs_toolbar_title"
-            android:fontFamily="@font/hkgrotesk"
-            android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
-            android:layout_gravity="center|bottom"
-            android:gravity="center"
-            tools:text="Toolbar title"/>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/bs_toolbar_navigation"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="@dimen/margin_small"
+                android:layout_margin="@dimen/margin_small"
+                android:foreground="@drawable/rounded_ripple_28"
+                tools:src="@drawable/ic_back" />
+
+            <TextView
+                android:id="@+id/bs_toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="?android:actionBarSize"
+                android:layout_gravity="center"
+                android:fontFamily="@font/hkgrotesk"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                tools:text="Toolbar title" />
+
+        </FrameLayout>
 
     </com.google.android.material.appbar.MaterialToolbar>
 

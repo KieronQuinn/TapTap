@@ -1,11 +1,8 @@
 <resources>
     <string name="app_name">Tap, Tap</string>
     <string name="accessibility_service_description">Cài đặt trợ năng TapTap\n\n<b>Lưu ý: Ứng dụng không thu thập thông tin cá nhân của bạn. Dịch vụ này chỉ được sử dụng để nhận dạng cử chỉ và cung cấp hỗ trợ tương tác với thiết bị</b></string>
-    <string name="toast_no_action_selected">Không có hành động nào được chọn</string>
-    <string name="launch_accessibility">Mở menu Trợ năng</string>
     <string name="setting_gesture">Cử chỉ</string>
     <string name="setting_gesture_desc">Điều chỉnh cách cử chỉ hoạt động</string>
-    <string name="setting_actions">Hành động</string>
     <string name="setting_gates">Cổng</string>
     <string name="setting_gates_desc">Đặt tình huống khi cử chỉ không thực hiện một hành động</string>
     <string name="setting_feedback">Phản hồi</string>
@@ -13,7 +10,7 @@
     <string name="setting_feedback_vibrate">Rung</string>
     <string name="setting_feedback_vibrate_desc">Rung một lần khi sử dụng cử chỉ và hành động được thực hiện</string>
     <string name="setting_feedback_wake">Đánh thưc thiết bị</string>
-    <string name="setting_feedback_wake_desc">Đánh thức thiết bị khi màn hình đang tắt (lưu ý: điều này sẽ làm cản trở hành động \"Tắt màn hình\"!)</string>
+    <string name="setting_feedback_wake_desc">Đánh thức thiết bị khi màn hình đang tắt</string>
 
     <string-array name="device_model_keys">
         <item>Pixel 3 XL</item>
@@ -61,7 +58,6 @@
     <string name="action_next_desc">Bỏ qua bài hát hiện tại</string>
     <string name="fab_add_action">Thêm hành động</string>
     <string name="fab_remove_action">Xóa</string>
-    <string name="fab_remove_action_drop">Thả để xóa</string>
     <string name="add_action_category_launch">Khởi chạy</string>
     <string name="add_action_category_utilities">Tiện ích</string>
     <string name="add_action_category_actions">Hành động</string>
@@ -72,8 +68,6 @@
     <string name="action_launch_app_desc">Mở một ứng dụng</string>
     <string name="action_launch_app_desc_formattable">Mở %1s. Hành động sẽ được bỏ qua nếu ứng dụng đang mở.</string>
     <string name="fab_add_gate">Thêm cổng</string>
-    <string name="add_gate_category_state">Trang thái</string>
-    <string name="add_gate_category_action">Hành động</string>
     <string name="nothing_found">Không tìm thấy gì</string>
     <string name="search">Tiềm kiếm</string>
     <string name="show_system_apps">Hiện thị ứng dụng hệ thống</string>
@@ -82,7 +76,6 @@
     <string name="bs_help_action_title">Hành động là gì?</string>
     <string name="bs_help_gate">Cổng là nhứng tình huống để chặn không cho cự chỉ thực hiện bất kỳ hành động nào. Để mọi hành động được thực hiện, tất cả các cổng đã được thêm vào phải ở trang thái cho phép.\nNếu đúng như dự tính, ví dụ như nếu màn hình đang tắt và cổng \"Khi tắt màn hình\" đang được bật, không hành động nào sẽ được chạy. Bạn có thể thêm bao nhiêu cổng tùy thích, và bật tắt chúng (thay vì phải xóa và thêm lại) để kiểm soát nhanh và dễ dàng hơn.</string>
     <string name="bs_help_gate_title">Cổng là gì?</string>
-    <string name="help">Trợ giúp</string>
     <string name="action_launch_assistant">Gọi trợ lý</string>
     <string name="action_launch_assistant_desc">Mở ứng dụng trợ lý mặc định</string>
     <string name="action_tasker_event">Tasker Event</string>
@@ -91,11 +84,9 @@
     <string name="accessibility_info_off">Dịch vụ trợ năng đang được vô hiệu hóa</string>
     <string name="accessibility_info_off_desc">Hiện tại cử chỉ sẽ không hoạt động. Chạm để kích hoạt</string>
     <string name="accessibility_info_on">Dịch vụ trợ năng đang được kích hoạt</string>
-    <string name="accessibility_info_toast">Chọn \"Tap, Tap\" từ danh sách dịch vụ hỗ trợ tiếp cận, bật nó và quay lại Tap, Tap để tiếp tục</string>
 
     <string name="category_about">Về ứng dụng</string>
     <string name="about">%1s v%2s</string>
-    <string name="about_summary">Được tạo bởi Kieron Quinn / Quinny899 @ XDA\nVới sự đóng góp của cộng đồng, bao gồm: %1s</string>
     <string name="xda_thread">XDA Thread</string>
     <string name="github">GitHub</string>
     <string name="libraries">Thư viện bên thứ ba</string>
@@ -104,10 +95,8 @@
     <string name="tasker_config_label">Chạm hai lần vào mặt lưng</string>
     <string name="action_tasker_task">Tác vụ Tasker</string>
     <string name="action_tasker_task_desc">Chạy một tác vụ Tasker được chỉ định</string>
-    <string name="action_tasker_event_toast">Tasker không được cài đặt hoặc phiên bản không được hỗ trợ</string>
     <string name="bs_tasker_content">Để khởi chạy tác vụ Tasker mà không cần sử dụng plugin Event, bạn cần phải bật \"Cho phép truy cập ngoại vi\" trong cài đặt của Tasker. Nếu bạn không bật mục này, hành động sẽ được bỏ qua.</string>
     <string name="bs_tasker_title">Cần được cấp phép</string>
-    <string name="bs_tasker_negative">Sau đó</string>
     <string name="bs_tasker_positive">Mở cài đặt Tasker</string>
     <string name="picker_launch_camera">Mở máy ảnh</string>
     <string name="action_volume_panel">Hiện bảng điều khiển âm lượng</string>

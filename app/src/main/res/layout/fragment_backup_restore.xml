@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:clipToPadding="false"
+    android:overScrollMode="never">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/fragment_backup_restore_lottie"
+            android:layout_marginTop="@dimen/activity_padding"
+            android:layout_marginStart="@dimen/activity_padding"
+            android:layout_marginEnd="@dimen/activity_padding"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:background="@drawable/clip_mask_circle"
+            android:foreground="@drawable/lottie_circle_anim_foreground"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_rawRes="@raw/upload" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/fragment_backup_restore_title"
+            android:layout_marginTop="@dimen/activity_padding"
+            android:layout_marginStart="@dimen/activity_padding"
+            android:layout_marginEnd="@dimen/activity_padding"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large.TapTap"
+            app:layout_constraintTop_toBottomOf="@id/fragment_backup_restore_lottie"
+            android:text="@string/settings_backup_restore"
+            android:gravity="center"/>
+
+        <androidx.fragment.app.FragmentContainerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_padding"
+            android:id="@+id/fragment_backup_restore_inner"
+            android:name="com.kieronquinn.app.taptap.ui.screens.settings.backuprestore.preference.SettingsBackupRestorePreferenceFragment"
+            app:layout_constraintTop_toBottomOf="@id/fragment_backup_restore_title"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

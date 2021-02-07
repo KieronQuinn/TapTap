@@ -8,7 +8,6 @@
     <color name="windowBackground">@color/windowBackgroundLight</color>
     <color name="windowBackgroundLight">#ffffff</color>
     <color name="windowBackgroundDark">#202124</color>
-    <color name="windowBackground80">#80ffffff</color>
     <color name="toolbarColor">#D9ffffff</color>
     <color name="sheet_color">@color/windowBackground</color>
     <color name="search_color">#f5f5f5</color>
@@ -42,6 +41,7 @@
     <color name="icon_circle_12">#b2ebf2</color>
     <color name="icon_circle_13">#ffc8b9</color>
     <color name="icon_circle_14">#f2bcf8</color>
+    <color name="icon_circle_15">#e1f5fe</color>
 
     <color name="icon_inside_0">#1A6CD9</color>
     <color name="icon_inside_1">#D91A4A</color>
@@ -55,7 +55,7 @@
     <color name="icon_inside_9">#981AD9</color>
     <color name="icon_inside_10">#ffaf49</color>
     <color name="icon_inside_11">#ffbc57</color>
-    <color name="icon_inside_12">#0097a7</color>
     <color name="icon_inside_13">#ee0202</color>
     <color name="icon_inside_14">#cd00ea</color>
+    <color name="icon_inside_15">#03A9F4</color>
 </resources>

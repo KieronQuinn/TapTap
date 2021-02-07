@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/fragment_update_download_progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_padding"
+        android:indeterminate="true"
+        tools:progress="50"
+        app:indicatorColor="@color/colorPrimary"
+        app:trackColor="@color/colorPrimaryDark"
+        app:trackCornerRadius="4dp"
+        app:trackThickness="8dp" />
+
+</FrameLayout>

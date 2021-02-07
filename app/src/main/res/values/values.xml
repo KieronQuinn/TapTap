@@ -1,5 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <!-- DO NOT TRANSLATE THESE -->
-    <string name="about_summary_contributors" translatable="false">João Dias, timfedo, Giorgio Cantoni, Fedor Shatokhin, Rodrigo Souza, Petro Bilyi, Kevin Kung, hjthjthjt, baldapps, NitroFuN, Arthur Fontaine, ZonaRMR, Khanh Le, Gregor Wünsch, Zeanon, eroneko, Fatih Fırıncı, Ashutosh Singh, Adrian Campos, Ilya Kataev</string>
+    <string name="translators_portuguese_br_content" translatable="false">Rodrigo Souza</string>
+    <string name="translators_chinese_content" translatable="false">hjthjthjt</string>
+    <string name="translators_chinese_traditional_content" translatable="false">Kevin Kung</string>
+    <string name="translators_french_content" translatable="false">Arthur Fontaine</string>
+    <string name="translators_german_content" translatable="false">Gregor Wünsch</string>
+    <string name="translators_italian_content" translatable="false">baldapps, Gabriele Cappellaro</string>
+    <string name="translators_polish_content" translatable="false">NitroFuN</string>
+    <string name="translators_russian_content" translatable="false">Fedor Shatokhin, Ilya Kataev</string>
+    <string name="translators_spanish_content" translatable="false">ZonaRMR</string>
+    <string name="translators_turkish_content" translatable="false">Fatih Fırıncı</string>
+    <string name="translators_ukrainian_content" translatable="false">Petro Bilyi</string>
+    <string name="translators_vietnamese_content" translatable="false">Khanh Le</string>
+
+    <!-- You MUST add a language to all THREE translators arrays, with the heading, content and icon -->
+    <array name="about_translators_headings">
+        <item>@string/translators_portuguese_br</item>
+        <item>@string/translators_chinese</item>
+        <item>@string/translators_chinese_traditional</item>
+        <item>@string/translators_french</item>
+        <item>@string/translators_german</item>
+        <item>@string/translators_italian</item>
+        <item>@string/translators_polish</item>
+        <item>@string/translators_russian</item>
+        <item>@string/translators_spanish</item>
+        <item>@string/translators_turkish</item>
+        <item>@string/translators_ukrainian</item>
+        <item>@string/translators_vietnamese</item>
+    </array>
+
+    <array name="about_translators_content">
+        <item>@string/translators_portuguese_br_content</item>
+        <item>@string/translators_chinese_content</item>
+        <item>@string/translators_chinese_traditional_content</item>
+        <item>@string/translators_french_content</item>
+        <item>@string/translators_german_content</item>
+        <item>@string/translators_italian_content</item>
+        <item>@string/translators_polish_content</item>
+        <item>@string/translators_russian_content</item>
+        <item>@string/translators_spanish_content</item>
+        <item>@string/translators_turkish_content</item>
+        <item>@string/translators_ukrainian_content</item>
+        <item>@string/translators_vietnamese_content</item>
+    </array>
+
+    <array name="about_translators_flags">
+        <item>@drawable/ic_about_translators_pt_br</item>
+        <item>@drawable/ic_about_translators_cn</item>
+        <item>@drawable/ic_about_translators_cn</item>
+        <item>@drawable/ic_about_translators_fr</item>
+        <item>@drawable/ic_about_translators_de</item>
+        <item>@drawable/ic_about_translators_it</item>
+        <item>@drawable/ic_about_translators_pl</item>
+        <item>@drawable/ic_about_translators_ru</item>
+        <item>@drawable/ic_about_translators_es</item>
+        <item>@drawable/ic_about_translators_tk</item>
+        <item>@drawable/ic_about_translators_uk</item>
+        <item>@drawable/ic_about_translators_vi</item>
+    </array>
+
 </resources>

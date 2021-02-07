@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?selectableItemBackground"
+    app:cardElevation="0dp"
+    app:cardBackgroundColor="@color/icon_circle_12"
+    app:cardCornerRadius="@dimen/margin_small"
+    android:layout_marginStart="@dimen/margin_large"
+    android:layout_marginEnd="@dimen/activity_padding"
+    android:layout_marginTop="@dimen/margin_small"
+    android:layout_marginBottom="@dimen/margin_small">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/item_gate_blocked_info"
+        android:orientation="horizontal"
+        android:padding="@dimen/activity_padding">
+
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_info"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="@dimen/activity_padding"
+            app:tint="?android:textColorPrimary"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/help_gate"/>
+
+    </LinearLayout>
+
+
+</com.google.android.material.card.MaterialCardView>

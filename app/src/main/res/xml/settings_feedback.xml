@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <com.kieronquinn.app.taptap.preferences.SwitchPreference
+    <com.kieronquinn.app.taptap.ui.preferences.SwitchPreference
         android:icon="@drawable/ic_feedback"
         android:key="feedback_vibrate"
         android:defaultValue="true"
         android:title="@string/setting_feedback_vibrate"
         android:summary="@string/setting_feedback_vibrate_desc"/>
 
-    <com.kieronquinn.app.taptap.preferences.SwitchPreference
+    <com.kieronquinn.app.taptap.ui.preferences.SwitchPreference
         android:icon="@drawable/ic_feedback_override_dnd"
         android:key="feedback_override_dnd"
         android:defaultValue="false"
         android:title="@string/setting_feedback_override_dnd"
         android:summary="@string/setting_feedback_override_dnd_desc"/>
 
-    <com.kieronquinn.app.taptap.preferences.SwitchPreference
+    <com.kieronquinn.app.taptap.ui.preferences.SwitchPreference
         android:icon="@drawable/ic_wake_from_sleep"
         android:key="feedback_wake"
         android:defaultValue="true"

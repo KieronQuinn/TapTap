@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/batteryFragment2"
-        android:name="com.kieronquinn.app.taptap.v2.ui.screens.setup.battery.SetupBatteryFragment"
+        android:name="com.kieronquinn.app.taptap.ui.screens.setup.battery.SetupBatteryFragment"
         android:label="BatteryFragment"
         tools:layout="@layout/fragment_setup_battery" />
 

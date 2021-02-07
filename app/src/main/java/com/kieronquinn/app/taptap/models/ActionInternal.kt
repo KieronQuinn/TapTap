@@ -1,11 +1,16 @@
 package com.kieronquinn.app.taptap.models
 
 import android.accessibilityservice.AccessibilityService
+import android.content.Context
+import android.content.Intent
 import android.media.AudioManager
 import android.os.Parcelable
 import com.google.android.systemui.columbus.actions.Action
-import com.kieronquinn.app.taptap.columbus.actions.*
+import com.kieronquinn.app.taptap.R
+import com.kieronquinn.app.taptap.core.columbus.actions.*
 import com.kieronquinn.app.taptap.core.TapServiceContainer
+import com.kieronquinn.app.taptap.utils.extensions.deserialize
+import com.kieronquinn.app.taptap.utils.extensions.getApplicationInfoOrNull
 import kotlinx.android.parcel.Parcelize
 import kotlin.collections.ArrayList
 
@@ -13,6 +18,43 @@ import kotlin.collections.ArrayList
 data class ActionInternal(val action: TapAction, val whenList : ArrayList<WhenGateInternal> = ArrayList(), var data: String? = null) : Parcelable {
     fun isBlocking(): Boolean {
         return whenList.isEmpty() && action.canBlock
+    }
+
+    fun getCardDescription(context: Context): CharSequence? {
+        val formattedText = when(action.dataType){
+            ActionDataTypes.PACKAGE_NAME -> {
+                val applicationInfo = context.packageManager.getApplicationInfoOrNull(data)
+                applicationInfo?.loadLabel(context.packageManager) ?: context.getString(R.string.item_action_app_uninstalled, data)
+            }
+            ActionDataTypes.SHORTCUT -> {
+                val intent = Intent().apply {
+                    deserialize(this@ActionInternal.data ?: "")
+                }
+                try {
+                    context.packageManager.queryIntentActivities(intent, 0).firstOrNull()?.let {
+                        val applicationInfo = context.packageManager.getApplicationInfoOrNull(it.activityInfo.packageName)
+                        applicationInfo?.loadLabel(context.packageManager) ?: context.getString(R.string.item_action_app_uninstalled, it.activityInfo.packageName)
+                    } ?: run {
+                        null
+                    }
+                }catch (e: Exception){
+                    null
+                }
+            }
+            ActionDataTypes.TASKER_TASK -> {
+                data
+            }
+            else -> null
+        } ?: return null
+        return context.getString(action.formattableDescription!!, formattedText)
+    }
+
+    fun getCardWhenListHeader(context: Context): String {
+        return if(whenList.size > 1){
+            context.getString(R.string.item_action_when_multiple)
+        }else{
+            context.getString(R.string.item_action_when)
+        }
     }
 
     companion object {
@@ -121,6 +163,12 @@ data class ActionInternal(val action: TapAction, val whenList : ArrayList<WhenGa
                     TapAction.ACCESSIBILITY_BUTTON_CHOOSER -> AccessibilityServiceGlobalAction(accessibilityService, 12, action.whenList)
                     TapAction.ACCESSIBILITY_SHORTCUT -> AccessibilityServiceGlobalAction(accessibilityService, 13, action.whenList)
                     TapAction.ACCESSIBILITY_BUTTON -> AccessibilityServiceGlobalAction(accessibilityService, 11, action.whenList)
+                    TapAction.ACCEPT_CALL -> AcceptCall(accessibilityService, action.whenList)
+                    TapAction.REJECT_CALL -> RejectCall(accessibilityService, action.whenList)
+                    TapAction.SWIPE_UP -> SwipeAction(gestureAccessibilityService ?: return null, SwipeAction.SwipeDirection.UP, action.whenList)
+                    TapAction.SWIPE_DOWN -> SwipeAction(gestureAccessibilityService ?: return null, SwipeAction.SwipeDirection.DOWN, action.whenList)
+                    TapAction.SWIPE_LEFT -> SwipeAction(gestureAccessibilityService ?: return null, SwipeAction.SwipeDirection.LEFT, action.whenList)
+                    TapAction.SWIPE_RIGHT -> SwipeAction(gestureAccessibilityService ?: return null, SwipeAction.SwipeDirection.RIGHT, action.whenList)
                 }
             } catch (e: RuntimeException) {
                 //Enum not found, probably a downgrade issue

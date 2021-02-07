@@ -2,7 +2,6 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:clickable="true"
     android:focusable="true"
@@ -11,7 +10,7 @@
     app:cardBackgroundColor="@color/icon_circle_12"
     app:cardCornerRadius="@dimen/margin_small"
     android:layout_marginStart="@dimen/margin_large"
-    android:layout_marginEnd="@dimen/margin_extra_small"
+    android:layout_marginEnd="@dimen/activity_padding"
     android:layout_marginTop="@dimen/margin_small"
     android:layout_marginBottom="@dimen/margin_small">
 

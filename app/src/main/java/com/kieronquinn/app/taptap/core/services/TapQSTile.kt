@@ -5,7 +5,6 @@ import android.service.quicksettings.Tile
 import android.service.quicksettings.TileService
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.core.TapSharedPreferences
-import com.kieronquinn.app.taptap.utils.sharedPreferences
 import org.koin.android.ext.android.inject
 
 class TapQSTile : TileService() {

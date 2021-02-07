@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/appsFragment"
-        android:name="com.kieronquinn.app.taptap.fragments.AppsFragment"
+        android:name="com.kieronquinn.app.taptap.ui.screens.picker.app.AppPickerFragment"
         tools:layout="@layout/fragment_apps"
         android:label="AppsFragment" />
 

@@ -1,10 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:paddingTop="?android:actionBarSize"
-    android:overScrollMode="never"
-    android:scrollbarStyle="outsideInset"
-    android:clipToPadding="false"
-    tools:listitem="@layout/item_gate" />
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        android:paddingTop="?android:actionBarSize"
+        android:scrollbarStyle="outsideInset"
+        tools:listitem="@layout/item_gate" />
+
+    <LinearLayout
+        android:id="@+id/empty_state"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:paddingTop="?android:actionBarSize"
+        android:layout_margin="@dimen/activity_padding">
+
+        <ImageView
+            android:id="@+id/empty_state_icon"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:src="@drawable/ic_gates"
+            app:tint="?android:textColorPrimary" />
+
+        <TextView
+            android:id="@+id/empty_state_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_small"
+            android:gravity="center"
+            android:text="@string/gates_add_empty_state"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium.TapTap.Primary" />
+
+    </LinearLayout>
+
+</FrameLayout>

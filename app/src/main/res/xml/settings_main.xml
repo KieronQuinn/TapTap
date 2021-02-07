@@ -2,101 +2,82 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.kieronquinn.app.taptap.preferences.Preference
+    <com.kieronquinn.app.taptap.ui.preferences.Preference
         android:icon="@drawable/ic_accessibility_cross"
         android:key="accessibility"
         android:title="@string/accessibility_info_off"
         android:summary="@string/accessibility_info_off_desc"/>
 
-    <com.kieronquinn.app.taptap.preferences.Preference
+    <com.kieronquinn.app.taptap.ui.preferences.Preference
         android:icon="@drawable/ic_accessibility_cross"
         android:key="accessibility_gesture"
         android:title="@string/accessibility_info_off_gesture"
         android:summary="@string/accessibility_info_off_gesture_desc"
         app:isPreferenceVisible="false" />
 
-    <com.kieronquinn.app.taptap.preferences.Preference
+    <com.kieronquinn.app.taptap.ui.preferences.Preference
         android:icon="@drawable/ic_warning_round"
         android:key="battery_optimisation"
         app:isPreferenceVisible="false"
         android:title="@string/battery_optimisation"
         android:summary="@string/battery_optimisation_desc"/>
 
-    <com.kieronquinn.app.taptap.preferences.Preference
+    <com.kieronquinn.app.taptap.ui.preferences.Preference
         android:icon="@drawable/ic_gesture_round"
         android:key="gesture"
         android:title="@string/setting_gesture"
         android:summary="@string/setting_gesture_desc"/>
 
-    <com.kieronquinn.app.taptap.preferences.Preference
+    <com.kieronquinn.app.taptap.ui.preferences.Preference
         android:icon="@drawable/ic_actions_round"
         android:key="actions"
         android:title="@string/setting_actions_double"
         android:summary="@string/settings_actions_desc_double"/>
 
-    <com.kieronquinn.app.taptap.preferences.Preference
+    <com.kieronquinn.app.taptap.ui.preferences.Preference
         android:icon="@drawable/ic_actions_triple_round"
         android:key="actions_triple"
         android:title="@string/setting_actions_triple"
         android:summary="@string/settings_actions_desc_triple"/>
 
-    <com.kieronquinn.app.taptap.preferences.Preference
+    <com.kieronquinn.app.taptap.ui.preferences.Preference
         android:icon="@drawable/ic_gates_round"
         android:key="gates"
         android:title="@string/setting_gates"
         android:summary="@string/setting_gates_desc"/>
 
-    <com.kieronquinn.app.taptap.preferences.Preference
+    <com.kieronquinn.app.taptap.ui.preferences.Preference
         android:icon="@drawable/ic_feedback_round"
         android:key="feedback"
         android:title="@string/setting_feedback"
         android:summary="@string/setting_feedback_desc"/>
 
-    <com.kieronquinn.app.taptap.preferences.Preference
+    <com.kieronquinn.app.taptap.ui.preferences.Preference
         android:icon="@drawable/ic_advanced_round"
         android:key="advanced"
         android:title="@string/setting_advanced"
         android:summary="@string/setting_advanced_desc"/>
 
-    <com.kieronquinn.app.taptap.preferences.PreferenceCategory
+    <com.kieronquinn.app.taptap.ui.preferences.Preference
+        android:icon="@drawable/ic_backup_restore_round"
+        android:key="backup_restore"
+        android:title="@string/settings_backup_restore"
+        android:summary="@string/settings_backup_restore_desc"/>
+
+    <com.kieronquinn.app.taptap.ui.preferences.Preference
+        android:title="@string/battery_and_optimisation"
+        android:summary="@string/battery_and_optimisation_desc"
+        android:icon="@drawable/ic_battery_round"
+        android:key="about_battery"/>
+
+    <com.kieronquinn.app.taptap.ui.preferences.PreferenceCategory
         android:title="@string/category_about">
 
-        <com.kieronquinn.app.taptap.preferences.Preference
+        <com.kieronquinn.app.taptap.ui.preferences.ChipPreference
             android:title="@string/about"
             android:icon="@drawable/ic_info_round"
             android:key="about_about"/>
 
-        <com.kieronquinn.app.taptap.preferences.Preference
-            android:title="@string/battery_and_optimisation"
-            android:summary="@string/battery_and_optimisation_desc"
-            android:icon="@drawable/ic_battery_round"
-            android:key="about_battery"/>
-
-        <com.kieronquinn.app.taptap.preferences.Preference
-            android:title="@string/xda_thread"
-            android:icon="@drawable/ic_xda_round"
-            android:key="about_xda"/>
-
-        <com.kieronquinn.app.taptap.preferences.Preference
-            android:title="@string/github"
-            android:icon="@drawable/ic_github_round"
-            android:key="about_github"/>
-
-        <com.kieronquinn.app.taptap.preferences.Preference
-            android:title="@string/donate"
-            android:icon="@drawable/ic_donate_round"
-            android:key="about_donate"/>
-
-        <com.kieronquinn.app.taptap.preferences.Preference
-            android:title="@string/twitter"
-            android:icon="@drawable/ic_twitter_round"
-            android:key="about_twitter"/>
-
-        <com.kieronquinn.app.taptap.preferences.Preference
-            android:title="@string/libraries"
-            android:icon="@drawable/ic_libraries_round"
-            android:key="about_libraries"/>
-
-    </com.kieronquinn.app.taptap.preferences.PreferenceCategory>
+    </com.kieronquinn.app.taptap.ui.preferences.PreferenceCategory>
 
 </PreferenceScreen>

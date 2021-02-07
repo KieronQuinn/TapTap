@@ -1,11 +1,8 @@
 <resources>
     <string name="app_name">Tap, Tap</string>
     <string name="accessibility_service_description">Servicio de accesibilidad de Tap, Tap\n\n<b>Nota importante: no se recopilan datos de ninguna de sus aplicaciones, este servicio simplemente se utiliza para mantener el reconocimiento activo y proporcionar interacción con el dispositivo</b></string>
-    <string name="toast_no_action_selected">No se ha seleccionado ninguna acción.</string>
-    <string name="launch_accessibility">Lanzar accesibilidad</string>
     <string name="setting_gesture">Gestos</string>
     <string name="setting_gesture_desc">Ajustar cómo debe trabajar el gesto</string>
-    <string name="setting_actions">Acciones</string>
     <string name="setting_gates">Compuertas</string>
     <string name="setting_gates_desc">Establecer situaciones en las que el gesto no debe ejecutar una acción</string>
     <string name="setting_feedback">Respuesta</string>
@@ -13,7 +10,7 @@
     <string name="setting_feedback_vibrate">Vibrar</string>
     <string name="setting_feedback_vibrate_desc">Vibrar una vez cuando se usa el gesto y se ejecuta la acción</string>
     <string name="setting_feedback_wake">Despertar Dispositivo</string>
-    <string name="setting_feedback_wake_desc">Despierte el dispositivo cuando la pantalla esté apagada (nota: ¡esto interferirá con las acciones que apagan la pantalla!)</string>
+    <string name="setting_feedback_wake_desc">Despierte el dispositivo cuando la pantalla esté apagada</string>
 
     <string-array name="device_model_keys">
         <item>Pixel 3 XL</item>
@@ -61,7 +58,6 @@
     <string name="action_next_desc">Reproducir el siguiente audio</string>
     <string name="fab_add_action">Agregar acción</string>
     <string name="fab_remove_action">Remover</string>
-    <string name="fab_remove_action_drop">Soltar para eliminar</string>
     <string name="add_action_category_launch">Lanzar</string>
     <string name="add_action_category_utilities">Utilidades</string>
     <string name="add_action_category_actions">Acciones</string>
@@ -72,8 +68,6 @@
     <string name="action_launch_app_desc">Ejecutar una aplicación</string>
     <string name="action_launch_app_desc_formattable">Iniciar %1s. Esta acción se omitirá si ya se está ejecutando.</string>
     <string name="fab_add_gate">Agregar compuerta</string>
-    <string name="add_gate_category_state">Estado</string>
-    <string name="add_gate_category_action">Acción</string>
     <string name="nothing_found">No se encontró</string>
     <string name="search">Buscar</string>
     <string name="show_system_apps">Mostrar aplicaciones del sistema</string>
@@ -82,7 +76,6 @@
     <string name="bs_help_action_title">¿Qué son las Acciones?</string>
     <string name="bs_help_gate">Las Compuertas son situaciones que pueden impedir que el gesto ejecute acciones. Para que se ejecute cualquier acción, todas las compuertas habilitadas deben estar abiertas. \nSi actualmente se cumple un escenario, por ejemplo, si la pantalla está apagada y la compuerta "Pantalla apagada" está habilitada, no se ejecutarán acciones. Puede agregar tantas compuertas como desees, y habilitarlas/deshabilitarlas usando los botones (en lugar de tener que eliminar y volver a agregar) para que la configuración sea más rápida y fácil.</string>
     <string name="bs_help_gate_title">¿Qué son las Compuertas?</string>
-    <string name="help">Ayuda</string>
     <string name="action_launch_assistant">Lanzar Asistente</string>
     <string name="action_launch_assistant_desc">Inicie su aplicación de asistente predeterminada</string>
     <string name="action_tasker_event">Evento Tasker</string>
@@ -91,11 +84,9 @@
     <string name="accessibility_info_off">El servicio de accesibilidad está deshabilitado</string>
     <string name="accessibility_info_off_desc">El gesto no funcionará actualmente. Toca para habilitar</string>
     <string name="accessibility_info_on">El servicio de accesibilidad está habilitado</string>
-    <string name="accessibility_info_toast">Seleccione "Tap, Tap" de la lista de servicios de accesibilidad, actívalo y regresa a Tap, Tap para continuar</string>
 
     <string name="category_about">Acerca de</string>
     <string name="about">%1s v%2s</string>
-    <string name="about_summary">Creado por Kieron Quinn / Quinny899 @ XDA\nGracias a las contribuciones de la comunidad, incluyendo a: %1s</string>
     <string name="xda_thread">Hilo en XDA</string>
     <string name="github">GitHub</string>
     <string name="libraries">Librerias de terceros</string>
@@ -104,10 +95,8 @@
     <string name="tasker_config_label">Doble toque hacia atrás</string>
     <string name="action_tasker_task">Tarea de Tasker</string>
     <string name="action_tasker_task_desc">Ejecuta una tarea de Tasker especificada</string>
-    <string name="action_tasker_event_toast">Tasker no instalado o versión no compatible</string>
     <string name="bs_tasker_content">Para iniciar una tarea de Tasker sin usar el complemento Evento, debe habilitar la opción \"Permitir Acceso Externo\" en la configuración de Tasker. Si no tiene esta opción habilitada, esta acción siempre se omitirá.</string>
     <string name="bs_tasker_title">Permiso requerido</string>
-    <string name="bs_tasker_negative">Después</string>
     <string name="bs_tasker_positive">Abrir configuración de Tasker</string>
     <string name="picker_launch_camera">Iniciar Camara</string>
     <string name="action_volume_panel">Mostrar panel de volumen</string>

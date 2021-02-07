@@ -1,11 +1,8 @@
 <resources>
     <string name="app_name">Tap, Tap</string>
     <string name="accessibility_service_description">TapTap Erişilebilirlik Hizmeti\n\n<b>Önemli Not: Uygulamalarınızın hiçbirinden veri toplanmaz, bu hizmet yalnızca tanıma özelliğini etkin tutmak ve cihazla etkileşim sağlamak için kullanılır</b></string>
-    <string name="toast_no_action_selected">Hiçbir eylem seçilmedi</string>
-    <string name="launch_accessibility">Erişilebilirliği Başlat</string>
     <string name="setting_gesture">Hareket</string>
     <string name="setting_gesture_desc">Hareketin nasıl çalışacağını ayarlayın</string>
-    <string name="setting_actions">Eylemler</string>
     <string name="setting_gates">Geçitler</string>
     <string name="setting_gates_desc">Hareketin bir eylem yürütmemesi gereken durumları ayarlayın</string>
     <string name="setting_feedback">Geri bildirim</string>
@@ -13,7 +10,7 @@
     <string name="setting_feedback_vibrate">Titret</string>
     <string name="setting_feedback_vibrate_desc">Hareket kullanıldığında ve eylem yürütüldüğünde bir kez titret</string>
     <string name="setting_feedback_wake">Cihazı Uyandır</string>
-    <string name="setting_feedback_wake_desc">Cihazı ekran kapalıyken uyandırır (not: bu, ekranı kapatan eylemlere müdahale eder!)</string>
+    <string name="setting_feedback_wake_desc">Cihazı ekran kapalıyken uyandırır</string>
 
     <string-array name="device_model_keys">
         <item>Pixel 3 XL</item>
@@ -70,7 +67,6 @@
     <string name="action_next_desc">Sonraki müziği çal</string>
     <string name="fab_add_action">Eylem Ekle</string>
     <string name="fab_remove_action">Kaldır</string>
-    <string name="fab_remove_action_drop">Kaldırmak için bırakın</string>
     <string name="add_action_category_launch">Başlat</string>
     <string name="add_action_category_utilities">Araçlar</string>
     <string name="add_action_category_actions">Eylemler</string>
@@ -81,9 +77,6 @@
     <string name="action_launch_app_desc">Bir uygulama başlatır</string>
     <string name="action_launch_app_desc_formattable">%1s uygulamasını başlatır. Bu eylem zaten çalışıyorsa atlanır.</string>
     <string name="fab_add_gate">Geçit ekle</string>
-    <string name="add_gate_when">Gereksinim Ekle</string>
-    <string name="add_gate_category_state">Durum</string>
-    <string name="add_gate_category_action">Eylem</string>
     <string name="nothing_found">Hiçbir şey bulunamadı</string>
     <string name="search">Ara</string>
     <string name="show_system_apps">Sistem uygulamalarını göster</string>
@@ -94,7 +87,6 @@
     <string name="bs_help_action_title">Eylemler nedir?</string>
     <string name="bs_help_gate">Geçitler, hareketin herhangi bir eylem gerçekleştirmesini engelleyebilecek durumlardır. Herhangi bir eylemin gerçekleştirilebilmesi için, etkinleştirilmiş tüm geçitler açık olmalıdır.\nÖrneğin ekran kapalıysa ve "Ekran kapalı" geçidi etkinse, herhangi bir eylem yapılmaz. İstediğiniz sayıda geçit ekleyebilir ve yapılandırmayı daha hızlı ve kolay hale getirmek için anahtarları kullanarak (silmek ve yeniden eklemek yerine) etkinleştirebilir/devre dışı bırakabilirsiniz.</string>
     <string name="bs_help_gate_title">Geçitler nedir?</string>
-    <string name="help">Yardım</string>
     <string name="action_launch_assistant">Asistanı başlat</string>
     <string name="action_launch_assistant_desc">Varsayılan asistan uygulamanızı başlatır</string>
     <string name="action_tasker_event">Tasker Etkinliği</string>
@@ -103,10 +95,8 @@
     <string name="accessibility_info_off">Erişilebilirlik Hizmeti devre dışı</string>
     <string name="accessibility_info_off_desc">Hareket şu anda çalışamaz. Etkinleştirmek için dokunun</string>
     <string name="accessibility_info_on">Erişilebilirlik Hizmeti etkin</string>
-    <string name="accessibility_info_toast">Erişilebilirlik hizmeti listesinden "Tap, Tap"i seçin, anahtarı açın ve devam etmek için Tap, Tap\'e dönün</string>
 
     <string name="category_about">Hakkında</string>
-    <string name="about_summary">XDA üyesi Kieron Quinn / Quinny899 tarafından oluşturulmuştur\nKatkıda bulunanlara teşekkürler: %1s</string>
     <string name="xda_thread">XDA Konusu</string>
     <string name="github">GitHub</string>
     <string name="libraries">Üçüncü taraf kütüphaneleri</string>
@@ -115,10 +105,8 @@
     <string name="tasker_config_label">Double Tapped Back</string>
     <string name="action_tasker_task">Tasker Görevi</string>
     <string name="action_tasker_task_desc">Belirtilen bir Tasker görevini çalıştırır</string>
-    <string name="action_tasker_event_toast">Tasker yüklü değil veya sürüm desteklenmiyor</string>
     <string name="bs_tasker_content">Etkinlik eklentisini kullanmadan bir Tasker Görevini başlatmak için Tasker ayarlarında \"Harici Erişime İzin Ver\" seçeneğini etkinleştirmeniz gerekir. Bu seçeneği etkinleştirmediyseniz, bu Eylem her zaman atlanır.</string>
     <string name="bs_tasker_title">İzin Gerekli</string>
-    <string name="bs_tasker_negative">Sonra</string>
     <string name="bs_tasker_positive">Tasker Ayarlarını Aç</string>
     <string name="picker_launch_camera">Kamerayı Başlat</string>
     <string name="action_volume_panel">Ses panelini göster</string>
@@ -160,8 +148,6 @@
 
     <string name="battery_and_optimisation">Pil &amp; Optimizasyon</string>
     <string name="battery_and_optimisation_desc">Tap, Tap\'in neden pil kullandığı ve arka planda çalıştırıldığında cihazınız tarafından neden sonlandırıldığı (ve bunu nasıl düzeltebileceğiniz) hakkında bilgi</string>
-    <string name="bs_battery_content">Tap, Tap, çalışmaya devam etmek için bir arka plan erişilebilirlik hizmeti kullanır ve İvmeölçer ve Jiroskop kullanarak cihazın arkasındaki dokunuşları her zaman \"dinler\". Bu nedenle, Tap, Tap arka planda çalışırken biraz pil kullanabilir.\n\nErken geliştirme durumu nedeniyle, Tap, Tap henüz tam olarak optimize edilmemiştir ve gelecekte seçenekler yoluyla pil ömrü iyileşebilir, ancak şu anda biraz daha düşük pil ömrü, bu özelliğe sahip olmanın bir sonucudur.\n\nEk olarak, MIUI veya OneUI gibi bazı OEM yazılımları, arka plan görevlerini (erişilebilirlik hizmetleri dahil) sonlandırmada Google\'ın önerdiğinden daha agresiftir. Tap, Tap, Pil Optimizasyonu devre dışıyken bile kapatıldıktan sonra cihazınızda çalışmayı durdurursa, lütfen şunları deneyin:\n• Uygulamayı belleğe kilitleme (genellikle son uygulamalardan)\n• Bir uygulama için daha fazla pil optimizasyonunu devre dışı bırakma (genellikle Ayarlar > Uygulamalar veya Ayarlar > Pil altında)\n• Geliştirici Seçeneklerinde MIUI Optimizasyonunu Devre Dışı Bırakma (yalnızca MIUI))\n\nSistem tarafından sonlandırılan uygulamalar hakkında daha fazla bilgi ve bunu cihazınız için nasıl çözeceğinize dair öneriler dontkillmyapp.com adresinde bulunabilir.</string>
-    <string name="bs_battery_positive">dontkillmyapp.com\'a git</string>
 
     <string name="gate_orientation_landscape">Yatay yönlendirme</string>
     <string name="gate_orientation_landscape_desc">Telefon yatay yöndeyken hareketi engeller</string>
@@ -183,7 +169,6 @@
     <string name="gate_headset_desc_when">Yalnızca bağlı bir kablolu veya kablosuz kulaklık <b>olduğunda</b> çalıştır</string>
     <string name="item_action_when">Yalnızca şu durumlarda eylemi çalıştır…</string>
     <string name="item_action_when_multiple">Yalnızca (herhangi biri) olduğunda eylemi çalıştır…</string>
-    <string name="item_action_when_add_empty">Gereksinim ekle…</string>
     <string name="item_action_when_add">Ekle…</string>
     <string name="item_action_blocked_info">Bu eylem, engellerken altındaki herhangi bir eylemin çalıştırılmasını önleyecektir (asla atlanmayacaktır).\nAşağıdaki eylemlerin yürütülmesini istiyorsanız bir gereksinim eklemeli veya bu eylemi kaldırmalısınız.</string>
     <string name="gate_music">Müzik Çalıyor</string>

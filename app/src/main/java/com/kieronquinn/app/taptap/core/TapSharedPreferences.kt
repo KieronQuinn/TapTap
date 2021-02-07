@@ -4,18 +4,17 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.kieronquinn.app.taptap.BuildConfig
 import com.kieronquinn.app.taptap.models.getDefaultTfModel
-import com.kieronquinn.app.taptap.utils.sharedPreferences
 import com.tfcporciuncula.flow.FlowSharedPreferences
+import org.json.JSONArray
+import org.json.JSONObject
 
 class TapSharedPreferences(private val context: Context) {
 
     companion object {
         const val SHARED_PREFERENCES_NAME = "${BuildConfig.APPLICATION_ID}_prefs"
+        const val SHARED_PREFERENCES_NAME_LEGACY = "${BuildConfig.APPLICATION_ID}_preferences"
         const val SHARED_PREFERENCES_KEY_MAIN_SWITCH = "main_enabled"
         const val SHARED_PREFERENCES_KEY_TRIPLE_TAP_SWITCH = "triple_tap_enabled"
-        const val SHARED_PREFERENCES_KEY_ACTIONS_TIME = "actions_time"
-        const val SHARED_PREFERENCES_KEY_ACTIONS_TRIPLE_TIME = "actions_triple_time"
-        const val SHARED_PREFERENCES_KEY_GATES = "gates"
         const val SHARED_PREFERENCES_KEY_MODEL = "model"
         const val SHARED_PREFERENCES_KEY_FEEDBACK_VIBRATE = "feedback_vibrate"
         const val SHARED_PREFERENCES_KEY_FEEDBACK_WAKE = "feedback_wake"
@@ -23,13 +22,16 @@ class TapSharedPreferences(private val context: Context) {
         const val SHARED_PREFERENCES_KEY_SPLIT_SERVICE = "advanced_split_service"
         const val SHARED_PREFERENCES_KEY_RESTART_SERVICE = "advanced_restart_service"
         const val SHARED_PREFERENCES_KEY_HAS_SEEN_SETUP = "has_seen_setup"
+        const val SHARED_PREFERENCES_KEY_BACKUP_URI = "backup_uri"
+
+        //Legacy preferences used in previous versions to know when actions have been set. This was previously used to know if the user had used the app.
+        const val SHARED_PREFERENCES_KEY_ACTIONS_TIME = "actions_time"
+        const val SHARED_PREFERENCES_KEY_ACTIONS_TRIPLE_TIME = "actions_triple_time"
 
         const val SHARED_PREFERENCES_KEY_SENSITIVITY = "sensitivity"
 
-        val SHARED_PREFERENCES_FEEDBACK_KEYS = arrayOf(SHARED_PREFERENCES_KEY_FEEDBACK_WAKE, SHARED_PREFERENCES_KEY_FEEDBACK_VIBRATE)
-
         /*
-            EXPERIMENTAL: SENSITIVITY
+            SENSITIVITY
             These values get applied to the model's noise reduction. The higher the value, the more reduction of 'noise', and therefore the harder the gesture is to run.
             Anything from 0.0 to 0.1 should really work, but 0.75 is pretty hard to trigger so that's set to the maximum and values filled in from there
             For > 0.05f, the values were initially even spaced, but that put too much weight on the higher values which made the force difference between 0.05 (default) the next value too great
@@ -40,6 +42,7 @@ class TapSharedPreferences(private val context: Context) {
     }
 
     val sharedPreferences = context.getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
+    val sharedPreferencesLegacy = context.getSharedPreferences(SHARED_PREFERENCES_NAME_LEGACY, Context.MODE_PRIVATE)
     val flowSharedPreferences = FlowSharedPreferences(sharedPreferences)
 
     var isSplitService: Boolean
@@ -55,8 +58,8 @@ class TapSharedPreferences(private val context: Context) {
         set(value) = sharedPreferences?.edit()?.putBoolean(SHARED_PREFERENCES_KEY_TRIPLE_TAP_SWITCH, value)?.apply() ?: Unit
 
     var isRestartEnabled: Boolean
-        get() = sharedPreferences?.getBoolean(SHARED_PREFERENCES_KEY_RESTART_SERVICE, false) ?: false
-        set(value) = sharedPreferences?.edit()?.putBoolean(SHARED_PREFERENCES_KEY_RESTART_SERVICE, value)?.apply() ?: Unit
+        get() = sharedPreferencesLegacy?.getBoolean(SHARED_PREFERENCES_KEY_RESTART_SERVICE, false) ?: false
+        set(value) = sharedPreferencesLegacy?.edit()?.putBoolean(SHARED_PREFERENCES_KEY_RESTART_SERVICE, value)?.apply() ?: Unit
 
     var hasSeenSetup: Boolean
         get() {
@@ -78,7 +81,82 @@ class TapSharedPreferences(private val context: Context) {
         set(value) = sharedPreferences?.edit()?.putString(SHARED_PREFERENCES_KEY_SENSITIVITY, value.toString())?.apply() ?: Unit
 
     var overrideDnd
-        get() = sharedPreferences?.getBoolean(SHARED_PREFERENCES_KEY_FEEDBACK_OVERRIDE_DND, false) ?: false
-        set(value) = sharedPreferences?.edit()?.putBoolean(SHARED_PREFERENCES_KEY_FEEDBACK_OVERRIDE_DND, value)?.apply() ?: Unit
+        get() = sharedPreferencesLegacy?.getBoolean(SHARED_PREFERENCES_KEY_FEEDBACK_OVERRIDE_DND, false) ?: false
+        set(value) = sharedPreferencesLegacy?.edit()?.putBoolean(SHARED_PREFERENCES_KEY_FEEDBACK_OVERRIDE_DND, value)?.apply() ?: Unit
+
+    var backupUri
+        get() = sharedPreferences?.getString(SHARED_PREFERENCES_KEY_BACKUP_URI, "") ?: ""
+        set(value) = sharedPreferences?.edit()?.putString(SHARED_PREFERENCES_KEY_BACKUP_URI, value)?.apply() ?: Unit
+
+    fun getSettingsAsJson() = JSONArray().apply {
+        sharedPreferences.toJson(this)
+    }
+
+    fun getLegacySettingsAsJson() = JSONArray().apply {
+        sharedPreferencesLegacy.toJson(this)
+    }
+
+    private fun SharedPreferences.toJson(jsonArray: JSONArray) = jsonArray.run {
+        all.map {
+            when(it.value){
+                is Boolean -> {
+                    JSONObject().fromSetting(it.key, it.value as Boolean, SettingsJsonType.BOOLEAN)
+                }
+                is Int -> {
+                    JSONObject().fromSetting(it.key, it.value as Int, SettingsJsonType.INT)
+                }
+                is Float -> {
+                    JSONObject().fromSetting(it.key, it.value.toString(), SettingsJsonType.FLOAT)
+                }
+                is Long -> {
+                    JSONObject().fromSetting(it.key, it.value as Long, SettingsJsonType.LONG)
+                }
+                is String -> {
+                    JSONObject().fromSetting(it.key, it.value as String, SettingsJsonType.STRING)
+                }
+                else -> null
+            }
+        }.forEach {
+            if(it != null) put(it)
+        }
+    }
+
+    fun writeFromJson(jsonArray: JSONArray) = sharedPreferences.edit().run {
+        for(i in 0 until jsonArray.length()){
+            putFromSettingJsonObject(jsonArray.getJSONObject(i))
+        }
+        apply()
+    }
+
+    fun writeFromJsonLegacy(jsonArray: JSONArray) = sharedPreferencesLegacy.edit().run {
+        for(i in 0 until jsonArray.length()){
+            putFromSettingJsonObject(jsonArray.getJSONObject(i))
+        }
+        apply()
+    }
+
+    private fun SharedPreferences.Editor.putFromSettingJsonObject(jsonObject: JSONObject){
+        runCatching {
+            val key = jsonObject.getString("key")
+            when (SettingsJsonType.valueOf(jsonObject.getString("type"))) {
+                SettingsJsonType.STRING -> putString(key, jsonObject.getString("value"))
+                SettingsJsonType.BOOLEAN -> putBoolean(key, jsonObject.getBoolean("value"))
+                SettingsJsonType.INT -> putInt(key, jsonObject.getInt("value"))
+                SettingsJsonType.FLOAT -> putFloat(key, jsonObject.getString("value").toFloat())
+                SettingsJsonType.LONG -> putLong(key, jsonObject.getLong("value"))
+            }
+        }
+    }
+
+    private fun <T> JSONObject.fromSetting(key: String, value: T, type: SettingsJsonType): JSONObject {
+        put("key", key)
+        put("value", value)
+        put("type", type)
+        return this
+    }
+
+    private enum class SettingsJsonType {
+        STRING, BOOLEAN, INT, FLOAT, LONG
+    }
 
 }

@@ -5,14 +5,9 @@
     android:id="@+id/nav_graph_setup"
     app:startDestination="@id/setupLandingFragment">
 
-    <activity
-        android:id="@+id/settingsActivity"
-        android:name="com.kieronquinn.app.taptap.activities.SettingsActivity"
-        android:label="SettingsActivity"
-        tools:layout="@layout/activity_settings" />
     <fragment
         android:id="@+id/setupLandingFragment"
-        android:name="com.kieronquinn.app.taptap.v2.ui.screens.setup.landing.SetupLandingFragment"
+        android:name="com.kieronquinn.app.taptap.ui.screens.setup.landing.SetupLandingFragment"
         android:label="SetupLandingFragment"
         tools:layout="@layout/fragment_setup_landing">
         <action
@@ -22,13 +17,10 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
-        <action
-            android:id="@+id/action_setupLandingFragment_to_settingsActivity"
-            app:destination="@id/settingsActivity" />
     </fragment>
     <fragment
         android:id="@+id/setupConfigurationFragment"
-        android:name="com.kieronquinn.app.taptap.v2.ui.screens.setup.configuration.SetupConfigurationFragment"
+        android:name="com.kieronquinn.app.taptap.ui.screens.setup.configuration.SetupConfigurationFragment"
         android:label="SetupConfigurationFragment"
         tools:layout="@layout/fragment_setup_gesture_configuration" >
         <action
@@ -44,7 +36,7 @@
     </fragment>
     <fragment
         android:id="@+id/setupFossInfoFragment"
-        android:name="com.kieronquinn.app.taptap.v2.ui.screens.setup.foss.SetupFossInfoFragment"
+        android:name="com.kieronquinn.app.taptap.ui.screens.setup.foss.SetupFossInfoFragment"
         android:label="SetupFossInfoFragment"
         tools:layout="@layout/fragment_setup_foss_info" >
         <action
@@ -67,7 +59,7 @@
     </fragment>
     <fragment
         android:id="@+id/setupAccessibilityFragment"
-        android:name="com.kieronquinn.app.taptap.v2.ui.screens.setup.accessibility.SetupAccessibilityFragment"
+        android:name="com.kieronquinn.app.taptap.ui.screens.setup.accessibility.SetupAccessibilityFragment"
         android:label="SetupAccessibilityFragment"
         tools:layout="@layout/fragment_setup_accessibility" >
         <action
@@ -80,24 +72,16 @@
     </fragment>
     <fragment
         android:id="@+id/setupBatteryFragment"
-        android:name="com.kieronquinn.app.taptap.v2.ui.screens.setup.battery.SetupBatteryFragment"
+        android:name="com.kieronquinn.app.taptap.ui.screens.setup.battery.SetupBatteryFragment"
         android:label="SetupBatteryFragment"
-        tools:layout="@layout/fragment_setup_battery" >
-        <action
-            android:id="@+id/action_setupBatteryFragment_to_settingsActivity"
-            app:destination="@id/settingsActivity"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
-    </fragment>
+        tools:layout="@layout/fragment_setup_battery" />
     <dialog
         android:id="@+id/troubleshootingBottomSheetDialogFragment"
-        android:name="com.kieronquinn.app.taptap.v2.ui.screens.setup.configuration.troubleshooting.TroubleshootingBottomSheetDialogFragment"
+        android:name="com.kieronquinn.app.taptap.ui.screens.setup.configuration.troubleshooting.TroubleshootingBottomSheetDialogFragment"
         android:label="TroubleshootingBottomSheetDialogFragment" />
     <dialog
         android:id="@+id/fossInfoBottomSheetDialogFragment"
-        android:name="com.kieronquinn.app.taptap.v2.ui.screens.setup.foss.fossinfo.FossInfoBottomSheetDialogFragment"
+        android:name="com.kieronquinn.app.taptap.ui.screens.setup.foss.fossinfo.FossInfoBottomSheetDialogFragment"
         android:label="FossInfoBottomSheetDialogFragment" />
 
 </navigation>

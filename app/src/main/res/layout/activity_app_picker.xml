@@ -1,71 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<fragment xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_host_fragment"
+    android:name="androidx.navigation.fragment.NavHostFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/container">
-
-    <androidx.appcompat.widget.Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="?android:actionBarSize"
-        android:elevation="0dp"
-        android:background="?android:windowBackground"
-        android:id="@+id/toolbar"
-        android:animateLayoutChanges="true"
-        app:contentInsetEnd="0dp"
-        app:contentInsetStart="0dp"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:id="@+id/toolbar_title"
-            android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
-            android:fontFamily="@font/hkgrotesk"
-            tools:text="Title" />
-
-        <ImageView
-            android:layout_width="?actionBarSize"
-            android:layout_height="?actionBarSize"
-            android:layout_gravity="bottom"
-            android:id="@+id/home"
-            android:visibility="gone"
-            tools:visibility="visible"
-            android:src="@drawable/ic_back"
-            android:padding="@dimen/activity_padding"
-            android:foreground="@drawable/rounded_ripple_28"
-            android:clickable="true"
-            android:focusable="true"
-            android:elevation="4dp"/>
-
-        <ImageView
-            android:layout_width="?actionBarSize"
-            android:layout_height="?actionBarSize"
-            android:layout_gravity="bottom|end"
-            android:id="@+id/menu"
-            android:visibility="gone"
-            tools:visibility="visible"
-            android:src="@drawable/ic_dots"
-            android:padding="@dimen/activity_padding"
-            android:foreground="@drawable/rounded_ripple_28"
-            android:clickable="true"
-            android:focusable="true"
-            android:elevation="4dp"/>
-
-    </androidx.appcompat.widget.Toolbar>
-
-    <fragment
-        android:id="@+id/nav_host_fragment"
-        android:name="androidx.navigation.fragment.NavHostFragment"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:defaultNavHost="true"
-        app:navGraph="@navigation/nav_graph_app_picker" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    app:defaultNavHost="true"
+    app:navGraph="@navigation/nav_graph_app_picker" />

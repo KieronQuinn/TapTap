@@ -1,11 +1,8 @@
 <resources>
     <string name="app_name">Tap, Tap</string>
     <string name="accessibility_service_description">TapTap 无障碍服务\n\n<b>重要提示：应用不会收集您的数据。此服务仅用于识别手势活动，并提供与设备的互动支持。</b></string>
-    <string name="toast_no_action_selected">没有选择任何动作</string>
-    <string name="launch_accessibility">激活无障碍服务</string>
     <string name="setting_gesture">手势</string>
     <string name="setting_gesture_desc">调整手势的工作方式</string>
-    <string name="setting_actions">动作</string>
     <string name="setting_actions_double">双击动作</string>
     <string name="setting_actions_triple">三击动作</string>
     <string name="settings_actions_desc_double">仅在双击设备背部时运行动作</string>
@@ -17,7 +14,7 @@
     <string name="setting_feedback_vibrate">振动</string>
     <string name="setting_feedback_vibrate_desc">当识别到手势并执行动作时，振动一次</string>
     <string name="setting_feedback_wake">唤醒设备</string>
-    <string name="setting_feedback_wake_desc">当屏幕处于关闭状态时唤醒设备（注意：这会干扰「锁屏」动作！）</string>
+    <string name="setting_feedback_wake_desc">当屏幕处于关闭状态时唤醒设备</string>
     <string name="gate_charging_state">充电时</string>
     <string name="gate_charging_state_desc">当设备刚处于充电状态时，暂时禁用手势</string>
     <string name="gate_charging_state_desc_when">仅当设备刚处于充电状态时才运行</string>
@@ -66,7 +63,6 @@
     <string name="action_next_desc">播放下一首歌曲</string>
     <string name="fab_add_action">添加动作</string>
     <string name="fab_remove_action">移除</string>
-    <string name="fab_remove_action_drop">松开以移除</string>
     <string name="add_action_category_launch">启动</string>
     <string name="add_action_category_utilities">工具</string>
     <string name="add_action_category_actions">动作</string>
@@ -77,9 +73,6 @@
     <string name="action_launch_app_desc">启动一个应用</string>
     <string name="action_launch_app_desc_formattable">启动 %1s。当该应用已经处于运行状态时，此动作将被跳过。</string>
     <string name="fab_add_gate">添加门槛</string>
-    <string name="add_gate_when">添加条件</string>
-    <string name="add_gate_category_state">状态</string>
-    <string name="add_gate_category_action">动作</string>
     <string name="nothing_found">什么都没找到</string>
     <string name="search">搜索</string>
     <string name="show_system_apps">显示系统应用</string>
@@ -91,7 +84,6 @@
     <string name="bs_help_action_title">什么是动作？</string>
     <string name="bs_help_gate">门槛可以阻止应用在识别到手势时运行动作。为了能够运行所有的动作，您必须启用所有的门槛。\n如果当前满足某个场景，例如：屏幕处于关闭状态，而「屏幕关闭时」处于启用状态时，则不会运行任何动作。您可以添加任意数量的门槛，并使用开关来启用或者禁用它们（没有必要删掉它们再重新添加），以节省时间并提高效率。</string>
     <string name="bs_help_gate_title">什么是门槛？</string>
-    <string name="help">帮助</string>
     <string name="action_launch_assistant">启动语音助手</string>
     <string name="action_launch_assistant_desc">启动您默认的语音助手</string>
     <string name="action_launch_search">启动搜索</string>
@@ -102,13 +94,11 @@
     <string name="accessibility_info_off_desc">手势将无法工作。点击以启用</string>
     <string name="accessibility_info_on">无障碍服务已启用</string>
     <string name="accessibility_info_on_desc_2">要使手势正常工作，此服务是必需的。</string>
-    <string name="accessibility_info_toast">在无障碍服务列表中选择「Tap, Tap」启用它，然后返回应用以继续</string>
     <string name="menu_beta">此应用处于 Beta 测试状态。点击查看详情</string>
     <string name="bs_beta">这款应用程序正处于开发中，目前处于 Beta 测试状态，可在众多设备上进行测试，听取用户的建议。如果您遇到了 bug，请在 GitHub 上提交一个 issue。如果您希望能有一些新功能，可以在 XDA 上的帖子里告诉我，或者同样在 GitHub 上提交。\n\n感谢您在开发过程中的耐心等候。</string>
     <string name="bs_beta_title">Beta</string>
     <string name="category_about">关于</string>
     <string name="about">%1s v%2s</string>
-    <string name="about_summary">由 Kieron Quinn / Quinny899 @ XDA 开发\n感谢来自社区的 %1s 对本项目的贡献</string>
     <string name="xda_thread">XDA 帖子</string>
     <string name="github">GitHub</string>
     <string name="libraries">第三方库</string>
@@ -118,10 +108,8 @@
     <string name="action_tasker_task">Tasker 任务</string>
     <string name="action_tasker_task_desc">执行特定的 Tasker 任务</string>
     <string name="action_tasker_task_desc_formatted">执行 Tasker 任务（%1s）</string>
-    <string name="action_tasker_event_toast">未安装 Tasker 或已安装的版本不受支持</string>
     <string name="bs_tasker_content">为了能够在不安装事件插件的情况下执行 Takser 任务，您必须在 Tasker 设置中「允许存储空间访问」。如果您没有这么做，此动作将一直会被跳过。</string>
     <string name="bs_tasker_title">需要权限</string>
-    <string name="bs_tasker_negative">稍后</string>
     <string name="bs_tasker_positive">打开 Tasker 设置</string>
     <string name="picker_launch_camera">启动相机</string>
     <string name="action_volume_panel">显示音量面板</string>
@@ -160,9 +148,6 @@
     <string name="battery_optimisation_desc">这有助于 Tap, Tap 保持运行状态（但并不一定总是有效，请参阅下面的电池选项）。点击禁用。</string>
     <string name="battery_and_optimisation">电池 &amp; 优化</string>
     <string name="battery_and_optimisation_desc">有关为什么 Tap, Tap 消耗电量，以及为什么它在后台运行时可能会被您的设备关闭的有关内容（以及如何修复该问题）</string>
-    <string name="bs_battery_content">Tap, Tap 使用后台无障碍服务来保持运行，且一直调用加速度计和陀螺仪以“监听”设备背面的敲击声。因此，	
-Tap, Tap 在后台运行时可能会消耗一部分电量。\n\n由于 Tap, Tap 仍处于早期开发阶段，尚未完全优化，未来也许可以通过设置来减少耗电，但目前耗电较大的情况暂无法避免。\n\n此外，某些 OEM 固件（例如 MIUI 或 OneUI）在杀后台方面（包括无障碍服务）方面比 Google 建议的更狠。如果在禁用电池优化的情况下，Tap, Tap 仍被杀了后台，请尝试以下操作：\n·在最近任务中锁定此应用的后台\n·禁用针对应用的任何进一步的电池优化（通常在「设置」>「应用」或「设置」>「电池」里）\n·在「开发者选项」中禁用 MIUI 优化（仅限 MIUI）\n\n有关系统杀后台应用的更多信息，以及如何解决该问题的建议，请访问 dontkillmyapp.com</string>
-    <string name="bs_battery_positive">访问 dontkillmyapp.com</string>
     <string name="gate_orientation_landscape">横屏</string>
     <string name="gate_orientation_landscape_desc">当设备处于横屏时，暂时禁用手势</string>
     <string name="gate_orientation_landscape_desc_when">仅当设备处于横屏时运行</string>
@@ -183,7 +168,6 @@ Tap, Tap 在后台运行时可能会消耗一部分电量。\n\n由于 Tap, Tap 
     <string name="gate_headset_desc_when">仅当<b>连接到</b>有线或无线耳机时运行</string>
     <string name="item_action_when">仅在以下条件成立时运行动作……</string>
     <string name="item_action_when_multiple">仅在以下条件成立时运行动作……</string>
-    <string name="item_action_when_add_empty">添加条件…</string>
     <string name="item_action_when_add">添加…</string>
     <string name="item_action_blocked_info">此动作将会阻止位于它下方动作的运行，因为它会永不停止地运行以阻止其他动作。\n如果希望执行下面的动作，则必须添加其他条件或删除这个条件。</string>
     <string name="gate_music">播放音乐时</string>
@@ -200,16 +184,12 @@ Tap, Tap 在后台运行时可能会消耗一部分电量。\n\n由于 Tap, Tap 
     <string name="tap_notification_channel_description">当启用使用单独服务的选项时，用于在后台保持单击、单击运行的通知</string>
     <string name="setting_advanced">高级</string>
     <string name="setting_advanced_desc">高级设置和调整，用于优化性能等</string>
-    <string name="setting_advanced_split_service">使用分离服务</string>
-    <string name="setting_advanced_split_service_desc">此选项允许应用启用第二个无障碍服务。虽然这看起来有点迷惑，但可能有助于应用在某些设备上不会被系统杀死：因为它是一个前台服务，它所提供的识别和执行能力，也让无障碍服务做的工作变得很少。您可能需要重新启动以使其完全生效。</string>
     <string name="setting_advanced_warning">内有恶犬</string>
     <string name="setting_advanced_warning_desc">这些选项均为实验性，可能无法在您的设备上运行，或者可能导致 Tap, Tap 完全停止工作。如果出现了异常，请尝试<b>关闭</b>这些选项并重新启动您的设备，这将重置服务。</string>
     <string name="switch_main">启用手势</string>
     <string name="setting_advanced_restart_service">自动重启服务</string>
     <string name="setting_advanced_restart_service_desc">尝试每小时自动重新启动一次 Tap，Tap 侦听器组件。如果您启用了分离服务，前台服务也将重新启动。注意：无障碍不能自动重启，如果它被杀死或禁用，将无法工作。</string>
-    <string name="update_error">检查更新失败</string>
     <string name="bs_update_download">下载</string>
-    <string name="bs_update_later">稍后提醒我</string>
     <string name="bs_update_title">有新更新！</string>
     <string name="bs_update_content"><![CDATA[<h2>有新的更新可用</h2><br><b>当前版本：</b> %1s<br><b>全新版本：</b> %1s<br><b>更新日期：</b> %1s<br><b>更新日志：</b><br>%1s]]></string>
     <string name="tap_update_notification_channel_title">更新提醒</string>
@@ -231,7 +211,6 @@ Tap, Tap 在后台运行时可能会消耗一部分电量。\n\n由于 Tap, Tap 
     <string name="action_app_drawer">应用程序抽屉</string>
     <string name="action_app_drawer_desc">打开<b>受支持的启动器</b>的应用收徒。仅在 Android 11 上工作。</string>
     <string name="tasker_config_label_triple">敲击背面三次</string>
-    <string name="tasker_triple_tap">三击</string>
     <string name="tasker_description_double">将在轻敲设备背面两次时触发</string>
     <string name="tasker_description_triple">将在轻敲设备背面三次时触发</string>
 </resources>

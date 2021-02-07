@@ -63,7 +63,6 @@ class TapForegroundService: Service() {
             .setAutoCancel(true)
             .build()
         startForeground(1, notification)
-        Log.d(TAG, "startForeground called")
         return START_STICKY
     }
 

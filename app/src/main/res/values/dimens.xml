@@ -5,7 +5,6 @@
     <dimen name="margin_medium">12dp</dimen>
     <dimen name="margin_extra_small">4dp</dimen>
     <dimen name="margin_large">16dp</dimen>
-    <dimen name="margin_extra_large">24dp</dimen>
     <dimen name="item_height">56dp</dimen>
     <dimen name="clear_button_size">36dp</dimen>
     <dimen name="search_box_height">48dp</dimen>
@@ -16,4 +15,5 @@
     <dimen name="reachability_button_size">36dp</dimen>
     <dimen name="chip_height">56dp</dimen>
     <dimen name="configuration_button_height">72dp</dimen>
+    <dimen name="item_add_category_width">200dp</dimen>
 </resources>
