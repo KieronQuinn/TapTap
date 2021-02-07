@@ -52,7 +52,7 @@
     <string name="gate_app_showing">App showing</string>
     <string name="gate_app_showing_desc">Blocks gesture when an app is showing on screen</string>
     <string name="gate_app_showing_desc_when">Run only when an app is showing on screen</string>
-    <string name="gate_app_showing_desc_formatted">Blocks gesture when an %1s is showing on screen</string>
+    <string name="gate_app_showing_desc_formatted">Blocks gesture when %1s is showing on screen</string>
     <string name="action_launch_camera">Launch camera</string>
     <string name="action_launch_camera_desc">Launch your default camera app. This action will be skipped if the camera is already running.</string>
     <string name="action_home">Home</string>
