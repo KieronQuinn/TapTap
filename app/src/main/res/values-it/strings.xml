@@ -154,7 +154,7 @@
     <string name="action_google_voice_access">Aziona Google Voice Access</string>
     <string name="action_google_voice_access_desc">Innesca la Google Voice Access <b>app di accessibilità</b>, se è in esecuzione (questo NON è Assistant o la ricerca vocale)</string>
     <string name="action_hamburger">Hamburger menu / Indietro</string>
-    <string name="action_hamburger_desc">Questa azione preme nel punto in cui di solito si trova il menù ad hamburger. <b>Avviso importante</b>: questo toccherà <b>qualsiasi elemento</b> che si troverà in quella posizione (in alto a sinistra), perciò alcune volte andrà indietro, o potrebbe toccare altri elementi in quel punto, anche pulsanti. <b>Usa con estrema attenzione</b> e considera l'uso del triplo tap o di vincoli per limtarla.</string>
+    <string name="action_hamburger_desc">Questa azione preme nel punto in cui di solito si trova il menù ad hamburger. <b>Avviso importante</b>: questo toccherà <b>qualsiasi elemento</b> che si troverà in quella posizione (in alto a sinistra), perciò alcune volte andrà indietro, o potrebbe toccare altri elementi in quel punto, anche pulsanti. <b>Usa con estrema attenzione</b> e considera l\'uso del triplo tap o di vincoli per limtarla.</string>
     <string name="action_launch_search">Lancia ricerca</string>
     <string name="action_launch_search_desc">Lancia una Ricerca Google</string>
     <string name="action_tasker_task_desc_formatted">Esegui un task di Tasker (%ls)</string>

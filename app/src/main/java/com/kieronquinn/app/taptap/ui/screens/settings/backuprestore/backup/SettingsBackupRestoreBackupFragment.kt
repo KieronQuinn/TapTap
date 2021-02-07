@@ -11,6 +11,7 @@ import com.airbnb.lottie.LottieDrawable
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.databinding.FragmentBackupRestoreBackupBinding
 import com.kieronquinn.app.taptap.components.base.BoundFragment
+import com.kieronquinn.app.taptap.utils.extensions.observe
 import dev.chrisbanes.insetter.applySystemWindowInsetsToPadding
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -69,6 +70,9 @@ class SettingsBackupRestoreBackupFragment: BoundFragment<FragmentBackupRestoreBa
                         binding.fragmentBackupRestoreBackupProgress.isVisible = false
                         binding.fragmentBackupRestoreBackupButton.isVisible = true
                     }
+                    is SettingsBackupRestoreBackupViewModel.State.Cancelled -> {
+                        viewModel.onCloseClicked(this@SettingsBackupRestoreBackupFragment)
+                    }
                 }
             }
             getTitle(requireContext()).asLiveData().observe(viewLifecycleOwner){
@@ -81,6 +85,9 @@ class SettingsBackupRestoreBackupFragment: BoundFragment<FragmentBackupRestoreBa
         }
     }
 
-    override fun onBackPressed() = viewModel.onBackPressed(this)
+    override fun onBackPressed(): Boolean {
+        viewModel.cancel()
+        return false
+    }
 
 }

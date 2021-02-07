@@ -26,6 +26,7 @@ class SettingsBackupRestoreBackupViewModel(private val tapFileRepository: TapFil
         state.collect {
             emit(when(it){
                 is State.Running -> context.getString(R.string.settings_backuprestore_backup_title)
+                is State.Cancelled -> context.getString(R.string.settings_backuprestore_backup_title)
                 is State.Done -> context.getString(R.string.settings_backuprestore_backup_done_title)
                 is State.Error -> context.getString(R.string.settings_backuprestore_backup_error_title)
             })
@@ -36,6 +37,7 @@ class SettingsBackupRestoreBackupViewModel(private val tapFileRepository: TapFil
         state.collect {
             emit(when(it){
                 is State.Running -> context.getString(R.string.settings_backuprestore_backup_desc)
+                is State.Cancelled -> context.getString(R.string.settings_backuprestore_backup_desc)
                 is State.Done -> context.getString(R.string.settings_backuprestore_backup_done_desc, it.fileName)
                 is State.Error -> context.getString(R.string.settings_backuprestore_backup_error_desc, context.getString(it.errorType.errorRes))
             })
@@ -83,6 +85,11 @@ class SettingsBackupRestoreBackupViewModel(private val tapFileRepository: TapFil
         object Running: State()
         data class Done(val fileName: String): State()
         data class Error(val errorType: ErrorType): State()
+        object Cancelled: State()
+    }
+
+    fun cancel() = viewModelScope.launch {
+        state.emit(State.Cancelled)
     }
 
     enum class ErrorType(@StringRes val errorRes: Int) {

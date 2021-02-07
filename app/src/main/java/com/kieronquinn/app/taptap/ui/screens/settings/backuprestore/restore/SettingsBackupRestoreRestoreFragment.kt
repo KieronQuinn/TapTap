@@ -85,6 +85,9 @@ class SettingsBackupRestoreRestoreFragment: BoundFragment<FragmentBackupRestoreR
                     is SettingsBackupRestoreRestoreViewModel.State.Write -> {
                         handleWrite(it.backupJson, it.skipped)
                     }
+                    is SettingsBackupRestoreRestoreViewModel.State.Cancelled -> {
+                        viewModel.onCloseClicked(this@SettingsBackupRestoreRestoreFragment)
+                    }
                 }
             }
             getTitle(requireContext()).asLiveData().observe(viewLifecycleOwner){
@@ -97,6 +100,9 @@ class SettingsBackupRestoreRestoreFragment: BoundFragment<FragmentBackupRestoreR
         }
     }
 
-    override fun onBackPressed() = viewModel.onBackPressed(this)
+    override fun onBackPressed(): Boolean {
+        viewModel.cancel()
+        return true
+    }
 
 }

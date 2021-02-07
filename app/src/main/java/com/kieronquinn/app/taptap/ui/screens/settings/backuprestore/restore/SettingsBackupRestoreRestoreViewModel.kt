@@ -35,6 +35,7 @@ class SettingsBackupRestoreRestoreViewModel(private val tapFileRepository: TapFi
         state.collect {
             emit(when(it){
                 is State.Running -> context.getString(R.string.settings_backuprestore_restore_title)
+                is State.Cancelled -> context.getString(R.string.settings_backuprestore_restore_title)
                 is State.PermissionCheck -> context.getString(R.string.settings_backuprestore_restore_title)
                 is State.Write -> context.getString(R.string.settings_backuprestore_restore_title)
                 is State.Done -> context.getString(R.string.settings_backuprestore_restore_done_title)
@@ -47,6 +48,7 @@ class SettingsBackupRestoreRestoreViewModel(private val tapFileRepository: TapFi
         state.collect {
             emit(when(it){
                 is State.Running -> context.getString(R.string.settings_backuprestore_restore_desc)
+                is State.Cancelled -> context.getString(R.string.settings_backuprestore_restore_desc)
                 is State.PermissionCheck -> context.getString(R.string.settings_backuprestore_restore_desc)
                 is State.Write -> context.getString(R.string.settings_backuprestore_restore_desc)
                 is State.Done -> context.getString(R.string.settings_backuprestore_restore_done_desc, it.fileName)
@@ -228,6 +230,7 @@ class SettingsBackupRestoreRestoreViewModel(private val tapFileRepository: TapFi
         data class Write(val backupJson: TapFileRepository.BackupJson, val skipped: List<SkippedItem>): State()
         data class Done(val fileName: String, val skipped: List<SkippedItem>): State()
         data class Error(val errorType: ErrorType): State()
+        object Cancelled: State()
     }
 
     enum class ErrorType(@StringRes val errorRes: Int) {
@@ -291,6 +294,10 @@ class SettingsBackupRestoreRestoreViewModel(private val tapFileRepository: TapFi
 
     fun reset() = viewModelScope.launch {
         state.emit(State.Running)
+    }
+
+    fun cancel() = viewModelScope.launch {
+        state.emit(State.Cancelled)
     }
 
     sealed class ActionDataRequirement: Parcelable {

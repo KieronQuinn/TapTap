@@ -47,8 +47,8 @@ class SettingsRestorePermissionBottomSheetFragment: BaseBottomSheetDialogFragmen
             close()
         }
         neutralButton(R.string.restore_prompt_cancel){
-            //TODO cancel
             close()
+            viewModel.cancel()
         }
     }
 
