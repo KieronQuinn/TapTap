@@ -10,12 +10,12 @@ import androidx.core.view.marginBottom
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.transition.TransitionManager
 import com.kieronquinn.app.taptap.R
+import com.kieronquinn.app.taptap.components.base.BoundFragment
 import com.kieronquinn.app.taptap.databinding.FragmentActionsBinding
 import com.kieronquinn.app.taptap.models.ActionInternal
+import com.kieronquinn.app.taptap.ui.screens.settings.action.triple.SettingsTripleTapActionFragment
 import com.kieronquinn.app.taptap.utils.extensions.animateBackgroundStateChange
 import com.kieronquinn.app.taptap.utils.extensions.observe
-import com.kieronquinn.app.taptap.components.base.BoundFragment
-import com.kieronquinn.app.taptap.ui.screens.settings.action.triple.SettingsTripleTapActionFragment
 import dev.chrisbanes.insetter.applySystemWindowInsetsToMargin
 
 abstract class SettingsActionFragment: BoundFragment<FragmentActionsBinding>(FragmentActionsBinding::class.java) {
@@ -46,10 +46,6 @@ abstract class SettingsActionFragment: BoundFragment<FragmentActionsBinding>(Fra
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         with(_viewModel){
-            shouldShowEmptyState.observe(viewLifecycleOwner){
-                binding.emptyState.isVisible = it
-                binding.recyclerView.isVisible = !it
-            }
             state.observe(viewLifecycleOwner){
                 when(it){
                     is SettingsActionViewModel.State.Loading -> {

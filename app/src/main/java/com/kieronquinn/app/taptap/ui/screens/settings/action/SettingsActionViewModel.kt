@@ -1,5 +1,6 @@
 package com.kieronquinn.app.taptap.ui.screens.settings.action
 
+import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.*
@@ -69,14 +70,6 @@ abstract class SettingsActionViewModel(tapSharedPreferences: TapSharedPreference
     val fabState = MediatorLiveData<Boolean>().apply {
         addSource(selectedState){
             update(it is SelectedState.ActionSelected)
-        }
-    }
-
-    val shouldShowEmptyState by lazy {
-        MediatorLiveData<Boolean>().apply {
-            addSource(state){
-                update(it is State.Loaded && it.actions.isEmpty())
-            }
         }
     }
 
