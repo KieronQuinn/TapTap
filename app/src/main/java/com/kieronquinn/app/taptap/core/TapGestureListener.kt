@@ -4,7 +4,8 @@ import android.util.Log
 import com.google.android.systemui.columbus.ColumbusService
 import com.google.android.systemui.columbus.actions.Action
 import com.google.android.systemui.columbus.sensors.GestureSensor
-import com.kieronquinn.app.taptap.utils.setAccessibleR
+import com.kieronquinn.app.taptap.core.columbus.actions.DoNothingAction
+import com.kieronquinn.app.taptap.utils.extensions.setAccessibleR
 
 class TapGestureListener(private val columbusService: TapColumbusService): ColumbusService.GestureListener() {
 
@@ -16,10 +17,13 @@ class TapGestureListener(private val columbusService: TapColumbusService): Colum
         //Only handle the triple tap gestures ourselves
         if(detectionProperties?.actionId == 3L){
             Log.d("TapColumbusService", "onTripleTapGesture")
-            //Trigger the vibration too
-            onTripleTapFeedback(detectionProperties)
+            val gated = ColumbusService.isGated(columbusService.gates)
+            if(!gated) {
+                //Trigger the vibration too
+                onTripleTapFeedback(detectionProperties)
+            }
             //And then the actual gesture
-            onTripleTapGesture(detectionProperties)
+            onTripleTapGesture(detectionProperties, gated)
         }else {
             super.onGestureProgress(gestureSensor, actionType, detectionProperties)
         }
@@ -31,9 +35,8 @@ class TapGestureListener(private val columbusService: TapColumbusService): Colum
         }
     }
 
-    private fun onTripleTapGesture(detectionProperties: GestureSensor.DetectionProperties){
+    private fun onTripleTapGesture(detectionProperties: GestureSensor.DetectionProperties, gated: Boolean){
         Log.d("Columbus/ColumbusService", "onTripleTapGesture")
-        val gated = ColumbusService.isGated(columbusService.gates)
         Log.d("Columbus/ColumbusService", "onTripleTapGesture gated $")
         if (!gated) {
             Log.d("Columbus/ColumbusService", "onTripleTapGesture not gated")
@@ -49,4 +52,9 @@ class TapGestureListener(private val columbusService: TapColumbusService): Colum
             }
         }
     }
+
+    override fun shouldIgnoreAction(action: Action?): Boolean {
+        return action == null || action is DoNothingAction
+    }
+
 }

@@ -46,17 +46,16 @@ class TapAccessibilityService: AccessibilityService() {
         value
     }
 
-    override fun onCreate() {
-        super.onCreate()
-        Log.d(TAG, "onCreate")
+    override fun onServiceConnected() {
+        super.onServiceConnected()
         sendBroadcast(Intent(KEY_ACCESSIBILITY_START).setPackage(packageName))
         serviceContainer.accessibilityService = this
         columbusService.ping()
     }
 
+
     override fun onDestroy() {
         super.onDestroy()
-        Log.d(TAG, "onDestroy")
         serviceContainer.accessibilityService = null
     }
 

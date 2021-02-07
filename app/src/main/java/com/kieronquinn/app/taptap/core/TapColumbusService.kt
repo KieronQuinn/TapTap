@@ -3,6 +3,8 @@ package com.kieronquinn.app.taptap.core
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.res.AssetManager
+import android.util.ArraySet
 import android.util.Log
 import com.google.android.systemui.columbus.ColumbusService
 import com.google.android.systemui.columbus.PowerManagerWrapper
@@ -10,35 +12,34 @@ import com.google.android.systemui.columbus.actions.Action
 import com.google.android.systemui.columbus.feedback.FeedbackEffect
 import com.google.android.systemui.columbus.gates.Gate
 import com.google.android.systemui.columbus.sensors.GestureSensor
-import com.kieronquinn.app.taptap.columbus.actions.ActionBase
-import com.kieronquinn.app.taptap.columbus.actions.DoNothingAction
-import com.kieronquinn.app.taptap.columbus.feedback.HapticClickCompat
-import com.kieronquinn.app.taptap.columbus.feedback.WakeDevice
-import com.kieronquinn.app.taptap.core.TapSharedPreferences.Companion.SHARED_PREFERENCES_KEY_ACTIONS_TIME
-import com.kieronquinn.app.taptap.core.TapSharedPreferences.Companion.SHARED_PREFERENCES_KEY_ACTIONS_TRIPLE_TIME
+import com.google.android.systemui.columbus.sensors.GestureSensorImpl
+import com.google.android.systemui.columbus.sensors.TfClassifier
+import com.kieronquinn.app.taptap.core.columbus.actions.ActionBase
+import com.kieronquinn.app.taptap.core.columbus.actions.DoNothingAction
+import com.kieronquinn.app.taptap.core.columbus.feedback.HapticClickCompat
+import com.kieronquinn.app.taptap.core.columbus.feedback.WakeDevice
 import com.kieronquinn.app.taptap.core.TapSharedPreferences.Companion.SHARED_PREFERENCES_KEY_FEEDBACK_VIBRATE
 import com.kieronquinn.app.taptap.core.TapSharedPreferences.Companion.SHARED_PREFERENCES_KEY_FEEDBACK_WAKE
-import com.kieronquinn.app.taptap.core.TapSharedPreferences.Companion.SHARED_PREFERENCES_KEY_GATES
 import com.kieronquinn.app.taptap.core.TapSharedPreferences.Companion.SHARED_PREFERENCES_KEY_MAIN_SWITCH
 import com.kieronquinn.app.taptap.core.TapSharedPreferences.Companion.SHARED_PREFERENCES_KEY_MODEL
 import com.kieronquinn.app.taptap.core.TapSharedPreferences.Companion.SHARED_PREFERENCES_KEY_RESTART_SERVICE
 import com.kieronquinn.app.taptap.core.TapSharedPreferences.Companion.SHARED_PREFERENCES_KEY_SENSITIVITY
 import com.kieronquinn.app.taptap.core.TapSharedPreferences.Companion.SHARED_PREFERENCES_KEY_TRIPLE_TAP_SWITCH
 import com.kieronquinn.app.taptap.core.services.TapForegroundService
-import com.kieronquinn.app.taptap.models.ActionInternal
-import com.kieronquinn.app.taptap.models.TfModel
-import com.kieronquinn.app.taptap.models.getDefaultTfModel
-import com.kieronquinn.app.taptap.models.store.DoubleTapActionListFile
-import com.kieronquinn.app.taptap.models.store.TripleTapActionListFile
-import com.kieronquinn.app.taptap.smaliint.SmaliCalls
-import com.kieronquinn.app.taptap.utils.*
-import com.kieronquinn.app.taptap.workers.RestartWorker
+import com.kieronquinn.app.taptap.models.*
+import com.kieronquinn.app.taptap.core.smali.SmaliCalls
+import com.kieronquinn.app.taptap.utils.extensions.isServiceRunning
+import com.kieronquinn.app.taptap.utils.extensions.legacySharedPreferences
+import com.kieronquinn.app.taptap.utils.extensions.sharedPreferences
+import com.kieronquinn.app.taptap.core.workers.RestartWorker
+import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.collect
 import org.koin.core.component.KoinApiExtension
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
 @KoinApiExtension
-class TapColumbusService(private val context: Context, private val tapSharedPreferences: TapSharedPreferences, gestureSensor: GestureSensor, powerManagerWrapper: PowerManagerWrapper):
+class TapColumbusService(private val context: Context, private val tapFileRepository: TapFileRepository, private val tapSharedPreferences: TapSharedPreferences, gestureSensor: GestureSensor, powerManagerWrapper: PowerManagerWrapper):
     ColumbusService(emptyList(), emptySet(), emptySet(), gestureSensor, powerManagerWrapper, null), SharedPreferences.OnSharedPreferenceChangeListener, KoinComponent {
 
     private val tapServiceContainer by inject<TapServiceContainer>()
@@ -50,19 +51,48 @@ class TapColumbusService(private val context: Context, private val tapSharedPref
     }
 
     private var lastActiveActionTriple: Action? = null
-    var tripleTapActions: MutableList<Action> = emptyList<Action>().toMutableList()
+    var tripleTapActions: List<Action> = emptyList()
 
     init {
         Log.d(TAG, "init")
         this.gestureListener = TapGestureListener(this)
         gestureSensor.setGestureListener(gestureListener)
         context.sharedPreferences?.registerOnSharedPreferenceChangeListener(this)
-        refreshColumbusActions()
-        refreshColumbusActionsTriple()
+        context.legacySharedPreferences?.registerOnSharedPreferenceChangeListener(this)
         refreshColumbusFeedback()
-        refreshColumbusGates(context)
         if(tapSharedPreferences.isRestartEnabled){
             RestartWorker.queueRestartWorker(context)
+        }
+        with(tapFileRepository){
+            scope.launch {
+                doubleTapActions.collect {
+                    withContext(Dispatchers.Main) {
+                        setActions(it.getColumbusActions())
+                        updateSensorListener()
+                    }
+                }
+            }
+            scope.launch {
+                tripleTapActions.collect {
+                    withContext(Dispatchers.Main) {
+                        setTripleActions(it.getColumbusActions())
+                        updateSensorListener()
+                    }
+                }
+            }
+            scope.launch {
+                gates.collect {
+                    if(isDemoMode) return@collect
+                    withContext(Dispatchers.Main) {
+                        val context = tapServiceContainer.accessibilityService ?: return@withContext
+                        setGates(it.getGates(context))
+                        updateSensorListener()
+                    }
+                }
+            }
+            getDoubleTapActions()
+            getTripleTapActions()
+            getGates()
         }
     }
 
@@ -84,18 +114,34 @@ class TapColumbusService(private val context: Context, private val tapSharedPref
     }
 
     private fun firstAvailableActionTriple(): Action? {
-        Log.d(TAG, "firstAvailableActionTriple actions size ${tripleTapActions.size}")
-        tripleTapActions.forEach {
-            Log.d(TAG, "firstAvailableActionTriple ${it.javaClass.simpleName} isAvailable ${it.isAvailable}")
-        }
         return tripleTapActions.firstOrNull { it.isAvailable }
     }
 
-    fun setActions(actions: List<Action>){
+    private fun setActions(actions: List<Action>){
+        if(isDemoMode) return
+        actions.forEach {
+            it.listener = null
+        }
         if(actions.isEmpty()){
             this.actions = listOf(DoNothingAction(context))
         }else{
-            this.actions = actions
+            this.actions = actions.apply {
+                forEach { it.listener = actionListener }
+            }
+        }
+    }
+
+    private fun setTripleActions(actions: List<Action>){
+        if(isDemoMode) return
+        actions.forEach {
+            it.listener = null
+        }
+        if(actions.isEmpty()){
+            this.tripleTapActions = listOf(DoNothingAction(context))
+        }else{
+            this.tripleTapActions = actions.apply {
+                forEach { it.listener = actionListener }
+            }
         }
     }
 
@@ -133,18 +179,6 @@ class TapColumbusService(private val context: Context, private val tapSharedPref
                 //Refresh feedback options
                 refreshColumbusFeedback()
             }
-            SHARED_PREFERENCES_KEY_GATES -> {
-                //Refresh gates
-                refreshColumbusGates(tapServiceContainer.accessibilityService!!)
-            }
-            SHARED_PREFERENCES_KEY_ACTIONS_TIME -> {
-                //Refresh actions
-                refreshColumbusActions()
-            }
-            SHARED_PREFERENCES_KEY_ACTIONS_TRIPLE_TIME -> {
-                //Refresh triple tap actions
-                refreshColumbusActionsTriple()
-            }
             SHARED_PREFERENCES_KEY_TRIPLE_TAP_SWITCH -> {
                 //Set triple tap enabled
                 tapGestureSensor.customTap?.isTripleTapEnabled = tapSharedPreferences.isTripleTapEnabled
@@ -164,16 +198,8 @@ class TapColumbusService(private val context: Context, private val tapSharedPref
         }
     }
 
-    private fun refreshColumbusActions() {
-        setActions(getColumbusActions())
-    }
-
-    private fun refreshColumbusActionsTriple() {
-        tripleTapActions = getColumbusActionsTriple()
-    }
-
-    private fun getColumbusActions(): List<Action> {
-        return DoubleTapActionListFile.loadFromFile(context).toList().mapNotNull {
+    private fun Array<ActionInternal>.getColumbusActions(): List<Action> {
+        return this.mapNotNull {
             ActionInternal.getActionForEnum(tapServiceContainer, it).apply {
                 (this as? ActionBase)?.triggerListener = {
                     Log.d(TAG, "action trigger from type ${context.javaClass.simpleName}")
@@ -182,23 +208,13 @@ class TapColumbusService(private val context: Context, private val tapSharedPref
         }
     }
 
-    private fun getColumbusActionsTriple(): MutableList<Action> {
-        return TripleTapActionListFile.loadFromFile(context).toList().mapNotNull {
-            ActionInternal.getActionForEnum(tapServiceContainer, it).apply {
-                (this as? ActionBase)?.triggerListener = {
-                    Log.d(TAG, "action trigger from type ${context.javaClass.simpleName}")
-                }
-            }
-        }.toMutableList()
-    }
-
     private fun refreshColumbusFeedback() {
         val feedbackSet = getColumbusFeedback()
         effects = feedbackSet
     }
 
     private fun getColumbusFeedback(): Set<FeedbackEffect> {
-        val sharedPreferences = context.sharedPreferences
+        val sharedPreferences = context.legacySharedPreferences
         val isVibrateEnabled =
             sharedPreferences?.getBoolean(SHARED_PREFERENCES_KEY_FEEDBACK_VIBRATE, true) ?: true
         val isWakeEnabled = sharedPreferences?.getBoolean(SHARED_PREFERENCES_KEY_FEEDBACK_WAKE, true) ?: true
@@ -208,21 +224,15 @@ class TapColumbusService(private val context: Context, private val tapSharedPref
         return feedbackList.toSet()
     }
 
-    private fun refreshColumbusGates(context: Context) {
-        val gatesSet = getGates(context)
-        Log.d(TAG, "setting gates to ${gatesSet.joinToString(", ")}")
-        setGates(gatesSet)
-    }
-
     private fun setGates(set: Set<Gate>){
         //Remove current gates' listeners
         gates.forEach {
             it.listener = null
             it.deactivate()
+            it.listener = null
         }
         //Set new gates
         gates = set
-        val gateListener = ColumbusService::class.java.getDeclaredField("gateListener").setAccessibleR(true).get(this) as Gate.Listener
         gates.forEach {
             it.listener = gateListener
         }
@@ -254,12 +264,34 @@ class TapColumbusService(private val context: Context, private val tapSharedPref
             effects = setOf(HapticClickCompat(context, true))
             tapGestureSensor.customTap?.isTripleTapEnabled = true
         }else{
-            refreshColumbusActions()
-            refreshColumbusActionsTriple()
+            with(tapFileRepository) {
+                getDoubleTapActions()
+                getTripleTapActions()
+                getGates()
+            }
             refreshColumbusFeedback()
-            refreshColumbusGates(context)
             tapGestureSensor.customTap?.isTripleTapEnabled = tapSharedPreferences.isTripleTapEnabled
         }
+        updateSensorListener()
+    }
+
+    override fun updateSensorListenerTriple() {
+        //Update triple tap action
+        updateActiveActionTriple()
+    }
+
+    private fun Array<GateInternal>.getGates(context: Context): Set<Gate> {
+        val gates = ArraySet<Gate>()
+        for(gate in this){
+            if(!gate.isActivated) continue
+            gates.add(getGate(context, gate.gate, gate.data) ?: continue)
+        }
+        return gates
+    }
+
+    private fun GestureSensorImpl.setTfClassifier(assetManager: AssetManager, tfModel: String){
+        val tfClassifier = TfClassifier(assetManager, tfModel)
+        tap._tflite = tfClassifier
     }
 
 }

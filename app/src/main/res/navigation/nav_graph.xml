@@ -7,8 +7,8 @@
 
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.kieronquinn.app.taptap.fragments.SettingsFragment"
-        android:label="@string/app_name" >
+        android:name="com.kieronquinn.app.taptap.ui.screens.settings.main.SettingsMainFragment"
+        android:label="@string/app_name">
         <action
             android:id="@+id/action_settingsFragment_to_settingsGestureFragment"
             app:destination="@id/settingsGestureFragment"
@@ -51,32 +51,232 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_settingsFragment_to_modalActivity"
+            app:destination="@id/modalActivity"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_settingsFragment_to_settingsBackupRestoreFragment"
+            app:destination="@id/settingsBackupRestoreFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_settingsFragment_to_settingsAboutFragment"
+            app:destination="@id/settingsAboutFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/settingsGestureFragment"
-        android:name="com.kieronquinn.app.taptap.fragments.SettingsGestureFragment"
-        android:label="@string/setting_gesture" />
+        android:name="com.kieronquinn.app.taptap.ui.screens.settings.gesture.SettingsGestureFragment"
+        android:label="@string/setting_gesture">
+        <action
+            android:id="@+id/action_settingsGestureFragment_to_settingsGestureModelBottomSheetDialogFragment"
+            app:destination="@id/settingsGestureModelBottomSheetDialogFragment" />
+    </fragment>
     <fragment
         android:id="@+id/settingsFeedbackFragment"
-        android:name="com.kieronquinn.app.taptap.fragments.SettingsFeedbackFragment"
+        android:name="com.kieronquinn.app.taptap.ui.screens.settings.feedback.SettingsFeedbackFragment"
         android:label="@string/setting_feedback" />
     <fragment
         android:id="@+id/settingsGateFragment"
-        android:name="com.kieronquinn.app.taptap.fragments.SettingsGateFragment"
+        android:name="com.kieronquinn.app.taptap.ui.screens.settings.gate.SettingsGateFragment"
         android:label="@string/setting_gates"
-        tools:layout="@layout/fragment_gates" />
+        tools:layout="@layout/fragment_gates">
+        <action
+            android:id="@+id/action_settingsGateFragment_to_settingsGateBottomSheetFragment"
+            app:destination="@id/settingsGateBottomSheetFragment" />
+        <action
+            android:id="@+id/action_settingsGateFragment_to_settingsGateAddContainerBottomSheetFragment"
+            app:destination="@id/settingsGateAddContainerBottomSheetFragment" />
+    </fragment>
     <fragment
         android:id="@+id/settingsActionFragment"
-        android:name="com.kieronquinn.app.taptap.fragments.SettingsActionDoubleFragment"
+        android:name="com.kieronquinn.app.taptap.ui.screens.settings.action.double.SettingsDoubleTapActionFragment"
         android:label="@string/setting_actions_double"
-        tools:layout="@layout/fragment_actions" />
+        tools:layout="@layout/fragment_actions">
+        <action
+            android:id="@+id/action_settingsActionFragment_to_settingsActionAddContainerBottomSheetFragment"
+            app:destination="@id/settingsActionAddContainerBottomSheetFragment" />
+        <action
+            android:id="@+id/action_settingsActionFragment_to_settingsDoubleTapActionBottomSheetFragment"
+            app:destination="@id/settingsDoubleTapActionBottomSheetFragment" />
+        <action
+            android:id="@+id/action_settingsActionFragment_to_settingsGateAddContainerBottomSheetFragment"
+            app:destination="@id/settingsGateAddContainerBottomSheetFragment" />
+    </fragment>
     <fragment
         android:id="@+id/settingsActionTripleFragment"
-        android:name="com.kieronquinn.app.taptap.fragments.SettingsActionTripleFragment"
+        android:name="com.kieronquinn.app.taptap.ui.screens.settings.action.triple.SettingsTripleTapActionFragment"
         android:label="@string/setting_actions_triple"
-        tools:layout="@layout/fragment_actions" />
+        tools:layout="@layout/fragment_actions">
+        <action
+            android:id="@+id/action_settingsActionTripleFragment_to_settingsActionAddContainerBottomSheetFragment"
+            app:destination="@id/settingsActionAddContainerBottomSheetFragment" />
+        <action
+            android:id="@+id/action_settingsActionTripleFragment_to_settingsGateAddContainerBottomSheetFragment"
+            app:destination="@id/settingsGateAddContainerBottomSheetFragment" />
+    </fragment>
     <fragment
         android:id="@+id/settingsAdvancedFragment"
-        android:name="com.kieronquinn.app.taptap.fragments.SettingsAdvancedFragment"
-        android:label="@string/setting_advanced" />
+        android:name="com.kieronquinn.app.taptap.ui.screens.settings.advanced.SettingsAdvancedFragment"
+        android:label="@string/setting_advanced">
+        <action
+            android:id="@+id/action_settingsAdvancedFragment_to_settingsAdvancedCustomSensitivityBottomSheetDialogFragment"
+            app:destination="@id/settingsAdvancedCustomSensitivityBottomSheetDialogFragment" />
+    </fragment>
+    <activity
+        android:id="@+id/modalActivity"
+        android:name="com.kieronquinn.app.taptap.ui.activities.ModalActivity"
+        android:label="ModalActivity"
+        tools:layout="@layout/fragment_setup_battery">
+        <argument
+            android:name="nav_graph"
+            app:argType="integer" />
+    </activity>
+    <dialog
+        android:id="@+id/settingsGestureModelBottomSheetDialogFragment"
+        android:name="com.kieronquinn.app.taptap.ui.screens.settings.gesture.model.SettingsGestureModelBottomSheetDialogFragment"
+        android:label="" />
+    <dialog
+        android:id="@+id/settingsAdvancedCustomSensitivityBottomSheetDialogFragment"
+        android:name="com.kieronquinn.app.taptap.ui.screens.settings.advanced.customsensitivity.SettingsAdvancedCustomSensitivityBottomSheetDialogFragment"
+        android:label="" />
+    <dialog
+        android:id="@+id/settingsActionAddContainerBottomSheetFragment"
+        android:name="com.kieronquinn.app.taptap.ui.screens.settings.action.add.SettingsActionAddContainerBottomSheetFragment"
+        android:label="">
+        <argument
+            android:name="actionType"
+            app:argType="com.kieronquinn.app.taptap.ui.screens.settings.action.add.SettingsActionAddContainerBottomSheetViewModel$ActionType" />
+    </dialog>
+    <dialog
+        android:id="@+id/settingsDoubleTapActionBottomSheetFragment"
+        android:name="com.kieronquinn.app.taptap.ui.screens.settings.action.double.SettingsDoubleTapActionBottomSheetFragment"
+        android:label="" />
+    <dialog
+        android:id="@+id/settingsGateBottomSheetFragment"
+        android:name="com.kieronquinn.app.taptap.ui.screens.settings.gate.SettingsGateBottomSheetFragment"
+        android:label="" />
+    <dialog
+        android:id="@+id/settingsGateAddContainerBottomSheetFragment"
+        android:name="com.kieronquinn.app.taptap.ui.screens.settings.gate.add.SettingsGateAddContainerBottomSheetFragment"
+        android:label="">
+        <argument
+            android:name="isWhenGateFlow"
+            android:defaultValue="false"
+            app:argType="boolean" />
+        <argument
+            android:name="currentGates"
+            app:argType="com.kieronquinn.app.taptap.ui.screens.settings.gate.add.SettingsGateAddContainerBottomSheetViewModel$CurrentGates"
+            app:nullable="true" />
+    </dialog>
+    <fragment
+        android:id="@+id/settingsBackupRestoreFragment"
+        android:name="com.kieronquinn.app.taptap.ui.screens.settings.backuprestore.SettingsBackupRestoreFragment"
+        android:label=""
+        tools:layout="@layout/fragment_backup_restore">
+        <action
+            android:id="@+id/action_settingsBackupRestoreFragment_to_settingsBackupRestoreBackupFragment"
+            app:destination="@id/settingsBackupRestoreBackupFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_settingsBackupRestoreFragment_to_settingsBackupRestoreRestoreFragment"
+            app:destination="@id/settingsBackupRestoreRestoreFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsBackupRestoreBackupFragment"
+        android:name="com.kieronquinn.app.taptap.ui.screens.settings.backuprestore.backup.SettingsBackupRestoreBackupFragment"
+        android:label=""
+        tools:layout="@layout/fragment_backup_restore_backup" >
+        <argument
+            android:name="backupUri"
+            app:argType="android.net.Uri" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsBackupRestoreRestoreFragment"
+        android:name="com.kieronquinn.app.taptap.ui.screens.settings.backuprestore.restore.SettingsBackupRestoreRestoreFragment"
+        android:label=""
+        tools:layout="@layout/fragment_backup_restore_restore" >
+        <argument
+            android:name="restoreUri"
+            app:argType="android.net.Uri" />
+        <action
+            android:id="@+id/action_settingsBackupRestoreRestoreFragment_to_settingsRestorePermissionBottomSheetFragment"
+            app:destination="@id/settingsRestorePermissionBottomSheetFragment" />
+        <action
+            android:id="@+id/action_settingsBackupRestoreRestoreFragment_to_settingsRestoreNotificationPermissionBottomSheetFragment"
+            app:destination="@id/settingsRestoreNotificationPermissionBottomSheetFragment" />
+        <action
+            android:id="@+id/action_settingsBackupRestoreRestoreFragment_to_settingsRestoreGestureServiceBottomSheetFragment"
+            app:destination="@id/settingsRestoreGestureServiceBottomSheetFragment" />
+        <action
+            android:id="@+id/action_settingsBackupRestoreRestoreFragment_to_settingsRestoreTaskerPermissionBottomSheetFragment"
+            app:destination="@id/settingsRestoreTaskerPermissionBottomSheetFragment" />
+        <action
+            android:id="@+id/action_settingsBackupRestoreRestoreFragment_to_settingsBackupRestoreSkippedBottomSheetFragment"
+            app:destination="@id/settingsBackupRestoreSkippedBottomSheetFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/settingsRestorePermissionBottomSheetFragment"
+        android:name="com.kieronquinn.app.taptap.ui.screens.settings.backuprestore.restore.permissionprompt.SettingsRestorePermissionBottomSheetFragment"
+        android:label="" >
+        <argument
+            android:name="requirement"
+            app:argType="com.kieronquinn.app.taptap.ui.screens.settings.backuprestore.restore.SettingsBackupRestoreRestoreViewModel$ActionDataRequirement$Permission" />
+        <argument
+            android:name="actionGate"
+            app:argType="com.kieronquinn.app.taptap.ui.screens.settings.backuprestore.restore.SettingsBackupRestoreRestoreViewModel$ActionGate" />
+    </dialog>
+    <dialog
+        android:id="@+id/settingsRestoreNotificationPermissionBottomSheetFragment"
+        android:name="com.kieronquinn.app.taptap.ui.screens.settings.backuprestore.restore.permissionprompt.SettingsRestoreNotificationPermissionBottomSheetFragment"
+        android:label="">
+        <argument
+            android:name="actionGate"
+            app:argType="com.kieronquinn.app.taptap.ui.screens.settings.backuprestore.restore.SettingsBackupRestoreRestoreViewModel$ActionGate" />
+    </dialog>
+    <dialog
+        android:id="@+id/settingsRestoreGestureServiceBottomSheetFragment"
+        android:name="com.kieronquinn.app.taptap.ui.screens.settings.backuprestore.restore.permissionprompt.SettingsRestoreGestureServiceBottomSheetFragment"
+        android:label="">
+        <argument
+            android:name="actionGate"
+            app:argType="com.kieronquinn.app.taptap.ui.screens.settings.backuprestore.restore.SettingsBackupRestoreRestoreViewModel$ActionGate" />
+    </dialog>
+    <dialog
+        android:id="@+id/settingsRestoreTaskerPermissionBottomSheetFragment"
+        android:name="com.kieronquinn.app.taptap.ui.screens.settings.backuprestore.restore.permissionprompt.SettingsRestoreTaskerPermissionBottomSheetFragment"
+        android:label="">
+        <argument
+            android:name="actionGate"
+            app:argType="com.kieronquinn.app.taptap.ui.screens.settings.backuprestore.restore.SettingsBackupRestoreRestoreViewModel$ActionGate" />
+    </dialog>
+    <dialog
+        android:id="@+id/settingsBackupRestoreSkippedBottomSheetFragment"
+        android:name="com.kieronquinn.app.taptap.ui.screens.settings.backuprestore.restore.skipped.SettingsBackupRestoreSkippedBottomSheetFragment"
+        android:label="" >
+        <argument
+            android:name="skippedItems"
+            app:argType="com.kieronquinn.app.taptap.ui.screens.settings.backuprestore.restore.SettingsBackupRestoreRestoreViewModel$SkippedItem[]" />
+    </dialog>
+    <fragment
+        android:id="@+id/settingsAboutFragment"
+        android:name="com.kieronquinn.app.taptap.ui.screens.settings.about.SettingsAboutFragment"
+        android:label=""
+        tools:layout="@layout/fragment_settings_about" />
 </navigation>

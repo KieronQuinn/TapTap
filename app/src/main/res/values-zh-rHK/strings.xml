@@ -1,11 +1,8 @@
 <resources>
     <string name="app_name">Tap, Tap</string>
     <string name="accessibility_service_description">TapTap 無障礙設定\n\n<b>重要提示: 應用不會收集您的個資，此服務僅用於辨識手勢活動並提供與裝置的互動支援</b></string>
-    <string name="toast_no_action_selected">尚未選擇任何動作</string>
-    <string name="launch_accessibility">啟動輔助功能</string>
     <string name="setting_gesture">手勢</string>
     <string name="setting_gesture_desc">調整手勢的工作方式</string>
-    <string name="setting_actions">動作</string>
     <string name="setting_gates">閘閥</string>
     <string name="setting_gates_desc">停用手勢在某些情況下被識別並激活動作</string>
     <string name="setting_feedback">反饋</string>
@@ -13,7 +10,7 @@
     <string name="setting_feedback_vibrate">震動</string>
     <string name="setting_feedback_vibrate_desc">使用手勢並執行動作時振動一次</string>
     <string name="setting_feedback_wake">喚醒設備</string>
-    <string name="setting_feedback_wake_desc">當熒幕關閉時喚醒設備 (注意：這會干擾關閉熒幕的操作!)</string>
+    <string name="setting_feedback_wake_desc">當熒幕關閉時喚醒設備</string>
 
     <string-array name="device_model_keys">
         <item>Pixel 3 XL</item>
@@ -61,7 +58,6 @@
     <string name="action_next_desc">播放下首歌</string>
     <string name="fab_add_action">增加動作</string>
     <string name="fab_remove_action">移除</string>
-    <string name="fab_remove_action_drop">鬆開以移除</string>
     <string name="add_action_category_launch">啟動</string>
     <string name="add_action_category_utilities">工具</string>
     <string name="add_action_category_actions">動作</string>
@@ -72,8 +68,6 @@
     <string name="action_launch_app_desc">啟動一個應用</string>
     <string name="action_launch_app_desc_formattable">啟動 %1s. 當該應用已處於運行狀態時，此動作將被跳過.</string>
     <string name="fab_add_gate">增加門檻</string>
-    <string name="add_gate_category_state">狀態</string>
-    <string name="add_gate_category_action">動作</string>
     <string name="nothing_found">什麼都沒找到</string>
     <string name="search">搜尋</string>
     <string name="show_system_apps">顯示系統應用</string>
@@ -82,7 +76,6 @@
     <string name="bs_help_action_title">何為動作？</string>
     <string name="bs_help_gate">門檻可阻止手勢運行任何動作。為了運行任何動作，您必須打開所有已啟用的門檻。 \n如果當前滿足某個場景，例如：熒幕處於關閉狀態，而「熒幕關閉時」處於啟用狀態時，則不會運行任何動作。您可以添加任意數量的門檻，並使用開關來啟用或者禁用它們（沒有必要刪掉它們再重新添加），以節省時間並提高效率。 </string>
     <string name="bs_help_gate_title">何為門檻？</string>
-    <string name="help">幫助</string>
     <string name="action_launch_assistant">啟動助手</string>
     <string name="action_launch_assistant_desc">啟動你的默認助手程式</string>
     <string name="action_tasker_event">任務活動</string>
@@ -91,11 +84,9 @@
     <string name="accessibility_info_off">無障礙服務未啟用</string>
     <string name="accessibility_info_off_desc">手勢無法工作. 點按以啟用</string>
     <string name="accessibility_info_on">已啟用無障礙服務</string>
-    <string name="accessibility_info_toast">在無障礙列表選擇「Tap, Tap」並啟用它, 然後返回應用以繼續</string>
 
     <string name="category_about">關於</string>
     <string name="about">%1s v%2s</string>
-    <string name="about_summary">由 Kieron Quinn / Quinny899 @ XDA開發\並感謝社區的貢獻，包括: %1s</string>
     <string name="xda_thread">XDA 文章</string>
     <string name="github">GitHub</string>
     <string name="libraries">第三方資源庫</string>
@@ -104,10 +95,8 @@
     <string name="tasker_config_label">輕按兩次</string>
     <string name="action_tasker_task">Tasker任務</string>
     <string name="action_tasker_task_desc">運行指定的Tasker任務</string>
-    <string name="action_tasker_event_toast">未安裝Tasker或不支持版本</string>
     <string name="bs_tasker_content">為了在不使用事件插件的情況下啟動Tasker任務, 你必須啟用 \"允許外部訪問\" Tasker中的選項\'的設定. 如果您沒有啟用此選項, 此操作將始終被跳過.</string>
     <string name="bs_tasker_title">需要權限</string>
-    <string name="bs_tasker_negative">稍後</string>
     <string name="bs_tasker_positive">打開Tasker設定</string>
     <string name="picker_launch_camera">啟動相機</string>
     <string name="action_volume_panel">顯示音量面板</string>

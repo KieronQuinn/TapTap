@@ -1,17 +1,26 @@
 package com.kieronquinn.app.taptap.utils
 
-import android.os.Handler
+import android.app.DownloadManager
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
+import android.net.Uri
 import android.os.Parcelable
-import androidx.lifecycle.MutableLiveData
 import com.kieronquinn.app.taptap.BuildConfig
+import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.utils.github.GitHubReleaseResponse
 import kotlinx.android.parcel.Parcelize
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.withContext
 import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import java.io.File
 
 class UpdateChecker {
 
@@ -26,41 +35,37 @@ class UpdateChecker {
         private const val BASE_URL = "https://api.github.com/repos/KieronQuinn/TapTap/"
     }
 
-    var newUpdate: MutableLiveData<Update?> = MutableLiveData(null)
+    var updateAvailable = MutableStateFlow(false)
+    var hasDismissedDialog = false
 
-    /*
-     *  Checks for an update and returns true if successful, false if not
-     */
-    fun getLatestRelease(callback: (Boolean, UpdateChecker) -> Unit) {
-        getReleaseList { gitHubReleaseResponse ->
-            if(gitHubReleaseResponse == null) callback.invoke(false, this)
-            else {
+    fun getLatestRelease() = callbackFlow {
+        updateAvailable.value = false
+        withContext(Dispatchers.IO){
+            getReleaseList()?.let { gitHubReleaseResponse ->
                 val currentTag = gitHubReleaseResponse.tagName
                 if(currentTag != BuildConfig.TAG_NAME){
                     //New update available!
                     val asset = gitHubReleaseResponse.assets!!.firstOrNull { it.name!!.endsWith(".apk") }
-                    newUpdate.postValue(Update(gitHubReleaseResponse.name!!, gitHubReleaseResponse.body!!, gitHubReleaseResponse.publishedAt!!, asset?.browserDownloadUrl ?: "https://github.com/KieronQuinn/TapTap/releases", asset?.name ?: "TapTap.apk"))
+                    val releaseUrl = asset?.browserDownloadUrl?.replace("/download/", "/tag/")?.apply {
+                        substring(0, lastIndexOf("/"))
+                    }
+                    offer(Update(gitHubReleaseResponse.name!!, gitHubReleaseResponse.body!!, gitHubReleaseResponse.publishedAt!!, asset?.browserDownloadUrl ?: "https://github.com/KieronQuinn/TapTap/releases", asset?.name ?: "TapTap.apk", releaseUrl ?: "https://github.com/KieronQuinn/TapTap/releases"))
+                    updateAvailable.value = true
                 }
-                //Allow the value to be updated first
-                Handler().postDelayed({
-                    callback.invoke(true, this)
-                }, 0)
+            } ?: run {
+                offer(null)
             }
         }
+        awaitClose {  }
     }
 
-    private fun getReleaseList(callback: ((GitHubReleaseResponse?) -> Unit)) {
+    fun clearCachedDownloads(context: Context){
+        File(context.externalCacheDir, "updates").deleteRecursively()
+    }
+
+    private fun getReleaseList(): GitHubReleaseResponse? {
         val service: GitHubService = retrofit.create(GitHubService::class.java)
-        service.getReleaseList().enqueue(object: Callback<GitHubReleaseResponse>{
-            override fun onFailure(call: Call<GitHubReleaseResponse>, t: Throwable) {
-                callback.invoke(null)
-            }
-
-            override fun onResponse(call: Call<GitHubReleaseResponse>, response: Response<GitHubReleaseResponse>) {
-                callback.invoke(response.body())
-            }
-
-        })
+        return service.getReleaseList().execute().body()
     }
 
     interface GitHubService {
@@ -69,6 +74,6 @@ class UpdateChecker {
     }
 
     @Parcelize
-    data class Update(val name: String, val changelog: String, val timestamp: String, val assetUrl: String, val assetName: String): Parcelable
+    data class Update(val name: String, val changelog: String, val timestamp: String, val assetUrl: String, val assetName: String, val releaseUrl: String): Parcelable
 
 }

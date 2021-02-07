@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?selectableItemBackground"
+    app:strokeWidth="1dp"
+    app:strokeColor="@color/card_outlined"
+    app:cardElevation="0dp"
+    app:cardBackgroundColor="@color/windowBackground"
+    app:cardCornerRadius="@dimen/margin_small"
+    android:layout_marginStart="@dimen/activity_padding"
+    android:layout_marginEnd="@dimen/activity_padding"
+    android:layout_marginTop="@dimen/margin_small"
+    android:layout_marginBottom="@dimen/margin_small">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/container"
+        android:paddingTop="@dimen/margin_small"
+        android:paddingBottom="@dimen/margin_large">
+
+        <ImageView
+            android:layout_width="48dp"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/margin_small"
+            android:layout_marginStart="@dimen/margin_small"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/item_action_handle"
+            app:layout_constraintBottom_toBottomOf="@id/item_action_handle"
+            tools:src="@drawable/ic_actions"
+            android:id="@+id/item_action_icon"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium.TapTap"
+            tools:text="Action Name"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:id="@+id/item_action_name"
+            android:layout_marginEnd="@dimen/margin_large"
+            app:layout_constraintTop_toTopOf="@id/item_action_handle"
+            app:layout_constraintBottom_toBottomOf="@id/item_action_handle"
+            app:layout_constraintStart_toEndOf="@+id/item_action_icon"
+            app:layout_constraintEnd_toStartOf="@id/item_action_handle"
+            app:layout_constraintHorizontal_bias="0"
+            android:layout_marginStart="@dimen/margin_small"
+            android:textColor="?android:textColorPrimary"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/item_action_handle"
+            android:src="@drawable/ic_add"
+            app:showText="false"
+            android:paddingTop="@dimen/margin_medium"
+            android:paddingBottom="@dimen/margin_medium"
+            android:paddingStart="@dimen/margin_large"
+            android:paddingEnd="@dimen/activity_padding"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_extra_small"
+            android:layout_marginStart="@dimen/activity_padding"
+            android:layout_marginEnd="@dimen/margin_large"
+            app:layout_constraintTop_toBottomOf="@id/item_action_handle"
+            android:id="@+id/item_action_description"
+            tools:text="This is the action's description. It can be very long or very short" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</com.google.android.material.card.MaterialCardView>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    tools:layout_width="@dimen/item_add_category_width"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/add_action_category_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_small"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?selectableItemBackground"
+        app:cardBackgroundColor="@color/windowBackground"
+        app:cardCornerRadius="@dimen/margin_small"
+        app:cardElevation="0dp"
+        app:strokeColor="@color/card_outlined"
+        app:strokeWidth="1dp">
+
+        <TextView
+            android:id="@+id/add_action_category_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_large"
+            android:drawablePadding="@dimen/margin_large"
+            android:gravity="center_vertical"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium.TapTap.Primary"
+            tools:drawableStart="@drawable/ic_action_category_launch"
+            tools:text="@string/add_action_category_launch" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+</FrameLayout>

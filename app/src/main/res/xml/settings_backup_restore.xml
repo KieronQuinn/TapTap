@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.kieronquinn.app.taptap.ui.preferences.Preference
+        android:title="@string/settings_backup_restore_backup"
+        android:summary="@string/settings_backup_restore_backup_desc"
+        android:icon="@drawable/ic_backup"
+        android:key="backup" />
+
+    <com.kieronquinn.app.taptap.ui.preferences.Preference
+        android:title="@string/settings_backup_restore_restore"
+        android:summary="@string/settings_backup_restore_restore_desc"
+        android:icon="@drawable/ic_restore"
+        android:key="restore" />
+
+</PreferenceScreen>

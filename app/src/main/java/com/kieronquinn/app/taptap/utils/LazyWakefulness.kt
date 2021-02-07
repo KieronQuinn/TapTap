@@ -9,3 +9,7 @@ class LazyWakefulness(private val instance: WakefulnessLifecycle) : Lazy<Wakeful
     }
 
 }
+
+val wakefulnessLifecycle by lazy {
+    LazyWakefulness(WakefulnessLifecycle())
+}

@@ -1,12 +1,18 @@
 package com.kieronquinn.app.taptap.core
 
+import android.content.BroadcastReceiver
 import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.hardware.SensorEvent
+import android.util.Log
 import com.google.android.systemui.columbus.sensors.CustomTapRT
 import com.google.android.systemui.columbus.sensors.GestureSensor
 import com.google.android.systemui.columbus.sensors.GestureSensorImpl
 import com.google.android.systemui.columbus.sensors.config.GestureConfiguration
-import com.kieronquinn.app.taptap.utils.setAccessibleR
+import com.kieronquinn.app.taptap.BuildConfig
+import com.kieronquinn.app.taptap.utils.extensions.Build_EMULATOR
+import com.kieronquinn.app.taptap.utils.extensions.setAccessibleR
 
 class TapGestureSensorImpl(context: Context, tapSharedPreferences: TapSharedPreferences, gestureConfiguration: GestureConfiguration): GestureSensorImpl(context, gestureConfiguration) {
 
@@ -72,6 +78,28 @@ class TapGestureSensorImpl(context: Context, tapSharedPreferences: TapSharedPref
                 }
             }
 
+        }
+
+        //Attach convenience broadcast receivers to trigger the gestures over ADB shell
+        if(BuildConfig.DEBUG && Build_EMULATOR) {
+            Log.d("TGS", "Registering debug receivers")
+            context.registerReceiver(object : BroadcastReceiver() {
+                override fun onReceive(p0: Context?, p1: Intent?) {
+                    val detectionProperties =
+                        GestureSensor.DetectionProperties(false, false, 2)
+                    Log.d("TGS", "Sending double tap")
+                    listener.onGestureProgress(this@TapGestureSensorImpl, 3, detectionProperties)
+                }
+            }, IntentFilter("${context.packageName}.EMULATE_DOUBLE_TAP"))
+
+            context.registerReceiver(object : BroadcastReceiver() {
+                override fun onReceive(p0: Context?, p1: Intent?) {
+                    val detectionProperties =
+                        GestureSensor.DetectionProperties(false, false, 3)
+                    Log.d("TGS", "Sending triple tap")
+                    listener.onGestureProgress(this@TapGestureSensorImpl, 3, detectionProperties)
+                }
+            }, IntentFilter("${context.packageName}.EMULATE_TRIPLE_TAP"))
         }
     }
 }

@@ -16,9 +16,12 @@ package com.kieronquinn.app.taptap.utils
  * limitations under the License.
  */
 
+import android.os.Handler
+import android.os.Looper
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
+import com.kieronquinn.app.taptap.utils.extensions.observe
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
@@ -54,6 +57,10 @@ class AutoClearedValue<T : Any>(val fragment: Fragment) : ReadWriteProperty<Frag
 
     override fun setValue(thisRef: Fragment, property: KProperty<*>, value: T) {
         _value = value
+    }
+
+    private fun runOnUiThread(run: () -> Unit){
+        Handler(Looper.getMainLooper()).post { run.invoke() }
     }
 }
 

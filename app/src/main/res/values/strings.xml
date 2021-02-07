@@ -4,15 +4,18 @@
     <string name="accessibility_service_label_gesture">Tap, Tap Secondary Service</string>
     <string name="accessibility_service_description">Tap, Tap Accessibility Service\n\n<b>Important Note: No data is collected from any of your apps, this service is simply used to keep the recognition active and provide interaction with the device</b></string>
     <string name="accessibility_service_description_gesture">Tap, Tap Gesture Accessibility Service. \n\n<b>You don\'t need to enable this if the app does not tell you to. It\'s only required for certain actions.</b>\n\n<b>Important Note: No data is collected from any of your apps, this service is simply used to provide the gesture interaction with the device.\n\nThis is a separate service due to how Android works and how apps adapt their UI when services that can perform gestures are enabled. For example, Chrome will not hide the Omnibar on scroll with this service enabled.</b></string>
-    <string name="toast_no_action_selected">No action has been selected</string>
-    <string name="launch_accessibility">Launch Accessibility</string>
     <string name="setting_gesture">Gesture</string>
     <string name="setting_gesture_desc">Tweak how the gesture works</string>
-    <string name="setting_actions">Actions</string>
     <string name="setting_actions_double">Double Tap Actions</string>
     <string name="setting_actions_triple">Triple Tap Actions</string>
     <string name="settings_actions_desc_double">Set the actions to be run when you tap on the back of your device twice</string>
     <string name="settings_actions_desc_triple">Set the actions to be run when you tap on the back of your device three times</string>
+    <string name="settings_backup_restore">Backup &amp; Restore</string>
+    <string name="settings_backup_restore_desc">Backup your settings to your device or the cloud</string>
+    <string name="settings_backup_restore_backup">Backup</string>
+    <string name="settings_backup_restore_backup_desc">Backup your settings to your device or the cloud</string>
+    <string name="settings_backup_restore_restore">Restore</string>
+    <string name="settings_backup_restore_restore_desc">Restore your settings from your device or the cloud</string>
     <string name="setting_gates">Gates</string>
     <string name="setting_gates_desc">Set situations when the gesture should not run an action</string>
     <string name="setting_feedback">Feedback</string>
@@ -22,7 +25,7 @@
     <string name="setting_feedback_vibrate">Vibrate</string>
     <string name="setting_feedback_vibrate_desc">Vibrate once when the gesture is used and the action is run</string>
     <string name="setting_feedback_wake">Wake Device</string>
-    <string name="setting_feedback_wake_desc">Wake the device up if the screen is off (note: this will interfere with actions that turn the screen off!)</string>
+    <string name="setting_feedback_wake_desc">Wake the device up if the screen is off</string>
 
     <string-array name="device_model_keys">
         <item>Largest</item>
@@ -79,20 +82,20 @@
     <string name="action_next_desc">Play next audio</string>
     <string name="fab_add_action">Add Action</string>
     <string name="fab_remove_action">Remove</string>
-    <string name="fab_remove_action_drop">Drop to remove</string>
     <string name="add_action_category_launch">Launch</string>
     <string name="add_action_category_utilities">Utilities</string>
     <string name="add_action_category_actions">Actions</string>
     <string name="add_action_category_advanced">Advanced</string>
+    <string name="add_gate_category_device">Device</string>
+    <string name="add_gate_category_sensors">Sensors</string>
+    <string name="add_gate_category_audio">Audio</string>
+    <string name="add_gate_category_events">Events</string>
     <string name="action_flashlight">Flashlight</string>
     <string name="action_flashlight_desc">Toggle the flashlight. This action will fail if the camera is in use by another app.</string>
     <string name="action_launch_app">Launch app</string>
     <string name="action_launch_app_desc">Launch an app</string>
     <string name="action_launch_app_desc_formattable">Launch %1s. This action will be skipped if it is already running.</string>
     <string name="fab_add_gate">Add Gate</string>
-    <string name="add_gate_when">Add Requirement</string>
-    <string name="add_gate_category_state">State</string>
-    <string name="add_gate_category_action">Action</string>
     <string name="nothing_found">Nothing found</string>
     <string name="search">Search</string>
     <string name="show_system_apps">Show system apps</string>
@@ -100,11 +103,11 @@
     <string name="setting_gesture_sensitivity">Sensitivity</string>
     <string name="setting_gesture_sensitivity_desc">Change the sensitivity of the gesture by adjusting how much force is filtered out as \'noise\'. A lower sensitivity means the gesture will be harder to do on most devices, whereas a higher sensitivity is more prone to false detection. Default is exactly in the middle.</string>
     <string name="help_action">Actions are tasks that are run when you tap the back of your device twice. Actions are run in the order of the list - top to bottom, and only if requirements are met.\nTap for more info.</string>
+    <string name="help_gate">Gates are situations that can block the gesture from running any actions. In order for any action to be run, all the enabled gates must be open.\nTap for more info.</string>
     <string name="bs_help_action">Actions are tasks that are run when you tap the back of your device twice. Actions are run in the order of the list - top to bottom. If an action is able to run successfully, no further actions will be run. However, if an action is unavailable (eg. if the assistant for a "Launch assistant" action is already running, or if the requirements are not met), the next action below it will be run, and so on until one is run successfully.</string>
     <string name="bs_help_action_title">What are Actions?</string>
     <string name="bs_help_gate">Gates are situations that can block the gesture from running any actions. In order for any action to be run, all the enabled gates must be open.\nIf a scenario is currently met, for example if the screen is off and the "Display off" gate is enabled, no actions will be run. You can add as many gates as you like, and enable/disable them using the toggles (rather than having to delete and re-add) to make configuration quicker and easier.</string>
     <string name="bs_help_gate_title">What are Gates?</string>
-    <string name="help">Help</string>
     <string name="action_launch_assistant">Launch Assistant</string>
     <string name="action_launch_assistant_desc">Launch your default assistant app</string>
     <string name="action_launch_search">Launch search</string>
@@ -120,7 +123,6 @@
     <string name="accessibility_info_on_gesture_desc">If you are experiencing issues with app behaviour, such as Chrome\'s Omnibar not scrolling, you may wish to disable this service.</string>
     <string name="accessibility_info_on">Accessibility Service is enabled</string>
     <string name="accessibility_info_on_desc_2">This service is required for the gesture to work.</string>
-    <string name="accessibility_info_toast">Select "Tap, Tap" from the accessibility service list, toggle it and return to Tap, Tap to continue</string>
     <string name="accessibility_info_toast_gesture">Select "Tap, Tap Secondary Service" from the accessibility service list, toggle it and return to Tap, Tap to continue</string>
     <string name="menu_beta">This app is in Beta. Tap for info.</string>
     <string name="bs_beta">This app is in development and has been released in a "Beta" state to allow for testing on lots of devices and suggestions from users. If you encounter a bug, please report it on the GitHub as an issue. If you would like to request a feature, post it on the XDA thread or request it on GitHub.\n\nThank you for your patience during development.</string>
@@ -128,7 +130,7 @@
 
     <string name="category_about">About</string>
     <string name="about">%1s v%2s</string>
-    <string name="about_summary">Created by Kieron Quinn / Quinny899 @ XDA\nWith thanks to contributions from the community, including: %1s</string>
+    <string name="about_summary_short">Created by Kieron Quinn / Quinny899 @ XDA\nWith thanks to contributors and translators from the community, tap for more info and licences</string>
     <string name="xda_thread">XDA Thread</string>
     <string name="github">GitHub</string>
     <string name="libraries">Third party libraries</string>
@@ -138,10 +140,8 @@
     <string name="action_tasker_task">Tasker Task</string>
     <string name="action_tasker_task_desc">Run a specified Tasker task</string>
     <string name="action_tasker_task_desc_formatted">Run a Tasker task (%1s)</string>
-    <string name="action_tasker_event_toast">Tasker not installed or version not supported</string>
     <string name="bs_tasker_content">In order to launch a Tasker task without using the Event plugin, you must enable the \"Allow External Access\" option in Tasker\'s settings. If you do not have this option enabled, this Action will always be skipped.</string>
     <string name="bs_tasker_title">Permission Required</string>
-    <string name="bs_tasker_negative">Later</string>
     <string name="bs_tasker_positive">Open Tasker Settings</string>
     <string name="picker_launch_camera">Launch Camera</string>
     <string name="action_volume_panel">Show volume panel</string>
@@ -184,9 +184,6 @@
 
     <string name="battery_and_optimisation">Battery &amp; Optimisation</string>
     <string name="battery_and_optimisation_desc">Info on why Tap, Tap uses battery, and why it may be killed by your device when run in the background (and how to fix that)</string>
-    <string name="bs_battery_content">Tap, Tap uses a background accessibility service to stay running and always be \'listening\' for taps on the back of the device using the Accelerometer and Gyroscope. For this reason, Tap, Tap may use some battery while running in the background.\n\nDue to its early development state, Tap, Tap has not been fully optimised yet, and battery life may improve through options in the future, but currently a slightly lower battery life is a consequence of having this feature.\n\nAdditionally, some OEM firmwares, such as MIUI or OneUI, are more aggressive at killing background tasks (including accessibility services) than Google recommends they should be. If Tap, Tap stops working on your device after being closed even with Battery Optimisation disabled, please try the following:\n• Locking the app into memory (usually from the recent apps)\n• Disabling any further battery optimisation for an app (usually under Settings > Apps or Settings > Battery)\n• Disabling MIUI Optimization in the Developer Options (MIUI only)\n• Setting Battery optimisation to \"Don\'t optimise\" in the app info (OnePlus only)\n\nMore info on apps being killed by the system and suggestions on how to resolve it for your device can be found at dontkillmyapp.com</string>
-    <string name="bs_battery_positive">Go to dontkillmyapp.com</string>
-    <string name="bs_battery_neutral">Show Battery Options</string>
 
     <string name="gate_orientation_landscape">Landscape orientation</string>
     <string name="gate_orientation_landscape_desc">Blocks gesture when the phone is in landscape orientation</string>
@@ -208,9 +205,9 @@
     <string name="gate_headset_desc_when">Run only when there <b>is</b> a wired or wireless headset connected</string>
     <string name="item_action_when">Only run action when…</string>
     <string name="item_action_when_multiple">Only run action when (any of)…</string>
-    <string name="item_action_when_add_empty">Add requirement…</string>
     <string name="item_action_when_add">Add…</string>
     <string name="item_action_blocked_info">This action will prevent any actions below it from being run as it is blocking (it will never be skipped).\nYou must add a requirement or remove this action if you want the actions below to be executed.</string>
+    <string name="item_action_app_uninstalled">Unknown app (%1s)</string>
     <string name="gate_music">Music Playing</string>
     <string name="gate_music_inverse">No Music Playing</string>
     <string name="gate_music_desc">Blocks the gesture when there is music playing</string>
@@ -225,16 +222,14 @@
     <string name="tap_notification_channel_description">Notification used to keep Tap, Tap running in the background when the option to use a separate service is enabled</string>
     <string name="setting_advanced">Advanced</string>
     <string name="setting_advanced_desc">Advanced settings and tweaks to change performance and more</string>
-    <string name="setting_advanced_split_service">Use split services</string>
-    <string name="setting_advanced_split_service_desc">This setting enables the use of a second service that runs alongside the accessibility service. While seeming counter-intuitive, this may help the app not be killed by the system on some devices, as it is a foreground service and leaves the accessibilty service doing very little, relying on the second service for recognition and execution. You may need to reboot for this to take full effect.</string>
     <string name="setting_advanced_warning">Here be dragons</string>
     <string name="setting_advanced_warning_desc">These settings are experimental and may not work on your device, or may cause Tap, Tap to stop working entirely. If you find this happens, turn the settings to <b>off</b> and reboot your device, which should reset the service.</string>
     <string name="switch_main">Enable Gesture</string>
     <string name="setting_advanced_restart_service">Auto-restart service</string>
     <string name="setting_advanced_restart_service_desc">Attempt to automatically restart the Tap, Tap listener component once an hour. If you have split services enabled, the foreground service will be restarted too. Note: The Accessibility service <b>cannot</b> be auto-restarted, so if it is killed or disabled, this will not work.</string>
-    <string name="update_error">Error checking for updates</string>
+    <string name="setting_advanced_legacy_wake">Legacy Wake Device method</string>
+    <string name="setting_advanced_legacy_wake_desc">Use the legacy method of waking the device with the \'Wake Device\' option enabled. This may not work on all devices, but may be more reliable in a few rare cases.</string>
     <string name="bs_update_download">Download</string>
-    <string name="bs_update_later">Remind me later</string>
     <string name="bs_update_title">Update available!</string>
     <string name="bs_update_content"><![CDATA[<h2>A new update is available</h2><br><b>Current version:</b> %1s<br><b>New version:</b> %1s<br><b>Update date:</b> %1s<br><b>Changelog:</b><br>%1s]]></string>
     <string name="tap_update_notification_channel_title">Update notifications</string>
@@ -255,12 +250,24 @@
     <string name="action_accessibility_shortcut_desc">Trigger the Accessibility Shortcut. Make sure Tap, Tap is not set to use the shortcut before using this action!</string>
     <string name="action_app_drawer">App Drawer</string>
     <string name="action_app_drawer_desc">Open the app drawer of a <b>supported launcher</b>. This only works on launchers based on Android 11.</string>
+    <string name="action_accept_call">Accept Call</string>
+    <string name="action_accept_call_desc">Accept call if there is one ringing</string>
+    <string name="action_reject_call">Reject Call</string>
+    <string name="action_reject_call_desc">Reject call if there is one ringing, or hang up if there is one ongoing</string>
+    <string name="action_swipe_up">Swipe Up</string>
+    <string name="action_swipe_up_desc">Perform a swipe up gesture on the current app</string>
+    <string name="action_swipe_down">Swipe Down</string>
+    <string name="action_swipe_down_desc">Perform a swipe down gesture on the current app</string>
+    <string name="action_swipe_left">Swipe Left</string>
+    <string name="action_swipe_left_desc">Perform a swipe left gesture on the current app</string>
+    <string name="action_swipe_right">Swipe Right</string>
+    <string name="action_swipe_right_desc">Perform a swipe right gesture on the current app</string>
     <string name="tasker_config_label_triple">Triple Tapped Back</string>
-    <string name="tasker_triple_tap">Triple tap</string>
     <string name="tasker_description_double">Will trigger when the back of the phone is tapped twice</string>
     <string name="tasker_description_triple">Will trigger when the back of the phone is tapped three times</string>
     <string name="actions_empty_state">No actions added yet</string>
     <string name="gates_empty_state">No gates added yet</string>
+    <string name="gates_add_empty_state">You\'ve already added all the gates in this category</string>
     <string name="landing_title">Welcome to Tap, Tap</string>
     <string name="landing_button_get_started">Get started</string>
     <string name="landing_button_skip_setup">Skip setup</string>
@@ -324,9 +331,105 @@
     <string name="gate_alarm">Alarm / Timer</string>
     <string name="gate_alarm_desc">Blocks the gesture if an alarm or timer is going off</string>
     <string name="gate_alarm_desc_when">Run only when an alarm or timer is going off</string>
+    <string name="gate_foldable_closed">Foldable: Device folded (closed)</string>
+    <string name="gate_foldable_closed_desc">Blocks the gesture if the device is folded / closed</string>
+    <string name="gate_foldable_closed_desc_when">Run only when the device is folded / closed</string>
+    <string name="gate_foldable_open">Foldable: Device unfolded (open)</string>
+    <string name="gate_foldable_open_desc">Blocks the gesture if the device is unfolded / open</string>
+    <string name="gate_foldable_open_desc_when">Run only when the device is unfolded / open</string>
     <string name="action_alarm_timer">Dismiss Alarm / Timer</string>
     <string name="action_alarm_snooze">Snooze Alarm</string>
     <string name="action_alarm_timer_desc">Dismisses an alarm or timer, if there is one going off (supported Clock apps only)</string>
     <string name="action_alarm_snooze_desc">Snoozes an alarm, if there is one going off (supported Clock apps only)</string>
+    <string name="help_action_triple_disabled">Triple Tap is disabled</string>
+
+    <!-- Backup -->
+    <string name="settings_backuprestore_backup_title">Creating backup…</string>
+    <string name="settings_backuprestore_backup_desc">This shouldn\'t take long</string>
+    <string name="settings_backuprestore_backup_done_title">Backup created</string>
+    <string name="settings_backuprestore_backup_done_desc">Saved to %1s</string>
+    <string name="settings_backuprestore_backup_error_title">Error creating backup</string>
+    <string name="settings_backuprestore_backup_error_desc">There was an error saving your backup: %1s</string>
+
+    <!-- Restore -->
+    <string name="settings_backuprestore_restore_title">Restoring backup…</string>
+    <string name="settings_backuprestore_restore_desc">This shouldn\'t take long</string>
+    <string name="settings_backuprestore_restore_done_title">Backup restored</string>
+    <string name="settings_backuprestore_restore_done_desc">Restored from backup %1s</string>
+    <string name="settings_backuprestore_restore_error_title">Error restoring backup</string>
+    <string name="settings_backuprestore_restore_error_desc">There was an error restoring your backup: %1s</string>
+    <plurals name="settings_backuprestore_restore_skipped">
+        <item quantity="one">%1d item was skipped\nTap for more info</item>
+        <item quantity="other">%1d items were skipped\nTap for more info</item>
+    </plurals>
+    <string name="settings_backuprestore_restore_skipped_title">Skipped Items</string>
+    <string name="settings_backuprestore_restore_skipped_content">The following items were skipped when restoring:</string>
+    <string name="settings_backuprestore_restore_skipped_reason_tasker">Tasker not installed</string>
+    <string name="settings_backuprestore_restore_skipped_reason_app_not_installed">App (%1s) not installed</string>
+    <string name="settings_backuprestore_restore_skipped_reason_user_skipped">You chose to skip this item</string>
+    <string name="settings_backuprestore_restore_skipped_reason_not_available">Not available on this device</string>
+    <string name="settings_backuprestore_restore_skipped_action">%1s (Action)</string>
+    <string name="settings_backuprestore_restore_skipped_gate">%1s (Gate)</string>
+    <string name="settings_backuprestore_restore_skipped_action_requirement">%1s (Action Requirement for action %1s)</string>
+
+    <!-- Error types -->
+    <string name="backup_restore_error_type_failed_create_file">Failed to create file</string>
+    <string name="backup_restore_error_type_failed_getting_file">Failed to get file</string>
+    <string name="backup_restore_error_type_failed_read_file">Failed to read from file</string>
+    <string name="backup_restore_error_type_failed_write_file">Failed to write to file</string>
+    <string name="backup_restore_error_type_failed_unknown">Unknown error</string>
+
+    <!-- Restore prompts -->
+    <string name="restore_prompt_grant">Grant</string>
+    <string name="restore_prompt_skip">Skip</string>
+    <string name="restore_prompt_cancel">Cancel</string>
+    <string name="restore_prompt_permission_title">Permission Required</string>
+    <string name="restore_prompt_gesture_title">Permission Required</string>
+    <string name="restore_prompt_permission_content_action">Action <b>%1s</b> requires the permission(s) <b>%1s</b>. If you skip granting this, this action will not be added.</string>
+    <string name="restore_prompt_permission_content_gate">Gate <b>%1s</b> requires the permission(s) <b>%1s</b>. If you skip granting this, this gate will not be added.</string>
+    <string name="restore_prompt_permission_content_when_gate">Action <b>%1s</b> has a requirement <b>%1s</b>, which requires the permission(s) <b>%1s</b>. If you skip granting this, this requirement will not be added.</string>
+    <string name="restore_prompt_notification_permission_content_action">Action <b>%1s</b> requires the ability to modify the do not disturb policy. If you skip granting this, this action will not be added.</string>
+    <string name="restore_prompt_notification_permission_content_gate">Gate <b>%1s</b> requires the ability to modify the do not disturb policy. If you skip granting this, this gate will not be added.</string>
+    <string name="restore_prompt_notification_permission_content_when_gate">Action <b>%1s</b> has a requirement <b>%1s</b>, which requires the ability to modify the do not disturb policy. If you skip granting this, this requirement will not be added.</string>
+    <string name="restore_prompt_gesture_service_content_action">Action <b>%1s</b> requires the secondary (gesture) accessibility service to be enabled. If you skip granting this, this action will not be added.</string>
+    <string name="restore_prompt_gesture_service_content_gate">Gate <b>%1s</b> requires the secondary (gesture) accessibility service to be enabled. If you skip granting this, this gate will not be added.</string>
+    <string name="restore_prompt_gesture_service_content_when_gate">Action <b>%1s</b> has a requirement <b>%1s</b>, which requires the secondary (gesture) accessibility service to be enabled. If you skip granting this, this requirement will not be added.</string>
+    <string name="restore_prompt_tasker_content_action">Action <b>%1s</b> requires Tasker to have "Allow External Access" enabled, which you need to enable in Tasker\'s settings. If you skip granting this, this action will not be added.</string>
+    <string name="restore_prompt_tasker_content_gate">Gate <b>%1s</b> requires Tasker to have "Allow External Access" enabled, which you need to enable in Tasker\'s settings. If you skip granting this, this gate will not be added.</string>
+    <string name="restore_prompt_tasker_content_when_gate">Action <b>%1s</b> has a requirement <b>%1s</b>, which requires Tasker to have "Allow External Access" enabled, which you need to enable in Tasker\'s settings. If you skip granting this, this requirement will not be added.</string>
+
+    <!-- About screen -->
+    <string name="about_version">Version %1s\nCreated by Kieron Quinn</string>
+    <string name="about_contributors">Contributors</string>
+    <string name="about_contributors_main">Columbus</string>
+    <string name="about_contributors_main_content"><![CDATA[\'Columbus\' Model and base code created by Google, from Android 11 Developer Preview 1 (<a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>)]]></string>
+    <string name="about_contributors_community">Community Contributions</string>
+    <string name="about_contributors_community_content"><b>Tasker integration</b>: João Dias\n<b>Music control actions</b>: timfedo\n<b>MD2 UI and Chrome Custom Tabs</b>: Giorgio Cantoni\n<b>Power Dialog action</b>: Adrian Campos\n<b>DND feedback and Sound Profiles action</b>: Ashutosh Singh\n<b>Launch Search action</b>: arkon</string>
+    <string name="about_contributors_icons">Icons</string>
+    <string name="about_contributors_icons_content"><![CDATA[Icons by <b><a href="https://material.io/resources/icons">Material Icons</a></b> (<a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache Licence 2.0</a>)<br><b><a href="https://github.com/Templarian/MaterialDesign">Material Design Icons</a></b> (<a href="https://github.com/Templarian/MaterialDesign/blob/master/LICENSE">Pictogrammers Free Licence</a>)<br><b><a href="https://icons8.com/icon/x57bYZb1FKLO/double-tap-gesture">Icons8</a></b> (<a href="https://icons8.com/license">Icons8 License</a>)<br><b><a href="https://www.freepik.com/">Freepik</a></b> (<a href="https://www.flaticon.com/license/pack/197373">Flaticon Licence</a>)<br><b><a href="https://www.flaticon.com/free-icon/smartphone_2628265">Vitaly Gorbachev</a></b> (<a href="https://www.flaticon.com/license/icon/2628265">Flaticon Licence</a>)<br><b><a href="https://lottiefiles.com/39707-upload-animation">Vinicius Rosa</a></b> (<a href="https://lottiefiles.com/license">CC-BY-SA</a>)]]></string>
+    <string name="about_contributors_font">Font</string>
+    <string name="about_contributors_font_content"><![CDATA[<b><a href="https://hanken.co/products/hk-grotesk">HK Grotesk</a></b> by Hanken Design Co. (<a href="https://scripts.sil.org/OFL">SIL Open Font License</a>)]]></string>
+    <string name="about_translators">Translators</string>
+
+    <!-- Language headings, add to values.xml too -->
+    <string name="translators_chinese">Chinese (Simplified)</string>
+    <string name="translators_russian">Russian</string>
+    <string name="translators_portuguese_br">Brazilian Portuguese</string>
+    <string name="translators_ukrainian">Ukrainian</string>
+    <string name="translators_italian">Italian</string>
+    <string name="translators_polish">Polish</string>
+    <string name="translators_french">French</string>
+    <string name="translators_spanish">Spanish</string>
+    <string name="translators_vietnamese">Vietnamese</string>
+    <string name="translators_german">German</string>
+    <string name="translators_turkish">Turkish</string>
+    <string name="translators_chinese_traditional">Chinese (Traditional)</string>
+    
+    <!-- Update downloader -->
+    <string name="download_manager_description">Downloading update…</string>
+    <string name="bs_update_download_title">Downloading update…</string>
+    <string name="bs_update_download_failed">Download failed</string>
+    <string name="bs_update_download_github">Download via browser</string>
+
 
 </resources>

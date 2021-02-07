@@ -5,9 +5,9 @@ import android.database.Cursor
 import android.database.MatrixCursor
 import android.net.Uri
 import com.kieronquinn.app.taptap.BuildConfig
-import com.kieronquinn.app.taptap.utils.boolPrefToUri
-import com.kieronquinn.app.taptap.utils.intPrefToUri
-import com.kieronquinn.app.taptap.utils.stringPrefToUri
+import com.kieronquinn.app.taptap.utils.extensions.boolPrefToUri
+import com.kieronquinn.app.taptap.utils.extensions.intPrefToUri
+import com.kieronquinn.app.taptap.utils.extensions.stringPrefToUri
 
 //Based off https://code.highspec.ru/Mikanoshi/CustoMIUIzer
 class SharedPrefsProvider : ContentProvider(), SharedPreferences.OnSharedPreferenceChangeListener {
@@ -72,9 +72,15 @@ class SharedPrefsProvider : ContentProvider(), SharedPreferences.OnSharedPrefere
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String) {
         val uri = when(sharedPreferences.all[key]){
-            is String -> stringPrefToUri(key)
-            is Int -> intPrefToUri(key)
-            is Boolean -> boolPrefToUri(key)
+            is String -> stringPrefToUri(
+                key
+            )
+            is Int -> intPrefToUri(
+                key
+            )
+            is Boolean -> boolPrefToUri(
+                key
+            )
             else -> null
         }
         if(uri != null) notifyChange(uri)

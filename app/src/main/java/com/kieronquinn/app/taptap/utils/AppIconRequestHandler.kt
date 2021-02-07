@@ -35,6 +35,7 @@ import com.squareup.picasso.Picasso.LoadedFrom.DISK
 import android.graphics.drawable.PictureDrawable
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.ColorDrawable
+import kotlin.jvm.Throws
 
 //Based on https://github.com/jaredrummler/AndroidProcesses/blob/master/demo/src/main/java/com/jaredrummler/android/processes/sample/picasso/AppIconRequestHandler.java
 
