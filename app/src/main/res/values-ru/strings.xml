@@ -175,7 +175,7 @@
     <string name="action_google_voice_access">Вызвать Google Voice Access</string>
     <string name="action_google_voice_access_desc">Вызвать the Google Voice Access, если он запущен (это не голосовой помощник или поиск)</string>
 
-    <string name="battery_and_optimisation">Батарея &amp; Энергосбережение</string>
+    <string name="battery_and_optimisation">Батарея и Энергосбережение</string>
     <string name="battery_and_optimisation_desc">Информация о том, почему Tap, Tap расходует батарею и почему он может быть убит устройством при работе в фоновом режиме (и как это исправить)</string>
 
     <!-- Language headings, add to values.xml too -->
