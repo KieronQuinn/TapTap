@@ -1,22 +1,38 @@
 <resources>
-    <string name="accessibility_service_description">Служба спец. возможностей TapTap\n\n<b>Важное примечание: данные ни от одного из ваших приложений не собираются. Эта служба используется только для поддержания активного распознавания и взаимодействия с устройством.</b></string>
+    <string name="accessibility_service_description">Служба спец.возможностей TapTap\n\n<b>Важное примечание: данные ни от одного из ваших приложений не собираются. Эта служба используется только для поддержания активного распознавания и взаимодействия с устройством.</b></string>
+    <string name="accessibility_service_description_gesture">Служба спец.возможностей Tap, Tap. \n\n<b>Не включайте его, если приложение не просит об этом. Оно необходимо только для определенных действий</b>\n\n<b>Важное примечание: данные ни от одного из ваших приложений не собираются. Эта служба используется только для поддержания активного распознавания и взаимодействия с устройством.\n\nЭто отдельная служба, которая создана из-за особенностей работы Android и приложений, которые могут выполнять жесты. Например Chrome не будет скрывать omnibar(что-то на непонятном) при прокрутке, если эта служба включена.</b></string>
+    <string name="setting_gesture">Gesture</string>
     <string name="setting_gesture">Жест</string>
     <string name="setting_gesture_desc">Настройте работу жеста</string>
     <string name="setting_actions_double">Действия по двойному постукиванию</string>
     <string name="setting_actions_triple">Действия по тройному постукиванию</string>
     <string name="settings_actions_desc_double">Установите действия, которые будут запускаться по двойному постукиванию по задней части устройства</string>
     <string name="settings_actions_desc_triple">Установите действия, которые будут запускаться по тройному постукиванию по задней части устройства</string>
+    <string name="settings_backup_restore">Резервное копирование и восстановление</string>
+    <string name="settings_backup_restore_desc">Сделайте резервную копию настроек на Ваше устройство или в облако</string>
+    <string name="settings_backup_restore_backup">Резервное копирование</string>
+    <string name="settings_backup_restore_backup_desc">Сделайте резервную копию настроек на Ваше устройство или в облако</string>
+    <string name="settings_backup_restore_restore">Восстановление резервной копии</string>
+    <string name="settings_backup_restore_restore_desc">Восстановите настройки из облака или со своего устройства</string>
     <string name="setting_gates">Запреты</string>
     <string name="setting_gates_desc">Выберите ситуации, когда действие не будет запускаться</string>
     <string name="setting_feedback">Обратная связь</string>
     <string name="setting_feedback_desc">Установите, как устройство уведомляет вас о запуске жеста</string>
-    <string name="setting_feedback_vibrate">Вибрация</string>
-    <string name="setting_feedback_vibrate_desc">Вибрировать один раз, когда используется жест</string>
     <string name="setting_feedback_override_dnd">Вибрировать, когда включен беззвучный режим</string>
     <string name="setting_feedback_override_dnd_desc">Игнорировать беззвучный режим и всегда вибрировать при срабатывании жеста</string>
+    <string name="setting_gesture_model">Размер устройства</string>   
+    <string name="setting_gesture_model_desc">Выберите размер устройства. В зависимости от Вашего выбора будет использоваться определенная модель(нейросеть).</string>
+    <string name="setting_feedback_vibrate">Вибрация</string>
+    <string name="setting_feedback_vibrate_desc">Вибрировать один раз, когда используется жест</string>
     <string name="setting_feedback_wake">Пробуждать устройство</string>
     <string name="setting_feedback_wake_desc">Пробуждать устройство, если экран выключен</string>
 
+    <string-array name="device_model_keys">
+        <item>Большое</item>
+        <item>Средненькое</item>
+        <item>Маленькое</item>
+    </string-array>
+    
     <!-- Gates -->
     <string name="gate_charging_state">Зарядка</string>
     <string name="gate_charging_state_desc">Блокировать жест на полсекунды после подключения к зарядному устройству</string>
@@ -159,9 +175,23 @@
     <string name="action_google_voice_access">Вызвать Google Voice Access</string>
     <string name="action_google_voice_access_desc">Вызвать the Google Voice Access, если он запущен (это не голосовой помощник или поиск)</string>
 
-    <string name="battery_and_optimisation">Батарея &amp; Энергосбережение</string>
+    <string name="battery_and_optimisation">Батарея и Энергосбережение</string>
     <string name="battery_and_optimisation_desc">Информация о том, почему Tap, Tap расходует батарею и почему он может быть убит устройством при работе в фоновом режиме (и как это исправить)</string>
 
+    <!-- Language headings, add to values.xml too -->
+    <string name="translators_chinese">Китайский (Упрощенный)</string>
+    <string name="translators_russian">Русский</string>
+    <string name="translators_portuguese_br">Бразильский португальский</string>
+    <string name="translators_ukrainian">Украинский</string>
+    <string name="translators_italian">Итальянский</string>
+    <string name="translators_polish">Польский</string>
+    <string name="translators_french">Французский</string>
+    <string name="translators_spanish">Испанский</string>
+    <string name="translators_vietnamese">Вьетнамский</string>
+    <string name="translators_german">Немецкий</string>
+    <string name="translators_turkish">Турецкий</string>
+    <string name="translators_chinese_traditional">Китайский (Традиционный)</string>
+    
     <string name="accessibility_info_off">Спец. возможности отключены</string>
     <string name="accessibility_info_off_desc">В настоящее время жест не работает. Нажмите, чтобы включить его</string>
     <string name="accessibility_info_on">Спец. возможности включены</string>
