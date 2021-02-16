@@ -8,7 +8,7 @@ apply plugin: "androidx.navigation.safeargs.kotlin"
 apply plugin: 'com.google.android.gms.oss-licenses-plugin'
 
 def gitCommitHash = 'git rev-parse --verify --short HEAD'.execute().text.trim()
-def tagName = '0.10_beta'
+def tagName = '0.10.1_beta'
 
 android {
     compileSdkVersion 30
@@ -20,7 +20,7 @@ android {
         targetSdkVersion 30
         versionCode 10
         
-        versionName "0.10 Beta"
+        versionName "0.10.1 Beta"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 

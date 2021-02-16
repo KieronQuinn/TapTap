@@ -43,13 +43,25 @@ class UpdateChecker {
         withContext(Dispatchers.IO){
             getReleaseList()?.let { gitHubReleaseResponse ->
                 val currentTag = gitHubReleaseResponse.tagName
-                if(currentTag != BuildConfig.TAG_NAME){
+                if(currentTag != null && currentTag != BuildConfig.TAG_NAME){
                     //New update available!
-                    val asset = gitHubReleaseResponse.assets!!.firstOrNull { it.name!!.endsWith(".apk") }
+                    val asset = gitHubReleaseResponse.assets?.firstOrNull { it.name?.endsWith(".apk") == true }
                     val releaseUrl = asset?.browserDownloadUrl?.replace("/download/", "/tag/")?.apply {
                         substring(0, lastIndexOf("/"))
                     }
-                    offer(Update(gitHubReleaseResponse.name!!, gitHubReleaseResponse.body!!, gitHubReleaseResponse.publishedAt!!, asset?.browserDownloadUrl ?: "https://github.com/KieronQuinn/TapTap/releases", asset?.name ?: "TapTap.apk", releaseUrl ?: "https://github.com/KieronQuinn/TapTap/releases"))
+                    val name = gitHubReleaseResponse.name ?: run {
+                        offer(null)
+                        return@let
+                    }
+                    val body = gitHubReleaseResponse.body ?: run {
+                        offer(null)
+                        return@let
+                    }
+                    val publishedAt = gitHubReleaseResponse.publishedAt ?: run {
+                        offer(null)
+                        return@let
+                    }
+                    offer(Update(name, body, publishedAt, asset?.browserDownloadUrl ?: "https://github.com/KieronQuinn/TapTap/releases", asset?.name ?: "TapTap.apk", releaseUrl ?: "https://github.com/KieronQuinn/TapTap/releases"))
                     updateAvailable.value = true
                 }
             } ?: run {
@@ -65,7 +77,14 @@ class UpdateChecker {
 
     private fun getReleaseList(): GitHubReleaseResponse? {
         val service: GitHubService = retrofit.create(GitHubService::class.java)
-        return service.getReleaseList().execute().body()
+        runCatching {
+            service.getReleaseList().execute().body()
+        }.onSuccess {
+            return it
+        }.onFailure {
+            return null
+        }
+        return null
     }
 
     interface GitHubService {

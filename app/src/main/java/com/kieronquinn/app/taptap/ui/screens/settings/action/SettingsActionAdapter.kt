@@ -115,7 +115,7 @@ class SettingsActionAdapter(lifecycleOwner: LifecycleOwner, private val viewMode
             itemActionChips.run {
                 layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
                 adapter = SettingsActionChipAdapter(context, viewModel, item.whenList) {
-                    chipAddClickListener?.invoke(adjustedPosition)
+                    chipAddClickListener?.invoke(adapterPosition - 1)
                 }
             }
             itemActionHandle.setOnTouchListener { _, event ->
