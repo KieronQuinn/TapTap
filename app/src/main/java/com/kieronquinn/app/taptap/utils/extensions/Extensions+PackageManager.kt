@@ -5,7 +5,7 @@ import android.content.pm.PackageManager
 
 fun PackageManager.getApplicationInfoOrNull(packageName: String?): ApplicationInfo? {
     return try {
-        getApplicationInfo(packageName, 0)
+        packageName?.let { getApplicationInfo(it, 0) }
     }catch (e: PackageManager.NameNotFoundException){
         null
     }

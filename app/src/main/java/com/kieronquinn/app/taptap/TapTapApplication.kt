@@ -27,6 +27,7 @@ import com.kieronquinn.app.taptap.ui.screens.settings.advanced.customsensitivity
 import com.kieronquinn.app.taptap.ui.screens.settings.backuprestore.SettingsBackupRestoreViewModel
 import com.kieronquinn.app.taptap.ui.screens.settings.backuprestore.backup.SettingsBackupRestoreBackupViewModel
 import com.kieronquinn.app.taptap.ui.screens.settings.backuprestore.restore.SettingsBackupRestoreRestoreViewModel
+import com.kieronquinn.app.taptap.ui.screens.settings.feedback.SettingsFeedbackViewModel
 import com.kieronquinn.app.taptap.ui.screens.settings.gate.SettingsGateViewModel
 import com.kieronquinn.app.taptap.ui.screens.settings.gate.add.SettingsGateAddContainerBottomSheetViewModel
 import com.kieronquinn.app.taptap.ui.screens.settings.gate.add.category.SettingsGateAddCategoryViewModel
@@ -95,6 +96,8 @@ class TapTapApplication : Application() {
                 viewModel { SettingsActionAddContainerBottomSheetViewModel() }
                 viewModel { SettingsActionAddCategoryViewModel() }
                 viewModel { SettingsActionAddListViewModel() }
+                //Settings > Feedback
+                viewModel { SettingsFeedbackViewModel(get()) }
                 //Settings > Gate
                 viewModel { SettingsGateViewModel(get()) }
                 //Settings > Gate > Add

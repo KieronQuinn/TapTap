@@ -2,7 +2,6 @@ package com.kieronquinn.app.taptap.utils.extensions
 
 import android.animation.ArgbEvaluator
 import android.animation.ValueAnimator
-import android.annotation.ArrayRes
 import android.content.Context
 import android.content.res.ColorStateList
 import android.content.res.Configuration
@@ -16,6 +15,7 @@ import android.util.DisplayMetrics
 import android.util.TypedValue
 import android.view.View
 import android.view.WindowManager
+import androidx.annotation.ArrayRes
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
