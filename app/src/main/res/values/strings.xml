@@ -24,6 +24,8 @@
     <string name="setting_gesture_model_desc">Adjust the size of device to use when selecting the gesture model.</string>
     <string name="setting_feedback_vibrate">Vibrate</string>
     <string name="setting_feedback_vibrate_desc">Vibrate once when the gesture is used and the action is run</string>
+    <string name="setting_feedback_vibrate_duration">Vibrate Duration</string>
+    <string name="setting_feedback_vibrate_duration_desc">Set the vibration duration for when the action is used (milliseconds)</string>
     <string name="setting_feedback_wake">Wake Device</string>
     <string name="setting_feedback_wake_desc">Wake the device up if the screen is off</string>
 

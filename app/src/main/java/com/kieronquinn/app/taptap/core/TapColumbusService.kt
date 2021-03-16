@@ -19,6 +19,7 @@ import com.kieronquinn.app.taptap.core.columbus.actions.DoNothingAction
 import com.kieronquinn.app.taptap.core.columbus.feedback.HapticClickCompat
 import com.kieronquinn.app.taptap.core.columbus.feedback.WakeDevice
 import com.kieronquinn.app.taptap.core.TapSharedPreferences.Companion.SHARED_PREFERENCES_KEY_FEEDBACK_VIBRATE
+import com.kieronquinn.app.taptap.core.TapSharedPreferences.Companion.SHARED_PREFERENCES_KEY_FEEDBACK_VIBRATE_DURATION
 import com.kieronquinn.app.taptap.core.TapSharedPreferences.Companion.SHARED_PREFERENCES_KEY_FEEDBACK_WAKE
 import com.kieronquinn.app.taptap.core.TapSharedPreferences.Companion.SHARED_PREFERENCES_KEY_MAIN_SWITCH
 import com.kieronquinn.app.taptap.core.TapSharedPreferences.Companion.SHARED_PREFERENCES_KEY_MODEL
@@ -175,7 +176,7 @@ class TapColumbusService(private val context: Context, private val tapFileReposi
                 )
                 tapGestureSensor.setTfClassifier(context.assets, model.model)
             }
-            SHARED_PREFERENCES_KEY_FEEDBACK_VIBRATE, SHARED_PREFERENCES_KEY_FEEDBACK_WAKE -> {
+            SHARED_PREFERENCES_KEY_FEEDBACK_VIBRATE, SHARED_PREFERENCES_KEY_FEEDBACK_VIBRATE_DURATION, SHARED_PREFERENCES_KEY_FEEDBACK_WAKE -> {
                 //Refresh feedback options
                 refreshColumbusFeedback()
             }
@@ -217,9 +218,10 @@ class TapColumbusService(private val context: Context, private val tapFileReposi
         val sharedPreferences = context.legacySharedPreferences
         val isVibrateEnabled =
             sharedPreferences?.getBoolean(SHARED_PREFERENCES_KEY_FEEDBACK_VIBRATE, true) ?: true
+        val vibrationEffect = tapSharedPreferences.vibrationEffect.toInt()
         val isWakeEnabled = sharedPreferences?.getBoolean(SHARED_PREFERENCES_KEY_FEEDBACK_WAKE, true) ?: true
         val feedbackList = ArrayList<FeedbackEffect>()
-        if (isVibrateEnabled) feedbackList.add(HapticClickCompat(context))
+        if (isVibrateEnabled) feedbackList.add(HapticClickCompat(context, false, vibrationEffect))
         if (isWakeEnabled) feedbackList.add(WakeDevice(context))
         return feedbackList.toSet()
     }
@@ -261,7 +263,7 @@ class TapColumbusService(private val context: Context, private val tapFileReposi
         this.isDemoMode = enabled
         if(enabled){
             gates = emptySet()
-            effects = setOf(HapticClickCompat(context, true))
+            effects = setOf(HapticClickCompat(context, true, 3))
             tapGestureSensor.customTap?.isTripleTapEnabled = true
         }else{
             with(tapFileRepository) {

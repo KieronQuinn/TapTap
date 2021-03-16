@@ -14,13 +14,17 @@ import com.kieronquinn.app.taptap.utils.extensions.settingsGlobalGetIntOrNull
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
-class HapticClickCompat(private val context: Context, private val forceOverrideDnd: Boolean = false) : FeedbackEffect, KoinComponent {
+class HapticClickCompat(
+    private val context: Context,
+    private val forceOverrideDnd: Boolean = false,
+    private val vibrationEffect: Int
+) : FeedbackEffect, KoinComponent {
 
     private val tapSharedPreferences by inject<TapSharedPreferences>()
 
-    private val progressVibrationEffect: VibrationEffect? = getVibrationEffect(0)
+    private val progressVibrationEffect: VibrationEffect? = getVibrationEffect(1)
     private val contentResolver: ContentResolver = context.contentResolver
-    private val resolveVibrationEffect: VibrationEffect? = getVibrationEffect(5)
+    private val resolveVibrationEffect: VibrationEffect? = getVibrationEffect(vibrationEffect)
     private val vibrator: Vibrator = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
     private val dndMode
         get() = settingsGlobalGetIntOrNull(
@@ -32,7 +36,8 @@ class HapticClickCompat(private val context: Context, private val forceOverrideD
 
     companion object {
         @SuppressLint("WrongConstant")
-        val SONIFICATION_AUDIO_ATTRIBUTES = AudioAttributes.Builder().setContentType(4).setUsage(13).build()
+        val SONIFICATION_AUDIO_ATTRIBUTES =
+            AudioAttributes.Builder().setContentType(4).setUsage(13).build()
     }
 
     override fun onProgress(var1: Int, var2: DetectionProperties?) {
@@ -41,13 +46,13 @@ class HapticClickCompat(private val context: Context, private val forceOverrideD
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && resolveVibrationEffect != null) {
                     vibrator.vibrate(resolveVibrationEffect, SONIFICATION_AUDIO_ATTRIBUTES)
                 } else {
-                    vibrator.vibrate(300)
+                    vibrator.vibrate((vibrationEffect).toLong())
                 }
             } else if (var1 == 1) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && progressVibrationEffect != null) {
                     vibrator.vibrate(progressVibrationEffect, SONIFICATION_AUDIO_ATTRIBUTES)
                 } else {
-                    vibrator.vibrate(200)
+                    vibrator.vibrate((vibrationEffect).toLong())
                 }
             }
         }
@@ -55,7 +60,7 @@ class HapticClickCompat(private val context: Context, private val forceOverrideD
 
     private fun getVibrationEffect(effectId: Int): VibrationEffect? {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            VibrationEffect.createPredefined(effectId)
+            VibrationEffect.createOneShot(((effectId)).toLong(), VibrationEffect.DEFAULT_AMPLITUDE)
         } else null
     }
 }

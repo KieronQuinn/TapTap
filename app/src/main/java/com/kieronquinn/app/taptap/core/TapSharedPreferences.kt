@@ -17,6 +17,7 @@ class TapSharedPreferences(private val context: Context) {
         const val SHARED_PREFERENCES_KEY_TRIPLE_TAP_SWITCH = "triple_tap_enabled"
         const val SHARED_PREFERENCES_KEY_MODEL = "model"
         const val SHARED_PREFERENCES_KEY_FEEDBACK_VIBRATE = "feedback_vibrate"
+        const val SHARED_PREFERENCES_KEY_FEEDBACK_VIBRATE_DURATION = "feedback_vibrate_duration"
         const val SHARED_PREFERENCES_KEY_FEEDBACK_WAKE = "feedback_wake"
         const val SHARED_PREFERENCES_KEY_FEEDBACK_OVERRIDE_DND = "feedback_override_dnd"
         const val SHARED_PREFERENCES_KEY_SPLIT_SERVICE = "advanced_split_service"
@@ -79,6 +80,11 @@ class TapSharedPreferences(private val context: Context) {
     var sensitivity
         get() = sharedPreferences?.getString(SHARED_PREFERENCES_KEY_SENSITIVITY, "0.05")?.toFloatOrNull() ?: 0.05f
         set(value) = sharedPreferences?.edit()?.putString(SHARED_PREFERENCES_KEY_SENSITIVITY, value.toString())?.apply() ?: Unit
+
+    var vibrationEffect
+        get() = sharedPreferences?.getString(SHARED_PREFERENCES_KEY_FEEDBACK_VIBRATE_DURATION, "100")?.toIntOrNull() ?: 100
+        set(value) = sharedPreferences?.edit()?.putString(
+            SHARED_PREFERENCES_KEY_FEEDBACK_VIBRATE_DURATION, value.toString())?.apply() ?: Unit
 
     var overrideDnd
         get() = sharedPreferencesLegacy?.getBoolean(SHARED_PREFERENCES_KEY_FEEDBACK_OVERRIDE_DND, false) ?: false
