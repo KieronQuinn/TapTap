@@ -10,6 +10,12 @@
     <string name="setting_actions_triple">Üçlü Dokunma Eylemleri</string>
     <string name="settings_actions_desc_double">Cihazınızın arkasına iki kez dokunduğunuzda çalıştırılacak eylemleri ayarlayın</string>
     <string name="settings_actions_desc_triple">Cihazınızın arkasına üç kez dokunduğunuzda çalıştırılacak eylemleri ayarlayın</string>
+    <string name="settings_backup_restore">Yedekle &amp; Geri Yükle</string>
+    <string name="settings_backup_restore_desc">Ayarlarınızı cihazınıza veya buluta yedekleyin</string>
+    <string name="settings_backup_restore_backup">Yedekle</string>
+    <string name="settings_backup_restore_backup_desc">Ayarlarınızı cihazınıza veya buluta yedekleyin</string>
+    <string name="settings_backup_restore_restore">Geri Yükle</string>
+    <string name="settings_backup_restore_restore_desc">Ayarlarınızı cihazınızdan veya buluttan geri yükleyin</string>
     <string name="setting_gates">Geçitler</string>
     <string name="setting_gates_desc">Hareketin bir eylem yürütmemesi gereken durumları ayarlayın</string>
     <string name="setting_feedback">Geri bildirim</string>
@@ -119,6 +125,7 @@
 
     <string name="category_about">Hakkında</string>
     <string name="about">%1s v%2s</string>
+    <string name="about_summary_short">Oluşturan: Kieron Quinn / Quinny899 @ XDA\nTopluluktan katkıda bulunanlar ve çevirmenler sayesinde, daha fazla bilgi ve lisans için dokunun</string>
     <string name="xda_thread">XDA Konusu</string>
     <string name="github">GitHub</string>
     <string name="libraries">Üçüncü taraf kütüphaneleri</string>
@@ -169,7 +176,7 @@
     <string name="gate_keyboard_visibility_desc_when">Yalnızca klavye açıkken ve kullanımdayken çalıştırır. Aktif olarak yazmıyorsanız bunun her zaman işe yaramayabileceğini unutmayın.</string>
     <string name="battery_optimisation">Pil Optimizasyonunu Devre Dışı Bırak</string>
     <string name="battery_optimisation_desc">Bu, Tap, Tap\'in çalışmaya devam etmesine yardımcı olur (ancak her zaman çalışacağını garanti etmez, aşağıdaki pil seçeneğine bakın). Devre dışı bırakmak için dokunun.</string>
-
+    
     <string name="battery_and_optimisation">Pil &amp; Optimizasyon</string>
     <string name="battery_and_optimisation_desc">Tap, Tap\'in neden pil kullandığı ve arka planda çalıştırıldığında cihazınız tarafından neden sonlandırıldığı (ve bunu nasıl düzeltebileceğiniz) hakkında bilgi</string>
 
@@ -200,7 +207,7 @@
     <string name="gate_music_desc">Müzik çalarken hareketi engeller</string>
     <string name="gate_music_desc_when">Yalnızca müzik çalarken çalıştır</string>
     <string name="gate_music_desc_when_inverse">Müzik çalınmadığında hareketi engeller</string>
-    <string name="gate_music_desc_inverse">Sadece müzik çalmıyorken çalıştır</string>
+    <string name="gate_music_desc_inverse">Yalnızca müzik çalmıyorken çalıştır</string>
     <string name="notification_policy_grant">Devam et</string>
     <string name="bs_notification_policy_content">Zil modunun değiştirilmesi, Rahatsız Etmeyin durumunu yönetebilmek için Rahatsız Etmeyin erişimini gerektirir. Lütfen aşağıya tıklayarak, Tap, Tap\'i seçerek ayarlardan izin verin ve bu ekrana geri dönün.</string>
     <string name="tap_notification_title">Tap, Tap Hizmeti</string>
@@ -216,7 +223,7 @@
     <string name="setting_advanced_restart_service_desc">Tap, Tap dinleyici bileşenini saatte bir otomatik olarak yeniden başlatmayı dener. Bölünmüş hizmetleri etkinleştirdiyseniz, ön plan hizmeti de yeniden başlatılacaktır. Not: Erişilebilirlik hizmeti otomatik olarak <b>yeniden başlatılamaz</b>, bu nedenle kapatılırsa veya devre dışı bırakılırsa bu çalışmaz.</string>
     <string name="bs_update_download">İndir</string>
     <string name="bs_update_title">Güncelleme mevcut!</string>
-    <string name="bs_update_content"><![CDATA[<h2>A new update is available</h2><br><b>Mevcut sürüm:</b> %1s<br><b>Yeni sürüm:</b> %1s<br><b>Güncelleme tarihi:</b> %1s<br><b>Değişiklikler:</b><br>%1s]]></string>
+    <string name="bs_update_content"><![CDATA[<h2>Yeni bir güncelleme mevcut</h2><br><b>Mevcut sürüm:</b> %1s<br><b>Yeni sürüm:</b> %1s<br><b>Güncelleme tarihi:</b> %1s<br><b>Değişiklikler:</b><br>%1s]]></string>
     <string name="tap_update_notification_channel_title">Güncelleme bildirimleri</string>
     <string name="tap_update_notification_channel_description">Uygulama günde bir kez güncellemeleri kontrol ettiğinde gösterilen bildirimler</string>
     <string name="tap_update_notification_title">Tap, Tap güncellemesi mevcut</string>
@@ -235,6 +242,18 @@
     <string name="action_accessibility_shortcut_desc">Erişilebilirlik Kısayolunu Tetikler. Bu eylemi kullanmadan önce, Tap, Tap\'in kısayolu kullanacak şekilde ayarlanmadığından emin olun!</string>
     <string name="action_app_drawer">Uygulama Menüsü</string>
     <string name="action_app_drawer_desc"><b>Desteklenen bir başlatıcının</b> uygulama menüsünü açar. Bu yalnızca Android 11 tabanlı başlatıcılarda çalışır.</string>
+    <string name="action_accept_call">Aramayı Kabul Et</string>
+    <string name="action_accept_call_desc">Zil sesi çaldığında aramayı kabul eder</string>
+    <string name="action_reject_call">Aramayı Reddet</string>
+    <string name="action_reject_call_desc">Zil sesi çaldığında aramayı reddeder veya devam eden bir zil sesi varsa kapatır.</string>
+    <string name="action_swipe_up">Yukarı Kaydır</string>
+    <string name="action_swipe_up_desc">Mevcut uygulamada yukarı kaydırma hareketi gerçekleştirir</string>
+    <string name="action_swipe_down">Aşağı Kaydır</string>
+    <string name="action_swipe_down_desc">Mevcut uygulamada aşağı kaydırma hareketi gerçekleştirir</string>
+    <string name="action_swipe_left">Sola Kaydır</string>
+    <string name="action_swipe_left_desc">Mevcut uygulamada sola kaydırma hareketi gerçekleştirir</string>
+    <string name="action_swipe_right">Sağa Kaydır</string>
+    <string name="action_swipe_right_desc">Mevcut uygulamada sağa kaydırma hareketi gerçekleştirir</string>
     <string name="tasker_config_label_triple">Arkaya Üçlü Dokunma</string>
     <string name="tasker_description_double">Telefonun arkasına iki kez dokunulduğunda tetiklenir</string>
     <string name="tasker_description_triple">Telefonun arkasına üç kez dokunulduğunda tetiklenir</string>
@@ -275,6 +294,7 @@
     <string name="setup_battery_button_miui">MIUI Optimizasyonunu Devre Dışı Bırak</string>
     <string name="setup_battery_button_miui_disabled">MIUI Optimizasyonu Devre Dışı</string>
     <string name="setup_battery_button_miui_toast">MIUI Optimizasyonunu Devre Dışı Bırak ("Uygulamalar" altında)</string>
+     <string name="setup_battery_button_dont_kill">Ekstra optimizasyonu devre dışı bırakma adımları</string>
     <string name="setup_battery_button_oem">OEM pil ayarlarını aç</string>
     <string name="setup_battery_oem_info">Not: OEM pil düğmesi, devre dışı bırakılan optimizasyona tepki veremez. Zaten devre dışı bıraktıysanız, devam edebilirsiniz.</string>
     <string name="setup_battery_button_oem_toast">Pil etkinliğini başlatırken hata oluştu. Lütfen cihaz ayarlarınızın optimizasyonunu kendiniz bulun ve devre dışı bırakın.</string>
@@ -306,5 +326,94 @@
     <string name="action_alarm_snooze">Alarmı Ertele</string>
     <string name="action_alarm_timer_desc">Çalan alarmı veya zamanlayıcıyı kapatır (yalnızca desteklenen Saat uygulamalarında)</string>
     <string name="action_alarm_snooze_desc">Çalan alarmı erteler (yalnızca desteklenen Saat uygulamalarında)</string>
+        <string name="help_action_triple_disabled">Üçlü Dokunma devre dışı</string>
+
+    <!-- Backup -->
+    <string name="settings_backuprestore_backup_title">Yedek oluşturuluyor…</string>
+    <string name="settings_backuprestore_backup_desc">Bu uzun sürmemeli</string>
+    <string name="settings_backuprestore_backup_done_title">Yedek oluşturuldu</string>
+    <string name="settings_backuprestore_backup_done_desc">%1s olarak kaydedildi</string>
+    <string name="settings_backuprestore_backup_error_title">Yedek oluşturulamadı</string>
+    <string name="settings_backuprestore_backup_error_desc">Yedeklemenizi kaydederken bir hata oluştu: %1s</string>
+
+    <!-- Restore -->
+    <string name="settings_backuprestore_restore_title">Yedek geri yükleniyor…</string>
+    <string name="settings_backuprestore_restore_desc">Bu uzun sürmemeli</string>
+    <string name="settings_backuprestore_restore_done_title">Yedek geri yüklendi</string>
+    <string name="settings_backuprestore_restore_done_desc">Yedek %1s içinden geri yüklendi</string>
+    <string name="settings_backuprestore_restore_error_title">Yedek geri yüklenemedi</string>
+    <string name="settings_backuprestore_restore_error_desc">Yedeğinizi geri yüklerken bir hata oluştu: %1s</string>
+    <plurals name="settings_backuprestore_restore_skipped">
+        <item quantity="one">%1d öğe atlandı\nDaha fazla bilgi için dokunun</item>
+        <item quantity="other">%1d öğe atlandı\nDaha fazla bilgi için dokunun</item>
+    </plurals>
+    <string name="settings_backuprestore_restore_skipped_title">Atlanan öğeler</string>
+    <string name="settings_backuprestore_restore_skipped_content">Geri yüklenirken aşağıdaki öğeler atlandı:</string>
+    <string name="settings_backuprestore_restore_skipped_reason_tasker">Tasker yüklü değil</string>
+    <string name="settings_backuprestore_restore_skipped_reason_app_not_installed">(%1s) uygulaması yüklü değil</string>
+    <string name="settings_backuprestore_restore_skipped_reason_user_skipped">Bu öğeyi atlamayı seçtiniz</string>
+    <string name="settings_backuprestore_restore_skipped_reason_not_available">Bu cihazda mevcut değil</string>
+    <string name="settings_backuprestore_restore_skipped_action">%1s (Eylem)</string>
+    <string name="settings_backuprestore_restore_skipped_gate">%1s (Geçit)</string>
+    <string name="settings_backuprestore_restore_skipped_action_requirement">%1s (%1s eylemi için Eylem Gereksinimi)</string>
+
+    <!-- Error types -->
+    <string name="backup_restore_error_type_failed_create_file">Failed to create file</string>
+    <string name="backup_restore_error_type_failed_getting_file">Failed to get file</string>
+    <string name="backup_restore_error_type_failed_read_file">Failed to read from file</string>
+    <string name="backup_restore_error_type_failed_write_file">Failed to write to file</string>
+    <string name="backup_restore_error_type_failed_unknown">Unknown error</string>
+
+    <!-- Restore prompts -->
+    <string name="restore_prompt_grant">İzin ver</string>
+    <string name="restore_prompt_skip">Atla</string>
+    <string name="restore_prompt_cancel">İptal</string>
+    <string name="restore_prompt_permission_title">İzin Gerekli</string>
+    <string name="restore_prompt_gesture_title">İzin Gerekli</string>
+    <string name="restore_prompt_permission_content_action">Action <b>%1s</b> requires the permission(s) <b>%1s</b>. If you skip granting this, this action will not be added.</string>
+    <string name="restore_prompt_permission_content_gate">Gate <b>%1s</b> requires the permission(s) <b>%1s</b>. If you skip granting this, this gate will not be added.</string>
+    <string name="restore_prompt_permission_content_when_gate">Action <b>%1s</b> has a requirement <b>%1s</b>, which requires the permission(s) <b>%1s</b>. If you skip granting this, this requirement will not be added.</string>
+    <string name="restore_prompt_notification_permission_content_action">Action <b>%1s</b> requires the ability to modify the do not disturb policy. If you skip granting this, this action will not be added.</string>
+    <string name="restore_prompt_notification_permission_content_gate">Gate <b>%1s</b> requires the ability to modify the do not disturb policy. If you skip granting this, this gate will not be added.</string>
+    <string name="restore_prompt_notification_permission_content_when_gate">Action <b>%1s</b> has a requirement <b>%1s</b>, which requires the ability to modify the do not disturb policy. If you skip granting this, this requirement will not be added.</string>
+    <string name="restore_prompt_gesture_service_content_action">Action <b>%1s</b> requires the secondary (gesture) accessibility service to be enabled. If you skip granting this, this action will not be added.</string>
+    <string name="restore_prompt_gesture_service_content_gate">Gate <b>%1s</b> requires the secondary (gesture) accessibility service to be enabled. If you skip granting this, this gate will not be added.</string>
+    <string name="restore_prompt_gesture_service_content_when_gate">Action <b>%1s</b> has a requirement <b>%1s</b>, which requires the secondary (gesture) accessibility service to be enabled. If you skip granting this, this requirement will not be added.</string>
+    <string name="restore_prompt_tasker_content_action">Action <b>%1s</b> requires Tasker to have "Allow External Access" enabled, which you need to enable in Tasker\'s settings. If you skip granting this, this action will not be added.</string>
+    <string name="restore_prompt_tasker_content_gate">Gate <b>%1s</b> requires Tasker to have "Allow External Access" enabled, which you need to enable in Tasker\'s settings. If you skip granting this, this gate will not be added.</string>
+    <string name="restore_prompt_tasker_content_when_gate">Action <b>%1s</b> has a requirement <b>%1s</b>, which requires Tasker to have "Allow External Access" enabled, which you need to enable in Tasker\'s settings. If you skip granting this, this requirement will not be added.</string>
+
+    <!-- About screen -->
+    <string name="about_version">Sürüm%1s\nKieron Quinn tarafından oluşturuldu</string>
+    <string name="about_contributors">Katkıda bulunanlar</string>
+    <string name="about_contributors_main">Columbus</string>
+    <string name="about_contributors_main_content"><![CDATA[[\'Columbus\' Modeli ve Google tarafından Android 11 Geliştirici Önizlemesi 1\''den oluşturulmuş temel kod<a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>)]]></string>
+    <string name="about_contributors_community">Topluluk Katkıları</string>
+    <string name="about_contributors_community_content"><b>Tasker entegrasyonu</b>: João Dias\n<b>Müzik kontrol eylemleri</b>: timfedo\n<b>MD2 UI ve Chrome Özel Sekmeler</b>: Giorgio Cantoni\n<b>Güç Menüsü eylemi</b>: Adrian Campos\n<b>DND geri bildirimi ve Ses Profilleri eylemi</b>: Ashutosh Singh\n<b>Arama eylemini başlatma</b>: arkon</string>
+    <string name="about_contributors_icons">Simgeler</string>
+    <string name="about_contributors_icons_content"><![CDATA[Simgeler: <b><a href="https://material.io/resources/icons">Material Icons</a></b> (<a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache Licence 2.0</a>)<br><b><a href="https://github.com/Templarian/MaterialDesign">Material Design Icons</a></b> (<a href="https://github.com/Templarian/MaterialDesign/blob/master/LICENSE">Pictogrammers Free Licence</a>)<br><b><a href="https://icons8.com/icon/x57bYZb1FKLO/double-tap-gesture">Icons8</a></b> (<a href="https://icons8.com/license">Icons8 License</a>)<br><b><a href="https://www.freepik.com/">Freepik</a></b> (<a href="https://www.flaticon.com/license/pack/197373">Flaticon Licence</a>)<br><b><a href="https://www.flaticon.com/free-icon/smartphone_2628265">Vitaly Gorbachev</a></b> (<a href="https://www.flaticon.com/license/icon/2628265">Flaticon Licence</a>)<br><b><a href="https://lottiefiles.com/39707-upload-animation">Vinicius Rosa</a></b> (<a href="https://lottiefiles.com/license">CC-BY-SA</a>)]]></string>
+    <string name="about_contributors_font">Yazı tipi</string>
+    <string name="about_contributors_font_content"><![CDATA[<b><a href="https://hanken.co/products/hk-grotesk">HK Grotesk</a></b> by Hanken Design Co. (<a href="https://scripts.sil.org/OFL">SIL Open Font License</a>)]]></string>
+    <string name="about_translators">Çevirmenler</string>
+
+    <!-- Language headings, add to values.xml too -->
+    <string name="translators_chinese">Basitleştirilmiş Çince</string>
+    <string name="translators_russian">Rusça</string>
+    <string name="translators_portuguese_br">Brezilya Portekizcesi</string>
+    <string name="translators_ukrainian">Ukraynaca</string>
+    <string name="translators_italian">İtalyanca</string>
+    <string name="translators_polish">Polonyaca</string>
+    <string name="translators_french">Fransızca</string>
+    <string name="translators_spanish">İspanyolca</string>
+    <string name="translators_vietnamese">Vietnamca</string>
+    <string name="translators_german">Almanca</string>
+    <string name="translators_turkish">Türkçe</string>
+    <string name="translators_chinese_traditional">Geleneksel Çince</string>
+    
+    <!-- Update downloader -->
+    <string name="download_manager_description">Güncelleme indiriliyor…</string>
+    <string name="bs_update_download_title">Güncelleme indiriliyor…</string>
+    <string name="bs_update_download_failed">İndirme başarısız</string>
+    <string name="bs_update_download_github">Tarayıcı ile indir</string>
 
 </resources>
