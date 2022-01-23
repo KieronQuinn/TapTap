@@ -1,8 +1,7 @@
 <resources>
     <string name="app_name">Tap, Tap</string>
     <string name="accessibility_service_description">TapTap 無障礙設定\n\n<b>重要提示: 應用不會收集您的個資，此服務僅用於辨識手勢活動並提供與裝置的互動支援</b></string>
-    <string name="setting_gesture">手勢</string>
-    <string name="setting_gesture_desc">調整手勢的工作方式</string>
+    <string name="setting_bottom_nav_gesture">手勢</string>
     <string name="setting_gates">閘閥</string>
     <string name="setting_gates_desc">停用手勢在某些情況下被識別並激活動作</string>
     <string name="setting_feedback">反饋</string>
@@ -12,19 +11,11 @@
     <string name="setting_feedback_wake">喚醒設備</string>
     <string name="setting_feedback_wake_desc">當熒幕關閉時喚醒設備</string>
 
-    <string-array name="device_model_keys">
-        <item>Pixel 3 XL</item>
-        <item>Pixel 4</item>
-        <item>Pixel 4 XL</item>
-    </string-array>
-
     <!-- Gates -->
     <string name="gate_charging_state">充電時</string>
-    <string name="gate_charging_state_desc">當手機插入充電時，暫時停用手勢半秒</string>
     <string name="gate_telephony_activity">通話時</string>
     <string name="gate_telephony_activity_desc">當手機通話時，停用手勢. 僅支援標準電話 - 不支援網路電話 如.WhatsApp.</string>
     <string name="gate_usb_state">USB 設備</string>
-    <string name="gate_usb_state_desc">當有 USB 設備插入時，停用手勢半秒鐘。例如：U盤插入</string>
     <string name="gate_camera_visibility">相機</string>
     <string name="gate_camera_visibility_desc">當相機啟動時停用手勢. 注意：這將在執行動作時跳過「啟動相機」動作.</string>
     <string name="gate_power_state">關閉熒幕</string>
@@ -60,7 +51,6 @@
     <string name="fab_remove_action">移除</string>
     <string name="add_action_category_launch">啟動</string>
     <string name="add_action_category_utilities">工具</string>
-    <string name="add_action_category_actions">動作</string>
     <string name="add_action_category_advanced">進階設定</string>
     <string name="action_flashlight">電筒</string>
     <string name="action_flashlight_desc">打開電筒. 當相機被占用，此操作失效.</string>
@@ -68,10 +58,7 @@
     <string name="action_launch_app_desc">啟動一個應用</string>
     <string name="action_launch_app_desc_formattable">啟動 %1s. 當該應用已處於運行狀態時，此動作將被跳過.</string>
     <string name="fab_add_gate">增加門檻</string>
-    <string name="nothing_found">什麼都沒找到</string>
     <string name="search">搜尋</string>
-    <string name="show_system_apps">顯示系統應用</string>
-    <string name="select_an_app">選擇一個應用</string>
     <string name="setting_gesture_sensitivity">靈敏度</string>
     <string name="bs_help_action_title">何為動作？</string>
     <string name="bs_help_gate">門檻可阻止手勢運行任何動作。為了運行任何動作，您必須打開所有已啟用的門檻。 \n如果當前滿足某個場景，例如：熒幕處於關閉狀態，而「熒幕關閉時」處於啟用狀態時，則不會運行任何動作。您可以添加任意數量的門檻，並使用開關來啟用或者禁用它們（沒有必要刪掉它們再重新添加），以節省時間並提高效率。 </string>
@@ -81,12 +68,6 @@
     <string name="action_tasker_event">任務活動</string>
     <string name="action_tasker_event_desc">觸發Tasker事件插件</string>
 
-    <string name="accessibility_info_off">無障礙服務未啟用</string>
-    <string name="accessibility_info_off_desc">手勢無法工作. 點按以啟用</string>
-    <string name="accessibility_info_on">已啟用無障礙服務</string>
-
-    <string name="category_about">關於</string>
-    <string name="about">%1s v%2s</string>
     <string name="xda_thread">XDA 文章</string>
     <string name="github">GitHub</string>
     <string name="libraries">第三方資源庫</string>
@@ -95,10 +76,6 @@
     <string name="tasker_config_label">輕按兩次</string>
     <string name="action_tasker_task">Tasker任務</string>
     <string name="action_tasker_task_desc">運行指定的Tasker任務</string>
-    <string name="bs_tasker_content">為了在不使用事件插件的情況下啟動Tasker任務, 你必須啟用 \"允許外部訪問\" Tasker中的選項\'的設定. 如果您沒有啟用此選項, 此操作將始終被跳過.</string>
-    <string name="bs_tasker_title">需要權限</string>
-    <string name="bs_tasker_positive">打開Tasker設定</string>
-    <string name="picker_launch_camera">啟動相機</string>
     <string name="action_volume_panel">顯示音量面板</string>
     <string name="action_volume_panel_desc">顯示系統音量面板，包含用於調整的聲音流</string>
     <string name="action_volume_up">增加音量</string>

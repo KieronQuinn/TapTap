@@ -4,5 +4,5 @@
     android:accessibilityFeedbackType="feedbackGeneric"
     android:accessibilityFlags="flagReportViewIds"
     android:canRetrieveWindowContent="true"
-    android:settingsActivity="com.kieronquinn.app.taptap.activities.SettingsActivity"
+    android:settingsActivity="com.kieronquinn.app.taptap.MainActivity"
     android:description="@string/accessibility_service_description" />

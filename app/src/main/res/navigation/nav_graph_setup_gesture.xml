@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_setup_gesture"
+    app:startDestination="@id/setupGestureConfigurationFragment">
+
+    <fragment
+        android:id="@+id/setupGestureConfigurationFragment"
+        android:name="com.kieronquinn.app.taptap.ui.screens.setup.gesture.configuration.SetupGestureConfigurationFragment"
+        android:label="@string/setup_gesture_toolbar"
+        tools:layout="@layout/fragment_settings_generic" >
+        <action
+            android:id="@+id/action_setupGestureConfigurationFragment_to_setupGestureModelPicker"
+            app:destination="@id/setupGestureModelPicker" />
+    </fragment>
+    <fragment
+        android:id="@+id/setupGestureModelPicker"
+        android:name="com.kieronquinn.app.taptap.ui.screens.settings.modelpicker.SettingsModelPickerFragment"
+        android:label="@string/setting_gesture_model"
+        tools:layout="@layout/fragment_settings_model_picker" />
+
+</navigation>

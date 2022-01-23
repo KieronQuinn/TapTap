@@ -1,54 +1,55 @@
 package com.kieronquinn.app.taptap.ui.screens.settings.backuprestore
 
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
-import com.airbnb.lottie.LottieDrawable
-import com.kieronquinn.app.taptap.databinding.FragmentBackupRestoreBinding
-import com.kieronquinn.app.taptap.components.base.BoundFragment
-import com.kieronquinn.app.taptap.ui.screens.settings.backuprestore.restore.SettingsBackupRestoreRestoreViewModel
-import dev.chrisbanes.insetter.applySystemWindowInsetsToPadding
-import org.koin.android.viewmodel.ext.android.sharedViewModel
+import androidx.lifecycle.lifecycleScope
+import com.kieronquinn.app.taptap.databinding.FragmentSettingsBackupRestoreBinding
+import com.kieronquinn.app.taptap.ui.base.BackAvailable
+import com.kieronquinn.app.taptap.ui.base.BoundFragment
+import com.kieronquinn.app.taptap.utils.extensions.applyBottomInsets
+import com.kieronquinn.app.taptap.utils.extensions.onClicked
+import kotlinx.coroutines.flow.collect
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class SettingsBackupRestoreFragment: BoundFragment<FragmentBackupRestoreBinding>(FragmentBackupRestoreBinding::class.java) {
+class SettingsBackupRestoreFragment: BoundFragment<FragmentSettingsBackupRestoreBinding>(FragmentSettingsBackupRestoreBinding::inflate), BackAvailable {
 
-    override val disableToolbarBackground = true
+    private val viewModel by viewModel<SettingsBackupRestoreViewModel>()
 
-    private val viewModel by sharedViewModel<SettingsBackupRestoreViewModel>()
-    private val restoreViewModel by sharedViewModel<SettingsBackupRestoreRestoreViewModel>()
-
-    val backupPickerResult = registerForActivityResult(ActivityResultContracts.CreateDocument()){
-        it?.let {
-            viewModel.onBackupLocationPicked(this, it)
-        }
+    private val backupFilePickerLauncher = registerForActivityResult(ActivityResultContracts.CreateDocument()){
+        if(it == null) return@registerForActivityResult
+        viewModel.onBackupFileClicked(it)
     }
 
-    val restorePickerResult = registerForActivityResult(ActivityResultContracts.OpenDocument()){
-        it?.let {
-            viewModel.onRestoreFilePicked(this, it)
-        }
+    private val restoreFilePickerLauncher = registerForActivityResult(ActivityResultContracts.OpenDocument()){
+        if(it == null) return@registerForActivityResult
+        viewModel.onRestoreFileClicked(it)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        with(binding){
-            root.applySystemWindowInsetsToPadding(top = true, bottom = true)
-            fragmentBackupRestoreLottie.run {
-                clipToOutline = true
-                repeatCount = LottieDrawable.INFINITE
-                speed = 0.5f
-                playAnimation()
+        setupBackup()
+        setupRestore()
+        binding.root.applyBottomInsets(binding.root)
+    }
+
+    private fun setupBackup() {
+        binding.settingsBackupRestoreBackup.backgroundTintList = ColorStateList.valueOf(monet.getPrimaryColor(requireContext()))
+        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+            binding.settingsBackupRestoreBackup.onClicked().collect {
+                viewModel.onBackupClicked(backupFilePickerLauncher)
             }
-
         }
-        bindToNothing()
     }
 
-    override fun onResume() {
-        super.onResume()
-        restoreViewModel.reset()
+    private fun setupRestore() {
+        binding.settingsBackupRestoreRestore.backgroundTintList = ColorStateList.valueOf(monet.getPrimaryColor(requireContext()))
+        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+            binding.settingsBackupRestoreRestore.onClicked().collect {
+                viewModel.onRestoreClicked(restoreFilePickerLauncher)
+            }
+        }
     }
-
-    override fun onBackPressed() = viewModel.onBackPressed(this)
 
 }

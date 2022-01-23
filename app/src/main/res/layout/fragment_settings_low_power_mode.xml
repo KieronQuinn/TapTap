@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:transitionGroup="true">
+
+    <com.kieronquinn.monetcompat.view.MonetSwitch
+        android:id="@+id/settings_low_power_mode_enable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_16"
+        android:layout_marginTop="@dimen/margin_16"
+        android:layout_marginEnd="@dimen/margin_16"
+        android:elevation="8dp"
+        android:outlineProvider="none"
+        android:enabled="false"
+        android:text="@string/settings_low_power_mode_enable"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium.TapTap"
+        android:transitionName="switch" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/settings_low_power_mode_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-16dp"
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        android:paddingTop="32dp"
+        android:paddingBottom="@dimen/margin_16">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/margin_16">
+
+            <LinearLayout
+                android:id="@+id/settings_low_power_mode_error_shizuku"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_16"
+                android:background="@drawable/rounded_background_ripple"
+                android:backgroundTint="@color/background_error"
+                android:orientation="vertical"
+                android:padding="@dimen/margin_16"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/ic_error" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_16"
+                        android:textColor="?android:textColorPrimary"
+                        android:text="@string/settings_low_power_mode_error_shizuku"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small.TapTap.Medium"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/settings_low_power_mode_error_button_shizuku"
+                        android:padding="8dp"
+                        android:minHeight="0dp"
+                        style="@style/Widget.AppCompat.Button.Borderless"
+                        android:background="@drawable/rounded_ripple_36"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small.TapTap.Medium"
+                        android:textColor="?android:textColorPrimary"
+                        android:textAllCaps="false"
+                        android:text="@string/settings_low_power_mode_error_button_shizuku"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/settings_low_power_mode_error_button_sui"
+                        android:padding="8dp"
+                        android:minHeight="0dp"
+                        style="@style/Widget.AppCompat.Button.Borderless"
+                        android:background="@drawable/rounded_ripple_36"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small.TapTap.Medium"
+                        android:textColor="?android:textColorPrimary"
+                        android:textAllCaps="false"
+                        android:text="@string/settings_low_power_mode_error_button_sui"/>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/settings_low_power_mode_error_incompatible"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_16"
+                android:background="@drawable/rounded_background"
+                android:backgroundTint="@color/background_error"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="@dimen/margin_16"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_error" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_16"
+                    android:textColor="?android:textColorPrimary"
+                    android:text="@string/settings_low_power_mode_error_not_compatible"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small.TapTap.Medium"/>
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_about" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_8"
+                android:text="@string/setting_low_power_mode_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small.TapTap" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

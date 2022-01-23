@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <bool name="lightStatusNav">true</bool>
+    <bool name="lightStatus">true</bool>
+    <bool name="lightNav">false</bool>
 </resources>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.TapTap.Splash" parent="Theme.TapTap">
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/avd_splash</item>
+        <item name="android:windowSplashScreenIconBackgroundColor">@color/icon_background</item>
+        <item name="android:windowSplashScreenBackground">@color/splash_background</item>
+        <item name="android:windowSplashScreenAnimationDuration">1500</item>
+    </style>
+</resources>

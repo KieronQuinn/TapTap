@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_shared_picker_package"
+    app:startDestination="@id/settingsSharedPackageSelectorFragment">
+
+    <fragment
+        android:id="@+id/settingsSharedPackageSelectorFragment"
+        android:name="com.kieronquinn.app.taptap.ui.screens.settings.shared.selector.packagename.SettingsSharedPackageSelectorFragment"
+        android:label="SettingsSharedPackageSelectorFragment"
+        tools:layout="@layout/fragment_settings_shared_package_selector">
+
+        <argument
+            android:name="argument"
+            app:argType="com.kieronquinn.app.taptap.models.shared.SharedArgument" />
+
+        <argument
+            android:name="title"
+            app:argType="integer" />
+
+        <argument
+            android:name="show_all_apps"
+            app:argType="boolean" />
+
+    </fragment>
+
+</navigation>

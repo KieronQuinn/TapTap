@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="item_action_when_not_empty">
+        <item quantity="one">@string/item_action_when_not_empty_single</item>
+        <item quantity="other">@string/item_action_when_not_empty_other</item>
+    </plurals>
+</resources>

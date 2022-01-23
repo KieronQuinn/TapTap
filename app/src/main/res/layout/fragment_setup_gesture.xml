@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/setup_gesture_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        tools:background="#f7f7f7">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipChildren="false"
+            android:id="@+id/setup_gesture_main_container"
+            android:animateLayoutChanges="true">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/setup_gesture_lottie"
+                android:layout_width="@dimen/setup_gesture_lottie_size"
+                android:layout_height="@dimen/setup_gesture_lottie_size"
+                android:background="@drawable/background_setup_gesture_lottie"
+                android:elevation="4dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toTopOf="@id/setup_gesture_info_card"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:lottie_loop="true" />
+
+            <com.kieronquinn.app.taptap.ui.views.RippleView
+                android:id="@+id/setup_gesture_ripple"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@id/setup_gesture_lottie"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintTop_toTopOf="@id/setup_gesture_lottie" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/setup_gesture_info_card"
+                style="@style/Widget.Material3.CardView.Filled.TapTap"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_16"
+                android:layout_marginTop="120dp"
+                android:layout_marginEnd="@dimen/margin_16"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/setup_gesture_lottie">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/margin_16">
+
+                    <ImageView
+                        android:id="@+id/item_settings_info_icon"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginEnd="@dimen/margin_8"
+                        android:padding="4dp"
+                        tools:src="@drawable/ic_about" />
+
+                    <TextView
+                        android:id="@+id/setup_gesture_info"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small.TapTap.Medium"
+                        android:textColor="?android:textColorPrimary"
+                        tools:text="@string/setup_gesture_info_success" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:id="@+id/setup_gesture_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/setup_gesture_loading_progress"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            app:trackCornerRadius="4dp"
+            app:trackThickness="8dp" />
+
+        <TextView
+            android:id="@+id/setup_gesture_loading_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_16"
+            android:text="@string/setup_gesture_loading"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium.TapTap" />
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?android:actionBarSize"
+        app:navigationIcon="@drawable/ic_back" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/setup_gesture_bottom_sheet"
+        style="?attr/bottomSheetStyle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardCornerRadius="0dp"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+        app:strokeWidth="0dp"
+        tools:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <View
+                android:id="@+id/setup_gesture_bottom_sheet_statusbar_block"
+                android:layout_width="match_parent"
+                android:layout_height="0dp" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/setup_gesture_bottom_sheet_toolbar_background"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/setup_gesture_bottom_sheet_toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/setup_gesture_bottom_sheet_peek_size"
+                    app:buttonGravity="center_vertical"
+                    app:navigationIconTint="?android:textColorPrimary"
+                    app:title="@string/setup_gesture_toolbar"
+                    app:titleTextAppearance="@style/TextAppearance.AppCompat.Medium.TapTap"
+                    app:titleTextColor="?android:textColorPrimary"
+                    tools:navigationIcon="@drawable/ic_close" />
+
+            </FrameLayout>
+
+            <View
+                android:id="@+id/setup_gesture_bottom_sheet_navbar_block"
+                android:layout_width="match_parent"
+                android:layout_height="0dp" />
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/fragment_container_gesture_configuration"
+                android:name="androidx.navigation.fragment.NavHostFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:navGraph="@navigation/nav_graph_setup_gesture" />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -9,79 +9,41 @@
         android:id="@+id/setupLandingFragment"
         android:name="com.kieronquinn.app.taptap.ui.screens.setup.landing.SetupLandingFragment"
         android:label="SetupLandingFragment"
-        tools:layout="@layout/fragment_setup_landing">
+        tools:layout="@layout/fragment_setup_landing" >
         <action
-            android:id="@+id/action_setupLandingFragment_to_setupConfigurationFragment"
-            app:destination="@id/setupConfigurationFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+            android:id="@+id/action_setupLandingFragment_to_setupInfoFragment"
+            app:destination="@id/setupInfoFragment" />
     </fragment>
     <fragment
-        android:id="@+id/setupConfigurationFragment"
-        android:name="com.kieronquinn.app.taptap.ui.screens.setup.configuration.SetupConfigurationFragment"
-        android:label="SetupConfigurationFragment"
-        tools:layout="@layout/fragment_setup_gesture_configuration" >
+        android:id="@+id/setupGestureFragment"
+        android:name="com.kieronquinn.app.taptap.ui.screens.setup.gesture.SetupGestureFragment"
+        android:label="SetupGestureFragment"
+        tools:layout="@layout/fragment_setup_gesture" >
         <action
-            android:id="@+id/action_setupConfigurationFragment_to_setupFossInfoFragment"
-            app:destination="@id/setupFossInfoFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
-        <action
-            android:id="@+id/action_setupConfigurationFragment_to_troubleshootingBottomSheetDialogFragment"
-            app:destination="@id/troubleshootingBottomSheetDialogFragment" />
+            android:id="@+id/action_setupGestureFragment_to_setupCompleteFragment"
+            app:destination="@id/setupCompleteFragment" />
     </fragment>
     <fragment
-        android:id="@+id/setupFossInfoFragment"
-        android:name="com.kieronquinn.app.taptap.ui.screens.setup.foss.SetupFossInfoFragment"
-        android:label="SetupFossInfoFragment"
-        tools:layout="@layout/fragment_setup_foss_info" >
+        android:id="@+id/setupInfoFragment"
+        android:name="com.kieronquinn.app.taptap.ui.screens.setup.info.SetupInfoFragment"
+        android:label="SetupInfoFragment"
+        tools:layout="@layout/fragment_setup_info">
         <action
-            android:id="@+id/action_setupFossInfoFragment_to_setupAccessibilityFragment"
-            app:destination="@id/setupAccessibilityFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+            android:id="@+id/action_setupInfoFragment_to_setupGestureFragment"
+            app:destination="@id/setupGestureFragment" />
         <action
-            android:id="@+id/action_setupFossInfoFragment_to_setupBatteryFragment"
-            app:destination="@id/setupBatteryFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
-        <action
-            android:id="@+id/action_setupFossInfoFragment_to_fossInfoBottomSheetDialogFragment"
-            app:destination="@id/fossInfoBottomSheetDialogFragment" />
+            android:id="@+id/action_setupInfoFragment_to_setupInfoWarningBottomSheetFragment"
+            app:destination="@id/setupInfoWarningBottomSheetFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/setupAccessibilityFragment"
-        android:name="com.kieronquinn.app.taptap.ui.screens.setup.accessibility.SetupAccessibilityFragment"
-        android:label="SetupAccessibilityFragment"
-        tools:layout="@layout/fragment_setup_accessibility" >
-        <action
-            android:id="@+id/action_setupAccessibilityFragment_to_setupBatteryFragment"
-            app:destination="@id/setupBatteryFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
-    </fragment>
-    <fragment
-        android:id="@+id/setupBatteryFragment"
-        android:name="com.kieronquinn.app.taptap.ui.screens.setup.battery.SetupBatteryFragment"
-        android:label="SetupBatteryFragment"
-        tools:layout="@layout/fragment_setup_battery" />
     <dialog
-        android:id="@+id/troubleshootingBottomSheetDialogFragment"
-        android:name="com.kieronquinn.app.taptap.ui.screens.setup.configuration.troubleshooting.TroubleshootingBottomSheetDialogFragment"
-        android:label="TroubleshootingBottomSheetDialogFragment" />
-    <dialog
-        android:id="@+id/fossInfoBottomSheetDialogFragment"
-        android:name="com.kieronquinn.app.taptap.ui.screens.setup.foss.fossinfo.FossInfoBottomSheetDialogFragment"
-        android:label="FossInfoBottomSheetDialogFragment" />
+        android:id="@+id/setupInfoWarningBottomSheetFragment"
+        android:name="com.kieronquinn.app.taptap.ui.screens.setup.info.warning.SetupInfoWarningBottomSheetFragment"
+        android:label="SetupInfoWarningBottomSheetFragment"
+        tools:layout="@layout/fragment_setup_info_warning" />
+    <fragment
+        android:id="@+id/setupCompleteFragment"
+        android:name="com.kieronquinn.app.taptap.ui.screens.setup.complete.SetupCompleteFragment"
+        android:label="SetupCompleteFragment"
+        tools:layout="@layout/fragment_setup_complete" />
 
 </navigation>

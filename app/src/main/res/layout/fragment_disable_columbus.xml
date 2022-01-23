@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/margin_16"
+    android:paddingBottom="@dimen/margin_16">
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:id="@+id/disable_columbus_avd"
+        app:srcCompat="@mipmap/ic_launcher" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/margin_16"
+        android:text="@string/modal_disable_columbus_title"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large.TapTap" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingStart="@dimen/margin_16"
+        android:paddingEnd="@dimen/margin_16"
+        android:text="@string/modal_disable_columbus_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small.TapTap" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/disable_columbus_card"
+        style="@style/Widget.Material3.CardView.Filled.TapTap"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_16"
+        android:layout_marginTop="@dimen/margin_16"
+        android:layout_marginEnd="@dimen/margin_16"
+        android:layout_marginBottom="@dimen/margin_8">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/margin_16">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="@dimen/margin_8"
+                android:padding="4dp"
+                android:src="@drawable/ic_about"
+                app:tint="?android:textColorPrimary" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/modal_disable_columbus_card"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small.TapTap.Medium"
+                android:textColor="?android:textColorPrimary" />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/disable_columbus_open_settings"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small.TapTap.Medium"
+        android:layout_marginTop="@dimen/margin_16"
+        android:minWidth="160dp"
+        android:text="@string/modal_disable_columbus_button" />
+
+</LinearLayout>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingBottom="@dimen/margin_8"
+    tools:layout_gravity="bottom"
+    android:transitionGroup="true">
+
+    <TextView
+        android:id="@+id/settings_advanced_custom_sensitivity_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingTop="@dimen/margin_16"
+        android:paddingBottom="@dimen/margin_16"
+        android:text="@string/bs_advanced_custom_sensitivity"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large.TapTap"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/settings_advanced_custom_sensitivity_input"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.TapTap"
+        app:layout_constraintTop_toBottomOf="@+id/settings_advanced_custom_sensitivity_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/bs_advanced_custom_sensitivity_hint"
+        android:paddingStart="@dimen/margin_16"
+        android:paddingEnd="@dimen/margin_16">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/settings_advanced_custom_sensitivity_edit"
+            android:fontFamily="@font/google_sans_text"
+            android:inputType="number|numberDecimal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/settings_advanced_custom_sensitivity_positive"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_8"
+        android:layout_marginEnd="@dimen/margin_16"
+        android:fontFamily="@font/google_sans_text_medium"
+        android:text="@android:string/ok"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/settings_advanced_custom_sensitivity_input" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/settings_advanced_custom_sensitivity_negative"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_8"
+        android:layout_marginEnd="@dimen/margin_16"
+        android:fontFamily="@font/google_sans_text_medium"
+        android:text="@android:string/cancel"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toStartOf="@id/settings_advanced_custom_sensitivity_positive"
+        app:layout_constraintTop_toBottomOf="@id/settings_advanced_custom_sensitivity_input" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/settings_advanced_custom_sensitivity_neutral"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_8"
+        android:layout_marginTop="@dimen/margin_8"
+        android:layout_marginEnd="@dimen/margin_16"
+        android:fontFamily="@font/google_sans_text_medium"
+        android:text="@string/bs_advanced_custom_sensitivity_reset"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toStartOf="@id/settings_advanced_custom_sensitivity_negative"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/settings_advanced_custom_sensitivity_input" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

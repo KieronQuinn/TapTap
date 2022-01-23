@@ -1,122 +1,178 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
-apply plugin: 'koin'
-apply plugin: "androidx.navigation.safeargs.kotlin"
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'kotlin-parcelize'
+    id 'androidx.navigation.safeargs'
+    id 'dev.rikka.tools.refine.gradle-plugin'
+    id 'com.google.android.gms.oss-licenses-plugin'
+}
 
-apply plugin: 'com.google.android.gms.oss-licenses-plugin'
+//Permission for Columbus to use
+rootProject.ext.set("columbusPermission", "com.google.android.columbus.taptap.permission.CONFIGURE_COLUMBUS_GESTURE")
 
-def gitCommitHash = 'git rev-parse --verify --short HEAD'.execute().text.trim()
-def tagName = '0.10.1_beta'
+//Local properties for storing API keys
+def localProperties = new Properties()
+localProperties.load(new FileInputStream(rootProject.file("local.properties")))
+
+def tagName = '1.0'
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.2"
+    compileSdk 32
+    buildToolsVersion "32.0.0"
 
     defaultConfig {
         applicationId "com.kieronquinn.app.taptap"
-        minSdkVersion 24
-        targetSdkVersion 30
-        versionCode 10
-        
-        versionName "0.10.1 Beta"
+        minSdk 24
+        targetSdk 32
+        versionCode 1000
+        versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        ndk {
-            abiFilters 'armeabi-v7a', 'arm64-v8a'
-        }
+        //Broadcast actions
+        def BROADCAST_ACTION_START = "${applicationId}.action.START"
+        def BROADCAST_ACTION_STOP = "${applicationId}.action.STOP"
+        buildConfigField "String", "BROADCAST_ACTION_START", "\"$BROADCAST_ACTION_START\""
+        buildConfigField "String", "BROADCAST_ACTION_STOP", "\"$BROADCAST_ACTION_STOP\""
+        buildConfigField "String", "TAG_NAME", "\"${tagName}\""
+        buildConfigField "String", "TECHSPECS_BASE_URL", "\"${localProperties['techspecs.baseurl']}\""
+        buildConfigField "String", "TECHSPECS_API_KEY", "\"${localProperties['techspecs.apikey']}\""
+        manifestPlaceholders.broadcast_action_start = BROADCAST_ACTION_START
+        manifestPlaceholders.broadcast_action_stop = BROADCAST_ACTION_STOP
 
-        buildConfigField("String", "GIT_HASH", "\"${gitCommitHash}\"")
-        buildConfigField("String", "TAG_NAME", "\"${tagName}\"")
     }
 
     buildTypes {
         release {
-            minifyEnabled false
+            //minify is enabled, but obfuscation is intentionally disabled in the rules
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
     compileOptions {
         coreLibraryDesugaringEnabled true
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
+        jvmTarget = '1.8'
     }
-
-    aaptOptions {
-        noCompress "tflite", 'so'
-    }
-
     buildFeatures {
         viewBinding true
     }
-}
-
-allprojects {
-    repositories {
-        maven { url 'https://jitpack.io' }
+    lintOptions {
+        checkReleaseBuilds true
     }
 }
 
 dependencies {
-    //Kotlin
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
     //AndroidX
-    implementation 'androidx.core:core-ktx:1.3.2'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.fragment:fragment-ktx:1.3.0-rc01'
-    implementation "androidx.lifecycle:lifecycle-common-java8:2.2.0"
-    implementation "androidx.lifecycle:lifecycle-service:2.2.0"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0"
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
-    implementation "androidx.work:work-runtime-ktx:2.4.0"
-    implementation 'androidx.preference:preference-ktx:1.1.1'
-    implementation 'androidx.browser:browser:1.3.0'
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
-    implementation "androidx.window:window:1.0.0-alpha02"
-    implementation 'androidx.documentfile:documentfile:1.0.1'
+    implementation "androidx.work:work-runtime-ktx:2.7.1"
+    implementation "androidx.core:core-ktx:1.7.0"
+    implementation "androidx.vectordrawable:vectordrawable-seekable:1.0.0-alpha02"
+    implementation "androidx.core:core-splashscreen:1.0.0-beta01"
+    implementation "androidx.fragment:fragment-ktx:1.4.0"
 
-    //Core Library Desugaring: https://developer.android.com/studio/write/java8-support#library-desugaring
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.1'
+    //Lifecycle
+    def lifecycleVersion = '2.4.0'
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-service:$lifecycleVersion"
 
-    //Google
-    kapt 'com.google.dagger:dagger-compiler:2.28.3'
-    implementation files('libs/columbus.jar')
-    implementation 'com.google.android.material:material:1.3.0-rc01'
+    //Desugaring to allow Java Date on older Android versions
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
+
+    //OSS licences screen
     implementation 'com.google.android.gms:play-services-oss-licenses:17.0.0'
-    implementation 'com.google.dagger:dagger:2.28.3'
-    implementation 'com.google.code.gson:gson:2.8.6'
-    implementation 'org.tensorflow:tensorflow-lite:2.1.0'
+
+    //Room
+    def room_version = "2.4.1"
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+
+    //MD3
+    implementation 'com.google.android.material:material:1.6.0-alpha02'
+
+    //MonetCompat for Monet backwards compatibility
+    implementation 'com.github.KieronQuinn:MonetCompat:0.4.1'
+
+    //Palette for MonetCompat color selection on older Android versions
+    implementation "androidx.palette:palette-ktx:1.0.0"
+
+    //Coroutines
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0'
 
     //Koin
-    implementation "org.koin:koin-android:$koin_version"
-    implementation "org.koin:koin-android-scope:$koin_version"
-    implementation "org.koin:koin-android-viewmodel:$koin_version"
+    implementation "io.insert-koin:koin-android:3.1.5"
 
-    //Third Party
-    implementation "dev.chrisbanes:insetter-ktx:0.3.1"
-    implementation 'com.squareup.picasso:picasso:2.71828'
-    implementation 'com.joaomgcd:taskerpluginlibrary:0.3.2'
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-    implementation 'com.afollestad.material-dialogs:bottomsheets:3.3.0'
-    implementation "com.airbnb.android:lottie:3.5.0"
-    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.19'
+    //Retrofit for updates + device spec query (opt-in)
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+
+    //Gson for serialization
+    implementation 'com.google.code.gson:gson:2.8.9'
+
+    //Leave as-is for foldable checks without activity
+    //noinspection GradleDependency
+    implementation "androidx.window:window:1.0.0-alpha02"
+
+    //Columbus module is separate to make it easier to work with
+    implementation project(path: ':columbus')
+
+    //Tensorflow, used by Columbus (change in :columbus too)
+    implementation 'org.tensorflow:tensorflow-lite-support:0.3.0'
+
+    //Protobuf, used in Columbus
+    implementation 'com.google.protobuf:protobuf-lite:3.0.1'
+
+    //System stubs, shouldn't be included in the APK
+    compileOnly project(path: ':systemstubs')
+
+    //Bypass hidden API requirements for Shizuku + more
+    implementation 'org.lsposed.hiddenapibypass:hiddenapibypass:4.2'
+
+    //Tasker library to fire events
+    implementation 'com.joaomgcd:taskerpluginlibrary:0.4.2'
+
+    //Shizuku + libsu for shell/root services
+    def shizuku_version = '12.1.0'
+    implementation "dev.rikka.shizuku:api:$shizuku_version"
+    implementation "dev.rikka.shizuku:provider:$shizuku_version"
+    implementation "dev.rikka.tools.refine:runtime:$refine_version"
+
+    def libsuVersion = '3.2.1'
+    implementation "com.github.topjohnwu.libsu:core:${libsuVersion}"
+    implementation "com.github.topjohnwu.libsu:service:${libsuVersion}"
+
+    //Inline links
     implementation 'me.saket:better-link-movement-method:2.2.0'
-    implementation 'com.github.judemanutd:autostarter:1.0.8'
-    implementation 'com.github.tfcporciuncula.flow-preferences:flow-preferences:1.3.3'
 
-    //Testing
-    testImplementation 'junit:junit:4.13.1'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    //Picasso for image loading
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
+    //Autostarter provides some OEM battery checks + starting settings for disabling them
+    implementation 'com.github.judemanutd:autostarter:1.1.0'
+
+    //Markdown support
+    implementation "io.noties.markwon:core:4.6.2"
+
+    //Lottie for animations
+    implementation 'com.airbnb.android:lottie:4.2.2'
+
+    //Process Phoenix to fully restart the app when needed
+    implementation 'com.jakewharton:process-phoenix:2.1.2'
+
+    //Test
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
 }

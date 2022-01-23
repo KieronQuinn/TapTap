@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="min_window_blur_radius">1px</dimen>
+    <dimen name="max_window_blur_radius">32px</dimen>
+</resources>

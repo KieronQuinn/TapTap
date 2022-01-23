@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.kieronquinn.monetcompat.view.MonetToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?android:actionBarSize"
+        app:navigationIcon="@drawable/ic_back" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/setup_info_scrollable"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        android:paddingBottom="@dimen/setup_info_bottom_bar_height">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/margin_16"
+            android:paddingBottom="@dimen/margin_16">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_16"
+                android:gravity="center"
+                android:paddingStart="@dimen/margin_16"
+                android:paddingEnd="@dimen/margin_16"
+                android:text="@string/setup_foss_info_title"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large.TapTap"
+                android:textColor="?android:textColorPrimary" />
+
+            <TextView
+                android:id="@+id/setup_foss_info_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_16"
+                android:gravity="center"
+                android:paddingStart="@dimen/margin_16"
+                android:paddingEnd="@dimen/margin_16"
+                android:text="@string/setup_foss_info_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small.TapTap" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/setup_info_card_source"
+                style="@style/Widget.Material3.CardView.Filled.TapTap"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:foreground="?android:selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_marginStart="@dimen/margin_16"
+                android:layout_marginTop="@dimen/margin_16"
+                android:layout_marginEnd="@dimen/margin_16">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/margin_16">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginEnd="@dimen/margin_8"
+                        android:padding="4dp"
+                        android:src="@drawable/ic_warning" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/setup_foss_info_warning"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small.TapTap.Medium"
+                        android:textColor="?android:textColorPrimary" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/setup_info_card_donate"
+                style="@style/Widget.Material3.CardView.Filled.TapTap"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_16"
+                android:layout_marginTop="@dimen/margin_16"
+                android:layout_marginEnd="@dimen/margin_16">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/margin_16">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginEnd="@dimen/margin_8"
+                        android:padding="4dp"
+                        android:src="@drawable/ic_about" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/setup_foss_info_content_lower"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small.TapTap.Medium"
+                        android:textColor="?android:textColorPrimary" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <FrameLayout
+        android:id="@+id/setup_info_next_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:minHeight="@dimen/setup_info_bottom_bar_height"
+        tools:background="#f7f7f7">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/setup_info_next"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/setup_info_bottom_bar_height"
+            android:layout_gravity="end|top"
+            android:minWidth="120dp"
+            android:text="@string/setup_info_next"
+            android:layout_marginEnd="@dimen/margin_8"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium.TapTap"
+            app:icon="@drawable/ic_button_next"
+            app:iconGravity="end"
+            app:iconPadding="@dimen/margin_16" />
+
+    </FrameLayout>
+
+</FrameLayout>

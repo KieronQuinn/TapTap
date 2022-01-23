@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:minHeight="72dp"
+    android:background="?android:selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        tools:src="@drawable/ic_taptap_logo"
+        tools:tint="?android:textColorPrimary"
+        android:padding="16dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:id="@+id/item_settings_switch_icon"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/margin_8"
+        android:paddingBottom="@dimen/margin_8"
+        android:layout_marginEnd="@dimen/margin_16"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/item_settings_switch_title"
+            tools:text="Setting Title"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium.TapTap"
+            android:textColor="?android:textColorPrimary" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            tools:visibility="visible"
+            tools:text="Setting Content"
+            android:id="@+id/item_settings_switch_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small.TapTap"
+            android:textColor="?android:textColorPrimary" />
+
+    </LinearLayout>
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:layout_marginEnd="@dimen/margin_16"
+        android:id="@+id/item_settings_switch_switch"
+        app:track="@drawable/switch_track"
+        android:scaleX="0.75"
+        android:scaleY="0.75"
+        app:showText="false"
+        android:thumb="@drawable/switch_thumb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />        
+
+</LinearLayout>

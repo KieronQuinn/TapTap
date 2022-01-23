@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingBottom="@dimen/margin_8"
+    tools:layout_gravity="bottom"
+    android:transitionGroup="true"
+    tools:background="@drawable/bottom_sheet_rounded_bg_dark">
+
+    <TextView
+        android:id="@+id/setup_info_warning_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="8dp"
+        android:paddingTop="@dimen/margin_16"
+        android:paddingBottom="@dimen/margin_16"
+        android:text="@string/setup_foss_info_bs_title"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large.TapTap"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/setup_info_warning_text"
+        app:layout_constraintTop_toBottomOf="@+id/setup_info_warning_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/setup_foss_info_bs_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small.TapTap"
+        android:paddingStart="@dimen/margin_16"
+        android:paddingEnd="@dimen/margin_16"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/setup_info_warning_positive"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_8"
+        android:layout_marginEnd="@dimen/margin_16"
+        android:fontFamily="@font/google_sans_text_medium"
+        android:text="@android:string/ok"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/setup_info_warning_text" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

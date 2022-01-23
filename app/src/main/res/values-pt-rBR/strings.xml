@@ -1,8 +1,7 @@
 <resources>
     <string name="app_name">Tap, Tap</string>
     <string name="accessibility_service_description">Serviço de Acessibilidade do TapTap\n\n<b>Aviso Importante: Nenhum dado de seus aplicativos será coletado, este serviço é utilizado simplesmente para manter o reconhecimento do gesto ativo e providenciar a interação com o seu dispositivo</b></string>
-    <string name="setting_gesture">Gesto</string>
-    <string name="setting_gesture_desc">Ajustar como o gesto funciona</string>
+    <string name="setting_bottom_nav_gesture">Gesto</string>
     <string name="setting_gates">Barreiras</string>
     <string name="setting_gates_desc">Definir situações em que o gesto não deve executar uma ação</string>
     <string name="setting_feedback">Feedback</string>
@@ -12,19 +11,11 @@
     <string name="setting_feedback_wake">Acordar Dispositivo</string>
     <string name="setting_feedback_wake_desc">Ligar a tela do dispositivo caso esteja desligada</string>
 
-    <string-array name="device_model_keys">
-        <item>Pixel 3 XL</item>
-        <item>Pixel 4</item>
-        <item>Pixel 4 XL</item>
-    </string-array>
-
     <!-- Gates -->
     <string name="gate_charging_state">Carregando</string>
-    <string name="gate_charging_state_desc">Bloquear o gesto por meio segundo após o dispositivo ser conectado a uma fonte de energia</string>
     <string name="gate_telephony_activity">Durante uma ligação</string>
     <string name="gate_telephony_activity_desc">Bloquear o gesto quando o dispositivo está em uma chamada de voz. Apenas ligações normais são suportadas - não funciona com VoIP, como no WhatsApp, por exemplo.</string>
     <string name="gate_usb_state">Dispositivo USB</string>
-    <string name="gate_usb_state_desc">Bloquear o gesto por meio segundo quando um dispositivo USB, como um pen drive, é conectado</string>
     <string name="gate_camera_visibility">Câmera</string>
     <string name="gate_camera_visibility_desc">Bloquear o gesto quando qualquer aplicativo de câmera é aberto. Aviso: Isso vai quebrar a funcionalidade de ignorar a ação "Iniciar câmera".</string>
     <string name="gate_power_state">Tela desligada</string>
@@ -60,7 +51,6 @@
     <string name="fab_remove_action">Remover</string>
     <string name="add_action_category_launch">Executar</string>
     <string name="add_action_category_utilities">Utilidades</string>
-    <string name="add_action_category_actions">Ações</string>
     <string name="add_action_category_advanced">Avançado</string>
     <string name="action_flashlight">Lanterna</string>
     <string name="action_flashlight_desc">Ligar/desligar a lanterna. Esta ação falhará se a câmera estiver em uso por outro aplicativo.</string>
@@ -68,10 +58,7 @@
     <string name="action_launch_app_desc">Abrir um app</string>
     <string name="action_launch_app_desc_formattable">Abrir %1s. Esta ação será ignorada se este app já estiver em execução.</string>
     <string name="fab_add_gate">Adicionar Barreira</string>
-    <string name="nothing_found">Nada encontrado</string>
     <string name="search">Pesquisar</string>
-    <string name="show_system_apps">Mostrar apps do sistema</string>
-    <string name="select_an_app">Selecione um app</string>
     <string name="setting_gesture_sensitivity">Sensibilidade</string>
     <string name="bs_help_action_title">O que são Ações?</string>
     <string name="bs_help_gate">Barreiras são situações que podem impedir o gesto de executar qualquer ação. Para que qualquer ação seja executada, todas as barreiras ativadas devem estar abertas.\nSe uma situação acontecer, por exemplo, se a tela estiver desligada e a barreira "Tela desligada" estiver ativada, nenhuma ação será executada. Você pode adicionar quantas barreiras desejar, e ativá-las ou desativá-las usando os interruptores (em vez de precisar excluir e adicionar novamente) para tornar a configuração mais rápida e fácil.</string>
@@ -81,12 +68,6 @@
     <string name="action_tasker_event">Evento do Tasker</string>
     <string name="action_tasker_event_desc">Disparar o plugin de Evento do Tasker</string>
 
-    <string name="accessibility_info_off">Serviço de Acessibilidade desativado</string>
-    <string name="accessibility_info_off_desc">O gesto não irá funcionar. Toque para ativar</string>
-    <string name="accessibility_info_on">Serviço de Acessibilidade ativado</string>
-
-    <string name="category_about">Sobre</string>
-    <string name="about">%1s v%2s</string>
     <string name="xda_thread">Tópico do XDA</string>
     <string name="github">GitHub</string>
     <string name="libraries">Bibliotecas de terceiros</string>
@@ -95,10 +76,6 @@
     <string name="tasker_config_label">Toque Duplo na Traseira</string>
     <string name="action_tasker_task">Tarefa do Tasker</string>
     <string name="action_tasker_task_desc">Executar uma tarefa específica do Tasker</string>
-    <string name="bs_tasker_content">Para iniciar uma tarefa do Tasker sem usar o plugin de Evento, você deve habilitar a opção \"Permitir Acesso Externo\" nas configurações do Tasker. Se você não tiver esta opção ativada, esta ação será sempre ignorada.</string>
-    <string name="bs_tasker_title">Permissão Necessária</string>
-    <string name="bs_tasker_positive">Configurações do Tasker</string>
-    <string name="picker_launch_camera">Abrir Câmera</string>
     <string name="action_volume_panel">Exibir painel de volume</string>
     <string name="action_volume_panel_desc">Mostrar o painel de volume do sistema com o stream de áudio para ajustes em exibição</string>
     <string name="action_volume_up">Aumentar volume</string>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/search_container"
+    app:layout_constraintTop_toTopOf="parent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="8dp"
+    android:outlineProvider="none"
+    android:animateLayoutChanges="true">
+
+    <EditText
+        android:id="@+id/searchBox"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/search_box_height"
+        android:layout_marginStart="@dimen/margin_16"
+        android:layout_marginTop="@dimen/margin_8"
+        android:layout_marginEnd="@dimen/margin_16"
+        android:layout_marginBottom="@dimen/margin_8"
+        android:background="@drawable/search_box_background"
+        android:drawableStart="@drawable/ic_search"
+        android:drawablePadding="@dimen/margin_16"
+        android:hint="@string/search"
+        android:fontFamily="@font/google_sans_text"
+        android:imeOptions="actionSearch"
+        android:inputType="text"
+        android:paddingStart="@dimen/margin_16"
+        android:paddingEnd="52dp" />
+
+    <ImageView
+        android:id="@+id/search_clear"
+        android:layout_width="@dimen/clear_button_size"
+        android:layout_height="@dimen/clear_button_size"
+        android:layout_gravity="end|center_vertical"
+        android:layout_marginEnd="24dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:foreground="@drawable/rounded_ripple_36"
+        android:padding="@dimen/margin_8"
+        android:src="@drawable/ic_search_clear" />
+
+</FrameLayout>

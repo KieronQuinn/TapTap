@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<accessibility-service xmlns:android="http://schemas.android.com/apk/res/android"
+    android:accessibilityFeedbackType="feedbackGeneric"
+    android:canPerformGestures="true"
+    android:canRetrieveWindowContent="true"
+    android:settingsActivity="com.kieronquinn.app.taptap.MainActivity"
+    android:description="@string/accessibility_service_description_gesture" />

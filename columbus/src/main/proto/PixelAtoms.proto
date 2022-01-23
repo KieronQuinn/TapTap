@@ -1,0 +1,25 @@
+/*
+ *  PixelAtoms proto, partially reversed to handle logging types ([ab]used for triple tap)
+ *  Reversed by dumping the bytes from the wire and observing their content
+ */
+
+syntax = "proto3";
+
+package android.hardware.google.pixel.vendor;
+
+option java_package = "android.hardware.google.pixel.vendor";
+option java_outer_classname = "PixelAtoms";
+
+message DoubleTapNanoappEventReported {
+  enum Type {
+    UNKNOWN = 0;
+    GATE_START = 1;
+    GATE_STOP = 2;
+    HIGH_IMU_ODR_START = 3;
+    HIGH_IMU_ODR_STOP = 4;
+    ML_PREDICTION_START = 5;
+    ML_PREDICTION_STOP = 6;
+    SINGLE_TAP = 7;
+    DOUBLE_TAP = 8;
+  }
+}

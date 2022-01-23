@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:transitionGroup="true">
+
+    <com.kieronquinn.app.taptap.ui.views.LifecycleAwareRecyclerView
+        android:id="@+id/settings_shared_shortcuts_selector_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:paddingTop="@dimen/margin_16"
+        android:paddingBottom="@dimen/margin_16"
+        android:transitionGroup="true"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/item_settings_shared_shortcuts_selector_app" />
+
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/settings_shared_shortcuts_selector_loading_progress"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:indeterminate="true"
+        app:layout_constraintBottom_toTopOf="@id/settings_shared_shortcuts_selector_loading_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:trackCornerRadius="4dp"
+        app:trackThickness="8dp" />
+
+    <TextView
+        android:id="@+id/settings_shared_shortcuts_selector_loading_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_16"
+        android:text="@string/settings_shared_shortcuts_selector_loading"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium.TapTap"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/settings_shared_shortcuts_selector_loading_progress" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/settings_shared_shortcuts_selector_loading"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:constraint_referenced_ids="settings_shared_shortcuts_selector_loading_label,settings_shared_shortcuts_selector_loading_progress" />
+
+    <ImageView
+        android:id="@+id/settings_shared_shortcuts_selector_error_icon"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="100dp"
+        android:src="@drawable/ic_action_launch_shortcut"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/settings_shared_shortcuts_selector_error_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_16"
+        android:gravity="center"
+        android:paddingStart="@dimen/margin_16"
+        android:paddingEnd="@dimen/margin_16"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium.TapTap"
+        android:textColor="?android:textColorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/settings_shared_shortcuts_selector_error_icon"
+        tools:text="Error Text" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/settings_shared_shortcuts_selector_error"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:constraint_referenced_ids="settings_shared_shortcuts_selector_error_label,settings_shared_shortcuts_selector_error_icon" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

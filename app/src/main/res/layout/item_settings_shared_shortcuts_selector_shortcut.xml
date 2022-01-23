@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="48dp"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ImageView
+        android:layout_width="64dp"
+        android:layout_height="match_parent"
+        tools:src="@mipmap/ic_launcher"
+        tools:tint="?android:textColorPrimary"
+        android:gravity="center_vertical"
+        android:padding="16dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:id="@+id/item_settings_shared_shortcuts_selector_shortcut_icon"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="64dp"
+        android:layout_marginEnd="@dimen/margin_16"
+        android:paddingTop="@dimen/margin_8"
+        android:paddingBottom="@dimen/margin_8"
+        android:id="@+id/item_settings_shared_shortcuts_selector_shortcut_label"
+        tools:text="Shortcut Name"
+        android:gravity="center_vertical"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium.TapTap"
+        android:textColor="?android:textColorPrimary" />
+
+</LinearLayout>

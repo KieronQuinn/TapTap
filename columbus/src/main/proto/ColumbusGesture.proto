@@ -1,0 +1,37 @@
+/*
+ *  Columbus Protobuf from SystemUIGoogle
+ *  Reversed by dumping the bytes from the wire and observing their content
+ */
+
+syntax = "proto3";
+
+package com.google.android.columbus.proto.nano;
+
+option java_package = "com.google.android.columbus.proto.nano";
+option java_outer_classname = "ColumbusGesture";
+
+message GestureDetected {
+  int32 gestureType = 1;
+  repeated float featureVector = 2;
+}
+
+message NanoAppEvent {
+  int64 timestamp = 1;
+  int32 type = 2;
+}
+
+message NanoAppEvents {
+  repeated NanoAppEvent batchedEvents = 1;
+}
+
+message RecognizerStart {
+  float sensitivity = 1;
+}
+
+message ScreenStateUpdate {
+  int32 screenState = 1;
+}
+
+message SensitivityUpdate {
+  float sensitivity = 1;
+}

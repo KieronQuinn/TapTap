@@ -1,15 +1,17 @@
 package com.kieronquinn.app.taptap.ui.activities
 
-import android.app.Activity
 import android.app.KeyguardManager
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.WindowManager
-import com.kieronquinn.app.taptap.TapTapApplication
+import androidx.appcompat.app.AppCompatActivity
 
-class WakeUpActivity : Activity() {
+class WakeUpActivity : AppCompatActivity() {
+
+    companion object {
+        const val EXTRA_UNLOCK = "unlock"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,16 +25,18 @@ class WakeUpActivity : Activity() {
             window.addFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON)
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
-            keyguardManager.requestDismissKeyguard(this, null)
-        } else {
-            window.addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD)
+        if(intent.getBooleanExtra(EXTRA_UNLOCK, false)) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
+                keyguardManager.requestDismissKeyguard(this, null)
+            } else {
+                window.addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD)
+            }
         }
     }
 
     override fun onResume() {
         super.onResume()
-        finish()
+        finishAndRemoveTask()
     }
 
 }

@@ -7,9 +7,9 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.WindowManager
-import com.kieronquinn.app.taptap.TapTapApplication
+import androidx.appcompat.app.AppCompatActivity
 
-class UnlockDeviceActivity : Activity() {
+class UnlockDeviceActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +28,7 @@ class UnlockDeviceActivity : Activity() {
 
     override fun onResume() {
         super.onResume()
-        finish()
+        finishAndRemoveTask()
     }
 
 }

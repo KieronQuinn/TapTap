@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_shared_no_root"
+    app:startDestination="@id/settingsSharedNoRootBottomSheetFragment">
+
+    <dialog
+        android:id="@+id/settingsSharedNoRootBottomSheetFragment"
+        android:name="com.kieronquinn.app.taptap.ui.screens.settings.shared.root.SettingsSharedNoRootBottomSheetFragment"
+        android:label=" "
+        tools:layout="@layout/fragment_settings_shared_no_root" />
+
+</navigation>

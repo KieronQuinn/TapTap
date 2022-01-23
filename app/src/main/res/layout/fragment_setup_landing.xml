@@ -2,61 +2,56 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/icon_circle_0">
+    android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/ic_taptap_logo"
-        android:layout_width="96dp"
-        android:layout_height="96dp"
-        android:src="@drawable/ic_gesture_round"
-        app:layout_constraintBottom_toTopOf="@id/landing_title"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed" />
-
-    <TextView
-        android:id="@+id/landing_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_padding"
-        android:text="@string/landing_title"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large.TapTap"
-        app:layout_constraintBottom_toTopOf="@id/landing_button_get_started"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ic_taptap_logo" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/landing_button_get_started"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/activity_padding"
-        android:layout_marginTop="@dimen/activity_padding"
-        android:layout_marginEnd="@dimen/activity_padding"
-        android:fontFamily="@font/hkgrotesk"
-        android:text="@string/landing_button_get_started"
-        android:textAllCaps="false"
-        app:layout_constraintBottom_toTopOf="@id/landing_button_skip_setup"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/landing_title" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/landing_button_skip_setup"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/activity_padding"
-        android:layout_marginEnd="@dimen/activity_padding"
-        android:fontFamily="@font/hkgrotesk"
-        android:text="@string/landing_button_skip_setup"
-        android:textAllCaps="false"
-        android:textColor="?android:textColorPrimary"
+        android:id="@+id/setup_landing_icon"
+        android:layout_width="@dimen/setup_image_size"
+        android:layout_height="@dimen/setup_image_size"
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/landing_button_get_started" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/setup_landing_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_16"
+        android:paddingTop="@dimen/margin_8"
+        android:text="@string/landing_title"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large.TapTap"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/setup_landing_icon" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/setup_landing_get_started"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_16"
+        android:minWidth="160dp"
+        android:text="@string/landing_button_get_started"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small.TapTap.Medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/setup_landing_title" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/setup_landing_skip_setup"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="160dp"
+        android:text="@string/landing_button_skip_setup"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small.TapTap.Medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/setup_landing_get_started" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

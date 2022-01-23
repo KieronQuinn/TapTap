@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/reachability_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="bottom"
+    android:animateLayoutChanges="true"
+    android:gravity="bottom|end"
+    android:orientation="horizontal"
+    android:padding="@dimen/margin_16">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/reachability_notifications"
+        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+        android:layout_width="@dimen/reachability_button_size"
+        android:layout_height="@dimen/reachability_button_size"
+        android:layout_marginEnd="@dimen/margin_16"
+        android:foreground="@drawable/rounded_ripple_36"
+        android:insetLeft="0dp"
+        android:insetTop="0dp"
+        android:insetRight="0dp"
+        android:insetBottom="0dp"
+        app:backgroundTint="@android:color/transparent"
+        app:icon="@drawable/ic_action_notifications"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
+        app:iconTint="?android:textColorPrimary" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/reachability_quick_settings"
+        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+        android:layout_width="@dimen/reachability_button_size"
+        android:layout_height="@dimen/reachability_button_size"
+        android:foreground="@drawable/rounded_ripple_36"
+        android:insetLeft="0dp"
+        android:insetTop="0dp"
+        android:insetRight="0dp"
+        android:insetBottom="0dp"
+        app:backgroundTint="@android:color/transparent"
+        app:icon="@drawable/ic_action_quick_settings"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
+        app:iconTint="?android:textColorPrimary" />
+
+</LinearLayout>

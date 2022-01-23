@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_shared_picker_quick_setting"
+    app:startDestination="@id/settingsSharedQuickSettingSelectorFragment">
+
+    <fragment
+        android:id="@+id/settingsSharedQuickSettingSelectorFragment"
+        android:name="com.kieronquinn.app.taptap.ui.screens.settings.shared.selector.quicksetting.SettingsSharedQuickSettingSelectorFragment"
+        android:label="@string/action_click_quick_setting"
+        tools:layout="@layout/fragment_settings_shared_quick_settings_selector" />
+
+</navigation>

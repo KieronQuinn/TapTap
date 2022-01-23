@@ -1,19 +1,38 @@
 package com.kieronquinn.app.taptap.ui.screens.setup.landing
 
-import androidx.fragment.app.Fragment
-import com.kieronquinn.app.taptap.core.TapSharedPreferences
-import com.kieronquinn.app.taptap.utils.extensions.navigate
-import com.kieronquinn.app.taptap.components.base.BaseViewModel
+import androidx.lifecycle.viewModelScope
+import com.kieronquinn.app.taptap.components.navigation.NavigationEvent
+import com.kieronquinn.app.taptap.components.navigation.RootNavigation
+import com.kieronquinn.app.taptap.components.settings.TapTapSettings
+import com.kieronquinn.app.taptap.ui.screens.decision.DecisionFragmentDirections
+import com.kieronquinn.app.taptap.ui.screens.setup.base.BaseSetupViewModel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
-class SetupLandingViewModel(private val tapSharedPreferences: TapSharedPreferences): BaseViewModel() {
+abstract class SetupLandingViewModel: BaseSetupViewModel() {
 
-    fun onGetStartedClicked(fragment: Fragment){
-        fragment.navigate(SetupLandingFragmentDirections.actionSetupLandingFragmentToSetupConfigurationFragment())
+    abstract fun onStartClicked()
+    abstract fun onSkipClicked()
+
+}
+
+class SetupLandingViewModelImpl(private val settings: TapTapSettings, private val navigation: RootNavigation): SetupLandingViewModel() {
+
+    override fun onStartClicked() {
+        viewModelScope.launch {
+            navigation.navigate(SetupLandingFragmentDirections.actionSetupLandingFragmentToSetupInfoFragment())
+        }
     }
 
-    fun onSkipSetupClicked(fragment: Fragment){
-        tapSharedPreferences.hasSeenSetup = true
-        //fragment.navigate(SetupLandingFragmentDirections.actionSetupLandingFragmentToSettingsActivity())
+    override fun onSkipClicked() {
+        viewModelScope.launch {
+            settings.hasSeenSetup.set(true)
+            if(!settings.serviceEnabled.exists()){
+                //Enable the service on skip if it's not been disabled manually
+                settings.serviceEnabled.set(true)
+            }
+            navigation.phoenix()
+        }
     }
 
 }

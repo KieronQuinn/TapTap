@@ -1,116 +1,217 @@
 package com.kieronquinn.app.taptap.ui.views
 
-import android.animation.AnimatorSet
 import android.animation.ValueAnimator
-import android.animation.ValueAnimator.AnimatorUpdateListener
 import android.content.Context
 import android.graphics.Canvas
+import android.graphics.Color
 import android.graphics.Paint
+import android.os.Parcelable
 import android.util.AttributeSet
 import android.view.View
-import android.view.animation.DecelerateInterpolator
-import androidx.core.content.ContextCompat
+import androidx.core.animation.doOnCancel
+import androidx.core.animation.doOnEnd
+import androidx.core.graphics.blue
+import androidx.core.graphics.green
+import androidx.core.graphics.red
 import com.kieronquinn.app.taptap.R
-import com.kieronquinn.app.taptap.utils.extensions.px
-import java.util.*
+import com.kieronquinn.app.taptap.utils.extensions.isDarkMode
+import com.kieronquinn.monetcompat.core.MonetCompat
+import kotlinx.parcelize.Parcelize
+import kotlin.math.roundToInt
+import kotlin.math.roundToLong
+import kotlin.reflect.KProperty1
 
-//Based on https://stackoverflow.com/a/52688461, modified to meet what was required
-class RippleView : View, AnimatorUpdateListener {
-    private inner class Ripple internal constructor(startRadiusFraction: Float, stopRadiusFraction: Float, startAlpha: Float, stopAlpha: Float, color: Int, delay: Long, duration: Long, strokeWidth: Float, updateListener: AnimatorUpdateListener?) {
-        var mAnimatorSet: AnimatorSet
-        var mRadiusAnimator: ValueAnimator
-        var mAlphaAnimator: ValueAnimator
-        var mPaint: Paint
-        fun draw(canvas: Canvas, centerX: Int, centerY: Int, radiusMultiplicator: Float) {
-            mPaint.alpha = (255 * mAlphaAnimator.animatedValue as Float).toInt()
-            canvas.drawCircle(centerX.toFloat(), centerY.toFloat(), mRadiusAnimator.animatedValue as Float * radiusMultiplicator, mPaint)
-        }
+/**
+ *  Shows a expanding circular ripple when [addRipple] is called
+ */
+class RippleView: View {
 
-        fun startAnimation() {
-            mAnimatorSet.start()
-        }
+    constructor(context: Context, attrs: AttributeSet?, defStyleRes: Int): super(context, attrs, defStyleRes)
+    constructor(context: Context, attrs: AttributeSet?): this(context, attrs, 0)
+    constructor(context: Context): this(context, null, 0)
 
-        fun stopAnimation() {
-            mAnimatorSet.cancel()
-        }
-
-        init {
-            mRadiusAnimator = ValueAnimator.ofFloat(startRadiusFraction, stopRadiusFraction)
-            mRadiusAnimator.duration = duration
-            mRadiusAnimator.addUpdateListener(updateListener)
-            mRadiusAnimator.interpolator = DecelerateInterpolator()
-            mAlphaAnimator = ValueAnimator.ofFloat(startAlpha, stopAlpha)
-            mAlphaAnimator.duration = duration
-            mAlphaAnimator.addUpdateListener(updateListener)
-            mAlphaAnimator.interpolator = DecelerateInterpolator()
-            mAnimatorSet = AnimatorSet()
-            mAnimatorSet.playTogether(mRadiusAnimator, mAlphaAnimator)
-            mAnimatorSet.startDelay = delay
-            mPaint = Paint()
-            mPaint.style = Paint.Style.STROKE
-            mPaint.color = color
-            mPaint.alpha = (255 * startAlpha).toInt()
-            mPaint.isAntiAlias = true
-            mPaint.strokeWidth = strokeWidth
-        }
+    companion object {
+        private const val RIPPLE_DURATION = 1000L
     }
 
-    private var mRipples: MutableList<Ripple> = ArrayList()
-
-    private val rippleColor by lazy {
-        ContextCompat.getColor(context, R.color.ripple_circle)
+    private val paint = Paint().apply {
+        style = Paint.Style.STROKE
     }
 
-    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
-        init(context, attrs)
+    private val monet by lazy {
+        MonetCompat.getInstance()
     }
 
-    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
-        init(context, attrs)
+    private val singleTapColor by lazy {
+        val fallbackBackground = if (context.isDarkMode) R.color.cardview_dark_background else R.color.cardview_light_background
+        monet.getBackgroundColorSecondary(context) ?: fallbackBackground
     }
 
-    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) : super(context, attrs, defStyleAttr, defStyleRes) {
-        init(context, attrs)
+    private val doubleTapColor by lazy {
+        monet.getPrimaryColor(context)
     }
 
-    private var videoRadius = 0f
-
-    private fun init(context: Context, attrs: AttributeSet?) {
-        if (isInEditMode) return
-
-        post {
-            val videoWidth = 95.px
-            val maxRadius = measuredWidth / 2
-            this.videoRadius = (videoWidth.toFloat() / maxRadius)
-        }
+    private val tripleTapColor by lazy {
+        doubleTapColor
     }
 
-    fun startAnimation(numberRipples: Int) {
-        visibility = VISIBLE
-        mRipples = ArrayList()
-        mRipples.add(Ripple(videoRadius, 1.25f, 1.0f, 0.0f, rippleColor, 0, 2000, 2.px.toFloat(), this))
-        for(i in 1 until numberRipples){
-            mRipples.add(Ripple(videoRadius, 1.25f, 1.0f, 0.0f, rippleColor, (i * 30).toLong(), 2000, 2.px.toFloat(), this))
-        }
-        mRipples.forEach {
-            it.startAnimation()
+    private val singleWidth by lazy {
+        context.resources.getDimension(R.dimen.ripple_view_single_width)
+    }
+
+    private val doubleWidth by lazy {
+        context.resources.getDimension(R.dimen.ripple_view_double_width)
+    }
+
+    private val tripleWidth by lazy {
+        context.resources.getDimension(R.dimen.ripple_view_triple_width)
+    }
+
+    private val minRadius by lazy {
+        (resources.getDimension(R.dimen.setup_gesture_lottie_size) / 2f)
+    }
+
+    private var maxRadius: Float = 0f
+    private var cx = 0f
+    private var cy = 0f
+
+    private val ripples = ArrayList<Ripple>()
+
+    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
+        super.onSizeChanged(w, h, oldw, oldh)
+        maxRadius = measuredWidth / 2f
+        cx = measuredWidth / 2f
+        cy = measuredHeight / 2f
+    }
+
+    override fun onVisibilityAggregated(isVisible: Boolean) {
+        super.onVisibilityAggregated(isVisible)
+        if(isVisible){
+            ripples.forEach { it.resume() }
+        }else{
+            ripples.forEach { it.pause() }
         }
     }
 
-    override fun onAnimationUpdate(animation: ValueAnimator) {
-        invalidate()
+    override fun onDetachedFromWindow() {
+        ripples.toTypedArray().forEach {
+            it.cancel()
+        }
+        super.onDetachedFromWindow()
+    }
+
+    fun addRipple(rippleType: RippleType) {
+        ripples.add(Ripple(rippleType).apply {
+            start()
+        })
     }
 
     override fun onDraw(canvas: Canvas) {
-        val centerX = width / 2
-        val centerY = height / 2
-        val radiusMultiplicator = width / 2
-        for (ripple in mRipples) {
-            ripple.draw(canvas, centerX, centerY, radiusMultiplicator.toFloat())
+        super.onDraw(canvas)
+        ripples.forEach {
+            paint.strokeWidth = it.getWidth()
+            paint.color = it.getColor()
+            canvas.drawCircle(cx, cy, it.getRadius(), paint)
         }
     }
 
-    companion object {
-        const val TAG = "RippleView"
+    override fun onSaveInstanceState(): Parcelable {
+        return ripples.toParcelableRipples(super.onSaveInstanceState())
     }
+
+    override fun onRestoreInstanceState(state: Parcelable?) {
+        (state as? ParcelableRipples)?.let {
+            ripples.clear()
+            ripples.addAll(it.ripples.map { ripple -> ripple.toRipple().apply {
+                start()
+            }})
+            super.onRestoreInstanceState(it.superState)
+        } ?: super.onRestoreInstanceState(state)
+    }
+
+    enum class RippleType(val color: KProperty1<RippleView, Int>, val width: KProperty1<RippleView, Float>) {
+        SINGLE_TAP(RippleView::singleTapColor, RippleView::singleWidth),
+        DOUBLE_TAP(RippleView::doubleTapColor, RippleView::doubleWidth),
+        TRIPLE_TAP(RippleView::tripleTapColor, RippleView::tripleWidth)
+    }
+
+    @Parcelize
+    data class ParcelableRipple(val rippleType: String, val progress: Float): Parcelable
+
+    @Parcelize
+    data class ParcelableRipples(val ripples: List<ParcelableRipple>, val superState: Parcelable?): Parcelable
+
+    private fun ParcelableRipple.toRipple(): Ripple {
+        return Ripple(RippleType.valueOf(rippleType), progress)
+    }
+
+    private fun List<Ripple>.toParcelableRipples(superState: Parcelable?): ParcelableRipples {
+        val ripples = map { it.toParcelableRipple() }
+        return ParcelableRipples(ripples, superState)
+    }
+
+    inner class Ripple(private val rippleType: RippleType, startProgress: Float? = null) {
+
+        private var progress = 0f
+
+        private val rawColor by lazy {
+            rippleType.color.get(this@RippleView)
+        }
+
+        private val rawWidth by lazy {
+            rippleType.width.get(this@RippleView)
+        }
+
+        private val animator = ValueAnimator.ofFloat(startProgress ?: 0f, 1f).apply {
+            val duration = startProgress?.let {
+                (RIPPLE_DURATION - (startProgress * RIPPLE_DURATION)).roundToLong()
+            } ?: RIPPLE_DURATION
+            this.duration = duration
+            addUpdateListener {
+                progress = it.animatedValue as Float
+                invalidate()
+            }
+            doOnEnd {
+                ripples.remove(this@Ripple)
+            }
+            doOnCancel {
+                ripples.remove(this@Ripple)
+            }
+        }
+
+        fun start() {
+            animator.start()
+        }
+
+        fun pause() {
+            animator.pause()
+        }
+
+        fun resume() {
+            animator.resume()
+        }
+
+        fun cancel() {
+            animator.cancel()
+        }
+
+        fun getRadius(): Float {
+            return (((maxRadius - minRadius) * progress) + minRadius)
+        }
+
+        fun getColor(): Int {
+            val alpha = (255 * (1f - progress)).roundToInt()
+            return Color.argb(alpha, rawColor.red, rawColor.green, rawColor.blue)
+        }
+
+        fun getWidth(): Float {
+            return rawWidth
+        }
+
+        fun toParcelableRipple(): ParcelableRipple {
+            return ParcelableRipple(rippleType.name, progress)
+        }
+
+    }
+
 }

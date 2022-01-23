@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:minHeight="72dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        tools:src="@drawable/ic_taptap_logo"
+        tools:tint="?android:textColorPrimary"
+        android:padding="16dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:id="@+id/item_settings_slider_icon"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/margin_8"
+        android:paddingBottom="@dimen/margin_8"
+        android:layout_marginEnd="@dimen/margin_16"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/item_settings_slider_title"
+            tools:text="Setting Title"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium.TapTap"
+            android:textColor="?android:textColorPrimary" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            tools:visibility="visible"
+            tools:text="Setting Content"
+            android:id="@+id/item_settings_slider_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small.TapTap"
+            android:textColor="?android:textColorPrimary" />
+
+        <com.google.android.material.slider.Slider
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            app:labelStyle="@style/Widget.MaterialComponents.Tooltip.TapTap"
+            android:id="@+id/item_settings_slider_slider" />
+
+    </LinearLayout>
+
+</LinearLayout>
