@@ -1,8 +1,7 @@
 <resources>
     <string name="app_name">Tap, Tap</string>
     <string name="accessibility_service_description">TapTap als Bedienungshilfe\n\n<b>Wichtiger Hinweis: Über keine deiner Apps werden Daten gesammelt. Dieser Dienst wird nur genutzt, um die Erkennung aktiv zu halten und Interaktionen mit dem Gerät zu ermöglichen.</b></string>
-    <string name="setting_gesture">Geste</string>
-    <string name="setting_gesture_desc">Passe die Einstellungen für die Geste an</string>
+    <string name="setting_bottom_nav_gesture">Geste</string>
     <string name="setting_gates">Ausnahmen</string>
     <string name="setting_gates_desc">Stelle Situationen ein, in denen die Geste keine Aktion auslösen soll</string>
     <string name="setting_feedback">Feedback</string>
@@ -14,11 +13,9 @@
 
     <!-- Gates -->
     <string name="gate_charging_state">Aufladen</string>
-    <string name="gate_charging_state_desc">Blockiert die Geste für eine halbe Sekunde, wenn das Gerät eingesteckt wird</string>
     <string name="gate_telephony_activity">Im Anruf</string>
     <string name="gate_telephony_activity_desc">Blockiert die Geste während eines Anrufs. Nur Standard-Anrufe werden unterstützt – kein VoIP, wie bspw. WhatsApp</string>
     <string name="gate_usb_state">USB-Geräte</string>
-    <string name="gate_usb_state_desc">Blockiert die Geste für eine halbe Sekunde, wenn ein USB-Gerät, z.B. wie ein USB-Stick eingesteckt wird</string>
     <string name="gate_camera_visibility">Kamera</string>
     <string name="gate_camera_visibility_desc">Blockiert die Geste, wenn eine Kamera-App geöffnet ist (Hinweis: Ersetzt die Überspringen-Funktion der Kamera-Starten-Aktion)</string>
     <string name="gate_power_state">Bildschirm aus</string>
@@ -56,7 +53,6 @@
     <string name="fab_remove_action">Entfernen</string>
     <string name="add_action_category_launch">Starten</string>
     <string name="add_action_category_utilities">Werkzeuge</string>
-    <string name="add_action_category_actions">Aktionen</string>
     <string name="add_action_category_advanced">Fortgeschritten</string>
     <string name="action_flashlight">Taschenlampe</string>
     <string name="action_flashlight_desc">Die Taschenlampe ein-/ausschalten. Diese Aktion wird nicht funktionieren, wenn die Kamera gerade von einer App verwendet wird</string>
@@ -64,12 +60,9 @@
     <string name="action_launch_app_desc">Eine App öffnen</string>
     <string name="action_launch_app_desc_formattable">%1s öffnen. Diese Aktion wird übersprungen, wenn die App bereits geöffnet ist</string>
     <string name="fab_add_gate">Ausnahmen hinzufügen</string>
-    <string name="nothing_found">Nichts gefunden</string>
     <string name="search">Suchen</string>
-    <string name="show_system_apps">Zeige System-Apps</string>
-    <string name="select_an_app">Wähle eine App aus</string>
     <string name="setting_gesture_sensitivity">Empfindlichkeit</string>
-    <string name="setting_gesture_sensitivity_desc">Passe die Empfindlichkeit für das Erkennen der Geste an, indem du einstellst, wie viel Kraft als \'Rauschen\' herausgefiltert wird. Eine geringere Empfindlichkeit bedeutet, dass es schwerer wird, die Geste auszuführen, während eine hohe Empfindlichkeit anfälliger für eine falsche Erkennung ist. Der Standard liegt genau in der Mitte</string>
+    <string name="setting_gesture_sensitivity_desc">Passe die Empfindlichkeit für das Erkennen der Geste an, indem du einstellst, wie viel Kraft als \'Rauschen\' herausgefiltert wird. Eine geringere Empfindlichkeit bedeutet, dass es schwerer wird, die Geste auszuführen, während eine hohe Empfindlichkeit anfälliger für eine falsche Erkennung ist.</string>
 
     <string name="bs_help_action_title">Was sind Aktionen?</string>
     <string name="bs_help_gate">Ausnahmen sind Situationen, in denen das Ausführen der Aktionen bei Erkennung der Geste blockiert wird. Damit eine Aktion ausgeführt werden kann, darf keine aktivierte Ausnahme erfüllt sein.\nFalls ein Ausnahmeszenario erfüllt ist, z. B. wenn der Bildschrim aus ist und die \"Bildschirm aus\"-Ausnahme aktiviert ist, wird keine Aktion ausgeführt. Du kannst so viele Ausnahmen, wie du willst, hinzufügen und sie über die Schalter einzeln aktivieren/deaktivieren (statt sie jedes Mal zu löschen bzw. neu hinzuzufügen), um die Konfiguration schneller und einfacher zu machen</string>
@@ -79,12 +72,6 @@
     <string name="action_tasker_event">Tasker-Event</string>
     <string name="action_tasker_event_desc">Das Tasker-Event-Plugin auslösen</string>
 
-    <string name="accessibility_info_off">Bedienungshilfen-Service ist nicht aktiviert</string>
-    <string name="accessibility_info_off_desc">Die Geste wird momentan nicht funktionieren. Tippen zum Aktivieren</string>
-    <string name="accessibility_info_on">Bedienungshilfen-Service ist aktiviert</string>
-
-    <string name="category_about">Über</string>
-    <string name="about">%1s v%2s</string>
     <string name="xda_thread">XDA-Thread</string>
     <string name="github">GitHub</string>
     <string name="libraries">Drittanbieter-Bibliotheken</string>
@@ -93,10 +80,6 @@
     <string name="tasker_config_label">Rückseite doppelt angetippt</string>
     <string name="action_tasker_task">Tasker-Task</string>
     <string name="action_tasker_task_desc">Führe einen ausgewählten Tasker-Task aus</string>
-    <string name="bs_tasker_content">Um einen Tasker-Task zu starten, ohne das Event-Plugin zu nutzen, muss die \"Allow External Acces\"-Option in den Tasker-Einstellungen aktiviert sein. Wenn diese Option nicht aktiviert ist, wird diese Aktion immer übersprungen</string>
-    <string name="bs_tasker_title">Berechtigung benötigt</string>
-    <string name="bs_tasker_positive">Tasker-Einstellungen öffnen</string>
-    <string name="picker_launch_camera">Kamera öffnen</string>
     <string name="action_volume_panel">Lautstärke-Regler anzeigen</string>
     <string name="action_volume_panel_desc">Zeige den Lautstärke-Regler des Systems an für die aktuelle Tonausgabe an</string>
     <string name="action_volume_up">Lautstärke erhöhen</string>
@@ -121,7 +104,7 @@
     <!-- Sensitivity slider labels -->
     <string name="slider_sensitivity_very_low">Sehr Gering</string>
     <string name="slider_sensitivity_low">Gering</string>
-    <string name="slider_sensitivity_normal">Normal</string>
+    <string name="slider_sensitivity_medium">Normal</string>
     <string name="slider_sensitivity_high">Hoch</string>
     <string name="slider_sensitivity_very_high">Sehr Hoch</string>
 
@@ -129,8 +112,6 @@
     <string name="setting_feedback_override_dnd_desc">Ignoriere die \"Nicht Stören\" Einstellung des Geräts und vibriere immer bei Aktivierung der Geste</string>
     <string name="gate_keyboard_visibility">Tastatur offen</string>
     <string name="gate_keyboard_visibility_desc">Blockiert die Geste, wenn die Tastatur offen ist und benutzt wird. Dies kann manchmal nicht funktionieren, wenn du nicht aktiv tippst</string>
-    <string name="battery_optimisation">Deaktiviere Akku-Optimierung</string>
-    <string name="battery_optimisation_desc">Dies hilft, dass \"Tap-Tap\" dauerhaft läuft (es kann passieren, dass das nicht zuverlässig funktioniert, siehe dazu die Akku-Option unten)</string>
 
     <string name="battery_and_optimisation">Akku &amp; Optimierung</string>
     <string name="battery_and_optimisation_desc">Informationen, warum \"Tap, Tap\" Strom verbaucht und warum es vielleicht von deinem Gerät beendet wird, wenn es im Hintergrund läuft (und wie man dies beheben kann)</string>

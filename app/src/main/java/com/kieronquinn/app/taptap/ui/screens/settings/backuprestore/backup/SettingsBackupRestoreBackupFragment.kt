@@ -1,93 +1,81 @@
 package com.kieronquinn.app.taptap.ui.screens.settings.backuprestore.backup
 
-import android.graphics.drawable.AnimatedVectorDrawable
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.View
-import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
-import androidx.lifecycle.asLiveData
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
-import com.airbnb.lottie.LottieDrawable
 import com.kieronquinn.app.taptap.R
-import com.kieronquinn.app.taptap.databinding.FragmentBackupRestoreBackupBinding
-import com.kieronquinn.app.taptap.components.base.BoundFragment
-import com.kieronquinn.app.taptap.utils.extensions.observe
-import dev.chrisbanes.insetter.applySystemWindowInsetsToPadding
-import org.koin.android.viewmodel.ext.android.viewModel
+import com.kieronquinn.app.taptap.databinding.FragmentSettingsBackupRestoreBackupBinding
+import com.kieronquinn.app.taptap.repositories.backuprestore.BackupRepository
+import com.kieronquinn.app.taptap.ui.base.BackAvailable
+import com.kieronquinn.app.taptap.ui.base.BoundFragment
+import com.kieronquinn.app.taptap.ui.screens.settings.backuprestore.backup.SettingsBackupRestoreBackupViewModel.State
+import com.kieronquinn.app.taptap.utils.extensions.onClicked
+import com.kieronquinn.monetcompat.extensions.views.applyMonet
+import kotlinx.coroutines.flow.collect
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class SettingsBackupRestoreBackupFragment: BoundFragment<FragmentBackupRestoreBackupBinding>(FragmentBackupRestoreBackupBinding::class.java) {
+class SettingsBackupRestoreBackupFragment :
+    BoundFragment<FragmentSettingsBackupRestoreBackupBinding>(FragmentSettingsBackupRestoreBackupBinding::inflate), BackAvailable {
 
+    private val args by navArgs<SettingsBackupRestoreBackupFragmentArgs>()
     private val viewModel by viewModel<SettingsBackupRestoreBackupViewModel>()
-    private val arguments by navArgs<SettingsBackupRestoreBackupFragmentArgs>()
-
-    override val disableToolbarBackground: Boolean = true
-
-    private val avdUpToSuccess by lazy {
-        ContextCompat.getDrawable(requireContext(), R.drawable.avd_up_to_cloud) as AnimatedVectorDrawable
-    }
-
-    private val avdUpToError by lazy {
-        ContextCompat.getDrawable(requireContext(), R.drawable.avd_up_to_error) as AnimatedVectorDrawable
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        with(binding) {
-            root.applySystemWindowInsetsToPadding(top = true, bottom = true)
-            fragmentBackupRestoreBackupLottie.run {
-                clipToOutline = true
-                repeatCount = LottieDrawable.INFINITE
-                speed = 0.5f
-                playAnimation()
-            }
-            fragmentBackupRestoreBackupButton.setOnClickListener {
-                viewModel.onCloseClicked(this@SettingsBackupRestoreBackupFragment)
-            }
-        }
-        with(viewModel){
-            state.asLiveData().observe(viewLifecycleOwner){
-                when(it){
-                    is SettingsBackupRestoreBackupViewModel.State.Running -> {
-                        avdUpToSuccess.reset()
-                        binding.fragmentBackupRestoreBackupAvd.setImageDrawable(avdUpToSuccess)
-                        binding.fragmentBackupRestoreBackupLottie.playAnimation()
-                        binding.fragmentBackupRestoreBackupProgress.isVisible = true
-                        binding.fragmentBackupRestoreBackupButton.isVisible = false
-                    }
-                    is SettingsBackupRestoreBackupViewModel.State.Done -> {
-                        avdUpToSuccess.reset()
-                        binding.fragmentBackupRestoreBackupAvd.setImageDrawable(avdUpToSuccess)
-                        binding.fragmentBackupRestoreBackupLottie.pauseAnimation()
-                        avdUpToSuccess.start()
-                        binding.fragmentBackupRestoreBackupProgress.isVisible = false
-                        binding.fragmentBackupRestoreBackupButton.isVisible = true
-                    }
-                    is SettingsBackupRestoreBackupViewModel.State.Error -> {
-                        avdUpToError.reset()
-                        binding.fragmentBackupRestoreBackupAvd.setImageDrawable(avdUpToError)
-                        binding.fragmentBackupRestoreBackupLottie.pauseAnimation()
-                        avdUpToError.start()
-                        binding.fragmentBackupRestoreBackupProgress.isVisible = false
-                        binding.fragmentBackupRestoreBackupButton.isVisible = true
-                    }
-                    is SettingsBackupRestoreBackupViewModel.State.Cancelled -> {
-                        viewModel.onCloseClicked(this@SettingsBackupRestoreBackupFragment)
-                    }
-                }
-            }
-            getTitle(requireContext()).asLiveData().observe(viewLifecycleOwner){
-                binding.fragmentBackupRestoreBackupTitle.text = it
-            }
-            getContent(requireContext()).asLiveData().observe(viewLifecycleOwner){
-                binding.fragmentBackupRestoreBackupContent.text = it
-            }
-            createBackup(requireContext(), arguments.backupUri)
+        setupMonet()
+        setupClose()
+        setupState()
+        viewModel.setBackupUri(args.backupUri)
+    }
+
+    private fun setupMonet() {
+        binding.settingsBackupRestoreBackupProgress.applyMonet()
+        binding.settingsBackupRestoreBackupIcon.imageTintList = ColorStateList.valueOf(monet.getAccentColor(requireContext()))
+        binding.settingsBackupRestoreBackupClose.setTextColor(monet.getAccentColor(requireContext()))
+    }
+
+    private fun setupClose() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        binding.settingsBackupRestoreBackupClose.onClicked().collect {
+            viewModel.onCloseClicked()
         }
     }
 
-    override fun onBackPressed(): Boolean {
-        viewModel.cancel()
-        return false
+    private fun setupState() {
+        handleState(viewModel.state.value)
+        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+            viewModel.state.collect {
+                handleState(it)
+            }
+        }
+    }
+
+    private fun handleState(state: State) {
+        when(state){
+            is State.BackingUp -> {
+                binding.settingsBackupRestoreBackupTitle.text = getString(R.string.settings_backuprestore_backup_title)
+                binding.settingsBackupRestoreBackupDesc.text = getString(R.string.settings_backuprestore_backup_desc)
+                binding.settingsBackupRestoreBackupProgress.isVisible = true
+                binding.settingsBackupRestoreBackupIcon.isVisible = false
+                binding.settingsBackupRestoreBackupClose.isVisible = false
+            }
+            is State.Finished -> {
+                if(state.result is BackupRepository.BackupResult.Success){
+                    binding.settingsBackupRestoreBackupTitle.text = getString(R.string.settings_backuprestore_backup_done_title)
+                    binding.settingsBackupRestoreBackupDesc.text = getString(R.string.settings_backuprestore_backup_done_desc, state.result.file.name)
+                    binding.settingsBackupRestoreBackupIcon.setImageResource(R.drawable.ic_check_circle)
+                }else if(state.result is BackupRepository.BackupResult.Error){
+                    binding.settingsBackupRestoreBackupTitle.text = getString(R.string.settings_backuprestore_backup_error_title)
+                    binding.settingsBackupRestoreBackupDesc.text = getString(R.string.settings_backuprestore_backup_error_desc, getString(state.result.errorType.errorRes))
+                    binding.settingsBackupRestoreBackupIcon.setImageResource(R.drawable.ic_error_circle)
+                }
+                binding.settingsBackupRestoreBackupProgress.isVisible = false
+                binding.settingsBackupRestoreBackupIcon.isVisible = true
+                binding.settingsBackupRestoreBackupClose.isVisible = true
+            }
+        }
     }
 
 }

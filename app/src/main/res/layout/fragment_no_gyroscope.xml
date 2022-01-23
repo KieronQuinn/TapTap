@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/margin_16"
+    android:paddingBottom="@dimen/margin_16">
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:id="@+id/no_gyroscope_avd"
+        app:srcCompat="@drawable/avd_gyroscope" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/margin_16"
+        android:text="@string/modal_no_gyroscope_title"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large.TapTap" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingStart="@dimen/margin_16"
+        android:paddingEnd="@dimen/margin_16"
+        android:text="@string/modal_no_gyroscope_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small.TapTap" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/no_gyroscope_close"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small.TapTap.Medium"
+        android:layout_marginTop="@dimen/margin_16"
+        android:minWidth="120dp"
+        android:text="@string/close" />
+
+</LinearLayout>

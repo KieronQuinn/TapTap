@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_shared_picker_app_shortcut"
+    app:startDestination="@id/settingsSharedAppShortcutsSelectorFragment">
+
+    <fragment
+        android:id="@+id/settingsSharedAppShortcutsSelectorFragment"
+        android:name="com.kieronquinn.app.taptap.ui.screens.settings.shared.selector.appshortcuts.SettingsSharedAppShortcutsSelectorFragment"
+        android:label="@string/action_launch_app_shortcut"
+        tools:layout="@layout/fragment_settings_shared_app_shortcuts_selector"/>
+
+</navigation>

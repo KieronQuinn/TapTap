@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:icon="@drawable/ic_gesture"
+        android:id="@+id/menu_bottom_nav_main_gesture"
+        android:title="@string/setting_bottom_nav_gesture"/>
+    <item android:icon="@drawable/ic_settings"
+        android:id="@+id/menu_bottom_nav_main_settings"
+        android:title="@string/setting_bottom_nav_settings"/>
+    <item android:icon="@drawable/ic_more"
+        android:id="@+id/menu_bottom_nav_main_more"
+        android:title="@string/setting_bottom_nav_more"/>
+</menu>

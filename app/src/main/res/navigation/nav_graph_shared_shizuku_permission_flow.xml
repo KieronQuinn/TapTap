@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_shared_shizuku_permission_flow"
+    app:startDestination="@id/settingsSharedShizukuPermissionFlowFragment">
+
+    <fragment
+        android:id="@+id/settingsSharedShizukuPermissionFlowFragment"
+        android:name="com.kieronquinn.app.taptap.ui.screens.settings.shared.shizuku.SettingsSharedShizukuPermissionFlowFragment"
+        android:label="@string/settings_shared_shizuku_permission_flow_toolbar_title"
+        tools:layout="@layout/fragment_settings_shared_shizuku_permission_flow" >
+        <argument
+            android:name="argument"
+            app:argType="com.kieronquinn.app.taptap.models.shared.SharedArgument" />
+    </fragment>
+
+</navigation>

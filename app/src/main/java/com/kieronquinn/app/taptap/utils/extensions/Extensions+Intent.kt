@@ -3,8 +3,10 @@ package com.kieronquinn.app.taptap.utils.extensions
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.provider.MediaStore
+import android.provider.Settings
 import android.util.Log
 import net.dinglisch.android.tasker.TaskerIntent
 import org.json.JSONArray
@@ -157,6 +159,15 @@ fun Context.isAppLaunchable(packageName: String): Boolean {
     }
 }
 
+fun Context.isPackageInstalled(packageName: String): Boolean {
+    return try {
+        packageManager.getApplicationInfo(packageName, 0)
+        true
+    } catch (e: PackageManager.NameNotFoundException) {
+        false
+    }
+}
+
 fun Context.isTaskerInstalled(): Boolean {
     val packageNames = arrayOf(TaskerIntent.TASKER_PACKAGE, TaskerIntent.TASKER_PACKAGE_CUPCAKE, TaskerIntent.TASKER_PACKAGE_MARKET)
     return packageNames.any { isAppLaunchable(it) }
@@ -175,6 +186,12 @@ fun getCameraLaunchIntent(secure: Boolean): Intent {
     else MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA
     return Intent(action).apply {
         addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+    }
+}
+
+fun Context.getAppInfoIntent(): Intent {
+    return Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
+        data = Uri.fromParts("package", packageName, null)
     }
 }
 

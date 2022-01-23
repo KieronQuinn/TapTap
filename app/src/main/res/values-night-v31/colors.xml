@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="icon_foreground">@android:color/system_accent1_100</color>
+    <color name="icon_background">@android:color/system_neutral1_800</color>
+    <color name="splash_background">@android:color/system_neutral1_900</color>
+    <color name="icon_primary">@android:color/system_accent2_600</color>
+
+    <color name="colorPrimary">@android:color/system_accent2_600</color>
+    <color name="colorAccent">@android:color/system_accent1_100</color>
+    <color name="licenses_background">@android:color/system_neutral1_900</color>
+    <color name="licenses_toolbar">@android:color/system_neutral1_700</color>
+</resources>

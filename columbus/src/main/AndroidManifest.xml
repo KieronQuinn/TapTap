@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.google.android.columbus">
+
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <!-- Permission name is set in the app gradle and shared across -->
+    <permission
+        android:name="${columbus_permission}"
+        android:protectionLevel="signature" />
+
+    <application>
+        <service
+            android:name=".ColumbusServiceProxy"
+            android:exported="true"
+            android:permission="${columbus_permission}" />
+    </application>
+
+</manifest>

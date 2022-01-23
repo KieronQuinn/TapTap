@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_add_gate"
+    app:startDestination="@id/settingsGatesAddCategorySelectorFragment">
+
+    <fragment
+        android:id="@+id/settingsGatesAddCategorySelectorFragment"
+        android:name="com.kieronquinn.app.taptap.ui.screens.settings.gates.selector.SettingsGatesAddCategorySelectorFragment"
+        android:label="@string/fab_add_gate"
+        tools:layout="@layout/fragment_settings_gates_add_category_selector">
+        <action
+            android:id="@+id/action_settingsGatesAddCategorySelectorFragment_to_settingsGatesGateSelectorFragment"
+            app:destination="@id/settingsGatesGateSelectorFragment" />
+        <argument
+            android:name="is_requirement"
+            app:argType="boolean"
+            android:defaultValue="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsGatesGateSelectorFragment"
+        android:name="com.kieronquinn.app.taptap.ui.screens.settings.gates.selector.gates.SettingsGatesGateSelectorFragment"
+        android:label=" "
+        tools:layout="@layout/fragment_settings_gates_add_gate_selector">
+        <argument
+            android:name="category"
+            app:argType="com.kieronquinn.app.taptap.models.gate.TapTapGateCategory" />
+        <argument
+            android:name="is_requirement"
+            app:argType="boolean" />
+    </fragment>
+</navigation>

@@ -1,21 +1,18 @@
 package com.kieronquinn.app.taptap.utils.extensions
 
-import android.content.Context
-import android.content.Intent
-import androidx.navigation.ActivityNavigator
-import androidx.navigation.NavOptions
-import com.kieronquinn.app.taptap.R
+import androidx.navigation.NavController
+import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.flow.callbackFlow
 
-fun Intent.toActivityDestination(context: Context): ActivityNavigator.Destination {
-    return ActivityNavigator(context).createDestination().apply {
-        intent = this@toActivityDestination
+fun NavController.onDestinationChanged() = callbackFlow {
+    val listener = NavController.OnDestinationChangedListener { _, destination, _ ->
+        trySend(destination)
     }
-}
-
-fun NavOptions.Builder.withStandardAnimations(): NavOptions.Builder {
-    setEnterAnim(R.anim.slide_in_right)
-    setExitAnim(R.anim.slide_out_left)
-    setPopEnterAnim(R.anim.slide_in_left)
-    setPopExitAnim(R.anim.slide_out_right)
-    return this
+    addOnDestinationChangedListener(listener)
+    currentDestination?.let {
+        trySend(it)
+    }
+    awaitClose {
+        removeOnDestinationChangedListener(listener)
+    }
 }

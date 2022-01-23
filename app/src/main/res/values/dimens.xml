@@ -1,19 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="margin_8">8dp</dimen>
+    <dimen name="margin_16">16dp</dimen>
+    <dimen name="reachability_button_size">36dp</dimen>
+    <dimen name="toolbar_expanded_title_margin">16dp</dimen>
+    <dimen name="bottom_navigation_height">80dp</dimen>
+    <dimen name="container_fab_margin">96dp</dimen>
+    <dimen name="shared_axis_x_slide_distance">96dp</dimen>
     <dimen name="bottom_sheet_corner_radius">16dp</dimen>
-    <dimen name="margin_small">8dp</dimen>
-    <dimen name="margin_medium">12dp</dimen>
-    <dimen name="margin_extra_small">4dp</dimen>
-    <dimen name="margin_large">16dp</dimen>
-    <dimen name="item_height">56dp</dimen>
-    <dimen name="clear_button_size">36dp</dimen>
+    <dimen name="min_window_blur_radius">1px</dimen>
+    <dimen name="max_window_blur_radius">150px</dimen>
     <dimen name="search_box_height">48dp</dimen>
     <dimen name="search_box_corners">24dp</dimen>
-    <dimen name="activity_padding">16dp</dimen>
-    <dimen name="activity_padding_large">24dp</dimen>
-    <dimen name="toolbar_elevation">4dp</dimen>
-    <dimen name="reachability_button_size">36dp</dimen>
-    <dimen name="chip_height">56dp</dimen>
-    <dimen name="configuration_button_height">72dp</dimen>
-    <dimen name="item_add_category_width">200dp</dimen>
+    <dimen name="search_box_negative_margin">-32dp</dimen>
+    <dimen name="clear_button_size">36dp</dimen>
+    <dimen name="snackbar_corner_radius">16dp</dimen>
+    <dimen name="card_elevation_selected">8dp</dimen>
+    <dimen name="tab_min_width">350dp</dimen>
+    <dimen name="setup_image_size">160dp</dimen>
+    <dimen name="ripple_view_single_width">8dp</dimen>
+    <dimen name="ripple_view_double_width">16dp</dimen>
+    <dimen name="ripple_view_triple_width">24dp</dimen>
+    <dimen name="setup_gesture_lottie_size">200dp</dimen>
+    <dimen name="setup_gesture_bottom_sheet_peek_size">80dp</dimen>
+    <dimen name="setup_info_bottom_bar_height">72dp</dimen>
 </resources>

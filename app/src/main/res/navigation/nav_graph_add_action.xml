@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_add_action"
+    app:startDestination="@id/settingsActionsAddCategorySelectorFragment">
+
+    <fragment
+        android:id="@+id/settingsActionsAddCategorySelectorFragment"
+        android:name="com.kieronquinn.app.taptap.ui.screens.settings.actions.selector.SettingsActionsAddCategorySelectorFragment"
+        android:label="@string/fab_add_action"
+        tools:layout="@layout/fragment_settings_actions_add_category_selector" >
+        <action
+            android:id="@+id/action_settingsActionsAddCategorySelectorFragment_to_settingsActionsActionSelectorFragment"
+            app:destination="@id/settingsActionsActionSelectorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsActionsActionSelectorFragment"
+        android:name="com.kieronquinn.app.taptap.ui.screens.settings.actions.selector.actions.SettingsActionsActionSelectorFragment"
+        android:label=" "
+        tools:layout="@layout/fragment_settings_actions_add_action_selector">
+        <argument
+            android:name="category"
+            app:argType="com.kieronquinn.app.taptap.models.action.TapTapActionCategory" />
+    </fragment>
+
+
+</navigation>

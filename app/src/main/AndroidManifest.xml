@@ -1,31 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.kieronquinn.app.taptap">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ANSWER_PHONE_CALLS" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="net.dinglisch.android.tasker.PERMISSION_RUN_TASKS" />
-    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
-    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
-    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"/>
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
+    <uses-permission android:name="net.dinglisch.android.tasker.PERMISSION_RUN_TASKS" />
+    <uses-permission android:name="android.permission.HIGH_SAMPLING_RATE_SENSORS"
+        tools:ignore="HighSamplingRate" />
+
     <uses-feature android:name="android.hardware.sensor.accelerometer" android:required="true"/>
 
     <application
-        android:name=".TapTapApplication"
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name="com.kieronquinn.app.taptap.ui.activities.SettingsActivity">
+        android:name=".TapTap"
+        android:extractNativeLibs="true"
+        android:theme="@style/Theme.TapTap.Splash">
+
+        <activity
+            android:name=".ui.activities.MainActivity"
+            android:screenOrientation="portrait"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -38,17 +48,78 @@
 
         <activity
             android:name="com.kieronquinn.app.taptap.ui.activities.WakeUpActivity"
-            android:theme="@style/TransparentActivity" />
+            android:theme="@style/TransparentActivity"
+            android:excludeFromRecents="true"
+            android:launchMode="singleInstance"
+            android:noHistory="true" />
+
         <activity
             android:name="com.kieronquinn.app.taptap.ui.activities.UnlockDeviceActivity"
-            android:theme="@style/TransparentActivity" />
+            android:theme="@style/TransparentActivity"
+            android:excludeFromRecents="true"
+            android:launchMode="singleInstance"
+            android:noHistory="true" />
 
-        <activity android:name="com.kieronquinn.app.taptap.ui.activities.AppPickerActivity" />
-        <activity android:name="com.kieronquinn.app.taptap.ui.activities.ModalActivity" />
+        <activity android:name=".ui.activities.CrashReportingActivity"
+            android:theme="@style/Theme.TapTap"
+            android:process=":crashreporting"
+            android:excludeFromRecents="true"/>
+
+        <service android:name=".service.foreground.TapTapForegroundService"/>
+
+        <receiver android:name=".receivers.TapTapServiceStartReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="${broadcast_action_start}"/>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name=".receivers.TapTapServiceStopReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="${broadcast_action_stop}"/>
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name="com.kieronquinn.app.taptap.ui.activities.ActivityConfigTaskerEvent"
+            android:exported="true"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/tasker_config_label">
+            <intent-filter>
+                <action android:name="net.dinglisch.android.tasker.ACTION_EDIT_EVENT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.kieronquinn.app.taptap.ui.activities.ActivityConfigTaskerEventTriple"
+            android:exported="true"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/tasker_config_label_triple">
+            <intent-filter>
+                <action android:name="net.dinglisch.android.tasker.ACTION_EDIT_EVENT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.kieronquinn.app.taptap.ui.activities.FlashlightToggleActivity"
+            android:theme="@style/TransparentActivity"
+            android:excludeFromRecents="true"
+            android:launchMode="singleInstance"
+            android:noHistory="true" />
+
+        <activity
+            android:name="com.kieronquinn.app.taptap.ui.activities.ReachabilityActivity"
+            android:theme="@style/ReachabilityTheme"
+            android:excludeFromRecents="true"
+            android:launchMode="singleInstance"
+            android:noHistory="true" />
 
         <service
-            android:name="com.kieronquinn.app.taptap.core.services.TapAccessibilityService"
+            android:name="com.kieronquinn.app.taptap.service.accessibility.TapTapAccessibilityService"
             android:label="@string/accessibility_service_label"
+            android:exported="true"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
             <intent-filter>
                 <action android:name="android.accessibilityservice.AccessibilityService" />
@@ -60,8 +131,9 @@
         </service>
 
         <service
-            android:name="com.kieronquinn.app.taptap.core.services.TapGestureAccessibilityService"
+            android:name="com.kieronquinn.app.taptap.service.accessibility.TapTapGestureAccessibilityService"
             android:label="@string/accessibility_service_label_gesture"
+            android:exported="true"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
             <intent-filter>
                 <action android:name="android.accessibilityservice.AccessibilityService" />
@@ -69,53 +141,24 @@
 
             <meta-data
                 android:name="android.accessibilityservice"
-                android:resource="@xml/gestureaccessibilityservice" />
+                android:resource="@xml/gesture_accessibilityservice" />
         </service>
 
         <provider
-            android:name=".providers.SharedPrefsProvider"
-            android:authorities="com.kieronquinn.app.taptap.provider.sharedprefs"
-            android:exported="false"
-            android:grantUriPermissions="true" />
+            android:name="rikka.shizuku.ShizukuProvider"
+            android:authorities="${applicationId}.shizuku"
+            android:multiprocess="false"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.INTERACT_ACROSS_USERS_FULL" />
 
         <activity
             android:name="com.google.android.gms.oss.licenses.OssLicensesMenuActivity"
             android:theme="@style/AppTheme.ThirdPartyLicences" />
+
         <activity
             android:name="com.google.android.gms.oss.licenses.OssLicensesActivity"
             android:theme="@style/AppTheme.ThirdPartyLicences" />
-        <activity
-            android:name="com.kieronquinn.app.taptap.ui.activities.ActivityConfigTaskerEvent"
-            android:exported="true"
-            android:icon="@mipmap/ic_launcher"
-            android:label="@string/tasker_config_label">
-            <intent-filter>
-                <action android:name="net.dinglisch.android.tasker.ACTION_EDIT_EVENT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.kieronquinn.app.taptap.ui.activities.ActivityConfigTaskerEventTriple"
-            android:exported="true"
-            android:icon="@mipmap/ic_launcher"
-            android:label="@string/tasker_config_label_triple">
-            <intent-filter>
-                <action android:name="net.dinglisch.android.tasker.ACTION_EDIT_EVENT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.kieronquinn.app.taptap.ui.activities.ReachabilityActivity"
-            android:theme="@style/ReachabilityTheme" />
-
-        <service android:name="com.kieronquinn.app.taptap.core.services.TapForegroundService" />
-        <service
-            android:name="com.kieronquinn.app.taptap.core.services.TapQSTile"
-            android:icon="@drawable/ic_taptap_logo"
-            android:label="@string/app_name"
-            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
-            <intent-filter>
-                <action android:name="android.service.quicksettings.action.QS_TILE" />
-            </intent-filter>
-        </service>
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -126,6 +169,18 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths"/>
         </provider>
+
+        <service
+            android:name="com.kieronquinn.app.taptap.service.quicksetting.TapTapQuickSettingTile"
+            android:icon="@drawable/ic_taptap_logo"
+            android:label="@string/app_name"
+            android:exported="true"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+
     </application>
 
 </manifest>

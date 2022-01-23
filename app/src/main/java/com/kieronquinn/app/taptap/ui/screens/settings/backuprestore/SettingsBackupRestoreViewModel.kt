@@ -1,48 +1,56 @@
 package com.kieronquinn.app.taptap.ui.screens.settings.backuprestore
 
-import android.content.Intent
 import android.net.Uri
-import android.util.Log
 import android.webkit.MimeTypeMap
-import androidx.fragment.app.Fragment
-import com.kieronquinn.app.taptap.core.TapSharedPreferences
-import com.kieronquinn.app.taptap.utils.extensions.navigate
-import com.kieronquinn.app.taptap.components.base.BaseViewModel
+import androidx.activity.result.ActivityResultLauncher
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.kieronquinn.app.taptap.components.navigation.ContainerNavigation
+import kotlinx.coroutines.launch
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
+abstract class SettingsBackupRestoreViewModel: ViewModel() {
 
-class SettingsBackupRestoreViewModel(private val tapSharedPreferences: TapSharedPreferences): BaseViewModel() {
+    abstract fun onBackupClicked(launcher: ActivityResultLauncher<String>)
+    abstract fun onRestoreClicked(launcher: ActivityResultLauncher<Array<String?>>)
+
+    abstract fun onBackupFileClicked(uri: Uri)
+    abstract fun onRestoreFileClicked(uri: Uri)
+
+}
+
+class SettingsBackupRestoreViewModelImpl(private val navigation: ContainerNavigation): SettingsBackupRestoreViewModel() {
 
     companion object {
-        const val TAP_BACKUP_FILE_TEMPLATE = "backup_%s.taptap"
+        const val TAP_TAP_BACKUP_FILE_TEMPLATE = "backup_%s.taptap"
+        private val TAP_TAP_BACKUP_MIME_TYPE = MimeTypeMap.getSingleton().getMimeTypeFromExtension("taptap")
     }
 
-    fun onBackupClicked(fragment: SettingsBackupRestoreFragment){
-        fragment.backupPickerResult.launch(getFilename())
+    override fun onBackupClicked(launcher: ActivityResultLauncher<String>) {
+        launcher.launch(getFilename())
     }
 
-    fun onRestoreClicked(fragment: SettingsBackupRestoreFragment){
-        fragment.restorePickerResult.launch(
-            arrayOf(MimeTypeMap.getSingleton().getMimeTypeFromExtension("taptap"))
-        )
+    override fun onBackupFileClicked(uri: Uri) {
+        viewModelScope.launch {
+            navigation.navigate(SettingsBackupRestoreFragmentDirections.actionSettingsBackupRestoreFragmentToSettingsBackupRestoreBackupFragment(uri))
+        }
     }
 
-    fun onBackupLocationPicked(fragment: Fragment, uri: Uri){
-        val takeFlags: Int = (Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
-        fragment.requireContext().contentResolver.takePersistableUriPermission(uri, takeFlags)
-        tapSharedPreferences.backupUri = uri.toString()
-        fragment.navigate(SettingsBackupRestoreFragmentDirections.actionSettingsBackupRestoreFragmentToSettingsBackupRestoreBackupFragment(uri))
+    override fun onRestoreClicked(launcher: ActivityResultLauncher<Array<String?>>) {
+        launcher.launch(arrayOf(TAP_TAP_BACKUP_MIME_TYPE))
     }
 
-    fun onRestoreFilePicked(fragment: Fragment, uri: Uri){
-        fragment.navigate(SettingsBackupRestoreFragmentDirections.actionSettingsBackupRestoreFragmentToSettingsBackupRestoreRestoreFragment(uri))
+    override fun onRestoreFileClicked(uri: Uri) {
+        viewModelScope.launch {
+            navigation.navigate(SettingsBackupRestoreFragmentDirections.actionSettingsBackupRestoreFragmentToSettingsBackupRestoreRestoreFragment(uri))
+        }
     }
 
     private fun getFilename(): String {
         val time = LocalDateTime.now()
         val dateTimeFormatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME
-        return String.format(TAP_BACKUP_FILE_TEMPLATE, dateTimeFormatter.format(time))
+        return String.format(TAP_TAP_BACKUP_FILE_TEMPLATE, dateTimeFormatter.format(time))
     }
 
 }

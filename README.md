@@ -4,17 +4,48 @@
 
 ---
 
-Tap, Tap is a port of the [double tap on back of device gesture](https://www.xda-developers.com/google-pixel-android-11-double-tap-rear-gestures/) from Android 11 to any Android 7.0+ device. It allows you to use the gesture to launch apps, control the device (including pressing the home, back and recents buttons), take a screenshot, toggle the flashlight, open your assistant and more. Using "gates", you're able to block the gesture from working in scenarios such as when the screen is off, when you're on a call, when an app is open and more. It uses an accessibility service to run these tasks and stay running in the background. Tap, Tap uses the same machine learning code and TensorFlow models from the Android 11 builds with the gesture, with code directly lifted from SystemUIGoogle where needed. You can pick from three models in the settings: Pixel 3 XL, Pixel 4 and Pixel 4 XL; allowing you to choose the one that fits your device best. Machine learning allows the gesture to be more accurately detected, and reduces the chance of accidental interactions.
+Tap, Tap is a port of the [double tap on back of device gesture](https://www.xda-developers.com/google-pixel-android-11-double-tap-rear-gestures/) from Pixels running Android 12 to any Android 7.0+ device*. 
 
-Tap, Tap is currently in beta, and may be a little buggy. Stay tuned for new features and bug fixes. If you'd like to report a bug or suggest a feature, you can use the issues on here or the XDA thread.
+Tap, Tap provides over 50 actions that can be run from double or triple taps on the back of your device, including:
 
----
+- Launching an app
+- Launching a shortcut
+- Toggling the flashlight
+- Simulating button presses, such as home or back
+- Running a Tasker task
+- Quick Tap to Snap**
 
-Screenshots:
+... and many more!
 
-[![Tap, Tap](https://i.imgur.com/6q9oNgAl.png)](https://i.imgur.com/6q9oNgA.png)
+The gesture can also be fully controlled, to only run under certain conditions, or run different actions in different scenarios; such as only when an app is running, the screen is off, or when listening to music (many more options are available).
+
+The sensitivity and response of the gesture can be controlled, picking from 8 "models", trained for devices ranging in size from 5.7" to 6.3" in height, as well as finer control of the sensitivity of gesture detection, meaning there is a configuration that will work well for most devices. 
+
+Tap, Tap also tries to be easy on the battery, only running the gesture detection when required, and integrates with the "low power mode" available on select Pixel devices, otherwise using the lower-power machine learning capabilities of devices, where available.
+
+\* Your device must have an accelerometer and gyroscope.
+
+\** Requires a compatible Pixel device or root, see [this page](https://kieronquinn.co.uk/redirect/TapTap/qtts) for more info.
+
+## Screenshots
+
+[![Tap, Tap](https://i.imgur.com/oN3Iimol.png)](https://i.imgur.com/oN3Iimo.png)
 
 [Example video, showing launching the camera on double tap](https://streamable.com/4jd1mu)
 
-[XDA thread](https://forum.xda-developers.com/android/apps-games/app-tap-tap-double-tap-device-gesture-t4140573)
+[XDA thread](https://kieronquinn.co.uk/redirect/TapTap/xda)
 
+## Reporting issues and feature requests
+
+If you have encountered a crash or error, please make an issue on the [Issues](https://github.com/KieronQuinn/TapTap/issues) page. For crashes, include a crash report, which Tap, Tap should create for you and show a notification after a hard crash (enable the option on the "More" page first if you have disabled it). Before making an issue, make sure it has not been reported before, and does not fall under the "service killed" pinned issue, as those will be closed and ignored.
+
+To request a feature, either make an issue stating "Feature Request", or post a reply in the XDA thread. Note that only relatively simple features will be considered, anything more complex including toggling specific system features should be done using the Tasker capabilities of Tap, Tap, as the app is not meant to be a Tasker replacement.
+
+## Building Tap, Tap
+
+If you would prefer to build from source, Tap, Tap can be built like any other Android app, simply by opening the source in Android Studio and running the app. Please note that Tap, Tap uses the [techspecs.io](https://techspecs.io/) API for retrieving device specifications in order to recommend the best models for the gesture to use, you must get your own API key and base URL and add them to your `local.properties file`, or specification lookup will be disabled:
+
+```
+techspecs.baseurl=<your base URL>
+techspecs.apikey=<your API key>
+```

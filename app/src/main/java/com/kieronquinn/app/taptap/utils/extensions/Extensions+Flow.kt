@@ -1,20 +1,30 @@
 package com.kieronquinn.app.taptap.utils.extensions
 
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
-import android.content.IntentFilter
-import kotlinx.coroutines.channels.awaitClose
-import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 
-suspend fun IntentFilter.asFlow(context: Context) = callbackFlow<Intent?> {
-    val receiver = object: BroadcastReceiver() {
-        override fun onReceive(context: Context?, intent: Intent?) {
-            offer(intent)
-        }
+suspend fun <T> Flow<T>.await(clazz: Class<out T>): T {
+    return first {
+        it != null && it!!::class.java == clazz
     }
-    context.registerReceiver(receiver, this@asFlow)
-    awaitClose {
-        context.unregisterReceiver(receiver)
+}
+
+suspend fun <T> StateFlow<T>.awaitState(clazz: Class<out T>): T {
+    if(value != null && value!!::class.java == clazz) return value
+    return await(clazz)
+}
+
+inline fun <reified T> instantCombine(vararg flows: Flow<T>) = channelFlow {
+    val array= Array(flows.size) {
+        false to (null as T?) // first element stands for "present"
+    }
+
+    flows.forEachIndexed { index, flow ->
+        launch {
+            flow.collect { emittedElement ->
+                array[index] = true to emittedElement
+                send(array.filter { it.first }.map { it.second })
+            }
+        }
     }
 }

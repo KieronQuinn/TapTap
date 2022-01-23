@@ -1,6 +1,5 @@
 package com.kieronquinn.app.taptap.utils.extensions
 
-import android.content.ComponentName
 import android.content.ContentResolver
 import android.content.Context
 import android.database.ContentObserver
@@ -8,157 +7,70 @@ import android.net.Uri
 import android.os.Handler
 import android.os.Looper
 import android.provider.Settings
-import android.text.TextUtils
-import com.kieronquinn.app.taptap.utils.SettingsContentObserver
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.channelFlow
-import java.lang.reflect.InvocationTargetException
+import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.filterNotNull
 
-suspend inline fun <reified T: Any> Class<out Settings.NameValueTable>.getSettingAsFlow(settingsField: String, contentResolver: ContentResolver, updateOnStart: Boolean = false): Flow<T?> = channelFlow<T?> {
-    val uri = getUriFor(settingsField)
-    var contentObserver: ContentObserver?
-    when(T::class){
-        String::class -> {
-            val update = {
-                offer(getString(contentResolver, settingsField) as T?)
-            }
-            contentResolver.registerContentObserver(uri, false, SettingsContentObserver(
-                Handler(Looper.myLooper()!!),
-                uri
-            ) { _, _ ->
-                update.invoke()
-            }.apply {
-                if(updateOnStart) update.invoke()
-                contentObserver = this
-            })
+fun <T> Context.getSettingAsFlow(uri: Uri, converter: (Context) -> T) = callbackFlow<T?> {
+    val observer = object: ContentObserver(Handler(Looper.getMainLooper())) {
+        override fun onChange(selfChange: Boolean) {
+            super.onChange(selfChange)
+            trySend(converter(this@getSettingAsFlow))
         }
-        Float::class -> {
-            val update = {
-                offer(getFloat(contentResolver, settingsField) as T?)
-            }
-            contentResolver.registerContentObserver(uri, false, SettingsContentObserver(
-                Handler(Looper.myLooper()!!),
-                uri
-            ) { _, _ ->
-                update.invoke()
-            }.apply {
-                if(updateOnStart) update.invoke()
-                contentObserver = this
-            })
-        }
-        Long::class -> {
-            val update = {
-                offer(getLong(contentResolver, settingsField) as T?)
-            }
-            contentResolver.registerContentObserver(uri, false, SettingsContentObserver(
-                Handler(Looper.myLooper()!!),
-                uri
-            ) { _, _ ->
-                update.invoke()
-            }.apply {
-                if(updateOnStart) update.invoke()
-                contentObserver = this
-            })
-        }
-        Int::class -> {
-            val update = {
-                offer(getInt(contentResolver, settingsField) as T?)
-            }
-            contentResolver.registerContentObserver(uri, false, SettingsContentObserver(
-                Handler(Looper.myLooper()!!),
-                uri
-            ) { _, _ ->
-                update.invoke()
-            }.apply {
-                if(updateOnStart) update.invoke()
-                contentObserver = this
-            })
-        }
-        Boolean::class -> {
-            val update = {
-                offer((getInt(contentResolver, settingsField) == 1) as T)
-            }
-            contentResolver.registerContentObserver(uri, false, SettingsContentObserver(
-                Handler(Looper.myLooper()!!),
-                uri
-            ) { _, _ ->
-                update.invoke()
-            }.apply {
-                if(updateOnStart) update.invoke()
-                contentObserver = this
-            })
-        }
-        else -> throw IllegalArgumentException("${T::class.simpleName} cannot be stored in the Settings database $simpleName")
     }
+    trySend(converter(this@getSettingAsFlow))
+    contentResolver.registerContentObserver(uri, false, observer)
     awaitClose {
-        contentObserver?.let {
-            contentResolver.unregisterContentObserver(it)
-        }
+        contentResolver.unregisterContentObserver(observer)
     }
 }
 
-fun Class<out Settings.NameValueTable>.getUriFor(uri: String): Uri {
-    return getMethod("getUriFor", String::class.java).invoke(null, uri) as Uri
-}
-
-fun Class<out Settings.NameValueTable>.getString(contentResolver: ContentResolver, field: String): String? = try {
-    getMethod("getString", ContentResolver::class.java, String::class.java).invoke(null, contentResolver, field) as? String
-} catch (e: InvocationTargetException){
-    null
-}
-
-fun Class<out Settings.NameValueTable>.getFloat(contentResolver: ContentResolver, field: String, default: Float? = null): Float? = try {
-    if(default != null){
-        getMethod("getFloat", ContentResolver::class.java, String::class.java, Float::class.java).invoke(null, contentResolver, field, default) as? Float
-    }else{
-        getMethod("getFloat", ContentResolver::class.java, String::class.java).invoke(null, contentResolver, field) as? Float
+fun Context.secureStringConverter(name: String): (Context) -> String? {
+    return { _: Context ->
+        Settings_Secure_getStringSafely(contentResolver, name)
     }
-} catch (e: InvocationTargetException){
-    null
 }
 
-fun Class<out Settings.NameValueTable>.getInt(contentResolver: ContentResolver, field: String, default: Int? = null): Int? = try {
-    if(default != null){
-        getMethod("getInt", ContentResolver::class.java, String::class.java, Integer.TYPE).invoke(null, contentResolver, field, default) as? Int
-    }else{
-        getMethod("getInt", ContentResolver::class.java, String::class.java).invoke(null, contentResolver, field) as? Int
+fun Context.secureBooleanConverter(name: String): (Context) -> Boolean {
+    return { _: Context ->
+        Settings_Secure_getIntSafely(contentResolver, name, 0) == 1
     }
-} catch (e: InvocationTargetException){
-    null
 }
 
-fun Class<out Settings.NameValueTable>.getLong(contentResolver: ContentResolver, field: String, default: Long? = null): Long? = try {
-    if(default != null){
-        getMethod("getLong", ContentResolver::class.java, String::class.java, Long::class.java).invoke(null, contentResolver, field, default) as? Long
-    }else{
-        getMethod("getLong", ContentResolver::class.java, String::class.java).invoke(null, contentResolver, field) as? Long
-    }
-} catch (e: InvocationTargetException){
-    null
-}
+private const val COLUMBUS_SETTING = "columbus_enabled"
 
-fun settingsGlobalGetIntOrNull(contentResolver: ContentResolver, key: String): Int? {
+fun Context.getColumbusSettingAsFlow(): Flow<Boolean>
+    = getSettingAsFlow(Settings.Secure.getUriFor(COLUMBUS_SETTING), secureBooleanConverter(COLUMBUS_SETTING)).filterNotNull()
+
+fun Context.isColumbusEnabled(): Boolean {
     return try {
-        Settings.Global.getInt(contentResolver, key)
+        Settings_Secure_getIntSafely(contentResolver, COLUMBUS_SETTING, 0) == 1
+    }catch (e: Settings.SettingNotFoundException){
+        false
+    }
+}
+
+fun Settings_Secure_getIntSafely(contentResolver: ContentResolver, setting: String, default: Int): Int {
+    return try {
+        Settings.Secure.getInt(contentResolver, setting, default)
+    }catch (e: Settings.SettingNotFoundException){
+        default
+    }
+}
+
+fun Settings_Secure_getStringSafely(contentResolver: ContentResolver, setting: String): String? {
+    return try {
+        Settings.Secure.getString(contentResolver, setting)
     }catch (e: Settings.SettingNotFoundException){
         null
     }
 }
 
-/**
- * Based on [com.android.settingslib.accessibility.AccessibilityUtils.getEnabledServicesFromSettings]
- * @see [AccessibilityUtils](https://github.com/android/platform_frameworks_base/blob/d48e0d44f6676de6fd54fd8a017332edd6a9f096/packages/SettingsLib/src/com/android/settingslib/accessibility/AccessibilityUtils.java.L55)
- */
-fun isAccessibilityServiceEnabled(context: Context, accessibilityService: Class<*>): Boolean {
-    val expectedComponentName = ComponentName(context, accessibilityService)
-    val enabledServicesSetting: String = Settings.Secure.getString(context.contentResolver, Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES) ?: return false
-    val colonSplitter = TextUtils.SimpleStringSplitter(':')
-    colonSplitter.setString(enabledServicesSetting)
-    while (colonSplitter.hasNext()) {
-        val componentNameString: String = colonSplitter.next()
-        val enabledService: ComponentName? = ComponentName.unflattenFromString(componentNameString)
-        if (enabledService != null && enabledService.equals(expectedComponentName)) return true
+fun Settings_Global_getIntSafely(contentResolver: ContentResolver, setting: String, default: Int): Int {
+    return try {
+        Settings.Global.getInt(contentResolver, setting, default)
+    }catch (e: Settings.SettingNotFoundException){
+        default
     }
-    return false
 }

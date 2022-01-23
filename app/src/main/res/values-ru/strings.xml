@@ -1,8 +1,7 @@
 <resources>
     <string name="accessibility_service_description">Служба спец.возможностей TapTap\n\n<b>Важное примечание: данные ни от одного из ваших приложений не собираются. Эта служба используется только для поддержания активного распознавания и взаимодействия с устройством.</b></string>
     <string name="accessibility_service_description_gesture">Служба спец.возможностей Tap, Tap. \n\n<b>Не включайте его, если приложение не просит об этом. Оно необходимо только для определенных действий</b>\n\n<b>Важное примечание: данные ни от одного из ваших приложений не собираются. Эта служба используется только для поддержания активного распознавания и взаимодействия с устройством.\n\nЭто отдельная служба, которая создана из-за особенностей работы Android и приложений, которые могут выполнять жесты. Например Chrome не будет скрывать omnibar(что-то на непонятном) при прокрутке, если эта служба включена.</b></string>
-    <string name="setting_gesture">Жест</string>
-    <string name="setting_gesture_desc">Настройте работу жеста</string>
+    <string name="setting_bottom_nav_gesture">Жест</string>
     <string name="setting_actions_double">Действия по двойному постукиванию</string>
     <string name="setting_actions_triple">Действия по тройному постукиванию</string>
     <string name="settings_actions_desc_double">Установите действия, которые будут запускаться по двойному постукиванию по задней части устройства</string>
@@ -26,22 +25,12 @@
     <string name="setting_feedback_wake">Пробуждать устройство</string>
     <string name="setting_feedback_wake_desc">Пробуждать устройство, если экран выключен</string>
 
-    <string-array name="device_model_keys">
-        <item>Большое</item>
-        <item>Средненькое</item>
-        <item>Маленькое</item>
-    </string-array>
-    
     <!-- Gates -->
     <string name="gate_charging_state">Зарядка</string>
-    <string name="gate_charging_state_desc">Блокировать жест на полсекунды после подключения к зарядному устройству</string>
-    <string name="gate_charging_state_desc_when">Запускать на полсекунды после подключения к зарядному устройству</string>
     <string name="gate_telephony_activity">Звонок</string>
     <string name="gate_telephony_activity_desc">Блокировать жест во время вызовов. Поддерживаются только обычные звонки, в WhatsApp и т.п. не работает.</string>
     <string name="gate_telephony_activity_desc_when">Запускать только во время звонка</string>
     <string name="gate_usb_state">USB-устройство</string>
-    <string name="gate_usb_state_desc">Блокировать жест на полсекунды при подключении USB-устройства, например флэшки</string>
-    <string name="gate_usb_state_desc_when">Запускать жест на полсекунды при подключении USB-устройства</string>
     <string name="gate_camera_visibility">Камера</string>
     <string name="gate_camera_visibility_desc">Блокировать жест при открытии любого приложения камеры. Примечание: этот запрет нарушит функциональность пропуска действия "Камера".</string>
     <string name="gate_camera_visibility_desc_when">Запускать только когда открыта камера</string>
@@ -81,7 +70,6 @@
     <string name="fab_remove_action">Удалить</string>
     <string name="add_action_category_launch">Запуск</string>
     <string name="add_action_category_utilities">Утилиты</string>
-    <string name="add_action_category_actions">Действия</string>
     <string name="add_action_category_advanced">Дополнительно</string>
     <string name="action_flashlight">Фонарик</string>
     <string name="action_flashlight_desc">Включить/выключить фонарик. Действие не будет выполнено, если камера используется другим приложением.</string>
@@ -89,10 +77,7 @@
     <string name="action_launch_app_desc">Запустить приложения</string>
     <string name="action_launch_app_desc_formattable">Запустить %1s. Действие будет пропущено, если оно уже запущено.</string>
     <string name="fab_add_gate">Добавить запрет</string>
-    <string name="nothing_found">Ничего не найдено</string>
     <string name="search">Поиск</string>
-    <string name="show_system_apps">Показать системные приложения</string>
-    <string name="select_an_app">Выберите приложение</string>
     <string name="action_power_dialog">Меню питания</string>
     <string name="action_power_dialog_desc">Открыть меню питания, имитируя нажатие кнопки питания</string>
     <string name="action_split_screen">Разделение экран</string>
@@ -104,14 +89,13 @@
     <string name="setting_gesture_sensitivity">Чувствительность</string>
     <string name="slider_sensitivity_very_low">Очень низкая</string>
     <string name="slider_sensitivity_low">Низкая</string>
-    <string name="slider_sensitivity_normal">Средняя</string>
+    <string name="slider_sensitivity_medium">Средняя</string>
     <string name="slider_sensitivity_high">Высокая</string>
     <string name="slider_sensitivity_very_high">Очень высокая</string>
 
     <string name="gate_keyboard_visibility">Клавиатура</string>
     <string name="gate_keyboard_visibility_desc_when">Запускать только когда клавиатура открыта и используется. Может не всегда работать, если Вы печатаете неактивно.</string>
     <string name="gate_keyboard_visibility_desc">Блокировать жест, когда клавиатура открыта и используется. Может не всегда работать, если Вы печатаете неактивно.</string>
-    <string name="battery_optimisation">Отключить энергосбережение</string>
     <string name="gate_orientation_landscape">Горизонтальная ориентация</string>
     <string name="gate_orientation_landscape_desc">Блокировать жест, когда устройство повернуто горизонтально</string>
     <string name="gate_orientation_landscape_desc_when">Запускать только когда устройство повернуто горизонтально</string>
@@ -136,22 +120,15 @@
     <string name="gate_music_desc_when">Запускать только когда играет музыка</string>
     <string name="gate_music_desc_when_inverse">Блокировать жест, когда музыка не играет</string>
     <string name="gate_music_desc_inverse">Запускать только когда музыка не играет</string>
-    <string name="notification_policy_grant">Продолжить</string>
-    <string name="bs_notification_policy_content">Для режима звонка предоставьте разрешение к \"Не беспокоить"\ в настройках устройства.</string>
     <string name="tap_notification_title">Сервис Tap, Tap</string>
     <string name="tap_notification_content">Tap, Tap работает в фоновом режиме. Нажмите, чтобы скрыть.</string>
     <string name="tap_notification_channel_title">Фоновое уведомление</string>
     <string name="tap_notification_channel_description">Уведомление, которое используется для продолжения работы Tap, Tap в фоновом режиме, когда включена опция использования отдельной службы</string>
     <string name="setting_advanced">Расширенные настройки</string>
     <string name="setting_advanced_desc">Расширенные настройки для изменения производительности и т. д.</string>
-    <string name="setting_advanced_warning">Тут обитают драконы</string>
-    <string name="setting_advanced_warning_desc">Эти настройки являются экспериментальными, поэтому они могут не работать на Вашем устройстве или привести к тому, что Tap, Tap полностью перестанет работать. Если Вы обнаружили подобное, <b>выключите</b> эти настройки и перезагрузите устройство. Должно помочь.</string>
-    <string name="switch_main">Включить Жест</string>
+    <string name="setting_advanced_warning_desc">Эти настройки являются экспериментальными, поэтому они могут не работать на Вашем устройстве или привести к тому, что Tap, Tap полностью перестанет работать.</string>
     <string name="setting_advanced_restart_service">Автозапуск службы</string>
-    <string name="setting_advanced_restart_service_desc">Попытка автоматически перезапустить компонент прослушивания Tap, Tap производится раз в час. Если у вас включены разделенные службы, служба переднего плана также будет перезапущена. Примечание: службу специальных возможностей <b>нельзя</b> перезапустить автоматически, поэтому, если она будет убита или отключена, перезагрузка не произойдёт.</string>
-    <string name="bs_update_download">Скачать</string>
-    <string name="bs_update_title">Доступно обновление!</string>
-    <string name="bs_update_content" formatted="false"><![CDATA[<h2>Доступно новое обновление</h2><br><b>Текущая версия:</b> %1s<br><b>Новая версия:</b> %1s<br><b>Дата обновления:</b> %1s<br><b>Список изменений:</b><br>%1s]]></string>
+    <string name="setting_advanced_restart_service_desc">Попытка автоматически перезапустить компонент прослушивания Tap, Tap производится раз в час.</string>
     <string name="tap_update_notification_channel_title">Уведомления об обновлениях</string>
     <string name="tap_update_notification_channel_description">Уведомления отображаются раз в день, когда проверяется наличие обновлений</string>
     <string name="tap_update_notification_title">Доступно обновление Tap, Tap</string>
@@ -160,8 +137,6 @@
     <string name="help_action_triple">Примечание: Когда тройное постукивание включено, двойное постукивание может срабатывать медленее. Это связано с тем, что приложению нужно дождаться, чтобы узнать, будет ли третье постукивание.</string>
     <string name="tasker_description_double">Срабатывать по двойному постукиванию по задней части устройства</string>
     <string name="tasker_description_triple">Срабатывать по тройному постукиванию по задней части устройства</string>
-    <string name="actions_empty_state">А действия кто добавлять будет?</string>
-    <string name="gates_empty_state">А про запреты не забыли?</string>
 
     <string name="bs_help_action_title">Что такое действия?</string>
     <string name="bs_help_gate">Запреты - это ситуации, которые могут заблокировать жест от выполнения каких-либо действий. Для выполнения любого действия все включенные запреты должны быть открыты. \nЕсли в данный момент выполняется сценарий, например, если экран выключен и запрет «Отключить отображение» включены, никакие действия не будут выполняться. Вы можете добавить столько запретов, сколько захотите, и включать / отключать их, используя переключатели (вместо того, чтобы удалять и повторно добавлять), чтобы сделать настройку быстрее и проще.</string>
@@ -190,28 +165,16 @@
     <string name="translators_german">Немецкий</string>
     <string name="translators_turkish">Турецкий</string>
     <string name="translators_chinese_traditional">Китайский (Традиционный)</string>
-    
-    <string name="accessibility_info_off">Спец. возможности отключены</string>
-    <string name="accessibility_info_off_desc">В настоящее время жест не работает. Нажмите, чтобы включить его</string>
-    <string name="accessibility_info_on">Спец. возможности включены</string>
-    <string name="accessibility_info_on_desc_2">Служба спец. возможностей нужна для работы жеста.</string>
-    <string name="menu_beta">Приложение на стадии бета тестирования. Нажмите, чтобы узнать больше.</string>
-    <string name="bs_beta">Приложение находится в разработке и выпущено в \"Бета"\ версии, что позволяет проводить тестирование на многих устройствах и принимать предложения от пользователей. Если вы столкнулись с ошибкой, сообщите о ней на GitHub. Если вы хотите запросить функцию, опубликуйте ее в теме XDA или запросите ее на GitHub. \n\nСпасибо за терпение в процессе разработки.</string>
-    <string name="bs_beta_title">Бета</string>
-    <string name="category_about">О приложении</string>
+
     <string name="xda_thread">Тред на XDA</string>
     <string name="libraries">Сторонние библиотеки</string>
     <string name="donate">Помочь рублём</string>
     <string name="twitter">Подписаться на разработчика в Твиттере</string>
-    <string name="picker_launch_camera">Запустить камеру</string>
     <string name="tasker_config_label">Двойное нажатие назад</string>
     <string name="action_tasker_task">Задача Tasker</string>
     <string name="action_tasker_event">Событие Tasker</string>
     <string name="action_tasker_task_desc">Запустить задачу Tasker</string>
     <string name="action_tasker_task_desc_formatted">Запустить задачу Tasker (%1s)</string>
-    <string name="bs_tasker_content">Чтобы запустить задачу Tasker без использования подключаемого модуля «Событие», необходимо включить параметр «Разрешить внешний доступ» в настройках Tasker. Если эта опция не включена, это действие всегда будет пропущено.</string>
-    <string name="bs_tasker_title">Требуется разрешение</string>
-    <string name="bs_tasker_positive">Открыть настройки Tasker</string>
     <string name="action_volume_panel">Панель громкости</string>
     <string name="action_volume_panel_desc">Показать панель громкости системы</string>
     <string name="action_volume_up">Увеличить громкость</string>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:transitionGroup="true"
+    android:paddingTop="@dimen/margin_8">
+
+    <include layout="@layout/include_search"
+        android:id="@+id/include_search" />
+
+    <com.kieronquinn.app.taptap.ui.views.LifecycleAwareRecyclerView
+        android:id="@+id/settings_gates_add_category_selector_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="40dp"
+        android:layout_marginTop="@dimen/search_box_negative_margin"
+        app:layout_constraintVertical_bias="0"
+        android:paddingBottom="@dimen/margin_16"
+        android:clipToPadding="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include_search" />
+
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/settings_gates_add_category_selector_loading_progress"
+        android:layout_width="200dp"
+        android:layout_marginTop="200dp"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        app:layout_constraintBottom_toTopOf="@id/settings_gates_add_category_selector_loading_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:trackCornerRadius="4dp"
+        app:trackThickness="8dp" />
+
+    <TextView
+        android:id="@+id/settings_gates_add_category_selector_loading_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_16"
+        android:text="@string/settings_gates_add_category_selector_loading"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium.TapTap"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/settings_gates_add_category_selector_loading_progress" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/settings_gates_add_category_selector_loading"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:constraint_referenced_ids="settings_gates_add_category_selector_loading_label,settings_gates_add_category_selector_loading_progress" />
+
+    <ImageView
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:id="@+id/settings_gates_add_category_selector_empty_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="100dp"
+        android:src="@drawable/ic_actions"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_16"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/settings_gates_add_category_selector_empty_icon"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium.TapTap"
+        android:id="@+id/settings_gates_add_category_selector_empty_label"
+        android:text="@string/settings_gates_add_category_selector_empty"/>
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/settings_gates_add_category_selector_empty"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:constraint_referenced_ids="settings_gates_add_category_selector_empty_label,settings_gates_add_category_selector_empty_icon" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

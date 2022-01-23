@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:transitionGroup="true">
+
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/settings_shared_snapchat_loading_progress"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:indeterminate="true"
+        app:layout_constraintBottom_toTopOf="@id/settings_shared_snapchat_loading_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:trackCornerRadius="4dp"
+        app:trackThickness="8dp" />
+
+    <TextView
+        android:id="@+id/settings_shared_snapchat_loading_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_16"
+        android:layout_marginTop="@dimen/margin_16"
+        android:layout_marginEnd="@dimen/margin_16"
+        android:gravity="center"
+        android:text="@string/settings_shared_snapchat_loading_title"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium.TapTap"
+        android:textColor="?android:textColorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/settings_shared_snapchat_loading_progress" />
+
+    <TextView
+        android:id="@+id/settings_shared_snapchat_loading_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_16"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="@dimen/margin_16"
+        android:gravity="center"
+        android:text="@string/settings_shared_snapchat_loading_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small.TapTap"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/settings_shared_snapchat_loading_title" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/settings_shared_snapchat_loading"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:constraint_referenced_ids="settings_shared_snapchat_loading_progress,settings_shared_snapchat_loading_content,settings_shared_snapchat_loading_title" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        android:id="@+id/settings_shared_snapchat_setup_root"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:padding="@dimen/margin_16"
+        android:clipToPadding="false"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/settings_shared_snapchat_setup_root_card"
+            style="@style/Widget.Material3.CardView.Filled.TapTap"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/margin_16">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/settings_shared_snapchat_setup_root_title"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium.TapTap"
+                    android:textColor="?android:textColorPrimary"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:text="@string/settings_shared_snapchat_setup_root_content"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small.TapTap"
+                    android:textColor="?android:textColorPrimary"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="0dp"
+                    android:id="@+id/settings_shared_snapchat_setup_root_button"
+                    android:layout_marginTop="@dimen/margin_8"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:text="@string/settings_shared_snapchat_setup_root_button"
+                    android:textAllCaps="false"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small.TapTap.Medium"/>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        android:id="@+id/settings_shared_snapchat_setup_no_root"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:padding="@dimen/margin_16"
+        android:clipToPadding="false"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/settings_shared_snapchat_setup_no_root_card"
+            style="@style/Widget.Material3.CardView.Filled.TapTap"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/margin_16">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/settings_shared_snapchat_setup_no_root_title"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium.TapTap"
+                    android:textColor="?android:textColorPrimary"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:text="@string/settings_shared_snapchat_setup_no_root_content"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small.TapTap"
+                    android:textColor="?android:textColorPrimary"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="0dp"
+                    android:id="@+id/settings_shared_snapchat_setup_no_root_button"
+                    android:layout_marginTop="@dimen/margin_8"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:text="@string/settings_shared_snapchat_setup_no_root_button"
+                    android:textAllCaps="false"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small.TapTap.Medium"/>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        android:id="@+id/settings_shared_snapchat_setup_incompatible"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:padding="@dimen/margin_16"
+        android:clipToPadding="false"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/settings_shared_snapchat_setup_incompatible_card"
+            style="@style/Widget.Material3.CardView.Filled.TapTap"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/margin_16">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/settings_shared_snapchat_setup_incompatible_title"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium.TapTap"
+                    android:textColor="?android:textColorPrimary"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:text="@string/settings_shared_snapchat_setup_incompatible_content"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small.TapTap"
+                    android:textColor="?android:textColorPrimary"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="0dp"
+                    android:id="@+id/settings_shared_snapchat_setup_incompatible_button"
+                    android:layout_marginTop="@dimen/margin_8"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:text="@string/settings_shared_snapchat_setup_incompatible_button"
+                    android:textAllCaps="false"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small.TapTap.Medium"/>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

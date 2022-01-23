@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- DO NOT TRANSLATE -->
+    <string name="crash_reporting_header">Tap, Tap Crash Report</string>
+    <string name="crash_reporting_app_version">Version: %1s (%1d)</string>
+    <string name="crash_reporting_device">Device: %1s</string>
+    <string name="crash_reporting_api">API Version: %1d</string>
+    <string name="crash_reporting_fingerprint">Fingerprint: %1s</string>
+    <string name="crash_reporting_exception_header">------ Stack Trace ------</string>
+
+</resources>

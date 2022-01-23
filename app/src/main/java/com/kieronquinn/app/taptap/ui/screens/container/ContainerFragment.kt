@@ -1,196 +1,295 @@
 package com.kieronquinn.app.taptap.ui.screens.container
 
-import android.animation.ValueAnimator
-import android.content.Context
+import android.content.res.ColorStateList
+import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
+import android.view.MenuInflater
 import android.view.View
 import androidx.activity.addCallback
 import androidx.core.content.ContextCompat
-import androidx.core.os.bundleOf
-import androidx.core.view.isVisible
+import androidx.core.content.res.ResourcesCompat
+import androidx.core.graphics.ColorUtils
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
-import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.snackbar.Snackbar
 import com.kieronquinn.app.taptap.R
+import com.kieronquinn.app.taptap.components.navigation.ContainerNavigation
+import com.kieronquinn.app.taptap.components.navigation.setupWithNavigation
 import com.kieronquinn.app.taptap.databinding.FragmentContainerBinding
-import com.kieronquinn.app.taptap.utils.*
-import com.kieronquinn.app.taptap.utils.extensions.animateColorChange
-import com.kieronquinn.app.taptap.utils.extensions.animateElevationChange
-import com.kieronquinn.app.taptap.utils.extensions.dip
-import com.kieronquinn.app.taptap.utils.extensions.observe
-import com.kieronquinn.app.taptap.components.base.BaseFragment
-import com.kieronquinn.app.taptap.components.base.BoundFragment
-import com.kieronquinn.app.taptap.ui.screens.update.UpdateBottomSheetFragment
-import dev.chrisbanes.insetter.applySystemWindowInsetsToPadding
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
+import com.kieronquinn.app.taptap.ui.base.*
+import com.kieronquinn.app.taptap.ui.screens.container.ContainerSharedViewModel.FabState.*
+import com.kieronquinn.app.taptap.utils.extensions.*
+import com.kieronquinn.monetcompat.extensions.applyMonet
+import com.kieronquinn.monetcompat.extensions.toArgb
+import com.kieronquinn.monetcompat.extensions.views.applyMonet
+import com.kieronquinn.monetcompat.extensions.views.setTint
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import org.koin.android.ext.android.inject
-import org.koin.android.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class ContainerFragment: BoundFragment<FragmentContainerBinding>(FragmentContainerBinding::class.java) {
+class ContainerFragment: BoundFragment<FragmentContainerBinding>(FragmentContainerBinding::inflate) {
 
-    private val viewModel by sharedViewModel<ContainerViewModel>()
-    private val updateChecker by inject<UpdateChecker>()
+    private val googleSansMedium by lazy {
+        ResourcesCompat.getFont(requireContext(), R.font.google_sans_text_medium)
+    }
 
     private val navHostFragment by lazy {
-        childFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        childFragmentManager.findFragmentById(R.id.fragment_container_container) as NavHostFragment
     }
 
-    private val splashGraph by lazy {
-        navHostFragment.navController.navInflater.inflate(R.navigation.nav_graph_splash)
+    private val navController by lazy {
+        navHostFragment.navController
     }
 
-    private val setupGraph by lazy {
-        navHostFragment.navController.navInflater.inflate(R.navigation.nav_graph_setup)
+    private val googleSansTextMedium by lazy {
+        ResourcesCompat.getFont(requireContext(), R.font.google_sans_text_medium)
     }
 
-    private val settingsGraph by lazy {
-        navHostFragment.navController.navInflater.inflate(R.navigation.nav_graph)
+    private val updateSnackbar by lazy {
+        Snackbar.make(binding.root, getString(R.string.snackbar_update), Snackbar.LENGTH_INDEFINITE).apply {
+            applyMonet()
+            setTypeface(googleSansTextMedium)
+            anchorView = binding.fragmentContainerBottomFabContainer
+            isAnchorViewLayoutListenerEnabled = true
+            (view.background as? GradientDrawable)?.cornerRadius = resources.getDimension(R.dimen.snackbar_corner_radius)
+            setAction(R.string.snackbar_update_button){
+                viewModel.onUpdateClicked()
+            }
+            onSwipeDismissed {
+                viewModel.onUpdateDismissed()
+            }
+        }
     }
+
+    private val navigation by inject<ContainerNavigation>()
+    private val viewModel by viewModel<ContainerViewModel>()
+    private val sharedViewModel by sharedViewModel<ContainerSharedViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        view.setOnApplyWindowInsetsListener { v, insets ->
-            viewModel.notifyInsetsChanged(insets)
-            insets
-        }
-        viewModel.containerState.observe(viewLifecycleOwner){
-            navHostFragment.navController.graph = when(it){
-                is ContainerViewModel.ContainerState.Splash -> {
-                    splashGraph
-                }
-                is ContainerViewModel.ContainerState.Setup -> {
-                    setupGraph
-                }
-                is ContainerViewModel.ContainerState.Settings -> {
-                    settingsGraph
-                }
-            }
-        }
-        viewModel.shouldShowToolbar.observe(viewLifecycleOwner){
-            binding.toolbar.isVisible = it
-        }
-        viewModel.switchState.observe(viewLifecycleOwner){
-            binding.switchMain.run {
-                isVisible = it != ContainerViewModel.SwitchState.HIDDEN
-                viewModel.getSwitchText()?.let {
-                    setText(it)
-                }
-            }
-        }
-        viewModel.shouldShowMenu.observe(viewLifecycleOwner){
-            binding.toolbar.run {
-                menu.clear()
-                if(it) inflateTapMenu()
-            }
-        }
-        viewModel.shouldShowBack.observe(viewLifecycleOwner){
-            if(it){
-                binding.toolbar.setNavigationIcon(R.drawable.ic_back)
-            }else{
-                binding.toolbar.navigationIcon = null
-            }
-        }
-        viewModel.switchCheckedState.observe(viewLifecycleOwner){
-            binding.switchMain.isChecked = it
-        }
-        viewModel.shouldShowToolbarShadow.observe(viewLifecycleOwner){
-            context?.setToolbarElevationEnabled(it)
-        }
-        viewModel.shouldDisableToolbarBackground.observe(viewLifecycleOwner){
-            context?.setToolbarElevationEnabled(it)
-        }
-        binding.switchMain.setOnClickListener {
-            viewModel.onSwitchClicked()
-        }
-        navHostFragment.navController.addOnDestinationChangedListener { _, destination, _ ->
-            viewModel.setCurrentDestination(destination.id)
-            if(destination.label?.isBlank() == true) return@addOnDestinationChangedListener
-            viewModel.toolbarTitle.postValue(destination.label)
-        }
-        viewModel.toolbarTitle.observe(viewLifecycleOwner){
-            binding.toolbarTitle.text = it
-        }
-        with(binding.toolbar){
-            applySystemWindowInsetsToPadding(top = true)
-            setNavigationOnClickListener {
-                onBack()
-            }
-            navHostFragment.childFragmentManager.addOnBackStackChangedListener {
-                viewModel.notifyContainerFragmentDepthChanged(navHostFragment.childFragmentManager.backStackEntryCount)
-            }
-            setOnMenuItemClickListener {
-                viewModel.onMenuItemSelected(it, this@ContainerFragment)
-                true
-            }
-        }
-        requireActivity().onBackPressedDispatcher.addCallback {
-            onBack()
-        }
-        checkForUpdates()
-        lifecycleScope.launch {
-            withContext(Dispatchers.IO){
-                updateChecker.clearCachedDownloads(requireContext())
-            }
-            updateChecker.updateAvailable.collect { updateAvailable ->
-                binding.toolbar.menu.findItem(R.id.menu_update)?.let {
-                    it.isVisible = updateAvailable
-                }
-            }
+        setupMonet()
+        setupBack()
+        setupAppBar()
+        setupCollapsingToolbar()
+        setupToolbar()
+        setupNavigation()
+        setupStack()
+        setupBottomNavigation()
+        setupFabState()
+        setupCollapsedState()
+        setupSnackbar()
+        setupUpdateSnackbar()
+        setupColumbusSettingPhoenix()
+        viewModel.writeSettingsVersion()
+    }
+
+    private fun setupMonet() {
+        binding.root.setBackgroundColor(monet.getBackgroundColor(requireContext()))
+    }
+
+    private fun setupColumbusSettingPhoenix() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        viewModel.columbusSettingPhoenixBus.collect {
+            viewModel.phoenix()
         }
     }
 
-    private fun checkForUpdates() = lifecycleScope.launch {
-        updateChecker.getLatestRelease().collect {
-            if(it != null && childFragmentManager.findFragmentByTag("bs_update") == null && !updateChecker.hasDismissedDialog){
-                val extra = bundleOf(UpdateBottomSheetFragment.KEY_UPDATE to it)
-                UpdateBottomSheetFragment().apply {
-                    arguments = extra
-                }.show(childFragmentManager, "bs_update")
-            }
+    private fun setupBottomNavigation() = with(binding.fragmentContainerBottomNavigation) {
+        binding.root.onApplyInsets { _, insets ->
+            updatePadding(bottom = insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom)
         }
-    }
-
-    private fun onBack(){
-        (navHostFragment.childFragmentManager.primaryNavigationFragment as? BaseFragment)?.onBackPressed() ?: run {
-            if(!navHostFragment.navController.navigateUp()) requireActivity().finish()
-        }
-    }
-
-    private fun MaterialToolbar.inflateTapMenu(){
-        inflateMenu(R.menu.menu_main)
-        menu.findItem(R.id.menu_update)?.isVisible = updateChecker.updateAvailable.value
-    }
-
-    private var toolbarColorAnimation: ValueAnimator? = null
-    private var toolbarElevationAnimation: ValueAnimator? = null
-
-    private fun Context.setToolbarElevationEnabled(enabled: Boolean){
-        val toolbarColor = when {
-            viewModel.shouldDisableToolbarBackground.value == true -> {
-                ContextCompat.getColor(this, android.R.color.transparent)
-            }
-            enabled -> {
-                ContextCompat.getColor(this, R.color.toolbarColor)
-            }
-            else -> {
-                ContextCompat.getColor(this, R.color.windowBackground)
-            }
-        }
-        val elevation = if(enabled) dip(8).toFloat() else 0f
-        val initialBeforeColor = if(toolbarColorAnimation == null){
-            ContextCompat.getColor(this, R.color.toolbarColor)
+        applyMonet()
+        val color = if(requireContext().isDarkMode){
+            monet.getMonetColors().neutral2[800]?.toArgb()
         }else{
-            null
+            monet.getMonetColors().neutral2[100]?.toArgb()
+        } ?: monet.getBackgroundColor(requireContext())
+        val indicatorColor = if(requireContext().isDarkMode){
+            monet.getMonetColors().accent2[700]?.toArgb()
+        }else{
+            monet.getMonetColors().accent2[200]?.toArgb()
         }
-        toolbarColorAnimation?.cancel()
-        toolbarElevationAnimation?.cancel()
-        toolbarColorAnimation = binding.toolbar.animateColorChange(beforeColor = initialBeforeColor, afterColor = toolbarColor)
-        binding.switchMain.animateColorChange(beforeColor = initialBeforeColor, afterColor = toolbarColor)
-        toolbarElevationAnimation = binding.toolbar.animateElevationChange(elevation)
-        binding.switchMain.animateElevationChange(elevation)
+        setBackgroundColor(ColorUtils.setAlphaComponent(color, 235))
+        itemActiveIndicatorColor = ColorStateList(
+            arrayOf(intArrayOf(android.R.attr.state_selected), intArrayOf()),
+            intArrayOf(indicatorColor ?: Color.TRANSPARENT, Color.TRANSPARENT)
+        )
+        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+            //The onItemClicked flow can only be attached once due to its callbacks, so we share it to split the logic
+            val flows = onItemClicked().shareIn(lifecycleScope, SharingStarted.Eagerly)
+            launch {
+                flows.collect {
+                    viewModel.onNavigationItemClicked(it)
+                }
+            }
+            launch {
+                flows.distinctUntilChanged().collect {
+                    binding.appBar.setExpanded(true)
+                }
+            }
+        }
+    }
+
+    private fun setupAppBar() = with(binding.appBar) {
+        onApplyInsets { view, insets ->
+            view.updatePadding(top = insets.getInsets(WindowInsetsCompat.Type.statusBars()).top)
+        }
+    }
+
+    private fun setupCollapsingToolbar() = with(binding.collapsingToolbar) {
+        setBackgroundColor(monet.getBackgroundColor(requireContext()))
+        setContentScrimColor(monet.getBackgroundColorSecondary(requireContext()) ?: monet.getBackgroundColor(requireContext()))
+        setExpandedTitleTypeface(googleSansMedium)
+        setCollapsedTitleTypeface(googleSansMedium)
+    }
+
+    private fun setupToolbar() = with(binding.toolbar) {
+        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+            onNavigationIconClicked().collect {
+                (navHostFragment.getTopFragment() as? ProvidesBack)?.let {
+                    if(it.onBackPressed()) return@collect
+                }
+                viewModel.onBackPressed()
+            }
+        }
+    }
+
+    private fun setupBack() {
+        requireActivity().onBackPressedDispatcher.addCallback(this) {
+            (navHostFragment.getTopFragment() as? ProvidesBack)?.let {
+                if(it.onBackPressed()) return@addCallback
+            }
+            if(!navController.popBackStack()) {
+                requireActivity().finish()
+            }
+        }
+    }
+
+    private fun setupNavigation() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        launch {
+            navHostFragment.setupWithNavigation(navigation)
+        }
+        launch {
+            navController.onDestinationChanged().collect {
+                val label = it.label
+                if(label == null || label.isBlank()) return@collect
+                binding.collapsingToolbar.title = label
+                binding.toolbar.title = label
+            }
+        }
+    }
+
+    private fun setupStack() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        navController.onDestinationChanged().collect {
+            binding.root.awaitPost()
+            onTopFragmentChanged(navHostFragment.getTopFragment() ?: return@collect)
+        }
+    }
+
+    private fun setupCollapsedState() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        binding.appBar.collapsedState().collect {
+            navHostFragment.getTopFragment()?.rememberAppBarCollapsed(it)
+        }
+    }
+
+    private fun onTopFragmentChanged(topFragment: Fragment){
+        val backIcon = if(topFragment is BackAvailable){
+            ContextCompat.getDrawable(requireContext(), R.drawable.ic_back)
+        } else null
+        if(topFragment is ProvidesOverflow){
+            setupMenu(topFragment)
+        }else{
+            setupMenu(null)
+        }
+        if(topFragment is LockCollapsed) {
+            binding.appBar.setExpanded(false)
+        }else {
+            binding.appBar.setExpanded(!topFragment.getRememberedAppBarCollapsed())
+        }
+        (topFragment as? ProvidesTitle)?.let {
+            val label = it.getTitle()
+            if(label == null || label.isBlank()) return@let
+            binding.collapsingToolbar.title = label
+            binding.toolbar.title = label
+        }
+        binding.toolbar.navigationIcon = backIcon
+        viewModel.setCanShowSnackbar(topFragment is CanShowSnackbar)
+    }
+
+    private fun setupMenu(menuProvider: ProvidesOverflow?){
+        val menu = binding.toolbar.menu
+        val menuInflater = MenuInflater(requireContext())
+        menu.clear()
+        menuProvider?.inflateMenu(menuInflater, menu)
+        binding.toolbar.setOnMenuItemClickListener {
+            menuProvider?.onMenuItemSelected(it) ?: false
+        }
+    }
+
+    private fun setupFabState() {
+        binding.fragmentContainerBottomFab.setTint(monet.getSecondaryColor(requireContext()))
+        binding.fragmentContainerBottomFabContainer.onApplyInsets { view, insets ->
+            view.updatePadding(bottom = insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom)
+        }
+        handleFabState(sharedViewModel.fabState.value)
+        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+            sharedViewModel.fabState.collect {
+                handleFabState(it)
+            }
+        }
+    }
+
+    private fun handleFabState(fabState: ContainerSharedViewModel.FabState) {
+        when(fabState){
+            is Hidden -> {
+                binding.fragmentContainerBottomFabContainer.alpha = 0f
+                binding.fragmentContainerBottomFab.hide()
+                binding.fragmentContainerBottomFab.setOnClickListener(null)
+            }
+            is Shown -> {
+                binding.fragmentContainerBottomFabContainer.alpha = 1f
+                binding.fragmentContainerBottomFab.show()
+                binding.fragmentContainerBottomFab.text = getString(fabState.action.labelRes)
+                binding.fragmentContainerBottomFab.setIconResource(fabState.action.iconRes)
+                binding.fragmentContainerBottomFab.setOnClickListener {
+                    sharedViewModel.onFabClicked(fabState.action)
+                }
+            }
+        }
+    }
+
+    private fun setupSnackbar() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        sharedViewModel.snackbarBus.collect {
+            Snackbar.make(binding.root, it, Snackbar.LENGTH_LONG).apply {
+                applyMonet()
+                anchorView = binding.fragmentContainerBottomNavigation
+                isAnchorViewLayoutListenerEnabled = true
+                setTypeface(googleSansTextMedium)
+                (view.background as? GradientDrawable)?.cornerRadius = resources.getDimension(R.dimen.snackbar_corner_radius)
+            }.show()
+        }
+    }
+
+    private fun setupUpdateSnackbar() {
+        handleUpdateSnackbar(viewModel.showUpdateSnackbar.value)
+        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+            viewModel.showUpdateSnackbar.collect {
+                handleUpdateSnackbar(it)
+            }
+        }
+    }
+
+    private fun handleUpdateSnackbar(show: Boolean){
+        if(show){
+            updateSnackbar.show()
+        }else{
+            updateSnackbar.dismiss()
+        }
     }
 
 }

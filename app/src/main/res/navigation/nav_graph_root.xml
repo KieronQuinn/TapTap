@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_root"
+    app:startDestination="@id/decisionFragment">
+
+    <fragment
+        android:id="@+id/decisionFragment"
+        android:name="com.kieronquinn.app.taptap.ui.screens.decision.DecisionFragment"
+        android:label="DecisionFragment" >
+        <action
+            android:id="@+id/action_decisionFragment_to_nav_graph_setup"
+            app:destination="@id/nav_graph_setup" />
+        <action
+            android:id="@+id/action_decisionFragment_to_nav_graph_settings"
+            app:destination="@id/nav_graph_settings" />
+        <action
+            android:id="@+id/action_decisionFragment_to_setupUpgradeFragment"
+            app:destination="@id/setupUpgradeFragment" />
+        <action
+            android:id="@+id/action_decisionFragment_to_noGyroscopeFragment"
+            app:destination="@id/noGyroscopeFragment" />
+        <action
+            android:id="@+id/action_decisionFragment_to_disableColumbusFragment"
+            app:destination="@id/disableColumbusFragment" />
+    </fragment>
+
+    <include app:graph="@navigation/nav_graph_setup" />
+    <include app:graph="@navigation/nav_graph_settings" />
+    <action
+        android:id="@+id/action_global_nav_graph_settings"
+        app:destination="@id/nav_graph_settings"
+        app:popUpTo="@navigation/nav_graph_root"
+        app:popUpToInclusive="true" />
+    <action
+        android:id="@+id/action_global_nav_graph_setup"
+        app:destination="@id/nav_graph_setup"
+        app:popUpTo="@navigation/nav_graph_root"
+        app:popUpToInclusive="true" />
+
+    <dialog
+        android:id="@+id/sharedInternetPermissionDialogFragment"
+        android:name="com.kieronquinn.app.taptap.ui.screens.settings.shared.internet.SettingsSharedInternetPermissionDialogFragment"
+        android:label=" "
+        tools:layout="@layout/fragment_dialog_internet_permission" />
+    <action
+        android:id="@+id/action_global_sharedInternetPermissionDialogFragment"
+        app:destination="@id/sharedInternetPermissionDialogFragment" />
+    <fragment
+        android:id="@+id/setupUpgradeFragment"
+        android:name="com.kieronquinn.app.taptap.ui.screens.setup.upgrade.SetupUpgradeFragment"
+        android:label="SetupUpgradeFragment"
+        tools:layout="@layout/fragment_setup_upgrade" />
+    <fragment
+        android:id="@+id/noGyroscopeFragment"
+        android:name="com.kieronquinn.app.taptap.ui.screens.nogyro.NoGyroscopeFragment"
+        android:label="NoGyroscopeFragment"
+        tools:layout="@layout/fragment_no_gyroscope" />
+    <fragment
+        android:id="@+id/disableColumbusFragment"
+        android:name="com.kieronquinn.app.taptap.ui.screens.disablecolumbus.DisableColumbusFragment"
+        android:label="DisableColumbusFragment"
+        tools:layout="@layout/fragment_disable_columbus" />
+
+</navigation>
