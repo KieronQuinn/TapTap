@@ -1,6 +1,8 @@
 package com.kieronquinn.app.taptap.utils.extensions
 
+import android.Manifest
 import android.content.Context
+import android.content.pm.PackageManager
 import android.os.Build
 import android.telephony.PhoneStateListener
 import android.telephony.TelephonyCallback
@@ -10,9 +12,14 @@ import androidx.core.content.ContextCompat
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.flow
 
 fun Context.onCallStateChanged(): Flow<Unit> {
     val telephonyManager = getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
+    if(checkCallingOrSelfPermission(Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED){
+        //Return an empty flow as the user has revoked the permission
+        return flow { }
+    }
     return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
         telephonyManager.onCallStateChangedS(this)
     } else {

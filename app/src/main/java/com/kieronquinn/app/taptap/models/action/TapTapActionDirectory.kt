@@ -481,11 +481,11 @@ enum class ActionDataTypes {
     QUICK_SETTING
 }
 
-sealed class ActionSupportedRequirement {
-    data class MinSdk(val version: Int): ActionSupportedRequirement()
-    data class Intent(val intent: android.content.Intent): ActionSupportedRequirement()
-    object Tasker: ActionSupportedRequirement()
-    object Snapchat: ActionSupportedRequirement()
+sealed class ActionSupportedRequirement(@StringRes val description: Int) {
+    data class MinSdk(val version: Int): ActionSupportedRequirement(R.string.action_unsupported_reason_min_sdk)
+    data class Intent(val intent: android.content.Intent): ActionSupportedRequirement(R.string.action_unsupported_reason_min_sdk)
+    object Tasker: ActionSupportedRequirement(R.string.action_unsupported_reason_tasker)
+    object Snapchat: ActionSupportedRequirement(R.string.action_unsupported_reason_snapchat)
 }
 
 sealed class ActionRequirement {

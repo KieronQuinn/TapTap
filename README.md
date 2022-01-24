@@ -43,9 +43,4 @@ To request a feature, either make an issue stating "Feature Request", or post a 
 
 ## Building Tap, Tap
 
-If you would prefer to build from source, Tap, Tap can be built like any other Android app, simply by opening the source in Android Studio and running the app. Please note that Tap, Tap uses the [techspecs.io](https://techspecs.io/) API for retrieving device specifications in order to recommend the best models for the gesture to use, you must get your own API key and base URL and add them to your `local.properties file`, or specification lookup will be disabled:
-
-```
-techspecs.baseurl=<your base URL>
-techspecs.apikey=<your API key>
-```
+If you would prefer to build from source, Tap, Tap can be built like any other Android app, simply by opening the source in Android Studio and running the app.

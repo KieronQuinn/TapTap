@@ -8,6 +8,8 @@ import androidx.lifecycle.viewModelScope
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.components.navigation.ContainerNavigation
 import com.kieronquinn.app.taptap.models.action.ActionDataTypes
+import com.kieronquinn.app.taptap.models.action.ActionRequirement
+import com.kieronquinn.app.taptap.models.action.ActionSupportedRequirement
 import com.kieronquinn.app.taptap.models.action.TapTapActionDirectory
 import com.kieronquinn.app.taptap.models.shared.SharedArgument
 import com.kieronquinn.app.taptap.repositories.actions.ActionsRepository
@@ -33,7 +35,7 @@ abstract class SettingsActionsAddGenericViewModel: ViewModel() {
     abstract suspend fun checkRoot(): Boolean
     abstract fun getFormattedDescriptionForAction(context: Context, action: TapTapActionDirectory, data: String?): CharSequence
     abstract fun isActionDataSatisfied(context: Context, data: ActionDataTypes, extraData: String): Boolean
-    abstract fun isActionSupported(context: Context, action: TapTapActionDirectory): Boolean
+    abstract fun getActionSupportedRequirement(context: Context, action: TapTapActionDirectory): ActionSupportedRequirement?
 
 }
 
@@ -105,8 +107,8 @@ abstract class SettingsActionsAddGenericViewModelImpl(private val navigation: Co
         return actionsRepository.isActionDataSatisfied(context, data, extraData)
     }
 
-    override fun isActionSupported(context: Context, action: TapTapActionDirectory): Boolean {
-        return actionsRepository.isActionSupported(context, action)
+    override fun getActionSupportedRequirement(context: Context, action: TapTapActionDirectory): ActionSupportedRequirement? {
+        return actionsRepository.getUnsupportedReason(context, action)
     }
 
     override fun getFormattedDescriptionForAction(

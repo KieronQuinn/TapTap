@@ -13,18 +13,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.databinding.ItemSettingsGatesGateSelectorItemBinding
 import com.kieronquinn.app.taptap.models.gate.GateRequirement
+import com.kieronquinn.app.taptap.models.gate.GateSupportedRequirement
 import com.kieronquinn.app.taptap.models.gate.TapTapGateDirectory
 import com.kieronquinn.app.taptap.ui.views.LifecycleAwareRecyclerView
 import com.kieronquinn.app.taptap.utils.extensions.addRippleForeground
 import com.kieronquinn.app.taptap.utils.extensions.onClicked
 import com.kieronquinn.app.taptap.utils.extensions.removeRippleForeground
 import com.kieronquinn.monetcompat.core.MonetCompat
-import kotlinx.coroutines.flow.collect
 
 class SettingsGatesGateSelectorAdapter(
     recyclerView: RecyclerView,
     var items: List<TapTapGateDirectory>,
-    private val isGateSupported: (Context, TapTapGateDirectory) -> Boolean,
+    private val getGateSupportedRequirement: (Context, TapTapGateDirectory) -> GateSupportedRequirement?,
     private val onChipClicked: (GateRequirement.UserDisplayedGateRequirement) -> Unit,
     private val onGateClicked: (TapTapGateDirectory) -> Unit,
     private val isRequirement: Boolean
@@ -67,8 +67,8 @@ class SettingsGatesGateSelectorAdapter(
     private fun ItemSettingsGatesGateSelectorItemBinding.setup(gate: TapTapGateDirectory, lifecycle: Lifecycle) {
         val context = root.context
         root.backgroundTintList = ColorStateList.valueOf(monet.getPrimaryColor(context))
-        val isAvailable = isGateSupported(context, gate)
-        if(isAvailable){
+        val supportedRequirement = getGateSupportedRequirement(context, gate)
+        if(supportedRequirement == null){
             itemSettingsGateSelectorTitle.alpha = 1f
             itemSettingsGateSelectorContent.alpha = 1f
             itemSettingsGateSelectorIcon.alpha = 1f
@@ -87,16 +87,16 @@ class SettingsGatesGateSelectorAdapter(
         }
         itemSettingsGateSelectorTitle.text = context.getText(gate.nameRes)
         itemSettingsGateSelectorIcon.setImageResource(gate.iconRes)
-        itemSettingsGateSelectorContent.text = if(isAvailable) {
+        itemSettingsGateSelectorContent.text = if(supportedRequirement == null) {
             if(isRequirement) {
                 context.getText(gate.whenDescriptionRes)
             }else{
                 context.getText(gate.descriptionRes)
             }
         }else{
-            context.getString(R.string.gate_selector_unavailable)
+            context.getString(R.string.gate_selector_unavailable, context.getString(supportedRequirement.description))
         }
-        val requirement = if(isAvailable) gate.gateRequirement?.firstOrNull { it is GateRequirement.UserDisplayedGateRequirement } else null
+        val requirement = if(supportedRequirement == null) gate.gateRequirement?.firstOrNull { it is GateRequirement.UserDisplayedGateRequirement } else null
         itemSettingsGateSelectorChip.isVisible = requirement != null
         if(requirement != null){
             itemSettingsGateSelectorChip.run {

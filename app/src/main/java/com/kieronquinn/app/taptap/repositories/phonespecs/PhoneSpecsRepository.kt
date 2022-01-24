@@ -65,31 +65,17 @@ class PhoneSpecsRepositoryImpl(context: Context, private val gson: Gson, private
             }
             //Don't continue if internet access is not allowed
             if(!settings.internetAllowed.get()) return@withContext null
-            //Base URL not set
-            val service = phoneSpecsService ?: return@withContext null
-            val searchResults = service.searchModel(model).execute().body()
+            val specs = phoneSpecsService.getModelSpecs(model).execute().body()
                 ?: return@withContext null
-            if (searchResults.success != 1) return@withContext null
-            val data = searchResults.data ?: return@withContext null
-            val results = data.results ?: return@withContext null
-            val bestResult = results.firstOrNull() ?: return@withContext null
-            val resultId = bestResult.meta?.id ?: return@withContext null
-            val specs = phoneSpecsService.getModelSpecs(resultId).execute().body()
-                ?: return@withContext null
-            if (specs.success != 1) return@withContext null
-            val specsData = specs.data ?: return@withContext null
-            val specsProducts = specsData.products ?: return@withContext null
-            val firstSpecProduct = specsProducts.firstOrNull() ?: return@withContext null
-            val firstSpecDesign = firstSpecProduct.design ?: return@withContext null
-            val firstSpecDesignHeight = firstSpecDesign.height ?: return@withContext null
-            val firstSpecModel = firstSpecProduct.product?.model ?: return@withContext null
-            val firstSpecImage = firstSpecProduct.image?.front
+            val name = specs.name ?: return@withContext null
+            val height = specs.height ?: return@withContext null
+            val image = specs.image
             //Parse out the dimensions
-            val dimensions = deviceDimensionsRegex.matchEntire(firstSpecDesignHeight)?.groupValues
+            val dimensions = deviceDimensionsRegex.matchEntire(height)?.groupValues
                 ?: return@withContext null
             val heightMm = dimensions[1].toDoubleOrNull() ?: return@withContext null
             val heightIn = dimensions[2].toDoubleOrNull() ?: return@withContext null
-            return@withContext DeviceSpecs(firstSpecModel, firstSpecImage, heightMm, heightIn).also {
+            return@withContext DeviceSpecs(name, image, heightMm, heightIn).also {
                 saveSpecsToCache(model, it)
             }
         } catch (e: Exception) {

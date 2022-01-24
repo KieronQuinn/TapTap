@@ -11,10 +11,6 @@ plugins {
 //Permission for Columbus to use
 rootProject.ext.set("columbusPermission", "com.google.android.columbus.taptap.permission.CONFIGURE_COLUMBUS_GESTURE")
 
-//Local properties for storing API keys
-def localProperties = new Properties()
-localProperties.load(new FileInputStream(rootProject.file("local.properties")))
-
 def tagName = '1.0'
 
 android {
@@ -25,8 +21,8 @@ android {
         applicationId "com.kieronquinn.app.taptap"
         minSdk 24
         targetSdk 32
-        versionCode 1000
-        versionName "1.0"
+        versionCode 1010
+        versionName "1.0.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -36,8 +32,6 @@ android {
         buildConfigField "String", "BROADCAST_ACTION_START", "\"$BROADCAST_ACTION_START\""
         buildConfigField "String", "BROADCAST_ACTION_STOP", "\"$BROADCAST_ACTION_STOP\""
         buildConfigField "String", "TAG_NAME", "\"${tagName}\""
-        buildConfigField "String", "TECHSPECS_BASE_URL", "\"${localProperties['techspecs.baseurl']}\""
-        buildConfigField "String", "TECHSPECS_API_KEY", "\"${localProperties['techspecs.apikey']}\""
         manifestPlaceholders.broadcast_action_start = BROADCAST_ACTION_START
         manifestPlaceholders.broadcast_action_stop = BROADCAST_ACTION_STOP
 

@@ -44,6 +44,8 @@
         <entry key="..\:/Users/Kieron/Android/AndroidStudioWorkspace/TapTapv2/app/src/main/res/layout/item_settings_slider_item.xml" value="0.32891246684350134" />
         <entry key="..\:/Users/Kieron/Android/AndroidStudioWorkspace/TapTapv2/app/src/main/res/menu/menu_bottom_nav_main.xml" value="0.19078947368421054" />
         <entry key="..\:/Users/Kieron/Android/AndroidStudioWorkspace/TapTapv2/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.29375" />
+        <entry key="app/src/main/res/drawable/ic_gate_battery_saver.xml" value="0.2989583333333333" />
+        <entry key="app/src/main/res/drawable/ic_gate_low_battery.xml" value="0.2989583333333333" />
       </map>
     </option>
   </component>

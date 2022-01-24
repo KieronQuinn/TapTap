@@ -43,7 +43,8 @@ enum class TapTapGateDirectory(val clazz: Class<*>, val category: TapTapGateCate
     ALARM(AlarmGate::class.java, TapTapGateCategory.EVENTS, R.string.gate_alarm, R.string.gate_alarm_desc, R.drawable.ic_gate_alarm, R.string.gate_alarm_desc_when),
     FOLDABLE_CLOSED(FoldableClosedGate::class.java, TapTapGateCategory.DEVICE, R.string.gate_foldable_closed, R.string.gate_foldable_closed_desc, R.drawable.ic_gate_foldable_closed, R.string.gate_foldable_closed_desc_when, gateSupportedRequirement = GateSupportedRequirement.Foldable),
     FOLDABLE_OPEN(FoldableOpenGate::class.java, TapTapGateCategory.DEVICE, R.string.gate_foldable_open, R.string.gate_foldable_open_desc, R.drawable.ic_gate_foldable_open, R.string.gate_foldable_open_desc_when, gateSupportedRequirement = GateSupportedRequirement.Foldable),
-    LOW_BATTERY(LowBatteryGate::class.java, TapTapGateCategory.DEVICE, R.string.gate_low_battery, R.string.gate_low_battery_desc, R.drawable.ic_gate_low_battery, R.string.gate_low_battery_desc_when);
+    LOW_BATTERY(LowBatteryGate::class.java, TapTapGateCategory.DEVICE, R.string.gate_low_battery, R.string.gate_low_battery_desc, R.drawable.ic_gate_low_battery, R.string.gate_low_battery_desc_when),
+    BATTERY_SAVER(BatterySaverGate::class.java, TapTapGateCategory.DEVICE, R.string.gate_battery_saver, R.string.gate_battery_saver_desc, R.drawable.ic_gate_battery_saver, R.string.gate_battery_saver_desc_when);
 
     companion object {
         fun valueFor(name: String): TapTapGateDirectory? {
@@ -56,9 +57,9 @@ enum class GateDataTypes {
     PACKAGE_NAME
 }
 
-sealed class GateSupportedRequirement {
-    data class MinSdk(val version: Int): GateSupportedRequirement()
-    object Foldable: GateSupportedRequirement()
+sealed class GateSupportedRequirement(@StringRes val description: Int) {
+    data class MinSdk(val version: Int): GateSupportedRequirement(R.string.gate_unsupported_reason_min_sdk)
+    object Foldable: GateSupportedRequirement(R.string.gate_unsupported_reason_foldable)
 }
 
 sealed class GateRequirement {

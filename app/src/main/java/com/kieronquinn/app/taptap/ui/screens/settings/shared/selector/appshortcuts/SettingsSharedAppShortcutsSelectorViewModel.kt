@@ -96,10 +96,14 @@ class SettingsSharedAppShortcutsSelectorViewModelImpl(context: Context, private 
     }
 
     @SuppressLint("NewApi")
-    private suspend fun getAppShortcuts() = service.runWithService {
-        return@runWithService it.getShortcuts(ShortcutQueryWrapper(LauncherApps.ShortcutQuery().apply {
-            setQueryFlags(LauncherApps.ShortcutQuery.FLAG_MATCH_DYNAMIC or LauncherApps.ShortcutQuery.FLAG_MATCH_MANIFEST or LauncherApps.ShortcutQuery.FLAG_MATCH_PINNED_BY_ANY_LAUNCHER)
-        })) as ParceledListSlice<ShortcutInfo>
+    private suspend fun getAppShortcuts() = try {
+        service.runWithService {
+            it.getShortcuts(ShortcutQueryWrapper(LauncherApps.ShortcutQuery().apply {
+                setQueryFlags(LauncherApps.ShortcutQuery.FLAG_MATCH_DYNAMIC or LauncherApps.ShortcutQuery.FLAG_MATCH_MANIFEST or LauncherApps.ShortcutQuery.FLAG_MATCH_PINNED_BY_ANY_LAUNCHER)
+            })) as ParceledListSlice<ShortcutInfo>
+        }
+    }catch(e: Exception){
+        ShizukuServiceResponse.Failed(Reason.Custom(R.string.settings_shared_shortcuts_selector_error))
     }
 
     private suspend fun List<ShortcutInfo>.toShortcutItems(context: Context) = service.runWithService { service ->

@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.components.navigation.ContainerNavigation
 import com.kieronquinn.app.taptap.models.gate.GateDataTypes
+import com.kieronquinn.app.taptap.models.gate.GateSupportedRequirement
 import com.kieronquinn.app.taptap.models.gate.TapTapGateDirectory
 import com.kieronquinn.app.taptap.models.shared.SharedArgument
 import com.kieronquinn.app.taptap.repositories.gates.GatesRepository
@@ -19,7 +20,7 @@ abstract class SettingsGatesAddGenericViewModel: ViewModel() {
     abstract fun unwindToGates()
     abstract fun getFormattedDescriptionForGate(context: Context, gate: TapTapGateDirectory, data: String?): CharSequence
     abstract fun isGateDataSatisfied(context: Context, data: GateDataTypes, extraData: String): Boolean
-    abstract fun isGateSupported(context: Context, gate: TapTapGateDirectory): Boolean
+    abstract fun getGateSupportedRequirement(context: Context, gate: TapTapGateDirectory): GateSupportedRequirement?
 
 }
 
@@ -47,8 +48,8 @@ abstract class SettingsGatesAddGenericViewModelImpl(private val navigation: Cont
         }
     }
 
-    override fun isGateSupported(context: Context, gate: TapTapGateDirectory): Boolean {
-        return gatesRepository.isGateSupported(context, gate)
+    override fun getGateSupportedRequirement(context: Context, gate: TapTapGateDirectory): GateSupportedRequirement? {
+        return gatesRepository.getGateSupportedRequirement(context, gate)
     }
 
     override fun getFormattedDescriptionForGate(

@@ -10,6 +10,7 @@ import com.google.android.columbus.sensors.GestureSensor
 import com.kieronquinn.app.taptap.components.accessibility.TapTapAccessibilityRouter
 import com.kieronquinn.app.taptap.components.columbus.actions.TapTapAction
 import com.kieronquinn.app.taptap.components.columbus.gates.TapTapWhenGate
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
 import org.koin.core.component.inject
 
@@ -48,11 +49,25 @@ class QuickSettingsExpandAction(
         isTripleTap: Boolean
     ) {
         if(showAccessibilityNotificationIfNeeded()) return
-        accessibilityRouter.postInput(
-            TapTapAccessibilityRouter.AccessibilityInput.PerformGlobalAction(
-                if(isQuickSettingsOpen) closeAction else AccessibilityService.GLOBAL_ACTION_QUICK_SETTINGS
+        if(isQuickSettingsOpen) {
+            accessibilityRouter.postInput(
+                TapTapAccessibilityRouter.AccessibilityInput.PerformGlobalAction(
+                    closeAction
+                )
             )
-        )
+            delay(500L)
+            accessibilityRouter.postInput(
+                TapTapAccessibilityRouter.AccessibilityInput.PerformGlobalAction(
+                    closeAction
+                )
+            )
+        }else{
+            accessibilityRouter.postInput(
+                TapTapAccessibilityRouter.AccessibilityInput.PerformGlobalAction(
+                    AccessibilityService.GLOBAL_ACTION_QUICK_SETTINGS
+                )
+            )
+        }
     }
 
 }
