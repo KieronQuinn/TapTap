@@ -67,7 +67,9 @@ class TapTapRootServiceRepositoryImpl(context: Context): TapTapRootServiceReposi
                     serviceConnection = null
                 }
             }
-            RootService.bind(serviceIntent, serviceConnection)
+            withContext(Dispatchers.Main) {
+                RootService.bind(serviceIntent, serviceConnection)
+            }
         }
     }
 

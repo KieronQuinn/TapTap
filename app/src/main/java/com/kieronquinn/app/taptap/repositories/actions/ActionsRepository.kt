@@ -84,6 +84,11 @@ abstract class ActionsRepository {
         actionDirectory: TapTapActionDirectory
     ): Boolean
 
+    abstract fun getUnsupportedReason(
+        context: Context,
+        actionDirectory: TapTapActionDirectory
+    ): ActionSupportedRequirement?
+
     abstract fun isActionDataSatisfied(
         context: Context,
         data: ActionDataTypes,
@@ -297,17 +302,40 @@ class ActionsRepositoryImpl(
         }
     }
 
+    override fun getUnsupportedReason(
+        context: Context,
+        actionDirectory: TapTapActionDirectory
+    ): ActionSupportedRequirement? {
+        return when (actionDirectory.actionSupportedRequirement) {
+            is ActionSupportedRequirement.MinSdk -> {
+                return if(Build.VERSION.SDK_INT < actionDirectory.actionSupportedRequirement.version){
+                    actionDirectory.actionSupportedRequirement
+                }else null
+            }
+            is ActionSupportedRequirement.Intent -> {
+                return if(context.packageManager.resolveActivity(actionDirectory.actionSupportedRequirement.intent, 0) == null){
+                    actionDirectory.actionSupportedRequirement
+                }else null
+            }
+            is ActionSupportedRequirement.Tasker -> {
+                return if(!context.isTaskerInstalled()){
+                    actionDirectory.actionSupportedRequirement
+                }else null
+            }
+            is ActionSupportedRequirement.Snapchat -> {
+                return if(!context.isPackageInstalled(SnapchatAction.PACKAGE_NAME)){
+                    actionDirectory.actionSupportedRequirement
+                }else null
+            }
+            else -> null
+        }
+    }
+
     override fun isActionSupported(
         context: Context,
         actionDirectory: TapTapActionDirectory
     ): Boolean {
-        return when (actionDirectory.actionSupportedRequirement) {
-            null -> true
-            is ActionSupportedRequirement.MinSdk -> Build.VERSION.SDK_INT >= actionDirectory.actionSupportedRequirement.version
-            is ActionSupportedRequirement.Intent -> context.packageManager.resolveActivity(actionDirectory.actionSupportedRequirement.intent, 0) != null
-            is ActionSupportedRequirement.Tasker -> context.isTaskerInstalled()
-            is ActionSupportedRequirement.Snapchat -> context.isPackageInstalled(SnapchatAction.PACKAGE_NAME)
-        }
+        return getUnsupportedReason(context, actionDirectory) == null
     }
 
     override fun getFormattedDescriptionForAction(

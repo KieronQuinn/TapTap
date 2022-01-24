@@ -3,41 +3,22 @@ package com.kieronquinn.app.taptap.ui.screens.settings.actions.selector.actions
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.View
-import androidx.core.os.bundleOf
-import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
-import androidx.core.view.updatePadding
-import androidx.fragment.app.setFragmentResult
-import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.gson.Gson
 import com.kieronquinn.app.taptap.R
-import com.kieronquinn.app.taptap.components.columbus.actions.custom.LaunchAppShortcutAction
 import com.kieronquinn.app.taptap.databinding.FragmentSettingsActionsAddActionSelectorBinding
-import com.kieronquinn.app.taptap.models.action.ActionDataTypes
-import com.kieronquinn.app.taptap.models.action.ActionRequirement
-import com.kieronquinn.app.taptap.models.action.TapTapActionDirectory
-import com.kieronquinn.app.taptap.models.action.TapTapUIAction
 import com.kieronquinn.app.taptap.ui.base.BackAvailable
-import com.kieronquinn.app.taptap.ui.base.BoundFragment
 import com.kieronquinn.app.taptap.ui.base.ProvidesTitle
-import com.kieronquinn.app.taptap.ui.screens.container.ContainerSharedViewModel
-import com.kieronquinn.app.taptap.ui.screens.settings.actions.doubletap.SettingsActionsDoubleFragment
 import com.kieronquinn.app.taptap.ui.screens.settings.actions.selector.SettingsActionsAddGenericFragment
 import com.kieronquinn.app.taptap.ui.screens.settings.actions.selector.actions.SettingsActionsActionSelectorViewModel.*
-import com.kieronquinn.app.taptap.ui.screens.settings.shared.selector.appshortcuts.SettingsSharedAppShortcutsSelectorFragment
 import com.kieronquinn.app.taptap.utils.extensions.applyBottomInsets
-import com.kieronquinn.app.taptap.utils.extensions.onApplyInsets
 import com.kieronquinn.app.taptap.utils.extensions.onChanged
 import com.kieronquinn.app.taptap.utils.extensions.onClicked
 import com.kieronquinn.monetcompat.extensions.views.applyMonet
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.launch
-import org.koin.android.ext.android.inject
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SettingsActionsActionSelectorFragment :
@@ -47,7 +28,7 @@ class SettingsActionsActionSelectorFragment :
     private val args by navArgs<SettingsActionsActionSelectorFragmentArgs>()
 
     private val adapter by lazy {
-        SettingsActionsActionSelectorAdapter(binding.settingsActionsAddActionSelectorRecyclerview, emptyList(), viewModel::isActionSupported, ::showSnackbarForChip, ::onActionClicked)
+        SettingsActionsActionSelectorAdapter(binding.settingsActionsAddActionSelectorRecyclerview, emptyList(), viewModel::getActionSupportedRequirement, ::showSnackbarForChip, ::onActionClicked)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

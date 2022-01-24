@@ -13,18 +13,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.databinding.ItemSettingsActionsActionSelectorItemBinding
 import com.kieronquinn.app.taptap.models.action.ActionRequirement
+import com.kieronquinn.app.taptap.models.action.ActionSupportedRequirement
 import com.kieronquinn.app.taptap.models.action.TapTapActionDirectory
 import com.kieronquinn.app.taptap.ui.views.LifecycleAwareRecyclerView
 import com.kieronquinn.app.taptap.utils.extensions.addRippleForeground
 import com.kieronquinn.app.taptap.utils.extensions.onClicked
 import com.kieronquinn.app.taptap.utils.extensions.removeRippleForeground
 import com.kieronquinn.monetcompat.core.MonetCompat
-import kotlinx.coroutines.flow.collect
 
 class SettingsActionsActionSelectorAdapter(
     recyclerView: RecyclerView,
     var items: List<TapTapActionDirectory>,
-    private val isActionSupported: (Context, TapTapActionDirectory) -> Boolean,
+    private val getActionSupportedRequirement: (Context, TapTapActionDirectory) -> ActionSupportedRequirement?,
     private val onChipClicked: (ActionRequirement.UserDisplayedActionRequirement) -> Unit,
     private val onActionClicked: (TapTapActionDirectory) -> Unit
 ) : LifecycleAwareRecyclerView.Adapter<SettingsActionsActionSelectorAdapter.ViewHolder>(recyclerView) {
@@ -66,8 +66,8 @@ class SettingsActionsActionSelectorAdapter(
     private fun ItemSettingsActionsActionSelectorItemBinding.setup(action: TapTapActionDirectory, lifecycle: Lifecycle) {
         val context = root.context
         root.backgroundTintList = ColorStateList.valueOf(monet.getPrimaryColor(context))
-        val isAvailable = isActionSupported(context, action)
-        if(isAvailable){
+        val actionSupportedRequirement = getActionSupportedRequirement(context, action)
+        if(actionSupportedRequirement == null){
             itemSettingsActionSelectorTitle.alpha = 1f
             itemSettingsActionSelectorContent.alpha = 1f
             itemSettingsActionSelectorIcon.alpha = 1f
@@ -86,12 +86,15 @@ class SettingsActionsActionSelectorAdapter(
         }
         itemSettingsActionSelectorTitle.text = context.getText(action.nameRes)
         itemSettingsActionSelectorIcon.setImageResource(action.iconRes)
-        itemSettingsActionSelectorContent.text = if(isAvailable) {
+        itemSettingsActionSelectorContent.text = if(actionSupportedRequirement == null) {
             context.getText(action.descriptionRes)
         }else{
-            context.getString(R.string.action_selector_unavailable)
+            context.getString(
+                R.string.action_selector_unavailable,
+                context.getString(actionSupportedRequirement.description)
+            )
         }
-        val requirement = if(isAvailable) action.actionRequirement?.firstOrNull { it is ActionRequirement.UserDisplayedActionRequirement } else null
+        val requirement = if(actionSupportedRequirement == null) action.actionRequirement?.firstOrNull { it is ActionRequirement.UserDisplayedActionRequirement } else null
         itemSettingsActionSelectorChip.isVisible = requirement != null
         if(requirement != null){
             itemSettingsActionSelectorChip.run {

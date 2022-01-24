@@ -154,7 +154,7 @@
     <string name="add_gate_category_audio_desc">React to audio-related events, such as being on call or playing music</string>
     <string name="add_gate_category_events">Apps</string>
     <string name="add_gate_category_events_desc">React to apps being open, including the keyboard and camera</string>
-    <string name="gate_selector_unavailable">Sorry, this gate is not compatible with your device.</string>
+    <string name="gate_selector_unavailable">Sorry, this gate is not compatible with your device (%1s).</string>
     <string name="settings_gates_add_category_selector_loading">Loading Gates…</string>
     <string name="settings_gates_add_gate_selector_loading">Loading Gates…</string>
     <string name="settings_gates_add_category_selector_empty">No Gates Found</string>
@@ -410,13 +410,17 @@
     <string name="action_swipe_left_desc">Perform a swipe left gesture on the current app</string>
     <string name="action_swipe_right">Swipe Right</string>
     <string name="action_swipe_right_desc">Perform a swipe right gesture on the current app</string>
-    <string name="action_selector_unavailable">Sorry, this action is not compatible with your device.</string>
+    <string name="action_selector_unavailable">Sorry, this action is not compatible with your device (%1s).</string>
     <string name="action_alt_tab">Switch to last app</string>
     <string name="action_alt_tab_desc">Switch to the most recent app by simulating double tapping the recents button (supported devices only)</string>
     <string name="action_alarm_timer">Dismiss Alarm / Timer</string>
     <string name="action_alarm_snooze">Snooze Alarm</string>
     <string name="action_alarm_timer_desc">Dismisses an alarm or timer, if there is one going off (supported Clock apps only)</string>
     <string name="action_alarm_snooze_desc">Snoozes an alarm, if there is one going off (supported Clock apps only)</string>
+
+    <string name="action_unsupported_reason_min_sdk">Incompatible with your version of Android</string>
+    <string name="action_unsupported_reason_tasker">Tasker is required</string>
+    <string name="action_unsupported_reason_snapchat">Snapchat is required</string>
 
     <!-- Gates -->
     <string name="gate_charging_state">Charging</string>
@@ -486,6 +490,12 @@
     <string name="gate_low_battery">Low Battery</string>
     <string name="gate_low_battery_desc">Blocks the gesture when the device has less than 15% battery remaining</string>
     <string name="gate_low_battery_desc_when">Run only when the device has less than 15% battery remaining</string>
+    <string name="gate_battery_saver">Battery Saver</string>
+    <string name="gate_battery_saver_desc">Blocks the gesture when the system Battery Saver is enabled</string>
+    <string name="gate_battery_saver_desc_when">Run only when the system Battery Saver is enabled</string>
+
+    <string name="gate_unsupported_reason_min_sdk">Incompatible with your version of Android</string>
+    <string name="gate_unsupported_reason_foldable">Requires a compatible foldable device</string>
 
     <!-- Notification channels & content -->
     <string name="tap_notification_title">Tap, Tap Service</string>
@@ -527,6 +537,7 @@
     <!-- Shared Pickers, for Gates & Actions -->
     <string name="settings_shared_app_shortcuts_selector_loading">Loading App Shortcuts…</string>
     <string name="settings_shared_shortcuts_selector_loading">Loading Shortcuts…</string>
+    <string name="settings_shared_shortcuts_selector_error">Error getting App Shortcuts, please try again. If the problem persists, restart Shizuku using ADB.</string>
     <string name="settings_shared_shizuku_permission_flow_toolbar_title">Shizuku / Sui</string>
     <string name="settings_shared_shizuku_permission_flow_title">Checking for Shizuku / Sui</string>
     <string name="settings_shared_shizuku_permission_flow_content">This may take up to 10 seconds</string>

@@ -32,6 +32,7 @@ interface TapTapShizukuServiceRepository {
                 object ShizukuNotRunning : Reason(R.string.notification_service_error_content_shizuku_not_running)
                 object ShizukuFailedToConnect : Reason(R.string.notification_service_error_content_shizuku_not_running)
                 object ShizukuPermissionDenied : Reason(R.string.notification_service_error_content_shizuku_permission_denied)
+                data class Custom(override val contentRes: Int): Reason(contentRes)
             }
         }
     }

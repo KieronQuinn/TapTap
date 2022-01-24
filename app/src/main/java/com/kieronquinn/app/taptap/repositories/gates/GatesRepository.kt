@@ -61,6 +61,11 @@ abstract class GatesRepository {
         gateDirectory: TapTapGateDirectory
     ): Boolean
 
+    abstract fun getGateSupportedRequirement(
+        context: Context,
+        gateDirectory: TapTapGateDirectory
+    ): GateSupportedRequirement?
+
     abstract fun isGateDataSatisfied(
         context: Context,
         data: GateDataTypes,
@@ -192,12 +197,24 @@ class GatesRepositoryImpl(database: TapTapDatabase): GatesRepository() {
         }
     }
 
-    override fun isGateSupported(context: Context, gateDirectory: TapTapGateDirectory): Boolean {
+    override fun getGateSupportedRequirement(context: Context, gateDirectory: TapTapGateDirectory): GateSupportedRequirement? {
         return when (gateDirectory.gateSupportedRequirement) {
-            null -> true
-            is GateSupportedRequirement.MinSdk -> Build.VERSION.SDK_INT >= gateDirectory.gateSupportedRequirement.version
-            is GateSupportedRequirement.Foldable -> SidecarProvider.isDeviceFoldable(context)
+            is GateSupportedRequirement.MinSdk -> {
+                return if(Build.VERSION.SDK_INT < gateDirectory.gateSupportedRequirement.version){
+                    gateDirectory.gateSupportedRequirement
+                }else null
+            }
+            is GateSupportedRequirement.Foldable -> {
+                return if(!SidecarProvider.isDeviceFoldable(context)){
+                    gateDirectory.gateSupportedRequirement
+                }else null
+            }
+            else -> null
         }
+    }
+
+    override fun isGateSupported(context: Context, gateDirectory: TapTapGateDirectory): Boolean {
+        return getGateSupportedRequirement(context, gateDirectory) == null
     }
 
     override fun getFormattedDescriptionForGate(
@@ -248,6 +265,7 @@ class GatesRepositoryImpl(database: TapTapDatabase): GatesRepository() {
             FOLDABLE_CLOSED -> FoldableClosedGate(serviceLifecycle, context)
             FOLDABLE_OPEN -> FoldableOpenGate(serviceLifecycle, context)
             LOW_BATTERY -> LowBatteryGate(serviceLifecycle, context)
+            BATTERY_SAVER -> BatterySaverGate(serviceLifecycle, context)
         }
     }
 

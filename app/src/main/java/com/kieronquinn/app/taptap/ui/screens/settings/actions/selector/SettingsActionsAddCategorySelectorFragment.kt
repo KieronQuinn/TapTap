@@ -17,7 +17,6 @@ import com.kieronquinn.app.taptap.utils.extensions.applyBottomInsets
 import com.kieronquinn.app.taptap.utils.extensions.onChanged
 import com.kieronquinn.app.taptap.utils.extensions.onClicked
 import com.kieronquinn.monetcompat.extensions.views.applyMonet
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -31,7 +30,7 @@ class SettingsActionsAddCategorySelectorFragment : SettingsActionsAddGenericFrag
     }
 
     private val actionsAdapter by lazy {
-        SettingsActionsActionSelectorAdapter(binding.settingsActionsAddCategorySelectorRecyclerview, emptyList(), viewModel::isActionSupported, ::showSnackbarForChip, ::onActionClicked)
+        SettingsActionsActionSelectorAdapter(binding.settingsActionsAddCategorySelectorRecyclerview, emptyList(), viewModel::getActionSupportedRequirement, ::showSnackbarForChip, ::onActionClicked)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

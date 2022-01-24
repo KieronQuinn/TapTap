@@ -18,7 +18,6 @@ import com.kieronquinn.app.taptap.utils.extensions.applyBottomInsets
 import com.kieronquinn.app.taptap.utils.extensions.onChanged
 import com.kieronquinn.app.taptap.utils.extensions.onClicked
 import com.kieronquinn.monetcompat.extensions.views.applyMonet
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -35,7 +34,7 @@ class SettingsGatesAddCategorySelectorFragment : SettingsGatesAddGenericFragment
     }
 
     private val gatesAdapter by lazy {
-        SettingsGatesGateSelectorAdapter(binding.settingsGatesAddCategorySelectorRecyclerview, emptyList(), viewModel::isGateSupported, ::showSnackbarForChip, ::onGateClicked, args.isRequirement)
+        SettingsGatesGateSelectorAdapter(binding.settingsGatesAddCategorySelectorRecyclerview, emptyList(), viewModel::getGateSupportedRequirement, ::showSnackbarForChip, ::onGateClicked, args.isRequirement)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
