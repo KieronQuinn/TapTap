@@ -11,7 +11,7 @@ plugins {
 //Permission for Columbus to use
 rootProject.ext.set("columbusPermission", "com.google.android.columbus.taptap.permission.CONFIGURE_COLUMBUS_GESTURE")
 
-def tagName = '1.0'
+def tagName = '1.0.1'
 
 android {
     compileSdk 32
