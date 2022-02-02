@@ -541,6 +541,7 @@ class ActionsRepositoryImpl(
                 emptySet()
             )
             SOUND_PROFILE -> SoundProfileAction(serviceLifecycle, context, whenGates, emptySet())
+            DO_NOT_DISTURB -> DoNotDisturbAction(serviceLifecycle, context, whenGates, emptySet())
             VOLUME_PANEL -> VolumeAction(
                 serviceLifecycle,
                 context,

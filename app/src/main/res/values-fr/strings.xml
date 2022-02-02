@@ -101,6 +101,8 @@
     <string name="action_wake_device_desc">Allume l\'écran de l\'appareil si il est éteint. Ce paramètre a priorité sur le paramètre de retour d\'information, est ignoré si l\'écran est allumé, et ne marchera pas si la barrière \"Écran éteint\" est activé</string>
     <string name="actions_sound_profile">Changer le profil de son</string>
     <string name="actions_sound_profile_desc">Changer le profil de son de votre appareil : Vibreur/Silencieux/Muet</string>
+    <string name="do_not_disturb">Activer le profil ne pas déranger</string>
+    <string name="do_not_disturb_desc">Force le profil de son de votre appareil : Muet</string>
     <string name="action_launch_shortcut">Lancer un raccourci</string>
     <string name="action_launch_shortcut_desc">Lance un raccourci comme un itinéraire Google Maps</string>
     <string name="action_launch_shortcut_desc_formattable">Lance %1s (raccourci dans l\'application)</string>
