@@ -11,6 +11,50 @@
     <string name="setting_feedback_wake">Allumer l\'écran de l\'appareil</string>
     <string name="setting_feedback_wake_desc">Allume l\'écran de l\'appareil</string>
 
+    <!-- Generic -->
+    <string name="search">Rechercher</string>
+    <string name="close">Fermer</string>
+
+    <!-- Setup > Landing -->
+    <string name="landing_title">Bienvenue sur Tap, Tap</string>
+    <string name="landing_button_get_started">Commençons</string>
+    <string name="landing_button_skip_setup">Ignorer la configuration</string>
+
+    <!-- Setup > Info -->
+    <string name="setup_foss_info_title">Tap, Tap est gratuit et open source</string>
+    <string name="setup_foss_info_content"><![CDATA[Tap, Tap est et sera toujours grauit, construit avec des éléments open source. Le code source est disponible pour tout le monde et a cette adresse <a href=\"https://kieronquinn.co.uk/redirect/TapTap/github\">GitHub repository</a>. Le téléchargent officiel de l\'application est <b>seulement</b> disponible sur <a href="https://kieronquinn.co.uk/redirect/TapTap/xda">XDA</a>, <a href="https://kieronquinn.co.uk/redirect/TapTap/github">Github</a>, et <a href="https://kieronquinn.co.uk/redirect/TapTap/apkmirror">APKMirror</a>. L\'application officiel recevera des mise a jours automatiques via GitHub, si vous avez autorisé les connexions internet.]]></string>
+    <string name="setup_foss_info_warning">Intallez Tap, Tap uniquement depuis l\'une des sources officielles listées plus haut. <b>Si vous avez téléchargé l\'application depuis une autre source, il est recommandé de la désinstaller puis de la réinstaller depuis un des liens ci dessus</b>. Tapper pour plus d\'informations.</string>
+    <string name="setup_foss_info_bs_title">Attention</string>
+    <string name="setup_foss_info_bs_content">Tap, Tap utilise les Service d\'Accessibilité. Cela permet d\'effectuer automatiquement des actions sur votre appareil et ne devrait pas être accordé aux applications auxquelles vous ne faites pas confiance. C\'est pourquoi Tap, Tap est open source - afin que vous et tous ceux qui le souhaitent puissent consulter le code et vérifier qu\'il ne fait rien d\'autre qu\'il ne devrait.\n\nCependant, cette garantie ne s'applique pas si vous avez téléchargé l'APK à partir d'une source autre que les emplacements officiels. Si vous l\'avez téléchargé à partir d'un endroit autre que GitHub, XDA ou APKMirror, il est fortement recommandé de le désinstaller immédiatement et de le réinstaller à partir de l'un des emplacements officiels.</string>
+    <string name="setup_foss_info_content_lower">Si vous aimez l\'application Tap, Tap et que vous souhaitez faire un don, le lien pour le faire se trouve en bas de la page \"Plus\" après la configuration. Que vous donniez ou non, votre partage, votre soutien et votre utilisation de Tap, Tap sont très appréciés, merci !</string>
+    <string name="setup_info_next">Suivant</string>
+
+    <!-- Setup > Gesture -->
+    <string name="setup_gesture_toolbar">Configurations des gestes</string>
+    <string name="setup_gesture_device_size"><![CDATA[Selectionnez la meilleur taille d\'écran pour votre appareil.<br><b>Actuellement séléctionné: %1$s</b><br>Si vous rencontrez des problèmes avec les gestes, essayez de modifier la taille de l\'écran.]]></string>
+    <string name="setup_gesture_loading">Chargement…</string>
+    <string name="setup_gesture_info_hint">Tappez deux fois à l\'arrière de votre appareil pour activer le geste.\n<b>Essayez de tapper fermement, en utilisant le bout de votre index.</b></string>
+    <string name="setup_gesture_info_help">Cela ne marche pas ? Essayez de changer la taille de l\'appareil et la sensibilité sur la page de Configurations des gestes</string>
+    <string name="setup_gesture_info_success"><b>Parfait! Tappez pour continuer.</b>\nAstuce: Si vous rencontrez des problèmes avec les gestes, vous pouvez modifier la taille de l\'écran &amp; la sensibilité sur la page de Configurations des gestes, ou plus tard dans les options.</string>
+
+    <!-- Setup > Complete -->
+    <string name="setup_complete_card">Les Actions &amp; Barrières peuvent nécessiter certaines permission lors des premières utilisations, regardez vos notifications pour les paramétrées.</string>
+    <string name="setup_complete_title">Configuration terminée</string>
+
+    <!-- Internet Permission Prompt -->
+    <string name="dialog_internet_permission_text">Autoriser l\'accés à Internet?</string>
+    <string name="dialog_internet_permission_desc">Cela sera uniquement utilisé pour retrouver les specifications de l\'appareil et vérifier les mises à jours en arrière plan.</string>
+    <string name="dialog_internet_permission_allow_always">Toujours autoriser</string>
+    <string name="dialog_internet_permission_allow_open">Autoriser lorsque Tap, Tap est ouvert</string>
+    <string name="dialog_internet_permission_deny">Refuser</string>
+
+    <!-- Upgrade modal -->
+    <string name="setup_upgrade_loading">Mise à jour des paramètres…</string>
+
+    <!-- No Gyroscope Modal -->
+    <string name="modal_no_gyroscope_title">Appareil incompatible</string>
+    <string name="modal_no_gyroscope_content">Votre appareil ne possède pas le capteur nécessaire (un gyroscope) pour utilliser cette application. Tap, Tap will ne fonctionnera pas sur cet appareil.</string>
+
     <!-- Gates -->
     <string name="gate_charging_state">En train de charger</string>
     <string name="gate_telephony_activity">En appel</string>
@@ -65,7 +109,6 @@
     <string name="action_launch_app_desc">Lance une application</string>
     <string name="action_launch_app_desc_formattable">Lancer %1s. Cette action ne se déclanchera pas si elle est déjà lancée.</string>
     <string name="fab_add_gate">Ajouter une Barrière</string>
-    <string name="search">Rechercher</string>
     <string name="setting_gesture_sensitivity">Sensibilité</string>
     <string name="setting_gesture_sensitivity_desc">Change la sensibilité du geste en ajustant la quantité de force traitée comme \"parasite\". Un sensibilité plus basse signifie que le geste sera plus dur à faire sur la plupart des appareils, tandis qu\'un sensibilité plus haute est plus enclin à de fausses détection.</string>
     <string name="help_action">Les actions sont des tâches qui sont exécutées quand vous tappez deux fois à l\'arrière de votre appareil. Les actions sont lancées dans l\'ordre de la liste - de haut en bas, et seulement si un requis correspond.\nCliquer pour plus d\'info.</string>
