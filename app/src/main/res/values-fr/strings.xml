@@ -55,6 +55,12 @@
     <string name="modal_no_gyroscope_title">Appareil incompatible</string>
     <string name="modal_no_gyroscope_content">Votre appareil ne possède pas le capteur nécessaire (un gyroscope) pour utilliser cette application. Tap, Tap will ne fonctionnera pas sur cet appareil.</string>
 
+    <!-- Disable Columbus Modal -->
+    <string name="modal_disable_columbus_title">Désactiver l\appui rapide</string>
+    <string name="modal_disable_columbus_content">Le système d\'appui rapide est activé sur votre appareil, veuillez le désactiver sinon Tap, Tap ne fonctionnera pas correctement.\nLa fonction d'appuis rapide peut être trouvé dans les configurations système, sous Système > Gestes.</string>
+    <string name="modal_disable_columbus_card">Vous devrez peut être redémarrer vote appareil après avoir désactivé l\'appui rapide pour que certaines fonctions de Tap, Tap fonctionnent.</string>
+    <string name="modal_disable_columbus_button">Ouvrir les paramètres</string>
+
     <!-- Gates -->
     <string name="gate_charging_state">En train de charger</string>
     <string name="gate_telephony_activity">En appel</string>
