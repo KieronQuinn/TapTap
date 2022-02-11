@@ -279,6 +279,15 @@ enum class TapTapActionDirectory(
         null,
         actionRequirement = arrayOf(ActionRequirement.AccessNotificationPolicyPermission)
     ),
+    DO_NOT_DISTURB(
+        DoNotDisturbAction::class.java,
+        TapTapActionCategory.SOUND,
+        R.string.do_not_disturb,
+        R.string.do_not_disturb_desc,
+        R.drawable.ic_action_do_not_disturb,
+        null,
+        actionRequirement = arrayOf(ActionRequirement.AccessNotificationPolicyPermission)
+    ),
     VOLUME_PANEL(
         VolumeAction::class.java,
         TapTapActionCategory.SOUND,
