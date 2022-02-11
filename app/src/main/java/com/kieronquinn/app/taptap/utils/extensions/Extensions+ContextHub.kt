@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Build
 import android.util.Log
 import org.json.JSONObject
+import rikka.sui.Sui
 import java.io.File
 
 val Context.deviceHasContextHub: Boolean
@@ -28,13 +29,15 @@ private const val PACKAGE_SHELL = "com.android.shell"
 
 /**
  *  Checks if Shell (`com.android.shell`) has the ability to access the context hub.
- *  On Android < S, `LOCATION_HARDWARE` is sufficient, but on S and above, `ACCESS_CONTEXT_HUB`
+ *  On Android < T, `LOCATION_HARDWARE` is sufficient, but on T and above, `ACCESS_CONTEXT_HUB`
  *  is required.
+ *
+ *  If the user is using Sui on T+, this is acceptable as root still has access.
  */
 private fun Context.doesShellHaveContextHubPermission(): Boolean {
     return when {
-        Build.VERSION.SDK_INT >= 33 -> {
-            doesPackageHavePermission(PACKAGE_SHELL, PERMISSION_ACCESS_CONTEXT_HUB)
+        Build_isAtLeastT() -> {
+            Sui.isSui() || doesPackageHavePermission(PACKAGE_SHELL, PERMISSION_ACCESS_CONTEXT_HUB)
         }
         else -> {
             doesPackageHavePermission(PACKAGE_SHELL, PERMISSION_ACCESS_CONTEXT_HUB) || doesPackageHavePermission(PACKAGE_SHELL, PERMISSION_LOCATION_HARDWARE)

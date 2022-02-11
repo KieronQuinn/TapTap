@@ -25,7 +25,7 @@ class ClickQuickSettingAction(
         detectionProperties: GestureSensor.DetectionProperties,
         isTripleTap: Boolean
     ) {
-        val result = service.runWithService {
+        val result = service.runWithShellService {
             it.clickQuickSetting(component)
         }
         if(result is TapTapShizukuServiceRepository.ShizukuServiceResponse.Failed){

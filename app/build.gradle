@@ -11,7 +11,7 @@ plugins {
 //Permission for Columbus to use
 rootProject.ext.set("columbusPermission", "com.google.android.columbus.taptap.permission.CONFIGURE_COLUMBUS_GESTURE")
 
-def tagName = '1.0.1'
+def tagName = '1.1'
 
 android {
     compileSdk 32
@@ -21,8 +21,8 @@ android {
         applicationId "com.kieronquinn.app.taptap"
         minSdk 24
         targetSdk 32
-        versionCode 1010
-        versionName "1.0.1"
+        versionCode 1100
+        versionName "1.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 

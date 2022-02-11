@@ -6,6 +6,7 @@ import android.app.IActivityManager
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.IBinder
 import android.os.SELinux
 import android.os.UserHandle
@@ -69,6 +70,10 @@ class TapTapRootService : ITapTapRootService.Stub() {
 
     override fun isSnapchatQuickTapToSnapEnabled(): SnapchatQuickTapState {
         try {
+            if(Build.VERSION.SDK_INT < Build.VERSION_CODES.O){
+                //ActivityManager unsupported, nothing we can do
+                return SnapchatQuickTapState.ERROR
+            }
             val provider = activityManager.getContentProviderExternalCompat(
                 SNAPCHAT_PROVIDER_NAME,
                 getUserId(),

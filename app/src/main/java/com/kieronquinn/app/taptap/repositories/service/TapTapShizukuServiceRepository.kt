@@ -11,7 +11,9 @@ import com.kieronquinn.app.taptap.BuildConfig
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.components.columbus.sensors.ServiceEventEmitter
 import com.kieronquinn.app.taptap.service.shizuku.TapTapShizukuService
+import com.kieronquinn.app.taptap.service.shizuku.TapTapShizukuShellService
 import com.kieronquinn.app.taptap.shizuku.ITapTapShizukuService
+import com.kieronquinn.app.taptap.shizuku.ITapTapShizukuShellService
 import com.kieronquinn.app.taptap.utils.extensions.suspendCoroutineWithTimeout
 import kotlinx.coroutines.*
 import kotlinx.coroutines.sync.Mutex
@@ -22,6 +24,10 @@ import rikka.shizuku.Shizuku
 import java.util.concurrent.TimeUnit
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
+import kotlin.reflect.KFunction
+import kotlin.reflect.KMutableProperty0
+import kotlin.reflect.KProperty
+import kotlin.reflect.KProperty0
 
 interface TapTapShizukuServiceRepository {
 
@@ -38,15 +44,18 @@ interface TapTapShizukuServiceRepository {
     }
 
     suspend fun <T> runWithService(block: suspend (ITapTapShizukuService) -> T): ShizukuServiceResponse<T>
+    suspend fun <T> runWithShellService(block: suspend (ITapTapShizukuShellService) -> T): ShizukuServiceResponse<T>
     fun <T> runWithServiceIfAvailable(block: (ITapTapShizukuService) -> T?): T?
+    fun <T> runWithShellServiceIfAvailable(block: (ITapTapShizukuShellService) -> T?): T?
     fun unbindServiceIfNeeded()
+    fun unbindShellServiceIfNeeded()
 
 }
 
 class TapTapShizukuServiceRepositoryImpl(
     context: Context,
     scope: Scope,
-    private val shouldKillOnClose: () -> Boolean = { true }
+    private val isColumbus: Boolean
 ) : TapTapShizukuServiceRepository, ScopeCallback {
 
     private val userServiceArgs: Shizuku.UserServiceArgs = Shizuku.UserServiceArgs(
@@ -56,6 +65,17 @@ class TapTapShizukuServiceRepositoryImpl(
         )
     ).apply {
         processNameSuffix("shizukuservice")
+        debuggable(BuildConfig.DEBUG)
+        version(BuildConfig.VERSION_CODE)
+    }
+
+    private val userServiceArgsShell: Shizuku.UserServiceArgs = Shizuku.UserServiceArgs(
+        ComponentName(
+            context,
+            TapTapShizukuShellService::class.java
+        )
+    ).apply {
+        processNameSuffix("shizukushellservice")
         debuggable(BuildConfig.DEBUG)
         version(BuildConfig.VERSION_CODE)
     }
@@ -76,10 +96,26 @@ class TapTapShizukuServiceRepositoryImpl(
     }
 
     private var serviceInstance: ITapTapShizukuService? = null
+    private var shellServiceInstance: ITapTapShizukuShellService? = null
     private var serviceConnection: ServiceConnection? = null
+    private var shellServiceConnection: ServiceConnection? = null
     private val runMutex = Mutex()
 
-    override suspend fun <T> runWithService(block: suspend (ITapTapShizukuService) -> T): TapTapShizukuServiceRepository.ShizukuServiceResponse<T> = runMutex.withLock {
+    override suspend fun <T> runWithService(block: suspend (ITapTapShizukuService) -> T): TapTapShizukuServiceRepository.ShizukuServiceResponse<T> {
+        return runWithService(::serviceInstance, ITapTapShizukuService.Stub::asInterface, ::userServiceArgs, ::serviceConnection, block)
+    }
+
+    override suspend fun <T> runWithShellService(block: suspend (ITapTapShizukuShellService) -> T): TapTapShizukuServiceRepository.ShizukuServiceResponse<T> {
+        return runWithService(::shellServiceInstance, ITapTapShizukuShellService.Stub::asInterface, ::userServiceArgsShell, ::shellServiceConnection, block)
+    }
+
+    private suspend fun <T, S> runWithService(
+        serviceInstance: KMutableProperty0<S?>,
+        asInterface: (IBinder) -> S,
+        userServiceArgs: KProperty0<Shizuku.UserServiceArgs>,
+        cachedServiceConnection: KMutableProperty0<ServiceConnection?>,
+        block: suspend (S) -> T
+    ): TapTapShizukuServiceRepository.ShizukuServiceResponse<T> = runMutex.withLock {
         awaitShizuku() ?: return TapTapShizukuServiceRepository.ShizukuServiceResponse.Failed(
             TapTapShizukuServiceRepository.ShizukuServiceResponse.Failed.Reason.ShizukuNotRunning
         )
@@ -88,7 +124,7 @@ class TapTapShizukuServiceRepositoryImpl(
             return TapTapShizukuServiceRepository.ShizukuServiceResponse.Failed(permissionResult.reason)
         }
         val service = withContext(Dispatchers.IO) {
-            getServiceLocked()
+            getServiceLocked(serviceInstance, asInterface, userServiceArgs, cachedServiceConnection)
         }
         val result = when (service) {
             is TapTapShizukuServiceRepository.ShizukuServiceResponse.Success -> TapTapShizukuServiceRepository.ShizukuServiceResponse.Success(
@@ -144,11 +180,16 @@ class TapTapShizukuServiceRepositoryImpl(
 
     private val getServiceMutex = Mutex()
 
-    private suspend fun getServiceLocked() = suspendCoroutine<TapTapShizukuServiceRepository.ShizukuServiceResponse<ITapTapShizukuService>> { resume ->
+    private suspend fun <S> getServiceLocked(
+        serviceInstance: KMutableProperty0<S?>,
+        asInterface: (IBinder) -> S,
+        userServiceArgs: KProperty0<Shizuku.UserServiceArgs>,
+        cachedServiceConnection: KMutableProperty0<ServiceConnection?>
+    ) = suspendCoroutine<TapTapShizukuServiceRepository.ShizukuServiceResponse<S>> { resume ->
         runBlocking {
             getServiceMutex.lock()
             var resumed = false
-            serviceInstance?.let {
+            serviceInstance.get()?.let {
                 if (resumed) return@let
                 resume.resume(TapTapShizukuServiceRepository.ShizukuServiceResponse.Success(it))
                 resumed = true
@@ -159,9 +200,10 @@ class TapTapShizukuServiceRepositoryImpl(
                 override fun onServiceConnected(component: ComponentName, binder: IBinder?) {
                     if (resumed) return
                     val result = if (binder != null && binder.pingBinder()) {
-                        serviceInstance = ITapTapShizukuService.Stub.asInterface(binder)
-                        serviceConnection = this
-                        serviceInstance
+                        val service = asInterface(binder)
+                        serviceInstance.set(service)
+                        cachedServiceConnection.set(this)
+                        service
                     } else {
                         null
                     }.let {
@@ -174,16 +216,16 @@ class TapTapShizukuServiceRepositoryImpl(
                         }
                     }
                     resumed = true
-                    resume.resume(result)
+                    resume.resume(result as TapTapShizukuServiceRepository.ShizukuServiceResponse<S>)
                     getServiceMutex.unlock()
                 }
 
                 override fun onServiceDisconnected(component: ComponentName) {
-                    serviceInstance = null
-                    serviceConnection = null
+                    serviceInstance.set(null)
+                    cachedServiceConnection.set(null)
                 }
             }
-            Shizuku.bindUserService(userServiceArgs, serviceConnection)
+            Shizuku.bindUserService(userServiceArgs.get(), serviceConnection)
         }
     }
 
@@ -194,18 +236,32 @@ class TapTapShizukuServiceRepositoryImpl(
         }
     }
 
+    @Synchronized
+    override fun unbindShellServiceIfNeeded() {
+        shellServiceConnection?.let {
+            Shizuku.unbindUserService(userServiceArgsShell, it, true)
+        }
+    }
+
     override fun <T> runWithServiceIfAvailable(block: (ITapTapShizukuService) -> T?): T? {
         return serviceInstance?.let {
             block(it)
         }
     }
 
-    override fun onScopeClose(scope: Scope) {
-        //If the service is running in the settings, we should only kill it if it's not required elsewhere
-        if(shouldKillOnClose()) {
-            unbindServiceIfNeeded()
-            Shizuku.removeBinderDeadListener(binderDeadListener)
+    override fun <T> runWithShellServiceIfAvailable(block: (ITapTapShizukuShellService) -> T?): T? {
+        return shellServiceInstance?.let {
+            block(it)
         }
+    }
+
+    override fun onScopeClose(scope: Scope) {
+        if(isColumbus) {
+            unbindServiceIfNeeded()
+        }else{
+            unbindShellServiceIfNeeded()
+        }
+        Shizuku.removeBinderDeadListener(binderDeadListener)
     }
 
 }

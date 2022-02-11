@@ -147,8 +147,6 @@ import com.kieronquinn.app.taptap.ui.screens.setup.upgrade.SetupUpgradeViewModel
 import com.kieronquinn.app.taptap.ui.screens.setup.upgrade.SetupUpgradeViewModelImpl
 import com.kieronquinn.app.taptap.utils.dummy.DummyStatusBarStateController
 import com.kieronquinn.app.taptap.utils.dummy.DummyUiEventLogger
-import com.kieronquinn.app.taptap.utils.extensions.ContextHub_hasColumbusNanoApp
-import com.kieronquinn.app.taptap.utils.extensions.deviceHasContextHub
 import com.kieronquinn.app.taptap.utils.lazy.LazyWrapper
 import com.kieronquinn.app.taptap.utils.logging.UiEventLogger
 import com.kieronquinn.app.taptap.utils.picasso.AppIconRequestHandler
@@ -174,11 +172,6 @@ class TapTap : Application() {
 
     private val mainHandler by lazy {
         Handler(Looper.getMainLooper())
-    }
-
-    private val iActivityManager by lazy {
-        val activityManagerProxy = SystemServiceHelper.getSystemService("activity")
-        IActivityManager.Stub.asInterface(activityManagerProxy)
     }
 
     private val singlesModule = module {
@@ -264,7 +257,7 @@ class TapTap : Application() {
 
     private val columbusModule = module {
         scope<TapTapForegroundService> {
-            scoped<TapTapShizukuServiceRepository> { TapTapShizukuServiceRepositoryImpl(get(), this) }
+            scoped<TapTapShizukuServiceRepository> { TapTapShizukuServiceRepositoryImpl(get(), this, true) }
             scoped<StatusBarStateController> { DummyStatusBarStateController() }
             scoped<UiEventLogger> { DummyUiEventLogger() }
             scoped<ServiceEventEmitter> { ServiceEventEmitterImpl() }
@@ -273,7 +266,7 @@ class TapTap : Application() {
             scoped { GestureConfiguration(listOf(SensitivityAdjustment(get(), get())), get()) }
             scoped { WakefulnessLifecycle() }
             scoped { ContentResolverWrapper(get()) }
-            scoped { ColumbusContentObserverFactory(get(), iActivityManager, mainHandler) }
+            scoped { ColumbusContentObserverFactory(get(), mainHandler) }
             scoped { ColumbusSettings(get(), get()) }
             scoped { PowerManagerWrapper(this@TapTap) }
             scoped { createGestureSensor() }
@@ -285,11 +278,7 @@ class TapTap : Application() {
 
     private val appShortcutsModule = module {
         scope<SettingsSharedAppShortcutsSelectorViewModelImpl> {
-            val shouldKillOnClose = {
-                val settings = get<TapTapSettings>()
-                !(deviceHasContextHub && ContextHub_hasColumbusNanoApp() && settings.lowPowerMode.getSync())
-            }
-            scoped<TapTapShizukuServiceRepository> { TapTapShizukuServiceRepositoryImpl(get(), this, shouldKillOnClose) }
+            scoped<TapTapShizukuServiceRepository> { TapTapShizukuServiceRepositoryImpl(get(), this, false) }
         }
     }
 

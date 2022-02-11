@@ -15,40 +15,6 @@ import android.os.Build
 import android.os.Bundle
 import android.system.Os
 
-fun IContentProvider.callCompat(
-    callingPkg: String?,
-    authority: String?,
-    method: String?,
-    arg: String?,
-    extras: Bundle?
-): Bundle? {
-    val result: Bundle? = when {
-        Build.VERSION.SDK_INT >= 31 -> {
-            try {
-                call(
-                    AttributionSource.Builder(Os.getuid()).setPackageName(callingPkg).build(),
-                    authority,
-                    method,
-                    arg,
-                    extras
-                )
-            } catch (tr: Throwable) {
-                call(callingPkg, null as String?, authority, method, arg, extras)
-            }
-        }
-        Build.VERSION.SDK_INT >= 30 -> {
-            call(callingPkg, null as String?, authority, method, arg, extras)
-        }
-        Build.VERSION.SDK_INT >= 29 -> {
-            call(callingPkg, authority, method, arg, extras)
-        }
-        else -> {
-            call(callingPkg, method, arg, extras)
-        }
-    }
-    return result
-}
-
 fun IContentProvider.queryCompat(
     callingPkg: String?,
     uri: Uri
