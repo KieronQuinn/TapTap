@@ -51,7 +51,7 @@ class LaunchAppShortcutAction(
         detectionProperties: GestureSensor.DetectionProperties,
         isTripleTap: Boolean
     ) {
-        val result = service.runWithService {
+        val result = service.runWithShellService {
             it.startShortcut(appShortcutData.packageName, appShortcutData.shortcutId)
         }
         if(result is TapTapShizukuServiceRepository.ShizukuServiceResponse.Failed){

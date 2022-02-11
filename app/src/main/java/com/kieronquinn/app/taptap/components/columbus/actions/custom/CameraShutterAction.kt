@@ -28,7 +28,7 @@ class CameraShutterAction(
         detectionProperties: GestureSensor.DetectionProperties,
         isTripleTap: Boolean
     ) {
-        val result = service.runWithService {
+        val result = service.runWithShellService {
             it.inputKeyEvent(KEYCODE_CAMERA)
         }
         if(result is TapTapShizukuServiceRepository.ShizukuServiceResponse.Failed){

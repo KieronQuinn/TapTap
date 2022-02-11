@@ -32,6 +32,3 @@ fun IActivityManager.getContentProviderExternalCompat(
     return provider
 }
 
-fun IActivityManager.removeContentProviderExternalCompat(name: String?, token: IBinder?) {
-    removeContentProviderExternal(name, token)
-}

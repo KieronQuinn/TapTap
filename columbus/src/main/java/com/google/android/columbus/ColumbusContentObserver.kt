@@ -9,7 +9,6 @@ class ColumbusContentObserver(
     private val contentResolver: ContentResolverWrapper,
     private val settingsUri: Uri,
     private val callback: (Uri?) -> Unit,
-    private val activityManagerService: IActivityManager,
     handler: Handler
 ) : ContentObserver(handler) {
 
@@ -61,12 +60,11 @@ class ColumbusContentObserver(
 
 class ColumbusContentObserverFactory(
     private val contentResolver: ContentResolverWrapper,
-    private val activityManagerService: IActivityManager,
     private val handler: Handler
 ) {
 
     fun create(settingsUri: Uri, callback: (Uri?) -> Unit): ColumbusContentObserver {
-        return ColumbusContentObserver(contentResolver, settingsUri, callback, activityManagerService, handler)
+        return ColumbusContentObserver(contentResolver, settingsUri, callback, handler)
     }
 
 }

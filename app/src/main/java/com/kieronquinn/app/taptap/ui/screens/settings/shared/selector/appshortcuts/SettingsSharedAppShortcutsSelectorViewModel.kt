@@ -7,9 +7,9 @@ import android.content.pm.ParceledListSlice
 import android.content.pm.ShortcutInfo
 import android.content.pm.ShortcutQueryWrapper
 import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Icon
 import android.os.ParcelFileDescriptor
-import android.util.Base64
 import androidx.core.graphics.drawable.toBitmap
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -97,23 +97,24 @@ class SettingsSharedAppShortcutsSelectorViewModelImpl(context: Context, private 
 
     @SuppressLint("NewApi")
     private suspend fun getAppShortcuts() = try {
-        service.runWithService {
+        service.runWithShellService {
             it.getShortcuts(ShortcutQueryWrapper(LauncherApps.ShortcutQuery().apply {
                 setQueryFlags(LauncherApps.ShortcutQuery.FLAG_MATCH_DYNAMIC or LauncherApps.ShortcutQuery.FLAG_MATCH_MANIFEST or LauncherApps.ShortcutQuery.FLAG_MATCH_PINNED_BY_ANY_LAUNCHER)
             })) as ParceledListSlice<ShortcutInfo>
         }
     }catch(e: Exception){
+        e.printStackTrace()
         ShizukuServiceResponse.Failed(Reason.Custom(R.string.settings_shared_shortcuts_selector_error))
     }
 
-    private suspend fun List<ShortcutInfo>.toShortcutItems(context: Context) = service.runWithService { service ->
+    private suspend fun List<ShortcutInfo>.toShortcutItems(context: Context) = service.runWithShellService { service ->
         val splitList = ArrayList<Pair<Item.App, List<Item.AppShortcut>>>()
         val grouped = groupBy { it.`package` }
         grouped.forEach { (a, s) ->
             val app = Item.App(packageManager.getApplicationLabel(a) ?: "", a)
             val shortcuts = s.map {
                 val icon = service.getAppShortcutIcon(a, it.id)
-                val hashedShortcutId = Base64.encodeToString(it.id.toByteArray(), Base64.DEFAULT)
+                val hashedShortcutId = it.id.hashCode().toString()
                 val cacheIcon = if(icon.descriptor != null){
                     copyFileDescriptorToCache(icon.descriptor, hashedShortcutId)
                 }else copyIconToCache(icon.icon, context, hashedShortcutId)
@@ -127,7 +128,7 @@ class SettingsSharedAppShortcutsSelectorViewModelImpl(context: Context, private 
             outList.add(it.first)
             outList.addAll(it.second)
         }
-        return@runWithService outList
+        return@runWithShellService outList
     }
 
     override fun onAppClicked(packageName: String): List<Int> {
@@ -164,11 +165,15 @@ class SettingsSharedAppShortcutsSelectorViewModelImpl(context: Context, private 
     private fun copyIconToCache(icon: Icon?, context: Context, shortcutId: String): File? {
         if(icon == null) return null
         val file = File(cacheDir, "$shortcutId.png")
-        val bitmap = icon.loadDrawable(context)?.toBitmap() ?: return null
+        val drawable = icon.loadDrawable(context)
+        val bitmap = drawable?.toBitmap() ?: return null
         file.outputStream().use {
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, it)
         }
-        bitmap.recycle()
+        //Don't recycle if the icon is a BitmapDrawable as it's not a copy
+        if(drawable !is BitmapDrawable){
+            bitmap.recycle()
+        }
         return file
     }
 

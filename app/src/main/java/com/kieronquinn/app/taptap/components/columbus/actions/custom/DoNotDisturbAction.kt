@@ -24,8 +24,6 @@ class DoNotDisturbAction(
         context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
     }
 
-    private var currentProfileAction = audioManager.ringerMode
-
     private val isNotificationAccessGranted: Boolean by lazy {
         val notificationManager =
             context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
