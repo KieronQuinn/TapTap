@@ -1,159 +1,306 @@
 <resources>
-    <string name="accessibility_service_description">Служба спец.возможностей TapTap\n\n<b>Важное примечание: данные ни от одного из ваших приложений не собираются. Эта служба используется только для поддержания активного распознавания и взаимодействия с устройством.</b></string>
-    <string name="accessibility_service_description_gesture">Служба спец.возможностей Tap, Tap. \n\n<b>Не включайте его, если приложение не просит об этом. Оно необходимо только для определенных действий</b>\n\n<b>Важное примечание: данные ни от одного из ваших приложений не собираются. Эта служба используется только для поддержания активного распознавания и взаимодействия с устройством.\n\nЭто отдельная служба, которая создана из-за особенностей работы Android и приложений, которые могут выполнять жесты. Например Chrome не будет скрывать omnibar(что-то на непонятном) при прокрутке, если эта служба включена.</b></string>
-    <string name="setting_bottom_nav_gesture">Жест</string>
-    <string name="setting_actions_double">Действия по двойному постукиванию</string>
-    <string name="setting_actions_triple">Действия по тройному постукиванию</string>
-    <string name="settings_actions_desc_double">Установите действия, которые будут запускаться по двойному постукиванию по задней части устройства</string>
-    <string name="settings_actions_desc_triple">Установите действия, которые будут запускаться по тройному постукиванию по задней части устройства</string>
-    <string name="settings_backup_restore">Резервное копирование и восстановление</string>
-    <string name="settings_backup_restore_desc">Сделайте резервную копию настроек на Ваше устройство или в облако</string>
-    <string name="settings_backup_restore_backup">Резервное копирование</string>
-    <string name="settings_backup_restore_backup_desc">Сделайте резервную копию настроек на Ваше устройство или в облако</string>
-    <string name="settings_backup_restore_restore">Восстановление резервной копии</string>
-    <string name="settings_backup_restore_restore_desc">Восстановите настройки из облака или со своего устройства</string>
-    <string name="setting_gates">Запреты</string>
-    <string name="setting_gates_desc">Выберите ситуации, когда действие не будет запускаться</string>
-    <string name="setting_feedback">Обратная связь</string>
-    <string name="setting_feedback_desc">Установите, как устройство уведомляет вас о запуске жеста</string>
-    <string name="setting_feedback_override_dnd">Вибрировать, когда включен беззвучный режим</string>
-    <string name="setting_feedback_override_dnd_desc">Игнорировать беззвучный режим и всегда вибрировать при срабатывании жеста</string>
-    <string name="setting_gesture_model">Размер устройства</string>   
-    <string name="setting_gesture_model_desc">Выберите размер устройства. В зависимости от Вашего выбора будет использоваться определенная модель(нейросеть).</string>
-    <string name="setting_feedback_vibrate">Вибрация</string>
-    <string name="setting_feedback_vibrate_desc">Вибрировать один раз, когда используется жест</string>
-    <string name="setting_feedback_wake">Пробуждать устройство</string>
-    <string name="setting_feedback_wake_desc">Пробуждать устройство, если экран выключен</string>
 
-    <!-- Gates -->
-    <string name="gate_charging_state">Зарядка</string>
-    <string name="gate_telephony_activity">Звонок</string>
-    <string name="gate_telephony_activity_desc">Блокировать жест во время вызовов. Поддерживаются только обычные звонки, в WhatsApp и т.п. не работает.</string>
-    <string name="gate_telephony_activity_desc_when">Запускать только во время звонка</string>
-    <string name="gate_usb_state">USB-устройство</string>
-    <string name="gate_camera_visibility">Камера</string>
-    <string name="gate_camera_visibility_desc">Блокировать жест при открытии любого приложения камеры. Примечание: этот запрет нарушит функциональность пропуска действия "Камера".</string>
-    <string name="gate_camera_visibility_desc_when">Запускать только когда открыта камера</string>
-    <string name="gate_power_state">Экран выключен</string>
-    <string name="gate_power_state_desc">Блокировать жест, когда экран устройства выключен</string>
-    <string name="gate_power_state_desc_when">Запускать только когда экран выключен</string>
-    <string name="gate_power_state_inverse">Экран включен</string>
-    <string name="gate_power_state_inverse_desc">Блокировать жест, когда экран устройства включен</string>
-    <string name="gate_power_state_inverse_desc_when">Запускать только когда экран включен</string>
-    <string name="gate_app_showing">Показ приложения</string>
-    <string name="gate_app_showing_desc">Блокировать жест, когда приложение отображается на экране</string>
-    <string name="gate_app_showing_desc_when">Запускать только когда на экране отображается приложение</string>
-    <string name="gate_app_showing_desc_formatted">Блокировать жест, когда %1s отображается на экране</string>
-    <string name="action_launch_camera">Камера</string>
-    <string name="action_launch_camera_desc">Запустить приложение камеры по умолчанию. Действие будет пропущено, если камера уже работает.</string>
-    <string name="action_home">Домой</string>
-    <string name="action_home_desc">Имитировать нажатие кнопки "\Домой"\</string>
-    <string name="action_back">Назад</string>
-    <string name="action_back_desc">Имитировать нажатие кнопки \"Назад"\</string>
-    <string name="action_recents">Недавние приложения</string>
-    <string name="action_recents_desc">Открыть меню недавних приложений, имитируя нажатие кнопки \"Недавние"\. На некоторых устройствах, если меню недавних приложений уже открыто, откроется последнее фоновое приложение</string>
-    <string name="action_notifications">Уведомления</string>
-    <string name="action_notifications_desc">Открыть шторку уведомлений. На некоторых устройствах действие закроет шторку, если она открыта.</string>
-    <string name="action_quick_settings">Быстрые настройки</string>
-    <string name="action_quick_settings_desc">Открыть панель быстрых настроек. На некоторых устройствах действие закроет панель, если она открыта.</string>
-    <string name="action_screenshot">Скриншот</string>
-    <string name="action_screenshot_desc">Сделать снимок экрана, используя системный интерфейс</string>
-    <string name="action_lock_screen">Блокировка экрана</string>
-    <string name="action_lock_screen_desc">Заблокировать экран, имитируя нажатие кнопки питания</string>
-    <string name="action_toggle_pause">Воспроизведение / пауза</string>
-    <string name="action_toggle_pause_desc">Воспроизвести / приостановить текущее воспроизведение</string>
-    <string name="action_previous">Предыдущее</string>
-    <string name="action_previous_desc">Воспроизвести предыдущее аудио</string>
-    <string name="action_next">Следующее</string>
-    <string name="action_next_desc">Воспроизвести следующее аудио</string>
-    <string name="fab_add_action">Добавить действие</string>
-    <string name="fab_remove_action">Удалить</string>
-    <string name="add_action_category_launch">Запуск</string>
-    <string name="add_action_category_utilities">Утилиты</string>
-    <string name="add_action_category_advanced">Дополнительно</string>
-    <string name="action_flashlight">Фонарик</string>
-    <string name="action_flashlight_desc">Включить/выключить фонарик. Действие не будет выполнено, если камера используется другим приложением.</string>
-    <string name="action_launch_app">Запустить приложения</string>
-    <string name="action_launch_app_desc">Запустить приложения</string>
-    <string name="action_launch_app_desc_formattable">Запустить %1s. Действие будет пропущено, если оно уже запущено.</string>
-    <string name="fab_add_gate">Добавить запрет</string>
+    <!-- Launcher app name -->
+    <string name="app_name">Tap, Tap</string>
+
+    <!-- Generic -->
     <string name="search">Поиск</string>
-    <string name="action_power_dialog">Меню питания</string>
-    <string name="action_power_dialog_desc">Открыть меню питания, имитируя нажатие кнопки питания</string>
-    <string name="action_split_screen">Разделение экран</string>
-    <string name="action_split_screen_desc">Начать или остановить разделение экрана с текущим приложением (не рабаотает на домашнем экране)</string>
-    <string name="help_action">Действия - это задачи, которые выполняются, когда Вы дважды постукиваете по задней части устройства. Действия выполняются в порядке очереди - сверху вниз и только если требования выполнены.\nНажмите, чтобы узнать больше.</string>
-    <string name="bs_help_action">Действия - это задачи, которые запускаются, когда Вы дважды постукиваете по задней части устройства. Действия выполняются в порядке очереди - сверху вниз. Если действие успешно выполнено, то никакие другие действия не будут выпоняться. Тем не менее, если действие не доступно (например, если голосовой помощник для действия "Запустить помощника" уже запущен или требования не выполнены), запустится следущее снизу действие, и так до конца.</string>
+    <string name="close">Закрыть</string>
 
-    <!-- Sensitivity slider labels -->
-    <string name="setting_gesture_sensitivity">Чувствительность</string>
+    <!-- Setup > Landing -->
+    <string name="landing_title">Представляем Tap, Tap</string>
+    <string name="landing_button_get_started">Начнем</string>
+    <string name="landing_button_skip_setup">Настроить позже</string>
+
+    <!-- Setup > Info -->
+    <string name="setup_foss_info_title">Tap, Tap — это\nбесплатное ПО с открытым кодом</string>
+    <string name="setup_foss_info_content"><![CDATA[Tap, Tap был, есть и всегда останется бесплатным приложением, построенным на компонентах с открытым исходным кодом. Исходный код доступен всем желающим для просмотра и внесения правок в <a href=\"https://kieronquinn.co.uk/redirect/TapTap/github\">репозитории на GitHub</a>. Официальные ссылки для скачивания доступны <b>только</b> на <a href="https://kieronquinn.co.uk/redirect/TapTap/xda">XDA</a>, в <a href="https://kieronquinn.co.uk/redirect/TapTap/github">репозитории GitHub</a> и на <a href="https://kieronquinn.co.uk/redirect/TapTap/apkmirror">APKMirror</a>. Официальное приложение всегда будет автоматически пердлагать загружать обновления с GitHub, если вы разрешили доступ в Интернет.]]></string>
+    <string name="setup_foss_info_warning">Устанавливайте Tap, Tap только из официальных источников, указанных выше. <b>Если вы уже скачали приложение из любого другого источника, настоятельно рекомендуем удалить его и переустановить по одной из вышеприведенных ссылок</b>. Нажмите, чтобы узнать больше.</string>
+    <string name="setup_foss_info_bs_title">Предостережение</string>
+    <string name="setup_foss_info_bs_content">Tap, Tap использует службу специальных возможностей. Это позволяет ему совершать действия на вашем устройстве автоматически и потому доступ не должен выдаваться приложениям, которым вы не доверяете. Вот почему у Tap, Tap открытый исходный код - благодаря этому вы и кто угодно еще может заглянуть в код и убедиться, что приложение не делает ничего такого, о чем не заявляет.\n\nОднако мы не можем гарантировать подобное, если вы загрузили APK-файл не из официального источника. Если файл откуда-то ещё кроме репозитория GitHub, XDA или APKMirror, в таком случае настоятельно рекомендуем немедленно удалить его и переустановить из официального источника.</string>
+    <string name="setup_foss_info_content_lower">Если вам нравится приложение Tap, Tap, и вы хотите внести пожертвование, ссылка для этого находится в нижней части раздела «Ещё», доступно после первой настройки. Независимо от денежных пожертвований, мы признательны за ваш вклад в разработку и популяризацию приложения, спасибо!</string>
+    <string name="setup_info_next">Далее</string>
+
+    <!-- Setup > Gesture -->
+    <string name="setup_gesture_toolbar">Конфигурация жеста</string>
+    <string name="setup_gesture_device_size"><![CDATA[Выберите оптимальный размер модели под габариты вашего устройства.<br><b>Сейчас выбран: %1$s</b><br>Если вам не удается с первых попыток получить реакцию на жест, то попробуйте другие модели.]]></string>
+    <string name="setup_gesture_loading">Загрузка…</string>
+    <string name="setup_gesture_info_hint">Дважды коснитесь задней панели устройства для активации жеста.\n<b>Попробуйте сильно постучать кончиком указательного пальца.</b></string>
+    <string name="setup_gesture_info_help">Не получается? Попробуйте отрегулировать размер и чувствительность на панели «Конфигурация жеста»</string>
+    <string name="setup_gesture_info_success"><b>Отлично! Нажмите, чтобы продолжить.</b>\nСовет: Если вам не удается с первых попыток получить реакцию на жест, попробуйте отрегулировать размер и чувствительность сейчас на панели «Конфигурация жеста» или позже в настройках.</string>
+
+    <!-- Setup > Complete -->
+    <string name="setup_complete_card">Может потребоваться выдача разрешений в первый раз, когда добавляете и используете действия и исключения, следите за уведомлениями для настройки.</string>
+    <string name="setup_complete_title">Настройка завершена</string>
+
+    <!-- Internet Permission Prompt -->
+    <string name="dialog_internet_permission_text">Разрешить доступ в Интернет?</string>
+    <string name="dialog_internet_permission_desc">Необходимо только для уточнения габаритов устройства и периодической проверки выхода обновлений в фоне.</string>
+    <string name="dialog_internet_permission_allow_always">Разрешить всегда</string>
+    <string name="dialog_internet_permission_allow_open">Разрешить только пока Tap, Tap открыто</string>
+    <string name="dialog_internet_permission_deny">Запретить</string>
+
+    <!-- Upgrade modal -->
+    <string name="setup_upgrade_loading">Обновление настроек…</string>
+
+    <!-- No Gyroscope Modal -->
+    <string name="modal_no_gyroscope_title">Несовместимое устройство</string>
+    <string name="modal_no_gyroscope_content">У вашего устройства нет датчика (гироскопа), необходимого для работы приложения. Tap, Tap никогда не сможет работать на нем.</string>
+
+    <!-- Disable Columbus Modal -->
+    <string name="modal_disable_columbus_title">Отключите Короткое касание</string>
+    <string name="modal_disable_columbus_content">На вашем устройстве уже активирован системный жест постукивания, отключите его, чтобы Tap, Tap мог функционировать должным образом.\n«Короткое касание» можно найти в системных настройках, в разделе Система > Жесты.</string>
+    <string name="modal_disable_columbus_card">Возможно потребуется перезагрузка после отключения жеста «Короткое касание», чтобы заработали все функции Tap, Tap.</string>
+    <string name="modal_disable_columbus_button">Открыть настройки</string>
+
+    <!-- Settings UI -->
+    <string name="settings_main_enable_tap_tap">Включить Tap, Tap</string>
+    <string name="setting_bottom_nav_settings">Настройки</string>
+    <string name="setting_bottom_nav_gesture">Жест</string>
+    <string name="setting_bottom_nav_more">Ещё</string>
+    <string name="menu_setup_wizard">Первичная настройка</string>
+
+    <!-- Settings > Gesture -->
+    <string name="settings_main_battery"><b>Отключить экономию заряда батареи</b>\nНажмите, чтобы добавить Tap, Tap в исключения алгоритма оптимизации заряда батареи, тем самым предотвращая завершение системой фоновых процессов приложения</string>
+    <string name="setting_actions_double">Действия по двойному касанию</string>
+    <string name="setting_actions_triple">Действия по тройному касанию</string>
+    <string name="settings_actions_desc_double">Выбрать действия, которые будут выполняться, если дважды коснуться задней панели устройства</string>
+    <string name="settings_actions_desc_triple">Выбрать действия, которые будут выполняться, если трижды коснуться задней панели устройства</string>
+    <string name="setting_gates">Исключения</string>
+    <string name="setting_gates_desc">Выбрать условия, при которых жесты будут проигнорированы, а действия не выполнены</string>
+    <string name="setting_feedback">Отклик при касании</string>
+    <string name="setting_feedback_desc">Каким образом устройство оповестит вас о распознанном жесте</string>
+    <string name="setting_feedback_vibrate">Вибрация</string>
+    <string name="setting_feedback_vibrate_desc">Вибрировать один раз, когда жест распознался и запустил действие</string>
+    <string name="setting_feedback_wake">Включение устройства</string>
+    <string name="setting_feedback_wake_desc">Аналог жеста двойного касания по экрану, пробуждает устройство из выключенного экрана</string>
     <string name="slider_sensitivity_very_low">Очень низкая</string>
     <string name="slider_sensitivity_low">Низкая</string>
     <string name="slider_sensitivity_medium">Средняя</string>
     <string name="slider_sensitivity_high">Высокая</string>
     <string name="slider_sensitivity_very_high">Очень высокая</string>
+    <string name="setting_feedback_override_dnd">Вибрировать даже в режиме «Не беспокоить»</string>
+    <string name="setting_feedback_override_dnd_desc">Издавать вибрацию при распознавании жеста всегда, независимо от положения переключателя системного режима «Не беспокоить»</string>
 
-    <string name="gate_keyboard_visibility">Клавиатура</string>
-    <string name="gate_keyboard_visibility_desc_when">Запускать только когда клавиатура открыта и используется. Может не всегда работать, если Вы печатаете неактивно.</string>
-    <string name="gate_keyboard_visibility_desc">Блокировать жест, когда клавиатура открыта и используется. Может не всегда работать, если Вы печатаете неактивно.</string>
-    <string name="gate_orientation_landscape">Горизонтальная ориентация</string>
-    <string name="gate_orientation_landscape_desc">Блокировать жест, когда устройство повернуто горизонтально</string>
-    <string name="gate_orientation_landscape_desc_when">Запускать только когда устройство повернуто горизонтально</string>
-    <string name="gate_orientation_portrait">Вертикальная ориентация</string>
-    <string name="gate_orientation_portrait_desc">Блокировать жест, когда устройство повернуто вертикально</string>
-    <string name="gate_orientation_portrait_desc_when">Запускать только когда устройство повернуто вертикально</string>
-    <string name="gate_table">Стол</string>
-    <string name="gate_table_desc">Блокировать жест, когда устройство лежит на плоской поверхности, например на столе</string>
-    <string name="gate_table_desc_when">Запускать только когда устройство лежит на плоской поверхности, например на столе</string>
-    <string name="gate_pocket">В кармане</string>
-    <string name="gate_pocket_desc">Блокировать жест, когда датчик приближения замечает объект. Из-за этого жест будет заблокирован в кармане или когда устройство лежит экраном вниз</string>
-    <string name="gate_pocket_desc_when">Запускать только когда датчик приближения замечает объект. Жест будет срабатывать в кармане или когда устройство лежит экраном вниз</string>
-    <string name="gate_headset_inverse">Без гарнитуры</string>
-    <string name="gate_headset_desc_inverse">Блокировать жест, когда гарнитура <b>не</b> подключена. Лучше всего использовать с кнопками воспроизведение/пауза/следущее, чтобы предотвратить проигрывание музыки через динамик</string>
-    <string name="gate_headset_desc_when_inverse">Запускать только когда гарнитура <b>не</b> подключена</string>
-    <string name="gate_headset">Гарнитура</string>
-    <string name="gate_headset_desc">Блокировать жест, когда гарнитура <b>подключена</b>.</string>
-    <string name="gate_headset_desc_when">Запускать только когда гарнитура <b>подключена</b></string>
-    <string name="gate_music">Музыка играет</string>
-    <string name="gate_music_inverse">Музыка не играет</string>
-    <string name="gate_music_desc">Блокировать жест, когда играет музыка</string>
-    <string name="gate_music_desc_when">Запускать только когда играет музыка</string>
-    <string name="gate_music_desc_when_inverse">Блокировать жест, когда музыка не играет</string>
-    <string name="gate_music_desc_inverse">Запускать только когда музыка не играет</string>
-    <string name="tap_notification_title">Сервис Tap, Tap</string>
-    <string name="tap_notification_content">Tap, Tap работает в фоновом режиме. Нажмите, чтобы скрыть.</string>
-    <string name="tap_notification_channel_title">Фоновое уведомление</string>
-    <string name="tap_notification_channel_description">Уведомление, которое используется для продолжения работы Tap, Tap в фоновом режиме, когда включена опция использования отдельной службы</string>
+    <!-- Settings > Gesture -> Action -->
+    <string name="fab_add_action">Добавить действие</string>
+    <string name="fab_remove_action">Удалить</string>
+    <string name="help_action">Действия — это задачи, которые выполняются по двойному касанию задней панели устройства. Они выполняются по порядку, как в списке — сверху вниз, но только при соблюдении условий.\nНажмите, чтобы узнать больше.</string>
+    <string name="bs_help_action">Действия — это задачи, которые выполняются по двойному касанию задней панели устройства. Они выполняются по порядку, как в списке — сверху вниз. Если действие выполнимо, то дальнейшие действия из списка применяться не будут. Однако, если действие недоступно (например, если цифровой помощник из одноименного действия уже запущен или не все условия выполнены), то будут запускаться все остальные по списку, пока одно из них наконец не будет совершено.</string>
+    <string name="bs_help_action_title">Что такое «действия»?</string>
+    <string name="item_action_when_empty">Добавить условие…</string>
+    <string name="item_action_when_not_empty_single">%1d условие</string>
+    <string name="item_action_when_not_empty_other">Условий: %1d</string>
+    <string name="item_action_app_uninstalled">Неизвестное приложение (%1s)</string>
+    <string name="switch_triple">Включить тройное касание</string>
+    <string name="settings_actions_loading_actions">Загрузка списка действий…</string>
+    <string name="help_action_triple"><b>Примечание:</b> Когда тройное касание включено, действие по двойному касанию может выполняться с задержкой. Это связано с тем, что приложение, прежде чем приступить к действию, какое-то время дожидается третьего касания.</string>
+    <string name="settings_actions_triple_empty">Нет действий по тройному касанию, нажмите на кнопку «Добавить действие» для выбора.</string>
+    <string name="settings_actions_double_empty">Нет действий по двойному касанию, нажмите на кнопку «Добавить действие» для выбора.</string>
+
+    <!-- Settings > Gesture > Action > Requirements -->
+    <string name="action_when_gate_inverted">%1s (наоборот)</string>
+    <string name="settings_when_gates_title">Условия</string>
+    <string name="settings_actions_when_gates_empty">Нет условий, нажмите на кнопку «Добавите условий» для выбора.</string>
+    <string name="settings_actions_loading_when_gates">Загрузка списка условий…</string>
+    <string name="fab_add_requirement">Добавить условие</string>
+
+    <!-- Settings > Gesture > Action > Add -->
+    <string name="add_action_category_launch">Запуск</string>
+    <string name="add_action_category_launch_desc">Открыть приложение, выполнить контекстное действие или запустить быстрый ярлык</string>
+    <string name="add_action_category_utilities">Служебные действия</string>
+    <string name="add_action_category_utilities_desc">Сделать снимок экрана, включить фонарик, перейти в меню приложений или принять/отклонить вызов</string>
+    <string name="add_action_category_button">Кнопки</string>
+    <string name="add_action_category_button_desc">Имитировать нажатия кнопок панели навигации или кнопки питания</string>
+    <string name="add_action_category_sound">Звук</string>
+    <string name="add_action_category_sound_desc">Переключать музыку, регулировать громкость или управлять будильниками</string>
+    <string name="add_action_category_gesture">Жесты</string>
+    <string name="add_action_category_gesture_desc">Имитировать свайпы (взмахи) по экрану во всех направлениях</string>
+    <string name="add_action_category_accessibility">Спец. возможности</string>
+    <string name="add_action_category_accessibility_desc">Действия специальных возможностей, такие как Google Voice Access и показ вспомогательного меню</string>
+    <string name="add_action_category_advanced">Дополнительные</string>
+    <string name="add_action_category_advanced_desc">Запускать задачи и события приложения Tasker</string>
+    <string name="settings_actions_add_category_selector_loading">Загрузка категорий действий…</string>
+    <string name="settings_actions_add_action_selector_loading">Загрузка списка действий…</string>
+    <string name="settings_actions_add_category_selector_empty">Действия не найдены</string>
+
+    <!-- Action Chips -->
+    <string name="action_chip_shizuku">Shizuku</string>
+    <string name="action_chip_shizuku_desc">Требуется установить приложение Shizuku или модуль sui</string>
+    <string name="action_chip_root">Root</string>
+    <string name="action_chip_root_desc">Требуется выдать приложению root-права (права суперпользователя)</string>
+    <string name="action_chip_accessibility">Служба</string>
+    <string name="action_chip_accessibility_desc">Требуется включить службу спец. возможностей</string>
+    <string name="action_chip_gesture_accessibility">Жест</string>
+    <string name="action_chip_gesture_accessibility_desc">Требуется включить вспомогательную службу спец. возможностей</string>
+    <string name="action_chip_tasker">Tasker</string>
+    <string name="action_chip_tasker_desc">Требуется установить приложение Tasker</string>
+    <string name="action_chip_snapchat">Snapchat</string>
+    <string name="action_chip_snapchat_desc">Требуется установить приложение Snapchat</string>
+
+    <!-- Settings > Gesture > Gates -->
+    <string name="fab_add_gate">Добавить исключение</string>
+    <string name="help_gate">Исключения — это условия, при которых жесты игнорируются. Чтобы действия снова выполнялись, необходимо не подпадать ни под какие исключения.\nНажмите, чтобы узнать больше.</string>
+    <string name="bs_help_gate">Исключения — это условия, при которых жесты игнорируются. Чтобы действия снова выполнялись, необходимо не подпадать ни под какие исключения.\nЕсли в текущий момент времени выполняется условие, например экран выключен при активном одноименном исключении, то никакие действия выполняться не будут. Вы можете добавить столько исключений, сколько захотите, и включать/отключать их с помощью переключателей (вместо того, чтобы удалять и добавлять заново), чтобы ускорить и упростить настройку под себя.</string>
+    <string name="bs_help_gate_title">Что такое «Исключения»?</string>
+    <string name="settings_gates_loading_gates">Загрузка списка исключений…</string>
+
+    <!-- Settings > Gesture > Gates > Add -->
+    <string name="add_gate_category_device">Устройство</string>
+    <string name="add_gate_category_device_desc">Реагировать на перемены в устройстве, например, в работе экрана, зарядке или подключении по USB</string>
+    <string name="add_gate_category_sensors">Датчики</string>
+    <string name="add_gate_category_sensors_desc">Реагировать на показатели датчиков, определяющие, например, что устройство находится в кармане или лежит на столе</string>
+    <string name="add_gate_category_audio">Аудио</string>
+    <string name="add_gate_category_audio_desc">Реагировать на события, связанные с аудио, например телефонный вызов или воспроизведение музыки</string>
+    <string name="add_gate_category_events">Приложения</string>
+    <string name="add_gate_category_events_desc">Реагировать на открытые приложения, в том числе клавиатуру и камеру</string>
+    <string name="gate_selector_unavailable">Извините, это исключение несовместимо с вашим устройством (%1s).</string>
+    <string name="settings_gates_add_category_selector_loading">Загрузка категорий исключений…</string>
+    <string name="settings_gates_add_gate_selector_loading">Загрузка списка исключений…</string>
+    <string name="settings_gates_add_category_selector_empty">Исключения не найдены</string>
+    <string name="settings_gates_empty">Исключения не добавлены, нажмите «Добавить исключение» для выбора.</string>
+
+    <!-- Settings > Settings -->
+    <string name="setting_gesture_model">Модели под разные размеры</string>
+    <string name="setting_gesture_model_desc">Выбрать наиболее оптимальный вариант, от выбора зависит используемая модель распознавания жестов.</string>
+    <string name="setting_gesture_model_desc_not_available">Эта опция недоступна пока включен «Режим сверхнизкого ЭП».</string>
+    <string name="setting_low_power_mode">Режим сверхнизкого ЭП</string>
+    <string name="setting_low_power_mode_desc">Выполнять задачу по обнаружению жестов на отдельном вычислительном блоке Context Hub (со сверхнизким энергопотреблением), а не на базовых ядрах процессора в целях экономии заряда батареи</string>
+    <string name="setting_gesture_sensitivity">Чувствительность</string>
+    <string name="setting_gesture_sensitivity_desc">Изменить чувствительность срабатывания жеста, отрегулировав, какое усилие будет считаться недостаточным. Пониженная чувствительность означает, что совершить жест будет сложнее на большинстве устройств, в то время как повышенная чревата ложными срабатываниями.</string>
+    <string name="setting_gesture_sensitivity_desc_disabled">В «Расширенных настройках» уже задано другое значение чувствительности, сбросьте его с помощью этой опции.</string>
+    <string name="setting_gesture_sensitivity_chre">Пониженная чувствительность</string>
+    <string name="setting_gesture_sensitivity_chre_desc">Использовать низкое значение чувствительности распознавания в Tap, Tap, усложняя совершение жеста.</string>
+
+    <!-- Settings > Settings > Low Power Mode -->
+    <string name="settings_low_power_mode_enable">Вкл. режим сверхнизкого ЭП</string>
+    <string name="setting_low_power_mode_content">Режим сверхнизкого энергопотребления задействует отдельный вычислительный блок устройства — Context Hub, на котором выполняются «наноприложения». Чтобы это стало возможным, требуется наноприложение Columbus, скомпилированное вашим производителем специально для этого устройства. Тогда Tap, Tap сможет использовать режим так же, как это делает системная функция «Короткое касание» в Pixel, определяя жесты со значительно меньшим потреблением заряда батареи, чем обычным способом через процессор.\n\n<b>Для этой опции также потребуется Shizuku (или sui), поскольку ей требуются системные разрешения, недоступные пользовательским приложениям.\nНа Android 13 и новее потребуется Sui из-за изменений платформы вне зоны досягаемости Tap, Tap.</b>\n\n<b>Примечание: в первый раз может потребоваться перезагрузить устройство, чтобы изменения вступили в силу.</b></string>
+    <string name="settings_low_power_mode_error_shizuku">Для работы этой опции требуется Shizuku или sui. Shizuku может работать и без root-прав, но если они есть на вашем устройстве, то Shizuku сможет автоматически запускаться после каждой перезагрузки системы. Если у вас уже установлен модуль для Magisk — <b>sui</b>, нажмите ниже, чтобы запросить разрешение.</string>
+    <string name="settings_low_power_mode_error_button_shizuku">Что такое Shizuku / Sui?</string>
+    <string name="settings_low_power_mode_error_button_sui">Запросить разрешение у <b>sui</b></string>
+    <string name="settings_low_power_mode_error_not_compatible">Извините, эта опция несовместима с вашим устройством\n<b>Примечание:</b> На устройстве с Android 13 и новее <b>должны быть</b> доступны root-права (права суперпользователя) и установлен Sui, чтобы можно было пользоваться опцией, Shizuku больше непригоден для этой задачи из-за изменений платформы вне зоны досягаемости Tap, Tap.</string>
+    <string name="settings_low_power_mode_error_toast">Shizuku не запущен, активируйте его для работы «Режима сверхнизкого ЭП»</string>
+
+    <!-- Settings > Settings > Model Picker -->
+    <string name="settings_model_picker_loading">Загрузка…</string>
+    <string name="settings_model_picker_tab_newest">Новейшие</string>
+    <string name="settings_model_picker_tab_legacy">Ранние</string>
+    <string name="settings_model_picker_device_size">Высота: %1s мм (%1s″)</string>
+    <string name="settings_model_picker_recommended">%1s (рекомендуется)</string>
+    <string name="settings_model_picker_header_newest">Новейшие модели распознавания взяты из Android 12 и более точны, чем устаревшие.\n\n<b>Примечание:</b> Иногда модель со схожими габаритами не лучшим образом подходит для вашего устройства, тогда придется опробовать все варианты, чтобы подобрать самый подходящий для вас.</string>
+    <string name="settings_model_picker_header_legacy">Ранние модели взяты из Android 11 и менее точны, чем более свежие модели.\n\n<b>Примечание:</b> Иногда модель со схожими габаритами не лучшим образом подходит для вашего устройства, тогда придется опробовать все варианты, чтобы подобрать самый подходящий для вас.</string>
+
+    <!-- New (Android 12) models -->
+    <string name="tap_model_redfin_name">144.7 мм [5.7″] (маленькие)</string>
+    <string name="tap_model_redfin_desc">Создано для Pixel 5</string>
+    <string name="tap_model_flame_name">147.1 мм [5.8″] (маленькие)</string>
+    <string name="tap_model_flame_desc">Создано для Pixel 4</string>
+    <string name="tap_model_bramble_name">153.9 мм [6.1″] (средние)</string>
+    <string name="tap_model_bramble_desc">Создано для Pixel 4a 5G</string>
+    <string name="tap_model_crosshatch_name">158 мм [6.2″] (крупные)</string>
+    <string name="tap_model_crosshatch_desc">Создано для Pixel 3 XL</string>
+    <string name="tap_model_coral_name">160.4 мм [6.3″] (крупные)</string>
+    <string name="tap_model_coral_desc">Создано для Pixel 4 XL</string>
+
+    <!-- Old (Android 11) models -->
+    <string name="tap_model_pixel4_name">147.1 мм [5.8″] (маленькие)</string>
+    <string name="tap_model_pixel4_desc">Создано для Pixel 4</string>
+    <string name="tap_model_pixel3xl_name">158 мм [6.2″] (средние)</string>
+    <string name="tap_model_pixel3xl_desc">Создано для Pixel 3 XL</string>
+    <string name="tap_model_pixel4xl_name">160 мм [6.3″] (крупные)</string>
+    <string name="tap_model_pixel4xl_desc">Создано для Pixel 4 XL</string>
+
+    <!-- Settings > Settings > Advanced -->
     <string name="setting_advanced">Расширенные настройки</string>
-    <string name="setting_advanced_desc">Расширенные настройки для изменения производительности и т. д.</string>
-    <string name="setting_advanced_warning_desc">Эти настройки являются экспериментальными, поэтому они могут не работать на Вашем устройстве или привести к тому, что Tap, Tap полностью перестанет работать.</string>
-    <string name="setting_advanced_restart_service">Автозапуск службы</string>
-    <string name="setting_advanced_restart_service_desc">Попытка автоматически перезапустить компонент прослушивания Tap, Tap производится раз в час.</string>
-    <string name="tap_update_notification_channel_title">Уведомления об обновлениях</string>
-    <string name="tap_update_notification_channel_description">Уведомления отображаются раз в день, когда проверяется наличие обновлений</string>
-    <string name="tap_update_notification_title">Доступно обновление Tap, Tap</string>
-    <string name="tap_update_notification_content">Для Tap, Tap доступно обновление (%1s to %1s)</string>
-    <string name="switch_triple">Включить тройное постукивание</string>
-    <string name="help_action_triple">Примечание: Когда тройное постукивание включено, двойное постукивание может срабатывать медленее. Это связано с тем, что приложению нужно дождаться, чтобы узнать, будет ли третье постукивание.</string>
-    <string name="tasker_description_double">Срабатывать по двойному постукиванию по задней части устройства</string>
-    <string name="tasker_description_triple">Срабатывать по тройному постукиванию по задней части устройства</string>
+    <string name="setting_advanced_desc">Дополнительные опции и надстройки для особых случаев</string>
+    <string name="setting_advanced_warning_desc">Эти настройки экспериментальные, поэтому могут не сработать на вашем устройстве или привести к тому, что Tap, Tap вообще перестанет работать.</string>
+    <string name="setting_advanced_restart_service">Стабилизация процессов</string>
+    <string name="setting_advanced_restart_service_desc">Перезапускать фоновые процессы Tap, Tap раз в час. Обеспечивает надежность работы службы распознавания жеста.</string>
+    <string name="setting_advanced_legacy_wake">Устаревший метод пробуждения устройства</string>
+    <string name="setting_advanced_legacy_wake_desc">Использовать классический метод для работы опции «Включение устройства». Работает не на всех устройствах, но в редких случаях может оказаться более надежным решением.</string>
+    <string name="setting_advanced_tensor_low_power">Tensor Low Power Mode</string>
+    <string name="setting_advanced_tensor_low_power_desc">Запускает модель распознавания жестов на энергоэффективных ядрах процессора, если доступно; в случае проблем с производительностью отключите опцию.\n<b>По умолчанию включено</b></string>
+    <string name="settings_advanced_monet_color_picker">Цвет темы из обоев</string>
+    <string name="settings_advanced_monet_color_picker_desc">Для интерфейса Tap, Tap использовать палитру на основе цвета ваших обоев</string>
+    <string name="setting_advanced_custom_sensitivity">Свое значение чувствительности</string>
+    <string name="setting_advanced_custom_sensitivity_desc">Установить другой порог чувствительности при распознавании жеста.\nВажно: меняйте только в том случае, если вам не подошел <b>ни один</b> из предустановленных вариантов</string>
+    <string name="bs_advanced_custom_sensitivity">Свой параметр</string>
+    <string name="bs_advanced_custom_sensitivity_hint">Чувствительность</string>
+    <string name="bs_advanced_custom_sensitivity_invalid">Недопустимое значение</string>
+    <string name="bs_advanced_custom_sensitivity_reset">Сбросить</string>
 
-    <string name="bs_help_action_title">Что такое действия?</string>
-    <string name="bs_help_gate">Запреты - это ситуации, которые могут заблокировать жест от выполнения каких-либо действий. Для выполнения любого действия все включенные запреты должны быть открыты. \nЕсли в данный момент выполняется сценарий, например, если экран выключен и запрет «Отключить отображение» включены, никакие действия не будут выполняться. Вы можете добавить столько запретов, сколько захотите, и включать / отключать их, используя переключатели (вместо того, чтобы удалять и повторно добавлять), чтобы сделать настройку быстрее и проще.</string>
-    <string name="bs_help_gate_title">Что такое запреты?</string>
-    <string name="action_tasker_event_desc">Запустить плагин Tasker Event</string>
-    <string name="action_launch_assistant">Голосовой помощник</string>
-    <string name="action_launch_assistant_desc">Запустить приложение-помощник по умолчанию</string>
-    <string name="action_launch_search">Поиск</string>
-    <string name="action_launch_search_desc">Запустить Поиск Google</string>
-    <string name="action_google_voice_access">Вызвать Google Voice Access</string>
-    <string name="action_google_voice_access_desc">Вызвать the Google Voice Access, если он запущен (это не голосовой помощник или поиск)</string>
+    <!-- Monet Color Picker -->
+    <string name="color_picker_unavailable">Средство выбора цвета недоступно с текущими обоями</string>
 
-    <string name="battery_and_optimisation">Батарея и Энергосбережение</string>
-    <string name="battery_and_optimisation_desc">Информация о том, почему Tap, Tap расходует батарею и почему он может быть убит устройством при работе в фоновом режиме (и как это исправить)</string>
+    <!-- Settings > More -->
+    <string name="settings_backup_restore">Резервное копирование и восстановление</string>
+    <string name="settings_backup_restore_desc">Создать резервную копию на вашем устройстве или в облаке</string>
+    <string name="settings_backup_restore_backup">Резервное копирование</string>
+    <string name="settings_backup_restore_backup_desc">Создать копию ваших настроек на устройстве или в облаке</string>
+    <string name="settings_backup_restore_restore">Восстановление</string>
+    <string name="settings_backup_restore_restore_desc">Восстановить ваши настройки из резервной копии с устройства или из облака</string>
+    <string name="setting_internet">Разрешить доступ в Интернет</string>
+    <string name="setting_internet_desc">Необходимо только для уточнения габаритов устройства и периодической проверки выхода обновлений в фоне</string>
+    <string name="setting_crash_reporting">Уведомления о сбоях</string>
+    <string name="setting_crash_reporting_desc">Показывать уведомление в случае сбоя приложения Tap, Tap, что позволит сохранить лог для дальнейшей публикации в репозитории на GitHub или в теме на XDA. Эта опция <b>не отправляет</b> автоматически данные о сбое на сервер.</string>
+    <string name="battery_and_optimisation">Экономия заряда батареи</string>
+    <string name="battery_and_optimisation_desc">Информация о том, почему Tap, Tap потребляет заряд батареи и устройство может завершить работу приложения в фоновом режиме (и как это исправить)</string>
+    <string name="xda_thread">Тема на XDA</string>
+    <string name="github">GitHub</string>
+    <string name="libraries">Лицензии ПО</string>
+    <string name="donate">Поддержать</string>
+    <string name="twitter">Профиль в Твиттере</string>
+    <string name="about_version">Версия %1s\nСоздано Кироном Квинном</string>
+
+    <!-- Settings > More > Battery Optimisation -->
+    <string name="settings_battery_header"><![CDATA[Tap, Tap в фоновом режиме использует данные с датчиков, что может отнимать много ресурсов процессора и заряда батареи. На устройствах с выделенным ML-ускорителем (например, с тензорным ускорителем Qualcomm Hexagon Tensor Accelerator) энергопотребление ниже.<br><a href="https://kieronquinn.co.uk/redirect/TapTap/battery">Нажмите здесь, чтобы получить несколько советов по экономии заряда батареи</a>.]]></string>
+    <string name="settings_battery_info"><![CDATA[Tap, Tap нужно исключить из алгоритма оптимизации расхода заряда батареи Android. Это поможет предотвратить остановку работы фоновых процессов для распознавания жестов.<br><b>Примечание:</b> Для стабильности работы на некоторых устройствах может потребоваться изменение и других настроек. <a href="https://dontkillmyapp.com/">Нажмите здесь, чтобы узнать больше</a>.]]></string>
+    <string name="settings_battery_disable_optimisation">Отключить режим экономии заряда</string>
+    <string name="settings_battery_disable_optimisation_desc_enabled">Tap, Tap учитывается системным алгоритмом экономии заряда батареи</string>
+    <string name="settings_battery_disable_optimisation_desc_disabled">Tap, Tap исключен из оптимизации системным алгоритмом экономии заряда батареи</string>
+    <string name="settings_battery_oem_info">Похоже, на вашем устройстве действуют дополнительные алгоритмы оптимизации энергопотребления от производителя. Tap, Tap не может автоматически запрашивать их отключение, поэтому проверьте настройки, чтобы убедиться в их деактивации.</string>
+    <string name="settings_battery_oem_button">Открыть специальные настройки расхода батареи</string>
+
+    <!-- Settings > More > Backup & Restore > Backup -->
+    <string name="settings_backuprestore_backup_title">Создание резервной копии…</string>
+    <string name="settings_backuprestore_backup_desc">Это не займет много времени</string>
+    <string name="settings_backuprestore_backup_done_title">Резервная копия создана</string>
+    <string name="settings_backuprestore_backup_done_desc">Файл сохранен в %1s</string>
+    <string name="settings_backuprestore_backup_error_title">Не удалось создать резервную копию</string>
+    <string name="settings_backuprestore_backup_error_desc">При создании копии произошла ошибка: %1s</string>
+
+    <!-- Settings > More > Backup & Restore > Restore -->
+    <string name="settings_backuprestore_restore_title">Восстановление из резервной копии…</string>
+    <string name="settings_backuprestore_restore_desc">Это не займет много времени</string>
+    <string name="settings_backuprestore_restore_done_title">Настройки восстановлены</string>
+    <string name="settings_backuprestore_restore_done_desc">Восстановлено из резервной копии %1s</string>
+    <string name="settings_backuprestore_restore_error_title">Не удалось восстановить настройки</string>
+    <string name="settings_backuprestore_restore_error_desc">При восстановлении из резервной копии произошла ошибка</string>
+    <string name="backup_restore_error_type_failed_create_file">Не удалось создать файл</string>
+    <string name="backup_restore_error_type_failed_write_file">Не удалось записать в файл</string>
+    <string name="backup_restore_error_type_failed_unknown">Неизвестная ошибка</string>
+    <string name="settings_backup_restore_restore_infobox">Какие-то из действий, исключений и условий требуют отдельной настройки или несовместимы с вашим устройством, сначала проверьте их.</string>
+    <string name="settings_backup_restore_restore_header_actions">Действия</string>
+    <string name="settings_backup_restore_restore_header_gates">Исключения</string>
+    <string name="settings_backup_restore_restore_header_when_gates">Требование для работы</string>
+    <string name="settings_backup_restore_restore_item_chip_action">Действие</string>
+    <string name="settings_backup_restore_restore_item_chip_gate">Исключение</string>
+    <string name="settings_backup_restore_restore_item_chip_requirement">Условие</string>
+    <string name="settings_backup_restore_restore_item_setup">Настроить</string>
+    <string name="settings_backup_restore_restore_item_skip">Пропустить</string>
+
+    <!-- Settings > More > Contributors -->
+    <string name="about_contributors">Благодарности</string>
+    <string name="about_contributors_main">Columbus</string>
+    <string name="about_contributors_main_content"><![CDATA[Модель и основной код «Columbus» созданы Google, взяты из Android 11 Developer Preview 1 и Android 12 (<a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>)]]></string>
+    <string name="about_contributors_community">Вклад сообщества</string>
+    <string name="about_contributors_community_content"><b>Интеграция с Tasker</b>: João Dias\n<b>Управление музыкой</b>: timfedo\n<b>Интеграция MD2 и Chrome Custom Tabs</b>: Giorgio Cantoni\n<b>Действие диалогового окна питания</b>: Adrian Campos\n<b>Действие звуковых профилей и режима «Не беспокоить»</b>: Ashutosh Singh\n<b>Действие по запуску поиска</b>: arkon\n<b>Действие по принудительному включению «Не беспокоить»:</b> Kylian Meulin</string>
+    <string name="about_contributors_icons">Значки</string>
+    <string name="about_contributors_icons_content"><![CDATA[Значки с ресурсов <b><a href="https://material.io/resources/icons">Material Icons</a></b> (<a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache Licence 2.0</a>)<br><b><a href="https://github.com/Templarian/MaterialDesign">Material Design Icons</a></b> (<a href="https://github.com/Templarian/MaterialDesign/blob/master/LICENSE">Pictogrammers Free Licence</a>)<br><b><a href="https://www.freepik.com/">Freepik</a></b> (<a href="https://www.flaticon.com/license/pack/197373">Flaticon Licence</a>)<br><b><a href="https://www.flaticon.com/free-icon/smartphone_2628265">Vitaly Gorbachev</a></b> (<a href="https://www.flaticon.com/license/icon/2628265">Flaticon Licence</a>)]]></string>
+    <string name="about_translators">Переводчики</string>
 
     <!-- Language headings, add to values.xml too -->
-    <string name="translators_chinese">Китайский (Упрощенный)</string>
+    <string name="translators_chinese">Китайский (упрощенный)</string>
     <string name="translators_russian">Русский</string>
     <string name="translators_portuguese_br">Бразильский португальский</string>
     <string name="translators_ukrainian">Украинский</string>
@@ -164,32 +311,317 @@
     <string name="translators_vietnamese">Вьетнамский</string>
     <string name="translators_german">Немецкий</string>
     <string name="translators_turkish">Турецкий</string>
-    <string name="translators_chinese_traditional">Китайский (Традиционный)</string>
+    <string name="translators_chinese_traditional">Китайцы (традиционный)</string>
 
-    <string name="xda_thread">Тред на XDA</string>
-    <string name="libraries">Сторонние библиотеки</string>
-    <string name="donate">Помочь рублём</string>
-    <string name="twitter">Подписаться на разработчика в Твиттере</string>
-    <string name="tasker_config_label">Двойное нажатие назад</string>
-    <string name="action_tasker_task">Задача Tasker</string>
-    <string name="action_tasker_event">Событие Tasker</string>
-    <string name="action_tasker_task_desc">Запустить задачу Tasker</string>
-    <string name="action_tasker_task_desc_formatted">Запустить задачу Tasker (%1s)</string>
+    <!-- Actions -->
+    <string name="action_launch_camera">Камера</string>
+    <string name="action_launch_camera_desc">Запустить приложение камеры по умолчанию. Будет проигнорировано, если приложение уже открыто.</string>
+    <string name="action_snapchat">Короткое касание для Snap</string>
+    <string name="action_snapchat_desc">Запускает действие функции двойного касания для перехода в Snapchat (для действия может потребоваться дополнительная настройка).</string>
+    <string name="action_home">Домой</string>
+    <string name="action_home_desc">Имитировать нажатие кнопки «Домой»</string>
+    <string name="action_back">Назад</string>
+    <string name="action_back_desc">Имитировать нажатие кнопки «Назад»</string>
+    <string name="action_recents">В меню недавних</string>
+    <string name="action_recents_desc">Открыть меню последних запущенных приложений, имитируя нажатие кнопки «Недавние». На поддерживаемых устройствах при повторном срабатывании происходит переход к первому свернутому приложению из списка</string>
+    <string name="action_notifications">Панель уведомлений</string>
+    <string name="action_notifications_desc">Открыть шторку с уведомлениями. На поддерживаемых устройствах это действие также может сворачивать шторку обратно</string>
+    <string name="action_quick_settings">Быстрые настройки</string>
+    <string name="action_quick_settings_desc">Открывает панель быстрого доступа. На поддерживаемых устройствах это действие также может сворачивать шторку обратно/string>
+    <string name="action_screenshot">Снимок экрана</string>
+    <string name="action_screenshot_desc">Сделать скриншот системными средствами</string>
+    <string name="action_lock_screen">Выключение экрана</string>
+    <string name="action_lock_screen_desc">Заблокировать экран, имитируя нажатие кнопки питания</string>
+    <string name="action_power_dialog">Меню кнопки питания</string>
+    <string name="action_power_dialog_desc">Открыть диалоговое окно питания, имитируя нажатие физической кнопки питания</string>
+    <string name="action_toggle_pause">Воспроизв./приостановить</string>
+    <string name="action_toggle_pause_desc">Управлять воспроизводимым в данный момент аудио</string>
+    <string name="action_previous">Предыдущая композиция</string>
+    <string name="action_previous_desc">Воспроизвести прошлый трек</string>
+    <string name="action_next">Следующая композиция</string>
+    <string name="action_next_desc">Воспроизвести следующий трек</string>
+    <string name="action_device_controls">Управление умным домом</string>
+    <string name="action_device_controls_desc">Показать элементы управления умными устройствами (домом), как если бы была нажата плитка быстрых настроек</string>
+    <string name="action_quick_access_wallet">Быстрый доступ к оплате</string>
+    <string name="action_quick_access_wallet_desc">Перейти к избранному способу оплаты из платежной службы (-Pay) по умолчанию</string>
+    <string name="action_click_quick_setting">Пункт быстрых настроек</string>
+    <string name="action_click_quick_setting_desc">Имитировать нажатие на плитку быстрых настроек</string>
+    <string name="action_click_quick_setting_desc_formatted">Имитирование нажатие на %1s (плитка быстрых настроек)</string>
+    <string name="action_flashlight">Фонарик</string>
+    <string name="action_flashlight_desc">Включить/отключить фонарик. Не сработает, если какое-то из приложений задействует камеру.</string>
+    <string name="action_launch_app">Приложение</string>
+    <string name="action_launch_app_desc">Запустить приложение</string>
+    <string name="action_launch_app_desc_formattable">Запустить приложение %1s. Будет проигнорировано, если оно уже открыто.</string>
+    <string name="action_launch_assistant">Цифровой помощник</string>
+    <string name="action_launch_assistant_desc">Запустить приложение-помощник по умолчанию</string>
+    <string name="action_launch_search">Поиск</string>
+    <string name="action_launch_search_desc">Запустить поиск от Google</string>
+    <string name="action_tasker_event">Событие в Tasker</string>
+    <string name="action_tasker_event_desc">Запустить события плагина для Tasker</string>
+    <string name="action_tasker_task">Задача в Tasker</string>
+    <string name="action_tasker_task_desc">Запустить указанную задачу из Tasker</string>
+    <string name="action_tasker_task_desc_formatted">Запустить задачу (%1s)</string>
     <string name="action_volume_panel">Панель громкости</string>
-    <string name="action_volume_panel_desc">Показать панель громкости системы</string>
-    <string name="action_volume_up">Увеличить громкость</string>
+    <string name="action_volume_panel_desc">Открыть системную панель регулировки громкости</string>
+    <string name="action_volume_up">Прибавить громкость</string>
     <string name="action_volume_up_desc">Увеличить громкость текущего звукового потока</string>
-    <string name="action_volume_down">Уменьшить громкость</string>
+    <string name="action_volume_down">Убавить громкость</string>
     <string name="action_volume_down_desc">Уменьшить громкость текущего звукового потока</string>
-    <string name="action_volume_toggle_mute">Переключить звук</string>
-    <string name="action_volume_toggle_mute_desc">Включить / выключить звук для текущего звукового потока</string>
-    <string name="action_wake_device">Пробудить устройство</string>
-    <string name="action_wake_device_desc">Пробудить устройство, если экран выключен. Это действие переопределяет настройку в настройках обратной связи. Оно пропускается, если дисплей включен, а также не будет работать, если включен параметр «Отключить отображение»</string>
+    <string name="action_volume_toggle_mute">Заглушение громкости</string>
+    <string name="action_volume_toggle_mute_desc">Заглушать и включать обратно текущий звуковой поток</string>
+    <string name="action_wake_device">Включение устройства</string>
+    <string name="action_wake_device_desc">Пробудить устройство, если экран выключен. Переопределяет настройку в пункте «Отклик при касании», если экран включен, и не работает, пока добавлено исключение «Экран выключен»</string>
     <string name="actions_sound_profile">Звуковые профили</string>
-    <string name="actions_sound_profile_desc">Изменить звуковые профили: Вибрация/Без звука/Звонок</string>
-    <string name="action_launch_shortcut">Быстрое действие</string>
-    <string name="action_launch_shortcut_desc">Запустить быстрое действие в приложении, например маршруты в Google Картах</string>
+    <string name="actions_sound_profile_desc">Переключаться между режимами звука вашего устройства: Вибрация/Без звука/Звук</string>
+    <string name="do_not_disturb">Переключиться на профиль «Не беспокоить»</string>
+    <string name="do_not_disturb_desc">Принудительный переход в режим «Без звука»</string>
+    <string name="action_launch_shortcut">Контекстное действие</string>
+    <string name="action_launch_shortcut_desc">Запустить контекстное действие приложения, например маршрут в Google Картах или звонок конкретному контакту</string>
     <string name="action_launch_shortcut_desc_formattable">Запустить %1s (действие в приложении)</string>
-    <string name="action_launch_shortcut_toast">Это действие не поддерживается в данный момент</string>
-    <string name="call_phone_permission_toast">Чтобы использовать это действие, предостваьте доступ Tap, Tap к телефону в настройках разрешений вашего устройства</string>
+    <string name="action_launch_shortcut_toast">Это действие в настоящее время не поддерживается</string>
+    <string name="action_launch_app_shortcut">Быстрый ярлык</string>
+    <string name="action_launch_app_shortcut_desc">Запустить быстрый ярлык (также встречается во всплывающем меню при удержании ярлыка приложения на рабочем столе), обычно это ссылка на наиболее востребованный раздел или страницу приложения, например чат с избранным контактом</string>
+    <string name="action_launch_app_shortcut_desc_formattable">Запустить %1s (быстрый ярлык в приложении)</string>
+    <string name="action_split_screen">Разделить экран</string>
+    <string name="action_split_screen_desc">Начать или остановить работу текущего приложения в режиме разделения экрана (не действует на рабочий стол)</string>
+    <string name="action_reachability">Режим работы одной рукой</string>
+    <string name="action_reachability_desc">Экспериментальное действие: используя режим разделения экрана, сместить приложение к нижней половине экрана. Примечание: может потребоваться перезапуск приложения после запуска и выхода из этого режима</string>
+    <string name="action_camera_shutter">Кнопка спуска затвора</string>
+    <string name="action_camera_shutter_desc">Имитировать нажатие кнопки камеры, чтобы сделать снимок, когда приложение камеры открыто (работает только в поддерживаемых приложениях)</string>
+    <string name="action_google_voice_access">Вызвать Google Voice Access</string>
+    <string name="action_google_voice_access_desc">Запускает <b>приложение специальных возможностей</b> Google Voice Access, если ещё не открыто (это НЕ голосовой помощник или поиск)</string>
+    <string name="action_hamburger">Иконка «гамбургер» / Назад</string>
+    <string name="action_hamburger_desc">Это действие нажимает на экран в том месте, где обычно находится иконка «гамбургер».\n<b>Важное предупреждение</b>: Будет нажиматься <b>что-угодно</b> там, где обычно подразумевается наличие кнопки вызова меню (вверху слева), иногда может вызываться действие «Назад», а также велика вероятность затронуть еще какие-нибудь элементы, в том числе другие кнопки. <b>Используйте с особой осторожностью</b>, настройте вызов на тройное касание и ограничьте список разрешенных приложений.</string>
+    <string name="action_accessibility_button">Кнопка спец. возможностей</string>
+    <string name="action_accessibility_button_desc">Имитировать кнопку специальных возможностей, которую может использоваться для запуска других служб, таких как «Озвучивание при нажатии»</string>
+    <string name="action_accessibility_button_chooser">Выбор кнопки спец. возможностей</string>
+    <string name="action_accessibility_button_chooser_desc">Открыть меню выбора назначения кнопки специальных возможностей</string>
+    <string name="action_accessibility_shortcut">Ярлык спец. возможностей</string>
+    <string name="action_accessibility_shortcut_desc">Запускать ярлык специальных возможностей. Убедитесь, что Tap, Tap не настроен на использование ярлыка перед выбором действия!</string>
+    <string name="action_app_drawer">Меню приложений</string>
+    <string name="action_app_drawer_desc">Открыть раздел со списком всех приложений из <b>совместимого лаунчера</b>. Работает только с рабочими столами на базе API Android 11.</string>
+    <string name="action_accept_call">Принять вызов</string>
+    <string name="action_accept_call_desc">«Поднять трубку», если звонит кто-то один</string>
+    <string name="action_reject_call">Отклонить вызов</string>
+    <string name="action_reject_call_desc">Отклонить вызов, если звонит кто-то один, или «повесить трубку» во время текущего звонка</string>
+    <string name="action_swipe_up">Свайп вверх</string>
+    <string name="action_swipe_up_desc">Виртуально провести пальцем вверх в текущем приложении</string>
+    <string name="action_swipe_down">Свайп вниз</string>
+    <string name="action_swipe_down_desc">Виртуально провести пальцем вниз в текущем приложении</string>
+    <string name="action_swipe_left">Свайп влево</string>
+    <string name="action_swipe_left_desc">Виртуально провести пальцем влево в текущем приложении</string>
+    <string name="action_swipe_right">Свайп вправо</string>
+    <string name="action_swipe_right_desc">Виртуально провести пальцем вправо в текущем приложении</string>
+    <string name="action_selector_unavailable">Извините, это действие несовместимо с вашим устройством (%1s).</string>
+    <string name="action_alt_tab">Перейти к посл. приложению</string>
+    <string name="action_alt_tab_desc">Переключиться на последнее приложение, имитируя двойное нажатие кнопки «Недавние» (только на поддерживаемых устройствах)</string>
+    <string name="action_alarm_timer">Отключить будильник/таймер</string>
+    <string name="action_alarm_snooze">Отложить будильник</string>
+    <string name="action_alarm_timer_desc">Отключать будильник или сработавший таймер (только в приложениях Часов)</string>
+    <string name="action_alarm_snooze_desc">Отложить на потом сигнал будильника (только в приложениях Часов)</string>
+
+    <string name="action_unsupported_reason_min_sdk">Совместимо только с более свежими версиями Android</string>
+    <string name="action_unsupported_reason_tasker">Не установлен Tasker</string>
+    <string name="action_unsupported_reason_snapchat">Не установлен Snapchat</string>
+
+    <!-- Gates -->
+    <string name="gate_charging_state">Зарядка</string>
+    <string name="gate_charging_state_desc_a">Блокировать жест, когда устройство на зарядке</string>
+    <string name="gate_charging_state_desc_when_a">Запускать на полсекунды после подключения к зарядке</string>
+    <string name="gate_telephony_activity">Во время вызова</string>
+    <string name="gate_telephony_activity_desc">Блокировать жест во время вызовов. Применимо только к обычным звонкам: в WhatsApp и прочих VoIP действовать не будет.</string>
+    <string name="gate_telephony_activity_desc_when">Запускать только в момент звонка</string>
+    <string name="gate_usb_state">USB-устройство</string>
+    <string name="gate_usb_state_desc_a">Блокировать жест при подключении USB-устройства, например флешки</string>
+    <string name="gate_usb_state_desc_when_a">Запускать на полсекунды после подключения USB-устройства</string>
+    <string name="gate_camera_visibility">Камера</string>
+    <string name="gate_camera_visibility_desc">Блокировать жест при открытии любого приложения камеры. Примечание: исключение сломает возможность пропускать действие «Камера».</string>
+    <string name="gate_camera_visibility_desc_when">Запускать только когда открыто приложение камеры</string>
+    <string name="gate_power_state">Экран выключен</string>
+    <string name="gate_power_state_desc">Блокировать жест, когда экран устройства выключен</string>
+    <string name="gate_power_state_desc_when">Запускать только когда экран выключен</string>
+    <string name="gate_power_state_inverse">Экран включен</string>
+    <string name="gate_power_state_inverse_desc">Блокировать жест, когда экран устройства включен</string>
+    <string name="gate_power_state_inverse_desc_when">Запускать только когда экран включен</string>
+    <string name="gate_app_showing">Приложение на экране</string>
+    <string name="gate_app_showing_desc">Блокировать жест пока приложение открыто на экране</string>
+    <string name="gate_app_showing_desc_when">Запускать только когда приложение открыто на экране</string>
+    <string name="gate_app_showing_desc_formatted">Блокировать жест, когда приложение %1s открыто на экране</string>
+    <string name="gate_keyboard_visibility">Клавиатура</string>
+    <string name="gate_keyboard_visibility_desc">Блокировать жест, когда клавиатура открыта и используется. Может не всегда срабатывать, если печатаете неактивно.</string>
+    <string name="gate_keyboard_visibility_desc_when">Запускать только когда клавиатура открыта и используется. Может не всегда срабатывать, если печатаете неактивно.</string>
+    <string name="gate_orientation_landscape">Альбомная ориентация</string>
+    <string name="gate_orientation_landscape_desc">Блокировать жест, когда экран зафиксирован в горизонтальном положении</string>
+    <string name="gate_orientation_landscape_desc_when">Запускать только когда экран зафиксирован в горизонтальном положении</string>
+    <string name="gate_orientation_portrait">Книжная ориентация</string>
+    <string name="gate_orientation_portrait_desc">Блокировать жест, когда экран зафиксирован в вертикальном положении</string>
+    <string name="gate_orientation_portrait_desc_when">Запускать только когда экран зафиксирован в вертикальном положении</string>
+    <string name="gate_table">На столе</string>
+    <string name="gate_table_desc">Блокировать жест, когда устройство лежит на плоской поверхности, например на столе</string>
+    <string name="gate_table_desc_when">Запускать только когда устройство лежит на плоской поверхности, например на столе</string>
+    <string name="gate_pocket">В кармане</string>
+    <string name="gate_pocket_desc">Блокирует жест, когда датчик приближения зафиксировал объект перед устройством. Из-за этого жест заблокируется, когда устройство находится в кармане или лежит на столе экраном вниз</string>
+    <string name="gate_pocket_desc_when">Запускать только когда датчик приближения зафиксировал объект перед устройством. Жест будет срабатывать, когда устройство находится в кармане или лежит на столе экраном вниз</string>
+    <string name="gate_headset_inverse">Без гарнитуры</string>
+    <string name="gate_headset_desc_inverse">Блокировать жест, когда (бес)проводная гарнитура <b>не</b> подключена. Лучше всего совмещать с действиями по управлению музыкой, чтобы предотвратить нежелательный вывод звука через динамики</string>
+    <string name="gate_headset_desc_when_inverse">Запускать только когда (бес)проводная гарнитура <b>не</b> подключена.</string>
+    <string name="gate_headset">В гарнитуре</string>
+    <string name="gate_headset_desc">Блокировать жест, когда (бес)проводная гарнитура <b>подключена</b>.</string>
+    <string name="gate_headset_desc_when">Запускать только когда (бес)проводная гарнитура <b>подключена</b>.</string>
+    <string name="gate_music">Пока играет музыка</string>
+    <string name="gate_music_inverse">Когда не играет музыка</string>
+    <string name="gate_music_desc">Блокировать жест пока воспроизводится музыка</string>
+    <string name="gate_music_desc_when">Запускать только пока воспроизводится музыка</string>
+    <string name="gate_music_desc_when_inverse">Блокировать жест, когда музыка не играет</string>
+    <string name="gate_music_desc_inverse">Запускать только когда музыка не играет</string>
+    <string name="gate_lock_screen_showing">На экране блокировки</string>
+    <string name="gate_lock_screen_showing_desc">Блокировать режим при отображении экрана блокировки</string>
+    <string name="gate_lock_screen_showing_desc_when">Запускать только из экрана блокировки</string>
+    <string name="gate_lock_screen_showing_inverse">За пределами экрана блокировки</string>
+    <string name="gate_lock_screen_showing_inverse_desc">Блокировать жест, когда экран разблокирован</string>
+    <string name="gate_lock_screen_showing_inverse_desc_when">Запускать только когда экран разблокирован</string>
+    <string name="gate_alarm">Будильник / таймер</string>
+    <string name="gate_alarm_desc">Блокировать жест, если сработал будильник или таймер</string>
+    <string name="gate_alarm_desc_when">Запускать только при срабатывании будильника или таймера</string>
+    <string name="gate_foldable_closed">«Раскладушка»: устройство сложено (закрыто)</string>
+    <string name="gate_foldable_closed_desc">Блокировать жест в сложенном / закрытом положении складного устройства</string>
+    <string name="gate_foldable_closed_desc_when">Запускать только из сложенного / закрытого положения складного устройства</string>
+    <string name="gate_foldable_open">«Раскладушка»: устройство разложено (раскрыто)</string>
+    <string name="gate_foldable_open_desc">Блокировать жест в разложенном / раскрытом положении складного устройства</string>
+    <string name="gate_foldable_open_desc_when">Запускать только из разложенного / раскрытого положения складного устройства</string>
+    <string name="gate_low_battery">Низкий заряд батареи</string>
+    <string name="gate_low_battery_desc">Блокировать жест, если осталось меньше 15% заряда батареи</string>
+    <string name="gate_low_battery_desc_when">Запускать только если осталось меньше 15% заряда батареи</string>
+    <string name="gate_battery_saver">Режим энергосбережения</string>
+    <string name="gate_battery_saver_desc">Блокировать жест при включенном системном режиме энергосбережения</string>
+    <string name="gate_battery_saver_desc_when">Запускать только при включенном системном режиме энергосбережения</string>
+
+    <string name="gate_unsupported_reason_min_sdk">Совместимо только с более свежими версиями Android</string>
+    <string name="gate_unsupported_reason_foldable">Работает только с совместимыми складными устройствами</string>
+
+    <!-- Notification channels & content -->
+    <string name="tap_notification_title">Служба Tap, Tap</string>
+    <string name="tap_notification_content">Tap, Tap работает в фоновом режиме. Нажмите, чтобы спрятать подсказку.</string>
+    <string name="tap_notification_channel_title">Фоновое уведомление</string>
+    <string name="tap_notification_channel_description">Используется для удержания Tap, Tap в фоне, когда включена соответствующая опция вспомогательной службы</string>
+    <string name="notification_channel_actions_title">Действия</string>
+    <string name="notification_channel_actions_content">Уведомления о действиях, в том числе ошибки при их выполнении</string>
+    <string name="notification_action_flashlight_error_title">Фонарик недоступен</string>
+    <string name="notification_action_flashlight_error_content">Требуется доступ к камере, нажмите для перехода в системные настройки</string>
+    <string name="notification_action_overlay_error_title">Требуется разрешение «Всегда сверху»</string>
+    <string name="notification_action_overlay_error_content">Из-за системных ограничений для осуществления этого действия требуется выдать разрешение «Поверх других приложений» (другое название: «Всегда сверху»). Нажмите, чтобы выдать его.</string>
+    <string name="notification_action_accessibility_error_title">Служба спец. возможностей не включена</string>
+    <string name="notification_action_accessibility_error_content">Для этого действия требуется служба специальных возможностей, нажмите, чтобы включить ее. Если включили, но продолжаете видеть сообщение, отключите и снова включите службу.</string>
+    <string name="notification_gate_accessibility_error_content">Для этого исключения требуется служба специальных возможностей, нажмите, чтобы включить ее. Если включили, но продолжаете видеть сообщение, отключите и снова включите службу.</string>
+    <string name="notification_action_gesture_accessibility_error_title">Вспомогательная служба не включена</string>
+    <string name="notification_action_gesture_accessibility_error_content">Для этого действия требуется вспомогательная служба специальных возможностей жестов, нажмите, чтобы включить. Если включили, но продолжаете видеть сообщение, отключите и снова включите службу.</string>
+    <string name="notification_channel_service_title">Служба</string>
+    <string name="notification_channel_service_content">Уведомления о работе службы, в том числе загрузки и ошибки</string>
+    <string name="notification_service_loading_title">Запуск службы…</string>
+    <string name="notification_service_loading_title_restart">Перезапуск службы…</string>
+    <string name="notification_service_loading_content">Служба Tap, Tap service загружается</string>
+    <string name="notification_service_error_title">Не удалось запустить службу</string>
+    <string name="notification_service_running_error_title">Не удалось переподключиться к службе Shizuku</string>
+    <string name="notification_service_error_content_shizuku_not_running">Не удалось подключиться к Shizuku, убедитесь, что служба работает и повторите ещё раз.</string>
+    <string name="notification_service_error_content_shizuku_permission_denied">Отказано в доступе к Shizuku, выдайте Tap, Tap разрешение в приложении Shizuku и повторите ещё раз.</string>
+    <string name="notification_service_error_action_retry">Повторить</string>
+    <string name="notification_service_error_root_title">Не удалось подключиться к сервису</string>
+    <string name="notification_service_error_root_content">Убедитесь, что вы предоставили Tap, Tap root-права (права суперпользователя)</string>
+    <string name="notification_channel_crash_title">Сбои</string>
+    <string name="notification_channel_crash_content">Уведомлять о сбоях Tap, Tap, чтобы сохранить логи ошибок</string>
+    <string name="notification_crash_title">Произошел сбой приложения Tap, Tap!</string>
+    <string name="notification_crash_content">Нажмите, чтобы просмотреть сведения о сбое и экспортировать лог для дальнейшей публикации в репозитории GitHub или тему на XDA.Вы можете отключить уведомления о сбоях в настройках Tap, Tap.</string>
+    <string name="tap_update_notification_channel_title">Уведомление о новых версиях</string>
+    <string name="tap_update_notification_channel_description">Уведомления, которые отображаются в ходе ежедневной проверки наличия обновлений</string>
+    <string name="tap_update_notification_title">Доступна новая версия Tap, Tap</string>
+    <string name="tap_update_notification_content">Для Tap, Tap вышло обновление (с %1s до %1s)</string>
+
+    <!-- Shared Pickers, for Gates & Actions -->
+    <string name="settings_shared_app_shortcuts_selector_loading">Загрузка списка быстрых ярлыков…</string>
+    <string name="settings_shared_shortcuts_selector_loading">Загрузка ярлыков…</string>
+    <string name="settings_shared_shortcuts_selector_error">Не удалось загрузить список быстрых ярлыков, повторите ещё раз. Если проблема сохранится, перезапустите Shizuku через ADB.</string>
+    <string name="settings_shared_shizuku_permission_flow_toolbar_title">Shizuku / Sui</string>
+    <string name="settings_shared_shizuku_permission_flow_title">Проверка наличия Shizuku / Sui</string>
+    <string name="settings_shared_shizuku_permission_flow_content">Это может занять до 10 секунд</string>
+    <string name="settings_shared_shizuku_permission_flow_error_title">Shizuku / Sui не найдены</string>
+    <string name="settings_shared_shizuku_permission_flow_error_content">Shizuku или Sui не найдены на вашем устройстве, вам будет нужно установить один из них, чтобы вызывать %s.\n\n<b>Примечание:</b> Если у вас уже установлен Shizuku или Sui, убедитесь, что он запущен (только для Shizuku) и что разрешение выдано, и повторите ещё раз.</string>
+    <string name="settings_shared_shizuku_permission_flow_error_content_action">действие</string>
+    <string name="settings_shared_shizuku_permission_flow_error_content_gate">исключение</string>
+    <string name="settings_shared_shizuku_permission_flow_error_card_shizuku_title">Shizuku</string>
+    <string name="settings_shared_shizuku_permission_flow_error_card_shizuku_content">Shizuku — это приложение, которое позволяет другим приложениям (по типу Tap, Tap) запускать код с особыми разрешениями. Это происходит через выполнение команды в оболочке ADB (Android Debug Bridge) один раз за перезагрузку. На устройствах с Android 11 и новее это можно повторить без компьютера, но в более ранних версиях Android вам нужно подключаться к компьютеру для активации Shizuku каждую перезагрузку устройства.</string>
+    <string name="settings_shared_shizuku_permission_flow_error_card_shizuku_button">Скачать Shizuku</string>
+    <string name="settings_shared_shizuku_permission_flow_error_card_sui_content">Sui — это модуль для Magisk, который позволяет таким приложениям, как Tap, Tap, запускать свой код от имени root. Он построен на той же платформе, что и Shizuku, и потому совместим с Shizuku-зависимыми приложениями, но не требует ручной активации после перезагрузки, это делается автоматически.\n<b>Если не знаете, что такое root или Magisk, используйте вместо этого Shizuku.</b></string>
+    <string name="settings_shared_shizuku_permission_flow_error_card_sui_title">Sui</string>
+    <string name="settings_shared_shizuku_permission_flow_error_card_sui_button">Скачать Sui</string>
+    <string name="settings_shared_package_selector_loading">Загрузка списка приложений…</string>
+    <string name="settings_shared_package_selector_empty">Приложения не найдены</string>
+    <string name="settings_shared_snapchat_loading_title">Проверка доступности…</string>
+    <string name="settings_shared_snapchat_loading_content">Пожалуйста, выдайте root-права, если появится запрос</string>
+    <string name="settings_shared_snapchat_setup_root_title">Требуется дополнительная настройка</string>
+    <string name="settings_shared_snapchat_setup_root_content">Чтобы включить короткое касание для доступа в Snap, следуйте инструкции:\n<b>Вы должны войти в свою учетную запись Snapchat для работы</b>\n1.) Отключитесь от Интернета (в идеале включить «Режим полёта» / «Авиа-режим»). <b>Не включайте обратно, пока не выполните следующие шаги.</b>\n2.) Нажмите на кнопку ниже, чтобы открыть Snapchat — и только с помощью этой кнопки, так как она должна открывать приложение с особыми параметрами, чтобы вывести подсказку на экран.\n3.) Snapchat откроется и предложит вам разблокироваться, чтобы завершить настройку — всё нормально, просто нажмите ОК в этом окошке.\n4.) Появится диалоговое окно с просьбой включите функцию Quick Tap to Snap, сделайте это. <b>Если вы не увидите системного запроса на ее включение, это нормально.</b>\n5.) Вернитесь в Tap, Tap, закрыв Snapchat, чтобы завершить настройку.</string>
+    <string name="settings_shared_snapchat_setup_root_button">Открыть Snapchat</string>
+    <string name="settings_shared_snapchat_setup_no_root_title">Требуется дополнительная настройка</string>
+    <string name="settings_shared_snapchat_setup_no_root_content">Для настройки функции короткого касания для доступа в Snap необходимо выполнить несколько шагов. Они потребуют перезагрузки телефона и временной реактивации системного жеста короткого касания (что лишит Tap, Tap доступа пока все шаги не будут выполнены), поэтому инструкция размещена на внешнем ресурсе (сайте), чтобы сделать процесс более доступным.</string>
+    <string name="settings_shared_snapchat_setup_no_root_button">Открыть инструкцию</string>
+    <string name="settings_shared_snapchat_setup_incompatible_title">Несовместимо</string>
+    <string name="settings_shared_snapchat_setup_incompatible_content">Извините, для работы Quick Tap to Snap на вашем устройстве должны быть доступны root-права (права суперпользователя).</string>
+    <string name="settings_shared_snapchat_setup_incompatible_button">Закрыть</string>
+    <string name="settings_shared_snapchat_setup_error">Не удалось проверить доступность, повторите ещё раз</string>
+    <string name="settings_shared_snapchat_setup_error_network">Сначала отключите Wi-Fi и мобильные данные</string>
+    <string name="item_settings_shared_quick_settings_header_content">Из-за особенностей системы существует ряд ограничений:\n- Названия плиток быстрых настроек нельзя извлечь, поэтому сверьтесь сами со шторкой уведомлений, чтобы разместить по порядку.\n- Работает только с плитками пользовательских приложений, не со стандартными, такими как доступ в Интернет\n- На некоторых устройствах плитка должна находиться на 1-й или 2-й странице панели быстрых настроек, чтобы нажатие сработало.</string>
+    <string name="settings_shared_quick_settings_empty">Быстрые настройки не найдены</string>
+    <string name="settings_shared_quick_settings_loading">Загрузка списка плиток быстрых настроек…</string>
+
+    <!-- No root bottom sheet -->
+    <string name="bs_no_root_title">Нет Root-прав</string>
+    <string name="bs_no_root_content">Похоже, что root недоступен на устройстве или права суперпользователя не выданы приложению. Для совершения этого действия получите root-права на устройстве.</string>
+
+    <!-- Permission Toasts (shown when launching external apps) -->
+    <string name="call_phone_permission_toast">Необходимо предоставить Tap, Tap разрешение «Телефон» для использования этого действия. Выдайте его в системных настройках разрешений.</string>
+    <string name="permission_toast">Для продолжения предоставьте разрешение «%1s» в системных настройках.</string>
+    <string name="permission_toast_draw_over_apps">Предоставьте Tap, Tap разрешение «Поверх других приложений»</string>
+    <string name="tasker_content_toast">Включите опцию «Allow External Access» в настройках Tasker.</string>
+
+    <!-- Update downloader -->
+    <string name="snackbar_update">Вышла обновление</string>
+    <string name="snackbar_update_button">Обновить</string>
+    <string name="settings_update_heading">Tap, Tap версии %1s</string>
+    <string name="settings_update_subheading">Текущая версия %1s</string>
+    <string name="settings_update_changes">Изменения</string>
+    <string name="settings_update_open_installer">Начать установку</string>
+    <string name="settings_update_done">Загрузка завершена</string>
+    <string name="settings_update_loading">Скачивание…</string>
+    <string name="settings_update_fab">Загрузить</string>
+    <string name="download_manager_description">Загрузка обновления…</string>
+    <string name="update_downloader_downloading_title">Загрузка обновления…</string>
+    <string name="update_downloader_downloading_failed">Не удалось скачать</string>
+    <string name="update_downloader_github">Скачать в браузере</string>
+
+    <!-- Reachability UI -->
+    <string name="reachability_left_handed_info">Удерживайте палец на значке уведомления для переключения положения иконки</string>
+    
+    <!-- Quick Settings Tile subtitles -->
+    <string name="qs_subtitle_running">Запущен</string>
+    <string name="qs_subtitle_disabled">Отключен</string>
+    <string name="qs_subtitle_not_running">Не запущен</string>
+
+    <!-- Tasker descriptions & labels -->
+    <string name="tasker_description_triple">Срабатывать по тройному касанию задней панели устройства</string>
+    <string name="tasker_description_double">Срабатывать по двойному касанию задней панели устройства</string>
+    <string name="tasker_config_label">На двойное касание</string>
+    <string name="tasker_config_label_triple">На тройное касание</string>
+
+    <!-- Accessibility Service info in settings -->
+    <string name="accessibility_service_label">Tap, Tap</string>
+    <string name="accessibility_service_label_gesture">Tap, Tap — вспомогательная служба</string>
+    <string name="accessibility_service_description">Служба спец. возможностей Tap, Tap\n\n<b>Важное примечание: мы не собираем данные ни от одного из ваших приложений, служба нужна для распознавания жестов и выполнения функций без прерываний</b></string>
+    <string name="accessibility_service_description_gesture">Служба спец. возможностей Tap, Tap для имитации жестов. \n\n<b>Не включайте ее, если приложение об этом не попросит. Используется для активации некоторых действий.</b>\n\n<b>Важное примечание: мы не собираем данные ни от одного из ваших приложений, служба нужна для имитации жестов.\n\nВынесено в отдельную службу из-за специфики работы Android и реакции приложений на выполнение жестов службами. Например, Chrome перестанет скрывать адресную строку при прокрутке, если эта служба включена.</b></string>
+
+    <!-- Crash Reporting -->
+    <string name="crash_reporting_title">Произошел сбой приложения Tap, Tap</string>
+    <string name="crash_reporting_save">Сохранить отчёт</string>
+    <string name="crash_reporting_content_intro"><![CDATA[Приложение Tap, Tap претерпело сбой. Пожалуйста, сообщите о проблеме, приложив файл отчёта, в  <a href="https://kieronquinn.co.uk/redirect/TapTap/github">разделе «Issues» репозитория на GitHub</a> или <a href="https://kieronquinn.co.uk/redirect/TapTap/xda">в теме на XDA</a>. Если сбой случился при совершении жеста, выполнении действия или работе исключения, прикрепите скриншоты ваших настроек.<br><br><b>Важное уточнение: перед тем, как выкладывать сообщение о проблеме, убедитесь, что о ней не сообщалось до этого, используя инструменты поиска.</b><br><br>Отчёт также приведен ниже.]]></string>
+    <string name="crash_reporting_toast_success">Отчёт сохранен</string>
+    <string name="crash_reporting_toast_failed">Не удалось сохранить отчёт</string>
+
 </resources>
