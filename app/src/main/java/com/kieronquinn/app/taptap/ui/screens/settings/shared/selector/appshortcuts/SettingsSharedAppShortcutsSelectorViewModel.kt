@@ -162,7 +162,7 @@ class SettingsSharedAppShortcutsSelectorViewModelImpl(context: Context, private 
         return file
     }
 
-    private fun copyIconToCache(icon: Icon?, context: Context, shortcutId: String): File? {
+    private fun copyIconToCache(icon: Icon?, context: Context, shortcutId: String): File? = runCatching {
         if(icon == null) return null
         val file = File(cacheDir, "$shortcutId.png")
         val drawable = icon.loadDrawable(context)
@@ -175,6 +175,6 @@ class SettingsSharedAppShortcutsSelectorViewModelImpl(context: Context, private 
             bitmap.recycle()
         }
         return file
-    }
+    }.getOrDefault(null)
 
 }

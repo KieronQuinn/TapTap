@@ -2,9 +2,9 @@ package com.kieronquinn.app.taptap.components.columbus.gates.custom
 
 import android.content.Context
 import androidx.lifecycle.Lifecycle
-import androidx.window.FoldingFeature
 import com.kieronquinn.app.taptap.components.columbus.gates.PassiveGate
 import com.kieronquinn.app.taptap.components.columbus.gates.TapTapGate
+import com.kieronquinn.app.taptap.utils.extensions.FoldingFeature_STATE_HALF_OPENED
 import com.kieronquinn.app.taptap.utils.foldable.SidecarProvider
 
 class FoldableClosedGate(
@@ -22,7 +22,7 @@ class FoldableClosedGate(
     }
 
     override fun isBlocked(): Boolean {
-        return sidecarProvider?.getDevicePosture() == FoldingFeature.STATE_FLAT
+        return sidecarProvider?.getDevicePosture() == FoldingFeature_STATE_HALF_OPENED
     }
 
 }
