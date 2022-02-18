@@ -14,10 +14,10 @@
 
     <!-- Setup > Info -->
     <string name="setup_foss_info_title">Tap, Tap — это\nбесплатное ПО с открытым кодом</string>
-    <string name="setup_foss_info_content"><![CDATA[Tap, Tap был, есть и всегда останется бесплатным приложением, построенным на компонентах с открытым исходным кодом. Исходный код доступен всем желающим для просмотра и внесения правок в <a href=\"https://kieronquinn.co.uk/redirect/TapTap/github\">репозитории на GitHub</a>. Официальные ссылки для скачивания доступны <b>только</b> на <a href="https://kieronquinn.co.uk/redirect/TapTap/xda">XDA</a>, в <a href="https://kieronquinn.co.uk/redirect/TapTap/github">репозитории GitHub</a> и на <a href="https://kieronquinn.co.uk/redirect/TapTap/apkmirror">APKMirror</a>. Официальное приложение всегда будет автоматически пердлагать загружать обновления с GitHub, если вы разрешили доступ в Интернет.]]></string>
+    <string name="setup_foss_info_content"><![CDATA[Tap, Tap был, есть и всегда останется бесплатным приложением, построенным на компонентах с открытым исходным кодом. Исходный код доступен всем желающим для просмотра и внесения правок в <a href=\"https://kieronquinn.co.uk/redirect/TapTap/github\">репозитории на GitHub</a>. Официальные ссылки для скачивания доступны <b>только</b> на <a href="https://kieronquinn.co.uk/redirect/TapTap/xda">XDA</a>, в <a href="https://kieronquinn.co.uk/redirect/TapTap/github">репозитории GitHub</a> и на <a href="https://kieronquinn.co.uk/redirect/TapTap/apkmirror">APKMirror</a>. Официальное приложение всегда будет автоматически предлагать загружать обновления с GitHub, если вы разрешили доступ в Интернет.]]></string>
     <string name="setup_foss_info_warning">Устанавливайте Tap, Tap только из официальных источников, указанных выше. <b>Если вы уже скачали приложение из любого другого источника, настоятельно рекомендуем удалить его и переустановить по одной из вышеприведенных ссылок</b>. Нажмите, чтобы узнать больше.</string>
     <string name="setup_foss_info_bs_title">Предостережение</string>
-    <string name="setup_foss_info_bs_content">Tap, Tap использует службу специальных возможностей. Это позволяет ему совершать действия на вашем устройстве автоматически и потому доступ не должен выдаваться приложениям, которым вы не доверяете. Вот почему у Tap, Tap открытый исходный код - благодаря этому вы и кто угодно еще может заглянуть в код и убедиться, что приложение не делает ничего такого, о чем не заявляет.\n\nОднако мы не можем гарантировать подобное, если вы загрузили APK-файл не из официального источника. Если файл откуда-то ещё кроме репозитория GitHub, XDA или APKMirror, в таком случае настоятельно рекомендуем немедленно удалить его и переустановить из официального источника.</string>
+    <string name="setup_foss_info_bs_content">Tap, Tap использует службу специальных возможностей. Это позволяет ему совершать действия на вашем устройстве автоматически и потому доступ не должен выдаваться приложениям, которым вы не доверяете. Вот почему у Tap, Tap открытый исходный код - благодаря этому вы и кто угодно еще может заглянуть в код и убедиться, что приложение не делает ничего такого, о чем не заявляет.\n\nОднако мы не можем гарантировать подобное, если вы загрузили APK-файл не из официального источника. Если файл скачан откуда-то ещё кроме репозитория GitHub, XDA или APKMirror, в таком случае настоятельно рекомендуем немедленно удалить его и переустановить из официального источника.</string>
     <string name="setup_foss_info_content_lower">Если вам нравится приложение Tap, Tap, и вы хотите внести пожертвование, ссылка для этого находится в нижней части раздела «Ещё», доступно после первой настройки. Независимо от денежных пожертвований, мы признательны за ваш вклад в разработку и популяризацию приложения, спасибо!</string>
     <string name="setup_info_next">Далее</string>
 
@@ -50,7 +50,7 @@
     <!-- Disable Columbus Modal -->
     <string name="modal_disable_columbus_title">Отключите Короткое касание</string>
     <string name="modal_disable_columbus_content">На вашем устройстве уже активирован системный жест постукивания, отключите его, чтобы Tap, Tap мог функционировать должным образом.\n«Короткое касание» можно найти в системных настройках, в разделе Система > Жесты.</string>
-    <string name="modal_disable_columbus_card">Возможно потребуется перезагрузка после отключения жеста «Короткое касание», чтобы заработали все функции Tap, Tap.</string>
+    <string name="modal_disable_columbus_card">Возможно, потребуется перезагрузка после отключения жеста «Короткое касание», чтобы заработали все функции Tap, Tap.</string>
     <string name="modal_disable_columbus_button">Открыть настройки</string>
 
     <!-- Settings UI -->
@@ -101,7 +101,7 @@
     <!-- Settings > Gesture > Action > Requirements -->
     <string name="action_when_gate_inverted">%1s (наоборот)</string>
     <string name="settings_when_gates_title">Условия</string>
-    <string name="settings_actions_when_gates_empty">Нет условий, нажмите на кнопку «Добавите условий» для выбора.</string>
+    <string name="settings_actions_when_gates_empty">Нет условий, нажмите на кнопку «Добавить условие» для выбора.</string>
     <string name="settings_actions_loading_when_gates">Загрузка списка условий…</string>
     <string name="fab_add_requirement">Добавить условие</string>
 
@@ -174,7 +174,7 @@
 
     <!-- Settings > Settings > Low Power Mode -->
     <string name="settings_low_power_mode_enable">Вкл. режим сверхнизкого ЭП</string>
-    <string name="setting_low_power_mode_content">Режим сверхнизкого энергопотребления задействует отдельный вычислительный блок устройства — Context Hub, на котором выполняются «наноприложения». Чтобы это стало возможным, требуется наноприложение Columbus, скомпилированное вашим производителем специально для этого устройства. Тогда Tap, Tap сможет использовать режим так же, как это делает системная функция «Короткое касание» в Pixel, определяя жесты со значительно меньшим потреблением заряда батареи, чем обычным способом через процессор.\n\n<b>Для этой опции также потребуется Shizuku (или sui), поскольку ей требуются системные разрешения, недоступные пользовательским приложениям.\nНа Android 13 и новее потребуется Sui из-за изменений платформы вне зоны досягаемости Tap, Tap.</b>\n\n<b>Примечание: в первый раз может потребоваться перезагрузить устройство, чтобы изменения вступили в силу.</b></string>
+    <string name="setting_low_power_mode_content">Режим сверхнизкого энергопотребления задействует отдельный вычислительный блок устройства — Context Hub, на котором выполняются «наноприложения». Чтобы это стало возможным, требуется наноприложение Columbus, скомпилированное вашим производителем специально для этого устройства. Тогда Tap, Tap сможет использовать режим так же, как это делает системная функция «Короткое касание» в Pixel, определяя жесты со значительно меньшим потреблением заряда батареи, чем обычным способом через процессор.\n\n<b>Для этой опции ещё потребуется Shizuku (или sui), поскольку нужны системные разрешения, недоступные пользовательским приложениям.\nНа Android 13 и новее потребуется Sui из-за изменений платформы вне зоны досягаемости Tap, Tap.</b>\n\n<b>Примечание: в первый раз может потребоваться перезагрузить устройство, чтобы изменения вступили в силу.</b></string>
     <string name="settings_low_power_mode_error_shizuku">Для работы этой опции требуется Shizuku или sui. Shizuku может работать и без root-прав, но если они есть на вашем устройстве, то Shizuku сможет автоматически запускаться после каждой перезагрузки системы. Если у вас уже установлен модуль для Magisk — <b>sui</b>, нажмите ниже, чтобы запросить разрешение.</string>
     <string name="settings_low_power_mode_error_button_shizuku">Что такое Shizuku / Sui?</string>
     <string name="settings_low_power_mode_error_button_sui">Запросить разрешение у <b>sui</b></string>
@@ -187,7 +187,7 @@
     <string name="settings_model_picker_tab_legacy">Ранние</string>
     <string name="settings_model_picker_device_size">Высота: %1s мм (%1s″)</string>
     <string name="settings_model_picker_recommended">%1s (рекомендуется)</string>
-    <string name="settings_model_picker_header_newest">Новейшие модели распознавания взяты из Android 12 и более точны, чем устаревшие.\n\n<b>Примечание:</b> Иногда модель со схожими габаритами не лучшим образом подходит для вашего устройства, тогда придется опробовать все варианты, чтобы подобрать самый подходящий для вас.</string>
+    <string name="settings_model_picker_header_newest">Новейшие модели распознавания взяты из Android 12 и более точны, чем ранние.\n\n<b>Примечание:</b> Иногда модель со схожими габаритами не лучшим образом подходит для вашего устройства, тогда придется опробовать все варианты, чтобы подобрать самый подходящий для вас.</string>
     <string name="settings_model_picker_header_legacy">Ранние модели взяты из Android 11 и менее точны, чем более свежие модели.\n\n<b>Примечание:</b> Иногда модель со схожими габаритами не лучшим образом подходит для вашего устройства, тогда придется опробовать все варианты, чтобы подобрать самый подходящий для вас.</string>
 
     <!-- New (Android 12) models -->
@@ -242,7 +242,7 @@
     <string name="setting_internet">Разрешить доступ в Интернет</string>
     <string name="setting_internet_desc">Необходимо только для уточнения габаритов устройства и периодической проверки выхода обновлений в фоне</string>
     <string name="setting_crash_reporting">Уведомления о сбоях</string>
-    <string name="setting_crash_reporting_desc">Показывать уведомление в случае сбоя приложения Tap, Tap, что позволит сохранить лог для дальнейшей публикации в репозитории на GitHub или в теме на XDA. Эта опция <b>не отправляет</b> автоматически данные о сбое на сервер.</string>
+    <string name="setting_crash_reporting_desc">Показывать уведомление в случае сбоя приложения Tap, Tap, что позволит сохранить лог для дальнейшего предоставления в репозитории на GitHub или в теме на XDA. Эта опция <b>не отправляет</b> автоматически данные о сбое на сервер.</string>
     <string name="battery_and_optimisation">Экономия заряда батареи</string>
     <string name="battery_and_optimisation_desc">Информация о том, почему Tap, Tap потребляет заряд батареи и устройство может завершить работу приложения в фоновом режиме (и как это исправить)</string>
     <string name="xda_thread">Тема на XDA</string>
@@ -393,11 +393,11 @@
     <string name="action_hamburger">Иконка «гамбургер» / Назад</string>
     <string name="action_hamburger_desc">Это действие нажимает на экран в том месте, где обычно находится иконка «гамбургер».\n<b>Важное предупреждение</b>: Будет нажиматься <b>что-угодно</b> там, где обычно подразумевается наличие кнопки вызова меню (вверху слева), иногда может вызываться действие «Назад», а также велика вероятность затронуть еще какие-нибудь элементы, в том числе другие кнопки. <b>Используйте с особой осторожностью</b>, настройте вызов на тройное касание и ограничьте список разрешенных приложений.</string>
     <string name="action_accessibility_button">Кнопка спец. возможностей</string>
-    <string name="action_accessibility_button_desc">Имитировать кнопку специальных возможностей, которую может использоваться для запуска других служб, таких как «Озвучивание при нажатии»</string>
+    <string name="action_accessibility_button_desc">Имитировать кнопку специальных возможностей, которая может использоваться для запуска других служб, таких как «Озвучивание при нажатии»</string>
     <string name="action_accessibility_button_chooser">Выбор кнопки спец. возможностей</string>
     <string name="action_accessibility_button_chooser_desc">Открыть меню выбора назначения кнопки специальных возможностей</string>
     <string name="action_accessibility_shortcut">Ярлык спец. возможностей</string>
-    <string name="action_accessibility_shortcut_desc">Запускать ярлык специальных возможностей. Убедитесь, что Tap, Tap не настроен на использование ярлыка перед выбором действия!</string>
+    <string name="action_accessibility_shortcut_desc">Запускать ярлык специальных возможностей. Перед выбором действия убедитесь, что Tap, Tap не настроен на использование ярлыка!</string>
     <string name="action_app_drawer">Меню приложений</string>
     <string name="action_app_drawer_desc">Открыть раздел со списком всех приложений из <b>совместимого лаунчера</b>. Работает только с рабочими столами на базе API Android 11.</string>
     <string name="action_accept_call">Принять вызов</string>
@@ -420,9 +420,9 @@
     <string name="action_alarm_timer_desc">Отключать будильник или сработавший таймер (только в приложениях Часов)</string>
     <string name="action_alarm_snooze_desc">Отложить на потом сигнал будильника (только в приложениях Часов)</string>
 
-    <string name="action_unsupported_reason_min_sdk">Совместимо только с более свежими версиями Android</string>
-    <string name="action_unsupported_reason_tasker">Не установлен Tasker</string>
-    <string name="action_unsupported_reason_snapchat">Не установлен Snapchat</string>
+    <string name="action_unsupported_reason_min_sdk">совместимо только с более свежими версиями Android</string>
+    <string name="action_unsupported_reason_tasker">не установлен Tasker</string>
+    <string name="action_unsupported_reason_snapchat">не установлен Snapchat</string>
 
     <!-- Gates -->
     <string name="gate_charging_state">Зарядка</string>
@@ -519,10 +519,10 @@
     <string name="notification_channel_service_content">Уведомления о работе службы, в том числе загрузки и ошибки</string>
     <string name="notification_service_loading_title">Запуск службы…</string>
     <string name="notification_service_loading_title_restart">Перезапуск службы…</string>
-    <string name="notification_service_loading_content">Служба Tap, Tap service загружается</string>
+    <string name="notification_service_loading_content">Служба Tap, Tap запускается</string>
     <string name="notification_service_error_title">Не удалось запустить службу</string>
     <string name="notification_service_running_error_title">Не удалось переподключиться к службе Shizuku</string>
-    <string name="notification_service_error_content_shizuku_not_running">Не удалось подключиться к Shizuku, убедитесь, что служба работает и повторите ещё раз.</string>
+    <string name="notification_service_error_content_shizuku_not_running">Не удалось подключиться к Shizuku, убедитесь, что служба работает, и повторите ещё раз.</string>
     <string name="notification_service_error_content_shizuku_permission_denied">Отказано в доступе к Shizuku, выдайте Tap, Tap разрешение в приложении Shizuku и повторите ещё раз.</string>
     <string name="notification_service_error_action_retry">Повторить</string>
     <string name="notification_service_error_root_title">Не удалось подключиться к сервису</string>
@@ -530,7 +530,7 @@
     <string name="notification_channel_crash_title">Сбои</string>
     <string name="notification_channel_crash_content">Уведомлять о сбоях Tap, Tap, чтобы сохранить логи ошибок</string>
     <string name="notification_crash_title">Произошел сбой приложения Tap, Tap!</string>
-    <string name="notification_crash_content">Нажмите, чтобы просмотреть сведения о сбое и экспортировать лог для дальнейшей публикации в репозитории GitHub или тему на XDA.Вы можете отключить уведомления о сбоях в настройках Tap, Tap.</string>
+    <string name="notification_crash_content">Нажмите, чтобы просмотреть сведения о сбое и экспортировать лог для дальнейшего предоставления в репозитории на GitHub или в теме на XDA. Вы можете отключить уведомления о сбоях в настройках Tap, Tap.</string>
     <string name="tap_update_notification_channel_title">Уведомление о новых версиях</string>
     <string name="tap_update_notification_channel_description">Уведомления, которые отображаются в ходе ежедневной проверки наличия обновлений</string>
     <string name="tap_update_notification_title">Доступна новая версия Tap, Tap</string>
@@ -583,7 +583,7 @@
     <string name="tasker_content_toast">Включите опцию «Allow External Access» в настройках Tasker.</string>
 
     <!-- Update downloader -->
-    <string name="snackbar_update">Вышла обновление</string>
+    <string name="snackbar_update">Вышло обновление</string>
     <string name="snackbar_update_button">Обновить</string>
     <string name="settings_update_heading">Tap, Tap версии %1s</string>
     <string name="settings_update_subheading">Текущая версия %1s</string>
@@ -620,7 +620,7 @@
     <!-- Crash Reporting -->
     <string name="crash_reporting_title">Произошел сбой приложения Tap, Tap</string>
     <string name="crash_reporting_save">Сохранить отчёт</string>
-    <string name="crash_reporting_content_intro"><![CDATA[Приложение Tap, Tap претерпело сбой. Пожалуйста, сообщите о проблеме, приложив файл отчёта, в  <a href="https://kieronquinn.co.uk/redirect/TapTap/github">разделе «Issues» репозитория на GitHub</a> или <a href="https://kieronquinn.co.uk/redirect/TapTap/xda">в теме на XDA</a>. Если сбой случился при совершении жеста, выполнении действия или работе исключения, прикрепите скриншоты ваших настроек.<br><br><b>Важное уточнение: перед тем, как выкладывать сообщение о проблеме, убедитесь, что о ней не сообщалось до этого, используя инструменты поиска.</b><br><br>Отчёт также приведен ниже.]]></string>
+    <string name="crash_reporting_content_intro"><![CDATA[Приложение Tap, Tap претерпело сбой. Пожалуйста, сообщите о проблеме, приложив файл отчёта, в <a href="https://kieronquinn.co.uk/redirect/TapTap/github">разделе «Issues» репозитория на GitHub</a> или <a href="https://kieronquinn.co.uk/redirect/TapTap/xda">в теме на XDA</a>. Если сбой случился при совершении жеста, выполнении действия или работе исключения, прикрепите скриншоты ваших настроек.<br><br><b>Важное уточнение: перед тем, как выкладывать сообщение о проблеме, убедитесь, что о ней не сообщалось до этого, используя инструменты поиска.</b><br><br>Отчёт также приведен ниже.]]></string>
     <string name="crash_reporting_toast_success">Отчёт сохранен</string>
     <string name="crash_reporting_toast_failed">Не удалось сохранить отчёт</string>
 
