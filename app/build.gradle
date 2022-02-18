@@ -11,7 +11,7 @@ plugins {
 //Permission for Columbus to use
 rootProject.ext.set("columbusPermission", "com.google.android.columbus.taptap.permission.CONFIGURE_COLUMBUS_GESTURE")
 
-def tagName = '1.1'
+def tagName = '1.2'
 
 android {
     compileSdk 32
@@ -21,8 +21,8 @@ android {
         applicationId "com.kieronquinn.app.taptap"
         minSdk 24
         targetSdk 32
-        versionCode 1100
-        versionName "1.1"
+        versionCode 1200
+        versionName tagName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -72,10 +72,10 @@ dependencies {
     implementation "androidx.core:core-ktx:1.7.0"
     implementation "androidx.vectordrawable:vectordrawable-seekable:1.0.0-alpha02"
     implementation "androidx.core:core-splashscreen:1.0.0-beta01"
-    implementation "androidx.fragment:fragment-ktx:1.4.0"
+    implementation "androidx.fragment:fragment-ktx:1.4.1"
 
     //Lifecycle
-    def lifecycleVersion = '2.4.0'
+    def lifecycleVersion = '2.4.1'
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-service:$lifecycleVersion"
@@ -113,10 +113,6 @@ dependencies {
 
     //Gson for serialization
     implementation 'com.google.code.gson:gson:2.8.9'
-
-    //Leave as-is for foldable checks without activity
-    //noinspection GradleDependency
-    implementation "androidx.window:window:1.0.0-alpha02"
 
     //Columbus module is separate to make it easier to work with
     implementation project(path: ':columbus')

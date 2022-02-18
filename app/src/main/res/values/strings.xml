@@ -219,7 +219,7 @@
     <string name="setting_advanced_legacy_wake">Legacy Wake Device method</string>
     <string name="setting_advanced_legacy_wake_desc">Use the legacy method of waking the device with the \'Wake Device\' option enabled. This may not work on all devices, but may be more reliable in a few rare cases.</string>
     <string name="setting_advanced_tensor_low_power">Tensor Low Power Mode</string>
-    <string name="setting_advanced_tensor_low_power_desc">Runs the Tensor model on the low power CPU if available; disable if you have performance issues.\n<b>Default enabled</b></string>
+    <string name="setting_advanced_tensor_low_power_desc">Runs the Tensor model on the low power CPU if available; disable if you have performance issues or the gesture stops working entirely.</string>
     <string name="settings_advanced_monet_color_picker">Wallpaper Colour</string>
     <string name="settings_advanced_monet_color_picker_desc">Choose the colour from your wallpaper to use throughout Tap, Tap\'s UI</string>
     <string name="setting_advanced_custom_sensitivity">Custom sensitivity</string>

@@ -46,6 +46,9 @@
         <entry key="..\:/Users/Kieron/Android/AndroidStudioWorkspace/TapTapv2/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.29375" />
         <entry key="app/src/main/res/drawable/ic_gate_battery_saver.xml" value="0.2989583333333333" />
         <entry key="app/src/main/res/drawable/ic_gate_low_battery.xml" value="0.2989583333333333" />
+        <entry key="app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.299" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.299" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.299" />
       </map>
     </option>
   </component>

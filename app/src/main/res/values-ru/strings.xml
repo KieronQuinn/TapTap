@@ -219,7 +219,7 @@
     <string name="setting_advanced_legacy_wake">Устаревший метод пробуждения устройства</string>
     <string name="setting_advanced_legacy_wake_desc">Использовать классический метод для работы опции «Включение устройства». Работает не на всех устройствах, но в редких случаях может оказаться более надежным решением.</string>
     <string name="setting_advanced_tensor_low_power">Снижение нагрузки на осн. ядра</string>
-    <string name="setting_advanced_tensor_low_power_desc">Запускает модель распознавания жестов на энергоэффективных ядрах процессора, если доступно; в случае проблем с производительностью отключите опцию.\n<b>По умолчанию включено</b></string>
+    <string name="setting_advanced_tensor_low_power_desc">Запускает модель распознавания жестов на энергоэффективных ядрах процессора, если доступно; в случае проблем с производительностью отключите опцию.</string>
     <string name="settings_advanced_monet_color_picker">Цвет темы из обоев</string>
     <string name="settings_advanced_monet_color_picker_desc">Для интерфейса Tap, Tap использовать палитру на основе цвета ваших обоев</string>
     <string name="setting_advanced_custom_sensitivity">Свое значение чувствительности</string>
@@ -327,7 +327,7 @@
     <string name="action_notifications">Панель уведомлений</string>
     <string name="action_notifications_desc">Открыть шторку с уведомлениями. На поддерживаемых устройствах это действие также может сворачивать шторку обратно</string>
     <string name="action_quick_settings">Быстрые настройки</string>
-    <string name="action_quick_settings_desc">Открывает панель быстрого доступа. На поддерживаемых устройствах это действие также может сворачивать шторку обратно/string>
+    <string name="action_quick_settings_desc">Открывает панель быстрого доступа. На поддерживаемых устройствах это действие также может сворачивать шторку обратно</string>
     <string name="action_screenshot">Снимок экрана</string>
     <string name="action_screenshot_desc">Сделать скриншот системными средствами</string>
     <string name="action_lock_screen">Выключение экрана</string>
