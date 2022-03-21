@@ -1,289 +1,627 @@
 <resources>
+
+    <!-- Launcher app name -->
     <string name="app_name">Tap, Tap</string>
-    <string name="accessibility_service_label">Tap, Tap</string>
-    <string name="accessibility_service_label_gesture">Tap, Tap 次要服务</string>
-    <string name="accessibility_service_description">TapTap 无障碍服务\n\n<b>重要提示：应用不会收集您的数据。此服务仅用于识别手势活动，并提供与设备的互动支持。</b></string>
-    <string name="accessibility_service_description_gesture">Tap, Tap 手势无障碍服务。\n\n<b>如若应用未告知您需要开启它，您便无需这么做，仅有部分动作需要它。</b>\n\n<b>重要提示：应用不会收集您的数据。此服务仅用于提供与设备的手势交互。\n\n这是一个独立的服务，需要执行手势的动作依赖此服务。但由于 Android 系统的限制以及应用 UI 的适配，手势可能会与 UI 交互产生冲突。例如，在此服务启动的情况下，Chrome 将不会在滑动页面时隐藏 Omnibar。</b></string>
+
+    <!-- Generic -->
+    <string name="search">搜索</string>
+    <string name="close">关闭</string>
+
+    <!-- Setup > Landing -->
+    <string name="landing_title">欢迎使用 Tap, Tap</string>
+    <string name="landing_button_get_started">让我们开始吧！</string>
+    <string name="landing_button_skip_setup">跳过教程</string>
+
+    <!-- Setup > Info -->
+    <string name="setup_foss_info_title">Tap, Tap 自由且开源</string>
+    <string name="setup_foss_info_content"><![CDATA[Tap, Tap 将一直保持自由且开源. 任何人都可以在 <a href=\"https://kieronquinn.co.uk/redirect/TapTap/github\">GitHub</a> 上查看源码。 官方下载渠道<b>只有</b> <a href="https://kieronquinn.co.uk/redirect/TapTap/xda">XDA</a>， <a href="https://kieronquinn.co.uk/redirect/TapTap/github">GitHub</a> 和 <a href="https://kieronquinn.co.uk/redirect/TapTap/apkmirror">APKMirror</a>。<br>如果您允许此应用程序访问互联网，将始终自动从 GitHub 下载更新。]]></string>
+    <string name="setup_foss_info_warning">请只在上方提供的官方渠道下载使用 Tap, Tap. <b>如果您从任何其他渠道下载，强烈建议您卸载并从上方提供的官方链接重新安装</b>。点击以获取更多信息。</string>
+    <string name="setup_foss_info_bs_title">注意</string>
+    <string name="setup_foss_info_bs_content">Tap, Tap 将使用无障碍服务。 这使应用程序可以在您的设备上自动执行操作，您不应该授予任何不受信任的应用程序此权限。这就是为什么 Tap, Tap 是开源的 - 这样，任何人都可以查阅代码，并检查是否有任何恶意行为。若您从任何第三方渠道下载此应用程序，我们将无法保证您所下载的副本是否安全。所以我们强烈建议您从官方渠道下载安装此应用程序。</string>
+    <string name="setup_foss_info_content_lower">如果您喜欢 Tap, Tap，并想要捐赠开发者，您可以点击设置页面下方的 "更多" 按钮。无论您是否捐赠，我们都非常感谢您分享、支持和使用 Tap, Tap 谢谢你!</string>
+    <string name="setup_info_next">下一个</string>
+
+    <!-- Setup > Gesture -->
+    <string name="setup_gesture_toolbar">手势配置</string>
+    <string name="setup_gesture_device_size"><![CDATA[选择最适合您设备的机型代号。<br><b>已选择: %1$s</b><br>如果手势无效，请更换机型再试。]]></string>
+    <string name="setup_gesture_loading">加载中…</string>
+    <string name="setup_gesture_info_hint">双击手机背面来使用此手势。\n<b>试试用食指用力点击吧！</b></string>
+    <string name="setup_gesture_info_help">没有作用？尝试在手势配置面板中改变设备大小和灵敏度</string>
+    <string name="setup_gesture_info_success"><b>很好，点击以继续！</b>\n提示：如果您在使用手势时有困难，你可以在手势配置面板中调整大小和敏感度，或者稍后在设置中调整。</string>
+
+    <!-- Setup > Complete -->
+    <string name="setup_complete_card">动作和门槛在第一次使用时也许需要适当的权限以生效，查看通知来配置权限</string>
+    <string name="setup_complete_title">配置完成</string>
+
+    <!-- Internet Permission Prompt -->
+    <string name="dialog_internet_permission_text">允许网络权限？</string>
+    <string name="dialog_internet_permission_desc">这将只用于定期检查设备配置和应用程序更新</string>
+    <string name="dialog_internet_permission_allow_always">始终允许</string>
+    <string name="dialog_internet_permission_allow_open">只在此应用程序运行时允许</string>
+    <string name="dialog_internet_permission_deny">拒绝</string>
+
+    <!-- Upgrade modal -->
+    <string name="setup_upgrade_loading">更新设置中…</string>
+
+    <!-- No Gyroscope Modal -->
+    <string name="modal_no_gyroscope_title">不支持的设备</string>
+    <string name="modal_no_gyroscope_content">你的设备没有所需要的的传感器（陀螺仪）来使用此应用程序。Tap, Tap 将无法在此设备上运行。</string>
+
+    <!-- Disable Columbus Modal -->
+    <string name="modal_disable_columbus_title">停用快速点击</string>
+    <string name="modal_disable_columbus_content">您已在设备上启用了系统提供的快速点击功能，请禁用它，否则 Tap, Tap 将无法正常工作。快速点击功能也许可以在系统设置中的 系统 > 手势 下找到。</string>
+    <string name="modal_disable_columbus_card">你可能需要在禁用系统自带的快速点击后重新启动，以使 Tap, Tap 的某些功能发挥作用。</string>
+    <string name="modal_disable_columbus_button">打开设置</string>
+
+    <!-- Settings UI -->
+    <string name="settings_main_enable_tap_tap">启用 Tap, Tap</string>
+    <string name="setting_bottom_nav_settings">设置</string>
     <string name="setting_bottom_nav_gesture">手势</string>
+    <string name="setting_bottom_nav_more">更多</string>
+    <string name="menu_setup_wizard">重新配置</string>
+
+    <!-- Settings > Gesture -->
+    <string name="settings_main_battery"><b>关闭电池优化</b>\n来确保 Tap, Tap 不会在后台被杀掉, 点击以关闭此应用的电池优化配置</string>
     <string name="setting_actions_double">双击动作</string>
     <string name="setting_actions_triple">三击动作</string>
-    <string name="settings_actions_desc_double">仅在双击设备背部时运行动作</string>
-    <string name="settings_actions_desc_triple">仅在三击设备背部时运行动作</string>
-    <string name="settings_backup_restore">备份 &amp; 恢复</string>
-    <string name="settings_backup_restore_desc">将您的设置备份至设备上或云端</string>
-    <string name="settings_backup_restore_backup">备份</string>
-    <string name="settings_backup_restore_backup_desc">将您的设置备份至设备上或云端</string>
-    <string name="settings_backup_restore_restore">恢复</string>
-    <string name="settings_backup_restore_restore_desc">从您的设备上或云端中恢复设置</string>
+    <string name="settings_actions_desc_double">设置双击手机背面后所执行的动作</string>
+    <string name="settings_actions_desc_triple">设置三击手机背面后所执行的动作</string>
     <string name="setting_gates">门槛</string>
-    <string name="setting_gates_desc">禁止手势在某些情况下被识别到并激活动作</string>
+    <string name="setting_gates_desc">禁止手势在某些情况下被识别并激活动作</string>
     <string name="setting_feedback">反馈</string>
-    <string name="setting_feedback_desc">定制设备在识别到手势时通知您的方式</string>
-    <string name="setting_gesture_model">设备尺寸</string>
-    <string name="setting_gesture_model_desc">在选择手势模型时，调整要使用的设备大小。</string>
+    <string name="setting_feedback_desc">>定制设备在识别到手势时通知您的方式</string>
     <string name="setting_feedback_vibrate">振动</string>
     <string name="setting_feedback_vibrate_desc">当识别到手势并执行动作时，振动一次</string>
     <string name="setting_feedback_wake">唤醒设备</string>
     <string name="setting_feedback_wake_desc">当屏幕处于关闭状态时唤醒设备</string>
-    <string name="gate_charging_state">充电时</string>
-    <string name="gate_telephony_activity">通话时</string>
-    <string name="gate_telephony_activity_desc">当设备处于呼叫状态时，暂时禁用手势。仅支持标准电话，不支持如 WhatsApp 之类的网络电话</string>
-    <string name="gate_telephony_activity_desc_when">仅当设备处于呼叫状态时运行</string>
-    <string name="gate_usb_state">USB 设备</string>
-    <string name="gate_camera_visibility">相机启动时</string>
-    <string name="gate_camera_visibility_desc">当相机开启时，暂时禁用手势。注意：这将在执行动作时跳过「启动相机」动作</string>
-    <string name="gate_camera_visibility_desc_when">仅当相机开启时运行</string>
-    <string name="gate_power_state">屏幕关闭时</string>
-    <string name="gate_power_state_desc">当屏幕处于关闭状态时，暂时禁用手势</string>
-    <string name="gate_power_state_desc_when">仅当屏幕处于关闭状态时运行</string>
-    <string name="gate_power_state_inverse">屏幕开启时</string>
-    <string name="gate_power_state_inverse_desc">当屏幕处于打开状态时，暂时禁用手势</string>
-    <string name="gate_power_state_inverse_desc_when">仅当屏幕处于打开状态时运行</string>
-    <string name="gate_app_showing">应用前台时</string>
-    <string name="gate_app_showing_desc">当指定应用处于前台时，暂时禁用手势</string>
-    <string name="gate_app_showing_desc_when">仅当指定应用处于前台时</string>
-    <string name="gate_app_showing_desc_formatted">当 %1s 处于前台运行时，暂时禁用手势</string>
-    <string name="action_launch_camera">启动相机</string>
-    <string name="action_launch_camera_desc">启动您的默认相机应用。此操作将在相机已处于启动状态时被跳过。</string>
-    <string name="action_home">主页</string>
-    <string name="action_home_desc">模拟按下主页键</string>
-    <string name="action_back">返回</string>
-    <string name="action_back_desc">模拟按下返回键</string>
-    <string name="action_recents">打开最近任务</string>
-    <string name="action_recents_desc">通过模拟按下最近任务键来打开最近任务。在支持此功能的设备上，若最近任务已经处于打开状态，则使用此动作会切换至第一个后台应用。</string>
-    <string name="action_notifications">展开通知</string>
-    <string name="action_notifications_desc">展开通知面板</string>
-    <string name="action_quick_settings">快速设置</string>
-    <string name="action_quick_settings_desc">展开快速设置面板</string>
-    <string name="action_screenshot">截图</string>
-    <string name="action_screenshot_desc">使用系统界面截图</string>
-    <string name="action_lock_screen">锁屏</string>
-    <string name="action_lock_screen_desc">通过模拟按下电源键将设备锁屏</string>
-    <string name="action_power_dialog">电源选项</string>
-    <string name="action_power_dialog_desc">模拟长按电源键以展示电源选项</string>
-    <string name="action_toggle_pause">播放/暂停</string>
-    <string name="action_toggle_pause_desc">播放/暂停当前播放的歌曲</string>
-    <string name="action_previous">上一首</string>
-    <string name="action_previous_desc">播放上一首歌曲</string>
-    <string name="action_next">下一首</string>
-    <string name="action_next_desc">播放下一首歌曲</string>
-    <string name="fab_add_action">添加动作</string>
-    <string name="fab_remove_action">移除</string>
-    <string name="add_action_category_launch">启动</string>
-    <string name="add_action_category_utilities">工具</string>
-    <string name="add_action_category_advanced">高级</string>
-    <string name="add_gate_category_device">设备</string>
-    <string name="add_gate_category_sensors">传感器</string>
-    <string name="add_gate_category_audio">音频</string>
-    <string name="add_gate_category_events">事件</string>
-    <string name="action_flashlight">手电筒</string>
-    <string name="action_flashlight_desc">开关手电筒。当相机被占用时，此动作将失效。</string>
-    <string name="action_launch_app">启动应用</string>
-    <string name="action_launch_app_desc">启动一个应用</string>
-    <string name="action_launch_app_desc_formattable">启动 %1s。当该应用已经处于运行状态时，此动作将被跳过。</string>
-    <string name="fab_add_gate">添加门槛</string>
-    <string name="search">搜索</string>
-    <string name="setting_gesture_sensitivity">灵敏度</string>
-    <string name="setting_gesture_sensitivity_desc">通过调整「噪音」过滤掉的力度来改变手势的灵敏度。较低的灵敏度意味着在大多数设备上较难激活，而较高的灵敏度则意味着容易被误激活。</string>
-    <string name="help_action">动作，即是当您敲击设备的背面两次时所运行的任务。在满足相应条件的情况下，动作会按照列表的顺序从上到下运行。\n点击获取更多信息。</string>
-    <string name="help_gate">门槛即是当设备处于特定情况下时，若识别到手势，则不运行对应动作。若是想要不受约束地运行任何一个动作，您必须启用所有的门槛。\n点击获取更多信息。</string>
-    <string name="bs_help_action">动作，即是当您敲击设备的背面两次时所运行的任务，它按照列表的顺序从上到下运行。如果某个动作已成功运行，则剩余的动作不会被运行。但是，如果一个动作处于不可用状态（例如：在已经启动了语音助手的情况下想要执行「启动语音助手」动作，亦或是没有满足条件），那么它下面的下一个动作将会被运行，以此类推，直到有一个动作成功运行为止。</string>
-    <string name="bs_help_action_title">什么是动作？</string>
-    <string name="bs_help_gate">门槛可以阻止应用在识别到手势时运行动作。为了能够运行所有的动作，您必须启用所有的门槛。\n如果当前满足某个场景，例如：屏幕处于关闭状态，而「屏幕关闭时」处于启用状态时，则不会运行任何动作。您可以添加任意数量的门槛，并使用开关来启用或者禁用它们（没有必要删掉它们再重新添加），以节省时间并提高效率。</string>
-    <string name="bs_help_gate_title">什么是门槛？</string>
-    <string name="action_launch_assistant">启动语音助手</string>
-    <string name="action_launch_assistant_desc">启动您默认的语音助手</string>
-    <string name="action_launch_search">启动搜索</string>
-    <string name="action_launch_search_desc">打开 Google 搜索</string>
-    <string name="action_tasker_event">Tasker 事件</string>
-    <string name="action_tasker_event_desc">触发 Tasker 事件插件</string>
-    <string name="xda_thread">XDA 帖子</string>
-    <string name="github">GitHub</string>
-    <string name="libraries">第三方库</string>
-    <string name="donate">捐赠</string>
-    <string name="twitter">在 Twitter 关注我</string>
-    <string name="tasker_config_label">敲击背面两次</string>
-    <string name="action_tasker_task">Tasker 任务</string>
-    <string name="action_tasker_task_desc">执行特定的 Tasker 任务</string>
-    <string name="action_tasker_task_desc_formatted">执行 Tasker 任务（%1s）</string>
-    <string name="action_volume_panel">显示音量面板</string>
-    <string name="action_volume_panel_desc">显示系统音量面板，包含用于调整的音频流</string>
-    <string name="action_volume_up">提高音量</string>
-    <string name="action_volume_up_desc">提高当前音频流的音量</string>
-    <string name="action_volume_down">降低音量</string>
-    <string name="action_volume_down_desc">降低当前音频流的音量</string>
-    <string name="action_volume_toggle_mute">切换静音</string>
-    <string name="action_volume_toggle_mute_desc">切换当前音频流的静音状态</string>
-    <string name="action_wake_device">唤醒设备</string>
-    <string name="action_wake_device_desc">当屏幕关闭时唤醒设备。这会覆盖反馈设置中的条目，且在屏幕处于打开状态时被跳过。当您启用了「屏幕关闭时」门槛时，此项不会生效。</string>
-    <string name="actions_sound_profile">切换声音模式</string>
-    <string name="actions_sound_profile_desc">切换您设备的声音模式：振动/静音/响铃</string>
-    <string name="action_launch_shortcut">启动快捷方式</string>
-    <string name="action_launch_shortcut_desc">启动一个快捷方式，例如绿色守护的「立即休眠」</string>
-    <string name="action_launch_shortcut_desc_formattable">启动 %1s 的快捷方式</string>
-    <string name="action_launch_shortcut_toast">暂不支持此快捷方式</string>
-    <string name="call_phone_permission_toast">您必须授予 Tap, Tap「电话权限」后才能使用此快捷方式动作，在设备权限设置中授予。</string>
-    <string name="action_split_screen">分屏</string>
-    <string name="action_split_screen_desc">将当前应用以分屏状态运行（在主屏幕上时不会生效）</string>
-    <string name="action_reachability">启动触达</string>
-    <string name="action_reachability_desc">实验性：使用分屏功能启动「触达」，它将会将上半部分的应用置空，下半部分保持为当前应用。注意：进入和退出此模式时，可能需要重新打开当前的应用程序。</string>
-    <string name="reachability_left_handed_info">长按通知图标可切换图标位置</string>
     <string name="slider_sensitivity_very_low">非常低</string>
     <string name="slider_sensitivity_low">低</string>
-    <string name="slider_sensitivity_medium">正常</string>
+    <string name="slider_sensitivity_medium">中</string>
     <string name="slider_sensitivity_high">高</string>
     <string name="slider_sensitivity_very_high">非常高</string>
     <string name="setting_feedback_override_dnd">当勿扰模式启动时振动</string>
     <string name="setting_feedback_override_dnd_desc">忽略设备的勿扰模式状态，触发时总是振动</string>
-    <string name="gate_keyboard_visibility">打开键盘时</string>
-    <string name="gate_keyboard_visibility_desc">当键盘打开并处于使用状态时，禁止手势识别。注意：如果您没有主动输入文字的话，此门槛可能不工作。</string>
-    <string name="gate_keyboard_visibility_desc_when">仅当键盘打开并处于使用状态时，禁止手势识别。注意：如果您没有主动输入文字的话，此门槛可能不工作。</string>
-    <string name="battery_and_optimisation">电池 &amp; 优化</string>
-    <string name="battery_and_optimisation_desc">为什么 Tap, Tap 耗电？为什么它在后台运行时可能会被您的设备杀掉后台？如何解决？</string>
-    <string name="gate_orientation_landscape">横屏</string>
-    <string name="gate_orientation_landscape_desc">当设备处于横屏时，暂时禁用手势</string>
-    <string name="gate_orientation_landscape_desc_when">仅当设备处于横屏时运行</string>
-    <string name="gate_orientation_portrait">竖屏</string>
-    <string name="gate_orientation_portrait_desc">当设备处于竖屏时，暂时禁用手势</string>
-    <string name="gate_orientation_portrait_desc_when">仅当设备处于竖屏时运行</string>
-    <string name="gate_table">平放</string>
-    <string name="gate_table_desc">当设备平放时，例如放在桌子上时，暂时禁用手势</string>
-    <string name="gate_table_desc_when">仅当设备平放时运行</string>
-    <string name="gate_pocket">口袋中</string>
-    <string name="gate_pocket_desc">当距离传感器检测到有物体时，暂时禁用手势。当您的设备放在口袋里或在桌子上翻转时，会禁用手势。</string>
-    <string name="gate_pocket_desc_when">仅当距离传感器检测到有物体时运行。当您的设备放在口袋里或在桌子上翻转时，会启用手势。</string>
-    <string name="gate_headset_inverse">未连接耳机</string>
-    <string name="gate_headset_desc_inverse">当<b>未连接到</b>有线或无线耳机时，暂时禁用手势。最好与播放/暂停/跳过控件配合使用，以防止通过扬声器播放音乐</string>
-    <string name="gate_headset_desc_when_inverse">仅当<b>未连接到</b>有线或无线耳机时运行</string>
-    <string name="gate_headset">连接耳机</string>
-    <string name="gate_headset_desc">当<b>连接到</b>有线或无线耳机时，暂时禁用手势</string>
-    <string name="gate_headset_desc_when">仅当<b>连接到</b>有线或无线耳机时运行</string>
-    <string name="item_action_app_uninstalled">未知应用（%1s）</string>
-    <string name="gate_music">播放音乐时</string>
-    <string name="gate_music_inverse">未播放音乐时</string>
-    <string name="gate_music_desc">当音乐正在播放时，暂时禁用手势</string>
-    <string name="gate_music_desc_when">仅当音乐正在播放时运行</string>
-    <string name="gate_music_desc_when_inverse">当音乐未在播放时，暂时禁用手势</string>
-    <string name="gate_music_desc_inverse">仅当音乐未在播放时运行</string>
-    <string name="tap_notification_title">Tap, Tap 服务</string>
-    <string name="tap_notification_content">Tap, Tap 正在后台运行。点击以隐藏。</string>
-    <string name="tap_notification_channel_title">后台通知</string>
-    <string name="tap_notification_channel_description">当启用使用独立服务的选项时，用于在后台保持单击、单击运行的通知</string>
-    <string name="setting_advanced">高级</string>
-    <string name="setting_advanced_desc">高级设置和调整，用于优化性能等</string>
-    <string name="setting_advanced_warning_desc">这些选项均为实验性，可能无法在您的设备上运行，或者可能导致 Tap, Tap 完全停止工作。</string>
-    <string name="setting_advanced_restart_service">自动重启服务</string>
-    <string name="setting_advanced_restart_service_desc">尝试每小时自动重新启动一次 Tap，Tap 侦听器组件。</string>
-    <string name="setting_advanced_legacy_wake">旧版唤醒设备</string>
-    <string name="setting_advanced_legacy_wake_desc">使用旧版唤醒设备的方式来执行「唤醒设备」动作。 这可能不适用于所有设备，但在极少数情况下可能更可靠。</string>
-    <string name="tap_update_notification_channel_title">更新提醒</string>
-    <string name="tap_update_notification_channel_description">在此应用每日检查更新时发送通知</string>
-    <string name="tap_update_notification_title">Tap, Tap 更新可用</string>
-    <string name="tap_update_notification_content">有一个 Tap, Tap 新更新可用（%1s 升级至 %1s）</string>
-    <string name="action_google_voice_access">触发 Google Voice Access</string>
-    <string name="action_google_voice_access_desc">当 Google Voice Access <b>无障碍应用</b>正在运行时，触发它（这并非助理或语音搜索）</string>
+
+    <!-- Settings > Gesture -> Action -->
+    <string name="fab_add_action">添加动作</string>
+    <string name="fab_remove_action">移除</string>
+    <string name="help_action">动作，即是当您敲击设备的背面两次时所运行的任务。在满足相应条件的情况下，动作会按照列表的顺序从上到下运行。\n点击获取更多信息。</string>
+    <string name="bs_help_action">动作，即是当您敲击设备的背面两次时所运行的任务，它按照列表的顺序从上到下运行。如果某个动作已成功运行，则剩余的动作不会被运行。但是，如果一个动作处于不可用状态（例如：在已经启动了语音助手的情况下想要执行「启动语音助手」动作，亦或是没有满足条件），那么它下面的下一个动作将会被运行，以此类推，直到有一个动作成功运行为止。</string>
+    <string name="bs_help_action_title">什么是动作？</string>
+    <string name="item_action_when_empty">添加判定条件…</string>
+    <string name="item_action_when_not_empty_single">%1d 个条件</string>
+    <string name="item_action_when_not_empty_other">%1d 个条件</string>
+    <string name="item_action_app_uninstalled">未知应用程序 (%1s)</string>
     <string name="switch_triple">启用三击</string>
+    <string name="settings_actions_loading_actions">加载动作中…</string>
     <string name="help_action_triple">注：启用三击时，双击动作的响应速度可能会较慢。这是因为在运行该操作之前，它必须等待看是否会执行第三次点击。</string>
-    <string name="action_hamburger">汉堡菜单/返回键</string>
-    <string name="action_hamburger_desc">这个动作将会点击屏幕上汉堡（三横线）菜单通常所在的位置。\n<b>重要警告</b>：这会点到屏幕左上方汉堡菜单通常在的地方。不管那里是啥东西，都可能会被点到，所以有时也会触发返回，甚至可能会点击屏幕上那个位置的其他元素，包括其他按钮。<b>小心使用</b>，尝试考虑使用三击背部和应用条件要求来限制它。</string>
-    <string name="action_accessibility_button">触发无障碍按钮</string>
-    <string name="action_accessibility_button_desc">模拟无障碍按钮，该按钮可用于触发其他服务，如「随选朗读」</string>
-    <string name="action_accessibility_button_chooser">无障碍按钮选择</string>
-    <string name="action_accessibility_button_chooser_desc">调出无障碍按钮的选择菜单</string>
-    <string name="action_accessibility_shortcut">触发无障碍快捷方式</string>
-    <string name="action_accessibility_shortcut_desc">触发无障碍快捷方式。在使用此操作之前，请确保未将 Tap, Tap 设置为使用快捷方式！</string>
-    <string name="action_app_drawer">应用程序抽屉</string>
-    <string name="action_app_drawer_desc">打开<b>受支持启动器</b>的应用抽屉。仅在 Android 11 上工作。</string>
-    <string name="action_accept_call">接听电话</string>
-    <string name="action_accept_call_desc">响铃时接听电话</string>
-    <string name="action_reject_call">拒接电话</string>
-    <string name="action_reject_call_desc">若处于振铃则拒绝电话，若处于通话中则挂断通话</string>
-    <string name="action_swipe_up">上滑</string>
-    <string name="action_swipe_up_desc">在当前应用中模拟上滑</string>
-    <string name="action_swipe_down">下滑</string>
-    <string name="action_swipe_down_desc">在当前应用中模拟下滑</string>
-    <string name="action_swipe_left">左滑</string>
-    <string name="action_swipe_left_desc">在当前应用中模拟左滑</string>
-    <string name="action_swipe_right">右滑</string>
-    <string name="action_swipe_right_desc">在当前应用中模拟右滑</string>
-    <string name="tasker_config_label_triple">敲击背面三次</string>
-    <string name="tasker_description_double">将在轻敲设备背面两次时触发</string>
-    <string name="tasker_description_triple">将在轻敲设备背面三次时触发</string>
-    <string name="landing_title">欢迎使用 Tap, Tap</string>
-    <string name="landing_button_get_started">开始</string>
-    <string name="landing_button_skip_setup">跳过向导</string>
-    <string name="setup_foss_info_title">Tap, Tap 免费且开源</string>
-    <string name="setup_foss_info_content"><![CDATA[Tap, Tap 在开源组件的基础上构建，现在与将来都会是免费的。任何人都可以在 <a href=\"https://kieronquinn.co.uk/redirect/TapTap/github\">GitHub 仓库</a> 上查看和编辑源代码。官方所构建的版本，<b>仅在</b> <a href="https://kieronquinn.co.uk/redirect/TapTap/xda">XDA</a>、<a href="https://kieronquinn.co.uk/redirect/TapTap/github">GitHub 仓库</a> 和 <a href="https://kieronquinn.co.uk/redirect/TapTap/apkmirror">APKMirror</a> 处提供下载。官方应用将总是自动提供从 GitHub 下载的更新，尽管链接可能是直链的，而且在下载开始前你可能看不到网页内容。]]></string>
-    <string name="setup_foss_info_warning">请仅在以上官方渠道下载 Tap, Tap。<b>如果您在其它渠道下载了 Tap, Tap，我们非常推荐您卸载它，并在以上链接中下载安装</b>。点击获取详情。</string>
-    <string name="setup_foss_info_bs_title">警告</string>
-    <string name="setup_foss_info_bs_content">Tap, Tap 调用了无障碍服务。无障碍服务可以在您的设备上自动地执行动作，您不应该授予您不信任的应用这个权限。这也是为什么 Tap, Tap 是开源的——包括您在内的任何人都能查阅代码，判断它是否做了什么它不该做的事情。\n\n然而，这个保证并不适用于您从非官方渠道下载的 APK。如果您从 GitHub 仓库、XDA 或 APKMirror 以外的地方下载了 Tap, Tap，我们非常推荐您卸载它，并在官方渠道处下载。</string>
-    <string name="settings_battery_oem_button">打开 OEM 电池设置</string>
-    <string name="menu_setup_wizard">重置向导</string>
-    <string name="modal_no_gyroscope_title">设备不兼容</string>
-    <string name="modal_no_gyroscope_content">您的设备没有此应用所需的传感器（陀螺仪）。Tap, Tap 将永远不会在此设备上工作。</string>
-    <string name="action_alt_tab">切换到上个应用</string>
-    <string name="action_alt_tab_desc">通过模拟双击最近任务按钮来切换到上一个应用（需要设备支持）</string>
-    <string name="gate_lock_screen_showing">锁屏界面显示时</string>
-    <string name="gate_lock_screen_showing_desc">当锁屏界面正处于显示状态时，暂时禁用手势</string>
-    <string name="gate_lock_screen_showing_desc_when">仅当锁屏界面正处于显示状态时执行</string>
-    <string name="gate_lock_screen_showing_inverse">锁屏界面未显示时</string>
-    <string name="gate_lock_screen_showing_inverse_desc">当锁屏界面未处于显示状态时，暂时禁用手势</string>
-    <string name="gate_lock_screen_showing_inverse_desc_when">仅当锁屏界面未处于显示状态时执行</string>
-    <string name="bs_advanced_custom_sensitivity">自定义灵敏度</string>
-    <string name="setting_advanced_custom_sensitivity">自定义灵敏度</string>
-    <string name="setting_advanced_custom_sensitivity_desc">为手势设置一个自定义的灵敏度值。\n重要：请仅在内置的几个灵敏度<b>都无效时</b>使用这个</string>
-    <string name="bs_advanced_custom_sensitivity_hint">灵敏度</string>
-    <string name="gate_alarm">闹钟/计时器</string>
-    <string name="gate_alarm_desc">当闹钟或计时器响时，暂时禁用手势</string>
-    <string name="gate_alarm_desc_when">仅当闹钟或计时器响时运行</string>
-    <string name="gate_foldable_closed">可折叠设备：设备已折叠（合上）</string>
-    <string name="gate_foldable_closed_desc">当设备折叠/合上时，暂时禁用手势</string>
-    <string name="gate_foldable_closed_desc_when">仅在设备折叠/合上时运行动作</string>
-    <string name="gate_foldable_open">可折叠设备：设备已展开（打开）</string>
-    <string name="gate_foldable_open_desc">当设备展开/打开时，暂时禁用手势</string>
-    <string name="gate_foldable_open_desc_when">仅在设备展开/打开时运行动作</string>
-    <string name="action_alarm_timer">解除闹钟/计时器</string>
-    <string name="action_alarm_snooze">打盹闹钟</string>
-    <string name="action_alarm_timer_desc">闹钟或者计时器响时，解除它们（仅支持「时钟」应用）</string>
-    <string name="action_alarm_snooze_desc">闹钟响时，让我再打个盹吧！（仅支持「时钟」应用）</string>
-    <string name="settings_backuprestore_backup_title">创建备份…</string>
-    <string name="settings_backuprestore_backup_desc">此操作不会持续太久</string>
-    <string name="settings_backuprestore_backup_done_title">备份已创建完成</string>
-    <string name="settings_backuprestore_backup_done_desc">保存至 %1s</string>
-    <string name="settings_backuprestore_backup_error_title">创建备份时出错</string>
-    <string name="settings_backuprestore_backup_error_desc">保存备份时出错：%1s</string>
-    <string name="settings_backuprestore_restore_title">恢复备份…</string>
-    <string name="settings_backuprestore_restore_desc">此操作不会持续太久</string>
-    <string name="settings_backuprestore_restore_done_title">备份已恢复完成</string>
-    <string name="settings_backuprestore_restore_done_desc">从备份 %1s 中恢复</string>
-    <string name="settings_backuprestore_restore_error_title">恢复备份时出错</string>
-    <string name="settings_backuprestore_restore_error_desc">恢复备份时出错：%1s</string>
-    <string name="backup_restore_error_type_failed_create_file">创建文件失败</string>
-    <string name="backup_restore_error_type_failed_write_file">写入文件失败</string>
-    <string name="backup_restore_error_type_failed_unknown">未知错误</string>
-    <string name="about_version">版本 %1s\n由 Kieron Quinn 开发</string>
-    <string name="about_contributors">贡献者</string>
-    <string name="about_contributors_main">哥伦布</string>
-    <string name="about_contributors_main_content"><![CDATA[\'哥伦布\'模型与基础代码来自于 Android 11 首个开发者预览版，由 Google 开发。 (<a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>)]]></string>
-    <string name="about_contributors_community">开源社区贡献</string>
-    <string name="about_contributors_community_content"><b>集成 Tasker</b>：João Dias\n<b>音乐控制动作</b>：timfedo\n<b>MD2 界面设计与 Chrome Custom Tabs</b>：Giorgio Cantoni\n<b>电源键对话框动作</b>：Adrian Campos\n<b>勿扰反馈及声音模式动作</b>：Ashutosh Singh\n<b>启动搜索动作</b>：arkon</string>
-    <string name="about_contributors_icons">图标</string>
-    <string name="about_contributors_icons_content"><![CDATA[由 <b><a href="https://material.io/resources/icons">Material Icons</a></b> (<a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache Licence 2.0</a>)<br><b><a href="https://github.com/Templarian/MaterialDesign">Material Design Icons</a></b> (<a href="https://github.com/Templarian/MaterialDesign/blob/master/LICENSE">Pictogrammers Free Licence</a>)<br><b><a href="https://icons8.com/icon/x57bYZb1FKLO/double-tap-gesture">Icons8</a></b> (<a href="https://icons8.com/license">Icons8 License</a>)<br><b><a href="https://www.freepik.com/">Freepik</a></b> (<a href="https://www.flaticon.com/license/pack/197373">Flaticon Licence</a>)<br><b><a href="https://www.flaticon.com/free-icon/smartphone_2628265">Vitaly Gorbachev</a></b> (<a href="https://www.flaticon.com/license/icon/2628265">Flaticon Licence</a>)]]></string>
-    <string name="about_translators">译者</string>
-    <string name="translators_chinese">中文（简体）</string>
-    <string name="translators_russian">俄语</string>
-    <string name="translators_portuguese_br">巴西葡萄牙语</string>
-    <string name="translators_ukrainian">乌克兰语</string>
-    <string name="translators_italian">意大利语</string>
-    <string name="translators_polish">波兰语</string>
-    <string name="translators_french">法语</string>
-    <string name="translators_spanish">西班牙语</string>
-    <string name="translators_vietnamese">越南语</string>
-    <string name="translators_german">德语</string>
-    <string name="translators_turkish">土耳其语</string>
-    <string name="translators_chinese_traditional">中文（繁体）</string>
-    <string name="download_manager_description">下载更新中…</string>
-    <string name="update_downloader_downloading_title">下载更新中…</string>
-    <string name="update_downloader_downloading_failed">下载失败</string>
-    <string name="update_downloader_github">通过浏览器下载</string>
+    <string name="settings_actions_triple_empty">未设置三击动作，点击以设置</string>
+    <string name="settings_actions_double_empty">未设置双击动作，点击以设置</string>
+
+    <!-- Settings > Gesture > Action > Requirements -->
+    <string name="action_when_gate_inverted">%1s (反转)</string>
+    <string name="settings_when_gates_title">条件</string>
+    <string name="settings_actions_when_gates_empty">未设置判定条件，点击以设置</string>
+    <string name="settings_actions_loading_when_gates">加载判定条件中…</string>
+    <string name="fab_add_requirement">添加条件</string>
+
+    <!-- Settings > Gesture > Action > Add -->
+    <string name="add_action_category_launch">运行</string>
+    <string name="add_action_category_launch_desc">运行一个应用程序，捷径，程序捷径</string>
+    <string name="add_action_category_utilities">杂项</string>
+    <string name="add_action_category_utilities_desc">截图、切换手电筒、打开应用抽屉或接听 / 拒接通话。</string>
+    <string name="add_action_category_button">按钮</string>
+    <string name="add_action_category_button_desc">模拟按键，如主页、后退、任务视图或电源等</string>
+    <string name="add_action_category_sound">声音</string>
+    <string name="add_action_category_sound_desc">控制音乐，改变音量或控制闹铃</string>
+    <string name="add_action_category_gesture">手势</string>
+    <string name="add_action_category_gesture_desc">模拟上、下、左或右方向的手势动作</string>
+    <string name="add_action_category_accessibility">无障碍</string>
+    <string name="add_action_category_accessibility_desc">无障碍的具体操作，如谷歌语音访问和显示无障碍按钮选择器</string>
+    <string name="add_action_category_advanced">高级</string>
+    <string name="add_action_category_advanced_desc">触发 Tasker 任务和事件</string>
+    <string name="settings_actions_add_category_selector_loading">加载动作中…</string>
+    <string name="settings_actions_add_action_selector_loading">加载动作中…</string>
+    <string name="settings_actions_add_category_selector_empty">找不到任何动作</string>
+
+    <!-- Action Chips -->
+    <string name="action_chip_shizuku">Shizuku</string>
+    <string name="action_chip_shizuku_desc">需要 Shizuku 应用程序或 sui</string>
+    <string name="action_chip_root">Root</string>
+    <string name="action_chip_root_desc">需要 Root 权限</string>
+    <string name="action_chip_accessibility">服务</string>
+    <string name="action_chip_accessibility_desc">需要启用无障碍服务</string>
+    <string name="action_chip_gesture_accessibility">手势</string>
+    <string name="action_chip_gesture_accessibility_desc">需要启用无障碍手势</string>
+    <string name="action_chip_tasker">Tasker</string>
+    <string name="action_chip_tasker_desc">需要 Tasker 应用程序</string>
+    <string name="action_chip_snapchat">Snapchat</string>
+    <string name="action_chip_snapchat_desc">需要 Snapchat 应用程序</string>
+
+    <!-- Settings > Gesture > Gates -->
+    <string name="fab_add_gate">添加门槛</string>
+    <string name="help_gate">门槛即是当设备处于特定情况下时，若识别到手势，则不运行对应动作。若是想要不受约束地运行任何一个动作，您必须启用所有的门槛。\n点击获取更多信息。</string>
+    <string name="bs_help_gate">门槛可以阻止应用在识别到手势时运行动作。为了能够运行所有的动作，您必须启用所有的门槛。\n如果当前满足某个场景，例如：屏幕处于关闭状态，而「屏幕关闭时」处于启用状态时，则不会运行任何动作。您可以添加任意数量的门槛，并使用开关来启用或者禁用它们（没有必要删掉它们再重新添加），以节省时间并提高效率。</string>
+    <string name="bs_help_gate_title">什么是门槛？</string>
+    <string name="settings_gates_loading_gates">加载配置中…</string>
+
+    <!-- Settings > Gesture > Gates > Add -->
+    <string name="add_gate_category_device">设备</string>
+    <string name="add_gate_category_device_desc">对设备变化做出反应，如屏幕、充电和 USB 状态。</string>
+    <string name="add_gate_category_sensors">传感器</string>
+    <string name="add_gate_category_sensors_desc">对传感器数据做出反应，例如当设备在你的口袋里，或平放在桌子上时。</string>
+    <string name="add_gate_category_audio">音频</string>
+    <string name="add_gate_category_audio_desc">对与音频有关的事件作出反应，例如正在通话或播放音乐。</string>
+    <string name="add_gate_category_events">应用程序</string>
+    <string name="add_gate_category_events_desc">对正在打开的应用程序做出反应，包括键盘和相机。</string>
+    <string name="gate_selector_unavailable">对不起，此门槛无法适用于您的设备 (%1s).</string>
+    <string name="settings_gates_add_category_selector_loading">加载配置中…</string>
+    <string name="settings_gates_add_gate_selector_loading">加载配置中…</string>
+    <string name="settings_gates_add_category_selector_empty">未找到门槛</string>
+    <string name="settings_gates_empty">未设置门槛，点击以设置。</string>
+
+    <!-- Settings > Settings -->
+    <string name="setting_gesture_model">设备尺寸</string>
+    <string name="setting_gesture_model_desc">在选择手势模型时，调整要使用的设备大小。</string>
+    <string name="setting_gesture_model_desc_not_available">当启用低功耗模式时，该选项不可用。</string>
+    <string name="setting_low_power_mode">低功耗模式</string>
+    <string name="setting_low_power_mode_desc">Run the gesture detection on the low-power Context Hub, rather than using the regular CPU to save battery</string>
+    <string name="setting_gesture_sensitivity">灵敏度</string>
+    <string name="setting_gesture_sensitivity_desc">通过调整「噪音」过滤掉的力度来改变手势的灵敏度。较低的灵敏度意味着在大多数设备上较难激活，而较高的灵敏度则意味着容易被误激活。</string>
+    <string name="setting_gesture_sensitivity_desc_disabled">已在高级设置中设置了自定义灵敏度，重新设置它以使用此选项。</string>
+    <string name="setting_gesture_sensitivity_chre">低灵敏度</string>
+    <string name="setting_gesture_sensitivity_chre_desc">对 Tap, Tap 手势使用较低的灵敏度，使其更难运行。</string>
+
+    <!-- Settings > Settings > Low Power Mode -->
+    <string name="settings_low_power_mode_enable">Enable Low Power Mode</string>
+    <string name="setting_low_power_mode_content">Low Power Mode uses the device\'s \"Context Hub\", which allows for running \"nanoapps\" on the low-power CPU. For this to work, there must be the Columbus nanoapp compiled for your device installed, which has to be done by the OEM. Tap, Tap is then able to use this app, in the same way that the system Quick Tap feature does, to detect the gesture in a significantly more power efficient way.\n\n<b>Shizuku (or alternatively sui) is also required for this option, as it requires system permissions not available to user apps.\nOn Android 13 or above, Sui is required due to platform changes beyond Tap, Tap\'s control.</b>\n\n<b>Note: You may need to reboot after enabling this option for the first time for it to take effect.</b></string>
+    <string name="settings_low_power_mode_error_shizuku">Shizuku or sui is required for this option to work. Shizuku will work without root, but if your device is rooted, it will be able to start automatically on boot. If you are using the <b>sui</b> Magisk module, tap below to request permission.</string>
+    <string name="settings_low_power_mode_error_button_shizuku">What\'s Shizuku / Sui?</string>
+    <string name="settings_low_power_mode_error_button_sui">Request <b>sui</b> permission</string>
+    <string name="settings_low_power_mode_error_not_compatible">Sorry, this option is not compatible with your device\n<b>Note:</b> If you are running Android 13 or above, you <b>must</b> be rooted and use Sui to use this option, Shizuku is no longer acceptable due to platform changes outside of Tap, Tap\'s control.</string>
+    <string name="settings_low_power_mode_error_toast">Shizuku is not running, start it to enable Low Power Mode</string>
+
+    <!-- Settings > Settings > Model Picker -->
+    <string name="settings_model_picker_loading">Loading…</string>
+    <string name="settings_model_picker_tab_newest">Newest</string>
+    <string name="settings_model_picker_tab_legacy">Legacy</string>
+    <string name="settings_model_picker_device_size">Height: %1smm (%1sin)</string>
+    <string name="settings_model_picker_recommended">%1s (Recommended)</string>
+    <string name="settings_model_picker_header_newest">Newest models are from Android 12 and are more accurate than the legacy models.\n\n<b>Note:</b> Sometimes the closest size is not the best for your device, you may need to try all the sizes to find the one that is best for you.</string>
+    <string name="settings_model_picker_header_legacy">Legacy models are from Android 11 and are less accurate than the newer models.\n\n<b>Note:</b> Sometimes the closest size is not the best for your device, you may need to try all the sizes to find the one that is best for you.</string>
+
+    <!-- New (Android 12) models -->
+    <string name="tap_model_redfin_name">144.7mm [5.7in] (Small)</string>
+    <string name="tap_model_redfin_desc">Created for the Pixel 5</string>
+    <string name="tap_model_flame_name">147.1mm [5.8in] (Small)</string>
+    <string name="tap_model_flame_desc">Created for the Pixel 4</string>
+    <string name="tap_model_bramble_name">153.9mm [6.1in] (Medium)</string>
+    <string name="tap_model_bramble_desc">Created for the Pixel 4a 5G</string>
+    <string name="tap_model_crosshatch_name">158mm [6.2in] (Large)</string>
+    <string name="tap_model_crosshatch_desc">Created for the Pixel 3 XL</string>
+    <string name="tap_model_coral_name">160.4mm [6.3in] (Large)</string>
+    <string name="tap_model_coral_desc">Created for the Pixel 4 XL</string>
+
+    <!-- Old (Android 11) models -->
+    <string name="tap_model_pixel4_name">147.1mm [5.8in] (Small)</string>
+    <string name="tap_model_pixel4_desc">Created for the Pixel 4</string>
+    <string name="tap_model_pixel3xl_name">158mm [6.2in] (Medium)</string>
+    <string name="tap_model_pixel3xl_desc">Created for the Pixel 3 XL</string>
+    <string name="tap_model_pixel4xl_name">160mm [6.3in] (Large)</string>
+    <string name="tap_model_pixel4xl_desc">Created for the Pixel 4 XL</string>
+
+    <!-- Settings > Settings > Advanced -->
+    <string name="setting_advanced">Advanced</string>
+    <string name="setting_advanced_desc">Advanced settings and tweaks to change performance and more</string>
+    <string name="setting_advanced_warning_desc">These settings are experimental and may not work on your device, or may cause Tap, Tap to stop working entirely.</string>
+    <string name="setting_advanced_restart_service">Auto-restart service</string>
+    <string name="setting_advanced_restart_service_desc">Attempt to automatically restart the Tap, Tap listener component once an hour.</string>
+    <string name="setting_advanced_legacy_wake">Legacy Wake Device method</string>
+    <string name="setting_advanced_legacy_wake_desc">Use the legacy method of waking the device with the \'Wake Device\' option enabled. This may not work on all devices, but may be more reliable in a few rare cases.</string>
+    <string name="setting_advanced_tensor_low_power">Tensor Low Power Mode</string>
+    <string name="setting_advanced_tensor_low_power_desc">Runs the Tensor model on the low power CPU if available; disable if you have performance issues or the gesture stops working entirely.</string>
+    <string name="settings_advanced_monet_color_picker">Wallpaper Colour</string>
+    <string name="settings_advanced_monet_color_picker_desc">Choose the colour from your wallpaper to use throughout Tap, Tap\'s UI</string>
+    <string name="setting_advanced_custom_sensitivity">Custom sensitivity</string>
+    <string name="setting_advanced_custom_sensitivity_desc">Set a custom sensitivity value for the gesture.\nImportant: Only use this if <b>none</b> of the built in sensitivity values are working for you</string>
+    <string name="bs_advanced_custom_sensitivity">Custom Sensitivity</string>
+    <string name="bs_advanced_custom_sensitivity_hint">Sensitivity</string>
+    <string name="bs_advanced_custom_sensitivity_invalid">Invalid sensitivity</string>
+    <string name="bs_advanced_custom_sensitivity_reset">Reset</string>
+
+    <!-- Monet Color Picker -->
+    <string name="color_picker_unavailable">Wallpaper Color Picker unavailable for the currently selected wallpaper</string>
+
+    <!-- Settings > More -->
+    <string name="settings_backup_restore">Backup &amp; Restore</string>
+    <string name="settings_backup_restore_desc">Backup your settings to your device or the cloud</string>
+    <string name="settings_backup_restore_backup">Backup</string>
+    <string name="settings_backup_restore_backup_desc">Backup your settings to your device or the cloud</string>
+    <string name="settings_backup_restore_restore">Restore</string>
+    <string name="settings_backup_restore_restore_desc">Restore your settings from your device or the cloud</string>
+    <string name="setting_internet">Allow Internet Access</string>
+    <string name="setting_internet_desc">This will only be used to retrieve device specifications and to check for updates</string>
+    <string name="setting_crash_reporting">Crash Notifications</string>
+    <string name="setting_crash_reporting_desc">Show a notification if Tap, Tap crashes, allowing saving of a log to report on GitHub or XDA. This option <b>does not</b> automatically send crash data to a server.</string>
+    <string name="battery_and_optimisation">Battery &amp; Optimisation</string>
+    <string name="battery_and_optimisation_desc">Info on why Tap, Tap uses battery, and why it may be killed by your device when run in the background (and how to fix that)</string>
+    <string name="xda_thread">XDA Thread</string>
+    <string name="github">GitHub</string>
+    <string name="libraries">Third party libraries</string>
+    <string name="donate">Donate</string>
+    <string name="twitter">Follow me on Twitter</string>
+    <string name="about_version">Version %1s\nCreated by Kieron Quinn</string>
+
+    <!-- Settings > More > Battery Optimisation -->
+    <string name="settings_battery_header"><![CDATA[Tap, Tap uses sensor data in the background, which can be CPU and battery intensive. On devices with a dedicated ML accelerator (such as those with a Qualcomm Hexagon Tensor Accelerator), you may see a smaller battery impact.<br><a href="https://kieronquinn.co.uk/redirect/TapTap/battery">Tap here for some battery saving tips</a>.]]></string>
+    <string name="settings_battery_info"><![CDATA[Tap, Tap requires the Android battery optimisation be disabled for the app. This helps prevent it being killed in the background.<br><b>Note:</b> On some devices, you may also need to disable extra settings to prevent the app being killed. <a href="https://dontkillmyapp.com/">Tap here for more info</a>.]]></string>
+    <string name="settings_battery_disable_optimisation">Disable Battery Optimisation</string>
+    <string name="settings_battery_disable_optimisation_desc_enabled">Android Battery Optimisation for Tap, Tap is enabled</string>
+    <string name="settings_battery_disable_optimisation_desc_disabled">Android Battery Optimisation for Tap, Tap is disabled</string>
+    <string name="settings_battery_oem_info">Your device appears to have some OEM-specific battery optimisations. Tap, Tap is unable to automatically request to disable them, please check your settings to verify they are disabled.</string>
+    <string name="settings_battery_oem_button">Open OEM battery settings</string>
+
+    <!-- Settings > More > Backup & Restore > Backup -->
+    <string name="settings_backuprestore_backup_title">Creating backup…</string>
+    <string name="settings_backuprestore_backup_desc">This shouldn\'t take long</string>
+    <string name="settings_backuprestore_backup_done_title">Backup created</string>
+    <string name="settings_backuprestore_backup_done_desc">Saved to %1s</string>
+    <string name="settings_backuprestore_backup_error_title">Error creating backup</string>
+    <string name="settings_backuprestore_backup_error_desc">There was an error saving your backup: %1s</string>
+
+    <!-- Settings > More > Backup & Restore > Restore -->
+    <string name="settings_backuprestore_restore_title">Restoring backup…</string>
+    <string name="settings_backuprestore_restore_desc">This shouldn\'t take long</string>
+    <string name="settings_backuprestore_restore_done_title">Backup restored</string>
+    <string name="settings_backuprestore_restore_done_desc">Restored from backup %1s</string>
+    <string name="settings_backuprestore_restore_error_title">Error restoring backup</string>
+    <string name="settings_backuprestore_restore_error_desc">There was an error restoring your backup</string>
+    <string name="backup_restore_error_type_failed_create_file">Failed to create file</string>
+    <string name="backup_restore_error_type_failed_write_file">Failed to write to file</string>
+    <string name="backup_restore_error_type_failed_unknown">Unknown error</string>
+    <string name="settings_backup_restore_restore_infobox">Some actions, gates or requirements require additional setup or are incompatible with your device, please check them before continuing.</string>
+    <string name="settings_backup_restore_restore_header_actions">Actions</string>
+    <string name="settings_backup_restore_restore_header_gates">Gates</string>
+    <string name="settings_backup_restore_restore_header_when_gates">Action Requirements</string>
+    <string name="settings_backup_restore_restore_item_chip_action">Action</string>
+    <string name="settings_backup_restore_restore_item_chip_gate">Gate</string>
+    <string name="settings_backup_restore_restore_item_chip_requirement">Requirement</string>
+    <string name="settings_backup_restore_restore_item_setup">Setup</string>
+    <string name="settings_backup_restore_restore_item_skip">Skip</string>
+
+    <!-- Settings > More > Contributors -->
+    <string name="about_contributors">Contributors</string>
+    <string name="about_contributors_main">Columbus</string>
+    <string name="about_contributors_main_content"><![CDATA[\'Columbus\' Model and base code created by Google, from Android 11 Developer Preview 1 and Android 12 (<a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>)]]></string>
+    <string name="about_contributors_community">Community Contributions</string>
+    <string name="about_contributors_community_content"><b>Tasker integration</b>: João Dias\n<b>Music control actions</b>: timfedo\n<b>MD2 UI and Chrome Custom Tabs</b>: Giorgio Cantoni\n<b>Power Dialog action</b>: Adrian Campos\n<b>DND feedback and Sound Profiles action</b>: Ashutosh Singh\n<b>Launch Search action</b>: arkon\n<b>Force Do not Disturb action:</b> Kylian Meulin</string>
+    <string name="about_contributors_icons">Icons</string>
+    <string name="about_contributors_icons_content"><![CDATA[Icons by <b><a href="https://material.io/resources/icons">Material Icons</a></b> (<a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache Licence 2.0</a>)<br><b><a href="https://github.com/Templarian/MaterialDesign">Material Design Icons</a></b> (<a href="https://github.com/Templarian/MaterialDesign/blob/master/LICENSE">Pictogrammers Free Licence</a>)<br><b><a href="https://www.freepik.com/">Freepik</a></b> (<a href="https://www.flaticon.com/license/pack/197373">Flaticon Licence</a>)<br><b><a href="https://www.flaticon.com/free-icon/smartphone_2628265">Vitaly Gorbachev</a></b> (<a href="https://www.flaticon.com/license/icon/2628265">Flaticon Licence</a>)]]></string>
+    <string name="about_translators">Translators</string>
+
+    <!-- Language headings, add to values.xml too -->
+    <string name="translators_chinese">Chinese (Simplified)</string>
+    <string name="translators_russian">Russian</string>
+    <string name="translators_portuguese_br">Brazilian Portuguese</string>
+    <string name="translators_ukrainian">Ukrainian</string>
+    <string name="translators_italian">Italian</string>
+    <string name="translators_polish">Polish</string>
+    <string name="translators_french">French</string>
+    <string name="translators_spanish">Spanish</string>
+    <string name="translators_vietnamese">Vietnamese</string>
+    <string name="translators_german">German</string>
+    <string name="translators_turkish">Turkish</string>
+    <string name="translators_chinese_traditional">Chinese (Traditional)</string>
+
+    <!-- Actions -->
+    <string name="action_launch_camera">Launch camera</string>
+    <string name="action_launch_camera_desc">Launch your default camera app. This action will be skipped if the camera is already running.</string>
+    <string name="action_snapchat">Quick Tap to Snap</string>
+    <string name="action_snapchat_desc">Launch Snapchat\'s Quick Tap to Snap feature, if available (this action may require some additional setup).</string>
+    <string name="action_home">Home</string>
+    <string name="action_home_desc">Simulate pressing the home button</string>
+    <string name="action_back">Back</string>
+    <string name="action_back_desc">Simulate pressing the back button</string>
+    <string name="action_recents">Open recents</string>
+    <string name="action_recents_desc">Open the recents by simulating pressing the recents button. On devices that support it, using this action when recents is already open will switch to the first backgrounded app</string>
+    <string name="action_notifications">Open notifications</string>
+    <string name="action_notifications_desc">Open the notification shade. On supported devices, this will close the notification shade if it\'s open.</string>
+    <string name="action_quick_settings">Quick settings</string>
+    <string name="action_quick_settings_desc">Open the quick settings shade. On supported devices, this will close the quick settings shade if it\'s open</string>
+    <string name="action_screenshot">Screenshot</string>
+    <string name="action_screenshot_desc">Take a screenshot using the system screenshot UI</string>
+    <string name="action_lock_screen">Lock the screen</string>
+    <string name="action_lock_screen_desc">Lock the screen by simulating the power button being pressed</string>
+    <string name="action_power_dialog">Power Menu</string>
+    <string name="action_power_dialog_desc">Opens the power dialog by simulating the power button being held</string>
+    <string name="action_toggle_pause">Play/Pause</string>
+    <string name="action_toggle_pause_desc">Play/Pause current playing audio</string>
+    <string name="action_previous">Previous</string>
+    <string name="action_previous_desc">Play previous audio</string>
+    <string name="action_next">Next</string>
+    <string name="action_next_desc">Play next audio</string>
+    <string name="action_device_controls">Launch Device Controls</string>
+    <string name="action_device_controls_desc">Show the Device (Home) controls, as if the Quick Settings tile has been clicked</string>
+    <string name="action_quick_access_wallet">Launch Quick Access Wallet</string>
+    <string name="action_quick_access_wallet_desc">Show the Quick Access Wallet, as if the Quick Settings tile has been clicked</string>
+    <string name="action_click_quick_setting">Click Quick Setting</string>
+    <string name="action_click_quick_setting_desc">Simulate clicking a Quick Setting tile</string>
+    <string name="action_click_quick_setting_desc_formatted">Simulate clicking %1s (Quick Setting tile)</string>
+    <string name="action_flashlight">Flashlight</string>
+    <string name="action_flashlight_desc">Toggle the flashlight. This action will fail if the camera is in use by another app.</string>
+    <string name="action_launch_app">Launch app</string>
+    <string name="action_launch_app_desc">Launch an app</string>
+    <string name="action_launch_app_desc_formattable">Launch %1s. This action will be skipped if it is already running.</string>
+    <string name="action_launch_assistant">Launch Assistant</string>
+    <string name="action_launch_assistant_desc">Launch your default assistant app</string>
+    <string name="action_launch_search">Launch search</string>
+    <string name="action_launch_search_desc">Start a Google Search</string>
+    <string name="action_tasker_event">Tasker Event</string>
+    <string name="action_tasker_event_desc">Trigger the Tasker Event plugin</string>
+    <string name="action_tasker_task">Tasker Task</string>
+    <string name="action_tasker_task_desc">Run a specified Tasker task</string>
+    <string name="action_tasker_task_desc_formatted">Run a Tasker task (%1s)</string>
+    <string name="action_volume_panel">Show volume panel</string>
+    <string name="action_volume_panel_desc">Show the system volume panel with the sound stream for adjustment showing</string>
+    <string name="action_volume_up">Volume up</string>
+    <string name="action_volume_up_desc">Increase the volume of the current sound stream</string>
+    <string name="action_volume_down">Volume down</string>
+    <string name="action_volume_down_desc">Decrease the volume of the current sound stream</string>
+    <string name="action_volume_toggle_mute">Toggle mute</string>
+    <string name="action_volume_toggle_mute_desc">Turn mute on/off for the current sound stream</string>
+    <string name="action_wake_device">Wake device</string>
+    <string name="action_wake_device_desc">Wake the device up if the screen is off. This overrides the setting in the feedback settings, is skipped if the display is on, and will not work if you have the \"Display off\" gate enabled</string>
+    <string name="actions_sound_profile">Switch sound profiles</string>
+    <string name="actions_sound_profile_desc">Switch between sound profiles of your device: Vibrate/Silent/Loud</string>
+    <string name="do_not_disturb">Toggle do not disturb profile</string>
+    <string name="do_not_disturb_desc">Force sound profile of your device: Silent</string>
+    <string name="action_launch_shortcut">Launch a shortcut</string>
+    <string name="action_launch_shortcut_desc">Launch a shortcut such as Google Maps directions</string>
+    <string name="action_launch_shortcut_desc_formattable">Launch %1s (shortcut into the app)</string>
+    <string name="action_launch_shortcut_toast">This shortcut is currently not supported</string>
+    <string name="action_launch_app_shortcut">Launch App Shortcut</string>
+    <string name="action_launch_app_shortcut_desc">Launch an App Shortcut, usually a deep link into an app such as a chat conversation</string>
+    <string name="action_launch_app_shortcut_desc_formattable">Launch %1s (app shortcut into the app)</string>
+    <string name="action_split_screen">Split screen</string>
+    <string name="action_split_screen_desc">Start or stop split screen mode with the current app (does not work when on the homescreen)</string>
+    <string name="action_reachability">Launch reachability</string>
+    <string name="action_reachability_desc">Experimental: Launch a reachbility-esque mode using split screen, with an empty top half of the screen and the current app on the bottom. Note: You may be required to reopen the current app when starting and ending this mode</string>
+    <string name="action_camera_shutter">Camera Button</string>
+    <string name="action_camera_shutter_desc">Simulate a camera button press, taking a photo if the camera is open (supported camera apps only)</string>
+    <string name="action_google_voice_access">Trigger Google Voice Access</string>
+    <string name="action_google_voice_access_desc">Triggers the Google Voice Access <b>accessibility app</b>, if it is running (this is NOT assistant or voice search)</string>
+    <string name="action_hamburger">Hamburger Menu / Back</string>
+    <string name="action_hamburger_desc">This action presses the screen at the position the hamburger menu usually is.\n<b>Important warning</b>: This will tap <b>anything</b> at the position where the menu usually is (top left), so will also sometimes go back, and may even tap other elements on the screen in that position, including other buttons. <b>Use with extreme caution</b>, consider using triple tap and app requirements to limit it.</string>
+    <string name="action_accessibility_button">Trigger Accessibility Button</string>
+    <string name="action_accessibility_button_desc">Simulate the accessibility button, which can be used to trigger other services such as Select to Speak</string>
+    <string name="action_accessibility_button_chooser">Accessibility Button Chooser</string>
+    <string name="action_accessibility_button_chooser_desc">Bring up the Accessibility Button\'s chooser menu</string>
+    <string name="action_accessibility_shortcut">Trigger Accessibility Shortcut</string>
+    <string name="action_accessibility_shortcut_desc">Trigger the Accessibility Shortcut. Make sure Tap, Tap is not set to use the shortcut before using this action!</string>
+    <string name="action_app_drawer">App Drawer</string>
+    <string name="action_app_drawer_desc">Open the app drawer of a <b>supported launcher</b>. This only works on launchers based on Android 11.</string>
+    <string name="action_accept_call">Accept Call</string>
+    <string name="action_accept_call_desc">Accept call if there is one ringing</string>
+    <string name="action_reject_call">Reject Call</string>
+    <string name="action_reject_call_desc">Reject call if there is one ringing, or hang up if there is one ongoing</string>
+    <string name="action_swipe_up">Swipe Up</string>
+    <string name="action_swipe_up_desc">Perform a swipe up gesture on the current app</string>
+    <string name="action_swipe_down">Swipe Down</string>
+    <string name="action_swipe_down_desc">Perform a swipe down gesture on the current app</string>
+    <string name="action_swipe_left">Swipe Left</string>
+    <string name="action_swipe_left_desc">Perform a swipe left gesture on the current app</string>
+    <string name="action_swipe_right">Swipe Right</string>
+    <string name="action_swipe_right_desc">Perform a swipe right gesture on the current app</string>
+    <string name="action_selector_unavailable">Sorry, this action is not compatible with your device (%1s).</string>
+    <string name="action_alt_tab">Switch to last app</string>
+    <string name="action_alt_tab_desc">Switch to the most recent app by simulating double tapping the recents button (supported devices only)</string>
+    <string name="action_alarm_timer">Dismiss Alarm / Timer</string>
+    <string name="action_alarm_snooze">Snooze Alarm</string>
+    <string name="action_alarm_timer_desc">Dismisses an alarm or timer, if there is one going off (supported Clock apps only)</string>
+    <string name="action_alarm_snooze_desc">Snoozes an alarm, if there is one going off (supported Clock apps only)</string>
+
+    <string name="action_unsupported_reason_min_sdk">Incompatible with your version of Android</string>
+    <string name="action_unsupported_reason_tasker">Tasker is required</string>
+    <string name="action_unsupported_reason_snapchat">Snapchat is required</string>
+
+    <!-- Gates -->
+    <string name="gate_charging_state">Charging</string>
+    <string name="gate_charging_state_desc_a">Blocks gesture when the device is plugged in</string>
+    <string name="gate_charging_state_desc_when_a">Run only when the device has just been plugged in</string>
+    <string name="gate_telephony_activity">On call</string>
+    <string name="gate_telephony_activity_desc">Blocks gesture when the device is on a call. Only standard calls are supported - not VoIP eg. WhatsApp</string>
+    <string name="gate_telephony_activity_desc_when">Run only when the device is on a call</string>
+    <string name="gate_usb_state">USB device</string>
+    <string name="gate_usb_state_desc_a">Blocks gesture when a USB device, such as a thumb drive, is plugged in</string>
+    <string name="gate_usb_state_desc_when_a">Run only when a USB device has just been plugged in</string>
+    <string name="gate_camera_visibility">Camera</string>
+    <string name="gate_camera_visibility_desc">Blocks gesture when any camera app is opened. Note: This will break the skipping functionality of the Launch Camera action.</string>
+    <string name="gate_camera_visibility_desc_when">Run only when the camera app is open</string>
+    <string name="gate_power_state">Display off</string>
+    <string name="gate_power_state_desc">Blocks gesture when the device\'s screen is off</string>
+    <string name="gate_power_state_desc_when">Run only when the screen is off</string>
+    <string name="gate_power_state_inverse">Display on</string>
+    <string name="gate_power_state_inverse_desc">Blocks gesture when the device\'s screen is on</string>
+    <string name="gate_power_state_inverse_desc_when">Run only when the screen is on</string>
+    <string name="gate_app_showing">App showing</string>
+    <string name="gate_app_showing_desc">Blocks gesture when an app is showing on screen</string>
+    <string name="gate_app_showing_desc_when">Run only when an app is showing on screen</string>
+    <string name="gate_app_showing_desc_formatted">Blocks gesture when %1s is showing on screen</string>
+    <string name="gate_keyboard_visibility">Keyboard open</string>
+    <string name="gate_keyboard_visibility_desc">Blocks gesture when the keyboard is open and in use. Note that this may not always work if you are not actively typing.</string>
+    <string name="gate_keyboard_visibility_desc_when">Run only when the keyboard is open and in use. Note that this may not always work if you are not actively typing.</string>
+    <string name="gate_orientation_landscape">Landscape orientation</string>
+    <string name="gate_orientation_landscape_desc">Blocks gesture when the phone is in landscape orientation</string>
+    <string name="gate_orientation_landscape_desc_when">Run only when the device is in landscape orientation</string>
+    <string name="gate_orientation_portrait">Portrait orientation</string>
+    <string name="gate_orientation_portrait_desc">Blocks gesture when the phone is in portrait orientation</string>
+    <string name="gate_orientation_portrait_desc_when">Run only when the device is in portrait orientation</string>
+    <string name="gate_table">Table</string>
+    <string name="gate_table_desc">Blocks the gesture when the device is placed down flat, for example on a table</string>
+    <string name="gate_table_desc_when">Run only when the device is flat, for example on a table</string>
+    <string name="gate_pocket">Pocket</string>
+    <string name="gate_pocket_desc">Blocks the gesture when the proximity sensor detects an object. This blocks the gesture when your device is in your pocket, or flipped on a table</string>
+    <string name="gate_pocket_desc_when">Run only when the proximity sensor detects an object. This happens when the device is in your pocket, or flipped on a table</string>
+    <string name="gate_headset_inverse">No Headset</string>
+    <string name="gate_headset_desc_inverse">Blocks the gesture when there is <b>no</b> wired or wireless headset connected. This is best used with the play/pause/skip controls to prevent music from playing over the speakers</string>
+    <string name="gate_headset_desc_when_inverse">Run only when there is <b>no</b> wired or wireless headset connected</string>
+    <string name="gate_headset">Headset</string>
+    <string name="gate_headset_desc">Blocks the gesture when there <b>is</b> a wired or wireless headset connected.</string>
+    <string name="gate_headset_desc_when">Run only when there <b>is</b> a wired or wireless headset connected</string>
+    <string name="gate_music">Music Playing</string>
+    <string name="gate_music_inverse">No Music Playing</string>
+    <string name="gate_music_desc">Blocks the gesture when there is music playing</string>
+    <string name="gate_music_desc_when">Run only when there is music playing</string>
+    <string name="gate_music_desc_when_inverse">Run only when there is no music playing</string>
+    <string name="gate_music_desc_inverse">Blocks the gesture when there is no music playing</string>
+    <string name="gate_lock_screen_showing">Lock Screen showing</string>
+    <string name="gate_lock_screen_showing_desc">Blocks gesture when the lock screen is showing</string>
+    <string name="gate_lock_screen_showing_desc_when">Run only when the lock screen is showing</string>
+    <string name="gate_lock_screen_showing_inverse">Lock Screen not showing</string>
+    <string name="gate_lock_screen_showing_inverse_desc">Blocks the gesture when the lock screen is not showing</string>
+    <string name="gate_lock_screen_showing_inverse_desc_when">Run only when the lock screen is not showing</string>
+    <string name="gate_alarm">Alarm / Timer</string>
+    <string name="gate_alarm_desc">Blocks the gesture if an alarm or timer is going off</string>
+    <string name="gate_alarm_desc_when">Run only when an alarm or timer is going off</string>
+    <string name="gate_foldable_closed">Foldable: Device folded (closed)</string>
+    <string name="gate_foldable_closed_desc">Blocks the gesture if the device is folded / closed</string>
+    <string name="gate_foldable_closed_desc_when">Run only when the device is folded / closed</string>
+    <string name="gate_foldable_open">Foldable: Device unfolded (open)</string>
+    <string name="gate_foldable_open_desc">Blocks the gesture if the device is unfolded / open</string>
+    <string name="gate_foldable_open_desc_when">Run only when the device is unfolded / open</string>
+    <string name="gate_low_battery">Low Battery</string>
+    <string name="gate_low_battery_desc">Blocks the gesture when the device has less than 15% battery remaining</string>
+    <string name="gate_low_battery_desc_when">Run only when the device has less than 15% battery remaining</string>
+    <string name="gate_battery_saver">Battery Saver</string>
+    <string name="gate_battery_saver_desc">Blocks the gesture when the system Battery Saver is enabled</string>
+    <string name="gate_battery_saver_desc_when">Run only when the system Battery Saver is enabled</string>
+
+    <string name="gate_unsupported_reason_min_sdk">Incompatible with your version of Android</string>
+    <string name="gate_unsupported_reason_foldable">Requires a compatible foldable device</string>
+
+    <!-- Notification channels & content -->
+    <string name="tap_notification_title">Tap, Tap Service</string>
+    <string name="tap_notification_content">Tap, Tap is running in the background. Tap to hide.</string>
+    <string name="tap_notification_channel_title">Background notification</string>
+    <string name="tap_notification_channel_description">Notification used to keep Tap, Tap running in the background when the option to use a separate service is enabled</string>
+    <string name="notification_channel_actions_title">Actions</string>
+    <string name="notification_channel_actions_content">Notifications about actions, including errors while running them</string>
+    <string name="notification_action_flashlight_error_title">Error Toggling Flashlight</string>
+    <string name="notification_action_flashlight_error_content">Camera permission required, tap to open settings.</string>
+    <string name="notification_action_overlay_error_title">Draw Over Other Apps Permission Required</string>
+    <string name="notification_action_overlay_error_content">This action requires the Draw Over Other apps permission, due to system limitations. Tap to grant permission.</string>
+    <string name="notification_action_accessibility_error_title">Accessibility Service Not Enabled</string>
+    <string name="notification_action_accessibility_error_content">This action requires the Accessibility Service, tap to enable. If you are seeing this when it is enabled, disable and re-enable the service.</string>
+    <string name="notification_gate_accessibility_error_content">This gate requires the Accessibility Service, tap to enable. If you are seeing this when it is enabled, disable and re-enable the service.</string>
+    <string name="notification_action_gesture_accessibility_error_title">Gesture Accessibility Service Not Enabled</string>
+    <string name="notification_action_gesture_accessibility_error_content">This action requires the Gesture Accessibility Service, tap to enable. If you are seeing this when it is enabled, disable and re-enable the service.</string>
+    <string name="notification_channel_service_title">Service</string>
+    <string name="notification_channel_service_content">Notifications about the service, including loading and errors</string>
+    <string name="notification_service_loading_title">Starting Service…</string>
+    <string name="notification_service_loading_title_restart">Restarting Service…</string>
+    <string name="notification_service_loading_content">Tap, Tap service is loading</string>
+    <string name="notification_service_error_title">Error Starting Service</string>
+    <string name="notification_service_running_error_title">Error Reconnecting to Shizuku Service</string>
+    <string name="notification_service_error_content_shizuku_not_running">Unable to connect to Shizuku, please make sure it is running and then retry.</string>
+    <string name="notification_service_error_content_shizuku_permission_denied">Permission denied when connecting to Shizuku, please grant Tap, Tap permission in Shizuku and then retry.</string>
+    <string name="notification_service_error_action_retry">Retry</string>
+    <string name="notification_service_error_root_title">Error Connecting to Service</string>
+    <string name="notification_service_error_root_content">Make sure you have granted root access to Tap, Tap</string>
+    <string name="notification_channel_crash_title">Crashes</string>
+    <string name="notification_channel_crash_content">Notifications when Tap, Tap crashes to save errors</string>
+    <string name="notification_crash_title">Tap, Tap has crashed!</string>
+    <string name="notification_crash_content">Tap to view the crash details and export a log to be sent on GitHub or XDA. You can disable crash notifications in Tap, Tap\'s settings.</string>
+    <string name="tap_update_notification_channel_title">Update notifications</string>
+    <string name="tap_update_notification_channel_description">Notifications shown when the app checks for updates once a day</string>
+    <string name="tap_update_notification_title">Tap, Tap update available</string>
+    <string name="tap_update_notification_content">An update is available for Tap, Tap (%1s to %1s)</string>
+
+    <!-- Shared Pickers, for Gates & Actions -->
+    <string name="settings_shared_app_shortcuts_selector_loading">Loading App Shortcuts…</string>
+    <string name="settings_shared_shortcuts_selector_loading">Loading Shortcuts…</string>
+    <string name="settings_shared_shortcuts_selector_error">Error getting App Shortcuts, please try again. If the problem persists, restart Shizuku using ADB.</string>
+    <string name="settings_shared_shizuku_permission_flow_toolbar_title">Shizuku / Sui</string>
+    <string name="settings_shared_shizuku_permission_flow_title">Checking for Shizuku / Sui</string>
+    <string name="settings_shared_shizuku_permission_flow_content">This may take up to 10 seconds</string>
+    <string name="settings_shared_shizuku_permission_flow_error_title">Shizuku / Sui not found</string>
+    <string name="settings_shared_shizuku_permission_flow_error_content">Shizuku or Sui were not found on your device, you will need to install one of them to use this %s.\n\n<b>Note:</b> If you already have Shizuku or Sui, make sure it is running (Shizuku only), that you have not denied the permission, and retry.</string>
+    <string name="settings_shared_shizuku_permission_flow_error_content_action">action</string>
+    <string name="settings_shared_shizuku_permission_flow_error_content_gate">gate</string>
+    <string name="settings_shared_shizuku_permission_flow_error_card_shizuku_title">Shizuku</string>
+    <string name="settings_shared_shizuku_permission_flow_error_card_shizuku_content">Shizuku is a non-root app that allows apps like Tap, Tap to run code with special permissions. It does this by running a command on ADB (Android Debug Bridge) Shell, once per reboot. On Android 11+ devices, this can be done without a computer, but on older versions you will need to connect to a computer once per reboot to restart Shizuku.</string>
+    <string name="settings_shared_shizuku_permission_flow_error_card_shizuku_button">Get Shizuku</string>
+    <string name="settings_shared_shizuku_permission_flow_error_card_sui_content">Sui is a Magisk module that allows apps like Tap, Tap to run code as root. It uses the same framework as Shizuku, and therefore works with Shizuku apps, but does not require manual starting after reboots, this is done automatically.\n<b>If you are not sure what root or Magisk is, use Shizuku instead.</b></string>
+    <string name="settings_shared_shizuku_permission_flow_error_card_sui_title">Sui</string>
+    <string name="settings_shared_shizuku_permission_flow_error_card_sui_button">Get Sui</string>
+    <string name="settings_shared_package_selector_loading">Loading Apps…</string>
+    <string name="settings_shared_package_selector_empty">No Apps Found</string>
+    <string name="settings_shared_snapchat_loading_title">Checking Availability…</string>
+    <string name="settings_shared_snapchat_loading_content">Please grant root access if requested</string>
+    <string name="settings_shared_snapchat_setup_root_title">Additional Setup Required</string>
+    <string name="settings_shared_snapchat_setup_root_content">To enable Quick Tap to Snap on your device, please follow these steps:\n<b>You must be signed into Snapchat for this to work</b>\n1.) Disable your internet connection - both WiFi and mobile data (use Airplane Mode ideally). <b>Do not re-enable it until you have completed these steps.</b>\n2.) Select the option below to open Snapchat - you must use this button as it has to open with certain options to show the prompt.\n3.) Snapchat will open and prompt you to unlock to complete setting up - this is normal, simply OK the dialog.\n4.) A dialog will appear asking you to enable Quick Tap to Snap, enable it. <b>You will not see a system prompt to enable it, this is normal.</b>\n5.) Return to Tap, Tap by closing Snapchat to complete setup.</string>
+    <string name="settings_shared_snapchat_setup_root_button">Open Snapchat</string>
+    <string name="settings_shared_snapchat_setup_no_root_title">Additional Setup Required</string>
+    <string name="settings_shared_snapchat_setup_no_root_content">To setup Quick Tap to Snap, there are a few steps to follow. These steps require rebooting your phone and re-activating the system Quick Tap gesture temporarily (which will prevent access to Tap, Tap until the steps are finished), so they have been put on an external site to make them more accessible.</string>
+    <string name="settings_shared_snapchat_setup_no_root_button">Open Instructions</string>
+    <string name="settings_shared_snapchat_setup_incompatible_title">Incompatible</string>
+    <string name="settings_shared_snapchat_setup_incompatible_content">Sorry, Quick Tap to Snap requires root access to be enabled on your device.</string>
+    <string name="settings_shared_snapchat_setup_incompatible_button">Close</string>
+    <string name="settings_shared_snapchat_setup_error">Error getting availability, please try again</string>
+    <string name="settings_shared_snapchat_setup_error_network">Please disable WiFi and mobile data first</string>
+    <string name="item_settings_shared_quick_settings_header_content">Due to system limitations, there are some restrictions:\n- Quick Settings tiles\' titles cannot be retrieved, so please refer to your notification shade to match against the order.\n- Only custom tiles can be clicked, not the stock ones such as Internet\n- On some devices, the tile must be on page 1 or 2 of your quick settings for the click to work.</string>
+    <string name="settings_shared_quick_settings_empty">No Quick Settings tiles found</string>
+    <string name="settings_shared_quick_settings_loading">Loading Quick Settings tiles…</string>
+
+    <!-- No root bottom sheet -->
+    <string name="bs_no_root_title">No Root</string>
+    <string name="bs_no_root_content">Sorry, root access was not detected or was not granted. You must be rooted to use this action.</string>
+
+    <!-- Permission Toasts (shown when launching external apps) -->
+    <string name="call_phone_permission_toast">You need to grant Tap, Tap the \"Phone\" permission to use this shortcut Action. Please grant it in your device\'s permission settings</string>
+    <string name="permission_toast">Please grant the %1s permission in the settings to continue.</string>
+    <string name="permission_toast_draw_over_apps">Please grant the display over other apps permission for Tap, Tap</string>
+    <string name="tasker_content_toast">Please enable the \"Allow External Access\" option in Tasker\'s settings.</string>
+
+    <!-- Update downloader -->
+    <string name="snackbar_update">Update available</string>
+    <string name="snackbar_update_button">Update</string>
+    <string name="settings_update_heading">Tap, Tap version %1s</string>
+    <string name="settings_update_subheading">Current version %1s</string>
+    <string name="settings_update_changes">Changes</string>
+    <string name="settings_update_open_installer">Start Install</string>
+    <string name="settings_update_done">Download Complete</string>
+    <string name="settings_update_loading">Loading…</string>
+    <string name="settings_update_fab">Download</string>
+    <string name="download_manager_description">Downloading update…</string>
+    <string name="update_downloader_downloading_title">Downloading update…</string>
+    <string name="update_downloader_downloading_failed">Download failed</string>
+    <string name="update_downloader_github">Download via browser</string>
+
+    <!-- Reachability UI -->
+    <string name="reachability_left_handed_info">Long press the notification icon to switch icon position</string>
+    
+    <!-- Quick Settings Tile subtitles -->
+    <string name="qs_subtitle_running">Running</string>
+    <string name="qs_subtitle_disabled">Disabled</string>
+    <string name="qs_subtitle_not_running">Not Running</string>
+
+    <!-- Tasker descriptions & labels -->
+    <string name="tasker_description_triple">Will trigger when the back of the phone is tapped three times</string>
+    <string name="tasker_description_double">Will trigger when the back of the phone is tapped twice</string>
+    <string name="tasker_config_label">Double Tapped Back</string>
+    <string name="tasker_config_label_triple">Triple Tapped Back</string>
+
+    <!-- Accessibility Service info in settings -->
+    <string name="accessibility_service_label">Tap, Tap</string>
+    <string name="accessibility_service_label_gesture">Tap, Tap Secondary Service</string>
+    <string name="accessibility_service_description">Tap, Tap Accessibility Service\n\n<b>Important Note: No data is collected from any of your apps, this service is simply used to keep the recognition active and provide interaction with the device</b></string>
+    <string name="accessibility_service_description_gesture">Tap, Tap Gesture Accessibility Service. \n\n<b>You don\'t need to enable this if the app does not tell you to. It\'s only required for certain actions.</b>\n\n<b>Important Note: No data is collected from any of your apps, this service is simply used to provide the gesture interaction with the device.\n\nThis is a separate service due to how Android works and how apps adapt their UI when services that can perform gestures are enabled. For example, Chrome will not hide the Omnibar on scroll with this service enabled.</b></string>
+
+    <!-- Crash Reporting -->
+    <string name="crash_reporting_title">Tap, Tap has crashed</string>
+    <string name="crash_reporting_save">Save Report</string>
+    <string name="crash_reporting_content_intro"><![CDATA[Tap, Tap has encountered a crash. Please report the issue, including the report, on the <a href="https://kieronquinn.co.uk/redirect/TapTap/github">GitHub issues</a> or <a href="https://kieronquinn.co.uk/redirect/TapTap/xda">XDA thread</a>. If the crash happened when running the gesture, an action or using a gate, please include screenshots of the setup you are using.<br><br><b>Important: Before reporting, please make sure the issue has not been reported already, using the provided search tools.</b><br><br>The report is also shown below.]]></string>
+    <string name="crash_reporting_toast_success">Report saved</string>
+    <string name="crash_reporting_toast_failed">Error saving report</string>
+
 </resources>
