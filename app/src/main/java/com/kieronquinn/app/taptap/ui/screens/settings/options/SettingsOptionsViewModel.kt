@@ -5,19 +5,23 @@ import androidx.lifecycle.viewModelScope
 import com.kieronquinn.app.taptap.components.navigation.ContainerNavigation
 import com.kieronquinn.app.taptap.components.settings.TapTapSettings
 import com.kieronquinn.app.taptap.ui.screens.settings.generic.GenericSettingsViewModel
-import com.kieronquinn.app.taptap.utils.extensions.ContextHub_hasColumbusNanoApp
-import com.kieronquinn.app.taptap.utils.extensions.deviceHasContextHub
+import com.kieronquinn.app.taptap.utils.extensions.canUseContextHub
+import com.kieronquinn.app.taptap.utils.extensions.isNativeColumbusEnabled
 import kotlinx.coroutines.launch
 
 abstract class SettingsOptionsViewModel: GenericSettingsViewModel() {
 
     abstract val isLowPowerModeSupported: Boolean
     abstract val isLowPowerModeEnabled: Boolean
+    abstract val isLowPowerModeAvailable: Boolean
+    abstract val isNativeModeAvailable: Boolean
+    abstract val isNativeModeEnabled: Boolean
     abstract val isCustomSensitivitySet: Boolean
     abstract val sensitivitySettingCHRE: TapTapSettings.TapTapSetting<Boolean>
     abstract val sensitivitySetting: TapTapSettings.TapTapSetting<Int>
 
     abstract fun onLowPowerModeClicked()
+    abstract fun onNativeModeClicked()
     abstract fun onAdvancedClicked()
     abstract fun onModelClicked()
 
@@ -25,20 +29,33 @@ abstract class SettingsOptionsViewModel: GenericSettingsViewModel() {
 
 class SettingsOptionsViewModelImpl(private val settings: TapTapSettings, context: Context, private val navigation: ContainerNavigation): SettingsOptionsViewModel() {
 
-    override val isLowPowerModeSupported = context.deviceHasContextHub && ContextHub_hasColumbusNanoApp()
+    private val getIsNativeModeEnabled = { context.isNativeColumbusEnabled() }
+
+    override val isLowPowerModeSupported = context.canUseContextHub
     //These get checked in onResume so needs to be up-to-date
     override val isLowPowerModeEnabled
         get() = isLowPowerModeSupported && settings.lowPowerMode.getSync()
     override val isCustomSensitivitySet
         get() = settings.columbusCustomSensitivity.existsSync()
+    override val isNativeModeAvailable
+        get() = !isLowPowerModeEnabled
+    override val isLowPowerModeAvailable
+        get() = !getIsNativeModeEnabled()
+    override val isNativeModeEnabled
+        get() = getIsNativeModeEnabled()
     override val sensitivitySettingCHRE = settings.columbusCHRELowSensitivity
     override val sensitivitySetting = settings.columbusSensitivityLevel
     override val restartService = restartServiceCombine(sensitivitySetting)
 
-
     override fun onLowPowerModeClicked() {
         viewModelScope.launch {
             navigation.navigate(SettingsOptionsFragmentDirections.actionSettingsOptionsFragmentToSettingsLowPowerModeFragment())
+        }
+    }
+
+    override fun onNativeModeClicked() {
+        viewModelScope.launch {
+            navigation.navigate(SettingsOptionsFragmentDirections.actionSettingsOptionsFragmentToSettingsNativeModeFragment())
         }
     }
 

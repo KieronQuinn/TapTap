@@ -8,5 +8,6 @@ enum class TapTapNotificationId {
     ACTION,
     GATE,
     UPDATE,
-    CRASH
+    CRASH,
+    NATIVE_SETUP
 }

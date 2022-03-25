@@ -14,7 +14,6 @@ import com.google.android.columbus.ColumbusServiceWrapper
 import com.kieronquinn.app.taptap.BuildConfig
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.components.columbus.ColumbusServiceSettings
-import com.kieronquinn.app.taptap.components.columbus.actions.custom.*
 import com.kieronquinn.app.taptap.components.columbus.feedback.TapTapFeedbackEffect
 import com.kieronquinn.app.taptap.components.columbus.feedback.custom.HapticClickFeedback
 import com.kieronquinn.app.taptap.components.columbus.feedback.custom.WakeDeviceFeedback
@@ -25,15 +24,14 @@ import com.kieronquinn.app.taptap.repositories.actions.ActionsRepository
 import com.kieronquinn.app.taptap.repositories.gates.GatesRepository
 import com.kieronquinn.app.taptap.repositories.service.TapTapRootServiceRepository
 import com.kieronquinn.app.taptap.repositories.service.TapTapShizukuServiceRepository
-import com.kieronquinn.app.taptap.utils.extensions.ContextHub_hasColumbusNanoApp
-import com.kieronquinn.app.taptap.utils.extensions.deviceHasContextHub
+import com.kieronquinn.app.taptap.utils.extensions.canUseContextHub
+import com.kieronquinn.app.taptap.utils.extensions.isNativeColumbusEnabled
 import com.kieronquinn.app.taptap.utils.extensions.isServiceRunning
 import com.kieronquinn.app.taptap.utils.notifications.TapTapNotificationChannel
 import com.kieronquinn.app.taptap.utils.notifications.TapTapNotificationId
 import com.kieronquinn.app.taptap.utils.notifications.TapTapNotificationIntentId
 import com.kieronquinn.app.taptap.work.TapTapRestartWorker
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.take
 import kotlinx.coroutines.launch
@@ -144,7 +142,8 @@ class TapTapForegroundService : LifecycleService(), KoinScopeComponent {
         }
         with(columbusSettings) {
             setLifecycleOwner(this@TapTapForegroundService)
-            setUseContextHub(deviceHasContextHub && ContextHub_hasColumbusNanoApp() && settings.lowPowerMode.get())
+            setUseContextHub(canUseContextHub && settings.lowPowerMode.get())
+            setUseContextHubLogging(isNativeColumbusEnabled())
             setTripleTapEnabled(tripleActions.isNotEmpty())
             setActions(actions)
             setTripleTapActions(tripleActions)

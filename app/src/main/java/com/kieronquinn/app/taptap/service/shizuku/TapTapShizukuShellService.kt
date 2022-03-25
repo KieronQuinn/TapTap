@@ -12,6 +12,7 @@ import android.os.UserHandle
 import com.android.internal.statusbar.IStatusBarService
 import com.kieronquinn.app.taptap.models.appshortcut.AppShortcutIcon
 import com.kieronquinn.app.taptap.shizuku.ITapTapShizukuShellService
+import com.kieronquinn.app.taptap.utils.extensions.execGrantReadLogsPermission
 import com.kieronquinn.app.taptap.utils.extensions.makeShellIfNeeded
 import com.topjohnwu.superuser.internal.Utils
 import kotlinx.coroutines.GlobalScope
@@ -131,6 +132,10 @@ class TapTapShizukuShellService: ITapTapShizukuShellService.Stub() {
 
     override fun inputKeyEvent(keyId: Int) {
         Runtime.getRuntime().exec("input keyevent $keyId")
+    }
+
+    override fun grantReadLogsPermission() {
+        execGrantReadLogsPermission()
     }
 
 }

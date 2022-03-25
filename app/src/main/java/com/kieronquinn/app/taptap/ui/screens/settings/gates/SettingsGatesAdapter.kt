@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
+import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.coroutineScope
 import androidx.viewbinding.ViewBinding
@@ -150,9 +151,10 @@ class SettingsGatesAdapter(
                 }
             }
         }
+        itemSettingsGatesInfoDismiss.isVisible = item.onCloseClick != null
         lifecycle.coroutineScope.launchWhenResumed {
             itemSettingsGatesInfoDismiss.onClicked().collect {
-                item.onCloseClick.invoke()
+                item.onCloseClick?.invoke()
             }
         }
     }

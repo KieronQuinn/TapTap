@@ -11,6 +11,7 @@ import com.kieronquinn.app.taptap.contexthub.IContextHubClientCallback
 import com.kieronquinn.app.taptap.contexthub.IRemoteContextHubClient
 import com.kieronquinn.app.taptap.shizuku.ITapTapShizukuService
 import com.kieronquinn.app.taptap.utils.contexthub.ContextHubClientCallbackRemoteToLocalWrapper
+import com.kieronquinn.app.taptap.utils.extensions.execGrantReadLogsPermission
 import com.topjohnwu.superuser.internal.Utils
 import kotlin.system.exitProcess
 
@@ -75,6 +76,10 @@ class TapTapShizukuService : ITapTapShizukuService.Stub() {
 
     override fun getRemoteContextHubClient(): IRemoteContextHubClient {
         return contextHubClient
+    }
+
+    override fun grantReadLogsPermission() {
+        execGrantReadLogsPermission()
     }
 
     override fun destroy() {

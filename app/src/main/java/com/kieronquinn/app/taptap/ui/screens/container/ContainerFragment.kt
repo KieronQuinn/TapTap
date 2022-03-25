@@ -94,7 +94,7 @@ class ContainerFragment: BoundFragment<FragmentContainerBinding>(FragmentContain
     }
 
     private fun setupColumbusSettingPhoenix() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
-        viewModel.columbusSettingPhoenixBus.collect {
+        sharedViewModel.columbusSettingPhoenixBus.collect {
             viewModel.phoenix()
         }
     }

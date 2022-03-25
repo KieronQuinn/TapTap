@@ -7,8 +7,6 @@ import com.kieronquinn.app.taptap.components.navigation.ContainerNavigation
 import com.kieronquinn.app.taptap.components.settings.TapTapSettings
 import com.kieronquinn.app.taptap.components.settings.TapTapSettingsImpl
 import com.kieronquinn.app.taptap.ui.screens.settings.generic.GenericSettingsViewModel
-import com.kieronquinn.app.taptap.utils.extensions.ContextHub_hasColumbusNanoApp
-import com.kieronquinn.app.taptap.utils.extensions.deviceHasContextHub
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
@@ -31,9 +29,6 @@ class SettingsAdvancedCustomSensitivityViewModelImpl(
 ) : SettingsAdvancedCustomSensitivityViewModel() {
 
     override val restartService = MutableSharedFlow<Unit>()
-
-    private val isLowPowerModeInUse =
-        context.deviceHasContextHub && ContextHub_hasColumbusNanoApp() && settings.lowPowerMode.getSync()
 
     private val rawSetting = settings.columbusCustomSensitivity
 

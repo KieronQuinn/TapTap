@@ -5,10 +5,8 @@ import androidx.lifecycle.viewModelScope
 import com.kieronquinn.app.taptap.components.navigation.ContainerNavigation
 import com.kieronquinn.app.taptap.components.settings.TapTapSettings
 import com.kieronquinn.app.taptap.ui.screens.settings.generic.GenericSettingsViewModel
-import com.kieronquinn.app.taptap.utils.extensions.ContextHub_hasColumbusNanoApp
-import com.kieronquinn.app.taptap.utils.extensions.deviceHasContextHub
-import kotlinx.coroutines.flow.drop
-import kotlinx.coroutines.flow.map
+import com.kieronquinn.app.taptap.utils.extensions.canUseContextHub
+import com.kieronquinn.app.taptap.utils.extensions.isNativeColumbusEnabled
 import kotlinx.coroutines.launch
 
 abstract class SettingsAdvancedViewModel: GenericSettingsViewModel() {
@@ -31,8 +29,8 @@ class SettingsAdvancedViewModelImpl(settings: TapTapSettings, context: Context, 
 
     override val restartService = restartServiceCombine(autoRestartServiceSetting)
 
-    private val isLowPowerModeSupported = context.deviceHasContextHub && ContextHub_hasColumbusNanoApp()
-    override val isLowPowerModeEnabled = isLowPowerModeSupported && settings.lowPowerMode.getSync()
+    private val isLowPowerModeSupported = context.canUseContextHub
+    override val isLowPowerModeEnabled = (isLowPowerModeSupported && settings.lowPowerMode.getSync()) || context.isNativeColumbusEnabled()
 
     override fun onCustomSensitivityClicked() {
         viewModelScope.launch {

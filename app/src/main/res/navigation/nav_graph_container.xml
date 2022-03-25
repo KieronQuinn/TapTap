@@ -40,6 +40,9 @@
         <action
             android:id="@+id/action_settingsOptionsFragment_to_settingsModelPickerFragment"
             app:destination="@id/settingsModelPickerFragment" />
+        <action
+            android:id="@+id/action_settingsOptionsFragment_to_settingsNativeModeFragment"
+            app:destination="@id/settingsNativeModeFragment" />
     </fragment>
     <action
         android:id="@+id/action_global_settingsMainFragment"
@@ -282,6 +285,11 @@
         android:name="com.kieronquinn.app.taptap.ui.screens.settings.advanced.wallpapercolorpicker.SettingsWallpaperColorPickerBottomSheetFragment"
         android:label=" "
         tools:layout="@layout/fragment_settings_wallpaper_color_picker" />
+    <fragment
+        android:id="@+id/settingsNativeModeFragment"
+        android:name="com.kieronquinn.app.taptap.ui.screens.settings.nativemode.SettingsNativeModeFragment"
+        android:label="@string/settings_native_mode"
+        tools:layout="@layout/fragment_settings_native_mode" />
 
 
 </navigation>

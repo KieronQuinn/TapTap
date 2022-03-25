@@ -3,6 +3,7 @@ package com.kieronquinn.app.taptap.ui.screens.settings.shared.snapchat
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.provider.MediaStore
 import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -63,8 +64,7 @@ class SettingsSharedSnapchatViewModelImpl(private val snapchatRepository: Snapch
             }
             snapchatRepository.applyOverride()
             delay(250L)
-            Intent().apply {
-               component = SnapchatAction.LAUNCH_COMPONENT
+            Intent(MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA_SECURE).apply {
                `package` = SnapchatAction.PACKAGE_NAME
             }.also {
                 context.startActivity(it)

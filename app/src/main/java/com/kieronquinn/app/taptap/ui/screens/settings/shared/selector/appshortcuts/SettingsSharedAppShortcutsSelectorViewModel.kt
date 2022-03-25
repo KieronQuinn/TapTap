@@ -75,7 +75,7 @@ class SettingsSharedAppShortcutsSelectorViewModelImpl(context: Context, private 
         scope.close()
     }
 
-    private val service by inject<TapTapShizukuServiceRepository>()
+    private val service by scope.inject<TapTapShizukuServiceRepository>()
 
     override val state = MutableStateFlow<State>(State.Loading).apply {
         viewModelScope.launch {

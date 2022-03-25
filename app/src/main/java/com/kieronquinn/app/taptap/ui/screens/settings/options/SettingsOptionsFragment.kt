@@ -34,19 +34,44 @@ class SettingsOptionsFragment: BoundFragment<FragmentSettingsOptionsBinding>(Fra
             SettingsItem.Text(
                 icon = R.drawable.ic_setting_low_power_mode,
                 titleRes = R.string.setting_low_power_mode,
-                contentRes = R.string.setting_low_power_mode_desc,
+                content = { if(viewModel.isLowPowerModeAvailable){
+                    getString(R.string.setting_low_power_mode_desc)
+                }else{
+                    getString(R.string.setting_low_power_mode_desc_unavailable)
+                }},
+                isEnabled = viewModel::isLowPowerModeAvailable,
                 onClick = viewModel::onLowPowerModeClicked
+            ),
+            SettingsItem.Text(
+                icon = R.drawable.ic_settings_native_mode,
+                titleRes = R.string.settings_native_mode,
+                content = { if(viewModel.isNativeModeAvailable){
+                    getString(R.string.settings_native_mode_desc)
+                }else{
+                    getString(R.string.settings_native_mode_desc_unavailable)
+                }},
+                isVisible = viewModel::isLowPowerModeSupported,
+                isEnabled = viewModel::isNativeModeAvailable,
+                onClick = viewModel::onNativeModeClicked
             ),
             SettingsItem.Text(
                 icon = R.drawable.ic_settings_device_model,
                 titleRes = R.string.setting_gesture_model,
-                content = { if(viewModel.isLowPowerModeEnabled){
-                    getString(R.string.setting_gesture_model_desc_not_available)
-                }else{
-                    getString(R.string.setting_gesture_model_desc)
-                }},
+                content = {
+                    when {
+                        viewModel.isLowPowerModeEnabled -> {
+                            getString(R.string.setting_gesture_model_desc_not_available)
+                        }
+                        viewModel.isNativeModeEnabled -> {
+                            getString(R.string.setting_gesture_model_desc_not_available_native)
+                        }
+                        else -> {
+                            getString(R.string.setting_gesture_model_desc)
+                        }
+                    }
+                },
                 onClick = viewModel::onModelClicked,
-                isEnabled = { !viewModel.isLowPowerModeEnabled }
+                isEnabled = { !viewModel.isLowPowerModeEnabled && !viewModel.isNativeModeEnabled }
             ),
             SettingsItem.Slider(
                 icon = R.drawable.ic_gesture_sensitivity,
@@ -59,7 +84,7 @@ class SettingsOptionsFragment: BoundFragment<FragmentSettingsOptionsBinding>(Fra
                 setting = viewModel.sensitivitySetting as TapTapSettings.TapTapSetting<Number>,
                 stepSize = 1.0f,
                 isEnabled = { !viewModel.isCustomSensitivitySet },
-                isVisible = { !viewModel.isLowPowerModeEnabled },
+                isVisible = { !viewModel.isLowPowerModeEnabled && !viewModel.isNativeModeEnabled },
                 labelFormatter = {
                     getString(when {
                         it < 2 -> R.string.slider_sensitivity_very_low
@@ -75,7 +100,7 @@ class SettingsOptionsFragment: BoundFragment<FragmentSettingsOptionsBinding>(Fra
                 titleRes = R.string.setting_gesture_sensitivity_chre,
                 content = { getString(R.string.setting_gesture_sensitivity_chre_desc) },
                 setting = viewModel.sensitivitySettingCHRE,
-                isVisible = { viewModel.isLowPowerModeEnabled }
+                isVisible = { viewModel.isLowPowerModeEnabled && !viewModel.isNativeModeEnabled }
             ),
             SettingsItem.Text(
                 icon = R.drawable.ic_settings_advanced,

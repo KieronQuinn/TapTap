@@ -8,6 +8,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LifecycleRegistry
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import java.lang.NullPointerException
 
 /**
  *  A simple [RecyclerView] whose [ViewHolder]s have a very basic [Lifecycle].
@@ -80,7 +81,11 @@ class LifecycleAwareRecyclerView : RecyclerView {
             val viewHolders = ArrayList<ViewHolder>()
             for(i in firstItem until lastItem){
                 if(!recyclerView.isAttachedToWindow) continue
-                viewHolders.add(recyclerView.getChildViewHolder(recyclerView.getChildAt(i)) as ViewHolder)
+                try {
+                    viewHolders.add(recyclerView.getChildViewHolder(recyclerView.getChildAt(i)) as ViewHolder)
+                }catch (e: NullPointerException){
+                    //Not attached
+                }
             }
             return viewHolders
         }

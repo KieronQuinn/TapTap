@@ -8,5 +8,6 @@ enum class TapTapNotificationIntentId {
     ACTION_CLICK,
     GATE_CLICK,
     UPDATE_CLICK,
-    CRASH_CLICK
+    CRASH_CLICK,
+    NATIVE_SETUP_CLICK
 }

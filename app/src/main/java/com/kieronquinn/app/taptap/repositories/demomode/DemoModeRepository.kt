@@ -25,6 +25,7 @@ interface DemoModeRepository {
     fun getFeedbackEffects(context: Context, lifecycle: Lifecycle): List<TapTapFeedbackEffect>
     fun getTripleTapEnabled(): Boolean
     fun getUseContextHub(): Boolean
+    fun getUseContextHubLogging(): Boolean
 
     suspend fun onTapDetected()
     suspend fun onDoubleTapDetected()
@@ -65,6 +66,7 @@ class DemoModeRepositoryImpl: DemoModeRepository {
 
     //Context Hub is always disabled during setup
     override fun getUseContextHub() = false
+    override fun getUseContextHubLogging() = false
 
     override suspend fun onTapDetected() {
         tapBus.emit(Unit)
