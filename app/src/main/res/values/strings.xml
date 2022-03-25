@@ -48,8 +48,8 @@
     <string name="modal_no_gyroscope_content">Your device does not have the required sensor (a gyroscope) to use this app. Tap, Tap will never work on this device.</string>
 
     <!-- Disable Columbus Modal -->
-    <string name="modal_disable_columbus_title">Disable Quick Tap</string>
-    <string name="modal_disable_columbus_content">The system Quick Tap is enabled on your device, please disable it or Tap, Tap will not function properly.\nQuick Tap can be found in the System Settings, under System > Gestures.</string>
+    <string name="modal_disable_columbus_title">Disable or Reconfigure Quick Tap</string>
+    <string name="modal_disable_columbus_content"><![CDATA[The system Quick Tap is enabled on your device, but not setup correctly, please disable or configure it correctly or Tap, Tap will not function properly.<br>Quick Tap can be found in the System Settings, under System > Gestures.<br><br><b>If you are trying to enable Native Mode, please make sure you have set the action to Launch App > Tap, Tap, and that you have granted the READ_LOGS permission. <a href="https://kieronquinn.co.uk/redirect/TapTap/nativesetup">Tap here for more info</a>.</b>]]></string>
     <string name="modal_disable_columbus_card">You may need to reboot after disabling the system Quick Tap for some features of Tap, Tap to work.</string>
     <string name="modal_disable_columbus_button">Open Settings</string>
 
@@ -144,6 +144,7 @@
     <string name="bs_help_gate">Gates are situations that can block the gesture from running any actions. In order for any action to be run, all the enabled gates must be open.\nIf a scenario is currently met, for example if the screen is off and the "Display off" gate is enabled, no actions will be run. You can add as many gates as you like, and enable/disable them using the toggles (rather than having to delete and re-add) to make configuration quicker and easier.</string>
     <string name="bs_help_gate_title">What are Gates?</string>
     <string name="settings_gates_loading_gates">Loading Gates…</string>
+    <string name="settings_gates_header_native_mode"><b>Native Mode Enabled</b>\nWith Native Mode enabled, Tap, Tap will <b>never</b> work with the display off, regardless of which gates you select.</string>
 
     <!-- Settings > Gesture > Gates > Add -->
     <string name="add_gate_category_device">Device</string>
@@ -164,8 +165,10 @@
     <string name="setting_gesture_model">Device Size</string>
     <string name="setting_gesture_model_desc">Adjust the size of device to use when selecting the gesture model.</string>
     <string name="setting_gesture_model_desc_not_available">This option is not available when Low Power Mode is enabled.</string>
+    <string name="setting_gesture_model_desc_not_available_native">This option is not available when Native Mode is enabled.</string>
     <string name="setting_low_power_mode">Low Power Mode</string>
     <string name="setting_low_power_mode_desc">Run the gesture detection on the low-power Context Hub, rather than using the regular CPU to save battery</string>
+    <string name="setting_low_power_mode_desc_unavailable">Low Power Mode is not available while Native Mode is enabled.</string>
     <string name="setting_gesture_sensitivity">Sensitivity</string>
     <string name="setting_gesture_sensitivity_desc">Change the sensitivity of the gesture by adjusting how much force is filtered out as \'noise\'. A lower sensitivity means the gesture will be harder to do on most devices, whereas a higher sensitivity is more prone to false detection.</string>
     <string name="setting_gesture_sensitivity_desc_disabled">A custom sensitivity value is set in the Advanced Settings, reset it to use this option.</string>
@@ -180,6 +183,20 @@
     <string name="settings_low_power_mode_error_button_sui">Request <b>sui</b> permission</string>
     <string name="settings_low_power_mode_error_not_compatible">Sorry, this option is not compatible with your device\n<b>Note:</b> If you are running Android 13 or above, you <b>must</b> be rooted and use Sui to use this option, Shizuku is no longer acceptable due to platform changes outside of Tap, Tap\'s control.</string>
     <string name="settings_low_power_mode_error_toast">Shizuku is not running, start it to enable Low Power Mode</string>
+
+    <!-- Settings > Settings > Native Mode -->
+    <string name="settings_native_mode">Native Mode</string>
+    <string name="settings_native_mode_desc">Native Mode uses the system Quick Tap feature to run with low battery usage, and without root or a Shizuku service, with some restrictions.</string>
+    <string name="settings_native_mode_desc_unavailable">Native Mode is unavailable when Low Power Mode is enabled.</string>
+    <string name="settings_native_mode_enable">Enable Native Mode</string>
+    <string name="settings_native_mode_error_setup"><b>Additional Setup Required</b>\nYou must grant the READ_LOGS permission for Native Mode to work. This can either be done manually using ADB, or automatically with root or Shizuku.\n<b>This only needs to be done once</b></string>
+    <string name="settings_native_mode_error_setup_manually">Setup Manually</string>
+    <string name="settings_native_mode_error_setup_automatically">Setup Automatically (Root/Shizuku)</string>
+    <string name="settings_native_mode_automatic_warning_toast">Please re-open Tap, Tap to continue setup</string>
+    <string name="settings_native_mode_automatic_toast">Error setting up automatically, please use manual setup</string>
+    <string name="settings_native_mode_launch_toast">Enable Quick Tap in System > Gestures &amp; set Tap, Tap as the Open app Action</string>
+    <string name="settings_native_mode_launch_toast_disable">Disable Quick Tap in System > Gestures</string>
+    <string name="setting_native_mode_content">Native Mode uses the built-in Quick Tap feature on Pixels to run Tap, Tap. This has the benefit of having almost as low battery consumption as Low Power Mode, but does have two downsides:\n• <b>Tap, Tap will not work when the screen is off</b>\n• <b>Triple Tap may be less reliable</b>\n\nTo enable Native Mode, you must enable Quick Tap in the system settings, and set the action to launch Tap, Tap.</string>
 
     <!-- Settings > Settings > Model Picker -->
     <string name="settings_model_picker_loading">Loading…</string>
@@ -531,6 +548,10 @@
     <string name="notification_channel_crash_content">Notifications when Tap, Tap crashes to save errors</string>
     <string name="notification_crash_title">Tap, Tap has crashed!</string>
     <string name="notification_crash_content">Tap to view the crash details and export a log to be sent on GitHub or XDA. You can disable crash notifications in Tap, Tap\'s settings.</string>
+    <string name="notification_channel_native_setup_title">Native Mode Setup</string>
+    <string name="notification_channel_native_setup_content">Notifications showing instructions during setting up Native Mode</string>
+    <string name="notification_native_setup_title">Finish setting up Native Mode</string>
+    <string name="notification_native_setup_content">Set the action to Open App > Tap, Tap to finish setting up Native Mode</string>
     <string name="tap_update_notification_channel_title">Update notifications</string>
     <string name="tap_update_notification_channel_description">Notifications shown when the app checks for updates once a day</string>
     <string name="tap_update_notification_title">Tap, Tap update available</string>
@@ -623,5 +644,6 @@
     <string name="crash_reporting_content_intro"><![CDATA[Tap, Tap has encountered a crash. Please report the issue, including the report, on the <a href="https://kieronquinn.co.uk/redirect/TapTap/github">GitHub issues</a> or <a href="https://kieronquinn.co.uk/redirect/TapTap/xda">XDA thread</a>. If the crash happened when running the gesture, an action or using a gate, please include screenshots of the setup you are using.<br><br><b>Important: Before reporting, please make sure the issue has not been reported already, using the provided search tools.</b><br><br>The report is also shown below.]]></string>
     <string name="crash_reporting_toast_success">Report saved</string>
     <string name="crash_reporting_toast_failed">Error saving report</string>
+
 
 </resources>

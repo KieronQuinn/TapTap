@@ -13,6 +13,7 @@ import com.kieronquinn.app.taptap.repositories.demomode.DemoModeRepository
 import com.kieronquinn.app.taptap.repositories.room.TapTapDatabase
 import com.kieronquinn.app.taptap.service.foreground.TapTapForegroundService
 import com.kieronquinn.app.taptap.utils.extensions.broadcastReceiverAsFlow
+import com.kieronquinn.app.taptap.utils.extensions.getColumbusSettingAsFlow
 import com.kieronquinn.app.taptap.utils.extensions.instantCombine
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
@@ -26,12 +27,14 @@ abstract class ContainerSharedViewModel: ViewModel() {
     abstract val fabState: StateFlow<FabState>
     abstract val fabClicked: Flow<FabState.FabAction>
     abstract val snackbarBus: Flow<CharSequence>
+    abstract val columbusSettingPhoenixBus: Flow<Unit>
     abstract fun toggleServiceEnabledState(context: Context)
     abstract fun checkServiceState(context: Context)
     abstract fun restartService(context: Context)
     abstract fun setFabState(fabState: FabState)
     abstract fun onFabClicked(fabAction: FabState.FabAction)
     abstract fun showSnackbar(text: CharSequence)
+    abstract fun setSuppressColumbusRestart(suppress: Boolean)
 
     sealed class FabState {
         object Hidden: FabState()
@@ -52,12 +55,14 @@ abstract class ContainerSharedViewModel: ViewModel() {
 class ContainerSharedViewModelImpl(context: Context, private val database: TapTapDatabase, private val settings: TapTapSettings, private val demoModeRepository: DemoModeRepository, serviceRouter: TapTapServiceRouter): ContainerSharedViewModel() {
 
     private val serviceStateCheck = MutableSharedFlow<Unit>()
+    private var suppressColumbusRestart = false
 
     private val _isServiceRunning = instantCombine(serviceRouter.serviceStartBus, serviceRouter.serviceStopBus, serviceStateCheck).map {
         getServiceRunning(context)
     }.stateIn(viewModelScope, SharingStarted.Eagerly, getServiceRunning(context))
 
     override val isServiceRunning = _isServiceRunning
+    override val columbusSettingPhoenixBus = context.getColumbusSettingAsFlow().drop(1).filterNot { suppressColumbusRestart }.map {  }
 
     private val _fabState = MutableStateFlow<FabState>(FabState.Hidden)
     override val fabState = _fabState.asStateFlow()
@@ -124,6 +129,10 @@ class ContainerSharedViewModelImpl(context: Context, private val database: TapTa
         viewModelScope.launch {
             _snackbarBus.emit(text)
         }
+    }
+
+    override fun setSuppressColumbusRestart(suppress: Boolean) {
+        suppressColumbusRestart = suppress
     }
 
     private fun getServiceRunning(context: Context): Boolean {

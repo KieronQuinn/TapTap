@@ -19,7 +19,6 @@ import kotlinx.coroutines.launch
 abstract class ContainerViewModel: ViewModel() {
 
     abstract val showUpdateSnackbar: StateFlow<Boolean>
-    abstract val columbusSettingPhoenixBus: Flow<Unit>
 
     abstract fun writeSettingsVersion()
     abstract fun setCanShowSnackbar(showSnackbar: Boolean)
@@ -43,8 +42,6 @@ class ContainerViewModelImpl(context: Context, private val settings: TapTapSetti
     override val showUpdateSnackbar = combine(canShowSnackbar, gitHubUpdate, hasDismissedSnackbar){ canShow, update, dismissed ->
         canShow && update != null && !dismissed
     }.stateIn(viewModelScope, SharingStarted.Eagerly, false)
-
-    override val columbusSettingPhoenixBus = context.getColumbusSettingAsFlow().drop(1).map {  }
 
     override fun onNavigationItemClicked(id: Int) {
         viewModelScope.launch {

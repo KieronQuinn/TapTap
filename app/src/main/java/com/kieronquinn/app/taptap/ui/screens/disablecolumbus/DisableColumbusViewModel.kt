@@ -2,6 +2,7 @@ package com.kieronquinn.app.taptap.ui.screens.disablecolumbus
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kieronquinn.app.taptap.components.navigation.RootNavigation
@@ -17,6 +18,7 @@ abstract class DisableColumbusViewModel: ViewModel() {
 
     abstract fun onOpenSettingsClicked()
     abstract fun phoenix()
+    abstract fun onLinkClicked(url: String)
 
 }
 
@@ -39,6 +41,14 @@ class DisableColumbusViewModelImpl(context: Context, private val navigation: Roo
     override fun phoenix() {
         viewModelScope.launch {
             navigation.phoenix()
+        }
+    }
+
+    override fun onLinkClicked(url: String) {
+        viewModelScope.launch {
+            navigation.navigate(Intent(Intent.ACTION_VIEW).apply {
+                data = Uri.parse(url)
+            })
         }
     }
 

@@ -9,6 +9,7 @@ import com.kieronquinn.app.taptap.components.settings.TapTapSettings
 import com.kieronquinn.app.taptap.repositories.backuprestore.RestoreRepository
 import com.kieronquinn.app.taptap.utils.extensions.deviceHasGyroscope
 import com.kieronquinn.app.taptap.utils.extensions.isColumbusEnabled
+import com.kieronquinn.app.taptap.utils.extensions.isNativeColumbusEnabled
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -37,7 +38,7 @@ class DecisionViewModelImpl(context: Context, private val rootNavigation: RootNa
             !context.deviceHasGyroscope() -> {
                 DecisionFragmentDirections.actionDecisionFragmentToNoGyroscopeFragment()
             }
-            context.isColumbusEnabled() -> {
+            context.isColumbusEnabled() && !context.isNativeColumbusEnabled() -> {
                 DecisionFragmentDirections.actionDecisionFragmentToDisableColumbusFragment()
             }
             restoreRepository.shouldUpgrade(context) -> {

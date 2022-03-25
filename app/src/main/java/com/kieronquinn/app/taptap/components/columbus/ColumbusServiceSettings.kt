@@ -18,6 +18,7 @@ data class ColumbusServiceSettings (
     private var _feedbackEffects: List<TapTapFeedbackEffect>? = null,
     private var _isTripleTapEnabled: Boolean? = null,
     private var _useContextHub: Boolean? = null,
+    private var _useContextHubLogging: Boolean? = null,
     private var _tapModel: TapModel? = null
 ): KoinComponent {
     
@@ -41,6 +42,9 @@ data class ColumbusServiceSettings (
 
     val useContextHub
         get() = _useContextHub ?: throw NullPointerException("useContextHub not set in ColumbusServiceSettings")
+
+    val useContextHubLogging
+        get() = _useContextHubLogging ?: throw NullPointerException("useContextHubLogging not set in ColumbusServiceSettings")
 
     val tapModel
         get() = _tapModel ?: throw NullPointerException("tapModel not set in ColumbusServiceSettings")
@@ -71,6 +75,10 @@ data class ColumbusServiceSettings (
 
     fun setUseContextHub(enabled: Boolean) {
         this._useContextHub = enabled
+    }
+
+    fun setUseContextHubLogging(enabled: Boolean) {
+        this._useContextHubLogging = enabled
     }
 
     fun setTapModel(tapModel: TapModel) {

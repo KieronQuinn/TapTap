@@ -11,7 +11,7 @@ plugins {
 //Permission for Columbus to use
 rootProject.ext.set("columbusPermission", "com.google.android.columbus.taptap.permission.CONFIGURE_COLUMBUS_GESTURE")
 
-def tagName = '1.2'
+def tagName = '1.3'
 
 android {
     compileSdk 32
@@ -21,7 +21,7 @@ android {
         applicationId "com.kieronquinn.app.taptap"
         minSdk 24
         targetSdk 32
-        versionCode 1200
+        versionCode 1300
         versionName tagName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -87,13 +87,13 @@ dependencies {
     implementation 'com.google.android.gms:play-services-oss-licenses:17.0.0'
 
     //Room
-    def room_version = "2.4.1"
+    def room_version = "2.4.2"
     implementation "androidx.room:room-runtime:$room_version"
     implementation "androidx.room:room-ktx:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
 
     //MD3
-    implementation 'com.google.android.material:material:1.6.0-alpha02'
+    implementation 'com.google.android.material:material:1.6.0-beta01'
 
     //MonetCompat for Monet backwards compatibility
     implementation 'com.github.KieronQuinn:MonetCompat:0.4.1'
@@ -112,7 +112,7 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:2.9.0"
 
     //Gson for serialization
-    implementation 'com.google.code.gson:gson:2.8.9'
+    implementation 'com.google.code.gson:gson:2.9.0'
 
     //Columbus module is separate to make it easier to work with
     implementation project(path: ':columbus')
@@ -127,7 +127,7 @@ dependencies {
     compileOnly project(path: ':systemstubs')
 
     //Bypass hidden API requirements for Shizuku + more
-    implementation 'org.lsposed.hiddenapibypass:hiddenapibypass:4.2'
+    implementation 'org.lsposed.hiddenapibypass:hiddenapibypass:4.3'
 
     //Tasker library to fire events
     implementation 'com.joaomgcd:taskerpluginlibrary:0.4.2'
@@ -138,7 +138,7 @@ dependencies {
     implementation "dev.rikka.shizuku:provider:$shizuku_version"
     implementation "dev.rikka.tools.refine:runtime:$refine_version"
 
-    def libsuVersion = '3.2.1'
+    def libsuVersion = '4.0.0'
     implementation "com.github.topjohnwu.libsu:core:${libsuVersion}"
     implementation "com.github.topjohnwu.libsu:service:${libsuVersion}"
 
@@ -155,7 +155,7 @@ dependencies {
     implementation "io.noties.markwon:core:4.6.2"
 
     //Lottie for animations
-    implementation 'com.airbnb.android:lottie:4.2.2'
+    implementation 'com.airbnb.android:lottie:5.0.3'
 
     //Process Phoenix to fully restart the app when needed
     implementation 'com.jakewharton:process-phoenix:2.1.2'

@@ -54,8 +54,15 @@ sealed class TapTapNotificationChannel(
         R.string.notification_channel_crash_content
     )
 
+    object NativeSetup: TapTapNotificationChannel(
+        TapTapNotificationChannelId.NATIVE_SETUP,
+        NotificationManager.IMPORTANCE_MAX,
+        R.string.notification_channel_native_setup_title,
+        R.string.notification_channel_native_setup_content
+    )
+
     enum class TapTapNotificationChannelId {
-        BACKGROUND, SERVICE, ACTION, UPDATE, CRASH
+        BACKGROUND, SERVICE, ACTION, UPDATE, CRASH, NATIVE_SETUP
     }
 
     private fun createChannelIfNeeded(context: Context) {
@@ -72,10 +79,11 @@ sealed class TapTapNotificationChannel(
         return NotificationCompat.Builder(context, notificationChannelId.name).apply { options(this) }.build()
     }
 
-    fun showNotification(context: Context, notificationId: TapTapNotificationId, options: (NotificationCompat.Builder) -> Unit) {
+    fun showNotification(context: Context, notificationId: TapTapNotificationId, options: (NotificationCompat.Builder) -> Unit): Notification {
         val notification = createNotification(context, options)
         val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         notificationManager.notify(notificationId.ordinal, notification)
+        return notification
     }
 
     fun cancelNotifications(context: Context, vararg notificationIds: TapTapNotificationId) {

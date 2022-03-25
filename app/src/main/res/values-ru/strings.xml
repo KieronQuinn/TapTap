@@ -49,8 +49,6 @@
 
     <!-- Disable Columbus Modal -->
     <string name="modal_disable_columbus_title">Отключите Короткое касание</string>
-    <string name="modal_disable_columbus_content">На вашем устройстве уже активирован системный жест постукивания, отключите его, чтобы Tap, Tap мог функционировать должным образом.\n«Короткое касание» можно найти в системных настройках, в разделе Система > Жесты.</string>
-    <string name="modal_disable_columbus_card">Возможно, потребуется перезагрузка после отключения жеста «Короткое касание», чтобы заработали все функции Tap, Tap.</string>
     <string name="modal_disable_columbus_button">Открыть настройки</string>
 
     <!-- Settings UI -->

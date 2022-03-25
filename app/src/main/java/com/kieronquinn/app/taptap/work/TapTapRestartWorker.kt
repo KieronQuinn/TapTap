@@ -7,8 +7,7 @@ import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.kieronquinn.app.taptap.components.settings.TapTapSettings
 import com.kieronquinn.app.taptap.service.foreground.TapTapForegroundService
-import com.kieronquinn.app.taptap.utils.extensions.ContextHub_hasColumbusNanoApp
-import com.kieronquinn.app.taptap.utils.extensions.deviceHasContextHub
+import com.kieronquinn.app.taptap.utils.extensions.canUseContextHub
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import java.time.Duration
@@ -44,7 +43,7 @@ class TapTapRestartWorker(
 
     override fun doWork(): Result {
         //Do not run if CHRE is enabled as it seems to mess with the timings and has little benefit
-        if(settings.lowPowerMode.getSync() && applicationContext.deviceHasContextHub && ContextHub_hasColumbusNanoApp())
+        if(settings.lowPowerMode.getSync() && applicationContext.canUseContextHub)
             return Result.success()
         TapTapForegroundService.stop(applicationContext)
         if (settings.serviceEnabled.getSync()) {

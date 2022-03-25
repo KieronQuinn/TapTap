@@ -17,6 +17,8 @@ interface ITapTapShizukuShellService {
 
     void clickQuickSetting(String component) = 5;
 
+    void grantReadLogsPermission() = 6;
+
     void destroy() = 16777114;
 
 }

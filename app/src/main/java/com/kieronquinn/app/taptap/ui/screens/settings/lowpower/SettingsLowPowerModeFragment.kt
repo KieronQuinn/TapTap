@@ -37,6 +37,7 @@ class SettingsLowPowerModeFragment: BoundFragment<FragmentSettingsLowPowerModeBi
         setupScrollView()
     }
 
+
     private fun setupSwitch() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
         binding.settingsLowPowerModeEnable.onClicked().collect {
             viewModel.onLowPowerSwitchClicked(it as MonetSwitch)

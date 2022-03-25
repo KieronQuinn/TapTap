@@ -11,6 +11,7 @@ import com.kieronquinn.app.taptap.models.gate.TapTapUIGate
 import com.kieronquinn.app.taptap.repositories.gates.GatesRepository
 import com.kieronquinn.app.taptap.repositories.room.gates.Gate
 import com.kieronquinn.app.taptap.ui.screens.settings.generic.GenericSettingsViewModel
+import com.kieronquinn.app.taptap.utils.extensions.isNativeColumbusEnabled
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
@@ -41,6 +42,7 @@ abstract class SettingsGatesViewModel : GenericSettingsViewModel() {
 
     abstract val header: SettingsGatesItem?
     abstract val showHeader: StateFlow<Boolean>
+    abstract val showNativeModeWarning: Boolean
 
     sealed class State {
         object Loading : State()
@@ -56,7 +58,7 @@ abstract class SettingsGatesViewModel : GenericSettingsViewModel() {
         data class Gate(val gate: TapTapUIGate, var isSelected: Boolean = false) :
             SettingsGatesItem(SettingsGatesItemType.GATE)
 
-        data class Header(@StringRes val contentRes: Int, val onCloseClick: () -> Unit, val onClick: (() -> Unit)? = null):
+        data class Header(@StringRes val contentRes: Int, val onCloseClick: (() -> Unit)? = null, val onClick: (() -> Unit)? = null):
             SettingsGatesItem(SettingsGatesItemType.HEADER)
 
         enum class SettingsGatesItemType {
@@ -81,8 +83,13 @@ class SettingsGatesViewModelImpl(
     private val showHelp = settings.gatesShowHelp
     override val showHeader = showHelp.asFlow()
         .stateIn(viewModelScope, SharingStarted.Eagerly, showHelp.getSync())
+    override val showNativeModeWarning = context.isNativeColumbusEnabled()
 
     override val header = SettingsGatesItem.Header(R.string.help_gate, ::onHeaderDismissClicked, ::onHeaderClicked)
+
+    private val nativeModeHeader = SettingsGatesItem.Header(
+        R.string.settings_gates_header_native_mode, null, null
+    )
 
     private val gates = flow {
         emit(loadGates(context).map {
@@ -91,7 +98,11 @@ class SettingsGatesViewModelImpl(
     }
 
     override val state = combine(gates, showHeader, reloadBus) { g, s, _ ->
-        val items = listOfNotNull(if(s && g.isNotEmpty()) header else null, *g)
+        val items = listOfNotNull(
+            if(s && g.isNotEmpty()) header else null,
+            if(showNativeModeWarning) nativeModeHeader else null,
+            *g
+        )
         State.Loaded(ArrayList(items))
     }.stateIn(viewModelScope, SharingStarted.Eagerly, State.Loading)
 
@@ -166,12 +177,10 @@ class SettingsGatesViewModelImpl(
     }
 
     override fun moveGate(fromIndex: Int, toIndex: Int) {
-        if(showHeader.value){
-            //Adjust for header
-            moveGateInternal(fromIndex - 1, toIndex - 1)
-        }else{
-            moveGateInternal(fromIndex, toIndex)
-        }
+        var adjustment = 0
+        if(showHeader.value) adjustment++
+        if(showNativeModeWarning) adjustment++
+        moveGateInternal(fromIndex - adjustment, toIndex - adjustment)
     }
 
     private fun moveGateInternal(fromIndex: Int, toIndex: Int) {

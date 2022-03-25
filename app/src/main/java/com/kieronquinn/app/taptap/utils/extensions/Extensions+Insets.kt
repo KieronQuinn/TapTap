@@ -6,10 +6,7 @@ import android.view.View
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
-import androidx.recyclerview.widget.RecyclerView
 import com.kieronquinn.app.taptap.R
-import com.topjohnwu.superuser.internal.Utils.context
-
 
 fun View.onApplyInsets(block: (view: View, insets: WindowInsetsCompat) -> Unit) {
     ViewCompat.setOnApplyWindowInsetsListener(this) { view, insets ->

@@ -8,15 +8,15 @@ import com.kieronquinn.app.taptap.components.settings.TapTapSettingsImpl.Setting
 import com.kieronquinn.app.taptap.components.settings.TapTapSettingsImpl.SettingsConverters.SHARED_COLOR
 import com.kieronquinn.app.taptap.components.settings.TapTapSettingsImpl.SettingsConverters.SHARED_FLOAT
 import com.kieronquinn.app.taptap.components.settings.TapTapSettingsImpl.SettingsConverters.SHARED_INT
+import com.kieronquinn.app.taptap.repositories.demomode.DemoModeRepository
+import com.kieronquinn.app.taptap.service.foreground.TapTapForegroundService
+import com.kieronquinn.app.taptap.utils.extensions.getColumbusNativeSettingsAsFlow
+import com.kieronquinn.app.taptap.utils.extensions.isColumbusEnabled
+import com.kieronquinn.app.taptap.utils.extensions.isNativeColumbusEnabled
 import com.kieronquinn.app.taptap.utils.extensions.toHexString
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.awaitClose
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.callbackFlow
-import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.flow.*
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
@@ -165,7 +165,10 @@ interface TapTapSettings {
 
 }
 
-class TapTapSettingsImpl(context: Context) : TapTapSettings {
+class TapTapSettingsImpl(
+    context: Context,
+    demoModeRepository: DemoModeRepository
+) : TapTapSettings {
 
     companion object {
         const val KEY_SETTINGS_VERSION = "settings_version"
@@ -548,6 +551,25 @@ class TapTapSettingsImpl(context: Context) : TapTapSettings {
             }
         }.flowOn(Dispatchers.IO)
 
+    }
+
+    private val nativeServiceEnabled = context.getColumbusNativeSettingsAsFlow()
+        .stateIn(GlobalScope, SharingStarted.Eagerly, context.isNativeColumbusEnabled())
+
+    /**
+     *  Restarts the service automatically when native mode is enabled or disabled
+     */
+    private fun setupNativeServiceEnabledListener(context: Context, demoModeRepository: DemoModeRepository) = GlobalScope.launch {
+        nativeServiceEnabled.drop(1).collect {
+            if (demoModeRepository.isDemoModeEnabled() || serviceEnabled.get()) {
+                TapTapForegroundService.start(context, true)
+                delay(2500L)
+            }
+        }
+    }
+
+    init {
+        setupNativeServiceEnabledListener(context, demoModeRepository)
     }
 
 }

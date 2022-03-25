@@ -1,5 +1,6 @@
 package com.kieronquinn.app.taptap.utils.extensions
 
+import android.Manifest
 import android.content.Context
 import android.os.Build
 import android.util.Log
@@ -8,7 +9,16 @@ import rikka.sui.Sui
 import java.io.File
 
 val Context.deviceHasContextHub: Boolean
-    get() = packageManager.hasSystemFeature("android.hardware.context_hub") && doesShellHaveContextHubPermission()
+    get() = packageManager.hasSystemFeature("android.hardware.context_hub")
+
+val Context.canUseContextHub: Boolean
+    get() = deviceHasContextHub && ContextHub_hasColumbusNanoApp() && doesShellHaveContextHubPermission()
+
+val Context.canEnableContextHubLogging: Boolean
+    get() = deviceHasContextHub && ContextHub_hasColumbusNanoApp()
+
+val Context.canUseContextHubLogging: Boolean
+    get() = canEnableContextHubLogging && doesHaveLogPermission()
 
 fun ContextHub_hasColumbusNanoApp(): Boolean {
     val preloadedNanoAppsFile = File("/system/vendor/etc/chre", "preloaded_nanoapps.json")
@@ -34,7 +44,7 @@ private const val PACKAGE_SHELL = "com.android.shell"
  *
  *  If the user is using Sui on T+, this is acceptable as root still has access.
  */
-private fun Context.doesShellHaveContextHubPermission(): Boolean {
+fun Context.doesShellHaveContextHubPermission(): Boolean {
     return when {
         Build_isAtLeastT() -> {
             Sui.isSui() || doesPackageHavePermission(PACKAGE_SHELL, PERMISSION_ACCESS_CONTEXT_HUB)
@@ -43,4 +53,8 @@ private fun Context.doesShellHaveContextHubPermission(): Boolean {
             doesPackageHavePermission(PACKAGE_SHELL, PERMISSION_ACCESS_CONTEXT_HUB) || doesPackageHavePermission(PACKAGE_SHELL, PERMISSION_LOCATION_HARDWARE)
         }
     }
+}
+
+fun Context.doesHaveLogPermission(): Boolean {
+    return doesHavePermissions(Manifest.permission.READ_LOGS)
 }

@@ -12,7 +12,7 @@ open class TapRT(
 
     companion object {
         const val mMinTimeGapNs = 100000000L
-        private const val mMaxTimeGapNs = 500000000L
+        const val mMaxTimeGapNs = 500000000L
         private const val mFrameAlignPeak = 12
     }
 

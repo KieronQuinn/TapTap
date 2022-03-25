@@ -5,6 +5,7 @@ import android.content.ActivityNotFoundException
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import android.provider.MediaStore
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import com.google.android.columbus.feedback.FeedbackEffect
@@ -12,6 +13,7 @@ import com.google.android.columbus.sensors.GestureSensor
 import com.kieronquinn.app.taptap.components.accessibility.TapTapAccessibilityRouter
 import com.kieronquinn.app.taptap.components.columbus.actions.TapTapAction
 import com.kieronquinn.app.taptap.components.columbus.gates.TapTapWhenGate
+import com.kieronquinn.app.taptap.utils.extensions.EXTRA_KEY_IS_FROM_COLUMBUS
 import com.kieronquinn.app.taptap.utils.extensions.isAppLaunchable
 import kotlinx.coroutines.flow.*
 import org.koin.core.component.inject
@@ -27,7 +29,6 @@ class SnapchatAction(
 
     companion object {
         const val PACKAGE_NAME = "com.snapchat.android"
-        val LAUNCH_COMPONENT = ComponentName("com.snapchat.android", "com.snap.samples.catalina.CatalinaActivity")
     }
 
     override val tag = "SnapchatAction"
@@ -63,8 +64,9 @@ class SnapchatAction(
         if(showOverlayNotificationIfNeeded()) return
         if(keyguardManager.isKeyguardLocked) {
             try {
-                context.startActivity(Intent().apply {
-                    component = LAUNCH_COMPONENT
+                context.startActivity(Intent(MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA_SECURE).apply {
+                    `package` = PACKAGE_NAME
+                    putExtra(EXTRA_KEY_IS_FROM_COLUMBUS, true)
                     addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 })
             } catch (e: ActivityNotFoundException) {

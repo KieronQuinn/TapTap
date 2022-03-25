@@ -1,7 +1,6 @@
 package com.kieronquinn.app.taptap
 
 import android.app.Application
-import android.app.IActivityManager
 import android.os.Build
 import android.os.Handler
 import android.os.Looper
@@ -18,10 +17,7 @@ import com.kieronquinn.app.taptap.components.blur.BlurProvider
 import com.kieronquinn.app.taptap.components.columbus.ColumbusServiceSettings
 import com.kieronquinn.app.taptap.components.columbus.TapTapColumbusService
 import com.kieronquinn.app.taptap.components.columbus.adjustments.SensitivityAdjustment
-import com.kieronquinn.app.taptap.components.columbus.sensors.ServiceEventEmitter
-import com.kieronquinn.app.taptap.components.columbus.sensors.ServiceEventEmitterImpl
-import com.kieronquinn.app.taptap.components.columbus.sensors.TapTapCHREGestureSensor
-import com.kieronquinn.app.taptap.components.columbus.sensors.TapTapGestureSensorImpl
+import com.kieronquinn.app.taptap.components.columbus.sensors.*
 import com.kieronquinn.app.taptap.components.navigation.*
 import com.kieronquinn.app.taptap.components.service.TapTapServiceRouter
 import com.kieronquinn.app.taptap.components.service.TapTapServiceRouterImpl
@@ -115,6 +111,8 @@ import com.kieronquinn.app.taptap.ui.screens.settings.modelpicker.SettingsModelP
 import com.kieronquinn.app.taptap.ui.screens.settings.modelpicker.SettingsModelPickerViewModelImpl
 import com.kieronquinn.app.taptap.ui.screens.settings.more.SettingsMoreViewModel
 import com.kieronquinn.app.taptap.ui.screens.settings.more.SettingsMoreViewModelImpl
+import com.kieronquinn.app.taptap.ui.screens.settings.nativemode.SettingsNativeModeViewModel
+import com.kieronquinn.app.taptap.ui.screens.settings.nativemode.SettingsNativeModeViewModelImpl
 import com.kieronquinn.app.taptap.ui.screens.settings.options.SettingsOptionsViewModel
 import com.kieronquinn.app.taptap.ui.screens.settings.options.SettingsOptionsViewModelImpl
 import com.kieronquinn.app.taptap.ui.screens.settings.shared.internet.SettingsSharedInternetPermissionDialogViewModel
@@ -166,7 +164,6 @@ import org.koin.core.context.startKoin
 import org.koin.core.scope.Scope
 import org.koin.dsl.module
 import org.lsposed.hiddenapibypass.HiddenApiBypass
-import rikka.shizuku.SystemServiceHelper
 
 class TapTap : Application() {
 
@@ -178,7 +175,7 @@ class TapTap : Application() {
         single { BlurProvider.getBlurProvider(resources) }
         single { Gson() }
         single { createMarkwon() }
-        single<TapTapSettings> { TapTapSettingsImpl(get()) }
+        single<TapTapSettings> { TapTapSettingsImpl(get(), get()) }
         single<TapTapAccessibilityRouter> { TapTapAccessibilityRouterImpl() }
         single<TapTapServiceRouter> { TapTapServiceRouterImpl() }
         single<SuiProvider>(createdAtStart = true) { SuiProviderImpl() }
@@ -247,6 +244,7 @@ class TapTap : Application() {
         viewModel<SetupCompleteViewModel> { SetupCompleteViewModelImpl(get(), get()) }
         viewModel<SetupUpgradeViewModel> { SetupUpgradeViewModelImpl(get(), get()) }
         viewModel<DisableColumbusViewModel> { DisableColumbusViewModelImpl(get(), get()) }
+        viewModel<SettingsNativeModeViewModel> { SettingsNativeModeViewModelImpl(get(), get(), get()) }
     }
 
     private val navigationModule = module {
@@ -282,6 +280,12 @@ class TapTap : Application() {
         }
     }
 
+    private val nativeModeModule = module {
+        scope<SettingsNativeModeViewModelImpl> {
+            scoped<TapTapShizukuServiceRepository> { TapTapShizukuServiceRepositoryImpl(get(), this, false) }
+        }
+    }
+
     private fun Scope.createGestureSensor(): GestureSensor {
         val columbusInitializer = get<ColumbusServiceSettings>()
         val demoModeRepository = get<DemoModeRepository>()
@@ -291,29 +295,42 @@ class TapTap : Application() {
         val useContextHub = if(demoModeRepository.isDemoModeEnabled()){
             demoModeRepository.getUseContextHub()
         }else columbusInitializer.useContextHub
-        return if (useContextHub) {
-            TapTapCHREGestureSensor(
-                get(),
-                columbusInitializer.lifecycleOwner,
-                get(),
-                get(),
-                get(),
-                get(),
-                get(),
-                mainHandler,
-                get(),
-                isTripleTapEnabled
-            )
-        } else {
-            TapTapGestureSensorImpl(
-                this@TapTap,
-                mainHandler,
-                isTripleTapEnabled,
-                get(),
-                this,
-                columbusInitializer.tapModel,
-                get()
-            )
+        val useContextHubLogging = if(demoModeRepository.isDemoModeEnabled()){
+            demoModeRepository.getUseContextHub()
+        }else columbusInitializer.useContextHubLogging
+        return when {
+            useContextHub -> {
+                TapTapCHREGestureSensor(
+                    get(),
+                    columbusInitializer.lifecycleOwner,
+                    get(),
+                    get(),
+                    get(),
+                    get(),
+                    get(),
+                    mainHandler,
+                    get(),
+                    isTripleTapEnabled
+                )
+            }
+            useContextHubLogging -> {
+                TapTapCHRELogSensor(
+                    this,
+                    columbusInitializer.isTripleTapEnabled,
+                    get()
+                )
+            }
+            else -> {
+                TapTapGestureSensorImpl(
+                    this@TapTap,
+                    mainHandler,
+                    isTripleTapEnabled,
+                    get(),
+                    this,
+                    columbusInitializer.tapModel,
+                    get()
+                )
+            }
         }
     }
 
@@ -370,7 +387,7 @@ class TapTap : Application() {
         )
         startKoin {
             androidContext(this@TapTap)
-            modules(singlesModule, repositoriesModule, navigationModule, viewModelModule, appShortcutsModule, columbusModule)
+            modules(singlesModule, repositoriesModule, navigationModule, viewModelModule, appShortcutsModule, nativeModeModule, columbusModule)
         }
         setupCrashReporting()
         setupMonet()

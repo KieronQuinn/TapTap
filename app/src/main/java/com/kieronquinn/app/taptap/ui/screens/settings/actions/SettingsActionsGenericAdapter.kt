@@ -208,7 +208,9 @@ class SettingsActionsGenericAdapter(
 
     fun addItem(item: SettingsActionsItem) {
         items.add(item)
-        notifyItemInserted(items.size - 1)
+        val index = items.size - 1
+        if(index < 0) return
+        notifyItemInserted(index)
     }
 
     fun updateWhenGatesSize(actionId: Int, size: Int) {

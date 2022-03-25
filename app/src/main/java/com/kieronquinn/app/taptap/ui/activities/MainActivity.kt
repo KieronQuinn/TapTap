@@ -1,15 +1,17 @@
 package com.kieronquinn.app.taptap.ui.activities
 
-import android.graphics.Color
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
 import androidx.lifecycle.lifecycleScope
 import com.kieronquinn.app.taptap.R
-import com.kieronquinn.app.taptap.components.settings.TapTapSettings
+import com.kieronquinn.app.taptap.repositories.actions.ActionsRepository
 import com.kieronquinn.app.taptap.ui.screens.root.RootSharedViewModel
+import com.kieronquinn.app.taptap.utils.extensions.EXTRA_KEY_IS_FROM_COLUMBUS
 import com.kieronquinn.app.taptap.utils.extensions.delayPreDrawUntilFlow
 import com.kieronquinn.app.taptap.work.TapTapUpdateCheckWorker
 import com.kieronquinn.monetcompat.app.MonetCompatActivity
@@ -25,6 +27,7 @@ class MainActivity: MonetCompatActivity() {
     private val rootViewModel by viewModel<RootSharedViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        finishIfFromColumbus()
         super.onCreate(savedInstanceState)
         installSplashScreen()
         WindowCompat.setDecorFitsSystemWindows(window, false)
@@ -38,6 +41,18 @@ class MainActivity: MonetCompatActivity() {
             setContentView(R.layout.activity_main)
         }
         TapTapUpdateCheckWorker.queueCheckWorker(this)
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        finishIfFromColumbus(intent)
+        super.onNewIntent(intent)
+    }
+
+    private fun finishIfFromColumbus(intent: Intent = this.intent){
+        if(intent.getBooleanExtra(EXTRA_KEY_IS_FROM_COLUMBUS, false)){
+            finishAndRemoveTask()
+            return
+        }
     }
 
 }
