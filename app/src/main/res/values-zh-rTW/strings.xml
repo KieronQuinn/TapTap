@@ -1,0 +1,627 @@
+<resources>
+
+    <!-- Launcher app name -->
+    <string name="app_name">Tap, Tap</string>
+
+    <!-- Generic -->
+    <string name="search">搜尋</string>
+    <string name="close">關閉</string>
+
+    <!-- Setup > Landing -->
+    <string name="landing_title">歡迎使用 Tap, Tap</string>
+    <string name="landing_button_get_started">讓我們開始吧！</string>
+    <string name="landing_button_skip_setup">跳過教程</string>
+
+    <!-- Setup > Info -->
+    <string name="setup_foss_info_title">Tap, Tap</string>
+    <string name="setup_foss_info_content"><![CDATA[Tap, Tap 將一直保持自由且開源. 任何人都可以在 <a href=\"https://kieronquinn.co.uk/redirect/TapTap/github\">GitHub</a> 上檢視原始碼。 官方下載渠道<b>只有</b> <a href="https://kieronquinn.co.uk/redirect/TapTap/xda">XDA</a>， <a href="https://kieronquinn.co.uk/redirect/TapTap/github">GitHub</a> 和 <a href="https://kieronquinn.co.uk/redirect/TapTap/apkmirror">APKMirror</a>。<br>如果您允許此應用程式訪問網際網路，將始終自動從 GitHub 下載更新。]]></string>
+    <string name="setup_foss_info_warning">請只從上方提供的官方渠道下載使用 Tap, Tap。<b>如果您從第三方渠道下載，強烈建議您解除安裝並從上方提供的官方連結重新安裝</b>。點選以獲取更多資訊。</string>
+    <string name="setup_foss_info_bs_title">注意</string>
+    <string name="setup_foss_info_bs_content">Tap, Tap 將使用無障礙服務。 這使應用程式可以在您的裝置上自動執行操作。您不應該授予任何不受信任的應用程式此許可權。這就是為什麼 Tap, Tap 是開源的 - 這樣，任何人都可以查閱程式碼，並檢查是否有惡意行為。若您從第三方渠道下載此應用程式，我們將無法保證您所下載的副本是否安全。所以我們強烈建議您從官方渠道下載安裝此應用程式。</string>
+    <string name="setup_foss_info_content_lower">如果您喜歡 Tap, Tap，並想要捐贈開發者，您可以點選頁面下方的更多按鈕。\n無論您是否捐贈，我們都非常感謝您分享、支援和使用 Tap, Tap 謝謝你!</string>
+    <string name="setup_info_next">下一步</string>
+
+    <!-- Setup > Gesture -->
+    <string name="setup_gesture_toolbar">手勢配置</string>
+    <string name="setup_gesture_device_size"><![CDATA[選擇最適合您裝置的機型代號。<br><b>已選擇：%1$s</b><br>如果手勢無效，請更換機型再試。]]></string>
+    <string name="setup_gesture_loading">載入中…</string>
+    <string name="setup_gesture_info_hint">雙擊手機背面來使用此手勢。\n<b>試試用食指用力點選吧！</b></string>
+    <string name="setup_gesture_info_help">沒有作用？試試在手勢配置面板中改變裝置大小和靈敏度吧！</string>
+    <string name="setup_gesture_info_success"><b>很好，點選以繼續！</b>\n提示：如果您在使用手勢時有困難，你可以在手勢配置面板中調整裝置尺寸和敏感度，或者稍後在設定中調整。</string>
+
+    <!-- Setup > Complete -->
+    <string name="setup_complete_card">動作和門檻在第一次使用時也許需要適當的許可權以生效，檢視通知來配置許可權。</string>
+    <string name="setup_complete_title">配置完成</string>
+
+    <!-- Internet Permission Prompt -->
+    <string name="dialog_internet_permission_text">允許網路許可權？</string>
+    <string name="dialog_internet_permission_desc">這將只用於定期檢查裝置配置和應用程式更新</string>
+    <string name="dialog_internet_permission_allow_always">始終允許</string>
+    <string name="dialog_internet_permission_allow_open">只在此應用程式執行時允許</string>
+    <string name="dialog_internet_permission_deny">拒絕</string>
+
+    <!-- Upgrade modal -->
+    <string name="setup_upgrade_loading">更新設定中…</string>
+
+    <!-- No Gyroscope Modal -->
+    <string name="modal_no_gyroscope_title">不支援的裝置</string>
+    <string name="modal_no_gyroscope_content">你的裝置沒有所需要的的感測器（陀螺儀）來使用此應用程式。Tap, Tap 將無法在此裝置上執行。</string>
+
+    <!-- Disable Columbus Modal -->
+    <string name="modal_disable_columbus_title">停用快速點選</string>
+    <string name="modal_disable_columbus_content">您已在裝置上啟用了系統提供的快速點選功能，請禁用它，否則 Tap, Tap 將無法正常工作。快速點選功能也許可以在系統設定中的 系統 > 手勢 下找到。</string>
+    <string name="modal_disable_columbus_card">你可能需要在禁用系統自帶的快速點選後重新啟動，以使 Tap, Tap 的某些功能發揮作用。</string>
+    <string name="modal_disable_columbus_button">開啟設定</string>
+
+    <!-- Settings UI -->
+    <string name="settings_main_enable_tap_tap">Tap, Tap</string>
+    <string name="setting_bottom_nav_settings">設定</string>
+    <string name="setting_bottom_nav_gesture">手勢</string>
+    <string name="setting_bottom_nav_more">更多</string>
+    <string name="menu_setup_wizard">重新配置</string>
+
+    <!-- Settings > Gesture -->
+    <string name="settings_main_battery"><b>關閉電池最佳化</b>\n來確保 Tap, Tap 不會在後臺被殺死, 點選以關閉此應用的電池最佳化配置</string>
+    <string name="setting_actions_double">雙擊動作</string>
+    <string name="setting_actions_triple">三擊動作</string>
+    <string name="settings_actions_desc_double">設定雙擊手機背面後所執行的動作</string>
+    <string name="settings_actions_desc_triple">設定三擊手機背面後所執行的動作</string>
+    <string name="setting_gates">門檻</string>
+    <string name="setting_gates_desc">禁止手勢在某些情況下被識別並啟用動作</string>
+    <string name="setting_feedback">反饋</string>
+    <string name="setting_feedback_desc">定製裝置在識別到手勢時通知您的方式</string>
+    <string name="setting_feedback_vibrate">振動</string>
+    <string name="setting_feedback_vibrate_desc">當識別到手勢並執行動作時，振動一次</string>
+    <string name="setting_feedback_wake">喚醒裝置</string>
+    <string name="setting_feedback_wake_desc">當螢幕處於關閉狀態時喚醒裝置</string>
+    <string name="slider_sensitivity_very_low">非常低</string>
+    <string name="slider_sensitivity_low">低</string>
+    <string name="slider_sensitivity_medium">中</string>
+    <string name="slider_sensitivity_high">高</string>
+    <string name="slider_sensitivity_very_high">非常高</string>
+    <string name="setting_feedback_override_dnd">當勿擾模式啟動時振動</string>
+    <string name="setting_feedback_override_dnd_desc">忽略裝置的勿擾模式狀態，觸發時總是振動</string>
+
+    <!-- Settings > Gesture -> Action -->
+    <string name="fab_add_action">新增動作</string>
+    <string name="fab_remove_action">移除</string>
+    <string name="help_action">動作，即是當您敲擊裝置的背面兩次時所執行的任務。在滿足相應條件的情況下，動作會按照列表的順序從上到下執行。\n點選獲取更多資訊。</string>
+    <string name="bs_help_action">動作，即是當您敲擊裝置的背面兩次時所執行的任務，它按照列表的順序從上到下執行。如果某個動作已成功執行，則剩餘的動作不會被執行。但是，如果一個動作處於不可用狀態（例如：在已經啟動了語音助手的情況下想要執行「啟動語音助手」動作，亦或是沒有滿足條件），那麼它下面的下一個動作將會被執行，以此類推，直到有一個動作成功執行為止。</string>
+    <string name="bs_help_action_title">什麼是動作？</string>
+    <string name="item_action_when_empty">新增判定條件…</string>
+    <string name="item_action_when_not_empty_single">%1d 個條件</string>
+    <string name="item_action_when_not_empty_other">%1d 個條件</string>
+    <string name="item_action_app_uninstalled">未知應用程式 (%1s)</string>
+    <string name="switch_triple">啟用三擊</string>
+    <string name="settings_actions_loading_actions">載入動作中…</string>
+    <string name="help_action_triple">注：啟用三擊後，雙擊動作的響應速度可能會較慢。這是因為在執行該操作之前，它必須等待看是否會執行第三次點選。</string>
+    <string name="settings_actions_triple_empty">未設定三擊動作，點選以設定</string>
+    <string name="settings_actions_double_empty">未設定雙擊動作，點選以設定</string>
+
+    <!-- Settings > Gesture > Action > Requirements -->
+    <string name="action_when_gate_inverted">%1s (反轉)</string>
+    <string name="settings_when_gates_title">條件</string>
+    <string name="settings_actions_when_gates_empty">未設定判定條件，點選以設定</string>
+    <string name="settings_actions_loading_when_gates">載入判定條件中…</string>
+    <string name="fab_add_requirement">新增條件</string>
+
+    <!-- Settings > Gesture > Action > Add -->
+    <string name="add_action_category_launch">執行</string>
+    <string name="add_action_category_launch_desc">執行一個應用程式，快捷方式，程式快捷方式</string>
+    <string name="add_action_category_utilities">雜項</string>
+    <string name="add_action_category_utilities_desc">截圖、切換手電筒、開啟應用抽屜或接聽 / 拒接通話。</string>
+    <string name="add_action_category_button">按鈕</string>
+    <string name="add_action_category_button_desc">模擬按鍵，如主頁、後退、任務檢視或電源等</string>
+    <string name="add_action_category_sound">聲音</string>
+    <string name="add_action_category_sound_desc">控制音樂，改變音量或控制鬧鈴</string>
+    <string name="add_action_category_gesture">手勢</string>
+    <string name="add_action_category_gesture_desc">模擬上、下、左或右方向的手勢動作</string>
+    <string name="add_action_category_accessibility">無障礙</string>
+    <string name="add_action_category_accessibility_desc">無障礙的具體操作，如谷歌語音訪問和顯示無障礙按鈕選擇器</string>
+    <string name="add_action_category_advanced">高階</string>
+    <string name="add_action_category_advanced_desc">觸發 Tasker 任務和事件</string>
+    <string name="settings_actions_add_category_selector_loading">載入動作中…</string>
+    <string name="settings_actions_add_action_selector_loading">載入動作中…</string>
+    <string name="settings_actions_add_category_selector_empty">找不到任何動作</string>
+
+    <!-- Action Chips -->
+    <string name="action_chip_shizuku">Shizuku</string>
+    <string name="action_chip_shizuku_desc">需要 Shizuku 應用程式或 sui</string>
+    <string name="action_chip_root">Root</string>
+    <string name="action_chip_root_desc">需要 Root 許可權</string>
+    <string name="action_chip_accessibility">服務</string>
+    <string name="action_chip_accessibility_desc">需要啟用無障礙服務</string>
+    <string name="action_chip_gesture_accessibility">手勢</string>
+    <string name="action_chip_gesture_accessibility_desc">需要啟用無障礙手勢</string>
+    <string name="action_chip_tasker">Tasker</string>
+    <string name="action_chip_tasker_desc">需要 Tasker 應用程式</string>
+    <string name="action_chip_snapchat">Snapchat</string>
+    <string name="action_chip_snapchat_desc">需要 Snapchat 應用程式</string>
+
+    <!-- Settings > Gesture > Gates -->
+    <string name="fab_add_gate">新增門檻</string>
+    <string name="help_gate">門檻即是當裝置處於特定情況下時，若識別到手勢，則不執行對應動作。若是想要不受約束地執行任何一個動作，您必須啟用所有的門檻。\n點選獲取更多資訊。</string>
+    <string name="bs_help_gate">門檻可以阻止應用在識別到手勢時執行動作。為了能夠執行所有的動作，您必須啟用所有的門檻。\n如果當前滿足某個場景，例如：螢幕處於關閉狀態，而「螢幕關閉時」處於啟用狀態時，則不會執行任何動作。您可以新增任意數量的門檻，並使用開關來啟用或者禁用它們（沒有必要刪掉它們再重新新增），以節省時間並提高效率。</string>
+    <string name="bs_help_gate_title">什麼是門檻？</string>
+    <string name="settings_gates_loading_gates">載入配置中…</string>
+
+    <!-- Settings > Gesture > Gates > Add -->
+    <string name="add_gate_category_device">裝置</string>
+    <string name="add_gate_category_device_desc">對裝置變化做出反應，如螢幕、充電和 USB 狀態。</string>
+    <string name="add_gate_category_sensors">感測器</string>
+    <string name="add_gate_category_sensors_desc">對感測器資料做出反應，例如當裝置在你的口袋裡，或平放在桌子上時。</string>
+    <string name="add_gate_category_audio">音訊</string>
+    <string name="add_gate_category_audio_desc">對與音訊有關的事件作出反應，例如正在通話或播放音樂。</string>
+    <string name="add_gate_category_events">應用程式</string>
+    <string name="add_gate_category_events_desc">對正在開啟的應用程式做出反應，包括鍵盤和相機。</string>
+    <string name="gate_selector_unavailable">對不起，此門檻無法適用於您的裝置 (%1s).</string>
+    <string name="settings_gates_add_category_selector_loading">載入配置中…</string>
+    <string name="settings_gates_add_gate_selector_loading">載入配置中…</string>
+    <string name="settings_gates_add_category_selector_empty">未找到門檻</string>
+    <string name="settings_gates_empty">未設定門檻，點選以設定。</string>
+
+    <!-- Settings > Settings -->
+    <string name="setting_gesture_model">裝置尺寸</string>
+    <string name="setting_gesture_model_desc">在選擇手勢模型時，調整要使用的裝置大小。</string>
+    <string name="setting_gesture_model_desc_not_available">當啟用低功耗模式時，該選項不可用。</string>
+    <string name="setting_low_power_mode">低功耗模式</string>
+    <string name="setting_low_power_mode_desc">Run the gesture detection on the low-power Context Hub, rather than using the regular CPU to save battery</string>
+    <string name="setting_gesture_sensitivity">靈敏度</string>
+    <string name="setting_gesture_sensitivity_desc">透過調整「噪音」過濾掉的力度來改變手勢的靈敏度。較低的靈敏度意味著在大多數裝置上較難啟用，而較高的靈敏度則意味著容易被誤啟用。</string>
+    <string name="setting_gesture_sensitivity_desc_disabled">已在高階設定中設定了自定義靈敏度，重新設定它以使用此選項。</string>
+    <string name="setting_gesture_sensitivity_chre">低靈敏度</string>
+    <string name="setting_gesture_sensitivity_chre_desc">對 Tap, Tap 手勢使用較低的靈敏度，使其更難執行。</string>
+
+    <!-- Settings > Settings > Low Power Mode -->
+    <string name="settings_low_power_mode_enable">低功耗模式</string>
+    <string name="setting_low_power_mode_content">Low Power Mode uses the device\'s \"Context Hub\", which allows for running \"nanoapps\" on the low-power CPU. For this to work, there must be the Columbus nanoapp compiled for your device installed, which has to be done by the OEM. Tap, Tap is then able to use this app, in the same way that the system Quick Tap feature does, to detect the gesture in a significantly more power efficient way.\n\n<b>Shizuku (or alternatively sui) is also required for this option, as it requires system permissions not available to user apps.\nOn Android 13 or above, Sui is required due to platform changes beyond Tap, Tap\'s control.</b>\n\n<b>Note：You may need to reboot after enabling this option for the first time for it to take effect.</b></string>
+    <string name="settings_low_power_mode_error_shizuku">此選項需要 Shizuku / sui 才能發揮作用。 Shizuku 可以在沒有 Root 的情況下工作，但如果您已 Root， 強烈建議您使用 <b>sui 模組</b >來讓此應用程式可開機自啟，點選以請求許可權</string>
+    <string name="settings_low_power_mode_error_button_shizuku">什麼是 Shizuku / Sui?</string>
+    <string name="settings_low_power_mode_error_button_sui">請求 <b>sui</b> 許可權</string>
+    <string name="settings_low_power_mode_error_not_compatible">對不起，您的裝置與此選項不相容\n<b>注意:</b> 如果您在使用 Android 13 或更高版本， 你<b>必須</b>已 Root 並使用 sui。由於平臺變化，Shizuku 不再受支援</string>
+    <string name="settings_low_power_mode_error_toast">Shizuku 沒有執行，啟動它以啟用低功耗模式</string>
+
+    <!-- Settings > Settings > Model Picker -->
+    <string name="settings_model_picker_loading">載入中…</string>
+    <string name="settings_model_picker_tab_newest">新版</string>
+    <string name="settings_model_picker_tab_legacy">傳統</string>
+    <string name="settings_model_picker_device_size">高度：%1smm (%1sin)</string>
+    <string name="settings_model_picker_recommended">%1s (推薦)</string>
+    <string name="settings_model_picker_header_newest">新版型號來自於 Android 12 系統，比傳統的模型更準確。\n\n<b>注意:</b> 有時最接近的尺寸並不是最適合你的裝置，你可能需要嘗試所有的尺寸來找到最適合你的配置。</string>
+    <string name="settings_model_picker_header_legacy">傳統型號來自 Android 11 系統，沒有新的模型準確。\n\n<b>注意:</b> 有時最接近的尺寸並不是最適合你的裝置，你可能需要嘗試所有的尺寸來找到最適合你的配置。</string>
+
+    <!-- New (Android 12) models -->
+    <string name="tap_model_redfin_name">144.7mm [5.7in] (小)</string>
+    <string name="tap_model_redfin_desc">為 Pixel 5 建立</string>
+    <string name="tap_model_flame_name">147.1mm [5.8in] (小)</string>
+    <string name="tap_model_flame_desc">為 Pixel 4 建立</string>
+    <string name="tap_model_bramble_name">153.9mm [6.1in] (中)</string>
+    <string name="tap_model_bramble_desc">為 Pixel 4a 5G 建立</string>
+    <string name="tap_model_crosshatch_name">158mm [6.2in] (大)</string>
+    <string name="tap_model_crosshatch_desc">為 Pixel 3 XL 建立</string>
+    <string name="tap_model_coral_name">160.4mm [6.3in] (大)</string>
+    <string name="tap_model_coral_desc">為 Pixel 4 XL 建立</string>
+
+    <!-- Old (Android 11) models -->
+    <string name="tap_model_pixel4_name">147.1mm [5.8in] (小)</string>
+    <string name="tap_model_pixel4_desc">為 Pixel 4 建立</string>
+    <string name="tap_model_pixel3xl_name">158mm [6.2in] (中)</string>
+    <string name="tap_model_pixel3xl_desc">為 Pixel 3 XL 建立</string>
+    <string name="tap_model_pixel4xl_name">160mm [6.3in] (大)</string>
+    <string name="tap_model_pixel4xl_desc">為 Pixel 4 XL 建立</string>
+
+    <!-- Settings > Settings > Advanced -->
+    <string name="setting_advanced">高階設定</string>
+    <string name="setting_advanced_desc">高階設定和調整，以改變效能及更多內容</string>
+    <string name="setting_advanced_warning_desc">這些設定是試驗性的，可能在你的裝置上不工作，或可能導致 Tap, Tap 完全停止工作。</string>
+    <string name="setting_advanced_restart_service">自動重啟服務</string>
+    <string name="setting_advanced_restart_service_desc">試圖每小時自動重啟 Tap, Tap 監聽器元件。</string>
+    <string name="setting_advanced_legacy_wake">傳統喚醒裝置方法</string>
+    <string name="setting_advanced_legacy_wake_desc">使用傳統的喚醒裝置的方法，啟用喚醒裝置選項。這可能不會在所有裝置上工作，但在少數罕見情況下可能更可靠。</string>
+    <string name="setting_advanced_tensor_low_power">Tensor 低功耗模式</string>
+    <string name="setting_advanced_tensor_low_power_desc">如果可用，將在 Tensor 處理器上執行低功耗模式; 如果你有效能問題或手勢完全停止工作，請禁用。</string>
+    <string name="settings_advanced_monet_color_picker">桌布顏色</string>
+    <string name="settings_advanced_monet_color_picker_desc">開啟後Tap, Tap 介面將使用桌布顏色</string>
+    <string name="setting_advanced_custom_sensitivity">自定義靈敏度</string>
+    <string name="setting_advanced_custom_sensitivity_desc">設定一個靈敏度數值.\n重要：您的只應在<b>沒有</b>自帶靈敏度的裝置上使用此功能</string>
+    <string name="bs_advanced_custom_sensitivity">自定義靈敏度</string>
+    <string name="bs_advanced_custom_sensitivity_hint">靈敏度</string>
+    <string name="bs_advanced_custom_sensitivity_invalid">靈敏度無效</string>
+    <string name="bs_advanced_custom_sensitivity_reset">重置</string>
+
+    <!-- Monet Color Picker -->
+    <string name="color_picker_unavailable">桌布顏色選擇器對當前選擇的桌布不可用</string>
+
+    <!-- Settings > More -->
+    <string name="settings_backup_restore">備份 &amp; 恢復</string>
+    <string name="settings_backup_restore_desc">在裝置或雲端上備份 / 恢復您的設定</string>
+    <string name="settings_backup_restore_backup">備份</string>
+    <string name="settings_backup_restore_backup_desc">在裝置或雲端上備份您的設定</string>
+    <string name="settings_backup_restore_restore">恢復</string>
+    <string name="settings_backup_restore_restore_desc">從裝置或雲端上恢復您的設定</string>
+    <string name="setting_internet">允許網路許可權</string>
+    <string name="setting_internet_desc">這將只用於定期檢查裝置配置和應用程式更新</string>
+    <string name="setting_crash_reporting">崩潰通知</string>
+    <string name="setting_crash_reporting_desc">當 Tap, Tap 崩潰時顯示一個通知, 您將可以儲存日誌以便在 Github 或 XDA 上反饋. 此選項<b>不會</b>自動將崩潰日誌傳送到伺服器。</string>
+    <string name="battery_and_optimisation">電池 &amp; 最佳化</string>
+    <string name="battery_and_optimisation_desc">為什麼 Tap, Tap 會耗電？為什麼它在後臺執行時可能會被殺死？這裡將告訴你如何解決這個問題。</string>
+    <string name="xda_thread">XDA 帖子</string>
+    <string name="github">GitHub</string>
+    <string name="libraries">第三方庫</string>
+    <string name="donate">捐贈</string>
+    <string name="twitter">在 Twitter 上關注我</string>
+    <string name="about_version">版本：%1s\n由 Kieron Quinn 開發</string>
+
+    <!-- Settings > More > Battery Optimisation -->
+    <string name="settings_battery_header"><![CDATA[Tap, Tap 將會在後臺使用您的感測器資料, 可能會長時間使用您的 CPU 並耗盡電量。 在具有張量加速器的裝置上（如高通的 Hexagon 張量加速器），您的電量可能不會受到太大影響。<br><a href="https://kieronquinn.co.uk/redirect/TapTap/battery">點選這裡瞭解更多</a>。]]></string>
+    <string name="settings_battery_info"><![CDATA[Tap, Tap 需要禁用 Android 對此應用程式的電池最佳化功能. 這有助於防止它在後臺被殺死。<br><b>注意:</b> 在一些裝置上，你可能還需要禁用額外的設定，以防止應用程式被殺死。<a href="https://dontkillmyapp.com/">點選這裡瞭解更多</a>。]]></string>
+    <string name="settings_battery_disable_optimisation">關閉電池最佳化</string>
+    <string name="settings_battery_disable_optimisation_desc_enabled">系統針對 Tap, Tap 的電池最佳化已啟用</string>
+    <string name="settings_battery_disable_optimisation_desc_disabled">系統針對 Tap, Tap 的電池最佳化已禁用</string>
+    <string name="settings_battery_oem_info">你的裝置似乎有 OEM 定製的電池最佳化功能。 Tap, Tap 無法幫您關閉它，請檢查您的設定以確認它們是否已被禁用。</string>
+    <string name="settings_battery_oem_button">開啟廠商電池設定</string>
+
+    <!-- Settings > More > Backup & Restore > Backup -->
+    <string name="settings_backuprestore_backup_title">建立備份中…</string>
+    <string name="settings_backuprestore_backup_desc">這應該不會花太多時間</string>
+    <string name="settings_backuprestore_backup_done_title">備份已建立</string>
+    <string name="settings_backuprestore_backup_done_desc">已儲存到 %1s</string>
+    <string name="settings_backuprestore_backup_error_title">建立備份錯誤</string>
+    <string name="settings_backuprestore_backup_error_desc">儲存您的備份時發生了一個錯誤：%1s</string>
+
+    <!-- Settings > More > Backup & Restore > Restore -->
+    <string name="settings_backuprestore_restore_title">恢復備份中…</string>
+    <string name="settings_backuprestore_restore_desc">這應該不會花太多時間</string>
+    <string name="settings_backuprestore_restore_done_title">備份已恢復</string>
+    <string name="settings_backuprestore_restore_done_desc">已從備份 %1s 中恢復</string>
+    <string name="settings_backuprestore_restore_error_title">恢復備份錯誤</string>
+    <string name="settings_backuprestore_restore_error_desc">恢復您的備份時發生了一個錯誤</string>
+    <string name="backup_restore_error_type_failed_create_file">建立檔案失敗</string>
+    <string name="backup_restore_error_type_failed_write_file">寫入檔案失敗</string>
+    <string name="backup_restore_error_type_failed_unknown">未知錯誤</string>
+    <string name="settings_backup_restore_restore_infobox">一些動作、門檻可能需要額外的設定，或與你的裝置不相容，請在繼續之前檢查。</string>
+    <string name="settings_backup_restore_restore_header_actions">動作</string>
+    <string name="settings_backup_restore_restore_header_gates">門檻</string>
+    <string name="settings_backup_restore_restore_header_when_gates">動作判定</string>
+    <string name="settings_backup_restore_restore_item_chip_action">動作</string>
+    <string name="settings_backup_restore_restore_item_chip_gate">門檻</string>
+    <string name="settings_backup_restore_restore_item_chip_requirement">判定條件</string>
+    <string name="settings_backup_restore_restore_item_setup">配置</string>
+    <string name="settings_backup_restore_restore_item_skip">跳過</string>
+
+    <!-- Settings > More > Contributors -->
+    <string name="about_contributors">貢獻者</string>
+    <string name="about_contributors_main">哥倫布</string>
+    <string name="about_contributors_main_content"><![CDATA[\'哥倫布\'模型與基礎程式碼來自於 Android 11 首個開發者預覽版，由 Google 開發。 (<a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>)]]></string>
+    <string name="about_contributors_community">開源社羣貢獻</string>
+    <string name="about_contributors_community_content"><b>整合 Tasker</b>：João Dias\n<b>音樂控制動作</b>：timfedo\n<b>MD2 介面設計與 Chrome Custom Tabs</b>：Giorgio Cantoni\n<b>電源鍵對話方塊動作</b>：Adrian Campos\n<b>勿擾反饋及聲音模式動作</b>：Ashutosh Singh\n<b>啟動搜尋動作</b>：arkon\n<b>強制免打擾動作:</b> Kylian Meulin</string>
+    <string name="about_contributors_icons">圖示</string>
+    <string name="about_contributors_icons_content"><![CDATA[由 <b><a href="https://material.io/resources/icons">Material Icons</a></b> (<a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache Licence 2.0</a>)<br><b><a href="https://github.com/Templarian/MaterialDesign">Material Design Icons</a></b> (<a href="https://github.com/Templarian/MaterialDesign/blob/master/LICENSE">Pictogrammers Free Licence</a>)<br><b><a href="https://icons8.com/icon/x57bYZb1FKLO/double-tap-gesture">Icons8</a></b> (<a href="https://icons8.com/license">Icons8 License</a>)<br><b><a href="https://www.freepik.com/">Freepik</a></b> (<a href="https://www.flaticon.com/license/pack/197373">Flaticon Licence</a>)<br><b><a href="https://www.flaticon.com/free-icon/smartphone_2628265">Vitaly Gorbachev</a></b> (<a href="https://www.flaticon.com/license/icon/2628265">Flaticon Licence</a>)]]></string>
+    <string name="about_translators">譯者</string>
+
+    <!-- Language headings, add to values.xml too -->
+    <string name="translators_chinese">中文（簡體）</string>
+    <string name="translators_russian">俄語</string>
+    <string name="translators_portuguese_br">巴西葡萄牙語</string>
+    <string name="translators_ukrainian">烏克蘭語</string>
+    <string name="translators_italian">義大利語</string>
+    <string name="translators_polish">波蘭語</string>
+    <string name="translators_french">法語</string>
+    <string name="translators_spanish">西班牙語</string>
+    <string name="translators_vietnamese">越南語</string>
+    <string name="translators_german">德語</string>
+    <string name="translators_turkish">土耳其語</string>
+    <string name="translators_chinese_traditional">中文（繁體）</string>
+
+    <!-- Actions -->
+    <string name="action_launch_camera">啟動相機</string>
+    <string name="action_launch_camera_desc">啟動您的預設相機應用。此操作將在相機已處於啟動狀態時被跳過。</string>
+    <string name="action_snapchat">啟動 Snapchat 抓拍</string>
+    <string name="action_snapchat_desc">啟動 Snapchat 的快速點選抓拍功能，如果有的話（這個動作可能需要一些額外設定）。</string>
+    <string name="action_home">主頁</string>
+    <string name="action_home_desc">模擬按下主頁按鈕</string>
+    <string name="action_back">返回</string>
+    <string name="action_back_desc">模擬按下返回按鈕</string>
+    <string name="action_recents">任務檢視</string>
+    <string name="action_recents_desc">透過模擬按下最近任務按鈕來開啟任務檢視。在支援它的裝置上，當最近任務檢視已經開啟時，使用這個動作將切換到第一個後臺的應用程式。</string>
+    <string name="action_notifications">通知欄</string>
+    <string name="action_notifications_desc">在支援的裝置上，開啟通知欄。如果通知欄是開啟的，這將關閉它。</string>
+    <string name="action_quick_settings">快速設定</string>
+    <string name="action_quick_settings_desc">在支援的裝置上，開啟快速設定。如果快速設定是開啟的，這將關閉它。</string>
+    <string name="action_screenshot">截圖</string>
+    <string name="action_screenshot_desc">使用系統介面截圖</string>
+    <string name="action_lock_screen">鎖屏</string>
+    <string name="action_lock_screen_desc">透過模擬按下電源鍵將裝置鎖屏</string>
+    <string name="action_power_dialog">電源選項</string>
+    <string name="action_power_dialog_desc">模擬長按電源鍵以展示電源選項</string>
+    <string name="action_toggle_pause">播放/暫停</string>
+    <string name="action_toggle_pause_desc">播放/暫停當前播放的歌曲</string>
+    <string name="action_previous">上一首</string>
+    <string name="action_previous_desc">播放上一首歌曲</string>
+    <string name="action_next">下一首</string>
+    <string name="action_next_desc">播放下一首歌曲</string>
+    <string name="action_device_controls">裝置控制器</string>
+    <string name="action_device_controls_desc">顯示裝置控制器，就像點選了快速設定磁貼一樣</string>
+    <string name="action_quick_access_wallet">快捷錢包</string>
+    <string name="action_quick_access_wallet_desc">顯示快捷錢包，就像點選了快速設定磁貼一樣</string>
+    <string name="action_click_quick_setting">點選快速設定</string>
+    <string name="action_click_quick_setting_desc">模擬點選快速設定磁貼</string>
+    <string name="action_click_quick_setting_desc_formatted">模擬點選 %1s (快速設定磁貼)</string>
+    <string name="action_flashlight">手電筒</string>
+    <string name="action_flashlight_desc">切換手電筒。如果相機被其他應用程式使用，此動作將失敗。</string>
+    <string name="action_launch_app">啟動應用</string>
+    <string name="action_launch_app_desc">啟動一個應用程式</string>
+    <string name="action_launch_app_desc_formattable">啟動 %1s。若應用已在前臺執行，將跳過此動作</string>
+    <string name="action_launch_assistant">啟動助理</string>
+    <string name="action_launch_assistant_desc">啟動你的預設助理應用程式</string>
+    <string name="action_launch_search">啟動搜尋</string>
+    <string name="action_launch_search_desc">開始 Google 搜尋</string>
+    <string name="action_tasker_event">Tasker 事件</string>
+    <string name="action_tasker_event_desc">觸發 Tasker 事件外掛</string>
+    <string name="action_tasker_task">Tasker 任務</string>
+    <string name="action_tasker_task_desc">執行指定的 Tasker 任務</string>
+    <string name="action_tasker_task_desc_formatted">執行 Tasker 任務 (%1s)</string>
+    <string name="action_volume_panel">顯示音量控制</string>
+    <string name="action_volume_panel_desc">顯示系統音量控制面板</string>
+    <string name="action_volume_up">提高音量</string>
+    <string name="action_volume_up_desc">為當前播放聲音的應用程式提高音量</string>
+    <string name="action_volume_down">降低音量</string>
+    <string name="action_volume_down_desc">為當前播放聲音的應用程式降低音量</string>
+    <string name="action_volume_toggle_mute">切換靜音</string>
+    <string name="action_volume_toggle_mute_desc">為當前播放聲音的應用程式且和靜音</string>
+    <string name="action_wake_device">喚醒裝置</string>
+    <string name="action_wake_device_desc">如果螢幕為關閉狀態，將喚醒裝置裝置。這將覆蓋反饋設定中的設定，如果螢幕為開啟狀態，此動作將被跳過，如果你啟用了關閉螢幕門檻，此動作將不會執行。</string>
+    <string name="actions_sound_profile">切換聲音狀態</string>
+    <string name="actions_sound_profile_desc">在你的裝置的聲音配置之間進行切換。靜音 / 震動 / 響鈴</string>
+    <string name="do_not_disturb">切換免打擾狀態</string>
+    <string name="do_not_disturb_desc">強制將您的裝置切換為靜音</string>
+    <string name="action_launch_shortcut">啟動快捷方式</string>
+    <string name="action_launch_shortcut_desc">啟動一個快捷方式，如 Google Maps 導航</string>
+    <string name="action_launch_shortcut_desc_formattable">啟動 %1s (應用程式快捷方式)</string>
+    <string name="action_launch_shortcut_toast">此快捷方式當前不受支援</string>
+    <string name="action_launch_app_shortcut">啟動應用程式快捷方式</string>
+    <string name="action_launch_app_shortcut_desc">啟動一個應用程式快捷方式，通常是進入一個應用程式的深度連結，如聊天對話。</string>
+    <string name="action_launch_app_shortcut_desc_formattable">啟動 %1s (應用程式快捷方式)</string>
+    <string name="action_split_screen">分屏</string>
+    <string name="action_split_screen_desc">啟動或停止當前應用程式的分屏模式（處於主螢幕時不起作用）</string>
+    <string name="action_reachability">單手模式</string>
+    <string name="action_reachability_desc">實驗性：將當前應用程式分屏，被分屏的應用程式將處於螢幕下方，方便您單手操控。注意：開啟或關閉此模式時，您可能需要重新啟動該應用程式</string>
+    <string name="action_camera_shutter">相機按鈕</string>
+    <string name="action_camera_shutter_desc">模擬按下相機按鈕，如果相機已開啟，將拍攝一張照片（僅受支援的相機應用程式）</string>
+    <string name="action_google_voice_access">觸發 Google Voice Access</string>
+    <string name="action_google_voice_access_desc">當 Google Voice Access <b>無障礙應用</b>正在執行時，觸發它（這並非助理或語音搜尋）</string>
+    <string name="action_hamburger">漢堡選單 / 返回</string>
+    <string name="action_hamburger_desc">這個動作將會點選螢幕上漢堡（三橫線）選單通常所在的位置。\n<b>重要警告</b>：這會點到螢幕左上方漢堡選單通常在的地方。不管那裡是啥東西，都可能會被點到，所以有時也會觸發返回，甚至可能會點選螢幕上那個位置的其他元素，包括其他按鈕。<b>小心使用</b>，嘗試考慮使用三擊背部和應用條件要求來限制它。</string>
+    <string name="action_accessibility_button">觸發無障礙按鈕</string>
+    <string name="action_accessibility_button_desc">模擬無障礙按鈕，該按鈕可用於觸發其他服務，如「隨選朗讀」</string>
+    <string name="action_accessibility_button_chooser">無障礙按鈕選擇</string>
+    <string name="action_accessibility_button_chooser_desc">調出無障礙按鈕的選擇選單</string>
+    <string name="action_accessibility_shortcut">觸發無障礙快捷方式</string>
+    <string name="action_accessibility_shortcut_desc">觸發無障礙快捷方式。在使用此操作之前，請確保未將 Tap, Tap 設定為使用快捷方式！</string>
+    <string name="action_app_drawer">應用抽屜</string>
+    <string name="action_app_drawer_desc">為<b>受支援的啟動器</b>開啟應用抽屜。這隻適用於基於 Android 11 的啟動器。</string>
+    <string name="action_accept_call">接聽電話</string>
+    <string name="action_accept_call_desc">如收到來電，將接聽電話</string>
+    <string name="action_reject_call">拒接電話</string>
+    <string name="action_reject_call_desc">如收到來電，將拒接電話</string>
+    <string name="action_swipe_up">向上划動</string>
+    <string name="action_swipe_up_desc">在當前應用程式執行向上划動的手勢</string>
+    <string name="action_swipe_down">向下划動</string>
+    <string name="action_swipe_down_desc">在當前應用程式執行向下划動手勢</string>
+    <string name="action_swipe_left">向左划動</string>
+    <string name="action_swipe_left_desc">在當前應用程式執行向左划動手勢</string>
+    <string name="action_swipe_right">向右划動</string>
+    <string name="action_swipe_right_desc">在當前應用程式執行向右划動手勢</string>
+    <string name="action_selector_unavailable">對不起，此動作與您的裝置不相容 (%1s).</string>
+    <string name="action_alt_tab">切換到上個應用程式</string>
+    <string name="action_alt_tab_desc">透過模擬雙擊最近任務按鈕切換到上一個應用程式（僅支援的裝置）。</string>
+    <string name="action_alarm_timer">我起床了！</string>
+    <string name="action_alarm_snooze">我要睡覺！</string>
+    <string name="action_alarm_timer_desc">如果有鬧鐘或定時器正在打擾您，則將其取消（僅支援時鐘應用程式）</string>
+    <string name="action_alarm_snooze_desc">如果有鬧鐘響起，可以讓鬧鐘暫停至超時（僅支援時鐘應用程式）。</string>
+
+    <string name="action_unsupported_reason_min_sdk">與您的 Android 版本不相容</string>
+    <string name="action_unsupported_reason_tasker">需要 Tasker</string>
+    <string name="action_unsupported_reason_snapchat">需要 Snapchat</string>
+
+    <!-- Gates -->
+    <string name="gate_charging_state">充電中</string>
+    <string name="gate_charging_state_desc_a">當裝置處於充電狀態充電時，禁用手勢</string>
+    <string name="gate_charging_state_desc_when_a">僅在裝置開始充電那一刻執行</string>
+    <string name="gate_telephony_activity">通話中</string>
+    <string name="gate_telephony_activity_desc">當裝置處於通話狀態時禁用手勢，不支援 VoIP。如：WhatsApp</string>
+    <string name="gate_telephony_activity_desc_when">僅在裝置處於通話狀態時執行</string>
+    <string name="gate_usb_state">USB 裝置</string>
+    <string name="gate_usb_state_desc_a">當一個 USB 裝置，如隨身碟，被插入時禁用手勢</string>
+    <string name="gate_usb_state_desc_when_a">僅在裝置插入 USB 裝置那一刻執行</string>
+    <string name="gate_camera_visibility">相機</string>
+    <string name="gate_camera_visibility_desc">當任何相機應用被開啟時，禁用手勢。注意：這將導致啟用相機動作無法被跳過</string>
+    <string name="gate_camera_visibility_desc_when">僅在相機應用開啟時執行</string>
+    <string name="gate_power_state">螢幕關閉</string>
+    <string name="gate_power_state_desc">當螢幕關閉時禁用手勢</string>
+    <string name="gate_power_state_desc_when">僅在螢幕關閉時執行</string>
+    <string name="gate_power_state_inverse">螢幕開啟</string>
+    <string name="gate_power_state_inverse_desc">當螢幕開啟時執行</string>
+    <string name="gate_power_state_inverse_desc_when">僅在螢幕開啟時執行</string>
+    <string name="gate_app_showing">應用顯示</string>
+    <string name="gate_app_showing_desc">當應用程式在前臺工作時，禁用手勢</string>
+    <string name="gate_app_showing_desc_when">僅當應用程式在前臺工作時執行</string>
+    <string name="gate_app_showing_desc_formatted">當 %1s 在前臺工作時，禁用手勢</string>
+    <string name="gate_keyboard_visibility">鍵盤開啟</string>
+    <string name="gate_keyboard_visibility_desc">在鍵盤開啟並正在使用時禁用手勢。請注意，如果你打字很慢，這可能不太有效。</string>
+    <string name="gate_keyboard_visibility_desc_when">僅在鍵盤開啟並正在使用時啟用手勢。請注意，如果你打字很慢，這可能不太有效。</string>
+    <string name="gate_orientation_landscape">橫屏</string>
+    <string name="gate_orientation_landscape_desc">當裝置處於橫屏時，暫時禁用手勢</string>
+    <string name="gate_orientation_landscape_desc_when">僅當裝置處於橫屏時執行</string>
+    <string name="gate_orientation_portrait">豎屏</string>
+    <string name="gate_orientation_portrait_desc">當裝置處於豎屏時，暫時禁用手勢</string>
+    <string name="gate_orientation_portrait_desc_when">僅當裝置處於豎屏時執行</string>
+    <string name="gate_table">平放</string>
+    <string name="gate_table_desc">當裝置平放時，例如放在桌子上時，暫時禁用手勢</string>
+    <string name="gate_table_desc_when">僅當裝置平放時執行</string>
+    <string name="gate_pocket">口袋中</string>
+    <string name="gate_pocket_desc">當距離感測器檢測到有物體時，暫時禁用手勢。當您的裝置放在口袋裡或在桌子上翻轉時，會禁用手勢。</string>
+    <string name="gate_pocket_desc_when">僅當距離感測器檢測到有物體時執行。當您的裝置放在口袋裡或在桌子上翻轉時，會啟用手勢。</string>
+    <string name="gate_headset_inverse">未連線耳機</string>
+    <string name="gate_headset_desc_inverse">當<b>未連線到</b>有線或無線耳機時，暫時禁用手勢。最好與播放/暫停/跳過控制元件配合使用，以防止透過揚聲器播放音樂</string>
+    <string name="gate_headset_desc_when_inverse">僅當<b>未連線到</b>有線或無線耳機時執行</string>
+    <string name="gate_headset">連線耳機</string>
+    <string name="gate_headset_desc">當<b>連線到</b>有線或無線耳機時，暫時禁用手勢</string>
+    <string name="gate_headset_desc_when">僅當<b>連線到</b>有線或無線耳機時執行</string>
+    <string name="gate_music">播放音樂時</string>
+    <string name="gate_music_inverse">未播放音樂時</string>
+    <string name="gate_music_desc">當音樂正在播放時，暫時禁用手勢</string>
+    <string name="gate_music_desc_when">僅當音樂正在播放時執行</string>
+    <string name="gate_music_desc_when_inverse">當音樂未在播放時，暫時禁用手勢</string>
+    <string name="gate_music_desc_inverse">僅當音樂未在播放時執行</string>
+    <string name="gate_lock_screen_showing">鎖屏介面顯示時</string>
+    <string name="gate_lock_screen_showing_desc">當鎖屏介面正處於顯示狀態時，暫時禁用手勢</string>
+    <string name="gate_lock_screen_showing_desc_when">僅當鎖屏介面正處於顯示狀態時執行</string>
+    <string name="gate_lock_screen_showing_inverse">鎖屏介面未顯示時</string>
+    <string name="gate_lock_screen_showing_inverse_desc">當鎖屏介面未處於顯示狀態時，暫時禁用手勢</string>
+    <string name="gate_lock_screen_showing_inverse_desc_when">僅當鎖屏介面未處於顯示狀態時執行</string>
+    <string name="gate_alarm">鬧鐘 / 計時器</string>
+    <string name="gate_alarm_desc">當鬧鐘或計時器響時，暫時禁用手勢</string>
+    <string name="gate_alarm_desc_when">僅當鬧鐘或計時器響時執行</string>
+    <string name="gate_foldable_closed">可摺疊裝置：裝置已摺疊（合上）</string>
+    <string name="gate_foldable_closed_desc">當裝置摺疊/合上時，暫時禁用手勢</string>
+    <string name="gate_foldable_closed_desc_when">僅在裝置摺疊/合上時執行動作</string>
+    <string name="gate_foldable_open">可摺疊裝置：裝置已展開（開啟）</string>
+    <string name="gate_foldable_open_desc">當裝置展開/開啟時，暫時禁用手勢</string>
+    <string name="gate_foldable_open_desc_when">僅在裝置展開/開啟時執行動作</string>
+    <string name="gate_low_battery">低電量</string>
+    <string name="gate_low_battery_desc">當裝置電量低於 15% 時，暫時禁用手勢</string>
+    <string name="gate_low_battery_desc_when">僅當裝置電量低於 15 % 時執行</string>
+    <string name="gate_battery_saver">省電模式</string>
+    <string name="gate_battery_saver_desc">當裝置處於省電模式時，暫時禁用手勢</string>
+    <string name="gate_battery_saver_desc_when">僅當裝置處於省電模式時執行</string>
+
+    <string name="gate_unsupported_reason_min_sdk">不受支援的 Android 版本</string>
+    <string name="gate_unsupported_reason_foldable">需要一個受支援的可摺疊裝置</string>
+
+    <!-- Notification channels & content -->
+    <string name="tap_notification_title">Tap, Tap 服務</string>
+    <string name="tap_notification_content">Tap, Tap 正在後臺執行，點選以隱藏</string>
+    <string name="tap_notification_channel_title">後臺通知</string>
+    <string name="tap_notification_channel_description">當啟用使用獨立服務的選項時，用於保持 Tap,Tap 在後臺執行的通知。</string>
+    <string name="notification_channel_actions_title">動作</string>
+    <string name="notification_channel_actions_content">關於動作的通知，包括執行時的錯誤通知</string>
+    <string name="notification_action_flashlight_error_title">切換手電筒時遇到了一個錯誤</string>
+    <string name="notification_action_flashlight_error_content">需要相機許可權，點選以開啟設定</string>
+    <string name="notification_action_overlay_error_title">需要顯示在其他應用上層許可權</string>
+    <string name="notification_action_overlay_error_content">由於系統限制，該操作需要顯示在其他應用上層許可權。點一下就可以授予許可權。</string>
+    <string name="notification_action_accessibility_error_title">無障礙服務未啟用</string>
+    <string name="notification_action_accessibility_error_content">此動作需要無障礙服務，點選啟用。如果您已啟用，請禁用並重新啟用該服務。</string>
+    <string name="notification_gate_accessibility_error_content">此門檻需要無障礙服務，點選啟用。如果您已啟用，請禁用並重新啟用該服務。</string>
+    <string name="notification_action_gesture_accessibility_error_title">無障礙手勢服務未啟用</string>
+    <string name="notification_action_gesture_accessibility_error_content">此操作需要無障礙手勢服務，點選啟用。如果您已啟用，請禁用並重新啟用該服務。</string>
+    <string name="notification_channel_service_title">服務</string>
+    <string name="notification_channel_service_content">關於服務的通知，包括載入和錯誤的通知</string>
+    <string name="notification_service_loading_title">服務啟動中…</string>
+    <string name="notification_service_loading_title_restart">服務重啟中…</string>
+    <string name="notification_service_loading_content">Tap, Tap 服務正在載入</string>
+    <string name="notification_service_error_title">啟動服務時發生了一個錯誤</string>
+    <string name="notification_service_running_error_title">重新連線到 Shizuku 服務時發生了一個錯誤</string>
+    <string name="notification_service_error_content_shizuku_not_running">無法連線到 Shizuku，請確保其正在執行後重試。</string>
+    <string name="notification_service_error_content_shizuku_permission_denied">連線到 Shizuku 的許可權被拒絕，請在 Shizuku 授權 Tap, Tap 後重試。</string>
+    <string name="notification_service_error_action_retry">重試</string>
+    <string name="notification_service_error_root_title">連線到服務時發生了一個錯誤</string>
+    <string name="notification_service_error_root_content">確保您已授予 Tap, Tap Root許可權</string>
+    <string name="notification_channel_crash_title">崩潰通知</string>
+    <string name="notification_channel_crash_content">在 Tap, Tap 崩潰後顯示通知以便儲存日誌</string>
+    <string name="notification_crash_title">Tap, Tap 已崩潰！</string>
+    <string name="notification_crash_content">點選檢視崩潰日誌，並匯出日誌傳送到 GitHub 或 XDA 上。你可以在Tap, Tap 的設定中停用崩潰通知。</string>
+    <string name="tap_update_notification_channel_title">更新通知</string>
+    <string name="tap_update_notification_channel_description">應用程式每天檢查更新時顯示通知</string>
+    <string name="tap_update_notification_title">Tap, Tap 更新可用</string>
+    <string name="tap_update_notification_content">Tap, Tap 有更新啦！ (%1s to %1s)</string>
+
+    <!-- Shared Pickers, for Gates & Actions -->
+    <string name="settings_shared_app_shortcuts_selector_loading">載入應用程式快捷方式中…</string>
+    <string name="settings_shared_shortcuts_selector_loading">載入快捷方式中…</string>
+    <string name="settings_shared_shortcuts_selector_error">獲取應用程式快捷方式出錯，請重試。如果問題仍然存在，請嘗試使用 ADB 重新啟 Shizuku。</string>
+    <string name="settings_shared_shizuku_permission_flow_toolbar_title">Shizuku / Sui</string>
+    <string name="settings_shared_shizuku_permission_flow_title">檢查 Shizuku / Sui 中</string>
+    <string name="settings_shared_shizuku_permission_flow_content">這可能需要大約 10 秒鐘的時間</string>
+    <string name="settings_shared_shizuku_permission_flow_error_title">未找到 Shizuku / Sui</string>
+    <string name="settings_shared_shizuku_permission_flow_error_content">未在您的裝置上找到 Shizuku 或 sui，你將需要安裝其中的一個來使用此功能 %s.\n\n<b>注意:</b> 如果您已安裝 Shizuku 或 Sui，請確保其正在執行 (僅 Shizuku)， 且您已授予此軟體許可權後重試</string>
+    <string name="settings_shared_shizuku_permission_flow_error_content_action">動作</string>
+    <string name="settings_shared_shizuku_permission_flow_error_content_gate">門檻</string>
+    <string name="settings_shared_shizuku_permission_flow_error_card_shizuku_title">Shizuku</string>
+    <string name="settings_shared_shizuku_permission_flow_error_card_shizuku_content">Shizuku 是一個非 Root 應用，它允許像 Tap, Tap 這樣的應用程式以特殊許可權執行程式碼。它透過在ADB（安卓除錯橋）Shell上執行一個命令來實現，每次重啟都要執行一次。若您使用 Android 11 或以上的裝置，此操作可以在沒有電腦的情況下完成，但在舊版本中，你需要在每次重啟時連線到電腦，重新啟動 Shizuku。</string>
+    <string name="settings_shared_shizuku_permission_flow_error_card_shizuku_button">獲取 Shizuku</string>
+    <string name="settings_shared_shizuku_permission_flow_error_card_sui_content">Sui 是一個 Magisk 模組，它允許像 Tap, Tap 這樣的應用程式以 Root許可權 執行程式碼。它使用的是與 Shizuku 相同的框架。 並可和 Shizuku同時工作，但是在重啟後不要手動啟動服務，其將會自動執行。\n<b>如果你不知道 Root 或 Magisk 是什麼，就用 Shizuku 代替。</b></string>
+    <string name="settings_shared_shizuku_permission_flow_error_card_sui_title">Sui</string>
+    <string name="settings_shared_shizuku_permission_flow_error_card_sui_button">獲取 Sui</string>
+    <string name="settings_shared_package_selector_loading">載入應用中…</string>
+    <string name="settings_shared_package_selector_empty">未找到任何應用</string>
+    <string name="settings_shared_snapchat_loading_title">檢查可用性中…</string>
+    <string name="settings_shared_snapchat_loading_content">如請求 Root許可權，請授予</string>
+    <string name="settings_shared_snapchat_setup_root_title">需要額外的設定</string>
+    <string name="settings_shared_snapchat_setup_root_content">要在您的裝置上啟用快速點選，請按照以下步驟進行：\n<b>你必須登入到 Snapchat 才能工作。</b>\n1.) 禁用你的網際網路連線 -- 包括 WiFi 和移動資料（最好是使用飛航模式）。<b>在你完成這些步驟之前，不要重新啟用它。</b>\n2.) 選擇下面的選項來開啟 Snapchat -- 你必須使用這個按鈕，因為它必須用某些選項開啟，以顯示提示。\n3.) Snapchat 會開啟並提示你解鎖以完成設定 -- 這是正常的，只需確定對話方塊即可。\n4.) 會出現一個對話方塊，要求你啟用快速點選抓拍，請啟用它。<b>你不會看到啟用它的系統提示，這是正常的。</b>\n5.) 透過關閉Snapchat返回到 Tap, Tap，完成設定。</string>
+    <string name="settings_shared_snapchat_setup_root_button">開啟 Snapchat</string>
+    <string name="settings_shared_snapchat_setup_no_root_title">需要額外設定</string>
+    <string name="settings_shared_snapchat_setup_no_root_content">若要設定快速點選功能，有幾個步驟需要遵循。這些步驟需要重新啟動你的手機，並暫時重新啟用系統的快速點選手勢（這將阻止對 Tap, Tap 的訪問，直到完成這些步驟），所以它們被放在一個外部網站上，以使它們更容易訪問。</string>
+    <string name="settings_shared_snapchat_setup_no_root_button">公開教程</string>
+    <string name="settings_shared_snapchat_setup_incompatible_title">未完成</string>
+    <string name="settings_shared_snapchat_setup_incompatible_content">對不起，快速點選抓拍需要在您的裝置上啟用根許可權。.</string>
+    <string name="settings_shared_snapchat_setup_incompatible_button">關閉</string>
+    <string name="settings_shared_snapchat_setup_error">獲取可用性時出錯，請重試</string>
+    <string name="settings_shared_snapchat_setup_error_network">請先停用 WiFi 和移動資料</string>
+    <string name="item_settings_shared_quick_settings_header_content">由於系統的限制，有一些限制：\n- 快速設定磁貼標題無法被搜尋到，所以請參考你的通知按鈕位置來匹配。\n- 只有自定義磁貼可以被點選，而不是自帶的，如網際網路 \n- 在某些裝置上，磁貼必須在你的快速設定的第 1 或 2 頁上，才能被點選到。</string>
+    <string name="settings_shared_quick_settings_empty">未找到任何磁貼</string>
+    <string name="settings_shared_quick_settings_loading">載入快速設定磁貼中…</string>
+
+    <!-- No root bottom sheet -->
+    <string name="bs_no_root_title">未 Root</string>
+    <string name="bs_no_root_content">對不起，沒有檢測到 Root 許可權或沒有授予 Root 許可權。你必須有Root 許可權才能使用此動作。</string>
+
+    <!-- Permission Toasts (shown when launching external apps) -->
+    <string name="call_phone_permission_toast">你需要授予 Tap, Tap電話許可權來使用此快捷方式動作。請前往裝置許可權管理介面授予</string>
+    <string name="permission_toast">請在設定中授予 %1s 許可權以繼續</string>
+    <string name="permission_toast_draw_over_apps">請為 Tap, Tap 授予顯示在其他應用上層許可權</string>
+    <string name="tasker_content_toast">請在 Tasker 設定中開啟 \"允許外部訪問\" 選項.</string>
+
+    <!-- Update downloader -->
+    <string name="snackbar_update">新版本可用</string>
+    <string name="snackbar_update_button">更新</string>
+    <string name="settings_update_heading">Tap, Tap 版本 %1s</string>
+    <string name="settings_update_subheading">當前版本 %1s</string>
+    <string name="settings_update_changes">更新了什麼</string>
+    <string name="settings_update_open_installer">開始安裝</string>
+    <string name="settings_update_done">下載完成</string>
+    <string name="settings_update_loading">載入中…</string>
+    <string name="settings_update_fab">下載</string>
+    <string name="download_manager_description">下載更新中…</string>
+    <string name="update_downloader_downloading_title">下載更新中…</string>
+    <string name="update_downloader_downloading_failed">下載失敗</string>
+    <string name="update_downloader_github">使用瀏覽器下載</string>
+
+    <!-- Reachability UI -->
+    <string name="reachability_left_handed_info">長按通知圖示來切換圖示位置</string>
+    
+    <!-- Quick Settings Tile subtitles -->
+    <string name="qs_subtitle_running">執行中</string>
+    <string name="qs_subtitle_disabled">已禁用</string>
+    <string name="qs_subtitle_not_running">未執行</string>
+
+    <!-- Tasker descriptions & labels -->
+    <string name="tasker_description_triple">當敲擊手機背面三次後觸發</string>
+    <string name="tasker_description_double">當敲擊手機背面兩次後觸發</string>
+    <string name="tasker_config_label">雙擊背面</string>
+    <string name="tasker_config_label_triple">三擊背面</string>
+
+    <!-- Accessibility Service info in settings -->
+    <string name="accessibility_service_label">Tap, Tap</string>
+    <string name="accessibility_service_label_gesture">Tap, Tap 孿生服務</string>
+    <string name="accessibility_service_description">Tap, Tap 無障礙服務 \n\n<b>重要提示：我們不會收集您任何應用程式的資料，這項服務僅用來保活並執行自動手勢</b></string>
+    <string name="accessibility_service_description_gesture">Tap, Tap 手勢無障礙服務 \n\n<b>如果應用程式提示您開啟此服務，則您不需要啟用它。 只有在某些特定動作執行時才需要。</b>\n\n<b>Important Note：No data is collected from any of your apps, this service is simply used to provide the gesture interaction with the device.\n\nThis is a separate service due to how Android works and how apps adapt their UI when services that can perform gestures are enabled. For example, Chrome will not hide the Omnibar on scroll with this service enabled.</b></string>
+
+    <!-- Crash Reporting -->
+    <string name="crash_reporting_title">Tap, Tap 已崩潰</string>
+    <string name="crash_reporting_save">儲存崩潰報告</string>
+    <string name="crash_reporting_content_intro"><![CDATA[Tap, Tap 已崩潰。 請帶上報告日誌並在 <a href="https://kieronquinn.co.uk/redirect/TapTap/github">GitHub issues</a> 或 <a href="https://kieronquinn.co.uk/redirect/TapTap/xda">XDA 帖子</a>上反饋此問題。 如果此崩潰是手勢、動作或門檻導致的, 請附上你所使用設定的螢幕截圖。<br><br><b>重要提示：在報告之前，請使用所提供的搜尋工具，確保該問題尚未被反饋。</b><br><br>該錯誤報告也將顯示在下方。]]></string>
+    <string name="crash_reporting_toast_success">報告已儲存</string>
+    <string name="crash_reporting_toast_failed">報告儲存失敗</string>
+
+</resources>
