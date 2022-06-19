@@ -653,6 +653,12 @@ class ActionsRepositoryImpl(
                 serviceRepository,
                 action.extraData
             )
+            TOUCH -> TouchAction(
+                serviceLifecycle,
+                context,
+                whenGates,
+                emptySet()
+            )
         }
     }
 

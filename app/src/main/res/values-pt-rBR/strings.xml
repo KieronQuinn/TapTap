@@ -91,4 +91,6 @@
     <string name="action_launch_shortcut_desc_formattable">Abrir %1s (atalho do app)</string>
     <string name="action_launch_shortcut_toast">Atualmente, este atalho não é suportado</string>
     <string name="call_phone_permission_toast">Você precisa conceder ao Tap, Tap a permissão \"Telefone\" para usar este atalho como Ação. Faça isso nas configurações de permissões do seu dispositivo.</string>
+    <string name="action_touch">Toque na tela</string>
+    <string name="action_touch_desc">Pressiona a tela em um local aleatório para gerar um gesto de toque.</string>
 </resources>

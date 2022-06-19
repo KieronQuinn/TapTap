@@ -19,6 +19,7 @@ interface TapTapAccessibilityRouter {
             }
         }
         object PerformHamburgerClick: GestureInput()
+        object PerformSingleTouch: GestureInput()
     }
 
     sealed class AccessibilityOutput {

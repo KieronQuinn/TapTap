@@ -473,6 +473,15 @@ enum class TapTapActionDirectory(
         dataType = ActionDataTypes.QUICK_SETTING,
         actionSupportedRequirement = null,
         actionRequirement = arrayOf(ActionRequirement.Shizuku)
+    ),
+    TOUCH(
+        TouchAction::class.java,
+        TapTapActionCategory.GESTURE,
+        R.string.action_touch,
+        R.string.action_touch_desc,
+        R.drawable.ic_action_touch,
+        ActionSupportedRequirement.MinSdk(Build.VERSION_CODES.N),
+        actionRequirement = arrayOf(ActionRequirement.GestureAccessibility)
     );
 
     companion object {

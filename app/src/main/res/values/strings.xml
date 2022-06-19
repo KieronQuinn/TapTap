@@ -644,6 +644,8 @@
     <string name="crash_reporting_content_intro"><![CDATA[Tap, Tap has encountered a crash. Please report the issue, including the report, on the <a href="https://kieronquinn.co.uk/redirect/TapTap/github">GitHub issues</a> or <a href="https://kieronquinn.co.uk/redirect/TapTap/xda">XDA thread</a>. If the crash happened when running the gesture, an action or using a gate, please include screenshots of the setup you are using.<br><br><b>Important: Before reporting, please make sure the issue has not been reported already, using the provided search tools.</b><br><br>The report is also shown below.]]></string>
     <string name="crash_reporting_toast_success">Report saved</string>
     <string name="crash_reporting_toast_failed">Error saving report</string>
+    <string name="action_touch">Touch on screen</string>
+    <string name="action_touch_desc">This action presses the screen at a random point to generate a touch gesture.</string>
 
 
 </resources>
