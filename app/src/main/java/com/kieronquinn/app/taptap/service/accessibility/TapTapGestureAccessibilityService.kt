@@ -104,6 +104,9 @@ class TapTapGestureAccessibilityService : LifecycleAccessibilityService() {
             is TapTapAccessibilityRouter.AccessibilityInput.PerformHamburgerClick -> {
                 performHamburgerClick()
             }
+            is TapTapAccessibilityRouter.AccessibilityInput.PerformSingleTouch -> {
+                performSingleTouch()
+            }
         }
     }
 
@@ -124,6 +127,13 @@ class TapTapGestureAccessibilityService : LifecycleAccessibilityService() {
             val gesture = createClick(25f.px, getStaticStatusBarHeight(
                 this@TapTapGestureAccessibilityService
             ) + 25f.px)
+            dispatchGesture(gesture, null, null)
+        }
+    }
+
+    private fun performSingleTouch() {
+        rootInActiveWindow?.run {
+            val gesture = createClick(100f.px, 100f.px)
             dispatchGesture(gesture, null, null)
         }
     }
