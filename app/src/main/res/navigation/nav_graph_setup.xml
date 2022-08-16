@@ -34,6 +34,9 @@
         <action
             android:id="@+id/action_setupInfoFragment_to_setupInfoWarningBottomSheetFragment"
             app:destination="@id/setupInfoWarningBottomSheetFragment" />
+        <action
+            android:id="@+id/action_setupInfoFragment_to_setupNotificationsFragment"
+            app:destination="@id/setupNotificationsFragment" />
     </fragment>
     <dialog
         android:id="@+id/setupInfoWarningBottomSheetFragment"
@@ -45,5 +48,15 @@
         android:name="com.kieronquinn.app.taptap.ui.screens.setup.complete.SetupCompleteFragment"
         android:label="SetupCompleteFragment"
         tools:layout="@layout/fragment_setup_complete" />
+    <fragment
+        android:id="@+id/setupNotificationsFragment"
+        android:name="com.kieronquinn.app.taptap.ui.screens.setup.notifications.SetupNotificationsFragment"
+        android:label="SetupNotificationsFragment"
+        tools:layout="@layout/fragment_setup_notifications">
+        <action
+            android:id="@+id/action_setupNotificationsFragment_to_setupGestureFragment"
+            app:destination="@id/setupGestureFragment"
+            app:popUpTo="@+id/setupInfoFragment"/>
+    </fragment>
 
 </navigation>

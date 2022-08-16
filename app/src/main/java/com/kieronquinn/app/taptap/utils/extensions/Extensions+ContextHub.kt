@@ -1,8 +1,6 @@
 package com.kieronquinn.app.taptap.utils.extensions
 
-import android.Manifest
 import android.content.Context
-import android.os.Build
 import android.util.Log
 import org.json.JSONObject
 import rikka.sui.Sui
@@ -16,9 +14,6 @@ val Context.canUseContextHub: Boolean
 
 val Context.canEnableContextHubLogging: Boolean
     get() = deviceHasContextHub && ContextHub_hasColumbusNanoApp()
-
-val Context.canUseContextHubLogging: Boolean
-    get() = canEnableContextHubLogging && doesHaveLogPermission()
 
 fun ContextHub_hasColumbusNanoApp(): Boolean {
     val preloadedNanoAppsFile = File("/system/vendor/etc/chre", "preloaded_nanoapps.json")
@@ -53,8 +48,4 @@ fun Context.doesShellHaveContextHubPermission(): Boolean {
             doesPackageHavePermission(PACKAGE_SHELL, PERMISSION_ACCESS_CONTEXT_HUB) || doesPackageHavePermission(PACKAGE_SHELL, PERMISSION_LOCATION_HARDWARE)
         }
     }
-}
-
-fun Context.doesHaveLogPermission(): Boolean {
-    return doesHavePermissions(Manifest.permission.READ_LOGS)
 }

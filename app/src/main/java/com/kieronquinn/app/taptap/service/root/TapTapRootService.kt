@@ -16,7 +16,6 @@ import com.kieronquinn.app.taptap.models.service.ActivityContainer
 import com.kieronquinn.app.taptap.models.service.SnapchatQuickTapState
 import com.kieronquinn.app.taptap.root.ITapTapRootService
 import com.kieronquinn.app.taptap.utils.extensions.SharedPreferences_openFile
-import com.kieronquinn.app.taptap.utils.extensions.execGrantReadLogsPermission
 import com.kieronquinn.app.taptap.utils.extensions.getContentProviderExternalCompat
 import com.kieronquinn.app.taptap.utils.extensions.queryCompat
 import com.topjohnwu.superuser.internal.Utils
@@ -120,10 +119,6 @@ class TapTapRootService : ITapTapRootService.Stub() {
         }else ActivityOptions.makeBasic()
         return activityManager.startActivityWithFeature(activityContainer.thread, context.packageName, null,
             intent, intent.type, null, null, 0, 0, null, activityOptions.toBundle())
-    }
-
-    override fun grantReadLogsPermission() {
-        execGrantReadLogsPermission()
     }
 
 }

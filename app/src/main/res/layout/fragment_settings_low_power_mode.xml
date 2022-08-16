@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:transitionGroup="true">
 
-    <com.kieronquinn.monetcompat.view.MonetSwitch
+    <com.kieronquinn.app.taptap.ui.views.MonetSwitch
         android:id="@+id/settings_low_power_mode_enable"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,11 +15,13 @@
         android:layout_marginTop="@dimen/margin_16"
         android:layout_marginEnd="@dimen/margin_16"
         android:elevation="8dp"
-        android:outlineProvider="none"
         android:enabled="false"
+        android:outlineProvider="none"
         android:text="@string/settings_low_power_mode_enable"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium.TapTap"
-        android:transitionName="switch" />
+        android:transitionName="switch"
+        app:thumbIcon="@drawable/ic_switch_checked"
+        app:thumbIconTint="?android:textColorTertiaryInverse" />
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/settings_low_power_mode_scroll_view"
@@ -63,9 +66,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/margin_16"
-                        android:textColor="?android:textColorPrimary"
                         android:text="@string/settings_low_power_mode_error_shizuku"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Small.TapTap.Medium"/>
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small.TapTap.Medium"
+                        android:textColor="?android:textColorPrimary" />
 
                 </LinearLayout>
 
@@ -76,30 +79,30 @@
                     android:orientation="horizontal">
 
                     <com.google.android.material.button.MaterialButton
+                        android:id="@+id/settings_low_power_mode_error_button_shizuku"
+                        style="@style/Widget.AppCompat.Button.Borderless"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/settings_low_power_mode_error_button_shizuku"
-                        android:padding="8dp"
-                        android:minHeight="0dp"
-                        style="@style/Widget.AppCompat.Button.Borderless"
                         android:background="@drawable/rounded_ripple_36"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Small.TapTap.Medium"
-                        android:textColor="?android:textColorPrimary"
+                        android:minHeight="0dp"
+                        android:padding="8dp"
+                        android:text="@string/settings_low_power_mode_error_button_shizuku"
                         android:textAllCaps="false"
-                        android:text="@string/settings_low_power_mode_error_button_shizuku"/>
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small.TapTap.Medium"
+                        android:textColor="?android:textColorPrimary" />
 
                     <com.google.android.material.button.MaterialButton
+                        android:id="@+id/settings_low_power_mode_error_button_sui"
+                        style="@style/Widget.AppCompat.Button.Borderless"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/settings_low_power_mode_error_button_sui"
-                        android:padding="8dp"
-                        android:minHeight="0dp"
-                        style="@style/Widget.AppCompat.Button.Borderless"
                         android:background="@drawable/rounded_ripple_36"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Small.TapTap.Medium"
-                        android:textColor="?android:textColorPrimary"
+                        android:minHeight="0dp"
+                        android:padding="8dp"
+                        android:text="@string/settings_low_power_mode_error_button_sui"
                         android:textAllCaps="false"
-                        android:text="@string/settings_low_power_mode_error_button_sui"/>
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small.TapTap.Medium"
+                        android:textColor="?android:textColorPrimary" />
 
 
                 </LinearLayout>
@@ -128,9 +131,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_16"
-                    android:textColor="?android:textColorPrimary"
                     android:text="@string/settings_low_power_mode_error_not_compatible"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Small.TapTap.Medium"/>
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small.TapTap.Medium"
+                    android:textColor="?android:textColorPrimary" />
 
             </LinearLayout>
 

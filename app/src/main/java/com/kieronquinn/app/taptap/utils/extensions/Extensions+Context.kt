@@ -1,5 +1,6 @@
 package com.kieronquinn.app.taptap.utils.extensions
 
+import android.Manifest
 import android.accessibilityservice.AccessibilityService
 import android.app.Activity
 import android.app.ActivityManager
@@ -11,6 +12,7 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.net.Uri
 import android.os.BatteryManager
+import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import android.util.TypedValue
@@ -164,5 +166,11 @@ fun Context.deviceHasGyroscope(): Boolean {
 fun Context.doesPackageHavePermission(packageName: String, permission: String): Boolean {
     return packageManager.getPackageInfo(packageName, PackageManager.GET_PERMISSIONS)
         .requestedPermissions.contains(permission)
+}
+
+fun Context.hasNotificationPermission(): Boolean {
+    if(Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) return true
+    return checkCallingOrSelfPermission(Manifest.permission.POST_NOTIFICATIONS) ==
+            PackageManager.PERMISSION_GRANTED
 }
 

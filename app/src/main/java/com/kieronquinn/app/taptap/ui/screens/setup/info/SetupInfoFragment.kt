@@ -16,7 +16,6 @@ import com.kieronquinn.app.taptap.ui.screens.setup.base.BaseSetupFragment
 import com.kieronquinn.app.taptap.utils.extensions.isDarkMode
 import com.kieronquinn.app.taptap.utils.extensions.onApplyInsets
 import com.kieronquinn.app.taptap.utils.extensions.onClicked
-import kotlinx.coroutines.flow.collect
 import me.saket.bettermovementmethod.BetterLinkMovementMethod
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -72,7 +71,7 @@ class SetupInfoFragment: BaseSetupFragment<FragmentSetupInfoBinding>(FragmentSet
 
     private fun setupNext() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
         binding.setupInfoNext.onClicked().collect {
-            viewModel.onNextClicked()
+            viewModel.onNextClicked(requireContext())
         }
     }
 

@@ -1,37 +1,39 @@
 package com.kieronquinn.app.taptap.ui.screens.settings.nativemode
 
 import android.content.Context
-import android.content.Intent
-import android.net.Uri
+import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.components.navigation.ContainerNavigation
-import com.kieronquinn.app.taptap.repositories.service.TapTapRootServiceRepository
-import com.kieronquinn.app.taptap.repositories.service.TapTapShizukuServiceRepository
-import com.kieronquinn.app.taptap.utils.extensions.doesHaveLogPermission
+import com.kieronquinn.app.taptap.components.settings.TapTapSettings
+import com.kieronquinn.app.taptap.components.sui.SuiProvider
+import com.kieronquinn.app.taptap.ui.views.MonetSwitch
+import com.kieronquinn.app.taptap.utils.extensions.Shizuku_requestPermissionIfNeeded
 import com.kieronquinn.app.taptap.utils.extensions.getColumbusSetupNotificationRequiredFlow
 import com.kieronquinn.app.taptap.utils.extensions.isNativeColumbusEnabled
-import com.kieronquinn.monetcompat.view.MonetSwitch
+import com.kieronquinn.app.taptap.utils.extensions.isPackageInstalled
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
+import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.KoinScopeComponent
 import org.koin.core.component.createScope
+import rikka.shizuku.ShizukuProvider
 
 abstract class SettingsNativeModeViewModel: ViewModel(), KoinScopeComponent, KoinComponent {
 
     abstract val toastBus: Flow<Int>
     abstract val setupNotificationBus: Flow<Unit>
     abstract val nativeModeEnabled: StateFlow<Boolean>
-    abstract val isSetupRequired: StateFlow<Boolean>
+    abstract val shizukuInstalled: Flow<Boolean>
     abstract val switchEnabled: Flow<Boolean>
-    abstract fun checkState(context: Context)
 
-    abstract fun onManualSetupClicked()
-    abstract fun onAutomaticSetupClicked(context: Context)
+    abstract fun checkState(context: Context)
+    abstract fun onShizukuClicked(context: Context)
+    abstract fun onSuiClicked()
     abstract fun onSwitchClicked(switch: MonetSwitch)
 
 }
@@ -39,17 +41,27 @@ abstract class SettingsNativeModeViewModel: ViewModel(), KoinScopeComponent, Koi
 class SettingsNativeModeViewModelImpl(
     context: Context,
     private val navigation: ContainerNavigation,
-    private val rootServiceRepository: TapTapRootServiceRepository
+    private val suiProvider: SuiProvider,
+    settings: TapTapSettings
 ): SettingsNativeModeViewModel() {
 
     companion object {
         private const val PACKAGE_SYSTEM_SETTINGS = "com.android.settings"
-        private const val LINK_SETUP = "https://kieronquinn.co.uk/redirect/TapTap/nativesetup"
     }
 
     private val settingsIntent = context.packageManager.getLaunchIntentForPackage(
         PACKAGE_SYSTEM_SETTINGS
     )
+
+    private val hasPreviouslyGrantedSui = settings.hasPreviouslyGrantedSui
+
+    private val suiGranted = MutableStateFlow(false)
+
+    private val _shizukuInstalled = MutableSharedFlow<Boolean>(replay = 1, onBufferOverflow = BufferOverflow.DROP_OLDEST)
+    override val shizukuInstalled = combine(_shizukuInstalled, suiGranted) { shizuku, sui ->
+        //We shouldn't show the Shizuku warning if sui is granted
+        shizuku || sui
+    }
 
     override val scope by lazy {
         createScope(this)
@@ -57,69 +69,73 @@ class SettingsNativeModeViewModelImpl(
 
     override val toastBus = MutableSharedFlow<Int>()
     override val nativeModeEnabled = MutableStateFlow(context.isNativeColumbusEnabled())
-    override val isSetupRequired = MutableStateFlow(!context.doesHaveLogPermission())
-    override val switchEnabled = isSetupRequired.map { !it }
+    override val switchEnabled = shizukuInstalled
     override val setupNotificationBus = context.getColumbusSetupNotificationRequiredFlow()
-
-    private val shizukuServiceRepository by scope.inject<TapTapShizukuServiceRepository>()
 
     override fun onCleared() {
         super.onCleared()
         scope.close()
     }
 
-    override fun checkState(context: Context) {
-        viewModelScope.launch {
-            nativeModeEnabled.emit(context.isNativeColumbusEnabled())
-            isSetupRequired.emit(!context.doesHaveLogPermission())
-        }
-    }
-
-    override fun onAutomaticSetupClicked(context: Context) {
-        viewModelScope.launch(Dispatchers.IO) {
-            //Give the user a warning as this will kill the app
-            toastBus.emit(R.string.settings_native_mode_automatic_warning_toast)
-            delay(1500L)
-            if(!runAutomaticSetup()){
-                toastBus.emit(R.string.settings_native_mode_automatic_toast)
-            }
-        }
-    }
-
-    private suspend fun runAutomaticSetup(): Boolean {
-        val shizukuResponse = shizukuServiceRepository.runWithShellService {
-            it.grantReadLogsPermission()
-        }
-        if(shizukuResponse is TapTapShizukuServiceRepository.ShizukuServiceResponse.Success)
-            return true
-        val suiResponse = shizukuServiceRepository.runWithService {
-            it.grantReadLogsPermission()
-        }
-        if(suiResponse is TapTapShizukuServiceRepository.ShizukuServiceResponse.Success)
-            return true
-        val rootResponse = rootServiceRepository.runWithService {
-            it.grantReadLogsPermission()
-        }
-        return rootResponse != null
-    }
-
-    override fun onManualSetupClicked() {
-        viewModelScope.launch {
-            navigation.navigate(Intent(Intent.ACTION_VIEW).apply {
-                data = Uri.parse(LINK_SETUP)
-            })
-        }
-    }
-
     override fun onSwitchClicked(switch: MonetSwitch) {
-        switch.isChecked = !switch.isChecked
+        switch.isChecked = nativeModeEnabled.value
         viewModelScope.launch {
+            if(!nativeModeEnabled.value) {
+                //Check permission first
+                val permissionGranted = checkPermissions()
+                if (permissionGranted == null) {
+                    //Shizuku is not running
+                    Toast.makeText(
+                        switch.context,
+                        R.string.settings_low_power_mode_error_toast,
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+                if (permissionGranted != true) {
+                    switch.isChecked = false
+                    return@launch
+                }
+            }
             navigation.navigate(settingsIntent ?: return@launch)
             if(switch.context.isNativeColumbusEnabled()) {
                 toastBus.emit(R.string.settings_native_mode_launch_toast_disable)
             }else{
                 toastBus.emit(R.string.settings_native_mode_launch_toast)
             }
+        }
+    }
+
+    private suspend fun checkPermissions() = withContext(Dispatchers.IO) {
+        return@withContext Shizuku_requestPermissionIfNeeded()
+    }
+
+    override fun checkState(context: Context) {
+        viewModelScope.launch {
+            nativeModeEnabled.emit(context.isNativeColumbusEnabled())
+            if(hasPreviouslyGrantedSui.get()){
+                checkSui()
+            }
+            _shizukuInstalled.emit(context.isPackageInstalled(ShizukuProvider.MANAGER_APPLICATION_ID))
+        }
+    }
+
+    private suspend fun checkSui() = withContext(Dispatchers.IO) {
+        if(!suiProvider.isSui) return@withContext false
+        //Sui uses the same permission flow as Shizuku, but needs manual checking as we can't check for a manager app
+        val sui = Shizuku_requestPermissionIfNeeded() ?: false
+        hasPreviouslyGrantedSui.set(sui)
+        suiGranted.emit(sui)
+    }
+
+    override fun onShizukuClicked(context: Context) {
+        viewModelScope.launch {
+            navigation.navigate(SettingsNativeModeFragmentDirections.actionSettingsNativeModeFragmentToSettingsLowPowerModeShizukuInfoFragment())
+        }
+    }
+
+    override fun onSuiClicked() {
+        viewModelScope.launch {
+            checkSui()
         }
     }
 

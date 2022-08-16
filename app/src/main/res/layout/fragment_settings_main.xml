@@ -1,32 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:transitionGroup="true"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:transitionGroup="true">
 
-    <com.kieronquinn.monetcompat.view.MonetSwitch
+    <com.kieronquinn.app.taptap.ui.views.MonetSwitch
+        android:id="@+id/settings_main_enable_tap_tap"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_16"
-        android:layout_marginEnd="@dimen/margin_16"
         android:layout_marginTop="@dimen/margin_16"
+        android:layout_marginEnd="@dimen/margin_16"
         android:elevation="8dp"
-        android:transitionName="switch"
         android:outlineProvider="none"
-        android:id="@+id/settings_main_enable_tap_tap"
+        android:text="@string/settings_main_enable_tap_tap"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium.TapTap"
-        android:text="@string/settings_main_enable_tap_tap"/>
+        android:transitionName="switch"
+        app:thumbIcon="@drawable/ic_switch_checked"
+        app:thumbIconTint="?android:textColorTertiaryInverse" />
 
     <com.kieronquinn.app.taptap.ui.views.LifecycleAwareRecyclerView
+        android:id="@+id/settings_main_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="32dp"
-        android:paddingBottom="@dimen/margin_16"
         android:layout_marginTop="-16dp"
         android:clipToPadding="false"
-        tools:listitem="@layout/item_settings_text_item"
-        android:id="@+id/settings_main_recycler_view"/>
+        android:paddingTop="32dp"
+        android:paddingBottom="@dimen/margin_16"
+        tools:listitem="@layout/item_settings_text_item" />
 
 </LinearLayout>

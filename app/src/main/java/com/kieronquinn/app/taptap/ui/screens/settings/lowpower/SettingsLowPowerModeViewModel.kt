@@ -9,8 +9,11 @@ import com.kieronquinn.app.taptap.components.settings.TapTapSettings
 import com.kieronquinn.app.taptap.components.settings.invert
 import com.kieronquinn.app.taptap.components.sui.SuiProvider
 import com.kieronquinn.app.taptap.ui.screens.settings.generic.GenericSettingsViewModel
-import com.kieronquinn.app.taptap.utils.extensions.*
-import com.kieronquinn.monetcompat.view.MonetSwitch
+import com.kieronquinn.app.taptap.ui.views.MonetSwitch
+import com.kieronquinn.app.taptap.utils.extensions.ContextHub_hasColumbusNanoApp
+import com.kieronquinn.app.taptap.utils.extensions.Shizuku_requestPermissionIfNeeded
+import com.kieronquinn.app.taptap.utils.extensions.deviceHasContextHub
+import com.kieronquinn.app.taptap.utils.extensions.isPackageInstalled
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.*

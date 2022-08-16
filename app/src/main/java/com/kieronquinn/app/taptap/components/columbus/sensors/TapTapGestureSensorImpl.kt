@@ -3,7 +3,6 @@ package com.kieronquinn.app.taptap.components.columbus.sensors
 import android.content.Context
 import android.hardware.SensorEvent
 import android.os.Handler
-import android.util.Log
 import com.google.android.columbus.sensors.GestureSensorImpl
 import com.kieronquinn.app.taptap.components.settings.TapModel
 import com.kieronquinn.app.taptap.components.settings.TapTapSettings
@@ -65,7 +64,6 @@ class TapTapGestureSensorImpl(
                 }
                 //Double tap
                 2 -> handler.post {
-                    Log.d("TTC", "reportGestureDetected from gesture sensor")
                     reportGestureDetected(1, DetectionProperties(false))
                 }
                 //Triple tap

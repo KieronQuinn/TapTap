@@ -22,6 +22,7 @@ import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.components.columbus.feedback.custom.WakeDeviceFeedback
 import com.kieronquinn.app.taptap.components.columbus.gates.TapTapWhenGate
 import com.kieronquinn.app.taptap.service.accessibility.TapTapAccessibilityService
+import com.kieronquinn.app.taptap.service.accessibility.TapTapGestureAccessibilityService
 import com.kieronquinn.app.taptap.utils.extensions.getAccessibilityIntent
 import com.kieronquinn.app.taptap.utils.extensions.isServiceRunning
 import com.kieronquinn.app.taptap.utils.extensions.runOnDestroy
@@ -150,7 +151,7 @@ abstract class TapTapAction(
     }
 
     private fun showGestureAccessibilityNotification() {
-        val intent = context.getAccessibilityIntent(TapTapAccessibilityService::class.java)
+        val intent = context.getAccessibilityIntent(TapTapGestureAccessibilityService::class.java)
         showActionNotification(
             intent,
             R.string.notification_action_gesture_accessibility_error_title,
@@ -203,7 +204,7 @@ abstract class TapTapAction(
      *  returns false
      */
     protected fun showGestureAccessibilityNotificationIfNeeded(): Boolean {
-        return if(!context.isServiceRunning(TapTapAccessibilityService::class.java)) {
+        return if(!context.isServiceRunning(TapTapGestureAccessibilityService::class.java)) {
             showGestureAccessibilityNotification()
             true
         }else false

@@ -173,6 +173,7 @@ abstract class SettingsActionsAddGenericFragment<T : ViewBinding>(inflate: (Layo
                 //Quick Setting picker handles action result itself
                 viewModel.showQuickSettingPicker()
             }
+            else -> {}
         }
     }
 

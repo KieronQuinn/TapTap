@@ -21,13 +21,15 @@ import com.kieronquinn.app.taptap.components.navigation.ContainerNavigation
 import com.kieronquinn.app.taptap.components.navigation.setupWithNavigation
 import com.kieronquinn.app.taptap.databinding.FragmentContainerBinding
 import com.kieronquinn.app.taptap.ui.base.*
-import com.kieronquinn.app.taptap.ui.screens.container.ContainerSharedViewModel.FabState.*
+import com.kieronquinn.app.taptap.ui.screens.container.ContainerSharedViewModel.FabState.Hidden
+import com.kieronquinn.app.taptap.ui.screens.container.ContainerSharedViewModel.FabState.Shown
 import com.kieronquinn.app.taptap.utils.extensions.*
 import com.kieronquinn.monetcompat.extensions.applyMonet
 import com.kieronquinn.monetcompat.extensions.toArgb
-import com.kieronquinn.monetcompat.extensions.views.applyMonet
 import com.kieronquinn.monetcompat.extensions.views.setTint
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -103,7 +105,7 @@ class ContainerFragment: BoundFragment<FragmentContainerBinding>(FragmentContain
         binding.root.onApplyInsets { _, insets ->
             updatePadding(bottom = insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom)
         }
-        applyMonet()
+        setBackgroundColor(monet.getBackgroundColor(context))
         val color = if(requireContext().isDarkMode){
             monet.getMonetColors().neutral2[800]?.toArgb()
         }else{
@@ -160,7 +162,10 @@ class ContainerFragment: BoundFragment<FragmentContainerBinding>(FragmentContain
     }
 
     private fun setupBack() {
-        requireActivity().onBackPressedDispatcher.addCallback(this) {
+        val callback = requireActivity().onBackPressedDispatcher.addCallback(
+            this,
+            shouldBackDispatcherBeEnabled()
+        ) {
             (navHostFragment.getTopFragment() as? ProvidesBack)?.let {
                 if(it.onBackPressed()) return@addCallback
             }
@@ -168,6 +173,15 @@ class ContainerFragment: BoundFragment<FragmentContainerBinding>(FragmentContain
                 requireActivity().finish()
             }
         }
+        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+            navController.onDestinationChanged().collect {
+                callback.isEnabled = shouldBackDispatcherBeEnabled()
+            }
+        }
+    }
+
+    private fun shouldBackDispatcherBeEnabled(): Boolean {
+        return navHostFragment.getTopFragment() is ProvidesBack || navController.hasBackAvailable()
     }
 
     private fun setupNavigation() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {

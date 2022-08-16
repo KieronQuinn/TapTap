@@ -21,6 +21,11 @@
     <string name="setup_foss_info_content_lower">If you like the Tap, Tap app and wish to make a donation, the link to do so is near the bottom of the \"More\" page after setup. Regardless of whether you donate, your sharing and support and use of Tap, Tap is much appreciated, thank you!</string>
     <string name="setup_info_next">Next</string>
 
+    <!-- Setup > Notifications -->
+    <string name="setup_notifications_title">Notifications</string>
+    <string name="setup_notifications_content">Tap, Tap uses notifications to inform you of action and gate requirements, as well as possible errors and other important app functions.\n\nPlease enable notifications to allow the app to work properly, you can disable the background service notification <b>only</b> at a later time.</string>
+    <string name="setup_notifications_request">Grant Permission</string>
+
     <!-- Setup > Gesture -->
     <string name="setup_gesture_toolbar">Gesture Configuration</string>
     <string name="setup_gesture_device_size"><![CDATA[Select the best model size for your device.<br><b>Currently selected: %1$s</b><br>If you are struggling to get any response to the gesture, try some of the other models.]]></string>
@@ -186,14 +191,9 @@
 
     <!-- Settings > Settings > Native Mode -->
     <string name="settings_native_mode">Native Mode</string>
-    <string name="settings_native_mode_desc">Native Mode uses the system Quick Tap feature to run with low battery usage, and without root or a Shizuku service, with some restrictions.</string>
+    <string name="settings_native_mode_desc">Native Mode uses the system Quick Tap feature to run with low battery usage, using Shizuku or Sui, with some restrictions.</string>
     <string name="settings_native_mode_desc_unavailable">Native Mode is unavailable when Low Power Mode is enabled.</string>
     <string name="settings_native_mode_enable">Enable Native Mode</string>
-    <string name="settings_native_mode_error_setup"><b>Additional Setup Required</b>\nYou must grant the READ_LOGS permission for Native Mode to work. This can either be done manually using ADB, or automatically with root or Shizuku.\n<b>This only needs to be done once</b></string>
-    <string name="settings_native_mode_error_setup_manually">Setup Manually</string>
-    <string name="settings_native_mode_error_setup_automatically">Setup Automatically (Root/Shizuku)</string>
-    <string name="settings_native_mode_automatic_warning_toast">Please re-open Tap, Tap to continue setup</string>
-    <string name="settings_native_mode_automatic_toast">Error setting up automatically, please use manual setup</string>
     <string name="settings_native_mode_launch_toast">Enable Quick Tap in System > Gestures &amp; set Tap, Tap as the Open app Action</string>
     <string name="settings_native_mode_launch_toast_disable">Disable Quick Tap in System > Gestures</string>
     <string name="setting_native_mode_content">Native Mode uses the built-in Quick Tap feature on Pixels to run Tap, Tap. This has the benefit of having almost as low battery consumption as Low Power Mode, but does have two downsides:\n• <b>Tap, Tap will not work when the screen is off</b>\n• <b>Triple Tap may be less reliable</b>\n\nTo enable Native Mode, you must enable Quick Tap in the system settings, and set the action to launch Tap, Tap.</string>
@@ -311,7 +311,7 @@
     <string name="about_contributors_main">Columbus</string>
     <string name="about_contributors_main_content"><![CDATA[\'Columbus\' Model and base code created by Google, from Android 11 Developer Preview 1 and Android 12 (<a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>)]]></string>
     <string name="about_contributors_community">Community Contributions</string>
-    <string name="about_contributors_community_content"><b>Tasker integration</b>: João Dias\n<b>Music control actions</b>: timfedo\n<b>MD2 UI and Chrome Custom Tabs</b>: Giorgio Cantoni\n<b>Power Dialog action</b>: Adrian Campos\n<b>DND feedback and Sound Profiles action</b>: Ashutosh Singh\n<b>Launch Search action</b>: arkon\n<b>Force Do not Disturb action:</b> Kylian Meulin</string>
+    <string name="about_contributors_community_content"><b>Tasker integration</b>: João Dias\n<b>Music control actions</b>: timfedo\n<b>MD2 UI and Chrome Custom Tabs</b>: Giorgio Cantoni\n<b>Power Dialog action</b>: Adrian Campos\n<b>DND feedback and Sound Profiles action</b>: Ashutosh Singh\n<b>Launch Search action</b>: arkon\n<b>Force Do not Disturb action:</b> Kylian Meulin\n<b>Touch on Screen action:</b> Mauri de Souza Meneguzzo</string>
     <string name="about_contributors_icons">Icons</string>
     <string name="about_contributors_icons_content"><![CDATA[Icons by <b><a href="https://material.io/resources/icons">Material Icons</a></b> (<a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache Licence 2.0</a>)<br><b><a href="https://github.com/Templarian/MaterialDesign">Material Design Icons</a></b> (<a href="https://github.com/Templarian/MaterialDesign/blob/master/LICENSE">Pictogrammers Free Licence</a>)<br><b><a href="https://www.freepik.com/">Freepik</a></b> (<a href="https://www.flaticon.com/license/pack/197373">Flaticon Licence</a>)<br><b><a href="https://www.flaticon.com/free-icon/smartphone_2628265">Vitaly Gorbachev</a></b> (<a href="https://www.flaticon.com/license/icon/2628265">Flaticon Licence</a>)]]></string>
     <string name="about_translators">Translators</string>

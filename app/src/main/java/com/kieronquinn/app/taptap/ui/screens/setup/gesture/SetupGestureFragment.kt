@@ -1,14 +1,12 @@
 package com.kieronquinn.app.taptap.ui.screens.setup.gesture
 
 import android.annotation.SuppressLint
-import android.graphics.drawable.AnimatedVectorDrawable
 import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
 import androidx.core.view.updateLayoutParams
@@ -34,7 +32,6 @@ import com.kieronquinn.app.taptap.ui.views.RippleView
 import com.kieronquinn.app.taptap.utils.extensions.*
 import com.kieronquinn.monetcompat.extensions.views.applyMonet
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.collect
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.math.roundToInt
@@ -275,7 +272,11 @@ class SetupGestureFragment: BaseSetupFragment<FragmentSetupGestureBinding>(Fragm
         }
         viewLifecycleOwner.lifecycleScope.launchWhenResumed {
             binding.setupGestureBottomSheetToolbar.onNavigationIconClicked().collect {
-                onBackPressed()
+                if(viewModel.bottomSheetExpanded.value) {
+                    onBackPressed()
+                }else{
+                    toggleBottomSheet()
+                }
             }
         }
         viewLifecycleOwner.lifecycleScope.launchWhenResumed {

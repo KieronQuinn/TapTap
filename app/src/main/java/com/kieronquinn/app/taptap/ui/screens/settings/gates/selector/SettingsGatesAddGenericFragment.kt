@@ -106,6 +106,7 @@ abstract class SettingsGatesAddGenericFragment<T : ViewBinding>(inflate: (Layout
                 //Package picker handles gate result itself
                 viewModel.showAppPicker(gate)
             }
+            else -> {}
         }
     }
 

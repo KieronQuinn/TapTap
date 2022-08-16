@@ -1,10 +1,13 @@
 package com.kieronquinn.app.taptap.ui.screens.settings.main
 
+import android.Manifest
+import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kieronquinn.app.taptap.R
@@ -17,7 +20,6 @@ import com.kieronquinn.app.taptap.ui.screens.settings.generic.GenericSettingsAda
 import com.kieronquinn.app.taptap.ui.screens.settings.generic.GenericSettingsViewModel.SettingsItem
 import com.kieronquinn.app.taptap.utils.extensions.applyBottomInsets
 import com.kieronquinn.app.taptap.utils.extensions.onClicked
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -29,6 +31,12 @@ class SettingsMainFragment :
     private val sharedViewModel by sharedViewModel<ContainerSharedViewModel>()
     private val adapter by lazy {
         SettingsMainAdapter()
+    }
+
+    private val notificationPermission = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ){
+        //We don't actually care about the result here
     }
 
     private val items by lazy {
@@ -71,6 +79,7 @@ class SettingsMainFragment :
         setupSwitch()
         setupRecyclerView()
         viewModel.checkInternetPermission()
+        requestNotificationPermissionIfPossible()
     }
 
     private fun setupSwitch() {
@@ -120,6 +129,11 @@ class SettingsMainFragment :
             }
         }
         return false
+    }
+
+    private fun requestNotificationPermissionIfPossible() {
+        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) return
+        notificationPermission.launch(Manifest.permission.POST_NOTIFICATIONS)
     }
 
     inner class SettingsMainAdapter: GenericSettingsAdapter(requireContext(), binding.settingsMainRecyclerView, items)

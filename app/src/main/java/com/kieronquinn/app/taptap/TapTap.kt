@@ -53,7 +53,10 @@ import com.kieronquinn.app.taptap.repositories.snapchat.SnapchatRepository
 import com.kieronquinn.app.taptap.repositories.snapchat.SnapchatRepositoryImpl
 import com.kieronquinn.app.taptap.repositories.update.UpdateRepository
 import com.kieronquinn.app.taptap.repositories.update.UpdateRepositoryImpl
-import com.kieronquinn.app.taptap.repositories.whengates.*
+import com.kieronquinn.app.taptap.repositories.whengates.WhenGatesRepositoryDouble
+import com.kieronquinn.app.taptap.repositories.whengates.WhenGatesRepositoryDoubleImpl
+import com.kieronquinn.app.taptap.repositories.whengates.WhenGatesRepositoryTriple
+import com.kieronquinn.app.taptap.repositories.whengates.WhenGatesRepositoryTripleImpl
 import com.kieronquinn.app.taptap.service.foreground.TapTapForegroundService
 import com.kieronquinn.app.taptap.ui.screens.container.ContainerSharedViewModel
 import com.kieronquinn.app.taptap.ui.screens.container.ContainerSharedViewModelImpl
@@ -141,6 +144,8 @@ import com.kieronquinn.app.taptap.ui.screens.setup.info.SetupInfoViewModel
 import com.kieronquinn.app.taptap.ui.screens.setup.info.SetupInfoViewModelImpl
 import com.kieronquinn.app.taptap.ui.screens.setup.landing.SetupLandingViewModel
 import com.kieronquinn.app.taptap.ui.screens.setup.landing.SetupLandingViewModelImpl
+import com.kieronquinn.app.taptap.ui.screens.setup.notifications.SetupNotificationsViewModel
+import com.kieronquinn.app.taptap.ui.screens.setup.notifications.SetupNotificationsViewModelImpl
 import com.kieronquinn.app.taptap.ui.screens.setup.upgrade.SetupUpgradeViewModel
 import com.kieronquinn.app.taptap.ui.screens.setup.upgrade.SetupUpgradeViewModelImpl
 import com.kieronquinn.app.taptap.utils.dummy.DummyStatusBarStateController
@@ -240,11 +245,17 @@ class TapTap : Application() {
         viewModel<ReachabilityViewModel> { ReachabilityViewModelImpl(get(), get()) }
         viewModel<SetupGestureViewModel> { SetupGestureViewModelImpl(get(), get(), get(), get(), get()) }
         viewModel<SetupInfoViewModel> { SetupInfoViewModelImpl(get(), get()) }
+        viewModel<SetupNotificationsViewModel> { SetupNotificationsViewModelImpl(get()) }
         viewModel<SetupGestureConfigurationViewModel> { SetupGestureConfigurationViewModelImpl(get(), get()) }
         viewModel<SetupCompleteViewModel> { SetupCompleteViewModelImpl(get(), get()) }
         viewModel<SetupUpgradeViewModel> { SetupUpgradeViewModelImpl(get(), get()) }
         viewModel<DisableColumbusViewModel> { DisableColumbusViewModelImpl(get(), get()) }
-        viewModel<SettingsNativeModeViewModel> { SettingsNativeModeViewModelImpl(get(), get(), get()) }
+        viewModel<SettingsNativeModeViewModel> { SettingsNativeModeViewModelImpl(
+            get(),
+            get(),
+            get(),
+            get()
+        ) }
     }
 
     private val navigationModule = module {
@@ -317,6 +328,7 @@ class TapTap : Application() {
                 TapTapCHRELogSensor(
                     this,
                     columbusInitializer.isTripleTapEnabled,
+                    get(),
                     get()
                 )
             }

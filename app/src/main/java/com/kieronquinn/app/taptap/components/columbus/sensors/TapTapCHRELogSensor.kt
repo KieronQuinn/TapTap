@@ -1,24 +1,26 @@
 package com.kieronquinn.app.taptap.components.columbus.sensors
 
 import android.os.SystemClock
-import android.util.Log
 import com.google.android.columbus.sensors.GestureSensor
 import com.google.android.columbus.sensors.TapRT
 import com.kieronquinn.app.taptap.components.columbus.sensors.ServiceEventEmitter.ServiceEvent
+import com.kieronquinn.app.taptap.repositories.service.TapTapShizukuServiceRepository
+import com.kieronquinn.app.taptap.shizuku.ITapTapColumbusLogCallback
 import com.kieronquinn.app.taptap.utils.extensions.runOnClose
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.awaitClose
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.flowOn
 import org.koin.core.scope.Scope
-import java.time.*
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 class TapTapCHRELogSensor(
     internal val scope: Scope,
     private val isTripleTapEnabled: Boolean,
-    private val serviceEventEmitter: ServiceEventEmitter
-): GestureSensor() {
+    private val serviceEventEmitter: ServiceEventEmitter,
+    private val shizuku: TapTapShizukuServiceRepository
+) : GestureSensor() {
 
     private val lifecycleScope = MainScope()
     private val tapEvents = ArrayDeque<Long>()
@@ -26,34 +28,31 @@ class TapTapCHRELogSensor(
 
     companion object {
         private const val mMaxTimeGapTripleNs = 1000000000L
-        private val LOGCAT_TIME_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
-        private const val COLUMBUS_LOG_MESSAGE_FOOTER = "[COLUMBUS] back tap detected!"
-        private const val COLUMBUS_LOG_TAG = "CHRE"
     }
 
-    private val logcatLines = callbackFlow {
-        val time = LOGCAT_TIME_FORMAT.format(LocalDateTime.now()) + ".000"
-        val command = arrayOf("logcat", "-s", COLUMBUS_LOG_TAG, "-T", time)
-        var process: Process? = null
-        val processThread = Thread {
-            process = ProcessBuilder(*command).start().also {
-                it.inputStream.reader().useLines { lines ->
-                    lines.forEach { line ->
-                        trySend(Pair(SystemClock.elapsedRealtimeNanos(), line.trim()))
-                    }
-                }
+    private val columbusTimestamps = callbackFlow {
+        val listener = object : ITapTapColumbusLogCallback.Stub() {
+            override fun onLogEvent(timestamp: Long) {
+                trySend(timestamp)
             }
         }
-        processThread.start()
+        val result = shizuku.runWithShellService {
+            it.setColumbusLogListener(listener)
+        }
+        when (result) {
+            is TapTapShizukuServiceRepository.ShizukuServiceResponse.Success -> {
+                serviceEventEmitter.postServiceEvent(ServiceEvent.Started)
+            }
+            is TapTapShizukuServiceRepository.ShizukuServiceResponse.Failed -> {
+                serviceEventEmitter.postServiceEvent(ServiceEvent.Failed(result.reason))
+            }
+        }
         awaitClose {
-            process?.destroy()
-            processThread.interrupt()
+            shizuku.runWithShellServiceIfAvailable {
+                it.setColumbusLogListener(null)
+            }
         }
     }.flowOn(Dispatchers.IO)
-
-    private val columbusTimestamps = logcatLines.mapNotNull {
-        if(it.second.endsWith(COLUMBUS_LOG_MESSAGE_FOOTER)) it.first else null
-    }
 
     @Synchronized
     fun handleTapEvents(
@@ -117,17 +116,14 @@ class TapTapCHRELogSensor(
     }
 
     private fun reportGestureDetected(flags: Int, isHapticConsumed: Boolean) {
-        Log.d("TTC", "reportGestureDetected from log sensor")
         reportGestureDetected(flags, DetectionProperties(isHapticConsumed))
     }
 
     private fun setupTaps() = lifecycleScope.launch(Dispatchers.IO) {
-        columbusTimestamps.onStart {
-            serviceEventEmitter.postServiceEvent(ServiceEvent.Started)
-        }.collect {
-            if(isTripleTapEnabled){
+        columbusTimestamps.collect {
+            if (isTripleTapEnabled) {
                 handleTapEventsTriple(listOf(it))
-            }else{
+            } else {
                 handleTapEvents(listOf(it))
             }
         }

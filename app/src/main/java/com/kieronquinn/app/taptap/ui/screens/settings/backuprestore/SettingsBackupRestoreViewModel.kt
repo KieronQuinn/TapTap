@@ -13,7 +13,7 @@ import java.time.format.DateTimeFormatter
 abstract class SettingsBackupRestoreViewModel: ViewModel() {
 
     abstract fun onBackupClicked(launcher: ActivityResultLauncher<String>)
-    abstract fun onRestoreClicked(launcher: ActivityResultLauncher<Array<String?>>)
+    abstract fun onRestoreClicked(launcher: ActivityResultLauncher<Array<String>>)
 
     abstract fun onBackupFileClicked(uri: Uri)
     abstract fun onRestoreFileClicked(uri: Uri)
@@ -37,8 +37,8 @@ class SettingsBackupRestoreViewModelImpl(private val navigation: ContainerNaviga
         }
     }
 
-    override fun onRestoreClicked(launcher: ActivityResultLauncher<Array<String?>>) {
-        launcher.launch(arrayOf(TAP_TAP_BACKUP_MIME_TYPE))
+    override fun onRestoreClicked(launcher: ActivityResultLauncher<Array<String>>) {
+        launcher.launch(listOfNotNull(TAP_TAP_BACKUP_MIME_TYPE).toTypedArray())
     }
 
     override fun onRestoreFileClicked(uri: Uri) {
