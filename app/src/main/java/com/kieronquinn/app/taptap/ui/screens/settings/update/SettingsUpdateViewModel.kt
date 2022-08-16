@@ -125,6 +125,7 @@ class SettingsUpdateViewModelImpl(private val navigation: ContainerNavigation, c
                     state.emit(State.Done(it.outputUri))
                     startInstall()
                 }
+                else -> {}
             }
         }
     }

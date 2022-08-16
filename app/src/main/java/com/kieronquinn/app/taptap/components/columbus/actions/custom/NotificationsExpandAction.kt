@@ -3,7 +3,6 @@ package com.kieronquinn.app.taptap.components.columbus.actions.custom
 import android.accessibilityservice.AccessibilityService
 import android.content.Context
 import android.os.Build
-import android.util.Log
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.coroutineScope
 import com.google.android.columbus.feedback.FeedbackEffect
@@ -11,7 +10,6 @@ import com.google.android.columbus.sensors.GestureSensor
 import com.kieronquinn.app.taptap.components.accessibility.TapTapAccessibilityRouter
 import com.kieronquinn.app.taptap.components.columbus.actions.TapTapAction
 import com.kieronquinn.app.taptap.components.columbus.gates.TapTapWhenGate
-import kotlinx.coroutines.flow.collect
 import org.koin.core.component.inject
 
 class NotificationsExpandAction(
@@ -38,7 +36,6 @@ class NotificationsExpandAction(
         serviceLifecycle.coroutineScope.launchWhenCreated {
             accessibilityRouter.accessibilityOutputBus.collect {
                 if(it is TapTapAccessibilityRouter.AccessibilityOutput.NotificationShadeState){
-                    Log.d("NEA", "Shade open: ${it.open}")
                     isNotificationShadeOpen = it.open
                 }
             }

@@ -10,7 +10,6 @@ import com.kieronquinn.app.taptap.ui.base.BackAvailable
 import com.kieronquinn.app.taptap.ui.base.BoundFragment
 import com.kieronquinn.app.taptap.utils.extensions.applyBottomInsets
 import com.kieronquinn.app.taptap.utils.extensions.onClicked
-import kotlinx.coroutines.flow.collect
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SettingsBackupRestoreFragment: BoundFragment<FragmentSettingsBackupRestoreBinding>(FragmentSettingsBackupRestoreBinding::inflate), BackAvailable {

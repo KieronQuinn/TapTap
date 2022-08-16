@@ -25,7 +25,6 @@ import com.kieronquinn.app.taptap.ui.views.LifecycleAwareRecyclerView
 import com.kieronquinn.app.taptap.utils.extensions.*
 import com.kieronquinn.monetcompat.core.MonetCompat
 import com.kieronquinn.monetcompat.extensions.views.applyMonet
-import kotlinx.coroutines.flow.collect
 import me.saket.bettermovementmethod.BetterLinkMovementMethod
 
 abstract class GenericSettingsAdapter(
@@ -224,7 +223,7 @@ abstract class GenericSettingsAdapter(
         val isEnabled = item.isEnabled()
         itemSettingsSwitchSwitch.isEnabled = isEnabled
         itemSettingsSwitchSwitch.isChecked = item.setting.getSync()
-        itemSettingsSwitchSwitch.applyMonet(monet)
+        itemSettingsSwitchSwitch.applyMonet()
         itemSettingsSwitchSwitch.alpha = if (isEnabled) 1f else 0.5f
         itemSettingsSwitchTitle.alpha = if (isEnabled) 1f else 0.5f
         itemSettingsSwitchContent.alpha = if (isEnabled) 1f else 0.5f

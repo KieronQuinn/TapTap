@@ -1,8 +1,9 @@
 package com.kieronquinn.app.taptap.shizuku;
 
 import com.kieronquinn.app.taptap.models.appshortcut.AppShortcutIcon;
+import com.kieronquinn.app.taptap.models.appshortcut.ShortcutQueryWrapper;
+import com.kieronquinn.app.taptap.shizuku.ITapTapColumbusLogCallback;
 import android.os.UserHandle;
-import android.content.pm.ShortcutQueryWrapper;
 import android.content.pm.ParceledListSlice;
 
 interface ITapTapShizukuShellService {
@@ -17,7 +18,7 @@ interface ITapTapShizukuShellService {
 
     void clickQuickSetting(String component) = 5;
 
-    void grantReadLogsPermission() = 6;
+    void setColumbusLogListener(ITapTapColumbusLogCallback callback) = 6;
 
     void destroy() = 16777114;
 

@@ -289,7 +289,11 @@
         android:id="@+id/settingsNativeModeFragment"
         android:name="com.kieronquinn.app.taptap.ui.screens.settings.nativemode.SettingsNativeModeFragment"
         android:label="@string/settings_native_mode"
-        tools:layout="@layout/fragment_settings_native_mode" />
+        tools:layout="@layout/fragment_settings_native_mode" >
+        <action
+            android:id="@+id/action_settingsNativeModeFragment_to_settingsLowPowerModeShizukuInfoFragment"
+            app:destination="@id/settingsLowPowerModeShizukuInfoFragment" />
+    </fragment>
 
 
 </navigation>

@@ -15,14 +15,13 @@ import com.kieronquinn.app.taptap.ui.activities.MainActivity
 import com.kieronquinn.app.taptap.ui.base.BackAvailable
 import com.kieronquinn.app.taptap.ui.base.BoundFragment
 import com.kieronquinn.app.taptap.ui.screens.container.ContainerSharedViewModel
+import com.kieronquinn.app.taptap.ui.views.MonetSwitch
 import com.kieronquinn.app.taptap.utils.extensions.applyBottomInsets
 import com.kieronquinn.app.taptap.utils.extensions.onClicked
 import com.kieronquinn.app.taptap.utils.notifications.TapTapNotificationChannel
 import com.kieronquinn.app.taptap.utils.notifications.TapTapNotificationId
 import com.kieronquinn.app.taptap.utils.notifications.TapTapNotificationIntentId
-import com.kieronquinn.monetcompat.view.MonetSwitch
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.collect
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -37,9 +36,9 @@ class SettingsNativeModeFragment: BoundFragment<FragmentSettingsNativeModeBindin
         setupSwitch()
         setupSwitchEnabled()
         setupSwitchChecked()
-        setupAutomaticSetupButton()
-        setupManualSetupButton()
-        setupSetup()
+        setupShizuku()
+        setupShizukuButton()
+        setupSuiButton()
         setupScrollView()
         setupToastBus()
         setupNotification()
@@ -72,21 +71,21 @@ class SettingsNativeModeFragment: BoundFragment<FragmentSettingsNativeModeBindin
         }
     }
 
-    private fun setupSetup() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
-        viewModel.isSetupRequired.collect {
-            binding.settingsNativeModeErrorSetup.isVisible = it
+    private fun setupShizuku() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        viewModel.shizukuInstalled.collect {
+            binding.settingsLowPowerModeErrorShizuku.isVisible = !it
         }
     }
 
-    private fun setupManualSetupButton() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
-        binding.settingsNativeModeErrorButtonManual.onClicked().collect {
-            viewModel.onManualSetupClicked()
+    private fun setupShizukuButton() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        binding.settingsLowPowerModeErrorButtonShizuku.onClicked().collect {
+            viewModel.onShizukuClicked(requireContext())
         }
     }
 
-    private fun setupAutomaticSetupButton() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
-        binding.settingsNativeModeErrorButtonAutomatic.onClicked().collect {
-            viewModel.onAutomaticSetupClicked(requireContext())
+    private fun setupSuiButton() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        binding.settingsLowPowerModeErrorButtonSui.onClicked().collect {
+            viewModel.onSuiClicked()
         }
     }
 

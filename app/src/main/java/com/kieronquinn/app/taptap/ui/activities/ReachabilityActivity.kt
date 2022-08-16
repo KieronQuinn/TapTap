@@ -1,7 +1,9 @@
 package com.kieronquinn.app.taptap.ui.activities
 
 import android.content.res.Configuration
+import android.os.Build
 import android.view.WindowManager
+import androidx.annotation.RequiresApi
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.databinding.ActivityReachabilityBinding
 import com.kieronquinn.app.taptap.ui.base.BoundActivity
@@ -25,7 +27,8 @@ class ReachabilityActivity: BoundActivity<ActivityReachabilityBinding>(ActivityR
         fragment?.onWindowAttributesChanged(window?.decorView?.height ?: return)
     }
 
-    override fun onMultiWindowModeChanged(isInMultiWindowMode: Boolean, newConfig: Configuration?) {
+    @RequiresApi(Build.VERSION_CODES.O)
+    override fun onMultiWindowModeChanged(isInMultiWindowMode: Boolean, newConfig: Configuration) {
         super.onMultiWindowModeChanged(isInMultiWindowMode, newConfig)
         if(!isInMultiWindowMode) {
             fragment?.onExitMultiWindow(app)

@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.pm.LauncherApps
 import android.content.pm.ParceledListSlice
 import android.content.pm.ShortcutInfo
-import android.content.pm.ShortcutQueryWrapper
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Icon
@@ -15,6 +14,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.components.navigation.ContainerNavigation
+import com.kieronquinn.app.taptap.models.appshortcut.ShortcutQueryWrapper
 import com.kieronquinn.app.taptap.models.appshortcut.AppShortcutCachedIcon
 import com.kieronquinn.app.taptap.repositories.service.TapTapShizukuServiceRepository
 import com.kieronquinn.app.taptap.repositories.service.TapTapShizukuServiceRepository.ShizukuServiceResponse
@@ -28,7 +28,6 @@ import kotlinx.coroutines.withContext
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.KoinScopeComponent
 import org.koin.core.component.createScope
-import org.koin.core.component.inject
 import java.io.File
 
 abstract class SettingsSharedAppShortcutsSelectorViewModel: ViewModel(), KoinScopeComponent, KoinComponent {
@@ -98,9 +97,9 @@ class SettingsSharedAppShortcutsSelectorViewModelImpl(context: Context, private 
     @SuppressLint("NewApi")
     private suspend fun getAppShortcuts() = try {
         service.runWithShellService {
-            it.getShortcuts(ShortcutQueryWrapper(LauncherApps.ShortcutQuery().apply {
-                setQueryFlags(LauncherApps.ShortcutQuery.FLAG_MATCH_DYNAMIC or LauncherApps.ShortcutQuery.FLAG_MATCH_MANIFEST or LauncherApps.ShortcutQuery.FLAG_MATCH_PINNED_BY_ANY_LAUNCHER)
-            })) as ParceledListSlice<ShortcutInfo>
+            it.getShortcuts(ShortcutQueryWrapper(
+                LauncherApps.ShortcutQuery.FLAG_MATCH_DYNAMIC or LauncherApps.ShortcutQuery.FLAG_MATCH_MANIFEST or LauncherApps.ShortcutQuery.FLAG_MATCH_PINNED_BY_ANY_LAUNCHER
+            )) as ParceledListSlice<ShortcutInfo>
         }
     }catch(e: Exception){
         e.printStackTrace()

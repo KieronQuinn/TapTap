@@ -1,11 +1,9 @@
 package com.kieronquinn.app.taptap.service.accessibility
 
-import android.util.Log
 import android.view.accessibility.AccessibilityEvent
 import androidx.lifecycle.lifecycleScope
 import com.kieronquinn.app.taptap.components.accessibility.TapTapAccessibilityRouter
 import com.kieronquinn.app.taptap.utils.lifecycle.LifecycleAccessibilityService
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.filterNot
 import org.koin.android.ext.android.inject
 
@@ -72,6 +70,7 @@ class TapTapAccessibilityService: LifecycleAccessibilityService() {
             is TapTapAccessibilityRouter.AccessibilityInput.PerformGlobalAction -> {
                 performGlobalAction(accessibilityInput.globalActionId)
             }
+            else -> {}
         }
     }
 
@@ -81,7 +80,6 @@ class TapTapAccessibilityService: LifecycleAccessibilityService() {
         val isNotificationShade = event.text?.firstOrNull() == notificationShadeAccessibilityDesc
         val isQuickSettings = event.text?.firstOrNull() == quickSettingsAccessibilityDesc
         var currentPackageName = this.currentPackageName
-        Log.d("NEA", "Change type ${event.contentChangeTypes}")
         if(event.packageName?.toString() != currentPackageName) {
             if(event.packageName?.toString() != "android") {
                 currentPackageName = event.packageName?.toString() ?: "android"

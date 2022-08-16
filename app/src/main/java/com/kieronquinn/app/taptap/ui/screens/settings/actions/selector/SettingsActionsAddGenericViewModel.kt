@@ -15,6 +15,7 @@ import com.kieronquinn.app.taptap.models.shared.SharedArgument
 import com.kieronquinn.app.taptap.repositories.actions.ActionsRepository
 import com.kieronquinn.app.taptap.ui.screens.settings.shared.selector.packagename.SettingsSharedPackageSelectorFragment.Companion.FRAGMENT_EXTRA_SHOW_ALL_APPS
 import com.kieronquinn.app.taptap.ui.screens.settings.shared.selector.packagename.SettingsSharedPackageSelectorFragment.Companion.FRAGMENT_EXTRA_TITLE
+import com.kieronquinn.app.taptap.utils.extensions.Shell_isRooted
 import com.topjohnwu.superuser.Shell
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -87,7 +88,7 @@ abstract class SettingsActionsAddGenericViewModelImpl(private val navigation: Co
 
     override suspend fun checkRoot(): Boolean {
         return withContext(Dispatchers.IO){
-            Shell.rootAccess()
+            Shell_isRooted()
         }
     }
 

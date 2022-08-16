@@ -16,3 +16,8 @@ fun NavController.onDestinationChanged() = callbackFlow {
         removeOnDestinationChangedListener(listener)
     }
 }
+
+fun NavController.hasBackAvailable(): Boolean {
+    //Seems to include the root
+    return backQueue.size > 2
+}

@@ -30,7 +30,7 @@ android {
 }
 
 dependencies {
-    compileOnly 'androidx.annotation:annotation:1.3.0'
+    compileOnly 'androidx.annotation:annotation:1.4.0'
     //Refine allows refactoring of classes to support multiple SDKs with a single target
     annotationProcessor "dev.rikka.tools.refine:annotation-processor:$refine_version"
     compileOnly "dev.rikka.tools.refine:annotation:$refine_version"

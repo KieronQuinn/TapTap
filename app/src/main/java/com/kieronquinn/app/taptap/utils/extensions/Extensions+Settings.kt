@@ -78,7 +78,7 @@ private fun Context.isColumbusActionSetToTapTap(): Boolean {
 }
 
 fun Context.isNativeColumbusEnabled(): Boolean {
-    return canUseContextHubLogging && isColumbusEnabled() && isColumbusActionSetToTapTap()
+    return isColumbusEnabled() && isColumbusActionSetToTapTap()
 }
 
 fun Settings_Secure_getIntSafely(contentResolver: ContentResolver, setting: String, default: Int): Int {

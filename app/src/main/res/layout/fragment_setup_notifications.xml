@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.kieronquinn.monetcompat.view.MonetToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?android:actionBarSize"
+        app:navigationIcon="@drawable/ic_back" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/setup_notifications_scrollable"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/setup_notifications_lottie"
+                android:layout_width="240dp"
+                android:layout_height="240dp"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="false"
+                app:layout_constraintBottom_toTopOf="@id/setup_notifications_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:lottie_rawRes="@raw/setup_notifications" />
+
+            <TextView
+                android:id="@+id/setup_notifications_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_8"
+                android:gravity="center"
+                android:paddingStart="@dimen/margin_16"
+                android:paddingEnd="@dimen/margin_16"
+                android:text="@string/setup_notifications_title"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large.TapTap"
+                app:layout_constraintBottom_toTopOf="@id/setup_notifications_content"
+                app:layout_constraintTop_toBottomOf="@id/setup_notifications_lottie" />
+
+            <TextView
+                android:id="@+id/setup_notifications_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_8"
+                android:gravity="center"
+                android:paddingStart="@dimen/margin_16"
+                android:paddingEnd="@dimen/margin_16"
+                android:text="@string/setup_notifications_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small.TapTap"
+                app:layout_constraintBottom_toTopOf="@id/setup_notifications_request"
+                app:layout_constraintTop_toBottomOf="@id/setup_notifications_title" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/setup_notifications_request"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_16"
+                android:minWidth="128dp"
+                android:text="@string/setup_notifications_request"
+                android:textAllCaps="false"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small.TapTap.Medium"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/setup_notifications_content" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</FrameLayout>

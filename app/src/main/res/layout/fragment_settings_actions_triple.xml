@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:transitionGroup="true">
 
-    <com.kieronquinn.monetcompat.view.MonetSwitch
+    <com.kieronquinn.app.taptap.ui.views.MonetSwitch
         android:id="@+id/settings_actions_triple_switch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,7 +18,9 @@
         android:text="@string/switch_triple"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium.TapTap"
         android:transitionName="switch"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:thumbIcon="@drawable/ic_switch_checked"
+        app:thumbIconTint="?android:textColorTertiaryInverse" />
 
     <com.google.android.material.progressindicator.LinearProgressIndicator
         android:id="@+id/settings_actions_triple_loading_progress"
@@ -55,10 +57,10 @@
         android:id="@+id/settings_actions_triple_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="64dp"
         android:layout_marginBottom="@dimen/margin_16"
         android:clipToPadding="false"
         android:nestedScrollingEnabled="false"
-        android:layout_marginTop="64dp"
         android:paddingTop="32dp"
         android:paddingBottom="@dimen/margin_16"
         app:layout_constraintBottom_toBottomOf="parent"

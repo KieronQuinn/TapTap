@@ -15,11 +15,13 @@ import com.kieronquinn.app.taptap.models.gate.GateRequirement
 import com.kieronquinn.app.taptap.models.gate.TapTapGateDirectory
 import com.kieronquinn.app.taptap.models.shared.SharedArgument
 import com.kieronquinn.app.taptap.repositories.backuprestore.RestoreRepository
+import com.kieronquinn.app.taptap.utils.extensions.Shell_isRooted
 import com.topjohnwu.superuser.Shell
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.lang.RuntimeException
 
 abstract class SettingsBackupRestoreRestoreViewModel : ViewModel() {
 
@@ -147,7 +149,7 @@ class SettingsBackupRestoreRestoreViewModelImpl(
             when(restore){
                 is RestoreState.Restore -> return@combine State.Restoring(candidate)
                 is RestoreState.Finished -> return@combine State.Finished(restore.success, candidate.filename)
-                //Cannot be idle
+                is RestoreState.Idle -> throw RuntimeException("Invalid state") //Cannot be idle
             }
         }
         if(clicked){
@@ -372,7 +374,7 @@ class SettingsBackupRestoreRestoreViewModelImpl(
 
     override suspend fun checkRoot(): Boolean {
         return withContext(Dispatchers.IO){
-            Shell.rootAccess()
+            Shell_isRooted()
         }
     }
 

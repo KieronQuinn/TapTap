@@ -111,6 +111,7 @@ abstract class SettingsActionsGenericFragment<T: ViewBinding, A: Action>(inflate
                     removeSelectedItem()
                     viewModel.onItemSelectionStateChange(false)
                 }
+                else -> {}
             }
         }
     }

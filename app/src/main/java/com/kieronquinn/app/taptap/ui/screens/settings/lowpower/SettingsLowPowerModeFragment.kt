@@ -2,20 +2,15 @@ package com.kieronquinn.app.taptap.ui.screens.settings.lowpower
 
 import android.os.Bundle
 import android.view.View
-import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
-import androidx.core.view.updatePadding
 import androidx.lifecycle.lifecycleScope
-import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.databinding.FragmentSettingsLowPowerModeBinding
 import com.kieronquinn.app.taptap.ui.base.BackAvailable
 import com.kieronquinn.app.taptap.ui.base.BoundFragment
 import com.kieronquinn.app.taptap.ui.screens.container.ContainerSharedViewModel
+import com.kieronquinn.app.taptap.ui.views.MonetSwitch
 import com.kieronquinn.app.taptap.utils.extensions.applyBottomInsets
-import com.kieronquinn.app.taptap.utils.extensions.onApplyInsets
 import com.kieronquinn.app.taptap.utils.extensions.onClicked
-import com.kieronquinn.monetcompat.view.MonetSwitch
-import kotlinx.coroutines.flow.collect
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

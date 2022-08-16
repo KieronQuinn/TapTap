@@ -38,38 +38,33 @@ android {
 
 protobuf {
     protoc {
-        artifact = 'com.google.protobuf:protoc:3.0.0'
+        artifact = "com.google.protobuf:protoc:3.19.2"
     }
     plugins {
         javalite {
-            artifact = 'com.google.protobuf:protoc-gen-javalite:3.0.0'
+            artifact = 'com.google.protobuf:protoc-gen-javalite:3.0.1'
         }
     }
     generateProtoTasks {
         all().each { task ->
             task.builtins {
-                remove java
-            }
-            task.plugins {
-                javalite { }
+                java {
+                    option 'lite'
+                }
             }
         }
     }
 }
 
-sourceSets{
-    main.java.srcDirs += "${protobuf.generatedFilesBaseDir}/main/javalite"
-}
-
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.7.0'
-
-    //Protobuf used in communication with CHRE
-    implementation 'com.google.protobuf:protobuf-lite:3.0.1'
+    implementation 'androidx.core:core-ktx:1.8.0'
 
     //Tensorflow, used in non-CHRE usage
     implementation 'org.tensorflow:tensorflow-lite-support:0.3.0'
+
+    //Protobuf
+    api "com.google.protobuf:protobuf-javalite:3.19.2"
 
     compileOnly project(path: ':systemstubs')
 

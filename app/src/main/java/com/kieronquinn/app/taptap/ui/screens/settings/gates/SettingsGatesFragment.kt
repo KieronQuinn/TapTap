@@ -108,6 +108,7 @@ class SettingsGatesFragment :
                     removeSelectedItem()
                     viewModel.onItemSelectionStateChange(false)
                 }
+                else -> {}
             }
         }
     }
