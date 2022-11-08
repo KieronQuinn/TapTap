@@ -291,8 +291,6 @@
 
     <!-- Settings > More > Contributors -->
     <string name="about_contributors">貢獻者</string>
-    <string name="about_contributors_main">哥倫布</string>
-    <string name="about_contributors_main_content"><![CDATA[\'哥倫布\'模型與基礎程式碼來自於 Android 11 首個開發者預覽版，由 Google 開發。 (<a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>)]]></string>
     <string name="about_contributors_community">開源社羣貢獻</string>
     <string name="about_contributors_community_content"><b>整合 Tasker</b>：João Dias\n<b>音樂控制動作</b>：timfedo\n<b>MD2 介面設計與 Chrome Custom Tabs</b>：Giorgio Cantoni\n<b>電源鍵對話方塊動作</b>：Adrian Campos\n<b>勿擾反饋及聲音模式動作</b>：Ashutosh Singh\n<b>啟動搜尋動作</b>：arkon\n<b>強制免打擾動作:</b> Kylian Meulin</string>
     <string name="about_contributors_icons">圖示</string>

@@ -314,8 +314,8 @@
 
     <!-- Settings > More > Contributors -->
     <string name="about_contributors">Contributors</string>
-    <string name="about_contributors_main">Columbus</string>
-    <string name="about_contributors_main_content"><![CDATA[\'Columbus\' Model and base code created by Google, from Android 11 Developer Preview 1 and Android 12 (<a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>)]]></string>
+    <string name="about_contributors_main">Models</string>
+    <string name="about_contributors_main_content"><![CDATA[\'Columbus\' Model and base code created by Google, from Android 11 Developer Preview 1 and Android 12 (<a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>)<br>\'RegiStar\' model from Samsung\'s Good Lock RegiStar module]]></string>
     <string name="about_contributors_community">Community Contributions</string>
     <string name="about_contributors_community_content"><b>Tasker integration</b>: João Dias\n<b>Music control actions</b>: timfedo\n<b>MD2 UI and Chrome Custom Tabs</b>: Giorgio Cantoni\n<b>Power Dialog action</b>: Adrian Campos\n<b>DND feedback and Sound Profiles action</b>: Ashutosh Singh\n<b>Launch Search action</b>: arkon\n<b>Force Do not Disturb action:</b> Kylian Meulin\n<b>Touch on Screen action:</b> Mauri de Souza Meneguzzo</string>
     <string name="about_contributors_icons">Icons</string>
