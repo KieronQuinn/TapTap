@@ -4,6 +4,7 @@ import android.R
 import android.content.res.ColorStateList
 import android.graphics.PorterDuff
 import androidx.annotation.ColorInt
+import com.google.android.material.card.MaterialCardView
 import com.google.android.material.switchmaterial.SwitchMaterial
 import com.kieronquinn.monetcompat.core.MonetCompat
 import com.kieronquinn.monetcompat.extensions.toArgb
@@ -18,6 +19,11 @@ fun SwitchMaterial.applyMonet(monet: MonetCompat) = with(monet) {
     val checkedThumbColor = monet.getPrimaryColor(context, false)
     val uncheckedThumbColor = monet.getSecondaryColor(context, false)
     setTint(checkedTrackColor, uncheckedTrackColor, uncheckedThumbColor, checkedThumbColor)
+}
+
+fun MaterialCardView.applyBackgroundTint(monet: MonetCompat) = with(monet) {
+    val background = monet.getPrimaryColor(context, !context.isDarkMode)
+    backgroundTintList = ColorStateList.valueOf(background)
 }
 
 private fun SwitchMaterial.setTint(@ColorInt checkedTrackColor: Int, @ColorInt unCheckedTrackColor: Int, @ColorInt uncheckedThumbColor: Int, @ColorInt checkedThumbColor: Int){

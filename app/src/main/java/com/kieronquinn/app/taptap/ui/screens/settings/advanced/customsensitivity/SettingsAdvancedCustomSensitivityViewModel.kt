@@ -36,8 +36,8 @@ class SettingsAdvancedCustomSensitivityViewModelImpl(
         val customSetting = rawSetting.getSync()
         if(customSetting != -1f) return customSetting
         val level = settings.columbusSensitivityLevel.getSync()
-        return TapTapGestureSensorImpl.SENSITIVITY_VALUES.getOrNull(level)
-            ?: TapTapGestureSensorImpl.SENSITIVITY_VALUES[TapTapSettingsImpl.DEFAULT_COLUMBUS_SENSITIVITY_LEVEL]
+        return TapTapGestureSensorImpl.COLUMBUS_SENSITIVITY_VALUES.getOrNull(level)
+            ?: TapTapGestureSensorImpl.COLUMBUS_SENSITIVITY_VALUES[TapTapSettingsImpl.DEFAULT_COLUMBUS_SENSITIVITY_LEVEL]
     }
 
     private val _customSensitivity = MutableStateFlow(getSettingValue().toString())

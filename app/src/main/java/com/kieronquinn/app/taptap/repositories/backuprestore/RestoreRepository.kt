@@ -2,7 +2,6 @@ package com.kieronquinn.app.taptap.repositories.backuprestore
 
 import android.content.Context
 import android.net.Uri
-import android.util.Log
 import androidx.documentfile.provider.DocumentFile
 import com.google.gson.Gson
 import com.google.gson.JsonParseException
@@ -337,7 +336,7 @@ class RestoreRepositoryImpl(
                     "advanced_restart_service" -> advancedAutoRestart = it.value?.toBooleanStrictOrNull()
                     "sensitivity" -> {
                         val value = it.value?.toFloatOrNull() ?: return@forEach
-                        val presetSensitivity = TapTapGestureSensorImpl.SENSITIVITY_VALUES.indexOf(value)
+                        val presetSensitivity = TapTapGestureSensorImpl.COLUMBUS_SENSITIVITY_VALUES.indexOf(value)
                         if(presetSensitivity == -1){
                             columbusCustomSensitivity = value
                         }else{

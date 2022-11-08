@@ -35,7 +35,6 @@ import com.kieronquinn.app.taptap.utils.extensions.*
 import com.kieronquinn.monetcompat.extensions.views.applyMonet
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.take
 import org.koin.android.ext.android.inject
@@ -209,6 +208,7 @@ class SettingsBackupRestoreRestoreFragment :
             is ActionRequirement.AccessNotificationPolicyPermission -> requestNotificationPolicy()
             is ActionRequirement.CameraPermission -> requestPermission(Manifest.permission.CAMERA)
             is ActionRequirement.DrawOverOtherAppsPermission -> requestDisplayOverOtherApps()
+            is ActionRequirement.WriteSystemSettingsPermission -> requestWriteSystemSettings()
             is ActionRequirement.Shizuku -> {
                 viewModel.launchShizukuFlow(false)
                 false
@@ -320,6 +320,17 @@ class SettingsBackupRestoreRestoreFragment :
         //Await onResume, then we can return to checking again
         onResume.take(1).first()
         return requireContext().isServiceRunning(TapTapGestureAccessibilityService::class.java)
+    }
+
+    private suspend fun requestWriteSystemSettings(): Boolean {
+        if(Settings.System.canWrite(context)) return true
+        //Launch write system settings page
+        startActivity(Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS).apply {
+            data = Uri.parse("package:${BuildConfig.APPLICATION_ID}")
+        })
+        //Await onResume, then we can return to checking again
+        onResume.take(1).first()
+        return Settings.System.canWrite(context)
     }
 
     private suspend fun requestTaskerPermission(): Boolean {

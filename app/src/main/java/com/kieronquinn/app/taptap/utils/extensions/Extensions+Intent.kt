@@ -36,48 +36,25 @@ fun Intent.serialize(): String? {
         json.put("categories", categories)
     }
     component?.let {
-        json.put("component", it?.flattenToString())
+        json.put("component", it.flattenToString())
     }
-    flags?.let {
+    flags.let {
         json.put("flags", it)
     }
     val extras = JSONObject().apply {
         extras?.keySet()?.forEach {
-            val extra = extras?.get(it)
-            if(extra is String || extra is Int || extra is Float || extra is Long || extra is Double || extra is Boolean){
-                put(it, JSONObject().apply {
-                    put("type", "string")
-                    put("value", extra)
-                })
-            }else if(extra is Int){
-                put(it, JSONObject().apply {
-                    put("type", "int")
-                    put("value", extra)
-                })
-            }else if(extra is Float){
-                put(it, JSONObject().apply {
-                    put("type", "float")
-                    put("value", extra.toString())
-                })
-            }else if(extra is Long){
-                put(it, JSONObject().apply {
-                    put("type", "long")
-                    put("value", extra)
-                })
-            }else if(extra is Double){
-                put(it, JSONObject().apply {
-                    put("type", "double")
-                    put("value", extra)
-                })
-            }else if(extra is Boolean){
-                put(it, JSONObject().apply {
-                    put("type", "boolean")
-                    put("value", extra)
-                })
-            }else{
-                Log.d("TapTap", "$it is unsupported of type ${extra.toString()}")
-                //Unsupported value
-                return null
+            when (val extra = extras?.get(it)) {
+                is String, is Int, is Float, is Long, is Double, is Boolean -> {
+                    put(it, JSONObject().apply {
+                        put("type", "string")
+                        put("value", extra)
+                    })
+                }
+                else -> {
+                    Log.d("TapTap", "$it is unsupported of type ${extra.toString()}")
+                    //Unsupported value
+                    return null
+                }
             }
         }
     }

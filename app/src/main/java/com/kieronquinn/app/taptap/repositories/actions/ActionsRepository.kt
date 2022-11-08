@@ -9,7 +9,6 @@ import android.content.Intent
 import android.media.AudioManager
 import android.os.Build
 import android.provider.Settings
-import android.util.Log
 import androidx.lifecycle.Lifecycle
 import com.google.gson.Gson
 import com.kieronquinn.app.taptap.R
@@ -344,7 +343,7 @@ class ActionsRepositoryImpl(
         extraData: String?
     ): CharSequence {
         if (extraData?.isNotBlank() != true || actionDirectory.formattableDescription == null) {
-            return context.getString(actionDirectory.descriptionRes)
+            return context.getText(actionDirectory.descriptionRes)
         }
         val formattedText = when (actionDirectory.dataType) {
             ActionDataTypes.PACKAGE_NAME -> context.packageManager.getApplicationLabel(extraData)
@@ -363,7 +362,7 @@ class ActionsRepositoryImpl(
             }
             else -> null
         } ?: run {
-            return context.getString(actionDirectory.descriptionRes)
+            return context.getText(actionDirectory.descriptionRes)
         }
         return context.getString(actionDirectory.formattableDescription, formattedText)
     }
@@ -659,6 +658,12 @@ class ActionsRepositoryImpl(
                 whenGates,
                 emptySet()
             )
+            FORCE_ROTATE -> ForceRotateAction(
+                serviceLifecycle,
+                context,
+                whenGates,
+                emptySet()
+            )
         }
     }
 
@@ -672,6 +677,7 @@ class ActionsRepositoryImpl(
                 is ActionRequirement.TaskerPermission -> context.doesHaveTaskerPermission()
                 is ActionRequirement.Accessibility -> context.isServiceRunning(TapTapAccessibilityService::class.java)
                 is ActionRequirement.GestureAccessibility -> context.isServiceRunning(TapTapGestureAccessibilityService::class.java)
+                is ActionRequirement.WriteSystemSettingsPermission -> Settings.System.canWrite(context)
                 is ActionRequirement.Snapchat, is ActionRequirement.Shizuku, is ActionRequirement.Root -> false //Always needs to be checked later
                 is ActionRequirement.Permission, is ActionRequirement.UserDisplayedActionRequirement -> throw RuntimeException("Not implemented")
             }

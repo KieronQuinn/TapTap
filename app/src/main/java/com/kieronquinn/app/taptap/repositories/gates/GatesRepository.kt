@@ -20,7 +20,7 @@ import com.kieronquinn.app.taptap.utils.extensions.doesHavePermissions
 import com.kieronquinn.app.taptap.utils.extensions.getApplicationLabel
 import com.kieronquinn.app.taptap.utils.extensions.isServiceRunning
 import com.kieronquinn.app.taptap.utils.flow.FlowQueue
-import com.kieronquinn.app.taptap.utils.foldable.SidecarProvider
+import com.kieronquinn.app.taptap.utils.foldable.FoldableProvider
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.*
@@ -205,7 +205,7 @@ class GatesRepositoryImpl(database: TapTapDatabase): GatesRepository() {
                 }else null
             }
             is GateSupportedRequirement.Foldable -> {
-                return if(!SidecarProvider.isDeviceFoldable(context)){
+                return if(!FoldableProvider.isCompatible(context)){
                     gateDirectory.gateSupportedRequirement
                 }else null
             }
@@ -223,14 +223,14 @@ class GatesRepositoryImpl(database: TapTapDatabase): GatesRepository() {
         extraData: String?
     ): CharSequence {
         if (extraData?.isNotBlank() != true || gateDirectory.formattableDescription == null) {
-            return context.getString(gateDirectory.descriptionRes)
+            return context.getText(gateDirectory.descriptionRes)
         }
         val formattedText = when (gateDirectory) {
             APP_SHOWING -> context.packageManager.getApplicationLabel(extraData)
                 ?: context.getString(R.string.item_action_app_uninstalled, extraData)
             else -> null
         } ?: run {
-            return context.getString(gateDirectory.descriptionRes)
+            return context.getText(gateDirectory.descriptionRes)
         }
         return context.getString(gateDirectory.formattableDescription, formattedText)
     }

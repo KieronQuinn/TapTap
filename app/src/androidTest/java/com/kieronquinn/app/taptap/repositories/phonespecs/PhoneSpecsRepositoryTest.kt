@@ -5,6 +5,7 @@ import com.google.gson.Gson
 import com.kieronquinn.app.taptap.components.settings.TapModel
 import com.kieronquinn.app.taptap.components.settings.TapTapSettingsImpl
 import com.kieronquinn.app.taptap.models.phonespecs.DeviceSpecs
+import com.kieronquinn.app.taptap.repositories.demomode.DemoModeRepositoryImpl
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
@@ -16,8 +17,12 @@ class PhoneSpecsRepositoryTest {
         InstrumentationRegistry.getInstrumentation().targetContext
     }
 
+    private val demoMode by lazy {
+        DemoModeRepositoryImpl()
+    }
+
     private val phoneSpecsRepository by lazy {
-        PhoneSpecsRepositoryImpl(context, Gson(), TapTapSettingsImpl(context))
+        PhoneSpecsRepositoryImpl(context, Gson(), TapTapSettingsImpl(context, demoMode))
     }
 
     @Test

@@ -58,14 +58,15 @@ protobuf {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.8.0'
+    implementation 'androidx.core:core-ktx:1.9.0'
 
     //Tensorflow, used in non-CHRE usage
-    implementation 'org.tensorflow:tensorflow-lite-support:0.3.0'
+    implementation "org.tensorflow:tensorflow-lite-support:$tensorflow_version"
 
     //Protobuf
     api "com.google.protobuf:protobuf-javalite:3.19.2"
 
     compileOnly project(path: ':systemstubs')
+    api project(path: ':shared')
 
 }

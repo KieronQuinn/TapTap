@@ -7,6 +7,7 @@ import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.Handler
 import android.os.Looper
+import com.kieronquinn.app.shared.taprt.BaseTapRT
 
 open class GestureSensorImpl(
     context: Context
@@ -62,7 +63,7 @@ open class GestureSensorImpl(
     protected val samplingIntervalNs = 2500000L
     protected val isRunningInLowSamplingRate = false
     private var isListening = false
-    open val tap = TapRT(160000000L)
+    open val tap: BaseTapRT = TapRT(160000000L)
 
     override fun isListening(): Boolean {
         return isListening
@@ -75,7 +76,7 @@ open class GestureSensorImpl(
     override fun startListening(heuristicMode: Boolean) {
         if(heuristicMode) {
             sensorEventListener.setListening(true, 0)
-            tap.run {
+            (tap as? TapRT)?.run {
                 getLowpassKey().setPara(0.2f)
                 getHighpassKey().setPara(0.2f)
                 getPositivePeakDetector().setMinNoiseTolerate(0.05f)
@@ -84,7 +85,7 @@ open class GestureSensorImpl(
             }
         }else{
             sensorEventListener.setListening(true, 21000)
-            tap.run {
+            (tap as? TapRT)?.run {
                 getLowpassKey().setPara(1f)
                 getHighpassKey().setPara(0.3f)
                 getPositivePeakDetector().setMinNoiseTolerate(0.02f)

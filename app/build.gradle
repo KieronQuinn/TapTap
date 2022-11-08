@@ -11,8 +11,8 @@ plugins {
 //Permission for Columbus to use
 rootProject.ext.set("columbusPermission", "com.google.android.columbus.taptap.permission.CONFIGURE_COLUMBUS_GESTURE")
 
-def tagName = '1.4'
-def tagVersion = 1400
+def tagName = '1.5'
+def tagVersion = 1500
 
 android {
     compileSdk 33
@@ -65,17 +65,17 @@ android {
 dependencies {
 
     //AndroidX
-    implementation 'androidx.core:core-ktx:1.8.0'
-    implementation 'androidx.appcompat:appcompat:1.5.0'
+    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
     implementation "androidx.work:work-runtime-ktx:2.7.1"
-    implementation "androidx.core:core-ktx:1.8.0"
+    implementation "androidx.core:core-ktx:1.9.0"
     implementation "androidx.vectordrawable:vectordrawable-seekable:1.0.0-beta01"
     implementation "androidx.core:core-splashscreen:1.0.0"
-    implementation "androidx.fragment:fragment-ktx:1.5.2"
-    implementation "androidx.activity:activity-ktx:1.6.0-beta01"
+    implementation "androidx.fragment:fragment-ktx:1.5.4"
+    implementation "androidx.activity:activity-ktx:1.6.1"
 
     //Lifecycle
     def lifecycleVersion = '2.5.1'
@@ -96,7 +96,7 @@ dependencies {
     kapt "androidx.room:room-compiler:$room_version"
 
     //MD3
-    implementation 'com.google.android.material:material:1.7.0-beta01'
+    implementation 'com.google.android.material:material:1.7.0'
 
     //MonetCompat for Monet backwards compatibility
     implementation 'com.github.KieronQuinn:MonetCompat:0.4.1'
@@ -119,6 +119,9 @@ dependencies {
 
     //Columbus module is separate to make it easier to work with
     implementation project(path: ':columbus')
+
+    //Samsung module for Samsung's implementation from RegiStar
+    implementation project(path: ':samsung')
 
     //Tensorflow, used by Columbus (change in :columbus too)
     implementation 'org.tensorflow:tensorflow-lite-support:0.3.0'

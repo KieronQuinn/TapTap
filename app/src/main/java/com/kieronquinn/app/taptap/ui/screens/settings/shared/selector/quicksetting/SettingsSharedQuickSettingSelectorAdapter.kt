@@ -2,25 +2,21 @@ package com.kieronquinn.app.taptap.ui.screens.settings.shared.selector.quicksett
 
 import android.content.ComponentName
 import android.content.Context
-import android.content.res.ColorStateList
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.coroutineScope
 import androidx.viewbinding.ViewBinding
-import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.databinding.ItemSettingsSharedQuickSettingsHeaderBinding
 import com.kieronquinn.app.taptap.databinding.ItemSettingsSharedQuickSettingsItemBinding
 import com.kieronquinn.app.taptap.repositories.quicksettings.QuickSettingsRepository.QuickSetting
 import com.kieronquinn.app.taptap.ui.views.LifecycleAwareRecyclerView
-import com.kieronquinn.app.taptap.utils.extensions.isDarkMode
+import com.kieronquinn.app.taptap.utils.extensions.applyBackgroundTint
 import com.kieronquinn.app.taptap.utils.extensions.onClicked
 import com.kieronquinn.app.taptap.utils.picasso.ComponentNameIconRequestHandler
 import com.kieronquinn.monetcompat.core.MonetCompat
 import com.squareup.picasso.Picasso
-import kotlinx.coroutines.flow.collect
 
 class SettingsSharedQuickSettingSelectorAdapter(
     recyclerView: LifecycleAwareRecyclerView,
@@ -76,15 +72,7 @@ class SettingsSharedQuickSettingSelectorAdapter(
     }
 
     private fun ItemSettingsSharedQuickSettingsHeaderBinding.setupHeader() {
-        val context = root.context
-        val fallbackBackground =
-            if (context.isDarkMode) R.color.cardview_dark_background else R.color.cardview_light_background
-        root.backgroundTintList = ColorStateList.valueOf(
-            monet.getBackgroundColorSecondary(context) ?: ContextCompat.getColor(
-                context,
-                fallbackBackground
-            )
-        )
+        root.applyBackgroundTint(monet)
     }
 
     private fun ItemSettingsSharedQuickSettingsItemBinding.setupItem(lifecycle: Lifecycle, item: QuickSetting) {

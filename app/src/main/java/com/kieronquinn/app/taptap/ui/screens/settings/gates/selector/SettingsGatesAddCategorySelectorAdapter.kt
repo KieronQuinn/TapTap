@@ -1,7 +1,6 @@
 package com.kieronquinn.app.taptap.ui.screens.settings.gates.selector
 
 import android.content.Context
-import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.Lifecycle
@@ -10,9 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.kieronquinn.app.taptap.databinding.ItemSettingsGatesAddCategorySelectorCategoryBinding
 import com.kieronquinn.app.taptap.models.gate.TapTapGateCategory
 import com.kieronquinn.app.taptap.ui.views.LifecycleAwareRecyclerView
+import com.kieronquinn.app.taptap.utils.extensions.applyBackgroundTint
 import com.kieronquinn.app.taptap.utils.extensions.onClicked
 import com.kieronquinn.monetcompat.core.MonetCompat
-import kotlinx.coroutines.flow.collect
 
 class SettingsGatesAddCategorySelectorAdapter(
     recyclerView: RecyclerView,
@@ -48,7 +47,7 @@ class SettingsGatesAddCategorySelectorAdapter(
 
     private fun ItemSettingsGatesAddCategorySelectorCategoryBinding.setup(category: TapTapGateCategory, lifecycle: Lifecycle) {
         val context = root.context
-        root.backgroundTintList = ColorStateList.valueOf(monet.getPrimaryColor(context))
+        root.applyBackgroundTint(monet)
         itemSettingsGatesAddCategorySelectorCategoryTitle.text =
             context.getString(category.labelRes)
         itemSettingsGatesAddCategorySelectorCategoryContent.text =

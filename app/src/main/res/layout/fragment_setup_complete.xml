@@ -13,10 +13,10 @@
         app:navigationIcon="@drawable/ic_back" />
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/setup_complete_scrollable"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true"
-        android:id="@+id/setup_complete_scrollable">
+        android:fillViewport="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -55,6 +55,7 @@
                 android:layout_marginTop="@dimen/margin_16"
                 android:layout_marginEnd="@dimen/margin_16"
                 android:layout_marginBottom="@dimen/margin_8"
+                app:cardBackgroundColor="?android:colorControlHighlight"
                 app:layout_constraintBottom_toTopOf="@id/setup_complete_close"
                 app:layout_constraintTop_toBottomOf="@id/setup_complete_title">
 

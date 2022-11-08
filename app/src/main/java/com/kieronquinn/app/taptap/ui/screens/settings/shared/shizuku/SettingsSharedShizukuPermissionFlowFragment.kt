@@ -1,6 +1,5 @@
 package com.kieronquinn.app.taptap.ui.screens.settings.shared.shizuku
 
-import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
@@ -14,10 +13,10 @@ import com.kieronquinn.app.taptap.models.shared.ARG_NAME_SHARED_ARGUMENT
 import com.kieronquinn.app.taptap.ui.base.BackAvailable
 import com.kieronquinn.app.taptap.ui.base.BoundFragment
 import com.kieronquinn.app.taptap.ui.screens.settings.shared.shizuku.SettingsSharedShizukuPermissionFlowViewModel.State
+import com.kieronquinn.app.taptap.utils.extensions.applyBackgroundTint
 import com.kieronquinn.app.taptap.utils.extensions.applyBottomInsets
 import com.kieronquinn.app.taptap.utils.extensions.onClicked
 import com.kieronquinn.monetcompat.extensions.views.applyMonet
-import kotlinx.coroutines.flow.collect
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SettingsSharedShizukuPermissionFlowFragment :
@@ -55,9 +54,8 @@ class SettingsSharedShizukuPermissionFlowFragment :
 
     private fun setupMonet() {
         binding.settingsSharedShizukuPermissionFlowLoadingProgress.applyMonet()
-        val cardBackground = ColorStateList.valueOf(monet.getPrimaryColor(requireContext()))
-        binding.settingsSharedShizukuPermissionFlowErrorCardSui.backgroundTintList = cardBackground
-        binding.settingsSharedShizukuPermissionFlowErrorCardShizuku.backgroundTintList = cardBackground
+        binding.settingsSharedShizukuPermissionFlowErrorCardSui.applyBackgroundTint(monet)
+        binding.settingsSharedShizukuPermissionFlowErrorCardShizuku.applyBackgroundTint(monet)
     }
 
     private fun setupShizukuButton() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {

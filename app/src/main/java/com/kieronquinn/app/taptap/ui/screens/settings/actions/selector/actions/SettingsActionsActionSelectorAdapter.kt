@@ -17,6 +17,7 @@ import com.kieronquinn.app.taptap.models.action.ActionSupportedRequirement
 import com.kieronquinn.app.taptap.models.action.TapTapActionDirectory
 import com.kieronquinn.app.taptap.ui.views.LifecycleAwareRecyclerView
 import com.kieronquinn.app.taptap.utils.extensions.addRippleForeground
+import com.kieronquinn.app.taptap.utils.extensions.applyBackgroundTint
 import com.kieronquinn.app.taptap.utils.extensions.onClicked
 import com.kieronquinn.app.taptap.utils.extensions.removeRippleForeground
 import com.kieronquinn.monetcompat.core.MonetCompat
@@ -46,7 +47,10 @@ class SettingsActionsActionSelectorAdapter(
     }
 
     private val chipBackground by lazy {
-        ColorStateList.valueOf(monet.getSecondaryColor(recyclerView.context))
+        ColorStateList.valueOf(
+            monet.getBackgroundColorSecondary(recyclerView.context) ?:
+            monet.getBackgroundColor(recyclerView.context)
+        )
     }
 
     override fun getItemCount() = items.size
@@ -65,7 +69,7 @@ class SettingsActionsActionSelectorAdapter(
 
     private fun ItemSettingsActionsActionSelectorItemBinding.setup(action: TapTapActionDirectory, lifecycle: Lifecycle) {
         val context = root.context
-        root.backgroundTintList = ColorStateList.valueOf(monet.getPrimaryColor(context))
+        root.applyBackgroundTint(monet)
         val actionSupportedRequirement = getActionSupportedRequirement(context, action)
         if(actionSupportedRequirement == null){
             itemSettingsActionSelectorTitle.alpha = 1f

@@ -21,10 +21,10 @@ import com.kieronquinn.app.taptap.ui.base.LockCollapsed
 import com.kieronquinn.app.taptap.ui.screens.container.ContainerSharedViewModel
 import com.kieronquinn.app.taptap.ui.screens.settings.actions.whengates.SettingsActionsWhenGatesViewModel.State
 import com.kieronquinn.app.taptap.ui.screens.settings.gates.selector.SettingsGatesAddGenericFragment
+import com.kieronquinn.app.taptap.utils.extensions.applyBackgroundTint
 import com.kieronquinn.app.taptap.utils.extensions.applyBottomInsets
 import com.kieronquinn.app.taptap.utils.extensions.scrollToBottom
 import com.kieronquinn.monetcompat.extensions.views.applyMonet
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.debounce
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -57,7 +57,6 @@ class SettingsActionsWhenGatesFragment :
     private val adapter by lazy {
         SettingsActionsWhenGatesAdapter(
             binding.settingsActionsWhenGatesRecyclerview,
-            monet.getPrimaryColor(requireContext()),
             viewModel::onItemSelectionStateChange,
             ArrayList()
         )
@@ -78,11 +77,8 @@ class SettingsActionsWhenGatesFragment :
     }
 
     private fun setupAction() = with(binding.settingsActionsWhenGatesAction) {
-        root.backgroundTintList = ColorStateList.valueOf(monet.getPrimaryColor(requireContext()))
+        root.applyBackgroundTint(monet)
         root.foreground = null
-        itemSettingsActionsActionChip.isVisible = false
-        itemActionChipWhen.isVisible = false
-        itemSettingsActionsActionHandle.isVisible = false
         itemSettingsActionsActionTitle.text = getString(action.tapAction.nameRes)
         itemSettingsActionsActionContent.text = action.description
         itemSettingsActionsActionIcon.setImageResource(action.tapAction.iconRes)

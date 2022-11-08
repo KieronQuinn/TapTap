@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.text.Html
 import android.text.util.Linkify
 import android.view.View
-import androidx.core.content.ContextCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
 import androidx.lifecycle.lifecycleScope
@@ -13,6 +12,7 @@ import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.databinding.FragmentSetupInfoBinding
 import com.kieronquinn.app.taptap.ui.base.ProvidesBack
 import com.kieronquinn.app.taptap.ui.screens.setup.base.BaseSetupFragment
+import com.kieronquinn.app.taptap.utils.extensions.applyBackgroundTint
 import com.kieronquinn.app.taptap.utils.extensions.isDarkMode
 import com.kieronquinn.app.taptap.utils.extensions.onApplyInsets
 import com.kieronquinn.app.taptap.utils.extensions.onClicked
@@ -38,18 +38,14 @@ class SetupInfoFragment: BaseSetupFragment<FragmentSetupInfoBinding>(FragmentSet
     }
 
     private fun setupMonet() {
-        val fallbackBackground =
-            if (requireContext().isDarkMode) R.color.cardview_dark_background else R.color.cardview_light_background
-        val secondary = monet.getBackgroundColorSecondary(requireContext())
-            ?: ContextCompat.getColor(requireContext(), fallbackBackground)
-        binding.setupInfoNextContainer.setBackgroundColor(secondary)
+        binding.setupInfoNextContainer.backgroundTintList =
+            ColorStateList.valueOf(monet.getPrimaryColor(requireContext(), !requireContext().isDarkMode))
         val accentColor = monet.getAccentColor(requireContext())
         binding.setupInfoNext.run {
             iconTint = ColorStateList.valueOf(accentColor)
             setTextColor(accentColor)
         }
-        binding.setupInfoCardSource.setCardBackgroundColor(monet.getPrimaryColor(requireContext()))
-        binding.setupInfoCardDonate.setCardBackgroundColor(secondary)
+        binding.setupInfoCardDonate.applyBackgroundTint(monet)
     }
 
     private fun setupContent() = with(binding.setupFossInfoContent) {

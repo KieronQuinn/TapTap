@@ -4,8 +4,7 @@ import android.content.Context
 import androidx.lifecycle.Lifecycle
 import com.kieronquinn.app.taptap.components.columbus.gates.PassiveGate
 import com.kieronquinn.app.taptap.components.columbus.gates.TapTapGate
-import com.kieronquinn.app.taptap.utils.extensions.FoldingFeature_STATE_HALF_OPENED
-import com.kieronquinn.app.taptap.utils.foldable.SidecarProvider
+import com.kieronquinn.app.taptap.utils.foldable.FoldableProvider
 
 class FoldableClosedGate(
     serviceLifecycle: Lifecycle,
@@ -13,16 +12,11 @@ class FoldableClosedGate(
 ) : TapTapGate(serviceLifecycle, context), PassiveGate {
 
     private val sidecarProvider by lazy {
-        try {
-            SidecarProvider(context)
-        }catch(e: Exception) {
-            //Sidecar is not supported
-            null
-        }
+        FoldableProvider.getProvider(context)
     }
 
     override fun isBlocked(): Boolean {
-        return sidecarProvider?.getDevicePosture() == FoldingFeature_STATE_HALF_OPENED
+        return sidecarProvider?.isClosed() == true
     }
 
 }

@@ -4,6 +4,7 @@ import android.content.res.AssetManager
 import android.os.Build
 import android.util.Log
 import com.google.android.columbus.sensors.TfClassifier
+import com.kieronquinn.app.shared.tflite.Classifier
 import com.kieronquinn.app.taptap.components.settings.TapModel
 import com.kieronquinn.app.taptap.components.settings.TapTapSettings
 import com.kieronquinn.app.taptap.utils.extensions.runOnClose
@@ -19,7 +20,7 @@ class TapTapTfClassifier(
     private val tapModel: TapModel,
     scope: Scope,
     settings: TapTapSettings
-) : TfClassifier() {
+) : TfClassifier(), Classifier {
 
     companion object {
         private const val TAG = "Columbus"
@@ -62,6 +63,15 @@ class TapTapTfClassifier(
         return when (tapModel.modelType) {
             TapModel.ModelType.NEW -> predict12(interpreter, input, size)
             TapModel.ModelType.LEGACY -> predict11(interpreter, input, size)
+            else -> throw RuntimeException("Unsupported")
+        }
+    }
+
+    override fun predictArray(input: Array<FloatArray>, output: Array<FloatArray>) {
+        val interpreter = interpreter ?: return
+        return when (tapModel) {
+            TapModel.SAMSUNG -> interpreter.run(input, output)
+            else -> throw RuntimeException("Unsupported")
         }
     }
 

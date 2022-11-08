@@ -12,7 +12,8 @@
         android:clipToPadding="false"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
+            app:cardBackgroundColor="?android:colorControlHighlight"
             android:id="@+id/settings_update_card"
             style="@style/Widget.Material3.CardView.Filled.TapTap"
             android:layout_width="match_parent"
@@ -77,7 +78,7 @@
 
             </LinearLayout>
 
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
 
     </androidx.core.widget.NestedScrollView>
 

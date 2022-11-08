@@ -149,6 +149,7 @@ open class MonetSwitch: FrameLayout, MonetColorsChangedListener {
             performClick()
         }
         switch.applyMonet()
+        switch.thumbTintMode = PorterDuff.Mode.SRC_ATOP
         overrideRippleColor(colorStateList = bgTintList)
     }
 

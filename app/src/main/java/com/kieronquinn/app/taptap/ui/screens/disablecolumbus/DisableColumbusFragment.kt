@@ -8,9 +8,8 @@ import androidx.lifecycle.lifecycleScope
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.databinding.FragmentDisableColumbusBinding
 import com.kieronquinn.app.taptap.ui.base.BoundFragment
-import com.kieronquinn.app.taptap.utils.extensions.isDarkMode
+import com.kieronquinn.app.taptap.utils.extensions.applyBackgroundTint
 import com.kieronquinn.app.taptap.utils.extensions.onClicked
-import kotlinx.coroutines.flow.collect
 import me.saket.bettermovementmethod.BetterLinkMovementMethod
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -29,9 +28,7 @@ class DisableColumbusFragment: BoundFragment<FragmentDisableColumbusBinding>(Fra
     private fun setupMonet() {
         binding.root.setBackgroundColor(monet.getBackgroundColor(requireContext()))
         binding.disableColumbusOpenSettings.setTextColor(monet.getAccentColor(requireContext()))
-        val fallbackBackground =
-            if (requireContext().isDarkMode) R.color.cardview_dark_background else R.color.cardview_light_background
-        binding.disableColumbusCard.setCardBackgroundColor(monet.getBackgroundColorSecondary(requireContext()) ?: fallbackBackground)
+        binding.disableColumbusCard.applyBackgroundTint(monet)
     }
 
     private fun setupOpenSettings() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {

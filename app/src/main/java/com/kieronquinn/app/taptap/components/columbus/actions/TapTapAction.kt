@@ -150,6 +150,17 @@ abstract class TapTapAction(
         )
     }
 
+    private fun showSettingsPermission() {
+        val intent = Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS).apply {
+            data = Uri.parse("package:${BuildConfig.APPLICATION_ID}")
+        }
+        showActionNotification(
+            intent,
+            R.string.notification_action_system_settings_error_title,
+            R.string.notification_action_system_settings_error_content
+        )
+    }
+
     private fun showGestureAccessibilityNotification() {
         val intent = context.getAccessibilityIntent(TapTapGestureAccessibilityService::class.java)
         showActionNotification(
@@ -206,6 +217,13 @@ abstract class TapTapAction(
     protected fun showGestureAccessibilityNotificationIfNeeded(): Boolean {
         return if(!context.isServiceRunning(TapTapGestureAccessibilityService::class.java)) {
             showGestureAccessibilityNotification()
+            true
+        }else false
+    }
+
+    protected fun showSettingsPermissionNotificationIfNeeded(): Boolean {
+        return if(!Settings.System.canWrite(context)){
+            showSettingsPermission()
             true
         }else false
     }

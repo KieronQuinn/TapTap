@@ -3,19 +3,16 @@ package com.kieronquinn.app.taptap.ui.activities
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
 import androidx.lifecycle.lifecycleScope
 import com.kieronquinn.app.taptap.R
-import com.kieronquinn.app.taptap.repositories.actions.ActionsRepository
 import com.kieronquinn.app.taptap.ui.screens.root.RootSharedViewModel
 import com.kieronquinn.app.taptap.utils.extensions.EXTRA_KEY_IS_FROM_COLUMBUS
 import com.kieronquinn.app.taptap.utils.extensions.delayPreDrawUntilFlow
 import com.kieronquinn.app.taptap.work.TapTapUpdateCheckWorker
 import com.kieronquinn.monetcompat.app.MonetCompatActivity
-import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity: MonetCompatActivity() {
