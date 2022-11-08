@@ -19,7 +19,8 @@
             android:orientation="vertical"
             android:padding="@dimen/margin_16">
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
+                app:cardBackgroundColor="?android:colorControlHighlight"
                 android:id="@+id/settings_low_power_mode_shizuku_info_error_card_shizuku"
                 style="@style/Widget.Material3.CardView.Filled.TapTap"
                 android:layout_width="match_parent"
@@ -81,9 +82,10 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
+                app:cardBackgroundColor="?android:colorControlHighlight"
                 android:id="@+id/settings_low_power_mode_shizuku_info_error_card_sui"
                 style="@style/Widget.Material3.CardView.Filled.TapTap"
                 android:layout_width="match_parent"
@@ -146,7 +148,7 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
         </LinearLayout>
 

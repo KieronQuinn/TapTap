@@ -14,6 +14,7 @@ import com.kieronquinn.app.taptap.ui.base.BoundFragment
 import com.kieronquinn.app.taptap.ui.screens.container.ContainerSharedViewModel
 import com.kieronquinn.app.taptap.ui.screens.container.ContainerSharedViewModel.FabState
 import com.kieronquinn.app.taptap.ui.screens.settings.update.SettingsUpdateViewModel.State
+import com.kieronquinn.app.taptap.utils.extensions.applyBackgroundTint
 import com.kieronquinn.app.taptap.utils.extensions.applyBottomInsets
 import com.kieronquinn.app.taptap.utils.extensions.onClicked
 import com.kieronquinn.monetcompat.extensions.views.applyMonet
@@ -46,7 +47,7 @@ class SettingsUpdateFragment: BoundFragment<FragmentSettingsUpdateBinding>(Fragm
     private fun setupMonet() {
         val accent = monet.getAccentColor(requireContext())
         val primary = monet.getPrimaryColor(requireContext())
-        binding.settingsUpdateCard.setCardBackgroundColor(ColorStateList.valueOf(primary))
+        binding.settingsUpdateCard.applyBackgroundTint(monet)
         binding.settingsUpdateStartInstall.setTextColor(accent)
         binding.settingsUpdateStartInstall.overrideRippleColor(accent)
         binding.settingsUpdateProgress.applyMonet()

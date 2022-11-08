@@ -2,20 +2,17 @@ package com.kieronquinn.app.taptap.ui.screens.setup.complete
 
 import android.os.Bundle
 import android.view.View
-import androidx.core.content.ContextCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
 import androidx.lifecycle.lifecycleScope
-import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.databinding.FragmentSetupCompleteBinding
 import com.kieronquinn.app.taptap.ui.base.ProvidesBack
 import com.kieronquinn.app.taptap.ui.screens.setup.base.BaseSetupFragment
-import com.kieronquinn.app.taptap.utils.extensions.isDarkMode
+import com.kieronquinn.app.taptap.utils.extensions.applyBackgroundTint
 import com.kieronquinn.app.taptap.utils.extensions.onApplyInsets
 import com.kieronquinn.app.taptap.utils.extensions.onClicked
 import com.kieronquinn.app.taptap.utils.extensions.replaceColour
 import com.kieronquinn.monetcompat.extensions.views.overrideRippleColor
-import kotlinx.coroutines.flow.collect
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SetupCompleteFragment: BaseSetupFragment<FragmentSetupCompleteBinding>(FragmentSetupCompleteBinding::inflate), ProvidesBack {
@@ -40,11 +37,7 @@ class SetupCompleteFragment: BaseSetupFragment<FragmentSetupCompleteBinding>(Fra
     }
 
     private fun setupMonet() {
-        val fallbackBackground =
-            if (requireContext().isDarkMode) R.color.cardview_dark_background else R.color.cardview_light_background
-        val secondary = monet.getBackgroundColorSecondary(requireContext())
-            ?: ContextCompat.getColor(requireContext(), fallbackBackground)
-        binding.setupCompleteCard.setCardBackgroundColor(secondary)
+        binding.setupCompleteCard.applyBackgroundTint(monet)
         val accent = monet.getAccentColor(requireContext())
         binding.setupCompleteClose.setTextColor(accent)
         binding.setupCompleteClose.overrideRippleColor(accent)

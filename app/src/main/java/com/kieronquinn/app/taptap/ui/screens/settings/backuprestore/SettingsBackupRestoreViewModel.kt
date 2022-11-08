@@ -24,7 +24,6 @@ class SettingsBackupRestoreViewModelImpl(private val navigation: ContainerNaviga
 
     companion object {
         const val TAP_TAP_BACKUP_FILE_TEMPLATE = "backup_%s.taptap"
-        private val TAP_TAP_BACKUP_MIME_TYPE = MimeTypeMap.getSingleton().getMimeTypeFromExtension("taptap")
     }
 
     override fun onBackupClicked(launcher: ActivityResultLauncher<String>) {
@@ -38,7 +37,7 @@ class SettingsBackupRestoreViewModelImpl(private val navigation: ContainerNaviga
     }
 
     override fun onRestoreClicked(launcher: ActivityResultLauncher<Array<String>>) {
-        launcher.launch(listOfNotNull(TAP_TAP_BACKUP_MIME_TYPE).toTypedArray())
+        launcher.launch(arrayOf("*/*"))
     }
 
     override fun onRestoreFileClicked(uri: Uri) {

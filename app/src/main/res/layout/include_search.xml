@@ -18,6 +18,7 @@
         android:layout_marginTop="@dimen/margin_8"
         android:layout_marginEnd="@dimen/margin_16"
         android:layout_marginBottom="@dimen/margin_8"
+        android:backgroundTint="?android:colorControlHighlight"
         android:background="@drawable/search_box_background"
         android:drawableStart="@drawable/ic_search"
         android:drawablePadding="@dimen/margin_16"

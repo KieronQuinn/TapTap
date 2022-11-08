@@ -1,25 +1,16 @@
 package com.kieronquinn.app.taptap.components.columbus.sensors
 
-import android.content.Context
-import android.content.res.AssetManager
 import android.os.SystemClock
 import com.google.android.columbus.sensors.TapRT
-import com.kieronquinn.app.taptap.components.settings.TapModel
-import com.kieronquinn.app.taptap.components.settings.TapTapSettings
-import org.koin.core.scope.Scope
 
 /**
  *  Extension of [TapRT] which implements triple tap
  */
 class TapTapTapRT(
-    context: Context,
     mSizeWindowNs: Long,
-    assetManager: AssetManager,
     private val isTripleTapEnabled: Boolean,
     private val sensitivity: Float,
-    tapModel: TapModel,
-    scope: Scope,
-    settings: TapTapSettings
+    classifier: TapTapTfClassifier
 ) : TapRT(mSizeWindowNs) {
 
     companion object {
@@ -27,7 +18,7 @@ class TapTapTapRT(
     }
 
     init {
-        _tflite = TapTapTfClassifier(assetManager, tapModel, scope, settings)
+        _tflite = classifier
     }
 
     override fun checkDoubleTapTiming(timestamp: Long): Int {
@@ -69,7 +60,6 @@ class TapTapTapRT(
 
         return 1
     }
-
 
     override fun reset(justClearFv: Boolean) {
         getPositivePeakDetector().setMinNoiseTolerate(sensitivity)

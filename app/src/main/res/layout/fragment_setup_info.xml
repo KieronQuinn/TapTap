@@ -55,6 +55,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:foreground="?android:selectableItemBackground"
+                android:backgroundTint="@color/background_error"
                 android:clickable="true"
                 android:focusable="true"
                 android:layout_marginStart="@dimen/margin_16"
@@ -88,6 +89,7 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/setup_info_card_donate"
+                app:cardBackgroundColor="?android:colorControlHighlight"
                 style="@style/Widget.Material3.CardView.Filled.TapTap"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -130,7 +132,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:minHeight="@dimen/setup_info_bottom_bar_height"
-        tools:background="#f7f7f7">
+        android:background="?android:colorControlHighlight">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/setup_info_next"

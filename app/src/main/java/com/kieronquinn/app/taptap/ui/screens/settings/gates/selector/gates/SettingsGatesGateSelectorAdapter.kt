@@ -17,6 +17,7 @@ import com.kieronquinn.app.taptap.models.gate.GateSupportedRequirement
 import com.kieronquinn.app.taptap.models.gate.TapTapGateDirectory
 import com.kieronquinn.app.taptap.ui.views.LifecycleAwareRecyclerView
 import com.kieronquinn.app.taptap.utils.extensions.addRippleForeground
+import com.kieronquinn.app.taptap.utils.extensions.applyBackgroundTint
 import com.kieronquinn.app.taptap.utils.extensions.onClicked
 import com.kieronquinn.app.taptap.utils.extensions.removeRippleForeground
 import com.kieronquinn.monetcompat.core.MonetCompat
@@ -47,7 +48,10 @@ class SettingsGatesGateSelectorAdapter(
     }
 
     private val chipBackground by lazy {
-        ColorStateList.valueOf(monet.getSecondaryColor(recyclerView.context))
+        ColorStateList.valueOf(
+            monet.getBackgroundColorSecondary(recyclerView.context) ?:
+            monet.getBackgroundColor(recyclerView.context)
+        )
     }
 
     override fun getItemCount() = items.size
@@ -66,7 +70,7 @@ class SettingsGatesGateSelectorAdapter(
 
     private fun ItemSettingsGatesGateSelectorItemBinding.setup(gate: TapTapGateDirectory, lifecycle: Lifecycle) {
         val context = root.context
-        root.backgroundTintList = ColorStateList.valueOf(monet.getPrimaryColor(context))
+        root.applyBackgroundTint(monet)
         val supportedRequirement = getGateSupportedRequirement(context, gate)
         if(supportedRequirement == null){
             itemSettingsGateSelectorTitle.alpha = 1f

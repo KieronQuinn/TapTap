@@ -1,10 +1,11 @@
 package com.google.android.columbus.sensors
 
-import java.util.ArrayDeque
+import com.kieronquinn.app.shared.taprt.BaseTapRT
+import java.util.*
 
 open class TapRT(
     val sizeWindowNs: Long
-): EventIMURT() {
+): EventIMURT(), BaseTapRT {
 
     enum class TapClass {
         Front, Back, Left, Right, Top, Bottom, Others
@@ -57,7 +58,7 @@ open class TapRT(
         }
     }
 
-    open fun checkDoubleTapTiming(timestamp: Long): Int {
+    override fun checkDoubleTapTiming(timestamp: Long): Int {
         val v0 = _tBackTapTimestamps.iterator()
         while(v0.hasNext()) {
             val v1 = v0.next()
@@ -182,7 +183,7 @@ open class TapRT(
         }
     }
 
-    open fun reset(justClearFv: Boolean) {
+    override fun reset(justClearFv: Boolean) {
         super.reset()
         if(justClearFv){
             _fv.clear()
@@ -194,7 +195,7 @@ open class TapRT(
         }
     }
 
-    fun updateData(type: Int, lastX: Float, lastY: Float, lastZ: Float, lastT: Long, interval: Long, isHeuristic: Boolean) {
+    override fun updateData(type: Int, lastX: Float, lastY: Float, lastZ: Float, lastT: Long, interval: Long, isHeuristic: Boolean) {
         _result = TapClass.Others.ordinal
         if(isHeuristic){
             updateHeuristic(type, lastX, lastY, lastZ, lastT, interval)

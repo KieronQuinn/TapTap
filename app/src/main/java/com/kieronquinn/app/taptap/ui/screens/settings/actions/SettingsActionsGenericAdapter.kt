@@ -19,12 +19,8 @@ import com.kieronquinn.app.taptap.models.action.TapTapUIAction
 import com.kieronquinn.app.taptap.ui.screens.settings.actions.SettingsActionsGenericViewModel.SettingsActionsItem
 import com.kieronquinn.app.taptap.ui.screens.settings.actions.SettingsActionsGenericViewModel.SettingsActionsItem.SettingsActionsItemType
 import com.kieronquinn.app.taptap.ui.views.LifecycleAwareRecyclerView
-import com.kieronquinn.app.taptap.utils.extensions.addRippleForeground
-import com.kieronquinn.app.taptap.utils.extensions.isDarkMode
-import com.kieronquinn.app.taptap.utils.extensions.onClicked
-import com.kieronquinn.app.taptap.utils.extensions.onLongClicked
+import com.kieronquinn.app.taptap.utils.extensions.*
 import com.kieronquinn.monetcompat.core.MonetCompat
-import kotlinx.coroutines.flow.collect
 import java.util.*
 
 class SettingsActionsGenericAdapter(
@@ -44,6 +40,13 @@ class SettingsActionsGenericAdapter(
     }
 
     private val chipBackground by lazy {
+        ColorStateList.valueOf(
+            monet.getBackgroundColorSecondary(recyclerView.context) ?:
+            monet.getBackgroundColor(recyclerView.context)
+        )
+    }
+
+    private val chipBackgroundPrimary by lazy {
         ColorStateList.valueOf(monet.getSecondaryColor(recyclerView.context))
     }
 
@@ -95,7 +98,7 @@ class SettingsActionsGenericAdapter(
     ) {
         val context = root.context
         val tapAction = item.action.tapAction
-        root.backgroundTintList = if (item.isSelected) {
+        root.backgroundTintList = if (!item.isSelected) {
             val fallbackBackground =
                 if (context.isDarkMode) R.color.cardview_dark_background else R.color.cardview_light_background
             ColorStateList.valueOf(
@@ -132,7 +135,7 @@ class SettingsActionsGenericAdapter(
         val whenGatesSize = item.action.whenGatesSize
         itemActionChipWhen.run {
             typeface = googleSansTextMedium
-            chipBackgroundColor = chipBackground
+            chipBackgroundColor = chipBackgroundPrimary
         }
         if (whenGatesSize > 0) {
             itemActionChipWhen.chipIcon =
@@ -171,14 +174,7 @@ class SettingsActionsGenericAdapter(
 
     private fun ItemSettingsActionsInfoBinding.setup(item: SettingsActionsItem.Header, lifecycle: Lifecycle) {
         val context = root.context
-        val fallbackBackground =
-            if (context.isDarkMode) R.color.cardview_dark_background else R.color.cardview_light_background
-        root.backgroundTintList = ColorStateList.valueOf(
-            monet.getBackgroundColorSecondary(context) ?: ContextCompat.getColor(
-                context,
-                fallbackBackground
-            )
-        )
+        root.applyBackgroundTint(monet)
         itemSettingsActionsInfoContent.text = context.getText(item.contentRes)
         if(item.onClick != null){
             root.addRippleForeground()
@@ -216,14 +212,15 @@ class SettingsActionsGenericAdapter(
     fun updateWhenGatesSize(actionId: Int, size: Int) {
         val position =
             items.indexOfFirst { it is SettingsActionsItem.Action && it.action.id == actionId }
+        if(position == -1) return
         (items[position] as? SettingsActionsItem.Action)?.action?.whenGatesSize = size
         notifyItemChanged(position)
     }
 
     fun removeSelectedItem(): Int? {
         val selectedItem = items.indexOfFirst { it is SettingsActionsItem.Action && it.isSelected }
-        val item = items[selectedItem] as SettingsActionsItem.Action
         if (selectedItem == -1) return null
+        val item = items[selectedItem] as SettingsActionsItem.Action
         items.removeAt(selectedItem)
         notifyItemRemoved(selectedItem)
         return item.action.id

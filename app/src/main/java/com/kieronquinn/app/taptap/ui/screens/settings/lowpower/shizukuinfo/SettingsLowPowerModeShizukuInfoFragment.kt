@@ -1,15 +1,14 @@
 package com.kieronquinn.app.taptap.ui.screens.settings.lowpower.shizukuinfo
 
-import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.lifecycleScope
 import com.kieronquinn.app.taptap.databinding.FragmentSettingsLowPowerModeShizukuInfoBinding
 import com.kieronquinn.app.taptap.ui.base.BackAvailable
 import com.kieronquinn.app.taptap.ui.base.BoundFragment
+import com.kieronquinn.app.taptap.utils.extensions.applyBackgroundTint
 import com.kieronquinn.app.taptap.utils.extensions.applyBottomInsets
 import com.kieronquinn.app.taptap.utils.extensions.onClicked
-import kotlinx.coroutines.flow.collect
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SettingsLowPowerModeShizukuInfoFragment: BoundFragment<FragmentSettingsLowPowerModeShizukuInfoBinding>(FragmentSettingsLowPowerModeShizukuInfoBinding::inflate), BackAvailable {
@@ -25,9 +24,8 @@ class SettingsLowPowerModeShizukuInfoFragment: BoundFragment<FragmentSettingsLow
     }
 
     private fun setupMonet() {
-        val cardBackground = ColorStateList.valueOf(monet.getPrimaryColor(requireContext()))
-        binding.settingsLowPowerModeShizukuInfoErrorCardSui.backgroundTintList = cardBackground
-        binding.settingsLowPowerModeShizukuInfoErrorCardShizuku.backgroundTintList = cardBackground
+        binding.settingsLowPowerModeShizukuInfoErrorCardSui.applyBackgroundTint(monet)
+        binding.settingsLowPowerModeShizukuInfoErrorCardShizuku.applyBackgroundTint(monet)
     }
 
     private fun setupShizukuButton() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {

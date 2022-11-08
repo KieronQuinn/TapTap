@@ -77,7 +77,6 @@ class ContainerFragment: BoundFragment<FragmentContainerBinding>(FragmentContain
         super.onViewCreated(view, savedInstanceState)
         setupMonet()
         setupBack()
-        setupAppBar()
         setupCollapsingToolbar()
         setupToolbar()
         setupNavigation()
@@ -134,12 +133,6 @@ class ContainerFragment: BoundFragment<FragmentContainerBinding>(FragmentContain
                     binding.appBar.setExpanded(true)
                 }
             }
-        }
-    }
-
-    private fun setupAppBar() = with(binding.appBar) {
-        onApplyInsets { view, insets ->
-            view.updatePadding(top = insets.getInsets(WindowInsetsCompat.Type.statusBars()).top)
         }
     }
 

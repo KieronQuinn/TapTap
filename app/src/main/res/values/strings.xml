@@ -202,10 +202,12 @@
     <string name="settings_model_picker_loading">Loading…</string>
     <string name="settings_model_picker_tab_newest">Newest</string>
     <string name="settings_model_picker_tab_legacy">Legacy</string>
+    <string name="settings_model_picker_tab_oem">OEM</string>
     <string name="settings_model_picker_device_size">Height: %1smm (%1sin)</string>
     <string name="settings_model_picker_recommended">%1s (Recommended)</string>
     <string name="settings_model_picker_header_newest">Newest models are from Android 12 and are more accurate than the legacy models.\n\n<b>Note:</b> Sometimes the closest size is not the best for your device, you may need to try all the sizes to find the one that is best for you.</string>
     <string name="settings_model_picker_header_legacy">Legacy models are from Android 11 and are less accurate than the newer models.\n\n<b>Note:</b> Sometimes the closest size is not the best for your device, you may need to try all the sizes to find the one that is best for you.</string>
+    <string name="settings_model_picker_header_oem">OEM models are from device manufacturer implementations of Quick Tap\n\n<b>Note:</b> There are no size recommendations for these models</string>
 
     <!-- New (Android 12) models -->
     <string name="tap_model_redfin_name">144.7mm [5.7in] (Small)</string>
@@ -226,6 +228,10 @@
     <string name="tap_model_pixel3xl_desc">Created for the Pixel 3 XL</string>
     <string name="tap_model_pixel4xl_name">160mm [6.3in] (Large)</string>
     <string name="tap_model_pixel4xl_desc">Created for the Pixel 4 XL</string>
+
+    <!-- Samsung models -->
+    <string name="tap_model_samsung_name">Samsung</string>
+    <string name="tap_model_samsung_desc">Created for Samsung RegiStar</string>
 
     <!-- Settings > Settings > Advanced -->
     <string name="setting_advanced">Advanced</string>
@@ -308,8 +314,8 @@
 
     <!-- Settings > More > Contributors -->
     <string name="about_contributors">Contributors</string>
-    <string name="about_contributors_main">Columbus</string>
-    <string name="about_contributors_main_content"><![CDATA[\'Columbus\' Model and base code created by Google, from Android 11 Developer Preview 1 and Android 12 (<a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>)]]></string>
+    <string name="about_contributors_main">Models</string>
+    <string name="about_contributors_main_content"><![CDATA[\'Columbus\' Model and base code created by Google, from Android 11 Developer Preview 1 and Android 12 (<a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>)<br>\'RegiStar\' model from Samsung\'s Good Lock RegiStar module]]></string>
     <string name="about_contributors_community">Community Contributions</string>
     <string name="about_contributors_community_content"><b>Tasker integration</b>: João Dias\n<b>Music control actions</b>: timfedo\n<b>MD2 UI and Chrome Custom Tabs</b>: Giorgio Cantoni\n<b>Power Dialog action</b>: Adrian Campos\n<b>DND feedback and Sound Profiles action</b>: Ashutosh Singh\n<b>Launch Search action</b>: arkon\n<b>Force Do not Disturb action:</b> Kylian Meulin\n<b>Touch on Screen action:</b> Mauri de Souza Meneguzzo</string>
     <string name="about_contributors_icons">Icons</string>
@@ -436,6 +442,10 @@
     <string name="action_alarm_snooze">Snooze Alarm</string>
     <string name="action_alarm_timer_desc">Dismisses an alarm or timer, if there is one going off (supported Clock apps only)</string>
     <string name="action_alarm_snooze_desc">Snoozes an alarm, if there is one going off (supported Clock apps only)</string>
+    <string name="action_touch">Touch on screen</string>
+    <string name="action_touch_desc">This action presses the screen at a random point to generate a touch gesture.</string>
+    <string name="action_force_rotate">Rotate</string>
+    <string name="action_force_rotate_desc">Simulate rotating the device to landscape or portrait, if the app supports it.\n<b>Note:</b> This disables auto rotate when used.</string>
 
     <string name="action_unsupported_reason_min_sdk">Incompatible with your version of Android</string>
     <string name="action_unsupported_reason_tasker">Tasker is required</string>
@@ -532,6 +542,8 @@
     <string name="notification_gate_accessibility_error_content">This gate requires the Accessibility Service, tap to enable. If you are seeing this when it is enabled, disable and re-enable the service.</string>
     <string name="notification_action_gesture_accessibility_error_title">Gesture Accessibility Service Not Enabled</string>
     <string name="notification_action_gesture_accessibility_error_content">This action requires the Gesture Accessibility Service, tap to enable. If you are seeing this when it is enabled, disable and re-enable the service.</string>
+    <string name="notification_action_system_settings_error_title">Write Settings Permission Required</string>
+    <string name="notification_action_system_settings_error_content">This action requires the Write Settings permission, tap to grant</string>
     <string name="notification_channel_service_title">Service</string>
     <string name="notification_channel_service_content">Notifications about the service, including loading and errors</string>
     <string name="notification_service_loading_title">Starting Service…</string>
@@ -644,8 +656,6 @@
     <string name="crash_reporting_content_intro"><![CDATA[Tap, Tap has encountered a crash. Please report the issue, including the report, on the <a href="https://kieronquinn.co.uk/redirect/TapTap/github">GitHub issues</a> or <a href="https://kieronquinn.co.uk/redirect/TapTap/xda">XDA thread</a>. If the crash happened when running the gesture, an action or using a gate, please include screenshots of the setup you are using.<br><br><b>Important: Before reporting, please make sure the issue has not been reported already, using the provided search tools.</b><br><br>The report is also shown below.]]></string>
     <string name="crash_reporting_toast_success">Report saved</string>
     <string name="crash_reporting_toast_failed">Error saving report</string>
-    <string name="action_touch">Touch on screen</string>
-    <string name="action_touch_desc">This action presses the screen at a random point to generate a touch gesture.</string>
 
 
 </resources>

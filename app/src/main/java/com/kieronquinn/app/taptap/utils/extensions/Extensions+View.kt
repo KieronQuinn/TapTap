@@ -12,7 +12,6 @@ import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.suspendCancellableCoroutine
@@ -90,9 +89,7 @@ fun View.delayPreDrawUntilFlow(flow: Flow<Boolean>, lifecycle: Lifecycle) {
         false
     }
     val removeListener = {
-        if (viewTreeObserver.isAlive) {
-            viewTreeObserver.removeOnPreDrawListener(listener)
-        }
+        viewTreeObserver.removeOnPreDrawListener(listener)
     }
     lifecycle.runOnDestroy {
         removeListener()

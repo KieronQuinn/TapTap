@@ -16,10 +16,9 @@ import com.kieronquinn.app.taptap.databinding.ItemSettingsBackupRestoreRestoreIn
 import com.kieronquinn.app.taptap.databinding.ItemSettingsBackupRestoreRestoreRequirementBinding
 import com.kieronquinn.app.taptap.ui.screens.settings.backuprestore.restore.SettingsBackupRestoreRestoreViewModel.Item
 import com.kieronquinn.app.taptap.ui.views.LifecycleAwareRecyclerView
-import com.kieronquinn.app.taptap.utils.extensions.isDarkMode
+import com.kieronquinn.app.taptap.utils.extensions.applyBackgroundTint
 import com.kieronquinn.app.taptap.utils.extensions.onClicked
 import com.kieronquinn.monetcompat.core.MonetCompat
-import kotlinx.coroutines.flow.collect
 
 class SettingsBackupRestoreRestoreAdapter(
     recyclerView: LifecycleAwareRecyclerView,
@@ -46,7 +45,10 @@ class SettingsBackupRestoreRestoreAdapter(
     }
 
     private val chipBackground by lazy {
-        ColorStateList.valueOf(monet.getSecondaryColor(recyclerView.context))
+        ColorStateList.valueOf(
+            monet.getBackgroundColorSecondary(recyclerView.context) ?:
+            monet.getBackgroundColor(recyclerView.context)
+        )
     }
 
     override fun getItemCount() = items.size
@@ -99,15 +101,7 @@ class SettingsBackupRestoreRestoreAdapter(
     }
 
     private fun ItemSettingsBackupRestoreRestoreInfoboxBinding.setup(item: Item.Infobox) {
-        val context = root.context
-        val fallbackBackground =
-            if (context.isDarkMode) R.color.cardview_dark_background else R.color.cardview_light_background
-        root.backgroundTintList = ColorStateList.valueOf(
-            monet.getBackgroundColorSecondary(context) ?: ContextCompat.getColor(
-                context,
-                fallbackBackground
-            )
-        )
+        root.applyBackgroundTint(monet)
         itemSettingsGatesInfoContent.text = root.context.getText(item.content)
     }
 
@@ -116,8 +110,8 @@ class SettingsBackupRestoreRestoreAdapter(
     }
 
     private fun ItemSettingsBackupRestoreRestoreRequirementBinding.setup(item: Item.Requirement, lifecycle: Lifecycle) {
-        root.backgroundTintList = ColorStateList.valueOf(monet.getPrimaryColor(root.context))
         root.alpha = if(item.isSupported) 1f else 0.5f
+        root.applyBackgroundTint(monet)
         itemSettingsBackupRestoreRestoreRequirementSetup.isVisible = item.isSupported
         itemSettingsBackupRestoreRestoreRequirementSkip.isVisible = item.isSupported
         itemSettingsBackupRestoreRestoreRequirementIcon.setImageResource(item.icon)

@@ -25,7 +25,7 @@
 
             <include
                 android:id="@+id/settings_actions_when_gates_action"
-                layout="@layout/item_settings_actions_action" />
+                layout="@layout/item_settings_actions_action_when" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 

@@ -1,6 +1,5 @@
 package com.kieronquinn.app.taptap.ui.screens.settings.shared.snapchat
 
-import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -16,9 +15,9 @@ import com.kieronquinn.app.taptap.repositories.snapchat.SnapchatRepository
 import com.kieronquinn.app.taptap.ui.base.BackAvailable
 import com.kieronquinn.app.taptap.ui.base.BoundFragment
 import com.kieronquinn.app.taptap.ui.screens.settings.shared.snapchat.SettingsSharedSnapchatViewModel.State
+import com.kieronquinn.app.taptap.utils.extensions.applyBackgroundTint
 import com.kieronquinn.app.taptap.utils.extensions.onClicked
 import com.kieronquinn.monetcompat.extensions.views.applyMonet
-import kotlinx.coroutines.flow.collect
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SettingsSharedSnapchatFragment :
@@ -112,7 +111,7 @@ class SettingsSharedSnapchatFragment :
     }
 
     private fun setupNonRoot() {
-        binding.settingsSharedSnapchatSetupNoRootCard.backgroundTintList = ColorStateList.valueOf(monet.getPrimaryColor(requireContext()))
+        binding.settingsSharedSnapchatSetupNoRootCard.applyBackgroundTint(monet)
         binding.settingsSharedSnapchatSetupNoRootButton.setTextColor(monet.getAccentColor(requireContext()))
         viewLifecycleOwner.lifecycleScope.launchWhenResumed {
             binding.settingsSharedSnapchatSetupNoRootButton.onClicked().collect {
@@ -123,7 +122,7 @@ class SettingsSharedSnapchatFragment :
 
 
     private fun setupRoot() {
-        binding.settingsSharedSnapchatSetupRootCard.backgroundTintList = ColorStateList.valueOf(monet.getPrimaryColor(requireContext()))
+        binding.settingsSharedSnapchatSetupRootCard.applyBackgroundTint(monet)
         binding.settingsSharedSnapchatSetupRootButton.setTextColor(monet.getAccentColor(requireContext()))
         viewLifecycleOwner.lifecycleScope.launchWhenResumed {
             binding.settingsSharedSnapchatSetupRootButton.onClicked().collect {
@@ -133,7 +132,7 @@ class SettingsSharedSnapchatFragment :
     }
 
     private fun setupIncompatible() {
-        binding.settingsSharedSnapchatSetupIncompatibleCard.backgroundTintList = ColorStateList.valueOf(monet.getPrimaryColor(requireContext()))
+        binding.settingsSharedSnapchatSetupIncompatibleCard.applyBackgroundTint(monet)
         binding.settingsSharedSnapchatSetupIncompatibleButton.setTextColor(monet.getAccentColor(requireContext()))
         viewLifecycleOwner.lifecycleScope.launchWhenResumed {
             binding.settingsSharedSnapchatSetupIncompatibleButton.onClicked().collect {

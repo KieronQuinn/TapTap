@@ -11,3 +11,5 @@ rootProject.name = "Tap Tap"
 include ':app'
 include ':columbus'
 include ':systemstubs'
+include ':shared'
+include ':samsung'

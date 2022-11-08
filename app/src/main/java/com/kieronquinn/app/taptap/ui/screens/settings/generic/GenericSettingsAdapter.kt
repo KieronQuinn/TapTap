@@ -2,12 +2,12 @@ package com.kieronquinn.app.taptap.ui.screens.settings.generic
 
 import android.content.Context
 import android.content.res.ColorStateList
+import android.graphics.PorterDuff
 import android.text.Html
 import android.text.util.Linkify
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.CompoundButton
-import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.LifecycleCoroutineScope
@@ -51,7 +51,10 @@ abstract class GenericSettingsAdapter(
     }
 
     private val chipBackground by lazy {
-        ColorStateList.valueOf(monet.getPrimaryColor(recyclerView.context))
+        ColorStateList.valueOf(
+            monet.getBackgroundColorSecondary(recyclerView.context) ?:
+            monet.getBackgroundColor(recyclerView.context)
+        )
     }
 
     private val googleSansTextMedium by lazy {
@@ -224,6 +227,7 @@ abstract class GenericSettingsAdapter(
         itemSettingsSwitchSwitch.isEnabled = isEnabled
         itemSettingsSwitchSwitch.isChecked = item.setting.getSync()
         itemSettingsSwitchSwitch.applyMonet()
+        itemSettingsSwitchSwitch.thumbTintMode = PorterDuff.Mode.SRC_ATOP
         itemSettingsSwitchSwitch.alpha = if (isEnabled) 1f else 0.5f
         itemSettingsSwitchTitle.alpha = if (isEnabled) 1f else 0.5f
         itemSettingsSwitchContent.alpha = if (isEnabled) 1f else 0.5f
@@ -323,17 +327,8 @@ abstract class GenericSettingsAdapter(
                 else -> null
             }
         }
-        if (item.onDismissClicked != null) {
-            val fallbackBackground =
-                if (context.isDarkMode) R.color.cardview_dark_background else R.color.cardview_light_background
-            root.setCardBackgroundColor(
-                monet.getBackgroundColorSecondary(context) ?: ContextCompat.getColor(context, fallbackBackground)
-            )
-            itemSettingsInfoDismiss.isVisible = true
-        } else {
-            root.setCardBackgroundColor(ColorStateList.valueOf(monet.getPrimaryColor(context)))
-            itemSettingsInfoDismiss.isVisible = false
-        }
+        root.applyBackgroundTint(monet)
+        itemSettingsInfoDismiss.isVisible = item.onDismissClicked != null
         if(item.icon != null){
             itemSettingsInfoIcon.setImageResource(item.icon)
         }else{
@@ -365,13 +360,7 @@ abstract class GenericSettingsAdapter(
         val context = root.context
         val content = context.getString(R.string.about_version, BuildConfig.VERSION_NAME)
         itemSettingsMoreAboutContent.text = content
-        val fallbackBackground = if (context.isDarkMode) R.color.cardview_dark_background else R.color.cardview_light_background
-        root.setCardBackgroundColor(ColorStateList.valueOf(
-            monet.getBackgroundColorSecondary(context) ?: ContextCompat.getColor(
-                context,
-                fallbackBackground
-            )
-        ))
+        root.applyBackgroundTint(monet)
         mapOf(
             itemSettingsMoreAboutContributors to item.onContributorsClicked,
             itemSettingsMoreAboutDonate to item.onDonateClicked,

@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.hardware.location.ContextHubClient
 import android.hardware.location.ContextHubClientCallback
 import android.hardware.location.NanoAppMessage
-import android.os.IBinder
 import com.kieronquinn.app.taptap.contexthub.IContextHubClientCallback
 import com.kieronquinn.app.taptap.contexthub.IRemoteContextHubClient
 
@@ -100,7 +99,12 @@ class ContextHubClientCallbackRemoteToLocalWrapper(
     }
 
     override fun onHubReset(client: ContextHubClient) {
-        remote.onHubReset(client.toInterface())
+        try {
+            remote.onHubReset(client.toInterface())
+        }catch (e: NullPointerException){
+            e.printStackTrace()
+            //Occasional system bug on A13
+        }
     }
 
     override fun onMessageFromNanoApp(client: ContextHubClient, message: NanoAppMessage) {

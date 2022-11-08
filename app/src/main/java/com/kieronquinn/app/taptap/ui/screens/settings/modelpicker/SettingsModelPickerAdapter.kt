@@ -1,10 +1,8 @@
 package com.kieronquinn.app.taptap.ui.screens.settings.modelpicker
 
 import android.content.Context
-import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.coroutineScope
 import androidx.viewbinding.ViewBinding
@@ -14,11 +12,10 @@ import com.kieronquinn.app.taptap.databinding.ItemSettingsModelPickerHeaderBindi
 import com.kieronquinn.app.taptap.databinding.ItemSettingsModelPickerModelBinding
 import com.kieronquinn.app.taptap.ui.screens.settings.modelpicker.SettingsModelPickerViewModel.Item
 import com.kieronquinn.app.taptap.ui.views.LifecycleAwareRecyclerView
-import com.kieronquinn.app.taptap.utils.extensions.isDarkMode
+import com.kieronquinn.app.taptap.utils.extensions.applyBackgroundTint
 import com.kieronquinn.app.taptap.utils.extensions.onClicked
 import com.kieronquinn.monetcompat.core.MonetCompat
 import com.kieronquinn.monetcompat.extensions.views.applyMonet
-import kotlinx.coroutines.flow.collect
 
 class SettingsModelPickerAdapter(recyclerView: LifecycleAwareRecyclerView, var items: List<Item>, val onItemSelected: (TapModel) -> Unit): LifecycleAwareRecyclerView.Adapter<SettingsModelPickerAdapter.ViewHolder>(recyclerView) {
 
@@ -73,7 +70,7 @@ class SettingsModelPickerAdapter(recyclerView: LifecycleAwareRecyclerView, var i
         }
         itemSettingsModelPickerRadio.isChecked = item.selected
         itemSettingsModelPickerRadio.applyMonet()
-        root.backgroundTintList = ColorStateList.valueOf(monet.getPrimaryColor(context))
+        root.applyBackgroundTint(monet)
         lifecycle.coroutineScope.launchWhenResumed {
             root.onClicked().collect {
                 onItemSelected(item.model)
@@ -87,14 +84,7 @@ class SettingsModelPickerAdapter(recyclerView: LifecycleAwareRecyclerView, var i
     }
 
     private fun ItemSettingsModelPickerHeaderBinding.setup(item: Item.Header) {
-        val fallbackBackground =
-            if (context.isDarkMode) R.color.cardview_dark_background else R.color.cardview_light_background
-        root.backgroundTintList = ColorStateList.valueOf(
-            monet.getBackgroundColorSecondary(context) ?: ContextCompat.getColor(
-                context,
-                fallbackBackground
-            )
-        )
+        root.applyBackgroundTint(monet)
         itemSettingsModelPickerHeaderContent.text = root.context.getText(item.contentRes)
     }
 

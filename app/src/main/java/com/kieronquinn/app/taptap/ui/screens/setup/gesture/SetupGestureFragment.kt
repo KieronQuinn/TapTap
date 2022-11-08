@@ -1,6 +1,7 @@
 package com.kieronquinn.app.taptap.ui.screens.setup.gesture
 
 import android.annotation.SuppressLint
+import android.content.res.ColorStateList
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -388,7 +389,7 @@ class SetupGestureFragment: BaseSetupFragment<FragmentSetupGestureBinding>(Fragm
         binding.itemSettingsInfoIcon.setImageResource(infoCard.icon)
         val fallbackBackground =
             if (requireContext().isDarkMode) R.color.cardview_dark_background else R.color.cardview_light_background
-        binding.setupGestureInfoCard.setCardBackgroundColor(
+        binding.setupGestureInfoCard.backgroundTintList = ColorStateList.valueOf(
             when(infoCard.cardColor){
                 InfoCard.CardColor.PRIMARY -> monet.getPrimaryColor(requireContext())
                 InfoCard.CardColor.BACKGROUND_SECONDARY -> monet.getBackgroundColorSecondary(requireContext())

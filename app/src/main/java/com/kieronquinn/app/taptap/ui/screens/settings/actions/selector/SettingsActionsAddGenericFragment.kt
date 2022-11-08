@@ -19,7 +19,6 @@ import com.google.gson.Gson
 import com.kieronquinn.app.taptap.BuildConfig
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.components.accessibility.TapTapAccessibilityRouter
-import com.kieronquinn.app.taptap.components.columbus.actions.custom.LaunchAppShortcutAction
 import com.kieronquinn.app.taptap.models.action.ActionDataTypes
 import com.kieronquinn.app.taptap.models.action.ActionRequirement
 import com.kieronquinn.app.taptap.models.action.TapTapActionDirectory
@@ -122,6 +121,9 @@ abstract class SettingsActionsAddGenericFragment<T : ViewBinding>(inflate: (Layo
                 }
                 is ActionRequirement.TaskerPermission -> {
                     requestTaskerPermission()
+                }
+                is ActionRequirement.WriteSystemSettingsPermission -> {
+                    requestWriteSystemSettings()
                 }
                 is ActionRequirement.Shizuku -> {
                     return if(!isReturning){
@@ -233,6 +235,17 @@ abstract class SettingsActionsAddGenericFragment<T : ViewBinding>(inflate: (Layo
         //Await onResume, then we can return to checking again
         onResume.take(1).first()
         return Settings.canDrawOverlays(requireContext())
+    }
+
+    private suspend fun requestWriteSystemSettings(): Boolean {
+        if(Settings.System.canWrite(context)) return true
+        //Launch write system settings page
+        startActivity(Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS).apply {
+            data = Uri.parse("package:${BuildConfig.APPLICATION_ID}")
+        })
+        //Await onResume, then we can return to checking again
+        onResume.take(1).first()
+        return Settings.System.canWrite(context)
     }
 
     private suspend fun requestAccessibilityService(): Boolean {

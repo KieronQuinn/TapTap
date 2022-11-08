@@ -14,9 +14,12 @@ enum class TapModel(val modelType: ModelType, val path: String, val nameRes: Int
     //Old models, from the Android 11 impl
     PIXEL4(ModelType.LEGACY, "columbus/11/tap7cls_pixel4.tflite", R.string.tap_model_pixel4_name, R.string.tap_model_pixel4_desc, 147.1),
     PIXEL3_XL(ModelType.LEGACY, "columbus/11/tap7cls_pixel3xl.tflite", R.string.tap_model_pixel3xl_name, R.string.tap_model_pixel3xl_desc, 158.0),
-    PIXEL4_XL(ModelType.LEGACY, "columbus/11/tap7cls_pixel4xl.tflite", R.string.tap_model_pixel4xl_name, R.string.tap_model_pixel4xl_desc, 160.4);
+    PIXEL4_XL(ModelType.LEGACY, "columbus/11/tap7cls_pixel4xl.tflite", R.string.tap_model_pixel4xl_name, R.string.tap_model_pixel4xl_desc, 160.4),
+
+    //Samsung model from RegiStar
+    SAMSUNG(ModelType.OEM, "samsung/backtap_20221018-160917.tflite", R.string.tap_model_samsung_name, R.string.tap_model_samsung_desc, 0.0);
 
     enum class ModelType {
-        NEW, LEGACY
+        NEW, LEGACY, OEM
     }
 }

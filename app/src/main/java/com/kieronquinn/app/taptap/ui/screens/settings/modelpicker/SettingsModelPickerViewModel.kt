@@ -52,6 +52,10 @@ class SettingsModelPickerViewModelImpl(phoneSpecsRepository: PhoneSpecsRepositor
         emit(TapModel.values().filter { it.modelType == TapModel.ModelType.LEGACY })
     }
 
+    private val oemModels = flow {
+        emit(TapModel.values().filter { it.modelType == TapModel.ModelType.OEM })
+    }
+
     private val newestHeader by lazy {
         Item.Header(R.string.settings_model_picker_header_newest)
     }
@@ -60,14 +64,26 @@ class SettingsModelPickerViewModelImpl(phoneSpecsRepository: PhoneSpecsRepositor
         Item.Header(R.string.settings_model_picker_header_legacy)
     }
 
+    private val oemHeader by lazy {
+        Item.Header(R.string.settings_model_picker_header_oem)
+    }
+
     private val selectedModel = settings.columbusTapModel
+    private val customSensitivity = settings.columbusCustomSensitivity
     private val selectedModelFlow = selectedModel.asFlow()
 
     private val selectedTab = MutableStateFlow<Int?>(null)
 
     override val restartService = restartServiceCombine(selectedModelFlow.map {  })
 
-    private val models = combine(newestModels, legacyModels, selectedTab, selectedModelFlow, phoneSpecs) { newest, legacy, selectedTab, selectedModel, specs ->
+    private val loadedModels = combine(newestModels, legacyModels, oemModels) { newest, legacy, oem ->
+        listOf(newest, legacy, oem)
+    }
+
+    private val models = combine(loadedModels, selectedTab, selectedModelFlow, phoneSpecs) { allModels, selectedTab, selectedModel, specs ->
+        val newest = allModels[0]
+        val legacy = allModels[1]
+        val oem = allModels[2]
         val bestModelsPair = specs?.let {
             phoneSpecsRepository.getBestModels(it)
         }
@@ -77,16 +93,19 @@ class SettingsModelPickerViewModelImpl(phoneSpecsRepository: PhoneSpecsRepositor
                 when {
                     newest.contains(selectedModel) -> 0
                     legacy.contains(selectedModel) -> 1
+                    oem.contains(selectedModel) -> 2
                     else -> 0 //Default to first tab
                 }
         val bestModel = when(tabIndex) {
             0 -> bestModelsPair?.first
             1 -> bestModelsPair?.second
+            2 -> null //No predictions for OEM
             else -> throw RuntimeException("Invalid tab")
         }
         val models = when(tabIndex) {
             0 -> newest
             1 -> legacy
+            2 -> oem
             else -> throw RuntimeException("Invalid tab")
         }
         Triple(tabIndex, models, bestModel)
@@ -99,6 +118,7 @@ class SettingsModelPickerViewModelImpl(phoneSpecsRepository: PhoneSpecsRepositor
         val items = when(allModels.first){
             0 -> listOf(newestHeader) + uiModels
             1 -> listOf(legacyHeader) + uiModels
+            2 -> listOf(oemHeader) + uiModels
             else -> throw RuntimeException("Invalid tab")
         }
         State.Loaded(
@@ -116,6 +136,11 @@ class SettingsModelPickerViewModelImpl(phoneSpecsRepository: PhoneSpecsRepositor
 
     override fun onModelSelected(model: TapModel) {
         viewModelScope.launch {
+            val oldModel = selectedModel.get()
+            //Clear the custom sensitivity if it is set, if the model is changing drastically
+            if(oldModel.modelType != model.modelType){
+                customSensitivity.clear()
+            }
             selectedModel.set(model)
         }
     }

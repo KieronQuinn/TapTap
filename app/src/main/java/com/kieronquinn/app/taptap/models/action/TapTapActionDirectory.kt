@@ -482,6 +482,15 @@ enum class TapTapActionDirectory(
         R.drawable.ic_action_touch,
         ActionSupportedRequirement.MinSdk(Build.VERSION_CODES.N),
         actionRequirement = arrayOf(ActionRequirement.GestureAccessibility)
+    ),
+    FORCE_ROTATE(
+        ForceRotateAction::class.java,
+        TapTapActionCategory.BUTTON,
+        R.string.action_force_rotate,
+        R.string.action_force_rotate_desc,
+        R.drawable.ic_action_force_rotate,
+        null,
+        actionRequirement = arrayOf(ActionRequirement.WriteSystemSettingsPermission)
     );
 
     companion object {
@@ -516,6 +525,7 @@ sealed class ActionRequirement {
     object AnswerPhoneCallsPermission: Permission()
     object AccessNotificationPolicyPermission: Permission()
     object TaskerPermission: Permission()
+    object WriteSystemSettingsPermission: Permission()
 
     object Shizuku : UserDisplayedActionRequirement(
         R.drawable.ic_shizuku,

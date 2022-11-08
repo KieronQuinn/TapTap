@@ -5,7 +5,6 @@ import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.core.graphics.ColorUtils
 import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.coroutineScope
@@ -16,13 +15,9 @@ import com.kieronquinn.app.taptap.databinding.ItemSettingsGatesInfoBinding
 import com.kieronquinn.app.taptap.ui.screens.settings.gates.SettingsGatesViewModel.SettingsGatesItem
 import com.kieronquinn.app.taptap.ui.screens.settings.gates.SettingsGatesViewModel.SettingsGatesItem.SettingsGatesItemType
 import com.kieronquinn.app.taptap.ui.views.LifecycleAwareRecyclerView
-import com.kieronquinn.app.taptap.utils.extensions.addRippleForeground
-import com.kieronquinn.app.taptap.utils.extensions.isDarkMode
-import com.kieronquinn.app.taptap.utils.extensions.onClicked
-import com.kieronquinn.app.taptap.utils.extensions.onLongClicked
+import com.kieronquinn.app.taptap.utils.extensions.*
 import com.kieronquinn.monetcompat.core.MonetCompat
 import com.kieronquinn.monetcompat.extensions.views.applyMonetLight
-import kotlinx.coroutines.flow.collect
 import java.util.*
 
 class SettingsGatesAdapter(
@@ -85,22 +80,18 @@ class SettingsGatesAdapter(
     ) {
         val context = root.context
         val tapGate = item.gate.gate
-        val color = if (item.isSelected) {
+        root.backgroundTintList = if (!item.isSelected) {
             val fallbackBackground =
                 if (context.isDarkMode) R.color.cardview_dark_background else R.color.cardview_light_background
-            monet.getBackgroundColorSecondary(context) ?: ContextCompat.getColor(
-                context,
-                fallbackBackground
+            ColorStateList.valueOf(
+                monet.getBackgroundColorSecondary(context) ?: ContextCompat.getColor(
+                    context,
+                    fallbackBackground
+                )
             )
         } else {
-            monet.getPrimaryColor(context)
+            ColorStateList.valueOf(monet.getPrimaryColor(context))
         }
-        root.backgroundTintList = ColorStateList.valueOf(
-            ColorUtils.setAlphaComponent(
-                color,
-                if (item.gate.enabled) 255 else 191
-            )
-        )
         root.cardElevation = if (item.isSelected) {
             context.resources.getDimension(R.dimen.card_elevation_selected)
         } else 0f
@@ -134,14 +125,7 @@ class SettingsGatesAdapter(
 
     private fun ItemSettingsGatesInfoBinding.setup(item: SettingsGatesItem.Header, lifecycle: Lifecycle) {
         val context = root.context
-        val fallbackBackground =
-            if (context.isDarkMode) R.color.cardview_dark_background else R.color.cardview_light_background
-        root.backgroundTintList = ColorStateList.valueOf(
-            monet.getBackgroundColorSecondary(context) ?: ContextCompat.getColor(
-                context,
-                fallbackBackground
-            )
-        )
+        root.applyBackgroundTint(monet)
         itemSettingsGatesInfoContent.text = context.getText(item.contentRes)
         if(item.onClick != null){
             root.addRippleForeground()

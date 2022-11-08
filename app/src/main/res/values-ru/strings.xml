@@ -289,8 +289,6 @@
 
     <!-- Settings > More > Contributors -->
     <string name="about_contributors">Благодарности</string>
-    <string name="about_contributors_main">Columbus</string>
-    <string name="about_contributors_main_content"><![CDATA[Модель и основной код «Columbus» созданы Google, взяты из Android 11 Developer Preview 1 и Android 12 (<a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>)]]></string>
     <string name="about_contributors_community">Вклад сообщества</string>
     <string name="about_contributors_community_content"><b>Интеграция с Tasker</b>: João Dias\n<b>Управление музыкой</b>: timfedo\n<b>Интеграция MD2 и Chrome Custom Tabs</b>: Giorgio Cantoni\n<b>Действие диалогового окна питания</b>: Adrian Campos\n<b>Действие звуковых профилей и режима «Не беспокоить»</b>: Ashutosh Singh\n<b>Действие по запуску поиска</b>: arkon\n<b>Действие по принудительному включению «Не беспокоить»:</b> Kylian Meulin</string>
     <string name="about_contributors_icons">Значки</string>

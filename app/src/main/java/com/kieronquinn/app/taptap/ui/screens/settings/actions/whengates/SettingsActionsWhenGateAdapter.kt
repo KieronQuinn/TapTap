@@ -1,7 +1,6 @@
 package com.kieronquinn.app.taptap.ui.screens.settings.actions.whengates
 
 import android.content.Context
-import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.coroutineScope
@@ -9,12 +8,12 @@ import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.databinding.ItemSettingsActionsWhenGateBinding
 import com.kieronquinn.app.taptap.ui.screens.settings.actions.whengates.SettingsActionsWhenGatesViewModel.SettingsWhenGatesItem
 import com.kieronquinn.app.taptap.ui.views.LifecycleAwareRecyclerView
+import com.kieronquinn.app.taptap.utils.extensions.applyBackgroundTint
 import com.kieronquinn.app.taptap.utils.extensions.onLongClicked
-import kotlinx.coroutines.flow.collect
+import com.kieronquinn.monetcompat.core.MonetCompat
 
 class SettingsActionsWhenGatesAdapter(
     recyclerView: LifecycleAwareRecyclerView,
-    private val backgroundColor: Int,
     private val onItemSelectedStateChange: (selected: Boolean) -> Unit,
     var items: List<SettingsWhenGatesItem>
 ) : LifecycleAwareRecyclerView.Adapter<SettingsActionsWhenGatesAdapter.ViewHolder>(recyclerView) {
@@ -27,6 +26,10 @@ class SettingsActionsWhenGatesAdapter(
 
     private val layoutInflater by lazy {
         context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+    }
+
+    private val monet by lazy {
+        MonetCompat.getInstance()
     }
 
     override fun getItemCount() = items.size
@@ -65,7 +68,7 @@ class SettingsActionsWhenGatesAdapter(
     }
 
     private fun ItemSettingsActionsWhenGateBinding.setup(item: SettingsWhenGatesItem, holder: ViewHolder) = with(root) {
-        backgroundTintList = ColorStateList.valueOf(backgroundColor)
+        applyBackgroundTint(monet)
         val gate = item.whenGate
         val gateLabel = if (gate.inverted) {
             context.getString(

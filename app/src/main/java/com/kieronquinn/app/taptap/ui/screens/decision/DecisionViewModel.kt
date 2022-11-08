@@ -1,6 +1,7 @@
 package com.kieronquinn.app.taptap.ui.screens.decision
 
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
@@ -26,8 +27,8 @@ class DecisionViewModelImpl(context: Context, private val rootNavigation: RootNa
 
     private val _decisionMade = MutableSharedFlow<Unit>(replay = 1, onBufferOverflow = BufferOverflow.DROP_OLDEST).apply {
         viewModelScope.launch {
-            rootNavigation.navigate(getDestination(context))
             emit(Unit)
+            rootNavigation.navigate(getDestination(context))
         }
     }
 

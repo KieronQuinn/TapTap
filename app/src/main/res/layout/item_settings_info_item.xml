@@ -2,22 +2,23 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Widget.Material3.CardView.Filled.TapTap"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    style="@style/Widget.Material3.CardView.Filled.TapTap"
     android:layout_marginStart="@dimen/margin_16"
     android:layout_marginTop="@dimen/margin_8"
     android:layout_marginEnd="@dimen/margin_16"
     android:layout_marginBottom="@dimen/margin_8"
     android:background="@drawable/rounded_background"
     android:clickable="true"
-    android:focusable="true">
+    android:focusable="true"
+    app:cardBackgroundColor="?android:colorControlHighlight">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:minHeight="72dp"
         android:gravity="center_vertical"
+        android:minHeight="72dp"
         android:orientation="horizontal">
 
         <ImageView
