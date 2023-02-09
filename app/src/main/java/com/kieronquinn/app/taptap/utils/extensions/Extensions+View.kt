@@ -1,6 +1,8 @@
 package com.kieronquinn.app.taptap.utils.extensions
 
 import android.animation.LayoutTransition
+import android.app.view.ViewHidden
+import android.app.view.ViewRootImpl
 import android.util.TypedValue
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +10,7 @@ import android.view.ViewTreeObserver
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.coroutineScope
+import dev.rikka.tools.refine.Refine
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -111,4 +114,8 @@ suspend fun View.awaitPost() = suspendCancellableCoroutine<View> {
             it.cancel()
         }
     }
+}
+
+fun View.getViewRootImpl(): ViewRootImpl? {
+    return Refine.unsafeCast<ViewHidden>(this).viewRootImpl
 }

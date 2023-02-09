@@ -57,8 +57,6 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/margin_16"
         app:showText="false"
-        app:thumbIcon="@drawable/ic_switch_checked"
-        app:thumbIconTint="?android:textColorTertiaryInverse"
         tools:checked="true" />
 
 </LinearLayout>

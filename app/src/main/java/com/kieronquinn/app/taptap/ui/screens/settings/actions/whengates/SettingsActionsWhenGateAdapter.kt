@@ -79,7 +79,7 @@ class SettingsActionsWhenGatesAdapter(
             context.getString(gate.gate.gate.nameRes)
         }
         itemSettingsGateTitle.text = gateLabel
-        itemSettingsGateContent.text = root.context.getText(item.whenGate.gate.gate.whenDescriptionRes)
+        itemSettingsGateContent.text = item.whenGate.gate.description
         itemSettingsGateIcon.setImageResource(gate.gate.gate.iconRes)
         holder.lifecycle.coroutineScope.launchWhenResumed {
             root.onLongClicked().collect {

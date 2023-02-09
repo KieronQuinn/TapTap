@@ -2,6 +2,7 @@ package com.kieronquinn.app.taptap.repositories.whengates
 
 import android.content.Context
 import androidx.lifecycle.Lifecycle
+import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.components.columbus.gates.TapTapWhenGate
 import com.kieronquinn.app.taptap.models.gate.TapTapGateDirectory
 import com.kieronquinn.app.taptap.repositories.gates.GatesRepository
@@ -10,10 +11,21 @@ import com.kieronquinn.app.taptap.repositories.room.gates.Gate
 import com.kieronquinn.app.taptap.repositories.room.whengates.WhenGate
 import com.kieronquinn.app.taptap.repositories.room.whengates.WhenGateDouble
 import com.kieronquinn.app.taptap.repositories.room.whengates.WhenGateTriple
+import com.kieronquinn.app.taptap.utils.extensions.getApplicationLabel
 import com.kieronquinn.app.taptap.utils.flow.FlowQueue
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlin.coroutines.resume
@@ -87,7 +99,17 @@ abstract class WhenGatesRepositoryBase<T: WhenGate, A: WhenGatesRepositoryBase.W
         gateDirectory: TapTapGateDirectory,
         extraData: String?
     ): CharSequence {
-        return context.getString(gateDirectory.whenDescriptionRes)
+        if (extraData?.isNotBlank() != true || gateDirectory.formattableWhenDescription == null) {
+            return context.getText(gateDirectory.whenDescriptionRes)
+        }
+        val formattedText = when (gateDirectory) {
+            TapTapGateDirectory.APP_SHOWING -> context.packageManager.getApplicationLabel(extraData)
+                ?: context.getString(R.string.item_action_app_uninstalled, extraData)
+            else -> null
+        } ?: run {
+            return context.getText(gateDirectory.whenDescriptionRes)
+        }
+        return context.getString(gateDirectory.formattableWhenDescription, formattedText)
     }
 
 }

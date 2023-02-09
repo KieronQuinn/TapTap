@@ -77,6 +77,14 @@ public class ContextHubManager {
         throw new RuntimeException("Stub!");
     }
 
+    @RequiresPermission(anyOf = {
+            android.Manifest.permission.LOCATION_HARDWARE,
+            //android.Manifest.permission.ACCESS_CONTEXT_HUB
+    })
+    public ContextHubClient createClient(Context context, ContextHubInfo hubInfo, Executor executor, ContextHubClientCallback callback) {
+        throw new RuntimeException("Stub!");
+    }
+
     @NonNull public ContextHubTransaction<Void> loadNanoApp(
             @NonNull ContextHubInfo hubInfo, @NonNull NanoAppBinary appBinary) {
         throw new RuntimeException("Stub!");

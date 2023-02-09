@@ -2,11 +2,15 @@ package com.kieronquinn.app.taptap.service.shizuku
 
 import android.annotation.SuppressLint
 import android.hardware.location.ContextHubClient
+import android.hardware.location.ContextHubInfo
 import android.hardware.location.ContextHubManager
 import android.hardware.location.NanoAppMessage
 import android.os.IBinder
+import android.os.Looper
 import android.os.RemoteException
 import android.util.Log
+import androidx.core.os.BuildCompat
+import com.google.android.gms.common.util.concurrent.HandlerExecutor
 import com.kieronquinn.app.taptap.contexthub.IContextHubClientCallback
 import com.kieronquinn.app.taptap.contexthub.IRemoteContextHubClient
 import com.kieronquinn.app.taptap.shizuku.ITapTapShizukuService
@@ -46,7 +50,7 @@ class TapTapShizukuService : ITapTapShizukuService.Stub() {
                     Log.e(TAG, "No context hubs found")
                     return
                 }
-                contextHubClient = contextHubManager.createClient(
+                contextHubClient = contextHubManager.createContextHubClient(
                     contextHub,
                     ContextHubClientCallbackRemoteToLocalWrapper(callback)
                 )
@@ -71,6 +75,18 @@ class TapTapShizukuService : ITapTapShizukuService.Stub() {
             contextHubClient = null
         }
 
+    }
+
+    @SuppressLint("UnsafeOptInUsageError")
+    private fun ContextHubManager.createContextHubClient(
+        hubInfo: ContextHubInfo,
+        callback: ContextHubClientCallbackRemoteToLocalWrapper
+    ): ContextHubClient {
+        return if(BuildCompat.isAtLeastU()){
+            createClient(context, hubInfo, HandlerExecutor(Looper.getMainLooper()), callback)
+        }else {
+            createClient(hubInfo, callback)
+        }
     }
 
     override fun getRemoteContextHubClient(): IRemoteContextHubClient {

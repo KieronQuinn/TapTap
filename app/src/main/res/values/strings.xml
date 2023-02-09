@@ -473,6 +473,7 @@
     <string name="gate_app_showing">App showing</string>
     <string name="gate_app_showing_desc">Blocks gesture when an app is showing on screen</string>
     <string name="gate_app_showing_desc_when">Run only when an app is showing on screen</string>
+    <string name="gate_app_showing_desc_when_formatted">Run only when %1s is showing on screen</string>
     <string name="gate_app_showing_desc_formatted">Blocks gesture when %1s is showing on screen</string>
     <string name="gate_keyboard_visibility">Keyboard open</string>
     <string name="gate_keyboard_visibility_desc">Blocks gesture when the keyboard is open and in use. Note that this may not always work if you are not actively typing.</string>

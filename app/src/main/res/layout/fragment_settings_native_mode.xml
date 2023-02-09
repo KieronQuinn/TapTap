@@ -19,9 +19,7 @@
         android:outlineProvider="none"
         android:text="@string/settings_native_mode_enable"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium.TapTap"
-        android:transitionName="switch"
-        app:thumbIcon="@drawable/ic_switch_checked"
-        app:thumbIconTint="?android:textColorPrimaryInverse" />
+        android:transitionName="switch" />
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/settings_native_mode_scroll_view"

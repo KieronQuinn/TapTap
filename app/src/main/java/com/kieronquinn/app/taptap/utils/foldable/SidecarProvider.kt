@@ -5,7 +5,8 @@ import com.kieronquinn.app.taptap.utils.extensions.FoldingFeature_STATE_HALF_OPE
 
 class SidecarProvider(context: Context): FoldableProvider {
 
-    private val sidecarImpl = Class.forName("androidx.window.sidecar.SidecarProvider").getMethod("getSidecarImpl", Context::class.java).invoke(null, context)
+    private val sidecarImpl = Class.forName("androidx.window.sidecar.SidecarProvider")
+        .getMethod("getSidecarImpl", Context::class.java).invoke(null, context)
 
     private fun getDevicePosture(): Int {
         val sidecarDeviceState = sidecarImpl.javaClass.getMethod("getDeviceState").invoke(sidecarImpl)
