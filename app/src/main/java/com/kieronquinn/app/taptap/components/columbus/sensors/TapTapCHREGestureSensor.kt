@@ -1,6 +1,10 @@
 package com.kieronquinn.app.taptap.components.columbus.sensors
 
-import android.content.*
+import android.content.BroadcastReceiver
+import android.content.ComponentName
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.hardware.google.pixel.vendor.PixelAtoms
 import android.hardware.location.NanoAppMessage
 import android.os.Handler
@@ -24,7 +28,6 @@ import com.kieronquinn.app.taptap.utils.logging.UiEventLogger
 import com.kieronquinn.app.taptap.utils.statusbar.StatusBarStateController
 import com.kieronquinn.app.taptap.utils.wakefulness.WakefulnessLifecycle
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
@@ -52,6 +55,10 @@ class TapTapCHREGestureSensor(
 
     companion object {
         private const val TAG = "TapTapCHRE"
+        private const val CLASS_REQUEST_SERVICE =
+            "com.google.android.systemui.columbus.ColumbusTargetRequestService"
+        private const val CLASS_REQUEST_SERVICE_LEGACY =
+            "com.google.android.systemui.columbus.legacy.ColumbusTargetRequestService"
     }
 
     private val powerManager = context.getSystemService(Context.POWER_SERVICE) as PowerManager
@@ -214,6 +221,7 @@ class TapTapCHREGestureSensor(
     }
 
     override fun handleGestureDetection(gestureDetected: ColumbusGesture.GestureDetected) {
+        Log.d("Columbus/GestureSensor", "handleGestureDetection, legacy: $isLegacyColumbus")
         if (!isTripleTapEnabled){
             //Handle double taps with the standard flow if triple tap is disabled
             super.handleGestureDetection(gestureDetected)
@@ -235,11 +243,13 @@ class TapTapCHREGestureSensor(
     }
 
     private fun Context.isLegacyColumbus(): Boolean {
-        val targetServiceIntent = Intent().apply {
-            component = ComponentName("com.android.systemui", "com.google.android.systemui.columbus.ColumbusTargetRequestService")
-            `package` = "com.android.systemui"
+        return arrayOf(CLASS_REQUEST_SERVICE, CLASS_REQUEST_SERVICE_LEGACY).all {
+            val targetServiceIntent = Intent().apply {
+                component = ComponentName("com.android.systemui", it)
+                `package` = "com.android.systemui"
+            }
+            packageManager.queryIntentServices(targetServiceIntent, 0).isEmpty()
         }
-        return packageManager.queryIntentServices(targetServiceIntent, 0).isEmpty()
     }
 
     init {

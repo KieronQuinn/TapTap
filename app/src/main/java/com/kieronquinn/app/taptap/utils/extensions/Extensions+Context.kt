@@ -4,6 +4,8 @@ import android.Manifest
 import android.accessibilityservice.AccessibilityService
 import android.app.Activity
 import android.app.ActivityManager
+import android.app.IApplicationThread
+import android.app.IServiceConnection
 import android.app.Service
 import android.content.*
 import android.content.pm.PackageManager
@@ -14,6 +16,8 @@ import android.net.Uri
 import android.os.BatteryManager
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.UserHandle
 import android.provider.Settings
 import android.util.TypedValue
 import android.view.inputmethod.InputMethodManager
@@ -21,6 +25,7 @@ import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
 import androidx.annotation.StringRes
 import androidx.core.text.HtmlCompat
+import dev.rikka.tools.refine.Refine
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.callbackFlow
 
@@ -174,3 +179,23 @@ fun Context.hasNotificationPermission(): Boolean {
             PackageManager.PERMISSION_GRANTED
 }
 
+fun Context.getServiceDispatcher(
+    serviceConnection: ServiceConnection,
+    handler: Handler,
+    flags: Int
+): IServiceConnection {
+    return Refine.unsafeCast<ContextHidden>(this)
+        .getServiceDispatcher(serviceConnection, handler, flags)
+}
+
+fun Context.getUser(): UserHandle {
+    return Refine.unsafeCast<ContextHidden>(this).user
+}
+
+fun Context.getMainThreadHandler(): Handler {
+    return Refine.unsafeCast<ContextHidden>(this).mainThreadHandler
+}
+
+fun Context.getIApplicationThread(): IApplicationThread {
+    return Refine.unsafeCast<ContextHidden>(this).iApplicationThread
+}

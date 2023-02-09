@@ -18,9 +18,7 @@
         android:outlineProvider="none"
         android:text="@string/settings_main_enable_tap_tap"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium.TapTap"
-        android:transitionName="switch"
-        app:thumbIcon="@drawable/ic_switch_checked"
-        app:thumbIconTint="?android:textColorTertiaryInverse" />
+        android:transitionName="switch"/>
 
     <com.kieronquinn.app.taptap.ui.views.LifecycleAwareRecyclerView
         android:id="@+id/settings_main_recycler_view"

@@ -17,6 +17,8 @@ import com.kieronquinn.app.taptap.models.service.SnapchatQuickTapState
 import com.kieronquinn.app.taptap.root.ITapTapRootService
 import com.kieronquinn.app.taptap.utils.extensions.SharedPreferences_openFile
 import com.kieronquinn.app.taptap.utils.extensions.getContentProviderExternalCompat
+import com.kieronquinn.app.taptap.utils.extensions.getIdentifier
+import com.kieronquinn.app.taptap.utils.extensions.getUser
 import com.kieronquinn.app.taptap.utils.extensions.queryCompat
 import com.topjohnwu.superuser.internal.Utils
 import com.topjohnwu.superuser.ipc.RootService
@@ -61,11 +63,11 @@ class TapTapRootService : ITapTapRootService.Stub() {
     }
 
     private fun getUserId(): Int {
-        return UserHandle::class.java.getMethod("getIdentifier").invoke(getUserHandle()) as Int
+        return getUserHandle().getIdentifier()
     }
 
     private fun getUserHandle(): UserHandle {
-        return Context::class.java.getMethod("getUser").invoke(context) as UserHandle
+        return context.getUser()
     }
 
     override fun isSnapchatQuickTapToSnapEnabled(): SnapchatQuickTapState {

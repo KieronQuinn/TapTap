@@ -19,9 +19,7 @@
         android:outlineProvider="none"
         android:text="@string/settings_low_power_mode_enable"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium.TapTap"
-        android:transitionName="switch"
-        app:thumbIcon="@drawable/ic_switch_checked"
-        app:thumbIconTint="?android:textColorTertiaryInverse" />
+        android:transitionName="switch" />
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/settings_low_power_mode_scroll_view"

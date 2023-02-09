@@ -2,7 +2,6 @@ package com.kieronquinn.app.taptap.service.shizuku
 
 import android.annotation.SuppressLint
 import android.content.ComponentName
-import android.content.Context
 import android.content.pm.ILauncherApps
 import android.content.pm.ParceledListSlice
 import android.content.pm.ShortcutInfo
@@ -16,13 +15,20 @@ import com.kieronquinn.app.taptap.models.appshortcut.AppShortcutIcon
 import com.kieronquinn.app.taptap.models.appshortcut.ShortcutQueryWrapper
 import com.kieronquinn.app.taptap.shizuku.ITapTapColumbusLogCallback
 import com.kieronquinn.app.taptap.shizuku.ITapTapShizukuShellService
+import com.kieronquinn.app.taptap.utils.extensions.getIdentifier
+import com.kieronquinn.app.taptap.utils.extensions.getUser
 import com.kieronquinn.app.taptap.utils.extensions.makeShellIfNeeded
 import com.topjohnwu.superuser.internal.Utils
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.mapNotNull
+import kotlinx.coroutines.launch
 import rikka.shizuku.SystemServiceHelper
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -87,11 +93,11 @@ class TapTapShizukuShellService: ITapTapShizukuShellService.Stub() {
     private var columbsLogJob: Job? = null
 
     private fun getUserHandle(): UserHandle {
-        return Context::class.java.getMethod("getUser").invoke(context) as UserHandle
+        return context.getUser()
     }
 
     private fun getUserId(): Int {
-        return UserHandle::class.java.getMethod("getIdentifier").invoke(getUserHandle()) as Int
+        return getUserHandle().getIdentifier()
     }
 
     override fun getShortcuts(query: ShortcutQueryWrapper): ParceledListSlice<ShortcutInfo> {

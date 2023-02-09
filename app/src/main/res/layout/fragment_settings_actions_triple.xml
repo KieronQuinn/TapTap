@@ -18,9 +18,7 @@
         android:text="@string/switch_triple"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium.TapTap"
         android:transitionName="switch"
-        app:layout_constraintTop_toTopOf="parent"
-        app:thumbIcon="@drawable/ic_switch_checked"
-        app:thumbIconTint="?android:textColorTertiaryInverse" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <com.google.android.material.progressindicator.LinearProgressIndicator
         android:id="@+id/settings_actions_triple_loading_progress"
