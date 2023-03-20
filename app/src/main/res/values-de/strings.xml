@@ -451,6 +451,82 @@
     <string name="action_unsupported_reason_tasker">Tasker wird benötigt.</string>
     <string name="action_unsupported_reason_snapchat">Snapchat wird benötigt.</string>
 
+    <!-- Gates -->
+    <string name="gate_charging_state">Ladevorgang</string>
+    <string name="gate_charging_state_desc_a">Blockiert Gesten, während dein Gerät auflädt.</string>
+    <string name="gate_charging_state_desc_when_a">Nur während dem Aufladen ausführen.</string>
+    <string name="gate_telephony_activity">Während dem Anruf</string>
+    <string name="gate_telephony_activity_desc">Blockiert Gesten, während eines Anrufs.\nNur standard Telefonapps werden unterstützt, keine VoIP Telefonate (z.B. WhatsApp).</string>
+    <string name="gate_telephony_activity_desc_when">Nur während eines Anrufs ausführen.</string>
+    <string name="gate_usb_state">USB-Geräte</string>
+    <string name="gate_usb_state_desc_a">Blockiert Gesten, während ein USB-Gerät (z.B. USB-Stick) angesteckt ist.</string>
+    <string name="gate_usb_state_desc_when_a">Nur ausführen, wenn ein USB-Gerät eingesteckt ist.</string>
+    <string name="gate_camera_visibility">Kamera</string>
+    <string name="gate_camera_visibility_desc">Blockiert Gesten, während eine Kamera App offen ist.\nHinweis: Dadurch wird das Überspringen der Aktion \"Kamera starten\" unterbrochen.</string>
+    <string name="gate_camera_visibility_desc_when">Nur ausführen, solange eine Kamera App offen ist.</string>
+    <string name="gate_power_state">Bildschirm aus</string>
+    <string name="gate_power_state_desc">Blockiert Gesten, wenn der Bildschirm deines Geräts aus ist.</string>
+    <string name="gate_power_state_desc_when">Nur ausführen, wenn der Bildschirm aus ist.</string>
+    <string name="gate_power_state_inverse">Bildschirm an</string>
+    <string name="gate_power_state_inverse_desc">Blockiert Gesten, wenn der Bildschirm deines Geräts an ist.</string>
+    <string name="gate_power_state_inverse_desc_when">Nur ausführen, wenn der Bildschirm an ist.</string>
+    <string name="gate_app_showing">App anzeigen</string>
+    <string name="gate_app_showing_desc">Blockiert Gesten, wenn eine App angezeigt wird.</string>
+    <string name="gate_app_showing_desc_formatted">Blockiert Gesten, wenn %1s angezeigt wird.</string>
+    <string name="gate_app_showing_desc_when">Nur ausführen, wenn eine App angezeigt wird.</string>
+    <string name="gate_app_showing_desc_when_formatted">Nur ausführen, wenn %1s angezeigt wird.</string>
+    <string name="gate_keyboard_visibility">Tastatur offen</string>
+    <string name="gate_keyboard_visibility_desc">Blockiert Gesten, wenn die Tastatur offen ist.\nHinweis: Dies funktioniert möglicherweise nicht immer, wenn nicht getippt wird.</string>
+    <string name="gate_keyboard_visibility_desc_when">Nur ausführen, wenn die Tastatur geöffnet ist.\nHinweis: Dies funktioniert möglicherweise nicht immer, wenn nicht getippt wird.</string>
+    <string name="gate_orientation_landscape">Querformat</string>
+    <string name="gate_orientation_landscape_desc">Blockiert Gesten, wenn das Gerät im Querformat gehalten wird.</string>
+    <string name="gate_orientation_landscape_desc_when">Nur ausführen, wenn das Gerät im Querformat gehalten wird.</string>
+    <string name="gate_orientation_portrait">Hochformat</string>
+    <string name="gate_orientation_portrait_desc">Blockiert Gesten, wenn das Gerät im Hochformat gehalten wird.</string>
+    <string name="gate_orientation_portrait_desc_when">Nur ausführen, wenn das Gerät im Hochformat gehalten wird.</string>
+    <string name="gate_table">Auf dem Tisch</string>
+    <string name="gate_table_desc">Blockiert Gesten, wenn das Gerät flach (z.B. auf dem Tisch) liegt.</string>
+    <string name="gate_table_desc_when">Nur ausführen, wenn das Gerät flach (z.B. auf dem Tisch) liegt.</string>
+    <string name="gate_pocket">In der Tasche</string>
+    <string name="gate_pocket_desc">Blockiert Gesten, wenn der Näherungssender ein Objekt erkennt.\nDadurch werden Gesten blockiert, wenn sich dein Gerät in deiner Tasche befindet oder mit dem Bildschirm nach unten auf dem Tisch liegt.</string>
+    <string name="gate_pocket_desc_when">Nur ausführen, wenn der Näherungssensor ein Objekt erkennt.\nDas passiert, wenn sich das Gerät in deiner Tasche befindet oder mit dem Bildschirm nach unten auf einem Tisch liegt.</string>
+    <string name="gate_headset">Kopfhörer</string>
+    <string name="gate_headset_desc">Blockiert Gesten, wenn Kopfhörer <b>verbunden</b> sind.</string>
+    <string name="gate_headset_desc_when">Nur ausführen, wenn Kopfhörer <b>verbunden</b> sind.</string>
+    <string name="gate_headset_inverse">Keine Kopfhörer</string>
+    <string name="gate_headset_desc_inverse">Blockiert Gesten, wenn <b>keine</b> Kopfhörer verbunden sind.\nDiese Funktion wird am besten zusammen mit den Bedienelementen für Wiedergabe / Pause / Überspringen verwendet, um zu verhindern, dass die Musik über die Lautsprecher wiedergegeben wird.</string>
+    <string name="gate_headset_desc_when_inverse">Nur ausführen, wenn <b>kein</b> Kopfhörer verbunden ist.</string>
+    <string name="gate_music">Musik spielt</string>
+    <string name="gate_music_desc">Blockiert Gesten, wenn Musik abgespielt wird.</string>
+    <string name="gate_music_desc_when">Nur ausführen, wenn Musik abgespielt wird.</string>
+    <string name="gate_music_inverse">Keine Musikwiedergabe</string>
+    <string name="gate_music_desc_inverse">Blockiert Gesten, wenn <b>keine</b> Musik abgespielt wird.</string>
+    <string name="gate_music_desc_when_inverse">Nur ausführen, wenn <b>keine</b> Musik abgespielt wird.</string>
+    <string name="gate_lock_screen_showing">Sperrbildschirm</string>
+    <string name="gate_lock_screen_showing_desc">Blockiert Gesten, wenn der Sperrbildschirm angezeigt wird.</string>
+    <string name="gate_lock_screen_showing_desc_when">Nur ausführen, wenn der Sperrbildschirm angezeigt wird.</string>
+    <string name="gate_lock_screen_showing_inverse">Sperrbildschirm wird nicht angezeigt</string>
+    <string name="gate_lock_screen_showing_inverse_desc">Blockiert Gesten, wenn der Sperrbildschirm <b>nicht</b> angezeigt wird.</string>
+    <string name="gate_lock_screen_showing_inverse_desc_when">Nur ausführen, wenn der Sperrbildschirm <b>nicht</b> angezeigt wird.</string>
+    <string name="gate_alarm">Alarm / Timer</string>
+    <string name="gate_alarm_desc">Blockiert Gesten, wenn ein Alarm / Timer klingelt.</string>
+    <string name="gate_alarm_desc_when">Nur ausführen, wenn ein Alarm / Timer klingelt.</string>
+    <string name="gate_foldable_closed">Gerät ist geschlossen (Foldable)</string>
+    <string name="gate_foldable_closed_desc">Blockiert Gesten, wenn dein Gerät gefaltet / geschlossen ist.</string>
+    <string name="gate_foldable_closed_desc_when">Nur ausführen, wenn dein Gerät gefaltet / geschlossen ist.</string>
+    <string name="gate_foldable_open">Gerät ist offen (Foldable)</string>
+    <string name="gate_foldable_open_desc">Blockiert Gesten, wenn dein Gerät nicht gefaltet / offen ist.</string>
+    <string name="gate_foldable_open_desc_when">Nur ausführen, wenn dein Gerät nicht gefaltet / offen ist.</string>
+    <string name="gate_low_battery">Niedriger Batteriestand</string>
+    <string name="gate_low_battery_desc">Blockiert Gesten, wenn dein Akku weniger als 15% hat.</string>
+    <string name="gate_low_battery_desc_when">Nur ausführen, wenn dein Akku weniger als 15% hat.</string>
+    <string name="gate_battery_saver">Energiesparmodus</string>
+    <string name="gate_battery_saver_desc">Blockiert Gesten, wenn der Energiesparmodus deines Geräts aktiviert ist.</string>
+    <string name="gate_battery_saver_desc_when">Nur ausführen, wenn der Energiesparmodus deines Geräts aktiviert ist.</string>
+
+    <string name="gate_unsupported_reason_min_sdk">Nicht kompatibel mit deiner Android-Version.</string>
+    <string name="gate_unsupported_reason_foldable">Erfordert ein kompatibles faltbares Gerät.</string>
+
 
 
 
@@ -459,33 +535,10 @@
     <!-- TODO -->
     <string name="accessibility_service_description">TapTap als Bedienungshilfe\n\n<b>Wichtiger Hinweis: Über keine deiner Apps werden Daten gesammelt. Dieser Dienst wird nur genutzt, um die Erkennung aktiv zu halten und Interaktionen mit dem Gerät zu ermöglichen.</b></string>
 
-    <!-- Gates -->
-    <string name="gate_charging_state">Aufladen</string>
-    <string name="gate_telephony_activity">Im Anruf</string>
-    <string name="gate_telephony_activity_desc">Blockiert die Geste während eines Anrufs. Nur Standard-Anrufe werden unterstützt – kein VoIP, wie bspw. WhatsApp</string>
-    <string name="gate_usb_state">USB-Geräte</string>
-    <string name="gate_camera_visibility">Kamera</string>
-    <string name="gate_camera_visibility_desc">Blockiert die Geste, wenn eine Kamera-App geöffnet ist (Hinweis: Ersetzt die Überspringen-Funktion der Kamera-Starten-Aktion)</string>
-    <string name="gate_power_state">Bildschirm aus</string>
-    <string name="gate_power_state_desc">Blockiert die Geste, wenn der Gerätebildschirm ausgeschaltet ist</string>
-    <string name="gate_power_state_inverse">Bildschirm an</string>
-    <string name="gate_power_state_inverse_desc">Blockiert die Geste, wenn der Gerätebildschirm eingeschaltet ist</string>
-    <string name="gate_app_showing">App angezeigt</string>
-    <string name="gate_app_showing_desc">Blockiert die Geste, wenn eine bestimmte App auf dem Bildschirm angezeigt wird</string>
-    <string name="gate_app_showing_desc_formatted">Blockiert die Geste, wenn %1s auf dem Bildschirm angezeigt wird</string>
-
     <string name="tasker_config_label">Rückseite doppelt angetippt</string>
     <string name="call_phone_permission_toast">Du musst Tap, Tap die \"Telefon\"-Berechtigung gewähren, um diese Shortcut-Aktion benutzen zu können. Bitte gewähre sie in den Berechtigungseinstellungen des Geräts</string>
     <string name="reachability_left_handed_info">Halte das Nachrichten-Icon lange gedrückt, um die Position zu ändern</string>
 
-    <string name="gate_keyboard_visibility">Tastatur offen</string>
-    <string name="gate_keyboard_visibility_desc">Blockiert die Geste, wenn die Tastatur offen ist und benutzt wird. Dies kann manchmal nicht funktionieren, wenn du nicht aktiv tippst</string>
-
     <string name="battery_and_optimisation">Akku &amp; Optimierung</string>
     <string name="battery_and_optimisation_desc">Informationen, warum \"Tap, Tap\" Strom verbaucht und warum es vielleicht von deinem Gerät beendet wird, wenn es im Hintergrund läuft (und wie man dies beheben kann)</string>
-
-    <string name="gate_orientation_landscape">Querformat</string>
-    <string name="gate_orientation_landscape_desc">Blockiert die Geste, wenn das Telefon im Querformat-Modus ist</string>
-    <string name="gate_orientation_portrait">Hochformat</string>
-    <string name="gate_orientation_portrait_desc">Blockiert die Geste, wenn das Telefon im Hochformat-Modus ist</string>
 </resources>
