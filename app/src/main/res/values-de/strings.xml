@@ -527,6 +527,49 @@
     <string name="gate_unsupported_reason_min_sdk">Nicht kompatibel mit deiner Android-Version.</string>
     <string name="gate_unsupported_reason_foldable">Erfordert ein kompatibles faltbares Gerät.</string>
 
+    <!-- Notification channels & content -->
+    <string name="tap_notification_title">Tap, Tap Service</string>
+    <string name="tap_notification_content">Tap, Tap läuft im Hintergrund. Zum Ausblenden antippen.</string>
+    <string name="tap_notification_channel_title">Hintergrundbenachrichtigung</string>
+    <string name="tap_notification_channel_description">Benachrichtigung, um Tap, Tap im Hintergrund auszuführen, wenn die Option zur Verwendung eines separaten Dienstes aktiviert ist.</string>
+    <string name="notification_channel_actions_title">Aktionen</string>
+    <string name="notification_channel_actions_content">Benachrichtigungen über Aktionen, einschließlich Fehlern bei deren Ausführung.</string>
+    <string name="notification_action_flashlight_error_title">Fehler beim Schalten der Taschenlampe</string>
+    <string name="notification_action_flashlight_error_content">Kamerazugriff benötigt. Tippe hier, um die Einstellungen zu öffnen.</string>
+    <string name="notification_action_overlay_error_title">Berechtigung zum Anzeigen über anderen Apps benötigt</string>
+    <string name="notification_action_overlay_error_content">Für diese Aktion ist aufgrund von Systemeinschränkungen die Berechtigung \"Über anderen Apps anzeigen\" erforderlich. Tippe hier, um die Berechtigung zu erteilen.</string>
+    <string name="notification_action_accessibility_error_title">Dienst für Barrierefreiheit nicht aktiviert.</string>
+    <string name="notification_action_accessibility_error_content">Für diese Aktion wird der Dienst für Barrierefreiheit benötigt. Tippe hier, um ihn zu aktivieren.\nWenn du das hier siehst, obwohl der Dienst aktiviert ist, deaktiviere ihn und aktiviere ihn erneut.</string>
+    <string name="notification_gate_accessibility_error_content">Für diese Ausnahme wird der Dienst für Barrierefreiheit benötigt. Tippe hier, um ihn zu aktivieren.\nWenn du das hier siehst, obwohl der Dienst aktiviert ist, deaktiviere ihn und aktiviere ihn erneut.</string>
+    <string name="notification_action_gesture_accessibility_error_title">Dienst für barrierefreie Gesten nicht aktiviert.</string>
+    <string name="notification_action_gesture_accessibility_error_content">Für diese Aktion wird der Dienst für barrierefreie Gesten benötigt. Tippe hier, um ihn zu aktivieren.\nWenn du das hier siehst, obwohl der Dienst aktiviert ist, deaktiviere ihn und aktiviere ihn erneut.</string>
+    <string name="notification_action_system_settings_error_title">Berechtigung zum Schreiben von Einstellungen erforderlich</string>
+    <string name="notification_action_system_settings_error_content">Diese Aktion benötigt die Berechtigung zum Ändern von Einstellungen. Tippe hier, um die Berechtigung zu erteilen.</string>
+    <string name="notification_channel_service_title">Service</string>
+    <string name="notification_channel_service_content">Benachrichtigungen über den Dienst, einschließlich Ladevorgänge und Fehler.</string>
+    <string name="notification_service_loading_title">Service startet…</string>
+    <string name="notification_service_loading_title_restart">Service startet erneut…</string>
+    <string name="notification_service_loading_content">Tap, Tap Service wird geladen</string>
+    <string name="notification_service_error_title">Fehler beim Starten des Service</string>
+    <string name="notification_service_running_error_title">Fehler beim Verbinden mit dem Shizuku Service</string>
+    <string name="notification_service_error_content_shizuku_not_running">Die Verbindung zu Shizuku kann nicht hergestellt werden. Bitte stelle sicher, dass Shizuku läuft und versuche es dann erneut.</string>
+    <string name="notification_service_error_content_shizuku_permission_denied">Beim Verbinden mit Shizuku wurde die Berechtigung verweigert. Bitte erteile Tap, Tap die Berechtigung in Shizuku und versuche es dann erneut.</string>
+    <string name="notification_service_error_action_retry">Wiederholen</string>
+    <string name="notification_service_error_root_title">Fehler beim Verbinden mit dem Service</string>
+    <string name="notification_service_error_root_content">Vergewissere dich, dass du Tap, Tap Root-Rechte zugeteilt hast.</string>
+    <string name="notification_channel_crash_title">Abstürze</string>
+    <string name="notification_channel_crash_content">Benachrichtigungen, wenn Tap, Tap abstürzt, um Fehler zu vermeiden.</string>
+    <string name="notification_crash_title">Tap, Tap ist abgestürzt!</string>
+    <string name="notification_crash_content">Tippe hier, um die Absturzdaten anzuzeigen und ein Protokoll für GitHub oder XDA zu exportieren. Du kannst diese Absturzbenachrichtigungen in den Einstellungen von Tap, Tap zu deaktivieren.</string>
+    <string name="notification_channel_native_setup_title">Einrichten des nativen Modus</string>
+    <string name="notification_channel_native_setup_content">Benachrichtigungen mit Anweisungen während der Einrichtung des nativen Modus.</string>
+    <string name="notification_native_setup_title">Einrichtung des nativen Modus wird abgeschlossen</string>
+    <string name="notification_native_setup_content">Lege die Aktion auf \"App öffnen\" auf \"Tap, Tap\", um die Einrichtung des nativen Modus abzuschließen.</string>
+    <string name="tap_update_notification_channel_title">Update-Benachrichtigungen</string>
+    <string name="tap_update_notification_channel_description">Benachrichtigungen, die angezeigt werden, wenn die App einmal am Tag nach Updates sucht.</string>
+    <string name="tap_update_notification_title">Update für Tap, Tap verfügbar</string>
+    <string name="tap_update_notification_content">Ein Update von Version %1s zu %1s ist verfügbar.</string>
+
 
 
 
