@@ -570,6 +570,51 @@
     <string name="tap_update_notification_title">Update für Tap, Tap verfügbar</string>
     <string name="tap_update_notification_content">Ein Update von Version %1s zu %1s ist verfügbar.</string>
 
+    <!-- Shared Pickers, for Gates & Actions -->
+    <string name="settings_shared_app_shortcuts_selector_loading">App Shortcuts werden geladen…</string>
+    <string name="settings_shared_shortcuts_selector_loading">Shortcuts werden geladen…</string>
+    <string name="settings_shared_shortcuts_selector_error">Fehler beim Abrufen der App Shortcuts. Bitte versuche es erneut.\nWenn das Problem weiterhin besteht, starte Shizuku unter ADB neu.</string>
+    <string name="settings_shared_shizuku_permission_flow_toolbar_title">Shizuku / Sui</string>
+    <string name="settings_shared_shizuku_permission_flow_title">Überprüfe Shizuku / Sui</string>
+    <string name="settings_shared_shizuku_permission_flow_content">Dies kann bis zu 10 Sekunden dauern.</string>
+    <string name="settings_shared_shizuku_permission_flow_error_title">Shizuku / Sui wurden nicht gefunden</string>
+    <string name="settings_shared_shizuku_permission_flow_error_content">Shizuku or Sui wurden auf deinem Gerät nicht gefunden. Du musst eines der beiden Tools installieren um %s zu benutzen.\n\n<b>Hinweis:</b> Wenn du bereits Shizuku oder Sui installiert hast, vergewissere dich, dass alles läuft (nur Shizuku), dass du die Berechtigung nicht verweigert hast, und versuche es erneut.</string>
+    <string name="settings_shared_shizuku_permission_flow_error_content_action">Aktion</string>
+    <string name="settings_shared_shizuku_permission_flow_error_content_gate">Ausnahme</string>
+    <string name="settings_shared_shizuku_permission_flow_error_card_shizuku_title">Shizuku</string>
+    <string name="settings_shared_shizuku_permission_flow_error_card_shizuku_content">Shizuku ist eine Nicht-Root-App, die es Apps wie Tap, Tap ermöglicht, Code mit speziellen Berechtigungen auszuführen. Dies geschieht durch die Ausführung eines Befehls auf der ADB (Android Debug Bridge) Shell, einmal pro Neustart. Auf Geräten mit Android 11+ kann dies ohne einen Computer erfolgen, aber auf älteren Versionen musst du dich einmal pro Neustart mit einem Computer verbinden, um Shizuku neu zu starten.</string>
+    <string name="settings_shared_shizuku_permission_flow_error_card_shizuku_button">Hole dir Shizuku</string>
+    <string name="settings_shared_shizuku_permission_flow_error_card_sui_title">Sui</string>
+    <string name="settings_shared_shizuku_permission_flow_error_card_sui_content">Sui ist ein Magisk-Modul, das es Anwendungen wie Tap, Tap ermöglicht, Code als Root auszuführen. Es verwendet dasselbe Framework wie Shizuku und funktioniert daher mit Shizuku-Apps, muss aber nach einem Neustart nicht manuell gestartet werden, sondern wird automatisch ausgeführt.\n<b>Wenn du nicht sicher bist, was Root oder Magisk ist, benutze stattdessen Shizuku.</b></string>
+    <string name="settings_shared_shizuku_permission_flow_error_card_sui_button">Hole dir Sui</string>
+    <string name="settings_shared_package_selector_loading">Apps werden geladen…</string>
+    <string name="settings_shared_package_selector_empty">Keine Apps gefunden</string>
+    <string name="settings_shared_snapchat_loading_title">Prüfe Verfügbarkeit…</string>
+    <string name="settings_shared_snapchat_loading_content">Bitte erteile Root-Zugriff, falls benötigt.</string>
+    <string name="settings_shared_snapchat_setup_root_title">Zusätzliche Einrichtung erforderlich</string>
+    <string name="settings_shared_snapchat_setup_root_content">Um Quick Tap to Snap auf deinem Gerät zu aktivieren, befolge bitte die folgenden Schritte:\n<b>Du musst bei Snapchat angemeldet sein, damit dies funktioniert</b>\n1.) Deaktiviere deine Internetverbindung - sowohl WLAN als auch mobile Daten (nutze am besten den Flugmodus).<b>Aktiviere beide nicht, bis du die folgenden Schritte durchgeführt hast.</b>\n2.) Wähle die Option unten, um Snapchat zu öffnen - du musst diesen Button verwenden, da er mit bestimmten Optionen geöffnet werden muss, um die Aufforderung anzuzeigen.\n3.) Snapchat wird geöffnet und fordert dich auf, die Einstellungen zu entsperren - das ist normal, bestätige einfach den Dialog.\n4.) Ein Dialog wird angezeigt, in dem du gefragt wirst, ob du Quick Tap to Snap aktivieren möchtest. <b>Du wirst keine Systemaufforderung zur Aktivierung sehen, das ist normal.</b>\n5.) Kehre zu Tap, Tap zurück, indem du Snapchat schließt, um die Einrichtung abzuschließen.</string>
+    <string name="settings_shared_snapchat_setup_root_button">Öffne Snapchat</string>
+    <string name="settings_shared_snapchat_setup_no_root_title">Zusätzliche Einrichtung erforderlich</string>
+    <string name="settings_shared_snapchat_setup_no_root_content">Um Quick Tap to Snap einzurichten, musst du ein paar Schritte befolgen. Diese Schritte erfordern einen Neustart des Telefons und eine vorübergehende Reaktivierung der Quick Tap-Geste des Systems (wodurch der Zugriff auf Tap, Tap gesperrt wird, bis alle Schritte abgeschlossen sind), daher wurden sie auf eine externe Website gestellt, um sie leichter zugänglich zu machen.</string>
+    <string name="settings_shared_snapchat_setup_no_root_button">Anleitung öffnen</string>
+    <string name="settings_shared_snapchat_setup_incompatible_title">Nicht kompatibel</string>
+    <string name="settings_shared_snapchat_setup_incompatible_content">Für Quick Tap to Snap muss leider Root-Zugriff auf deinem Gerät aktiviert sein.</string>
+    <string name="settings_shared_snapchat_setup_incompatible_button">Schließen</string>
+    <string name="settings_shared_snapchat_setup_error">Fehler beim Abrufen der Verfügbarkeit, bitte versuche es erneut.</string>
+    <string name="settings_shared_snapchat_setup_error_network">Bitte deaktiviere zuerst WLAN und deine mobilen Daten.</string>
+    <string name="item_settings_shared_quick_settings_header_content">Aufgrund von Systembeschränkungen gibt es einige Einschränkungen:\n- Die Titel der Kacheln in den Schnelleinstellungen können nicht abgerufen werden. Daher solltest du die Reihenfolge anhand der Benachrichtigungsleiste abgleichen.\n- Es können nur benutzerdefinierte Kacheln angeklickt werden, nicht die Standardkacheln wie z.B. Internet\n- Auf einigen Geräten muss sich die Kachel auf Seite 1 oder 2 der Schnelleinstellungen befinden, damit der Klick funktioniert.</string>
+    <string name="settings_shared_quick_settings_empty">Keine Kacheln in den Schnelleinstellungen gefunden.</string>
+    <string name="settings_shared_quick_settings_loading">Kacheln in den Schnelleinstellungen werden geladen…</string>
+
+    <!-- No root bottom sheet -->
+    <string name="bs_no_root_title">Kein Root-Zugriff</string>
+    <string name="bs_no_root_content">Leider wurde der Root-Zugriff nicht erkannt oder nicht gewährt. Du musst Root-Zugriff haben, um diese Aktion nutzen zu können.</string>
+
+    <!-- Permission Toasts (shown when launching external apps) -->
+    <string name="call_phone_permission_toast">Du musst Tap, Tap die \"Telefon\"-Berechtigung gewähren, um diese Shortcut-Aktion benutzen zu können. Bitte gewähre sie in den Berechtigungseinstellungen des Geräts.</string>
+    <string name="permission_toast">Bitte erteile die Berechtigung \"%1s\" in den Einstellungen und fahre fort.</string>
+    <string name="permission_toast_draw_over_apps">Bitte erteile die Berechtigung zur Anzeige über anderen Anwendungen für Tap, Tap</string>
+    <string name="tasker_content_toast">Bitte aktiviere die Option \"Externen Zugriff zulassen\" in den Einstellungen von Tasker.</string>
 
 
 
@@ -579,9 +624,5 @@
     <string name="accessibility_service_description">TapTap als Bedienungshilfe\n\n<b>Wichtiger Hinweis: Über keine deiner Apps werden Daten gesammelt. Dieser Dienst wird nur genutzt, um die Erkennung aktiv zu halten und Interaktionen mit dem Gerät zu ermöglichen.</b></string>
 
     <string name="tasker_config_label">Rückseite doppelt angetippt</string>
-    <string name="call_phone_permission_toast">Du musst Tap, Tap die \"Telefon\"-Berechtigung gewähren, um diese Shortcut-Aktion benutzen zu können. Bitte gewähre sie in den Berechtigungseinstellungen des Geräts</string>
     <string name="reachability_left_handed_info">Halte das Nachrichten-Icon lange gedrückt, um die Position zu ändern</string>
-
-    <string name="battery_and_optimisation">Akku &amp; Optimierung</string>
-    <string name="battery_and_optimisation_desc">Informationen, warum \"Tap, Tap\" Strom verbaucht und warum es vielleicht von deinem Gerät beendet wird, wenn es im Hintergrund läuft (und wie man dies beheben kann)</string>
 </resources>
