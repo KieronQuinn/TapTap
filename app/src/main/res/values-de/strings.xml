@@ -616,13 +616,47 @@
     <string name="permission_toast_draw_over_apps">Bitte erteile die Berechtigung zur Anzeige über anderen Anwendungen für Tap, Tap</string>
     <string name="tasker_content_toast">Bitte aktiviere die Option \"Externen Zugriff zulassen\" in den Einstellungen von Tasker.</string>
 
+    <!-- Update downloader -->
+    <string name="snackbar_update">Update verfügbar</string>
+    <string name="snackbar_update_button">Update</string>
+    <string name="settings_update_heading">Tap, Tap Version %1s</string>
+    <string name="settings_update_subheading">Aktuelle Version %1s</string>
+    <string name="settings_update_changes">Änderungen</string>
+    <string name="settings_update_open_installer">Starte Installation</string>
+    <string name="settings_update_done">Download abgeschlossen</string>
+    <string name="settings_update_loading">Lade…</string>
+    <string name="settings_update_fab">Download</string>
+    <string name="download_manager_description">Lade Update herunter…</string>
+    <string name="update_downloader_downloading_title">Lade Update herunter…</string>
+    <string name="update_downloader_downloading_failed">Download abgebrochen</string>
+    <string name="update_downloader_github">Über den Browser herunterladen</string>
+
+    <!-- Reachability UI -->
+    <string name="reachability_left_handed_info">Halte das Nachrichten-Icon lange gedrückt, um die Position zu ändern.</string>
+
+    <!-- Quick Settings Tile subtitles -->
+    <string name="qs_subtitle_running">Wird ausgeführt</string>
+    <string name="qs_subtitle_disabled">Deaktiviert</string>
+    <string name="qs_subtitle_not_running">Wird nicht ausgeführt</string>
+
+    <!-- Tasker descriptions & labels -->
+    <string name="tasker_description_triple">Wird ausgelöst, wenn die Rückseite des Telefons dreimal angetippt wird.</string>
+    <string name="tasker_description_double">Wird ausgelöst, wenn die Rückseite des Telefons zweimal angetippt wird.</string>
+    <string name="tasker_config_label">Rückseite doppelt antippen</string>
+    <string name="tasker_config_label_triple">Rückseite dreimal antippen</string>
+
+    <!-- Accessibility Service info in settings -->
+    <string name="accessibility_service_label">Tap, Tap</string>
+    <string name="accessibility_service_label_gesture">Tap, Tap Hintergrundservice</string>
+    <string name="accessibility_service_description">Tap, Tap als Bedienungshilfe\n\n<b>Wichtiger Hinweis: Über keine deiner Apps werden Daten gesammelt. Dieser Dienst wird nur genutzt, um die Erkennung aktiv zu halten und Interaktionen mit dem Gerät zu ermöglichen.</b></string>
+    <string name="accessibility_service_description_gesture">Tap, Tap Bedienungshilfe für Gesten\n\n<b>Du musst diesen Service nicht aktivieren, um die App zu benutzen, wenn sie dich nicht darauf hinweist. Er wird nur für bestimmte Aktionen benötigt.</b>\n\n<b>Wichtiger Hinweis: Über keine deiner Apps werden Daten gesammelt. Dieser Dienst wird nur genutzt, um die Erkennung aktiv zu halten und Interaktionen mit dem Gerät zu ermöglichen.\n\nDies ist ein separater Service, aufgrund der Funktionsweise von Android und der Art und Weise, wie Apps ihre Benutzeroberfläche anpassen, wenn Dienste, die Gesten ausführen können, aktiviert sind. Zum Beispiel wird Chrome die Titelleiste beim Scrollen nicht ausblenden, wenn dieser Dienst aktiviert ist.</b></string>
+
+    <!-- Crash Reporting -->
+    <string name="crash_reporting_title">Tap, Tap ist abgestürzt</string>
+    <string name="crash_reporting_save">Absturzbericht speichern</string>
+    <string name="crash_reporting_content_intro"><![CDATA[Tap, Tap ist abgestürzt. Bitte berichte über diesen Fehler (inklusive Absturzbericht) in einem <a href="https://kieronquinn.co.uk/redirect/TapTap/github">GitHub issues</a> oder <a href="https://kieronquinn.co.uk/redirect/TapTap/xda">XDA-Thread</a>. Wenn die App während dem Ausführen einer Geste, Aktion oder Ausnahme aufgetreten ist, füge bitte einen Screenshot der entsprechenden Einstellung ein.<br><br><b>Wichtig: Bevor du den Fehler meldest, stelle über die bereitgestellten Suchen sicher, dass nicht schon jemand vor dir den gleichen Fehler gemeldet hat.</b><br><br>Der Absturzbericht wird dir unten angezeigt.]]></string>
+    <string name="crash_reporting_toast_success">Absturzbericht wurde gespeichert</string>
+    <string name="crash_reporting_toast_failed">Fehler beim Speichern des Absturzberichts</string>
 
 
-
-
-    <!-- TODO -->
-    <string name="accessibility_service_description">TapTap als Bedienungshilfe\n\n<b>Wichtiger Hinweis: Über keine deiner Apps werden Daten gesammelt. Dieser Dienst wird nur genutzt, um die Erkennung aktiv zu halten und Interaktionen mit dem Gerät zu ermöglichen.</b></string>
-
-    <string name="tasker_config_label">Rückseite doppelt angetippt</string>
-    <string name="reachability_left_handed_info">Halte das Nachrichten-Icon lange gedrückt, um die Position zu ändern</string>
 </resources>
