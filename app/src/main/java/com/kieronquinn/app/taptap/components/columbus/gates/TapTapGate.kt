@@ -56,9 +56,8 @@ abstract class TapTapGate (
         //Override if you want to have custom handling for when the lifecycle is destroyed
     }
 
-    override fun getLifecycle(): Lifecycle {
-        return serviceLifecycle
-    }
+    override val lifecycle
+        get() = serviceLifecycle
 
     /**
      *  Shows the accessibility required notification if not enabled, returning true. Otherwise

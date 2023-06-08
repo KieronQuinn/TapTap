@@ -9,12 +9,12 @@ import android.os.IBinder
 import android.os.Looper
 import android.os.RemoteException
 import android.util.Log
-import androidx.core.os.BuildCompat
 import com.google.android.gms.common.util.concurrent.HandlerExecutor
 import com.kieronquinn.app.taptap.contexthub.IContextHubClientCallback
 import com.kieronquinn.app.taptap.contexthub.IRemoteContextHubClient
 import com.kieronquinn.app.taptap.shizuku.ITapTapShizukuService
 import com.kieronquinn.app.taptap.utils.contexthub.ContextHubClientCallbackRemoteToLocalWrapper
+import com.kieronquinn.app.taptap.utils.extensions.isAtLeastU
 import com.topjohnwu.superuser.internal.Utils
 import kotlin.system.exitProcess
 
@@ -82,7 +82,7 @@ class TapTapShizukuService : ITapTapShizukuService.Stub() {
         hubInfo: ContextHubInfo,
         callback: ContextHubClientCallbackRemoteToLocalWrapper
     ): ContextHubClient {
-        return if(BuildCompat.isAtLeastU()){
+        return if(isAtLeastU()){
             createClient(context, hubInfo, HandlerExecutor(Looper.getMainLooper()), callback)
         }else {
             createClient(hubInfo, callback)

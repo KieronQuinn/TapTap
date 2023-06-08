@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.IBinder
 import android.service.quicksettings.TileService
 import androidx.annotation.CallSuper
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ServiceLifecycleDispatcher
 
@@ -52,8 +51,7 @@ abstract class LifecycleTileService : TileService(), LifecycleOwner {
         super.onDestroy()
     }
 
-    override fun getLifecycle(): Lifecycle {
-        return mDispatcher.lifecycle
-    }
+    override val lifecycle
+        get() = mDispatcher.lifecycle
 
 }

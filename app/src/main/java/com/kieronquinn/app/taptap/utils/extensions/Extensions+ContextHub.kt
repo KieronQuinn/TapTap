@@ -41,7 +41,7 @@ private const val PACKAGE_SHELL = "com.android.shell"
  */
 fun Context.doesShellHaveContextHubPermission(): Boolean {
     return when {
-        Build_isAtLeastT() -> {
+        isAtLeastT() -> {
             Sui.isSui() || doesPackageHavePermission(PACKAGE_SHELL, PERMISSION_ACCESS_CONTEXT_HUB)
         }
         else -> {

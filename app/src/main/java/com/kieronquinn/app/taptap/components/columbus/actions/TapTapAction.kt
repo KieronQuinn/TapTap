@@ -107,9 +107,8 @@ abstract class TapTapAction(
         return true
     }
 
-    final override fun getLifecycle(): Lifecycle {
-        return serviceLifecycle
-    }
+    override val lifecycle
+        get() = serviceLifecycle
 
     protected fun notifyListeners() {
         listeners.forEach { it.onActionAvailabilityChanged(this) }
