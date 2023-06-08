@@ -34,6 +34,10 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures {
+        aidl true
+    }
+    namespace 'com.google.android.columbus'
 }
 
 protobuf {

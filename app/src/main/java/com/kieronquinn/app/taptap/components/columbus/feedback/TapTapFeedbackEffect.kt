@@ -52,8 +52,7 @@ abstract class TapTapFeedbackEffect(private val serviceLifecycle: Lifecycle): Fe
         //No-op by default
     }
 
-    override fun getLifecycle(): Lifecycle {
-        return this.serviceLifecycle
-    }
+    override val lifecycle
+        get() = serviceLifecycle
 
 }

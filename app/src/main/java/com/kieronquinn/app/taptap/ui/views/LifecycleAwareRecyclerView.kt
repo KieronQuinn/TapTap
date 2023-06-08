@@ -8,7 +8,8 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LifecycleRegistry
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import java.lang.NullPointerException
+import com.kieronquinn.app.taptap.ui.views.LifecycleAwareRecyclerView.Adapter
+import com.kieronquinn.app.taptap.ui.views.LifecycleAwareRecyclerView.ViewHolder
 
 /**
  *  A simple [RecyclerView] whose [ViewHolder]s have a very basic [Lifecycle].
@@ -41,9 +42,8 @@ class LifecycleAwareRecyclerView : RecyclerView {
             handleLifecycleEvent(Lifecycle.Event.ON_CREATE)
         }
 
-        final override fun getLifecycle(): Lifecycle {
-            return lifecycleRegistry
-        }
+        override val lifecycle
+            get() = lifecycleRegistry
 
         internal fun handleLifecycleEvent(event: Lifecycle.Event) {
             lifecycleRegistry.handleLifecycleEvent(event)

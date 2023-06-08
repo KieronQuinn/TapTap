@@ -1,7 +1,7 @@
 ext {
 }// Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
-    ext.protobufVersion = '0.8.17'
+    ext.protobufVersion = '0.9.0'
     ext.nav_version = '2.5.3'
     ext.refine_version = '4.1.0'
     ext.tensorflow_version = '0.3.0'
@@ -10,7 +10,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.4.1'
+        classpath 'com.android.tools.build:gradle:8.0.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.20"
         classpath "com.google.protobuf:protobuf-gradle-plugin:$protobufVersion"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"

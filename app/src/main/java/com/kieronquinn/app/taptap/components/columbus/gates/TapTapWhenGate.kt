@@ -1,6 +1,5 @@
 package com.kieronquinn.app.taptap.components.columbus.gates
 
-import androidx.lifecycle.Lifecycle
 import com.google.android.columbus.gates.Gate
 import com.kieronquinn.app.taptap.utils.extensions.runOnDestroy
 
@@ -40,9 +39,8 @@ data class TapTapWhenGate(private val gate: TapTapGate, private val isInverted: 
         gate.onDestroy()
     }
 
-    override fun getLifecycle(): Lifecycle {
-        return gate.lifecycle
-    }
+    override val lifecycle
+        get() = gate.lifecycle
 
     override fun onGateChanged(gate: Gate) {
         notifyListeners()

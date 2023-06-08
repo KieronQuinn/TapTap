@@ -1,12 +1,10 @@
 package com.kieronquinn.app.taptap.utils.lifecycle
 
 import android.accessibilityservice.AccessibilityService
-import androidx.lifecycle.LifecycleOwner
-import androidx.annotation.CallSuper
-
-import androidx.lifecycle.ServiceLifecycleDispatcher
 import android.content.Intent
-import androidx.lifecycle.Lifecycle
+import androidx.annotation.CallSuper
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.ServiceLifecycleDispatcher
 
 abstract class LifecycleAccessibilityService: AccessibilityService(), LifecycleOwner {
 
@@ -42,8 +40,7 @@ abstract class LifecycleAccessibilityService: AccessibilityService(), LifecycleO
         super.onDestroy()
     }
 
-    override fun getLifecycle(): Lifecycle {
-        return mDispatcher.lifecycle
-    }
+    override val lifecycle
+        get() = mDispatcher.lifecycle
 
 }
