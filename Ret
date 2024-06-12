@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Tap Tap Share</title>
+	<link rel="icon" type="image/x-icon" href="blacklogo.png">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@600&display=swap" rel="stylesheet">
+    
+	<link rel="stylesheet" type="text/css" href="indexstyle.css">
+</head>
+<body>
+	<div class="header">
+        <a href="https://instagram.com/taptapshare.pk?igshid=MmJiY2I4NDBkZg=="><img src = "logo4.png" width = "40px" height = "40px">Tap Tap Share</a>
+        
+   
+    </div>
+
+<hr>
+
+<div id="page-container">
+   <div id="content-wrap">
+
+
+	<div class="d-flex justify-content-center">
+        <img src = "pic.jpg" class="rounded-circle" alt="Cinque Terre" width="200px" height="200px" no-repeat center center fixed>
+    </div>
+    <hr>
+
+    <div class="d-grid gap-2 col-6 mx-auto">
+        <h1>Waseem Raja</h1>
+        <h4>Banking Details</h4>
+    </div>
+
+<hr>
+
+        <!-- Button trigger modal -->
+        <div class = "d-grid gap-12 col-10 mx-auto">
+<button type="button" class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal1"><img src="ubl.jpg" width = "45px" height = "45px"> &emsp;
+  United Bank Limited
+</button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModal1Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModal1Label">United Bank Limited</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Account Title: Waseem Raja <br>
+IBAN Number: PK85UNIL0109000290800409 <br>
+Branch: Clock Tower Sukkur 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<!-- Button trigger modal -->
+        <div class = "d-grid gap-12 col-10 mx-auto">
+<button type="button" class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal2"> <img src="bahl.jpg" width = "45px" height = "45px"> &emsp;
+  Bank Al Habib Limited
+</button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModal2Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModal2Label">Bank Al Habib Limited</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Account Title: Waseem Raja <br>
+IBAN Number: PK02BAHL5506008100358101 <br>
+Branch: Shaheed Ganj Sukkur 
+ 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<!-- Button trigger modal -->
+        <div class = "d-grid gap-12 col-10 mx-auto">
+<button type="button" class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal9"> <img src="hbl.jpg" width = "45px" height = "45px"> &emsp;
+  HBL (Business)
+</button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal9" tabindex="-1" aria-labelledby="exampleModal9Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModal9Label">HBL (Business)</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Account Title: WASEEM RAJA <br>
+IBAN Number: PK11HABB0003057934949603 <br>
+Branch: SUKKUR-GHARIBABAD
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<!-- Button trigger modal -->
+        <div class = "d-grid gap-12 col-10 mx-auto">
+<button type="button" class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal3"> <img src="hbl.jpg" width = "45px" height = "45px"> &emsp;
+  Habib Bank Limited
+</button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModal3Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModal3Label">Habib Bank Limited</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Account Title: WASEEM RAJA <br>
+IBAN Number: PK51HABB0003057934919201 <br>
+Branch: Gharibabad Sukkur
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<!-- Button trigger modal -->
+        <div class = "d-grid gap-12 col-10 mx-auto">
+<button type="button" class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal4"> <img src="nbp.jpg" width = "45px" height = "25px"> &emsp;
+  National Bank of Pakistan
+</button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModal4Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModal4Label">National Bank of Pakistan</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Account Title: Waseem Raja <br>
+IBAN Number: PK78NBPA0074004243953617 <br>
+Branch: Kandhkot
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<!-- Button trigger modal -->
+        <div class = "d-grid gap-12 col-10 mx-auto">
+<button type="button" class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal8"><img src="fb.jpg" width = "45px" height = "45px"> &emsp;
+  Faysal Bank
+</button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal8" tabindex="-1" aria-labelledby="exampleModal8Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModal8Label">Faysall Bank</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Account Title: Waseem Raja <br>
+IBAN Number: PK21FAYS3604301000001618 <br>
+Branch: RACE COURSE ROAD SUKKUR 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<!-- Button trigger modal -->
+        <div class = "d-grid gap-12 col-10 mx-auto">
+<button type="button" class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal5"> <img src="jc.jpg" width = "45px" height = "30px"> &emsp;
+  Jazz Cash
+</button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModal5Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModal5Label">Jazz Cash</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        IBAN Number: PK16JCMA1502923107182873
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<!-- Button trigger modal -->
+        <div class = "d-grid gap-12 col-10 mx-auto">
+<button type="button" class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal6"> <img src="ep.jpg" width = "45px" height = "32px"> &emsp;
+  Easy Paisa
+</button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal6" tabindex="-1" aria-labelledby="exampleModal6Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModal6Label">Easy Paisa</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        IBAN Number: PK31TMFB0000000046571225
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<!-- Button trigger modal -->
+        <div class = "d-grid gap-12 col-10 mx-auto">
+<button type="button" class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal7"> <img src="js.jpg" width = "45px" height = "25px"> &emsp;
+  JS Bank Zindigi
+</button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal7" tabindex="-1" aria-labelledby="exampleModal7Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModal7Label">JS Bank Zindigi
+</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        IBAN Number: PK31JSBL9999903000816199
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+
+        <hr>
+        <hr>
+        <hr>
+
+       </div>
+   <footer id="footer">Tap Tap Share © 2024. All Rights Reserved.</footer>
+ </div>
+
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+
+</html>
