@@ -11,7 +11,6 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.isVisible
 import androidx.fragment.app.setFragmentResultListener
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kieronquinn.app.taptap.BuildConfig
@@ -31,7 +30,17 @@ import com.kieronquinn.app.taptap.ui.screens.settings.backuprestore.restore.Sett
 import com.kieronquinn.app.taptap.ui.screens.settings.backuprestore.restore.SettingsBackupRestoreRestoreViewModel.State
 import com.kieronquinn.app.taptap.ui.screens.settings.shared.shizuku.SettingsSharedShizukuPermissionFlowFragment
 import com.kieronquinn.app.taptap.ui.screens.settings.shared.snapchat.SettingsSharedSnapchatFragment
-import com.kieronquinn.app.taptap.utils.extensions.*
+import com.kieronquinn.app.taptap.utils.extensions.applyBottomInsets
+import com.kieronquinn.app.taptap.utils.extensions.doesHaveNotificationPolicyAccess
+import com.kieronquinn.app.taptap.utils.extensions.doesHaveTaskerPermission
+import com.kieronquinn.app.taptap.utils.extensions.getAccessibilityIntent
+import com.kieronquinn.app.taptap.utils.extensions.getAppInfoIntent
+import com.kieronquinn.app.taptap.utils.extensions.getPermissionName
+import com.kieronquinn.app.taptap.utils.extensions.getRequiredPermissions
+import com.kieronquinn.app.taptap.utils.extensions.isPermissionDenied
+import com.kieronquinn.app.taptap.utils.extensions.isServiceRunning
+import com.kieronquinn.app.taptap.utils.extensions.onClicked
+import com.kieronquinn.app.taptap.utils.extensions.whenResumed
 import com.kieronquinn.monetcompat.extensions.views.applyMonet
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -62,7 +71,7 @@ class SettingsBackupRestoreRestoreFragment :
     private val onResume = MutableSharedFlow<Unit>()
     private val permissionResponse = MutableSharedFlow<Map<String, Boolean>>()
     private val permissionResponseContract = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        whenResumed {
             permissionResponse.emit(it)
         }
     }
@@ -95,7 +104,7 @@ class SettingsBackupRestoreRestoreFragment :
 
     private fun setupState() {
         handleState(viewModel.state.value)
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        whenResumed {
             viewModel.state.collect {
                 handleState(it)
             }
@@ -108,14 +117,14 @@ class SettingsBackupRestoreRestoreFragment :
         applyBottomInsets(binding.root, resources.getDimension(R.dimen.container_fab_margin).toInt())
     }
 
-    private fun setupFab() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupFab() = whenResumed {
         sharedViewModel.fabClicked.collect {
             if (it != FabState.FabAction.RESTORE_BACKUP) return@collect
             viewModel.onFabClicked()
         }
     }
 
-    private fun setupClose() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupClose() = whenResumed {
         binding.settingsBackupRestoreRestoreClose.onClicked().collect {
             viewModel.onCloseClicked()
         }
@@ -186,9 +195,9 @@ class SettingsBackupRestoreRestoreFragment :
         sharedViewModel.setFabState(if (showFab) FabState.Shown(FabState.FabAction.RESTORE_BACKUP) else FabState.Hidden)
     }
 
-    private fun onSetupClicked(item: SettingsBackupRestoreRestoreViewModel.Item.Requirement) = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun onSetupClicked(item: SettingsBackupRestoreRestoreViewModel.Item.Requirement) = whenResumed {
         //Take the first requirement as the list is dynamic
-        val requirement = item.requirements.firstOrNull() ?: return@launchWhenResumed
+        val requirement = item.requirements.firstOrNull() ?: return@whenResumed
         when (requirement) {
             is ResolvedRequirement.Action -> handleSetupActionRequirement(
                 requirement.requirement
@@ -353,7 +362,7 @@ class SettingsBackupRestoreRestoreFragment :
     private fun setupResultListeners() {
         setFragmentResultListener(SettingsSharedShizukuPermissionFlowFragment.FRAGMENT_RESULT_KEY_SHIZUKU_PERMISSION) { key, bundle ->
             val permissionGranted = bundle.getBoolean(SettingsSharedShizukuPermissionFlowFragment.FRAGMENT_RESULT_KEY_SHIZUKU_PERMISSION, false)
-            viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+            whenResumed {
                 if(permissionGranted) {
                     viewModel.onRequirementResolved(ResolvedRequirement.Action(ActionRequirement.Shizuku))
                 } //Drop if permission is denied
@@ -361,7 +370,7 @@ class SettingsBackupRestoreRestoreFragment :
         }
         setFragmentResultListener(SettingsSharedSnapchatFragment.FRAGMENT_RESULT_KEY_SNAPCHAT) { key, bundle ->
             val available = bundle.getBoolean(SettingsSharedSnapchatFragment.FRAGMENT_RESULT_KEY_SNAPCHAT, false)
-            viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+            whenResumed {
                 if(available) {
                     viewModel.onRequirementResolved(ResolvedRequirement.Action(ActionRequirement.Snapchat))
                 } //Drop if not available
@@ -371,7 +380,7 @@ class SettingsBackupRestoreRestoreFragment :
 
     override fun onResume() {
         super.onResume()
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        whenResumed {
             onResume.emit(Unit)
         }
     }

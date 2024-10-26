@@ -5,7 +5,6 @@ import android.view.View
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.setFragmentResult
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.databinding.FragmentSettingsSharedShizukuPermissionFlowBinding
@@ -16,6 +15,7 @@ import com.kieronquinn.app.taptap.ui.screens.settings.shared.shizuku.SettingsSha
 import com.kieronquinn.app.taptap.utils.extensions.applyBackgroundTint
 import com.kieronquinn.app.taptap.utils.extensions.applyBottomInsets
 import com.kieronquinn.app.taptap.utils.extensions.onClicked
+import com.kieronquinn.app.taptap.utils.extensions.whenResumed
 import com.kieronquinn.monetcompat.extensions.views.applyMonet
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -58,7 +58,7 @@ class SettingsSharedShizukuPermissionFlowFragment :
         binding.settingsSharedShizukuPermissionFlowErrorCardShizuku.applyBackgroundTint(monet)
     }
 
-    private fun setupShizukuButton() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupShizukuButton() = whenResumed {
         binding.settingsSharedShizukuPermissionFlowErrorCardShizukuButton.onClicked().collect {
             viewModel.onShizukuClicked(requireContext())
         }
@@ -68,7 +68,7 @@ class SettingsSharedShizukuPermissionFlowFragment :
         applyBottomInsets(binding.root)
     }
 
-    private fun setupSuiButton() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupSuiButton() = whenResumed {
         binding.settingsSharedShizukuPermissionFlowErrorCardSuiButton.onClicked().collect {
             viewModel.onSuiClicked(requireContext())
         }
@@ -76,7 +76,7 @@ class SettingsSharedShizukuPermissionFlowFragment :
 
     private fun setupState() {
         handleState(viewModel.state.value)
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        whenResumed {
             viewModel.state.collect {
                 handleState(it)
             }

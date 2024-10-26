@@ -3,8 +3,8 @@ package com.kieronquinn.app.taptap.ui.base
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.lifecycle.lifecycleScope
 import androidx.viewbinding.ViewBinding
+import com.kieronquinn.app.taptap.utils.extensions.whenCreated
 import com.kieronquinn.monetcompat.app.MonetCompatActivity
 
 abstract class BoundActivity<T: ViewBinding>(private val inflate: (LayoutInflater, ViewGroup?, Boolean) -> T): MonetCompatActivity() {
@@ -15,7 +15,7 @@ abstract class BoundActivity<T: ViewBinding>(private val inflate: (LayoutInflate
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        lifecycleScope.launchWhenCreated {
+        lifecycle.whenCreated {
             monet.awaitMonetReady()
             _binding = inflate(layoutInflater, null, false).apply {
                 setContentView(root)

@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.core.view.updatePadding
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.databinding.FragmentSettingsModelPickerBinding
@@ -16,7 +15,12 @@ import com.kieronquinn.app.taptap.ui.base.BoundFragment
 import com.kieronquinn.app.taptap.ui.base.LockCollapsed
 import com.kieronquinn.app.taptap.ui.screens.container.ContainerSharedViewModel
 import com.kieronquinn.app.taptap.ui.screens.settings.modelpicker.SettingsModelPickerViewModel.State
-import com.kieronquinn.app.taptap.utils.extensions.*
+import com.kieronquinn.app.taptap.utils.extensions.applyBackgroundTint
+import com.kieronquinn.app.taptap.utils.extensions.applyBottomInsets
+import com.kieronquinn.app.taptap.utils.extensions.isDarkMode
+import com.kieronquinn.app.taptap.utils.extensions.onSelected
+import com.kieronquinn.app.taptap.utils.extensions.selectTab
+import com.kieronquinn.app.taptap.utils.extensions.whenResumed
 import com.kieronquinn.monetcompat.extensions.toArgb
 import com.kieronquinn.monetcompat.extensions.views.applyMonet
 import com.squareup.picasso.Picasso
@@ -47,7 +51,7 @@ class SettingsModelPickerFragment :
     }
 
     private fun setupState(){
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        whenResumed {
             viewModel.state.collect {
                 handleState(it)
             }
@@ -72,7 +76,7 @@ class SettingsModelPickerFragment :
         binding.settingsModelPickerDevice.root.applyBackgroundTint(monet)
     }
 
-    private fun setupTabs() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupTabs() = whenResumed {
         binding.settingsModelPickerTabs.onSelected().collect {
             viewModel.onTabSelected(it)
         }
@@ -113,7 +117,7 @@ class SettingsModelPickerFragment :
         }
     }
 
-    private fun setupReload() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupReload() = whenResumed {
         viewModel.restartService?.collect {
             sharedViewModel.restartService(requireContext())
         }

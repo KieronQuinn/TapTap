@@ -13,9 +13,9 @@ import com.kieronquinn.app.taptap.components.settings.TapTapSettings
 import com.kieronquinn.app.taptap.ui.activities.UnlockDeviceActivity
 import com.kieronquinn.app.taptap.ui.activities.WakeUpActivity
 import com.kieronquinn.app.taptap.utils.extensions.broadcastReceiverAsFlow
+import com.kieronquinn.app.taptap.utils.extensions.whenCreated
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
@@ -48,7 +48,7 @@ class WakeDeviceAction(
         }.stateIn(lifecycleScope, SharingStarted.Eagerly, !powerManager.isInteractive)
 
     init {
-        lifecycleScope.launchWhenCreated {
+        lifecycle.whenCreated {
             screenState.collect {
                 notifyListeners()
             }

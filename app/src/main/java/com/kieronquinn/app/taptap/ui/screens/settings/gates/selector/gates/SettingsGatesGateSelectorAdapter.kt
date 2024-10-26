@@ -8,7 +8,6 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.coroutineScope
 import androidx.recyclerview.widget.RecyclerView
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.databinding.ItemSettingsGatesGateSelectorItemBinding
@@ -20,6 +19,7 @@ import com.kieronquinn.app.taptap.utils.extensions.addRippleForeground
 import com.kieronquinn.app.taptap.utils.extensions.applyBackgroundTint
 import com.kieronquinn.app.taptap.utils.extensions.onClicked
 import com.kieronquinn.app.taptap.utils.extensions.removeRippleForeground
+import com.kieronquinn.app.taptap.utils.extensions.whenResumed
 import com.kieronquinn.monetcompat.core.MonetCompat
 
 class SettingsGatesGateSelectorAdapter(
@@ -111,7 +111,7 @@ class SettingsGatesGateSelectorAdapter(
                 chipIcon = ContextCompat.getDrawable(context, requirement.icon)
             }
         }
-        lifecycle.coroutineScope.launchWhenResumed {
+        lifecycle.whenResumed {
             itemSettingsGateSelectorChip.onClicked().collect {
                 gate.gateRequirement?.firstOrNull { it is GateRequirement.UserDisplayedGateRequirement }?.let { requirement ->
                     requirement as GateRequirement.UserDisplayedGateRequirement

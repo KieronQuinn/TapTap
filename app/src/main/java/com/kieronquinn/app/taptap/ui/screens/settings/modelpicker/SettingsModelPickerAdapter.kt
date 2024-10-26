@@ -4,7 +4,6 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.coroutineScope
 import androidx.viewbinding.ViewBinding
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.components.settings.TapModel
@@ -14,6 +13,7 @@ import com.kieronquinn.app.taptap.ui.screens.settings.modelpicker.SettingsModelP
 import com.kieronquinn.app.taptap.ui.views.LifecycleAwareRecyclerView
 import com.kieronquinn.app.taptap.utils.extensions.applyBackgroundTint
 import com.kieronquinn.app.taptap.utils.extensions.onClicked
+import com.kieronquinn.app.taptap.utils.extensions.whenResumed
 import com.kieronquinn.monetcompat.core.MonetCompat
 import com.kieronquinn.monetcompat.extensions.views.applyMonet
 
@@ -71,12 +71,12 @@ class SettingsModelPickerAdapter(recyclerView: LifecycleAwareRecyclerView, var i
         itemSettingsModelPickerRadio.isChecked = item.selected
         itemSettingsModelPickerRadio.applyMonet()
         root.applyBackgroundTint(monet)
-        lifecycle.coroutineScope.launchWhenResumed {
+        lifecycle.whenResumed {
             root.onClicked().collect {
                 onItemSelected(item.model)
             }
         }
-        lifecycle.coroutineScope.launchWhenResumed {
+        lifecycle.whenResumed {
             itemSettingsModelPickerRadio.onClicked().collect {
                 onItemSelected(item.model)
             }

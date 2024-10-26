@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    compileSdk 31
+    compileSdk 35
 
     defaultConfig {
         minSdk 24
-        targetSdk 31
+        targetSdk 35
 
         consumerProguardFiles "consumer-rules.pro"
     }
@@ -30,7 +30,7 @@ android {
 }
 
 dependencies {
-    compileOnly 'androidx.annotation:annotation:1.5.0'
+    compileOnly 'androidx.annotation:annotation:1.9.0'
     //Refine allows refactoring of classes to support multiple SDKs with a single target
     annotationProcessor "dev.rikka.tools.refine:annotation-processor:$refine_version"
     compileOnly "dev.rikka.tools.refine:annotation:$refine_version"

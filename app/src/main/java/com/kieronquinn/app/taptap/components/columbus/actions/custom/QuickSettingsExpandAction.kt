@@ -4,14 +4,13 @@ import android.accessibilityservice.AccessibilityService
 import android.content.Context
 import android.os.Build
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.coroutineScope
 import com.google.android.columbus.feedback.FeedbackEffect
 import com.google.android.columbus.sensors.GestureSensor
 import com.kieronquinn.app.taptap.components.accessibility.TapTapAccessibilityRouter
 import com.kieronquinn.app.taptap.components.columbus.actions.TapTapAction
 import com.kieronquinn.app.taptap.components.columbus.gates.TapTapWhenGate
+import com.kieronquinn.app.taptap.utils.extensions.whenCreated
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.collect
 import org.koin.core.component.inject
 
 class QuickSettingsExpandAction(
@@ -35,7 +34,7 @@ class QuickSettingsExpandAction(
     override val tag = "NotificationExpandAction"
 
     init {
-        serviceLifecycle.coroutineScope.launchWhenCreated {
+        serviceLifecycle.whenCreated {
             accessibilityRouter.accessibilityOutputBus.collect {
                 if(it is TapTapAccessibilityRouter.AccessibilityOutput.QuickSettingsShadeState){
                     isQuickSettingsOpen = it.open

@@ -6,7 +6,6 @@ import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.setFragmentResult
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.databinding.FragmentSettingsSharedSnapchatBinding
@@ -17,6 +16,7 @@ import com.kieronquinn.app.taptap.ui.base.BoundFragment
 import com.kieronquinn.app.taptap.ui.screens.settings.shared.snapchat.SettingsSharedSnapchatViewModel.State
 import com.kieronquinn.app.taptap.utils.extensions.applyBackgroundTint
 import com.kieronquinn.app.taptap.utils.extensions.onClicked
+import com.kieronquinn.app.taptap.utils.extensions.whenResumed
 import com.kieronquinn.monetcompat.extensions.views.applyMonet
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -51,7 +51,7 @@ class SettingsSharedSnapchatFragment :
 
     private fun setupState() {
         handleState(viewModel.state.value)
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        whenResumed {
             viewModel.state.collect {
                 handleState(it)
             }
@@ -113,7 +113,7 @@ class SettingsSharedSnapchatFragment :
     private fun setupNonRoot() {
         binding.settingsSharedSnapchatSetupNoRootCard.applyBackgroundTint(monet)
         binding.settingsSharedSnapchatSetupNoRootButton.setTextColor(monet.getAccentColor(requireContext()))
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        whenResumed {
             binding.settingsSharedSnapchatSetupNoRootButton.onClicked().collect {
                 viewModel.onInstructionsClicked()
             }
@@ -124,7 +124,7 @@ class SettingsSharedSnapchatFragment :
     private fun setupRoot() {
         binding.settingsSharedSnapchatSetupRootCard.applyBackgroundTint(monet)
         binding.settingsSharedSnapchatSetupRootButton.setTextColor(monet.getAccentColor(requireContext()))
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        whenResumed {
             binding.settingsSharedSnapchatSetupRootButton.onClicked().collect {
                 viewModel.onSnapchatClicked(requireContext())
             }
@@ -134,7 +134,7 @@ class SettingsSharedSnapchatFragment :
     private fun setupIncompatible() {
         binding.settingsSharedSnapchatSetupIncompatibleCard.applyBackgroundTint(monet)
         binding.settingsSharedSnapchatSetupIncompatibleButton.setTextColor(monet.getAccentColor(requireContext()))
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        whenResumed {
             binding.settingsSharedSnapchatSetupIncompatibleButton.onClicked().collect {
                 viewModel.popBackstack(false)
             }

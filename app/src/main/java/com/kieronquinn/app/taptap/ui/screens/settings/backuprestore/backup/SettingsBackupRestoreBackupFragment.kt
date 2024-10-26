@@ -4,7 +4,6 @@ import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.databinding.FragmentSettingsBackupRestoreBackupBinding
@@ -13,8 +12,8 @@ import com.kieronquinn.app.taptap.ui.base.BackAvailable
 import com.kieronquinn.app.taptap.ui.base.BoundFragment
 import com.kieronquinn.app.taptap.ui.screens.settings.backuprestore.backup.SettingsBackupRestoreBackupViewModel.State
 import com.kieronquinn.app.taptap.utils.extensions.onClicked
+import com.kieronquinn.app.taptap.utils.extensions.whenResumed
 import com.kieronquinn.monetcompat.extensions.views.applyMonet
-import kotlinx.coroutines.flow.collect
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SettingsBackupRestoreBackupFragment :
@@ -37,7 +36,7 @@ class SettingsBackupRestoreBackupFragment :
         binding.settingsBackupRestoreBackupClose.setTextColor(monet.getAccentColor(requireContext()))
     }
 
-    private fun setupClose() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupClose() = whenResumed {
         binding.settingsBackupRestoreBackupClose.onClicked().collect {
             viewModel.onCloseClicked()
         }
@@ -45,7 +44,7 @@ class SettingsBackupRestoreBackupFragment :
 
     private fun setupState() {
         handleState(viewModel.state.value)
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        whenResumed {
             viewModel.state.collect {
                 handleState(it)
             }

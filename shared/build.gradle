@@ -5,11 +5,11 @@ plugins {
 
 android {
     namespace 'com.kieronquinn.app.shared'
-    compileSdk 32
+    compileSdk 35
 
     defaultConfig {
         minSdk 24
-        targetSdk 32
+        targetSdk 35
 
         consumerProguardFiles "consumer-rules.pro"
     }

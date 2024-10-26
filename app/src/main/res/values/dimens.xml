@@ -2,6 +2,7 @@
 <resources>
     <dimen name="margin_8">8dp</dimen>
     <dimen name="margin_16">16dp</dimen>
+    <dimen name="app_bar_height">179dp</dimen>
     <dimen name="reachability_button_size">36dp</dimen>
     <dimen name="toolbar_expanded_title_margin">16dp</dimen>
     <dimen name="bottom_navigation_height">80dp</dimen>

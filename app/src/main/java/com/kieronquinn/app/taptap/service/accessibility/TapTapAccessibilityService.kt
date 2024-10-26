@@ -1,8 +1,8 @@
 package com.kieronquinn.app.taptap.service.accessibility
 
 import android.view.accessibility.AccessibilityEvent
-import androidx.lifecycle.lifecycleScope
 import com.kieronquinn.app.taptap.components.accessibility.TapTapAccessibilityRouter
+import com.kieronquinn.app.taptap.utils.extensions.whenCreated
 import com.kieronquinn.app.taptap.utils.lifecycle.LifecycleAccessibilityService
 import kotlinx.coroutines.flow.filterNot
 import org.koin.android.ext.android.inject
@@ -49,10 +49,10 @@ class TapTapAccessibilityService: LifecycleAccessibilityService() {
 
     override fun onCreate() {
         super.onCreate()
-        lifecycleScope.launchWhenCreated {
+        lifecycle.whenCreated {
             setupInputListener()
         }
-        lifecycleScope.launchWhenCreated {
+        lifecycle.whenCreated {
             router.onAccessibilityStarted()
         }
     }
@@ -85,7 +85,7 @@ class TapTapAccessibilityService: LifecycleAccessibilityService() {
                 currentPackageName = event.packageName?.toString() ?: "android"
             }
         }
-        lifecycleScope.launchWhenCreated {
+        lifecycle.whenCreated {
             if(this@TapTapAccessibilityService.currentPackageName != currentPackageName){
                 this@TapTapAccessibilityService.currentPackageName = currentPackageName
                 router.postOutput(TapTapAccessibilityRouter.AccessibilityOutput.AppOpen(currentPackageName))

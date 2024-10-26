@@ -17,7 +17,10 @@ val Context.canEnableContextHubLogging: Boolean
 
 fun ContextHub_hasColumbusNanoApp(): Boolean {
     val preloadedNanoAppsFile = File("/system/vendor/etc/chre", "preloaded_nanoapps.json")
-    if(!preloadedNanoAppsFile.exists()) return false
+    if(!preloadedNanoAppsFile.exists()) {
+        //Fallback for if the file does not exist
+        return File("/system/vendor/etc/chre/columbus.so").exists()
+    }
     return try {
         val root = JSONObject(preloadedNanoAppsFile.readText())
         val nanoApps = root.getJSONArray("nanoapps") ?: return false

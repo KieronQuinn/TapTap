@@ -6,13 +6,12 @@ import android.os.Bundle
 import android.view.Gravity
 import android.view.View
 import android.widget.Toast
-import androidx.lifecycle.lifecycleScope
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.databinding.FragmentReachabilityBinding
 import com.kieronquinn.app.taptap.ui.base.BoundFragment
 import com.kieronquinn.app.taptap.utils.extensions.onClicked
 import com.kieronquinn.app.taptap.utils.extensions.onLongClicked
-import kotlinx.coroutines.flow.collect
+import com.kieronquinn.app.taptap.utils.extensions.whenResumed
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ReachabilityFragment: BoundFragment<FragmentReachabilityBinding>(FragmentReachabilityBinding::inflate) {
@@ -39,7 +38,7 @@ class ReachabilityFragment: BoundFragment<FragmentReachabilityBinding>(FragmentR
         setupNotificationsClick()
         setupQuickSettingsClick()
         setupNotificationsLongClick()
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        whenResumed {
             if(!viewModel.getHasLeftHandedSet()){
                 Toast.makeText(requireContext(), R.string.reachability_left_handed_info, Toast.LENGTH_LONG).show()
             }
@@ -52,7 +51,7 @@ class ReachabilityFragment: BoundFragment<FragmentReachabilityBinding>(FragmentR
         binding.reachabilityQuickSettings.iconTint = accent
     }
 
-    private fun setupHandedness() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupHandedness() = whenResumed {
         viewModel.isLeftHanded.collect {
             if(it) {
                 binding.reachabilityContainer.gravity = Gravity.BOTTOM or Gravity.START
@@ -62,26 +61,26 @@ class ReachabilityFragment: BoundFragment<FragmentReachabilityBinding>(FragmentR
         }
     }
 
-    private fun setupNotificationsClick() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupNotificationsClick() = whenResumed {
         binding.reachabilityNotifications.onClicked().collect {
             viewModel.onNotificationsClicked()
         }
     }
 
-    private fun setupQuickSettingsClick() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupQuickSettingsClick() = whenResumed {
         binding.reachabilityQuickSettings.onClicked().collect {
             viewModel.onQuickSettingsClicked()
         }
     }
 
-    private fun setupNotificationsLongClick() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupNotificationsLongClick() = whenResumed {
         binding.reachabilityNotifications.onLongClicked().collect {
             viewModel.onNotificationsLongClicked()
         }
     }
 
     fun onWindowAttributesChanged(height: Int) {
-        lifecycleScope.launchWhenResumed {
+        whenResumed {
             if(height < minButtonHeight){
                 binding.reachabilityNotifications.visibility = View.GONE
                 binding.reachabilityQuickSettings.visibility = View.GONE
@@ -93,7 +92,7 @@ class ReachabilityFragment: BoundFragment<FragmentReachabilityBinding>(FragmentR
     }
 
     fun onExitMultiWindow(providedApp: String?) {
-        lifecycleScope.launchWhenResumed {
+        whenResumed {
             viewModel.getCurrentApp() ?: providedApp?.let {
                 requireContext().packageManager.getLaunchIntentForPackage(it)?.run {
                     startActivity(this)

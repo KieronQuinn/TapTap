@@ -1,12 +1,13 @@
 package com.kieronquinn.app.taptap.ui.screens.container
 
+import android.annotation.SuppressLint
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.view.MenuInflater
 import android.view.View
-import androidx.activity.addCallback
+import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.ColorUtils
@@ -20,10 +21,31 @@ import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.components.navigation.ContainerNavigation
 import com.kieronquinn.app.taptap.components.navigation.setupWithNavigation
 import com.kieronquinn.app.taptap.databinding.FragmentContainerBinding
-import com.kieronquinn.app.taptap.ui.base.*
+import com.kieronquinn.app.taptap.ui.base.BackAvailable
+import com.kieronquinn.app.taptap.ui.base.BoundFragment
+import com.kieronquinn.app.taptap.ui.base.CanShowSnackbar
+import com.kieronquinn.app.taptap.ui.base.LockCollapsed
+import com.kieronquinn.app.taptap.ui.base.ProvidesBack
+import com.kieronquinn.app.taptap.ui.base.ProvidesOverflow
+import com.kieronquinn.app.taptap.ui.base.ProvidesTitle
 import com.kieronquinn.app.taptap.ui.screens.container.ContainerSharedViewModel.FabState.Hidden
 import com.kieronquinn.app.taptap.ui.screens.container.ContainerSharedViewModel.FabState.Shown
-import com.kieronquinn.app.taptap.utils.extensions.*
+import com.kieronquinn.app.taptap.utils.extensions.awaitPost
+import com.kieronquinn.app.taptap.utils.extensions.collapsedState
+import com.kieronquinn.app.taptap.utils.extensions.getRememberedAppBarCollapsed
+import com.kieronquinn.app.taptap.utils.extensions.getTopFragment
+import com.kieronquinn.app.taptap.utils.extensions.isDarkMode
+import com.kieronquinn.app.taptap.utils.extensions.isLandscape
+import com.kieronquinn.app.taptap.utils.extensions.isRtl
+import com.kieronquinn.app.taptap.utils.extensions.onApplyInsets
+import com.kieronquinn.app.taptap.utils.extensions.onDestinationChanged
+import com.kieronquinn.app.taptap.utils.extensions.onItemClicked
+import com.kieronquinn.app.taptap.utils.extensions.onNavigationIconClicked
+import com.kieronquinn.app.taptap.utils.extensions.onSwipeDismissed
+import com.kieronquinn.app.taptap.utils.extensions.rememberAppBarCollapsed
+import com.kieronquinn.app.taptap.utils.extensions.setOnBackPressedCallback
+import com.kieronquinn.app.taptap.utils.extensions.setTypeface
+import com.kieronquinn.app.taptap.utils.extensions.whenResumed
 import com.kieronquinn.monetcompat.extensions.applyMonet
 import com.kieronquinn.monetcompat.extensions.toArgb
 import com.kieronquinn.monetcompat.extensions.views.setTint
@@ -36,6 +58,23 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ContainerFragment: BoundFragment<FragmentContainerBinding>(FragmentContainerBinding::inflate) {
+
+    companion object {
+        private val SYSTEM_INSETS = setOf(
+            WindowInsetsCompat.Type.systemBars(),
+            WindowInsetsCompat.Type.ime(),
+            WindowInsetsCompat.Type.statusBars(),
+            WindowInsetsCompat.Type.displayCutout()
+        ).or()
+
+        private fun Collection<Int>.or(): Int {
+            var current = 0
+            forEach {
+                current = current.or(it)
+            }
+            return current
+        }
+    }
 
     private val googleSansMedium by lazy {
         ResourcesCompat.getFont(requireContext(), R.font.google_sans_text_medium)
@@ -87,14 +126,33 @@ class ContainerFragment: BoundFragment<FragmentContainerBinding>(FragmentContain
         setupSnackbar()
         setupUpdateSnackbar()
         setupColumbusSettingPhoenix()
+        setupInsets()
         viewModel.writeSettingsVersion()
+    }
+
+    private fun setupInsets() = with(binding.root) {
+        val padding = resources.getDimensionPixelSize(R.dimen.margin_16)
+        onApplyInsets { _, insets ->
+            val inset = insets.getInsets(SYSTEM_INSETS)
+            binding.fragmentContainerContainer.updatePadding(
+                left = inset.left, right = inset.right
+            )
+            binding.toolbar.updatePadding(
+                left = inset.left, right = inset.right
+            )
+            if(isRtl()) {
+                binding.collapsingToolbar.expandedTitleMarginEnd = inset.right + padding
+            }else {
+                binding.collapsingToolbar.expandedTitleMarginStart = inset.left + padding
+            }
+        }
     }
 
     private fun setupMonet() {
         binding.root.setBackgroundColor(monet.getBackgroundColor(requireContext()))
     }
 
-    private fun setupColumbusSettingPhoenix() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupColumbusSettingPhoenix() = whenResumed {
         sharedViewModel.columbusSettingPhoenixBus.collect {
             viewModel.phoenix()
         }
@@ -120,7 +178,7 @@ class ContainerFragment: BoundFragment<FragmentContainerBinding>(FragmentContain
             arrayOf(intArrayOf(android.R.attr.state_selected), intArrayOf()),
             intArrayOf(indicatorColor ?: Color.TRANSPARENT, Color.TRANSPARENT)
         )
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        whenResumed {
             //The onItemClicked flow can only be attached once due to its callbacks, so we share it to split the logic
             val flows = onItemClicked().shareIn(lifecycleScope, SharingStarted.Eagerly)
             launch {
@@ -144,7 +202,7 @@ class ContainerFragment: BoundFragment<FragmentContainerBinding>(FragmentContain
     }
 
     private fun setupToolbar() = with(binding.toolbar) {
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        whenResumed {
             onNavigationIconClicked().collect {
                 (navHostFragment.getTopFragment() as? ProvidesBack)?.let {
                     if(it.onBackPressed()) return@collect
@@ -154,30 +212,33 @@ class ContainerFragment: BoundFragment<FragmentContainerBinding>(FragmentContain
         }
     }
 
+    @SuppressLint("RestrictedApi")
     private fun setupBack() {
-        val callback = requireActivity().onBackPressedDispatcher.addCallback(
-            this,
-            shouldBackDispatcherBeEnabled()
-        ) {
-            (navHostFragment.getTopFragment() as? ProvidesBack)?.let {
-                if(it.onBackPressed()) return@addCallback
-            }
-            if(!navController.popBackStack()) {
-                requireActivity().finish()
+        val callback = object: OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                (navHostFragment.getTopFragment() as? ProvidesBack)?.let {
+                    if(it.onBackPressed()) return
+                }
+                if(!navController.popBackStack()) {
+                    requireActivity().finish()
+                }
             }
         }
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        navController.setOnBackPressedCallback(callback)
+        navController.enableOnBackPressed(shouldBackDispatcherBeEnabled())
+        navController.setOnBackPressedDispatcher(requireActivity().onBackPressedDispatcher)
+        whenResumed {
             navController.onDestinationChanged().collect {
-                callback.isEnabled = shouldBackDispatcherBeEnabled()
+                navController.enableOnBackPressed(shouldBackDispatcherBeEnabled())
             }
         }
     }
 
     private fun shouldBackDispatcherBeEnabled(): Boolean {
-        return navHostFragment.getTopFragment() is ProvidesBack || navController.hasBackAvailable()
+        return navHostFragment.getTopFragment() is ProvidesBack
     }
 
-    private fun setupNavigation() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupNavigation() = whenResumed {
         launch {
             navHostFragment.setupWithNavigation(navigation)
         }
@@ -191,14 +252,14 @@ class ContainerFragment: BoundFragment<FragmentContainerBinding>(FragmentContain
         }
     }
 
-    private fun setupStack() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupStack() = whenResumed {
         navController.onDestinationChanged().collect {
             binding.root.awaitPost()
             onTopFragmentChanged(navHostFragment.getTopFragment() ?: return@collect)
         }
     }
 
-    private fun setupCollapsedState() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupCollapsedState() = whenResumed {
         binding.appBar.collapsedState().collect {
             navHostFragment.getTopFragment()?.rememberAppBarCollapsed(it)
         }
@@ -213,7 +274,7 @@ class ContainerFragment: BoundFragment<FragmentContainerBinding>(FragmentContain
         }else{
             setupMenu(null)
         }
-        if(topFragment is LockCollapsed) {
+        if(topFragment is LockCollapsed || requireContext().isLandscape()) {
             binding.appBar.setExpanded(false)
         }else {
             binding.appBar.setExpanded(!topFragment.getRememberedAppBarCollapsed())
@@ -244,7 +305,7 @@ class ContainerFragment: BoundFragment<FragmentContainerBinding>(FragmentContain
             view.updatePadding(bottom = insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom)
         }
         handleFabState(sharedViewModel.fabState.value)
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        whenResumed {
             sharedViewModel.fabState.collect {
                 handleFabState(it)
             }
@@ -270,7 +331,7 @@ class ContainerFragment: BoundFragment<FragmentContainerBinding>(FragmentContain
         }
     }
 
-    private fun setupSnackbar() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupSnackbar() = whenResumed {
         sharedViewModel.snackbarBus.collect {
             Snackbar.make(binding.root, it, Snackbar.LENGTH_LONG).apply {
                 applyMonet()
@@ -284,7 +345,7 @@ class ContainerFragment: BoundFragment<FragmentContainerBinding>(FragmentContain
 
     private fun setupUpdateSnackbar() {
         handleUpdateSnackbar(viewModel.showUpdateSnackbar.value)
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        whenResumed {
             viewModel.showUpdateSnackbar.collect {
                 handleUpdateSnackbar(it)
             }

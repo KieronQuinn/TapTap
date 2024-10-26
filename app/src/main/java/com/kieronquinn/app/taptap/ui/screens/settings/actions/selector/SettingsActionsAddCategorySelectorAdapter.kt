@@ -4,13 +4,13 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.coroutineScope
 import androidx.recyclerview.widget.RecyclerView
 import com.kieronquinn.app.taptap.databinding.ItemSettingsActionsAddCategorySelectorCategoryBinding
 import com.kieronquinn.app.taptap.models.action.TapTapActionCategory
 import com.kieronquinn.app.taptap.ui.views.LifecycleAwareRecyclerView
 import com.kieronquinn.app.taptap.utils.extensions.applyBackgroundTint
 import com.kieronquinn.app.taptap.utils.extensions.onClicked
+import com.kieronquinn.app.taptap.utils.extensions.whenResumed
 import com.kieronquinn.monetcompat.core.MonetCompat
 
 class SettingsActionsAddCategorySelectorAdapter(
@@ -53,7 +53,7 @@ class SettingsActionsAddCategorySelectorAdapter(
         itemSettingsActionsAddCategorySelectorCategoryContent.text =
             context.getText(category.descRes)
         itemSettingsActionsAddCategorySelectorCategoryIcon.setImageResource(category.icon)
-        lifecycle.coroutineScope.launchWhenResumed {
+        lifecycle.whenResumed {
             root.onClicked().collect {
                 onItemClicked(category)
             }

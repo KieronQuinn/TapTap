@@ -98,7 +98,7 @@ fun View.delayPreDrawUntilFlow(flow: Flow<Boolean>, lifecycle: Lifecycle) {
         removeListener()
     }
     viewTreeObserver.addOnPreDrawListener(listener)
-    lifecycle.coroutineScope.launchWhenResumed {
+    lifecycle.whenResumed {
         flow.collect {
             if(!it) return@collect
             removeListener()

@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
-import androidx.lifecycle.lifecycleScope
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.databinding.FragmentSettingsAdvancedCustomSensitivityBinding
 import com.kieronquinn.app.taptap.ui.base.BaseBottomSheetFragment
@@ -12,8 +11,8 @@ import com.kieronquinn.app.taptap.ui.screens.container.ContainerSharedViewModel
 import com.kieronquinn.app.taptap.utils.extensions.onApplyInsets
 import com.kieronquinn.app.taptap.utils.extensions.onChanged
 import com.kieronquinn.app.taptap.utils.extensions.onClicked
+import com.kieronquinn.app.taptap.utils.extensions.whenResumed
 import com.kieronquinn.monetcompat.extensions.views.applyMonet
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.take
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -46,7 +45,7 @@ class SettingsAdvancedCustomSensitivityFragment: BaseBottomSheetFragment<Fragmen
         }
     }
 
-    private fun setupValue() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupValue() = whenResumed {
         binding.settingsAdvancedCustomSensitivityInput.applyMonet()
         binding.settingsAdvancedCustomSensitivityEdit.applyMonet()
         viewModel.customSensitivity.take(1).collect {
@@ -62,7 +61,7 @@ class SettingsAdvancedCustomSensitivityFragment: BaseBottomSheetFragment<Fragmen
         }
     }
 
-    private fun setupError() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupError() = whenResumed {
         viewModel.isSensitivityValid.collect {
             binding.settingsAdvancedCustomSensitivityInput.error = if(it) null else {
                 getString(R.string.bs_advanced_custom_sensitivity_invalid)
@@ -72,28 +71,28 @@ class SettingsAdvancedCustomSensitivityFragment: BaseBottomSheetFragment<Fragmen
         }
     }
 
-    private fun setupPositive() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupPositive() = whenResumed {
         binding.settingsAdvancedCustomSensitivityPositive.setTextColor(accent)
         binding.settingsAdvancedCustomSensitivityPositive.onClicked().collect {
             viewModel.onPositiveClicked()
         }
     }
 
-    private fun setupNegative() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupNegative() = whenResumed {
         binding.settingsAdvancedCustomSensitivityNegative.setTextColor(accent)
         binding.settingsAdvancedCustomSensitivityNegative.onClicked().collect {
             viewModel.onNegativeClicked()
         }
     }
 
-    private fun setupNeutral() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupNeutral() = whenResumed {
         binding.settingsAdvancedCustomSensitivityNeutral.setTextColor(accent)
         binding.settingsAdvancedCustomSensitivityNeutral.onClicked().collect {
             viewModel.onNeutralClicked()
         }
     }
 
-    private fun setupRestart() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupRestart() = whenResumed {
         viewModel.restartService?.collect {
             sharedViewModel.restartService(requireContext())
         }

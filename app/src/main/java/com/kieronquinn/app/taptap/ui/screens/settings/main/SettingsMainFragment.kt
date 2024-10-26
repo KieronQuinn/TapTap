@@ -8,7 +8,6 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.databinding.FragmentSettingsMainBinding
@@ -20,6 +19,7 @@ import com.kieronquinn.app.taptap.ui.screens.settings.generic.GenericSettingsAda
 import com.kieronquinn.app.taptap.ui.screens.settings.generic.GenericSettingsViewModel.SettingsItem
 import com.kieronquinn.app.taptap.utils.extensions.applyBottomInsets
 import com.kieronquinn.app.taptap.utils.extensions.onClicked
+import com.kieronquinn.app.taptap.utils.extensions.whenResumed
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -84,7 +84,7 @@ class SettingsMainFragment :
 
     private fun setupSwitch() {
         binding.settingsMainEnableTapTap.isChecked = sharedViewModel.isServiceRunning.value
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        whenResumed {
             with(binding.settingsMainEnableTapTap) {
                 launch {
                     sharedViewModel.isServiceRunning.collect {

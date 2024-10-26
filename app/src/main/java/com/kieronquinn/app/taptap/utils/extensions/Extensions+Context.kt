@@ -2,12 +2,20 @@ package com.kieronquinn.app.taptap.utils.extensions
 
 import android.Manifest
 import android.accessibilityservice.AccessibilityService
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.ActivityManager
 import android.app.IApplicationThread
 import android.app.IServiceConnection
 import android.app.Service
-import android.content.*
+import android.content.BroadcastReceiver
+import android.content.ComponentName
+import android.content.Context
+import android.content.Context.RECEIVER_EXPORTED
+import android.content.ContextHidden
+import android.content.Intent
+import android.content.IntentFilter
+import android.content.ServiceConnection
 import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.net.ConnectivityManager
@@ -29,6 +37,10 @@ import dev.rikka.tools.refine.Refine
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.callbackFlow
 
+fun Context.isLandscape(): Boolean {
+    return resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+}
+
 fun Context.broadcastReceiverAsFlow(vararg actions: String) = callbackFlow {
     val receiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
@@ -36,7 +48,7 @@ fun Context.broadcastReceiverAsFlow(vararg actions: String) = callbackFlow {
         }
     }
     actions.forEach {
-        registerReceiver(receiver, IntentFilter(it))
+        registerReceiverCompat(receiver, IntentFilter(it))
     }
     awaitClose {
         unregisterReceiver(receiver)
@@ -103,7 +115,7 @@ fun Context.getPlayStoreIntentForPackage(packageName: String, fallbackUrl: Strin
 }
 
 fun Context.isPowerConnected(): Boolean {
-    val intent = registerReceiver(null, IntentFilter(Intent.ACTION_BATTERY_CHANGED))
+    val intent = registerReceiverCompat(null, IntentFilter(Intent.ACTION_BATTERY_CHANGED))
     val plugged = intent?.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1) ?: return false
     return plugged == BatteryManager.BATTERY_PLUGGED_AC || plugged == BatteryManager.BATTERY_PLUGGED_USB || plugged == BatteryManager.BATTERY_PLUGGED_WIRELESS
 }
@@ -170,7 +182,7 @@ fun Context.deviceHasGyroscope(): Boolean {
 
 fun Context.doesPackageHavePermission(packageName: String, permission: String): Boolean {
     return packageManager.getPackageInfo(packageName, PackageManager.GET_PERMISSIONS)
-        .requestedPermissions.contains(permission)
+        .requestedPermissions?.contains(permission) == true
 }
 
 fun Context.hasNotificationPermission(): Boolean {
@@ -198,4 +210,16 @@ fun Context.getMainThreadHandler(): Handler {
 
 fun Context.getIApplicationThread(): IApplicationThread {
     return Refine.unsafeCast<ContextHidden>(this).iApplicationThread
+}
+
+@SuppressLint("UnspecifiedRegisterReceiverFlag")
+fun Context.registerReceiverCompat(
+    receiver: BroadcastReceiver?,
+    intentFilter: IntentFilter
+): Intent? {
+    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        registerReceiver(receiver, intentFilter, RECEIVER_EXPORTED)
+    }else{
+        registerReceiver(receiver, intentFilter)
+    }
 }

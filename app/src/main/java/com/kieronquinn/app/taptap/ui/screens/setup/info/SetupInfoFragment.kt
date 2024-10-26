@@ -7,7 +7,6 @@ import android.text.util.Linkify
 import android.view.View
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
-import androidx.lifecycle.lifecycleScope
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.databinding.FragmentSetupInfoBinding
 import com.kieronquinn.app.taptap.ui.base.ProvidesBack
@@ -16,6 +15,7 @@ import com.kieronquinn.app.taptap.utils.extensions.applyBackgroundTint
 import com.kieronquinn.app.taptap.utils.extensions.isDarkMode
 import com.kieronquinn.app.taptap.utils.extensions.onApplyInsets
 import com.kieronquinn.app.taptap.utils.extensions.onClicked
+import com.kieronquinn.app.taptap.utils.extensions.whenResumed
 import me.saket.bettermovementmethod.BetterLinkMovementMethod
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -65,13 +65,13 @@ class SetupInfoFragment: BaseSetupFragment<FragmentSetupInfoBinding>(FragmentSet
         binding.toolbar.setupWithScrollableView(binding.setupInfoScrollable)
     }
 
-    private fun setupNext() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupNext() = whenResumed {
         binding.setupInfoNext.onClicked().collect {
             viewModel.onNextClicked(requireContext())
         }
     }
 
-    private fun setupSource() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupSource() = whenResumed {
         binding.setupInfoCardSource.onClicked().collect {
             viewModel.onSourceClicked()
         }

@@ -2,11 +2,10 @@ package com.kieronquinn.app.taptap.components.accessibility
 
 import android.content.Intent
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
 import com.kieronquinn.app.taptap.ui.activities.MainActivity
+import com.kieronquinn.app.taptap.utils.extensions.whenCreated
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.collect
 
 interface TapTapAccessibilityRouter {
 
@@ -40,7 +39,7 @@ interface TapTapAccessibilityRouter {
     suspend fun onGestureAccessibilityStarted()
 
     fun bringToFrontOnAccessibilityStart(fragment: Fragment) {
-        fragment.viewLifecycleOwner.lifecycleScope.launchWhenCreated {
+        fragment.viewLifecycleOwner.whenCreated {
             this@TapTapAccessibilityRouter.accessibilityStartBus.collect {
                 fragment.bringToFront()
             }
@@ -48,7 +47,7 @@ interface TapTapAccessibilityRouter {
     }
 
     fun bringToFrontOnGestureAccessibilityStart(fragment: Fragment) {
-        fragment.viewLifecycleOwner.lifecycleScope.launchWhenCreated {
+        fragment.viewLifecycleOwner.whenCreated {
             this@TapTapAccessibilityRouter.gestureAccessibilityStartBus.collect {
                 fragment.bringToFront()
             }

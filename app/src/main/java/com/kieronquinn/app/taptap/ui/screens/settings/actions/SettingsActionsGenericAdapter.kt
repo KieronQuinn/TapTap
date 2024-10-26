@@ -8,7 +8,6 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.coroutineScope
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.kieronquinn.app.taptap.R
@@ -19,9 +18,14 @@ import com.kieronquinn.app.taptap.models.action.TapTapUIAction
 import com.kieronquinn.app.taptap.ui.screens.settings.actions.SettingsActionsGenericViewModel.SettingsActionsItem
 import com.kieronquinn.app.taptap.ui.screens.settings.actions.SettingsActionsGenericViewModel.SettingsActionsItem.SettingsActionsItemType
 import com.kieronquinn.app.taptap.ui.views.LifecycleAwareRecyclerView
-import com.kieronquinn.app.taptap.utils.extensions.*
+import com.kieronquinn.app.taptap.utils.extensions.addRippleForeground
+import com.kieronquinn.app.taptap.utils.extensions.applyBackgroundTint
+import com.kieronquinn.app.taptap.utils.extensions.isDarkMode
+import com.kieronquinn.app.taptap.utils.extensions.onClicked
+import com.kieronquinn.app.taptap.utils.extensions.onLongClicked
+import com.kieronquinn.app.taptap.utils.extensions.whenResumed
 import com.kieronquinn.monetcompat.core.MonetCompat
-import java.util.*
+import java.util.Collections
 
 class SettingsActionsGenericAdapter(
     recyclerView: RecyclerView,
@@ -151,12 +155,12 @@ class SettingsActionsGenericAdapter(
                 ContextCompat.getDrawable(context, R.drawable.ic_action_chip_when_empty)
             itemActionChipWhen.text = context.getString(R.string.item_action_when_empty)
         }
-        holder.lifecycle.coroutineScope.launchWhenResumed {
+        holder.lifecycle.whenResumed {
             itemSettingsActionsActionHandle.onLongClicked().collect {
                 onHandleLongPressed(holder)
             }
         }
-        holder.lifecycle.coroutineScope.launchWhenResumed {
+        holder.lifecycle.whenResumed {
             root.onLongClicked().collect {
                 val isSelected = item.isSelected
                 clearSelection()
@@ -165,7 +169,7 @@ class SettingsActionsGenericAdapter(
                 notifyItemChanged(holder.adapterPosition)
             }
         }
-        holder.lifecycle.coroutineScope.launchWhenResumed {
+        holder.lifecycle.whenResumed {
             itemActionChipWhen.onClicked().collect {
                 onWhenGateChipClicked(item.action)
             }
@@ -178,13 +182,13 @@ class SettingsActionsGenericAdapter(
         itemSettingsActionsInfoContent.text = context.getText(item.contentRes)
         if(item.onClick != null){
             root.addRippleForeground()
-            lifecycle.coroutineScope.launchWhenResumed {
+            lifecycle.whenResumed {
                 root.onClicked().collect {
                     item.onClick.invoke()
                 }
             }
         }
-        lifecycle.coroutineScope.launchWhenResumed {
+        lifecycle.whenResumed {
             itemSettingsActionsInfoDismiss.onClicked().collect {
                 item.onCloseClick.invoke()
             }

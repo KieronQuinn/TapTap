@@ -3,13 +3,13 @@ package com.kieronquinn.app.taptap.ui.screens.settings.backuprestore
 import android.os.Bundle
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.lifecycle.lifecycleScope
 import com.kieronquinn.app.taptap.databinding.FragmentSettingsBackupRestoreBinding
 import com.kieronquinn.app.taptap.ui.base.BackAvailable
 import com.kieronquinn.app.taptap.ui.base.BoundFragment
 import com.kieronquinn.app.taptap.utils.extensions.applyBackgroundTint
 import com.kieronquinn.app.taptap.utils.extensions.applyBottomInsets
 import com.kieronquinn.app.taptap.utils.extensions.onClicked
+import com.kieronquinn.app.taptap.utils.extensions.whenResumed
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SettingsBackupRestoreFragment: BoundFragment<FragmentSettingsBackupRestoreBinding>(FragmentSettingsBackupRestoreBinding::inflate), BackAvailable {
@@ -35,7 +35,7 @@ class SettingsBackupRestoreFragment: BoundFragment<FragmentSettingsBackupRestore
 
     private fun setupBackup() {
         binding.settingsBackupRestoreBackup.applyBackgroundTint(monet)
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        whenResumed {
             binding.settingsBackupRestoreBackup.onClicked().collect {
                 viewModel.onBackupClicked(backupFilePickerLauncher)
             }
@@ -44,7 +44,7 @@ class SettingsBackupRestoreFragment: BoundFragment<FragmentSettingsBackupRestore
 
     private fun setupRestore() {
         binding.settingsBackupRestoreRestore.applyBackgroundTint(monet)
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        whenResumed {
             binding.settingsBackupRestoreRestore.onClicked().collect {
                 viewModel.onRestoreClicked(restoreFilePickerLauncher)
             }

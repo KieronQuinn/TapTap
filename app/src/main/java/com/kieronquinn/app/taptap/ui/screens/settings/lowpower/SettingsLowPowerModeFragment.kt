@@ -3,7 +3,6 @@ package com.kieronquinn.app.taptap.ui.screens.settings.lowpower
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
-import androidx.lifecycle.lifecycleScope
 import com.kieronquinn.app.taptap.databinding.FragmentSettingsLowPowerModeBinding
 import com.kieronquinn.app.taptap.ui.base.BackAvailable
 import com.kieronquinn.app.taptap.ui.base.BoundFragment
@@ -11,6 +10,7 @@ import com.kieronquinn.app.taptap.ui.screens.container.ContainerSharedViewModel
 import com.kieronquinn.app.taptap.ui.views.MonetSwitch
 import com.kieronquinn.app.taptap.utils.extensions.applyBottomInsets
 import com.kieronquinn.app.taptap.utils.extensions.onClicked
+import com.kieronquinn.app.taptap.utils.extensions.whenResumed
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -33,7 +33,7 @@ class SettingsLowPowerModeFragment: BoundFragment<FragmentSettingsLowPowerModeBi
     }
 
 
-    private fun setupSwitch() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupSwitch() = whenResumed {
         binding.settingsLowPowerModeEnable.onClicked().collect {
             viewModel.onLowPowerSwitchClicked(it as MonetSwitch)
         }
@@ -41,45 +41,45 @@ class SettingsLowPowerModeFragment: BoundFragment<FragmentSettingsLowPowerModeBi
 
     private fun setupSwitchChecked() {
         binding.settingsLowPowerModeEnable.isChecked = viewModel.lowPowerModeInitialValue
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        whenResumed {
             viewModel.lowPowerModeEnabled.collect {
                 binding.settingsLowPowerModeEnable.isChecked = it
             }
         }
     }
 
-    private fun setupSwitchEnabled() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupSwitchEnabled() = whenResumed {
         viewModel.switchEnabled.collect {
             binding.settingsLowPowerModeEnable.isEnabled = it
             binding.settingsLowPowerModeEnable.alpha = if(it) 1f else 0.5f
         }
     }
 
-    private fun setupShizuku() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupShizuku() = whenResumed {
         viewModel.shizukuInstalled.collect {
             binding.settingsLowPowerModeErrorShizuku.isVisible = !it
         }
     }
 
-    private fun setupCompatible() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupCompatible() = whenResumed {
         viewModel.lowPowerModeCompatible.collect {
             binding.settingsLowPowerModeErrorIncompatible.isVisible = !it
         }
     }
 
-    private fun setupRestart() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupRestart() = whenResumed {
         viewModel.restartService?.collect {
             containerViewModel.restartService(requireContext())
         }
     }
 
-    private fun setupShizukuButton() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupShizukuButton() = whenResumed {
         binding.settingsLowPowerModeErrorButtonShizuku.onClicked().collect {
             viewModel.onShizukuClicked(requireContext())
         }
     }
 
-    private fun setupSuiButton() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupSuiButton() = whenResumed {
         binding.settingsLowPowerModeErrorButtonSui.onClicked().collect {
             viewModel.onSuiClicked()
         }

@@ -2,7 +2,6 @@ package com.kieronquinn.app.taptap.components.columbus.actions.custom
 
 import android.app.KeyguardManager
 import android.content.ActivityNotFoundException
-import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.provider.MediaStore
@@ -15,7 +14,11 @@ import com.kieronquinn.app.taptap.components.columbus.actions.TapTapAction
 import com.kieronquinn.app.taptap.components.columbus.gates.TapTapWhenGate
 import com.kieronquinn.app.taptap.utils.extensions.EXTRA_KEY_IS_FROM_COLUMBUS
 import com.kieronquinn.app.taptap.utils.extensions.isAppLaunchable
-import kotlinx.coroutines.flow.*
+import com.kieronquinn.app.taptap.utils.extensions.whenCreated
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import org.koin.core.component.inject
 
 class SnapchatAction(
@@ -44,7 +47,7 @@ class SnapchatAction(
         .stateIn(lifecycleScope, SharingStarted.Eagerly, false)
 
     init {
-        lifecycleScope.launchWhenCreated {
+        lifecycle.whenCreated {
             isOpen.collect {
                 notifyListeners()
             }

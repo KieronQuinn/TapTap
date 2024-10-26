@@ -6,7 +6,6 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.coroutineScope
 import androidx.viewbinding.ViewBinding
 import com.kieronquinn.app.taptap.databinding.ItemSettingsSharedQuickSettingsHeaderBinding
 import com.kieronquinn.app.taptap.databinding.ItemSettingsSharedQuickSettingsItemBinding
@@ -14,6 +13,7 @@ import com.kieronquinn.app.taptap.repositories.quicksettings.QuickSettingsReposi
 import com.kieronquinn.app.taptap.ui.views.LifecycleAwareRecyclerView
 import com.kieronquinn.app.taptap.utils.extensions.applyBackgroundTint
 import com.kieronquinn.app.taptap.utils.extensions.onClicked
+import com.kieronquinn.app.taptap.utils.extensions.whenResumed
 import com.kieronquinn.app.taptap.utils.picasso.ComponentNameIconRequestHandler
 import com.kieronquinn.monetcompat.core.MonetCompat
 import com.squareup.picasso.Picasso
@@ -80,7 +80,7 @@ class SettingsSharedQuickSettingSelectorAdapter(
         picasso.load(uri).into(itemSettingsSharedQuickSettingsAppIcon)
         itemSettingsSharedQuickSettingsAppLabel.text = item.label ?: item.packageLabel
         itemSettingsSharedQuickSettingsAppComponent.text = item.component.getShortName()
-        lifecycle.coroutineScope.launchWhenResumed {
+        lifecycle.whenResumed {
             root.onClicked().collect {
                 onQuickSettingClicked(item)
             }

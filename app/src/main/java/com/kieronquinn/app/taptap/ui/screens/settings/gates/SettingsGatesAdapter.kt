@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.coroutineScope
 import androidx.viewbinding.ViewBinding
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.databinding.ItemSettingsGatesGateBinding
@@ -15,10 +14,15 @@ import com.kieronquinn.app.taptap.databinding.ItemSettingsGatesInfoBinding
 import com.kieronquinn.app.taptap.ui.screens.settings.gates.SettingsGatesViewModel.SettingsGatesItem
 import com.kieronquinn.app.taptap.ui.screens.settings.gates.SettingsGatesViewModel.SettingsGatesItem.SettingsGatesItemType
 import com.kieronquinn.app.taptap.ui.views.LifecycleAwareRecyclerView
-import com.kieronquinn.app.taptap.utils.extensions.*
+import com.kieronquinn.app.taptap.utils.extensions.addRippleForeground
+import com.kieronquinn.app.taptap.utils.extensions.applyBackgroundTint
+import com.kieronquinn.app.taptap.utils.extensions.isDarkMode
+import com.kieronquinn.app.taptap.utils.extensions.onClicked
+import com.kieronquinn.app.taptap.utils.extensions.onLongClicked
+import com.kieronquinn.app.taptap.utils.extensions.whenResumed
 import com.kieronquinn.monetcompat.core.MonetCompat
 import com.kieronquinn.monetcompat.extensions.views.applyMonetLight
-import java.util.*
+import java.util.Collections
 
 class SettingsGatesAdapter(
     recyclerView: LifecycleAwareRecyclerView,
@@ -100,19 +104,19 @@ class SettingsGatesAdapter(
         itemSettingsGatesGateContent.text = item.gate.description
         itemSettingsGatesGateSwitch.isChecked = item.gate.enabled
         itemSettingsGatesGateSwitch.applyMonetLight()
-        holder.lifecycle.coroutineScope.launchWhenResumed {
+        holder.lifecycle.whenResumed {
             itemSettingsGatesGateSwitch.onClicked().collect {
                 item.gate.enabled = !item.gate.enabled
                 onItemStateChanged(item.gate.id, item.gate.enabled)
                 notifyItemChanged(holder.adapterPosition)
             }
         }
-        holder.lifecycle.coroutineScope.launchWhenResumed {
+        holder.lifecycle.whenResumed {
             itemSettingsGatesGateHandle.onLongClicked().collect {
                 onHandleLongPressed(holder)
             }
         }
-        holder.lifecycle.coroutineScope.launchWhenResumed {
+        holder.lifecycle.whenResumed {
             root.onLongClicked().collect {
                 val isSelected = item.isSelected
                 clearSelection()
@@ -129,14 +133,14 @@ class SettingsGatesAdapter(
         itemSettingsGatesInfoContent.text = context.getText(item.contentRes)
         if(item.onClick != null){
             root.addRippleForeground()
-            lifecycle.coroutineScope.launchWhenResumed {
+            lifecycle.whenResumed {
                 root.onClicked().collect {
                     item.onClick.invoke()
                 }
             }
         }
         itemSettingsGatesInfoDismiss.isVisible = item.onCloseClick != null
-        lifecycle.coroutineScope.launchWhenResumed {
+        lifecycle.whenResumed {
             itemSettingsGatesInfoDismiss.onClicked().collect {
                 item.onCloseClick?.invoke()
             }

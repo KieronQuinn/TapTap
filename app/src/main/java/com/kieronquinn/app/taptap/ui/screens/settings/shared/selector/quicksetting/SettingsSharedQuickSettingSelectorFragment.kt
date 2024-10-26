@@ -5,7 +5,6 @@ import android.view.View
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.setFragmentResult
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kieronquinn.app.taptap.databinding.FragmentSettingsSharedQuickSettingsSelectorBinding
 import com.kieronquinn.app.taptap.repositories.quicksettings.QuickSettingsRepository
@@ -13,8 +12,8 @@ import com.kieronquinn.app.taptap.ui.base.BackAvailable
 import com.kieronquinn.app.taptap.ui.base.BoundFragment
 import com.kieronquinn.app.taptap.ui.screens.settings.shared.selector.quicksetting.SettingsSharedQuickSettingSelectorViewModel.State
 import com.kieronquinn.app.taptap.utils.extensions.applyBottomInsets
+import com.kieronquinn.app.taptap.utils.extensions.whenResumed
 import com.kieronquinn.monetcompat.extensions.views.applyMonet
-import kotlinx.coroutines.flow.collect
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SettingsSharedQuickSettingSelectorFragment: BoundFragment<FragmentSettingsSharedQuickSettingsSelectorBinding>(FragmentSettingsSharedQuickSettingsSelectorBinding::inflate), BackAvailable {
@@ -47,7 +46,7 @@ class SettingsSharedQuickSettingSelectorFragment: BoundFragment<FragmentSettings
 
     private fun setupState(){
         handleState(viewModel.state.value)
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        whenResumed {
             viewModel.state.collect {
                 handleState(it)
             }

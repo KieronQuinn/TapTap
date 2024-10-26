@@ -4,14 +4,12 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
-import androidx.lifecycle.lifecycleScope
 import com.kieronquinn.app.taptap.R
-import com.kieronquinn.app.taptap.databinding.FragmentSettingsSharedNoRootBinding
 import com.kieronquinn.app.taptap.databinding.FragmentSetupInfoWarningBinding
 import com.kieronquinn.app.taptap.ui.base.BaseBottomSheetFragment
 import com.kieronquinn.app.taptap.utils.extensions.onApplyInsets
 import com.kieronquinn.app.taptap.utils.extensions.onClicked
-import kotlinx.coroutines.flow.collect
+import com.kieronquinn.app.taptap.utils.extensions.whenResumed
 
 class SetupInfoWarningBottomSheetFragment: BaseBottomSheetFragment<FragmentSetupInfoWarningBinding>(FragmentSetupInfoWarningBinding::inflate) {
 
@@ -35,7 +33,7 @@ class SetupInfoWarningBottomSheetFragment: BaseBottomSheetFragment<FragmentSetup
 
     private fun setupButtons(){
         binding.setupInfoWarningPositive.setTextColor(accent)
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        whenResumed {
             binding.setupInfoWarningPositive.onClicked().collect {
                 dismiss()
             }

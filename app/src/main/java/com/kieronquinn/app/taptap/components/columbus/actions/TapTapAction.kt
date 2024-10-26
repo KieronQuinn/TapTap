@@ -12,7 +12,6 @@ import androidx.annotation.StringRes
 import androidx.core.app.NotificationCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.lifecycleScope
 import com.google.android.columbus.actions.Action
 import com.google.android.columbus.feedback.FeedbackEffect
 import com.google.android.columbus.gates.Gate
@@ -26,6 +25,7 @@ import com.kieronquinn.app.taptap.service.accessibility.TapTapGestureAccessibili
 import com.kieronquinn.app.taptap.utils.extensions.getAccessibilityIntent
 import com.kieronquinn.app.taptap.utils.extensions.isServiceRunning
 import com.kieronquinn.app.taptap.utils.extensions.runOnDestroy
+import com.kieronquinn.app.taptap.utils.extensions.whenCreated
 import com.kieronquinn.app.taptap.utils.notifications.TapTapNotificationChannel
 import com.kieronquinn.app.taptap.utils.notifications.TapTapNotificationId
 import com.kieronquinn.app.taptap.utils.notifications.TapTapNotificationIntentId
@@ -86,7 +86,7 @@ abstract class TapTapAction(
     }
 
     private fun handleTrigger(detectionProperties: GestureSensor.DetectionProperties, isTripleTap: Boolean) {
-        lifecycleScope.launchWhenCreated {
+        lifecycle.whenCreated {
             onTriggered(detectionProperties, isTripleTap)
         }
     }

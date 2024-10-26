@@ -10,8 +10,12 @@ import com.kieronquinn.app.taptap.components.service.TapTapServiceRouter
 import com.kieronquinn.app.taptap.components.settings.TapTapSettings
 import com.kieronquinn.app.taptap.components.settings.invert
 import com.kieronquinn.app.taptap.service.foreground.TapTapForegroundService
+import com.kieronquinn.app.taptap.utils.extensions.whenCreated
 import com.kieronquinn.app.taptap.utils.lifecycle.LifecycleTileService
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.stateIn
 import org.koin.android.ext.android.inject
 
 class TapTapQuickSettingTile: LifecycleTileService() {
@@ -51,7 +55,7 @@ class TapTapQuickSettingTile: LifecycleTileService() {
     }
 
     private fun setupState(){
-        lifecycleScope.launchWhenCreated {
+        lifecycle.whenCreated {
             state.collect {
                 handleState(it ?: return@collect)
             }
@@ -73,13 +77,13 @@ class TapTapQuickSettingTile: LifecycleTileService() {
         triggerUpdate()
     }
 
-    private fun triggerUpdate() = lifecycleScope.launchWhenCreated {
+    private fun triggerUpdate() = lifecycle.whenCreated {
         reload.emit(Unit)
     }
 
     override fun onClick() {
         super.onClick()
-        lifecycleScope.launchWhenCreated {
+        lifecycle.whenCreated {
             settings.serviceEnabled.invert()
             TapTapForegroundService.stop(applicationContext)
             if(settings.serviceEnabled.get()){

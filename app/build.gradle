@@ -6,24 +6,22 @@ plugins {
     id 'androidx.navigation.safeargs'
     id 'dev.rikka.tools.refine'
     id 'com.google.android.gms.oss-licenses-plugin'
+    id 'com.google.devtools.ksp'
 }
 
 //Permission for Columbus to use
 rootProject.ext.set("columbusPermission", "com.google.android.columbus.taptap.permission.CONFIGURE_COLUMBUS_GESTURE")
 
-def tagName = '1.6.1'
-def tagVersion = 1610
+def tagName = '1.6.2'
+def tagVersion = 1620
 
 android {
-    compileSdk 34
-
-    //aidl is broken on 33...
-    buildToolsVersion "32.0.0"
+    compileSdk 35
 
     defaultConfig {
         applicationId "com.kieronquinn.app.taptap"
         minSdk 24
-        targetSdk 33
+        targetSdk 35
         versionCode tagVersion
         versionName tagName
 
@@ -55,6 +53,7 @@ android {
         jvmTarget = '17'
     }
     buildFeatures {
+        buildConfig true
         viewBinding true
         aidl true
     }
@@ -67,38 +66,38 @@ android {
 dependencies {
 
     //AndroidX
-    implementation 'androidx.core:core-ktx:1.10.1'
-    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.core:core-ktx:1.13.1'
+    implementation 'androidx.appcompat:appcompat:1.7.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
-    implementation "androidx.work:work-runtime-ktx:2.8.1"
-    implementation "androidx.core:core-ktx:1.10.1"
-    implementation "androidx.vectordrawable:vectordrawable-seekable:1.0.0-beta01"
+    implementation "androidx.work:work-runtime-ktx:2.9.1"
+    implementation "androidx.core:core-ktx:1.13.1"
+    implementation "androidx.vectordrawable:vectordrawable-seekable:1.0.0"
     implementation "androidx.core:core-splashscreen:1.0.1"
-    implementation "androidx.fragment:fragment-ktx:1.5.7"
-    implementation "androidx.activity:activity-ktx:1.7.2"
+    implementation "androidx.fragment:fragment-ktx:1.8.4"
+    implementation "androidx.activity:activity-ktx:1.9.3"
 
     //Lifecycle
-    def lifecycleVersion = '2.6.1'
+    def lifecycleVersion = '2.8.6'
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-service:$lifecycleVersion"
 
     //Desugaring to allow Java Date on older Android versions
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.3'
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.2'
 
     //OSS licences screen
-    implementation 'com.google.android.gms:play-services-oss-licenses:17.0.1'
+    implementation 'com.google.android.gms:play-services-oss-licenses:17.1.0'
 
     //Room
-    def room_version = "2.5.1"
+    def room_version = "2.6.1"
     implementation "androidx.room:room-runtime:$room_version"
     implementation "androidx.room:room-ktx:$room_version"
-    kapt "androidx.room:room-compiler:$room_version"
+    ksp "androidx.room:room-compiler:$room_version"
 
     //MD3
-    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'com.google.android.material:material:1.12.0'
 
     //MonetCompat for Monet backwards compatibility
     implementation 'com.github.KieronQuinn:MonetCompat:0.4.1'
@@ -107,17 +106,17 @@ dependencies {
     implementation "androidx.palette:palette-ktx:1.0.0"
 
     //Coroutines
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1'
 
     //Koin
-    implementation "io.insert-koin:koin-android:3.4.0"
+    implementation "io.insert-koin:koin-android:3.5.6"
 
     //Retrofit for updates + device spec query (opt-in)
-    implementation "com.squareup.retrofit2:retrofit:2.9.0"
-    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+    implementation "com.squareup.retrofit2:retrofit:2.11.0"
+    implementation "com.squareup.retrofit2:converter-gson:2.11.0"
 
     //Gson for serialization
-    implementation 'com.google.code.gson:gson:2.9.1'
+    implementation 'com.google.code.gson:gson:2.11.0'
 
     //Columbus module is separate to make it easier to work with
     implementation project(path: ':columbus')
@@ -138,12 +137,12 @@ dependencies {
     implementation 'com.joaomgcd:taskerpluginlibrary:0.4.2'
 
     //Shizuku + libsu for shell/root services
-    def shizuku_version = '12.1.0'
+    def shizuku_version = '13.1.5'
     implementation "dev.rikka.shizuku:api:$shizuku_version"
     implementation "dev.rikka.shizuku:provider:$shizuku_version"
     implementation "dev.rikka.tools.refine:runtime:$refine_version"
 
-    def libsuVersion = '5.0.3'
+    def libsuVersion = '5.2.2'
     implementation "com.github.topjohnwu.libsu:core:${libsuVersion}"
     implementation "com.github.topjohnwu.libsu:service:${libsuVersion}"
 
@@ -160,14 +159,14 @@ dependencies {
     implementation "io.noties.markwon:core:4.6.2"
 
     //Lottie for animations
-    implementation 'com.airbnb.android:lottie:5.2.0'
+    implementation 'com.airbnb.android:lottie:6.4.1'
 
     //Process Phoenix to fully restart the app when needed
-    implementation 'com.jakewharton:process-phoenix:2.1.2'
+    implementation 'com.jakewharton:process-phoenix:3.0.0'
 
     //Test
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
 
 }

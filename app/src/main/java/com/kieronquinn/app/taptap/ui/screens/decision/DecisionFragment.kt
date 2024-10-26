@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
 import com.kieronquinn.app.taptap.ui.screens.root.RootSharedViewModel
+import com.kieronquinn.app.taptap.utils.extensions.whenResumed
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -24,7 +24,7 @@ class DecisionFragment: Fragment() {
         return View(context)
     }
 
-    private fun setupDecision() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupDecision() = whenResumed {
         decisionViewModel.decisionMade.collect {
             rootSharedViewModel.postDecisionMade()
         }

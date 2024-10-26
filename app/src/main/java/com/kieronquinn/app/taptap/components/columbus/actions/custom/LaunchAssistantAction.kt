@@ -10,7 +10,11 @@ import com.kieronquinn.app.taptap.components.accessibility.TapTapAccessibilityRo
 import com.kieronquinn.app.taptap.components.columbus.actions.TapTapAction
 import com.kieronquinn.app.taptap.components.columbus.gates.TapTapWhenGate
 import com.kieronquinn.app.taptap.utils.extensions.isPackageAssistant
-import kotlinx.coroutines.flow.*
+import com.kieronquinn.app.taptap.utils.extensions.whenCreated
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import org.koin.core.component.inject
 
 class LaunchAssistantAction(
@@ -29,7 +33,7 @@ class LaunchAssistantAction(
         .stateIn(lifecycleScope, SharingStarted.Eagerly, false)
 
     init {
-        lifecycleScope.launchWhenCreated {
+        lifecycle.whenCreated {
             isOpen.collect {
                 notifyListeners()
             }

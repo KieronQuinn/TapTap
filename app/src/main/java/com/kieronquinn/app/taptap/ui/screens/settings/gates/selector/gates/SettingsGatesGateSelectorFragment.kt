@@ -4,7 +4,6 @@ import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kieronquinn.app.taptap.R
@@ -16,6 +15,7 @@ import com.kieronquinn.app.taptap.ui.screens.settings.gates.selector.gates.Setti
 import com.kieronquinn.app.taptap.utils.extensions.applyBottomInsets
 import com.kieronquinn.app.taptap.utils.extensions.onChanged
 import com.kieronquinn.app.taptap.utils.extensions.onClicked
+import com.kieronquinn.app.taptap.utils.extensions.whenResumed
 import com.kieronquinn.monetcompat.extensions.views.applyMonet
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.launch
@@ -59,7 +59,7 @@ class SettingsGatesGateSelectorFragment :
 
     private fun setupState(){
         handleState(viewModel.state.value)
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        whenResumed {
             viewModel.state.collect {
                 handleState(it)
             }
@@ -85,7 +85,7 @@ class SettingsGatesGateSelectorFragment :
 
     private fun setupSearch() {
         setSearchText(viewModel.searchText.value)
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        whenResumed {
             launch {
                 binding.includeSearch.searchBox.onChanged().debounce(250L).collect {
                     viewModel.setSearchText(it ?: "")
@@ -94,7 +94,7 @@ class SettingsGatesGateSelectorFragment :
         }
     }
 
-    private fun setupSearchClear() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupSearchClear() = whenResumed {
         launch {
             viewModel.searchShowClear.collect {
                 binding.includeSearch.searchClear.isVisible = it

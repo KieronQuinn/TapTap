@@ -2,7 +2,6 @@ package com.kieronquinn.app.taptap.ui.screens.settings.options
 
 import android.os.Bundle
 import android.view.View
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.components.settings.TapTapSettings
@@ -14,7 +13,7 @@ import com.kieronquinn.app.taptap.ui.screens.settings.generic.GenericSettingsAda
 import com.kieronquinn.app.taptap.ui.screens.settings.generic.GenericSettingsViewModel.SettingsItem
 import com.kieronquinn.app.taptap.utils.extensions.applyBottomInsets
 import com.kieronquinn.app.taptap.utils.extensions.onClicked
-import kotlinx.coroutines.flow.collect
+import com.kieronquinn.app.taptap.utils.extensions.whenResumed
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -120,7 +119,7 @@ class SettingsOptionsFragment: BoundFragment<FragmentSettingsOptionsBinding>(Fra
 
     private fun setupSwitch(){
         binding.settingsOptionsEnableTapTap.isChecked = sharedViewModel.isServiceRunning.value
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        whenResumed {
             with(binding.settingsOptionsEnableTapTap) {
                 launch {
                     sharedViewModel.isServiceRunning.collect {
@@ -143,7 +142,7 @@ class SettingsOptionsFragment: BoundFragment<FragmentSettingsOptionsBinding>(Fra
     }
 
     private fun setupRestart() {
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        whenResumed {
             viewModel.restartService?.collect {
                 containerViewModel.restartService(requireContext())
             }

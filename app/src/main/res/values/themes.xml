@@ -62,7 +62,7 @@
     <style name="AppTheme.ThirdPartyLicences" parent="Theme.MaterialComponents.DayNight">
         <item name="actionBarStyle">@style/ThirdPartyLicencesToolbarTheme</item>
         <item name="android:windowBackground">@color/licenses_background</item>
-        <item name="android:statusBarColor">@color/licenses_background</item>
+        <item name="android:statusBarColor">@color/licenses_toolbar</item>
         <item name="android:navigationBarColor">@color/licenses_background</item>
         <item name="android:windowLightStatusBar">@bool/lightStatus</item>
         <item name="android:windowLightNavigationBar" tools:ignore="NewApi">@bool/lightNav</item>
@@ -71,6 +71,7 @@
         <item name="colorPrimaryDark">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowAnimationStyle">@style/ThirdPartyLicencesActivityAnimation</item>
+        <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:ignore="NewApi">true</item>
     </style>
 
     <style name="ThirdPartyLicencesActivityAnimation" parent="@android:style/Animation.Activity">

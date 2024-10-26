@@ -6,12 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.addCallback
 import androidx.appcompat.widget.Toolbar
-import androidx.lifecycle.lifecycleScope
 import androidx.viewbinding.ViewBinding
 import com.kieronquinn.app.taptap.ui.base.BoundFragment
 import com.kieronquinn.app.taptap.ui.base.ProvidesBack
 import com.kieronquinn.app.taptap.utils.extensions.onNavigationIconClicked
-import kotlinx.coroutines.flow.collect
+import com.kieronquinn.app.taptap.utils.extensions.whenResumed
 
 abstract class BaseSetupFragment<T: ViewBinding>(inflate: (LayoutInflater, ViewGroup?, Boolean) -> T): BoundFragment<T>(inflate) {
 
@@ -37,7 +36,7 @@ abstract class BaseSetupFragment<T: ViewBinding>(inflate: (LayoutInflater, ViewG
             requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
                 onBackPressed()
             }
-            viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+            whenResumed {
                 toolbar?.onNavigationIconClicked()?.collect {
                     onBackPressed()
                 }
