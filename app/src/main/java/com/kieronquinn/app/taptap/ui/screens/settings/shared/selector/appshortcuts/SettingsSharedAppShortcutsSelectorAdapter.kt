@@ -8,19 +8,17 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.core.view.updateLayoutParams
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.coroutineScope
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
-import com.kieronquinn.app.taptap.components.columbus.actions.custom.LaunchAppShortcutAction
 import com.kieronquinn.app.taptap.databinding.ItemSettingsSharedAppShortcutsSelectorAppBinding
 import com.kieronquinn.app.taptap.databinding.ItemSettingsSharedAppShortcutsSelectorShortcutBinding
 import com.kieronquinn.app.taptap.models.columbus.AppShortcutData
 import com.kieronquinn.app.taptap.ui.screens.settings.shared.selector.appshortcuts.SettingsSharedAppShortcutsSelectorViewModel.Item
 import com.kieronquinn.app.taptap.ui.views.LifecycleAwareRecyclerView
 import com.kieronquinn.app.taptap.utils.extensions.onClicked
+import com.kieronquinn.app.taptap.utils.extensions.whenResumed
 import com.kieronquinn.app.taptap.utils.picasso.AppIconRequestHandler
 import com.squareup.picasso.Picasso
-import kotlinx.coroutines.flow.collect
 
 class SettingsSharedAppShortcutsSelectorAdapter(
     recyclerView: RecyclerView,
@@ -82,12 +80,12 @@ class SettingsSharedAppShortcutsSelectorAdapter(
         val uri = Uri.parse("${AppIconRequestHandler.SCHEME_PNAME}:${item.packageName}")
         picasso.load(uri).into(itemSettingsSharedAppShortcutsSelectorAppIcon)
         itemSettingsSharedAppShortcutsSelectorAppChevron.rotation = if (item.isOpen) 180f else 0f
-        lifecycle.coroutineScope.launchWhenResumed {
+        lifecycle.whenResumed {
             root.onClicked().collect {
                 toggleItem(item, itemSettingsSharedAppShortcutsSelectorAppChevron)
             }
         }
-        lifecycle.coroutineScope.launchWhenResumed {
+        lifecycle.whenResumed {
             itemSettingsSharedAppShortcutsSelectorAppChevron.onClicked().collect {
                 toggleItem(item, it)
             }
@@ -123,7 +121,7 @@ class SettingsSharedAppShortcutsSelectorAdapter(
         } else if (item.icon.icon != null) {
             itemSettingsSharedAppShortcutsSelectorShortcutIcon.setImageIcon(item.icon.icon)
         }
-        lifecycle.coroutineScope.launchWhenResumed {
+        lifecycle.whenResumed {
             root.onClicked().collect {
                 val selectedAppShortcut = AppShortcutData(item.packageName, item.shortcutId, item.name.toString())
                 onAppShortcutClicked(selectedAppShortcut)

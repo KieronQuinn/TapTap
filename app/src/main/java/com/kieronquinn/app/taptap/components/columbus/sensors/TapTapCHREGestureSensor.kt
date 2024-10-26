@@ -13,7 +13,6 @@ import android.os.RemoteException
 import android.os.SystemClock
 import android.util.Log
 import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.lifecycleScope
 import com.google.android.columbus.proto.nano.ColumbusGesture
 import com.google.android.columbus.sensors.CHREGestureSensor
 import com.google.android.columbus.sensors.configuration.GestureConfiguration
@@ -21,8 +20,10 @@ import com.kieronquinn.app.taptap.contexthub.IRemoteContextHubClient
 import com.kieronquinn.app.taptap.repositories.service.TapTapShizukuServiceRepository
 import com.kieronquinn.app.taptap.repositories.service.TapTapShizukuServiceRepository.ShizukuServiceResponse
 import com.kieronquinn.app.taptap.utils.contexthub.ContextHubClientCallbackLocalToRemoteWrapper
+import com.kieronquinn.app.taptap.utils.extensions.registerReceiverCompat
 import com.kieronquinn.app.taptap.utils.extensions.runOnDestroy
 import com.kieronquinn.app.taptap.utils.extensions.unregisterReceiverIfRegistered
+import com.kieronquinn.app.taptap.utils.extensions.whenCreated
 import com.kieronquinn.app.taptap.utils.flow.FlowQueue
 import com.kieronquinn.app.taptap.utils.logging.UiEventLogger
 import com.kieronquinn.app.taptap.utils.statusbar.StatusBarStateController
@@ -127,7 +128,7 @@ class TapTapCHREGestureSensor(
         onFail: (() -> Unit)?,
         onSuccess: (() -> Unit)?
     ) {
-        lifecycleOwner.lifecycleScope.launchWhenCreated {
+        lifecycleOwner.lifecycle.whenCreated {
             messageBuffer.add(NanoMessage(messageType, bytes, onFail, onSuccess))
         }
     }
@@ -232,8 +233,8 @@ class TapTapCHREGestureSensor(
     }
 
     override fun startListening(heuristicMode: Boolean) {
-        context.registerReceiver(screenStateReceiver, IntentFilter(Intent.ACTION_SCREEN_ON))
-        context.registerReceiver(screenStateReceiver, IntentFilter(Intent.ACTION_SCREEN_OFF))
+        context.registerReceiverCompat(screenStateReceiver, IntentFilter(Intent.ACTION_SCREEN_ON))
+        context.registerReceiverCompat(screenStateReceiver, IntentFilter(Intent.ACTION_SCREEN_OFF))
         super.startListening(heuristicMode)
     }
 
@@ -256,7 +257,7 @@ class TapTapCHREGestureSensor(
         lifecycleOwner.lifecycle.runOnDestroy {
             stopListening()
         }
-        lifecycleOwner.lifecycleScope.launchWhenCreated {
+        lifecycleOwner.lifecycle.whenCreated {
             messageBuffer.asFlow().debounce(250L).collect {
                 processNanoMessages(messageBuffer.asQueue())
             }

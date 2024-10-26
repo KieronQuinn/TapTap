@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.core.view.updateLayoutParams
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.coroutineScope
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.kieronquinn.app.taptap.databinding.ItemSettingsSharedShortcutsSelectorAppBinding
@@ -17,10 +16,10 @@ import com.kieronquinn.app.taptap.databinding.ItemSettingsSharedShortcutsSelecto
 import com.kieronquinn.app.taptap.ui.screens.settings.shared.selector.shortcuts.SettingsSharedShortcutsSelectorViewModel.Item
 import com.kieronquinn.app.taptap.ui.views.LifecycleAwareRecyclerView
 import com.kieronquinn.app.taptap.utils.extensions.onClicked
+import com.kieronquinn.app.taptap.utils.extensions.whenResumed
 import com.kieronquinn.app.taptap.utils.picasso.AppIconRequestHandler
 import com.kieronquinn.app.taptap.utils.picasso.ComponentNameIconRequestHandler
 import com.squareup.picasso.Picasso
-import kotlinx.coroutines.flow.collect
 
 class SettingsSharedShortcutsSelectorAdapter(
     recyclerView: RecyclerView,
@@ -82,12 +81,12 @@ class SettingsSharedShortcutsSelectorAdapter(
         val uri = Uri.parse("${AppIconRequestHandler.SCHEME_PNAME}:${item.packageName}")
         picasso.load(uri).into(itemSettingsSharedShortcutsSelectorAppIcon)
         itemSettingsSharedShortcutsSelectorAppChevron.rotation = if (item.isOpen) 180f else 0f
-        lifecycle.coroutineScope.launchWhenResumed {
+        lifecycle.whenResumed {
             root.onClicked().collect {
                 toggleItem(item, itemSettingsSharedShortcutsSelectorAppChevron)
             }
         }
-        lifecycle.coroutineScope.launchWhenResumed {
+        lifecycle.whenResumed {
             itemSettingsSharedShortcutsSelectorAppChevron.onClicked().collect {
                 toggleItem(item, it)
             }
@@ -121,7 +120,7 @@ class SettingsSharedShortcutsSelectorAdapter(
         val component = ComponentName(item.packageName, item.activity)
         val uri = Uri.parse("${ComponentNameIconRequestHandler.SCHEME_PNAME}:${component.flattenToString()}")
         picasso.load(uri).into(itemSettingsSharedShortcutsSelectorShortcutIcon)
-        lifecycle.coroutineScope.launchWhenResumed {
+        lifecycle.whenResumed {
             root.onClicked().collect {
                 onShortcutClicked(component)
             }

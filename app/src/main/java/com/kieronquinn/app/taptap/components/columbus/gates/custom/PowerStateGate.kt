@@ -8,8 +8,8 @@ import androidx.lifecycle.lifecycleScope
 import com.kieronquinn.app.taptap.components.columbus.gates.PassiveGate
 import com.kieronquinn.app.taptap.components.columbus.gates.TapTapGate
 import com.kieronquinn.app.taptap.utils.extensions.broadcastReceiverAsFlow
+import com.kieronquinn.app.taptap.utils.extensions.whenResumed
 import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 
@@ -31,7 +31,7 @@ class PowerStateGate(
 
 
     init {
-        lifecycleScope.launchWhenResumed {
+        lifecycle.whenResumed {
             screenState.collect {
                 notifyListeners()
             }

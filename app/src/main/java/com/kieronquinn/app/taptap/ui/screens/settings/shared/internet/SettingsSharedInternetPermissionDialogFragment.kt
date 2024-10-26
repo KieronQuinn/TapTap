@@ -7,13 +7,12 @@ import android.view.View
 import android.view.WindowManager
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
-import androidx.lifecycle.lifecycleScope
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.databinding.FragmentDialogInternetPermissionBinding
 import com.kieronquinn.app.taptap.ui.base.BaseDialogFragment
 import com.kieronquinn.app.taptap.utils.extensions.onClicked
+import com.kieronquinn.app.taptap.utils.extensions.whenResumed
 import com.kieronquinn.monetcompat.extensions.views.overrideRippleColor
-import kotlinx.coroutines.flow.collect
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SettingsSharedInternetPermissionDialogFragment: BaseDialogFragment<FragmentDialogInternetPermissionBinding>(FragmentDialogInternetPermissionBinding::inflate) {
@@ -46,24 +45,24 @@ class SettingsSharedInternetPermissionDialogFragment: BaseDialogFragment<Fragmen
     }
 
     private fun setupButtons(){
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        whenResumed {
             binding.dialogInternetPermissionAlways.onClicked().collect {
                 viewModel.onAllowAlwaysClicked()
             }
         }
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        whenResumed {
             binding.dialogInternetPermissionRunning.onClicked().collect {
                 viewModel.onAllowRunningClicked()
             }
         }
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        whenResumed {
             binding.dialogInternetPermissionDeny.onClicked().collect {
                 viewModel.onDenyClicked()
             }
         }
     }
 
-    private fun setupDismiss() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupDismiss() = whenResumed {
         viewModel.dismissBus.collect {
             dismissWithAnimation()
         }

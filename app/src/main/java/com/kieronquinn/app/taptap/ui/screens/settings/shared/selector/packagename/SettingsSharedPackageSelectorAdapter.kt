@@ -5,15 +5,14 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.coroutineScope
 import androidx.recyclerview.widget.RecyclerView
 import com.kieronquinn.app.taptap.databinding.ItemSettingsSharedPackageSelectorAppBinding
 import com.kieronquinn.app.taptap.ui.screens.settings.shared.selector.packagename.SettingsSharedPackageSelectorViewModel.App
 import com.kieronquinn.app.taptap.ui.views.LifecycleAwareRecyclerView
 import com.kieronquinn.app.taptap.utils.extensions.onClicked
+import com.kieronquinn.app.taptap.utils.extensions.whenResumed
 import com.kieronquinn.app.taptap.utils.picasso.AppIconRequestHandler
 import com.squareup.picasso.Picasso
-import kotlinx.coroutines.flow.collect
 
 class SettingsSharedPackageSelectorAdapter(
     recyclerView: RecyclerView,
@@ -57,7 +56,7 @@ class SettingsSharedPackageSelectorAdapter(
         itemSettingsSharedPackageSelectorAppPackage.text = item.packageName
         val uri = Uri.parse("${AppIconRequestHandler.SCHEME_PNAME}:${item.packageName}")
         picasso.load(uri).into(itemSettingsSharedPackageSelectorAppIcon)
-        lifecycle.coroutineScope.launchWhenResumed {
+        lifecycle.whenResumed {
             root.onClicked().collect {
                 onAppClicked(item.packageName)
             }

@@ -13,7 +13,6 @@ import androidx.core.view.isVisible
 import androidx.core.view.updateLayoutParams
 import androidx.core.view.updatePadding
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
 import androidx.vectordrawable.graphics.drawable.SeekableAnimatedVectorDrawable
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -30,7 +29,19 @@ import com.kieronquinn.app.taptap.ui.screens.setup.base.BaseSetupFragment
 import com.kieronquinn.app.taptap.ui.screens.setup.gesture.SetupGestureViewModel.InfoCard
 import com.kieronquinn.app.taptap.ui.screens.setup.gesture.SetupGestureViewModel.State
 import com.kieronquinn.app.taptap.ui.views.RippleView
-import com.kieronquinn.app.taptap.utils.extensions.*
+import com.kieronquinn.app.taptap.utils.extensions.actionBarSize
+import com.kieronquinn.app.taptap.utils.extensions.addRippleForeground
+import com.kieronquinn.app.taptap.utils.extensions.childBackStackTopFragment
+import com.kieronquinn.app.taptap.utils.extensions.enableChangingAnimations
+import com.kieronquinn.app.taptap.utils.extensions.isDarkMode
+import com.kieronquinn.app.taptap.utils.extensions.onApplyInsets
+import com.kieronquinn.app.taptap.utils.extensions.onClicked
+import com.kieronquinn.app.taptap.utils.extensions.onDestinationChanged
+import com.kieronquinn.app.taptap.utils.extensions.onNavigationIconClicked
+import com.kieronquinn.app.taptap.utils.extensions.removeRippleForeground
+import com.kieronquinn.app.taptap.utils.extensions.replaceColour
+import com.kieronquinn.app.taptap.utils.extensions.slideOffset
+import com.kieronquinn.app.taptap.utils.extensions.whenResumed
 import com.kieronquinn.monetcompat.extensions.views.applyMonet
 import kotlinx.coroutines.delay
 import org.koin.android.ext.android.inject
@@ -111,7 +122,7 @@ class SetupGestureFragment: BaseSetupFragment<FragmentSetupGestureBinding>(Fragm
 
     private fun setupState() {
         handleState(viewModel.state.value)
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        whenResumed {
             viewModel.state.collect {
                 handleState(it)
             }
@@ -135,7 +146,7 @@ class SetupGestureFragment: BaseSetupFragment<FragmentSetupGestureBinding>(Fragm
         }
     }
 
-    private fun startDemoMode() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun startDemoMode() = whenResumed {
         delay(100L)
         viewModel.startDemoMode(requireContext())
     }
@@ -164,19 +175,19 @@ class SetupGestureFragment: BaseSetupFragment<FragmentSetupGestureBinding>(Fragm
         playAnimation()
     }
 
-    private fun setupTaps() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupTaps() = whenResumed {
         viewModel.tapEvents.collect {
             binding.setupGestureRipple.addRipple(RippleView.RippleType.SINGLE_TAP)
         }
     }
 
-    private fun setupDoubleTaps() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupDoubleTaps() = whenResumed {
         viewModel.doubleTapEvents.collect {
             binding.setupGestureRipple.addRipple(RippleView.RippleType.DOUBLE_TAP)
         }
     }
 
-    private fun setupTripleTaps() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupTripleTaps() = whenResumed {
         viewModel.tripleTapEvents.collect {
             binding.setupGestureRipple.addRipple(RippleView.RippleType.TRIPLE_TAP)
         }
@@ -192,7 +203,7 @@ class SetupGestureFragment: BaseSetupFragment<FragmentSetupGestureBinding>(Fragm
             bottomSheetBehavior.peekHeight = resources.getDimension(R.dimen.setup_gesture_bottom_sheet_peek_size).toInt() +
                     insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom
         }
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        whenResumed {
             bottomSheetBehavior.slideOffset().collect {
                 viewModel.onBottomSheetSlideOffsetChange(it)
             }
@@ -206,7 +217,7 @@ class SetupGestureFragment: BaseSetupFragment<FragmentSetupGestureBinding>(Fragm
                     .getInsets(WindowInsetsCompat.Type.systemBars()).bottom
             )
         }
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        whenResumed {
             viewModel.bottomSheetNavBarBlockHeight.collect {
                 setBottomSheetNavBlockHeight(it)
             }
@@ -226,7 +237,7 @@ class SetupGestureFragment: BaseSetupFragment<FragmentSetupGestureBinding>(Fragm
                     .getInsets(WindowInsetsCompat.Type.statusBars()).top
             )
         }
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        whenResumed {
             viewModel.bottomSheetStatusBarBlockHeight.collect {
                 setBottomSheetStatusBlockHeight(it)
             }
@@ -241,7 +252,7 @@ class SetupGestureFragment: BaseSetupFragment<FragmentSetupGestureBinding>(Fragm
 
     private fun setupBottomSheetRoundedCorners() {
         setBottomSheetRoundedCorner(viewModel.bottomSheetRoundedCornerMultiplier.value)
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        whenResumed {
             viewModel.bottomSheetRoundedCornerMultiplier.collect {
                 setBottomSheetRoundedCorner(it)
             }
@@ -266,12 +277,12 @@ class SetupGestureFragment: BaseSetupFragment<FragmentSetupGestureBinding>(Fragm
         setToolbarNavigationIcon(viewModel.toolbarIcon.value)
         closeAvd?.currentPlayTime = viewModel.toolbarIconPlaytime.value
         setToolbarHeightMultiplier(viewModel.toolbarHeightMultiplier.value)
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        whenResumed {
             viewModel.toolbarIconPlaytime.collect {
                 closeAvd?.currentPlayTime = it
             }
         }
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        whenResumed {
             binding.setupGestureBottomSheetToolbar.onNavigationIconClicked().collect {
                 if(viewModel.bottomSheetExpanded.value) {
                     onBackPressed()
@@ -280,18 +291,18 @@ class SetupGestureFragment: BaseSetupFragment<FragmentSetupGestureBinding>(Fragm
                 }
             }
         }
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        whenResumed {
             binding.setupGestureBottomSheetToolbar.onClicked().collect {
                 if(!viewModel.bottomSheetDraggable.value) return@collect
                 toggleBottomSheet()
             }
         }
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        whenResumed {
             viewModel.toolbarHeightMultiplier.collect {
                 setToolbarHeightMultiplier(it)
             }
         }
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        whenResumed {
             viewModel.toolbarIcon.collect {
                 setToolbarNavigationIcon(it)
             }
@@ -318,13 +329,13 @@ class SetupGestureFragment: BaseSetupFragment<FragmentSetupGestureBinding>(Fragm
         }
     }
 
-    private fun setupCloseBottomSheet() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupCloseBottomSheet() = whenResumed {
         viewModel.bottomSheetCloseBus.collect {
             closeBottomSheet()
         }
     }
 
-    private fun setupOpenBottomSheet() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupOpenBottomSheet() = whenResumed {
         viewModel.bottomSheetOpenBus.collect {
             openBottomSheet()
         }
@@ -348,11 +359,11 @@ class SetupGestureFragment: BaseSetupFragment<FragmentSetupGestureBinding>(Fragm
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
     }
 
-    private fun setupConfigurationNavigation() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupConfigurationNavigation() = whenResumed {
         navHostFragment.setupWithNavigation(configurationNavigation)
     }
 
-    private fun setupNavigationTitle() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupNavigationTitle() = whenResumed {
         navController.onDestinationChanged().collect {
             val label = it.label
             if(label == null || label.isBlank()) return@collect
@@ -360,7 +371,7 @@ class SetupGestureFragment: BaseSetupFragment<FragmentSetupGestureBinding>(Fragm
         }
     }
 
-    private fun setupStack() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupStack() = whenResumed {
         navHostFragment.childBackStackTopFragment().collect {
             onTopFragmentChanged(it ?: return@collect)
         }
@@ -368,7 +379,7 @@ class SetupGestureFragment: BaseSetupFragment<FragmentSetupGestureBinding>(Fragm
 
     private fun setupBottomSheetDraggable() {
         bottomSheetBehavior.isDraggable = viewModel.bottomSheetDraggable.value
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        whenResumed {
             viewModel.bottomSheetDraggable.collect {
                 bottomSheetBehavior.isDraggable = it
             }
@@ -377,7 +388,7 @@ class SetupGestureFragment: BaseSetupFragment<FragmentSetupGestureBinding>(Fragm
 
     private fun setupInfoCard() {
         handleInfoCard(viewModel.infoCard.value)
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        whenResumed {
             viewModel.infoCard.collect {
                 handleInfoCard(it)
             }
@@ -403,7 +414,7 @@ class SetupGestureFragment: BaseSetupFragment<FragmentSetupGestureBinding>(Fragm
             }
             InfoCard.SUCCESS -> {
                 binding.setupGestureInfoCard.addRippleForeground()
-                viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+                whenResumed {
                     binding.setupGestureInfoCard.onClicked().collect {
                         viewModel.onNextClicked()
                     }

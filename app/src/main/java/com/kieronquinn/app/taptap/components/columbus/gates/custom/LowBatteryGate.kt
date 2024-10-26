@@ -8,8 +8,9 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import com.kieronquinn.app.taptap.components.columbus.gates.TapTapGate
 import com.kieronquinn.app.taptap.utils.extensions.broadcastReceiverAsFlow
+import com.kieronquinn.app.taptap.utils.extensions.registerReceiverCompat
+import com.kieronquinn.app.taptap.utils.extensions.whenCreated
 import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 
@@ -28,7 +29,7 @@ class LowBatteryGate(
     }
 
     init {
-        lifecycleScope.launchWhenCreated {
+        lifecycle.whenCreated {
             batteryLevel.collect {
                 notifyListeners()
             }
@@ -36,7 +37,7 @@ class LowBatteryGate(
     }
 
     private fun getBatteryLevel(): Float {
-        val batteryStatus = context.registerReceiver(null, IntentFilter(Intent.ACTION_BATTERY_CHANGED))
+        val batteryStatus = context.registerReceiverCompat(null, IntentFilter(Intent.ACTION_BATTERY_CHANGED))
         val level = batteryStatus?.getIntExtra(BatteryManager.EXTRA_LEVEL, -1) ?: return 1f
         val scale = batteryStatus.getIntExtra(BatteryManager.EXTRA_SCALE, -1)
         if(level == -1 || scale == -1) return 1f

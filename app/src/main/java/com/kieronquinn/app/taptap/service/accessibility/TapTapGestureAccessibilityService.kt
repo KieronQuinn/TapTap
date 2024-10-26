@@ -2,14 +2,12 @@ package com.kieronquinn.app.taptap.service.accessibility
 
 import android.accessibilityservice.GestureDescription
 import android.graphics.Path
-import android.util.Log
 import android.view.accessibility.AccessibilityEvent
-import androidx.lifecycle.lifecycleScope
 import com.kieronquinn.app.taptap.components.accessibility.TapTapAccessibilityRouter
 import com.kieronquinn.app.taptap.utils.extensions.getStaticStatusBarHeight
 import com.kieronquinn.app.taptap.utils.extensions.px
+import com.kieronquinn.app.taptap.utils.extensions.whenCreated
 import com.kieronquinn.app.taptap.utils.lifecycle.LifecycleAccessibilityService
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.filter
 import org.koin.android.ext.android.inject
 
@@ -83,7 +81,7 @@ class TapTapGestureAccessibilityService : LifecycleAccessibilityService() {
 
     override fun onCreate() {
         super.onCreate()
-        lifecycleScope.launchWhenCreated {
+        lifecycle.whenCreated {
             setupInputListener()
         }
     }

@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.constraintlayout.widget.Group
 import androidx.core.view.isVisible
 import androidx.fragment.app.setFragmentResultListener
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -26,8 +25,8 @@ import com.kieronquinn.app.taptap.ui.screens.settings.actions.whengates.Settings
 import com.kieronquinn.app.taptap.utils.extensions.applyBottomInsets
 import com.kieronquinn.app.taptap.utils.extensions.awaitState
 import com.kieronquinn.app.taptap.utils.extensions.scrollToBottom
+import com.kieronquinn.app.taptap.utils.extensions.whenResumed
 import com.kieronquinn.monetcompat.extensions.views.applyMonet
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.debounce
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
@@ -77,7 +76,7 @@ abstract class SettingsActionsGenericFragment<T: ViewBinding, A: Action>(inflate
 
     private fun setupState() {
         handleState(viewModel.state.value)
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        whenResumed {
             viewModel.state.collect {
                 handleState(it)
             }
@@ -101,7 +100,7 @@ abstract class SettingsActionsGenericFragment<T: ViewBinding, A: Action>(inflate
         }
     }
 
-    private fun setupFab() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupFab() = whenResumed {
         sharedViewModel.fabClicked.collect {
             when (it) {
                 ContainerSharedViewModel.FabState.FabAction.ADD_ACTION -> {
@@ -123,7 +122,7 @@ abstract class SettingsActionsGenericFragment<T: ViewBinding, A: Action>(inflate
 
     private fun setupFabState() {
         handleFabState(viewModel.fabState.value)
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        whenResumed {
             viewModel.fabState.collect {
                 handleFabState(it)
             }
@@ -143,20 +142,20 @@ abstract class SettingsActionsGenericFragment<T: ViewBinding, A: Action>(inflate
         }
     }
 
-    private fun setupScrollToBottom() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupScrollToBottom() = whenResumed {
         viewModel.scrollToBottomBus.collect {
             viewModel.state.awaitState(SettingsActionsGenericViewModel.State.Loaded::class.java)
             getRecyclerView().scrollToBottom()
         }
     }
 
-    private fun setupReloadService() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupReloadService() = whenResumed {
         viewModel.reloadServiceBus.debounce(1000L).collect {
             sharedViewModel.restartService(requireContext())
         }
     }
 
-    private fun setupSwitchReloadService() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupSwitchReloadService() = whenResumed {
         viewModel.switchChanged?.debounce(1000L)?.collect {
             sharedViewModel.restartService(requireContext())
         }

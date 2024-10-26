@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
-import androidx.lifecycle.lifecycleScope
 import com.kieronquinn.app.taptap.databinding.FragmentSetupCompleteBinding
 import com.kieronquinn.app.taptap.ui.base.ProvidesBack
 import com.kieronquinn.app.taptap.ui.screens.setup.base.BaseSetupFragment
@@ -12,6 +11,7 @@ import com.kieronquinn.app.taptap.utils.extensions.applyBackgroundTint
 import com.kieronquinn.app.taptap.utils.extensions.onApplyInsets
 import com.kieronquinn.app.taptap.utils.extensions.onClicked
 import com.kieronquinn.app.taptap.utils.extensions.replaceColour
+import com.kieronquinn.app.taptap.utils.extensions.whenResumed
 import com.kieronquinn.monetcompat.extensions.views.overrideRippleColor
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -50,7 +50,7 @@ class SetupCompleteFragment: BaseSetupFragment<FragmentSetupCompleteBinding>(Fra
         playAnimation()
     }
 
-    private fun setupClose() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupClose() = whenResumed {
         binding.setupCompleteClose.onClicked().collect {
             viewModel.onCloseClicked()
         }

@@ -5,11 +5,11 @@ plugins {
 
 android {
     namespace 'com.samsung.android.backtap'
-    compileSdk 32
+    compileSdk 35
 
     defaultConfig {
         minSdk 24
-        targetSdk 32
+        targetSdk 35
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -31,7 +31,7 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.core:core-ktx:1.13.1'
     implementation "org.tensorflow:tensorflow-lite-support:$tensorflow_version"
     api project(path: ':shared')
 }

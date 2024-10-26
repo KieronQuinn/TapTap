@@ -6,7 +6,6 @@ import android.view.View
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.setFragmentResult
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kieronquinn.app.taptap.R
@@ -19,8 +18,8 @@ import com.kieronquinn.app.taptap.ui.screens.settings.shared.selector.packagenam
 import com.kieronquinn.app.taptap.utils.extensions.applyBottomInsets
 import com.kieronquinn.app.taptap.utils.extensions.onChanged
 import com.kieronquinn.app.taptap.utils.extensions.onClicked
+import com.kieronquinn.app.taptap.utils.extensions.whenResumed
 import com.kieronquinn.monetcompat.extensions.views.applyMonet
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -75,7 +74,7 @@ class SettingsSharedPackageSelectorFragment :
 
     private fun setupState() {
         handleState(viewModel.state.value)
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        whenResumed {
             viewModel.state.collect {
                 handleState(it)
             }
@@ -101,14 +100,14 @@ class SettingsSharedPackageSelectorFragment :
 
     private fun setupSearch() {
         setSearchText(viewModel.searchText.value)
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        whenResumed {
             binding.includeSearch.searchBox.onChanged().debounce(250L).collect {
                 viewModel.setSearchText(it ?: "")
             }
         }
     }
 
-    private fun setupSearchClear() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupSearchClear() = whenResumed {
         launch {
             viewModel.searchShowClear.collect {
                 binding.includeSearch.searchClear.isVisible = it

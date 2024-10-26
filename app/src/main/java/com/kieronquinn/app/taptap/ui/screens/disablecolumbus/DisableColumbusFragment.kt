@@ -4,12 +4,12 @@ import android.os.Bundle
 import android.text.Html
 import android.text.util.Linkify
 import android.view.View
-import androidx.lifecycle.lifecycleScope
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.databinding.FragmentDisableColumbusBinding
 import com.kieronquinn.app.taptap.ui.base.BoundFragment
 import com.kieronquinn.app.taptap.utils.extensions.applyBackgroundTint
 import com.kieronquinn.app.taptap.utils.extensions.onClicked
+import com.kieronquinn.app.taptap.utils.extensions.whenResumed
 import me.saket.bettermovementmethod.BetterLinkMovementMethod
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -31,13 +31,13 @@ class DisableColumbusFragment: BoundFragment<FragmentDisableColumbusBinding>(Fra
         binding.disableColumbusCard.applyBackgroundTint(monet)
     }
 
-    private fun setupOpenSettings() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupOpenSettings() = whenResumed {
         binding.disableColumbusOpenSettings.onClicked().collect {
             viewModel.onOpenSettingsClicked()
         }
     }
 
-    private fun setupPhoenix() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupPhoenix() = whenResumed {
         viewModel.phoenixBus.collect {
             viewModel.phoenix()
         }

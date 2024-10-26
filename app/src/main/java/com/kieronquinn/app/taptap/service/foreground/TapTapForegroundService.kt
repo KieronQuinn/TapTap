@@ -9,7 +9,6 @@ import android.os.Build
 import android.provider.Settings
 import androidx.core.app.NotificationCompat
 import androidx.lifecycle.LifecycleService
-import androidx.lifecycle.lifecycleScope
 import com.google.android.columbus.ColumbusServiceWrapper
 import com.kieronquinn.app.taptap.BuildConfig
 import com.kieronquinn.app.taptap.R
@@ -27,6 +26,8 @@ import com.kieronquinn.app.taptap.repositories.service.TapTapShizukuServiceRepos
 import com.kieronquinn.app.taptap.utils.extensions.canUseContextHub
 import com.kieronquinn.app.taptap.utils.extensions.isNativeColumbusEnabled
 import com.kieronquinn.app.taptap.utils.extensions.isServiceRunning
+import com.kieronquinn.app.taptap.utils.extensions.startForegroundCompat
+import com.kieronquinn.app.taptap.utils.extensions.whenCreated
 import com.kieronquinn.app.taptap.utils.notifications.TapTapNotificationChannel
 import com.kieronquinn.app.taptap.utils.notifications.TapTapNotificationId
 import com.kieronquinn.app.taptap.utils.notifications.TapTapNotificationIntentId
@@ -59,11 +60,7 @@ class TapTapForegroundService : LifecycleService(), KoinScopeComponent {
         fun start(context: Context, isRestart: Boolean = false) {
             val intent = getIntent(context, isRestart)
             context.stopService(intent)
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                context.startForegroundService(intent)
-            } else {
-                context.startService(intent)
-            }
+            context.startService(intent)
         }
 
         fun stop(context: Context) {
@@ -93,11 +90,11 @@ class TapTapForegroundService : LifecycleService(), KoinScopeComponent {
 
     override fun onCreate() {
         super.onCreate()
-        startForeground(TapTapNotificationId.BACKGROUND.ordinal, createForegroundNotification())
+        startForegroundCompat(TapTapNotificationId.BACKGROUND.ordinal, createForegroundNotification())
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        lifecycleScope.launchWhenCreated {
+        lifecycle.whenCreated {
             listenForStartOrFail(intent?.getBooleanExtra(KEY_IS_RESTART, false) ?: false)
             startService()
         }
@@ -162,7 +159,7 @@ class TapTapForegroundService : LifecycleService(), KoinScopeComponent {
         serviceRouter.onServiceStarted()
     }
 
-    private fun listenForStartOrFail(isRestart: Boolean) = lifecycleScope.launchWhenCreated {
+    private fun listenForStartOrFail(isRestart: Boolean) = lifecycle.whenCreated {
         showStartingNotification(isRestart)
         serviceEventEmitter.serviceEvent.take(1).collect {
             sendUpdateBroadcast()

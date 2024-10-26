@@ -5,12 +5,11 @@ plugins {
 }
 
 android {
-    compileSdk 31
+    compileSdk 35
 
     defaultConfig {
-        manifestPlaceholders
         minSdk 24
-        targetSdk 31
+        targetSdk 35
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -36,6 +35,7 @@ android {
     }
     buildFeatures {
         aidl true
+        buildConfig true
     }
     namespace 'com.google.android.columbus'
 }
@@ -62,13 +62,13 @@ protobuf {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.core:core-ktx:1.13.1'
 
     //Tensorflow, used in non-CHRE usage
     implementation "org.tensorflow:tensorflow-lite-support:$tensorflow_version"
 
     //Protobuf
-    api "com.google.protobuf:protobuf-javalite:3.19.2"
+    api "com.google.protobuf:protobuf-javalite:3.25.2"
 
     compileOnly project(path: ':systemstubs')
     api project(path: ':shared')

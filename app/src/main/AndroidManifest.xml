@@ -25,11 +25,14 @@
         tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.HIGH_SAMPLING_RATE_SENSORS"
         tools:ignore="HighSamplingRate" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE"/>
 
     <uses-feature android:name="android.hardware.sensor.accelerometer" android:required="true"/>
 
     <application
         android:allowBackup="false"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -37,11 +40,11 @@
         android:name=".TapTap"
         android:enableOnBackInvokedCallback="true"
         android:extractNativeLibs="true"
-        android:theme="@style/Theme.TapTap.Splash">
+        android:theme="@style/Theme.TapTap.Splash"
+        tools:targetApi="tiramisu">
 
         <activity
             android:name=".ui.activities.MainActivity"
-            android:screenOrientation="portrait"
             android:launchMode="singleInstance"
             android:exported="true">
             <intent-filter>
@@ -73,7 +76,8 @@
             android:process=":crashreporting"
             android:excludeFromRecents="true"/>
 
-        <service android:name=".service.foreground.TapTapForegroundService"/>
+        <service android:name=".service.foreground.TapTapForegroundService"
+            android:foregroundServiceType="specialUse"/>
 
         <receiver android:name=".receivers.TapTapServiceStartReceiver"
             android:exported="true">

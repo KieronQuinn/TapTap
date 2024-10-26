@@ -2,13 +2,13 @@ package com.kieronquinn.app.taptap.ui.screens.root
 
 import android.os.Bundle
 import android.view.View
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.components.navigation.RootNavigation
 import com.kieronquinn.app.taptap.components.navigation.setupWithNavigation
 import com.kieronquinn.app.taptap.databinding.FragmentRootBinding
 import com.kieronquinn.app.taptap.ui.base.BoundFragment
+import com.kieronquinn.app.taptap.utils.extensions.whenResumed
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 
@@ -25,7 +25,7 @@ class RootFragment: BoundFragment<FragmentRootBinding>(FragmentRootBinding::infl
         setupNavigation()
     }
 
-    private fun setupNavigation() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupNavigation() = whenResumed {
         launch {
             navHostFragment.setupWithNavigation(navigation)
         }

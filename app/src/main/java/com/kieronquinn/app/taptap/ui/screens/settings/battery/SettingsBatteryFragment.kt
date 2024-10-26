@@ -2,13 +2,12 @@ package com.kieronquinn.app.taptap.ui.screens.settings.battery
 
 import android.os.Bundle
 import android.view.View
-import androidx.lifecycle.lifecycleScope
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.ui.base.BackAvailable
 import com.kieronquinn.app.taptap.ui.screens.settings.generic.GenericSettingsAdapter
 import com.kieronquinn.app.taptap.ui.screens.settings.generic.GenericSettingsFragment
 import com.kieronquinn.app.taptap.ui.screens.settings.generic.GenericSettingsViewModel.SettingsItem
-import kotlinx.coroutines.flow.collect
+import com.kieronquinn.app.taptap.utils.extensions.whenResumed
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SettingsBatteryFragment : GenericSettingsFragment(), BackAvailable {
@@ -67,7 +66,7 @@ class SettingsBatteryFragment : GenericSettingsFragment(), BackAvailable {
         setupHeaderDismiss()
     }
 
-    private fun setupHeaderDismiss() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupHeaderDismiss() = whenResumed {
         viewModel.showHeader.collect {
             adapter.refreshVisibleItems()
         }

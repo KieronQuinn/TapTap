@@ -18,14 +18,13 @@ import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.lifecycleScope
 import com.kieronquinn.app.taptap.R
+import com.kieronquinn.app.taptap.utils.extensions.whenCreated
 import com.kieronquinn.app.taptap.utils.notifications.TapTapNotificationChannel
 import com.kieronquinn.app.taptap.utils.notifications.TapTapNotificationId
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.callbackFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.take
 
 /**
@@ -70,7 +69,7 @@ class FlashlightToggleActivity: AppCompatActivity() {
     }
 
     private fun toggleFlashlight(){
-        lifecycleScope.launchWhenCreated {
+        lifecycle.whenCreated {
             torchCallback.take(1).collect {
                 try {
                     val cameraId = cameraManager.cameraIdList[0]

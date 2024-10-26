@@ -7,7 +7,6 @@ import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.setFragmentResultListener
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kieronquinn.app.taptap.R
@@ -24,6 +23,7 @@ import com.kieronquinn.app.taptap.ui.screens.settings.gates.selector.SettingsGat
 import com.kieronquinn.app.taptap.utils.extensions.applyBackgroundTint
 import com.kieronquinn.app.taptap.utils.extensions.applyBottomInsets
 import com.kieronquinn.app.taptap.utils.extensions.scrollToBottom
+import com.kieronquinn.app.taptap.utils.extensions.whenResumed
 import com.kieronquinn.monetcompat.extensions.views.applyMonet
 import kotlinx.coroutines.flow.debounce
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -101,7 +101,7 @@ class SettingsActionsWhenGatesFragment :
 
     private fun setupState() {
         handleState(viewModel.state.value)
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        whenResumed {
             viewModel.state.collect {
                 handleState(it)
             }
@@ -130,14 +130,14 @@ class SettingsActionsWhenGatesFragment :
 
     private fun setupFabState() {
         handleFabState(viewModel.fabState.value)
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        whenResumed {
             viewModel.fabState.collect {
                 handleFabState(it)
             }
         }
     }
 
-    private fun setupFab() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupFab() = whenResumed {
         sharedViewModel.fabClicked.collect {
             when (it) {
                 ContainerSharedViewModel.FabState.FabAction.ADD_REQUIREMENT -> {
@@ -195,13 +195,13 @@ class SettingsActionsWhenGatesFragment :
         sharedViewModel.setFabState(ContainerSharedViewModel.FabState.Hidden)
     }
 
-    private fun setupReloadService() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupReloadService() = whenResumed {
         viewModel.reloadServiceBus.debounce(1000L).collect {
             sharedViewModel.restartService(requireContext())
         }
     }
 
-    private fun setupScrollToBottom() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupScrollToBottom() = whenResumed {
         viewModel.scrollToBottomBus.collect {
             binding.settingsActionsWhenGatesRecyclerview.scrollToBottom()
         }

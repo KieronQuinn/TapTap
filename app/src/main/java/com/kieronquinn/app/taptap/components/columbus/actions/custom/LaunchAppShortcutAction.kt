@@ -1,20 +1,21 @@
 package com.kieronquinn.app.taptap.components.columbus.actions.custom
 
 import android.content.Context
-import android.os.Parcelable
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import com.google.android.columbus.feedback.FeedbackEffect
 import com.google.android.columbus.sensors.GestureSensor
 import com.google.gson.Gson
-import com.google.gson.annotations.SerializedName
 import com.kieronquinn.app.taptap.components.accessibility.TapTapAccessibilityRouter
 import com.kieronquinn.app.taptap.components.columbus.actions.TapTapAction
 import com.kieronquinn.app.taptap.components.columbus.gates.TapTapWhenGate
 import com.kieronquinn.app.taptap.models.columbus.AppShortcutData
 import com.kieronquinn.app.taptap.repositories.service.TapTapShizukuServiceRepository
-import kotlinx.coroutines.flow.*
-import kotlinx.parcelize.Parcelize
+import com.kieronquinn.app.taptap.utils.extensions.whenCreated
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import org.koin.core.component.inject
 
 class LaunchAppShortcutAction(
@@ -40,7 +41,7 @@ class LaunchAppShortcutAction(
         .stateIn(lifecycleScope, SharingStarted.Eagerly, false)
 
     init {
-        lifecycleScope.launchWhenCreated {
+        whenCreated {
             isOpen.collect {
                 notifyListeners()
             }

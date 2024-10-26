@@ -11,19 +11,24 @@
         android:label="DecisionFragment" >
         <action
             android:id="@+id/action_decisionFragment_to_nav_graph_setup"
-            app:destination="@id/nav_graph_setup" />
+            app:destination="@id/nav_graph_setup"
+            app:popUpTo="@id/nav_graph_root"/>
         <action
             android:id="@+id/action_decisionFragment_to_nav_graph_settings"
-            app:destination="@id/nav_graph_settings" />
+            app:destination="@id/nav_graph_settings"
+            app:popUpTo="@id/nav_graph_root" />
         <action
             android:id="@+id/action_decisionFragment_to_setupUpgradeFragment"
-            app:destination="@id/setupUpgradeFragment" />
+            app:destination="@id/setupUpgradeFragment"
+            app:popUpTo="@id/nav_graph_root" />
         <action
             android:id="@+id/action_decisionFragment_to_noGyroscopeFragment"
-            app:destination="@id/noGyroscopeFragment" />
+            app:destination="@id/noGyroscopeFragment"
+            app:popUpTo="@id/nav_graph_root" />
         <action
             android:id="@+id/action_decisionFragment_to_disableColumbusFragment"
-            app:destination="@id/disableColumbusFragment" />
+            app:destination="@id/disableColumbusFragment"
+            app:popUpTo="@id/nav_graph_root" />
     </fragment>
 
     <include app:graph="@navigation/nav_graph_setup" />

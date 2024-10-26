@@ -18,7 +18,7 @@
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="@dimen/app_bar_height"
             app:collapsedTitleTextAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
             app:contentScrim="?attr/colorPrimaryVariant"
             app:expandedTitleMarginEnd="@dimen/toolbar_expanded_title_margin"
@@ -26,7 +26,7 @@
             app:expandedTitleTextAppearance="@style/TextAppearance.AppCompat.ExtraLarge.TapTap"
             app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
             app:scrimAnimationDuration="250"
-            app:scrimVisibleHeightTrigger="174dp"
+            app:scrimVisibleHeightTrigger="@dimen/app_bar_height"
             app:statusBarScrim="@android:color/transparent"
             app:titleCollapseMode="fade"
             tools:title="@string/app_name">
@@ -46,6 +46,7 @@
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:defaultNavHost="true"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
         app:navGraph="@navigation/nav_graph_container" />
 

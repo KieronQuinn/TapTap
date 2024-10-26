@@ -7,13 +7,13 @@ import android.widget.Toast
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.components.settings.TapTapSettings
 import com.kieronquinn.app.taptap.databinding.FragmentSettingsWallpaperColorPickerBinding
 import com.kieronquinn.app.taptap.ui.base.BaseBottomSheetFragment
+import com.kieronquinn.app.taptap.utils.extensions.whenResumed
 import org.koin.android.ext.android.inject
 
 class SettingsWallpaperColorPickerBottomSheetFragment: BaseBottomSheetFragment<FragmentSettingsWallpaperColorPickerBinding>(FragmentSettingsWallpaperColorPickerBinding::inflate) {
@@ -28,14 +28,14 @@ class SettingsWallpaperColorPickerBottomSheetFragment: BaseBottomSheetFragment<F
             view.updatePadding(left = navigationInsets.left, right = navigationInsets.right, bottom = navigationInsets.bottom + extraPadding)
             insets
         }
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        whenResumed {
             with(binding){
                 val availableColors = monet.getAvailableWallpaperColors() ?: emptyList()
                 //No available colors = likely using a live wallpaper, show a toast and dismiss
                 if(availableColors.isEmpty()){
                     Toast.makeText(requireContext(), getString(R.string.color_picker_unavailable), Toast.LENGTH_LONG).show()
                     dismiss()
-                    return@launchWhenResumed
+                    return@whenResumed
                 }
                 root.backgroundTintList = ColorStateList.valueOf(monet.getBackgroundColor(requireContext()))
                 colorPickerList.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
@@ -50,7 +50,7 @@ class SettingsWallpaperColorPickerBottomSheetFragment: BaseBottomSheetFragment<F
         }
     }
 
-    private fun onColorPicked(color: Int) = lifecycleScope.launchWhenResumed {
+    private fun onColorPicked(color: Int) = whenResumed {
         settings.monetColor.set(color)
         //Trigger a manual update
         monet.updateMonetColors()

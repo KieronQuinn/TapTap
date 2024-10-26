@@ -4,12 +4,12 @@ import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.lifecycle.lifecycleScope
 import com.kieronquinn.app.taptap.databinding.FragmentSetupNotificationsBinding
 import com.kieronquinn.app.taptap.ui.base.ProvidesBack
 import com.kieronquinn.app.taptap.ui.screens.setup.base.BaseSetupFragment
 import com.kieronquinn.app.taptap.utils.extensions.onClicked
 import com.kieronquinn.app.taptap.utils.extensions.replaceColour
+import com.kieronquinn.app.taptap.utils.extensions.whenResumed
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SetupNotificationsFragment: BaseSetupFragment<FragmentSetupNotificationsBinding>(FragmentSetupNotificationsBinding::inflate), ProvidesBack {
@@ -54,7 +54,7 @@ class SetupNotificationsFragment: BaseSetupFragment<FragmentSetupNotificationsBi
         binding.toolbar.setupWithScrollableView(binding.setupNotificationsScrollable)
     }
 
-    private fun setupGrant() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupGrant() = whenResumed {
         binding.setupNotificationsRequest.onClicked().collect {
             viewModel.onGrantClicked(notificationPermissionRequest)
         }

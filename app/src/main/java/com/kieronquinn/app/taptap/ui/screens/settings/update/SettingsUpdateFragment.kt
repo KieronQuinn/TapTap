@@ -4,7 +4,6 @@ import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.kieronquinn.app.taptap.BuildConfig
 import com.kieronquinn.app.taptap.R
@@ -17,10 +16,10 @@ import com.kieronquinn.app.taptap.ui.screens.settings.update.SettingsUpdateViewM
 import com.kieronquinn.app.taptap.utils.extensions.applyBackgroundTint
 import com.kieronquinn.app.taptap.utils.extensions.applyBottomInsets
 import com.kieronquinn.app.taptap.utils.extensions.onClicked
+import com.kieronquinn.app.taptap.utils.extensions.whenResumed
 import com.kieronquinn.monetcompat.extensions.views.applyMonet
 import com.kieronquinn.monetcompat.extensions.views.overrideRippleColor
 import io.noties.markwon.Markwon
-import kotlinx.coroutines.flow.collect
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -56,13 +55,13 @@ class SettingsUpdateFragment: BoundFragment<FragmentSettingsUpdateBinding>(Fragm
         binding.settingsUpdateDownloadBrowser.setTextColor(accent)
     }
 
-    private fun setupStartInstall() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupStartInstall() = whenResumed {
         binding.settingsUpdateStartInstall.onClicked().collect {
             viewModel.startInstall()
         }
     }
 
-    private fun setupGitHubButton() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupGitHubButton() = whenResumed {
         binding.settingsUpdateDownloadBrowser.onClicked().collect {
             viewModel.onDownloadBrowserClicked(args.release.gitHubUrl)
         }
@@ -70,7 +69,7 @@ class SettingsUpdateFragment: BoundFragment<FragmentSettingsUpdateBinding>(Fragm
 
     private fun setupState() {
         handleState(viewModel.state.value)
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        whenResumed {
             viewModel.state.collect {
                 handleState(it)
             }
@@ -110,7 +109,7 @@ class SettingsUpdateFragment: BoundFragment<FragmentSettingsUpdateBinding>(Fragm
         binding.settingsUpdateSubheading.text = getString(R.string.settings_update_subheading, BuildConfig.VERSION_NAME)
         binding.settingsUpdateBody.text = markwon.toMarkdown(release.body)
         binding.settingsUpdateInfo.applyBottomInsets(binding.root, resources.getDimension(R.dimen.container_fab_margin).toInt())
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        whenResumed {
             binding.settingsUpdateDownloadBrowser.onClicked().collect {
                 viewModel.onDownloadBrowserClicked(release.gitHubUrl)
             }
@@ -162,7 +161,7 @@ class SettingsUpdateFragment: BoundFragment<FragmentSettingsUpdateBinding>(Fragm
 
     private fun setupFabState() {
         handleFabState(viewModel.showFab.value)
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        whenResumed {
             viewModel.showFab.collect {
                 handleFabState(it)
             }
@@ -177,7 +176,7 @@ class SettingsUpdateFragment: BoundFragment<FragmentSettingsUpdateBinding>(Fragm
         }
     }
 
-    private fun setupFabClick() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupFabClick() = whenResumed {
         sharedViewModel.fabClicked.collect {
             if(it != FabState.FabAction.DOWNLOAD) return@collect
             viewModel.startDownload()

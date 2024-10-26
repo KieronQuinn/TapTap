@@ -2,11 +2,10 @@ package com.kieronquinn.app.taptap.ui.screens.setup.landing
 
 import android.os.Bundle
 import android.view.View
-import androidx.lifecycle.lifecycleScope
 import com.kieronquinn.app.taptap.databinding.FragmentSetupLandingBinding
 import com.kieronquinn.app.taptap.ui.screens.setup.base.BaseSetupFragment
 import com.kieronquinn.app.taptap.utils.extensions.onClicked
-import kotlinx.coroutines.flow.collect
+import com.kieronquinn.app.taptap.utils.extensions.whenResumed
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SetupLandingFragment: BaseSetupFragment<FragmentSetupLandingBinding>(FragmentSetupLandingBinding::inflate) {
@@ -26,13 +25,13 @@ class SetupLandingFragment: BaseSetupFragment<FragmentSetupLandingBinding>(Fragm
         binding.setupLandingSkipSetup.setTextColor(accent)
     }
 
-    private fun setupSkip() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupSkip() = whenResumed {
         binding.setupLandingSkipSetup.onClicked().collect {
             viewModel.onSkipClicked()
         }
     }
 
-    private fun setupGetStarted() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupGetStarted() = whenResumed {
         binding.setupLandingGetStarted.onClicked().collect {
             viewModel.onStartClicked()
         }

@@ -7,15 +7,13 @@ import android.os.Build
 import android.telecom.TelecomManager
 import android.telephony.TelephonyManager
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
 import com.google.android.columbus.feedback.FeedbackEffect
 import com.google.android.columbus.sensors.GestureSensor
 import com.kieronquinn.app.taptap.components.columbus.actions.TapTapAction
-import com.kieronquinn.app.taptap.components.columbus.gates.TapTapGate
 import com.kieronquinn.app.taptap.components.columbus.gates.TapTapWhenGate
 import com.kieronquinn.app.taptap.utils.extensions.doesHavePermissions
 import com.kieronquinn.app.taptap.utils.extensions.onCallStateChanged
-import kotlinx.coroutines.flow.collect
+import com.kieronquinn.app.taptap.utils.extensions.whenResumed
 
 class RejectCallAction(
     serviceLifecycle: Lifecycle,
@@ -41,7 +39,7 @@ class RejectCallAction(
     }
 
     init {
-        lifecycleScope.launchWhenResumed {
+        lifecycle.whenResumed {
             phoneStateListener.collect {
                 notifyListeners()
             }

@@ -8,7 +8,6 @@ import android.view.View
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.view.isVisible
-import androidx.lifecycle.lifecycleScope
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.databinding.FragmentSettingsNativeModeBinding
 import com.kieronquinn.app.taptap.ui.activities.MainActivity
@@ -18,6 +17,8 @@ import com.kieronquinn.app.taptap.ui.screens.container.ContainerSharedViewModel
 import com.kieronquinn.app.taptap.ui.views.MonetSwitch
 import com.kieronquinn.app.taptap.utils.extensions.applyBottomInsets
 import com.kieronquinn.app.taptap.utils.extensions.onClicked
+import com.kieronquinn.app.taptap.utils.extensions.whenCreated
+import com.kieronquinn.app.taptap.utils.extensions.whenResumed
 import com.kieronquinn.app.taptap.utils.notifications.TapTapNotificationChannel
 import com.kieronquinn.app.taptap.utils.notifications.TapTapNotificationId
 import com.kieronquinn.app.taptap.utils.notifications.TapTapNotificationIntentId
@@ -49,7 +50,7 @@ class SettingsNativeModeFragment: BoundFragment<FragmentSettingsNativeModeBindin
         super.onDestroyView()
     }
 
-    private fun setupSwitch() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupSwitch() = whenResumed {
         binding.settingsNativeModeEnable.onClicked().collect {
             viewModel.onSwitchClicked(it as MonetSwitch)
         }
@@ -57,33 +58,33 @@ class SettingsNativeModeFragment: BoundFragment<FragmentSettingsNativeModeBindin
 
     private fun setupSwitchChecked() {
         binding.settingsNativeModeEnable.isChecked = viewModel.nativeModeEnabled.value
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        whenResumed {
             viewModel.nativeModeEnabled.collect {
                 binding.settingsNativeModeEnable.isChecked = it
             }
         }
     }
 
-    private fun setupSwitchEnabled() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupSwitchEnabled() = whenResumed {
         viewModel.switchEnabled.collect {
             binding.settingsNativeModeEnable.isEnabled = it
             binding.settingsNativeModeEnable.alpha = if(it) 1f else 0.5f
         }
     }
 
-    private fun setupShizuku() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupShizuku() = whenResumed {
         viewModel.shizukuInstalled.collect {
             binding.settingsLowPowerModeErrorShizuku.isVisible = !it
         }
     }
 
-    private fun setupShizukuButton() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupShizukuButton() = whenResumed {
         binding.settingsLowPowerModeErrorButtonShizuku.onClicked().collect {
             viewModel.onShizukuClicked(requireContext())
         }
     }
 
-    private fun setupSuiButton() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupSuiButton() = whenResumed {
         binding.settingsLowPowerModeErrorButtonSui.onClicked().collect {
             viewModel.onSuiClicked()
         }
@@ -98,13 +99,13 @@ class SettingsNativeModeFragment: BoundFragment<FragmentSettingsNativeModeBindin
         applyBottomInsets(binding.root)
     }
 
-    private fun setupToastBus() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    private fun setupToastBus() = whenResumed {
         viewModel.toastBus.collect {
             Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
         }
     }
 
-    private fun setupNotification() = lifecycleScope.launchWhenCreated {
+    private fun setupNotification() = lifecycle.whenCreated {
         viewModel.setupNotificationBus.collect {
             showSetupNotification()
         }

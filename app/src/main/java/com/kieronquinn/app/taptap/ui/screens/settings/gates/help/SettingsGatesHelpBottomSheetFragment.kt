@@ -4,13 +4,12 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
-import androidx.lifecycle.lifecycleScope
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.databinding.FragmentSettingsGatesHelpBinding
 import com.kieronquinn.app.taptap.ui.base.BaseBottomSheetFragment
 import com.kieronquinn.app.taptap.utils.extensions.onApplyInsets
 import com.kieronquinn.app.taptap.utils.extensions.onClicked
-import kotlinx.coroutines.flow.collect
+import com.kieronquinn.app.taptap.utils.extensions.whenResumed
 
 class SettingsGatesHelpBottomSheetFragment: BaseBottomSheetFragment<FragmentSettingsGatesHelpBinding>(FragmentSettingsGatesHelpBinding::inflate) {
 
@@ -34,7 +33,7 @@ class SettingsGatesHelpBottomSheetFragment: BaseBottomSheetFragment<FragmentSett
 
     private fun setupButtons(){
         binding.settingsGatesHelpPositive.setTextColor(accent)
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        whenResumed {
             binding.settingsGatesHelpPositive.onClicked().collect {
                 dismiss()
             }

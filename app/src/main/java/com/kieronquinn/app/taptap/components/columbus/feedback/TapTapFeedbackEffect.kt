@@ -2,10 +2,10 @@ package com.kieronquinn.app.taptap.components.columbus.feedback
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.lifecycleScope
 import com.google.android.columbus.feedback.FeedbackEffect
 import com.google.android.columbus.sensors.GestureSensor
 import com.kieronquinn.app.taptap.utils.extensions.runOnDestroy
+import com.kieronquinn.app.taptap.utils.extensions.whenCreated
 import org.koin.core.component.KoinComponent
 
 /**
@@ -29,7 +29,7 @@ abstract class TapTapFeedbackEffect(private val serviceLifecycle: Lifecycle): Fe
         detectionProperties: GestureSensor.DetectionProperties?
     ) {
         if(detectionProperties == null) return
-        lifecycleScope.launchWhenCreated {
+        lifecycle.whenCreated {
             when(flags){
                 //Progress
                 2 -> onProgress(detectionProperties)

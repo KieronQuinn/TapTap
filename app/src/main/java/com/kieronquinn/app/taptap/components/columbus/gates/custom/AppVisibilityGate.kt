@@ -5,7 +5,11 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import com.kieronquinn.app.taptap.components.accessibility.TapTapAccessibilityRouter
 import com.kieronquinn.app.taptap.components.columbus.gates.TapTapGate
-import kotlinx.coroutines.flow.*
+import com.kieronquinn.app.taptap.utils.extensions.whenCreated
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import org.koin.core.component.inject
 
 class AppVisibilityGate(
@@ -20,7 +24,7 @@ class AppVisibilityGate(
         .stateIn(lifecycleScope, SharingStarted.Eagerly, false)
 
     init {
-        lifecycleScope.launchWhenCreated {
+        lifecycle.whenCreated {
             appOpen.collect {
                 notifyListeners()
             }

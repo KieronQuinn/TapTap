@@ -10,19 +10,31 @@ import android.view.ViewGroup
 import android.widget.CompoundButton
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isVisible
-import androidx.lifecycle.LifecycleCoroutineScope
-import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.kieronquinn.app.taptap.BuildConfig
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.components.settings.TapTapSettings
 import com.kieronquinn.app.taptap.components.settings.invert
-import com.kieronquinn.app.taptap.databinding.*
+import com.kieronquinn.app.taptap.databinding.ItemSettingsHeaderBinding
+import com.kieronquinn.app.taptap.databinding.ItemSettingsInfoItemBinding
+import com.kieronquinn.app.taptap.databinding.ItemSettingsMoreAboutBinding
+import com.kieronquinn.app.taptap.databinding.ItemSettingsSliderItemBinding
+import com.kieronquinn.app.taptap.databinding.ItemSettingsSwitchItemBinding
+import com.kieronquinn.app.taptap.databinding.ItemSettingsTextItemBinding
 import com.kieronquinn.app.taptap.ui.screens.settings.generic.GenericSettingsViewModel.SettingsItem
 import com.kieronquinn.app.taptap.ui.screens.settings.generic.GenericSettingsViewModel.SettingsItem.SettingsItemType
 import com.kieronquinn.app.taptap.ui.views.LifecycleAwareRecyclerView
-import com.kieronquinn.app.taptap.utils.extensions.*
+import com.kieronquinn.app.taptap.utils.extensions.addRipple
+import com.kieronquinn.app.taptap.utils.extensions.addRippleForeground
+import com.kieronquinn.app.taptap.utils.extensions.applyBackgroundTint
+import com.kieronquinn.app.taptap.utils.extensions.onChanged
+import com.kieronquinn.app.taptap.utils.extensions.onClicked
+import com.kieronquinn.app.taptap.utils.extensions.removeRipple
+import com.kieronquinn.app.taptap.utils.extensions.removeRippleForeground
+import com.kieronquinn.app.taptap.utils.extensions.setTooltipColor
+import com.kieronquinn.app.taptap.utils.extensions.whenResumed
 import com.kieronquinn.monetcompat.core.MonetCompat
 import com.kieronquinn.monetcompat.extensions.views.applyMonet
 import me.saket.bettermovementmethod.BetterLinkMovementMethod
@@ -122,23 +134,23 @@ abstract class GenericSettingsAdapter(
         when (holder) {
             is ViewHolder.Text -> holder.binding.setupTextItem(
                 item as SettingsItem.Text,
-                holder.lifecycleScope
+                holder.lifecycle
             )
             is ViewHolder.Switch -> holder.binding.setupSwitchItem(
                 item as SettingsItem.Switch,
-                holder.lifecycleScope
+                holder.lifecycle
             )
             is ViewHolder.Slider -> holder.binding.setupSliderItem(
                 item as SettingsItem.Slider,
-                holder.lifecycleScope
+                holder.lifecycle
             )
             is ViewHolder.Info -> holder.binding.setupInfoItem(
                 item as SettingsItem.Info,
-                holder.lifecycleScope
+                holder.lifecycle
             )
             is ViewHolder.About -> holder.binding.setupAboutItem(
                 item as SettingsItem.About,
-                holder.lifecycleScope
+                holder.lifecycle
             )
             is ViewHolder.Header -> holder.binding.setupHeaderItem(
                 item as SettingsItem.Header
@@ -152,7 +164,7 @@ abstract class GenericSettingsAdapter(
 
     private fun ItemSettingsTextItemBinding.setupTextItem(
         item: SettingsItem.Text,
-        scope: LifecycleCoroutineScope
+        lifecycle: Lifecycle
     ) {
         val context = root.context
         itemSettingsTextTitle.text = when {
@@ -195,7 +207,7 @@ abstract class GenericSettingsAdapter(
             root.removeRipple()
         }
         itemSettingsTextIcon.setImageResource(item.icon)
-        scope.launchWhenResumed {
+        lifecycle.whenResumed {
             item.onClick?.let {
                 root.onClicked().collect {
                     if (!isEnabled) return@collect
@@ -207,7 +219,7 @@ abstract class GenericSettingsAdapter(
 
     private fun ItemSettingsSwitchItemBinding.setupSwitchItem(
         item: SettingsItem.Switch,
-        scope: LifecycleCoroutineScope
+        lifecycle: Lifecycle
     ) {
         val context = root.context
         itemSettingsSwitchTitle.text = when {
@@ -232,18 +244,18 @@ abstract class GenericSettingsAdapter(
         itemSettingsSwitchTitle.alpha = if (isEnabled) 1f else 0.5f
         itemSettingsSwitchContent.alpha = if (isEnabled) 1f else 0.5f
         itemSettingsSwitchIcon.alpha = if (isEnabled) 1f else 0.5f
-        scope.launchWhenResumed {
+        lifecycle.whenResumed {
             item.setting.asFlow().collect {
                 itemSettingsSwitchSwitch.isChecked = it
             }
         }
-        scope.launchWhenResumed {
+        lifecycle.whenResumed {
             root.onClicked().collect {
                 if (!isEnabled) return@collect
                 item.setting.invert()
             }
         }
-        scope.launchWhenResumed {
+        lifecycle.whenResumed {
             itemSettingsSwitchSwitch.onClicked().collect {
                 if (!isEnabled) return@collect
                 if (item.setting is TapTapSettings.FakeTapTapSetting) {
@@ -257,7 +269,7 @@ abstract class GenericSettingsAdapter(
 
     private fun ItemSettingsSliderItemBinding.setupSliderItem(
         item: SettingsItem.Slider,
-        scope: LifecycleCoroutineScope
+        lifecycle: Lifecycle
     ) {
         val context = root.context
         itemSettingsSliderTitle.text = when {
@@ -285,12 +297,12 @@ abstract class GenericSettingsAdapter(
             setLabelFormatter(item.labelFormatter)
             setTooltipColor(monet.getAccentColor(context, false))
         }
-        scope.launchWhenResumed {
+        lifecycle.whenResumed {
             item.setting.asFlow().collect {
                 itemSettingsSliderSlider.value = it.toFloat()
             }
         }
-        scope.launchWhenResumed {
+        lifecycle.whenResumed {
             itemSettingsSliderSlider.onChanged().collect {
                 item.setting.set(it)
             }
@@ -299,7 +311,7 @@ abstract class GenericSettingsAdapter(
 
     private fun ItemSettingsInfoItemBinding.setupInfoItem(
         item: SettingsItem.Info,
-        scope: LifecycleCoroutineScope
+        lifecycle: Lifecycle
     ) {
         val context = root.context
         Linkify.addLinks(itemSettingsInfoContent, Linkify.ALL)
@@ -334,7 +346,7 @@ abstract class GenericSettingsAdapter(
         }else{
             itemSettingsInfoIcon.setImageResource(R.drawable.ic_about)
         }
-        scope.launchWhenResumed {
+        lifecycle.whenResumed {
             itemSettingsInfoDismiss.onClicked().collect {
                 item.onDismissClicked?.invoke()
             }
@@ -344,7 +356,7 @@ abstract class GenericSettingsAdapter(
         }else{
             root.removeRippleForeground()
         }
-        scope.launchWhenResumed {
+        lifecycle.whenResumed {
             item.onClick?.let {
                 root.onClicked().collect {
                     item.onClick.invoke()
@@ -355,7 +367,7 @@ abstract class GenericSettingsAdapter(
 
     private fun ItemSettingsMoreAboutBinding.setupAboutItem(
         item: SettingsItem.About,
-        scope: LifecycleCoroutineScope
+        lifecycle: Lifecycle
     ) {
         val context = root.context
         val content = context.getString(R.string.about_version, BuildConfig.VERSION_NAME)
@@ -372,7 +384,7 @@ abstract class GenericSettingsAdapter(
             with(chip.key){
                 chipBackgroundColor = chipBackground
                 typeface = googleSansTextMedium
-                scope.launchWhenResumed {
+                lifecycle.whenResumed {
                     onClicked().collect {
                         chip.value()
                     }

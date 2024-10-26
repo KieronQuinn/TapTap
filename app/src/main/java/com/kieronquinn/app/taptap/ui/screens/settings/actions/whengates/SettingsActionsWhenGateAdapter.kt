@@ -3,13 +3,13 @@ package com.kieronquinn.app.taptap.ui.screens.settings.actions.whengates
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.lifecycle.coroutineScope
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.databinding.ItemSettingsActionsWhenGateBinding
 import com.kieronquinn.app.taptap.ui.screens.settings.actions.whengates.SettingsActionsWhenGatesViewModel.SettingsWhenGatesItem
 import com.kieronquinn.app.taptap.ui.views.LifecycleAwareRecyclerView
 import com.kieronquinn.app.taptap.utils.extensions.applyBackgroundTint
 import com.kieronquinn.app.taptap.utils.extensions.onLongClicked
+import com.kieronquinn.app.taptap.utils.extensions.whenResumed
 import com.kieronquinn.monetcompat.core.MonetCompat
 
 class SettingsActionsWhenGatesAdapter(
@@ -81,7 +81,7 @@ class SettingsActionsWhenGatesAdapter(
         itemSettingsGateTitle.text = gateLabel
         itemSettingsGateContent.text = item.whenGate.gate.description
         itemSettingsGateIcon.setImageResource(gate.gate.gate.iconRes)
-        holder.lifecycle.coroutineScope.launchWhenResumed {
+        holder.lifecycle.whenResumed {
             root.onLongClicked().collect {
                 val isSelected = item.isSelected
                 clearSelection()

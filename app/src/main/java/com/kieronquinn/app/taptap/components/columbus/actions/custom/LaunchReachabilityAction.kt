@@ -12,7 +12,12 @@ import com.kieronquinn.app.taptap.components.columbus.actions.TapTapAction
 import com.kieronquinn.app.taptap.components.columbus.gates.TapTapWhenGate
 import com.kieronquinn.app.taptap.ui.activities.ReachabilityActivity
 import com.kieronquinn.app.taptap.utils.extensions.isActivityRunning
-import kotlinx.coroutines.flow.*
+import com.kieronquinn.app.taptap.utils.extensions.whenCreated
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import org.koin.core.component.inject
 
 class LaunchReachabilityAction(
@@ -32,7 +37,7 @@ class LaunchReachabilityAction(
         .stateIn(lifecycleScope, SharingStarted.Eagerly, "")
 
     init {
-        lifecycleScope.launchWhenCreated {
+        lifecycle.whenCreated {
             currentApp.collect()
         }
     }

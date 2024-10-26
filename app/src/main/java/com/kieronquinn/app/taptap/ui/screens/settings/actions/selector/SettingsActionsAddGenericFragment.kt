@@ -13,7 +13,6 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.setFragmentResultListener
-import androidx.lifecycle.lifecycleScope
 import androidx.viewbinding.ViewBinding
 import com.google.gson.Gson
 import com.kieronquinn.app.taptap.BuildConfig
@@ -37,7 +36,15 @@ import com.kieronquinn.app.taptap.ui.screens.settings.shared.selector.quicksetti
 import com.kieronquinn.app.taptap.ui.screens.settings.shared.selector.shortcuts.SettingsSharedShortcutsSelectorFragment
 import com.kieronquinn.app.taptap.ui.screens.settings.shared.shizuku.SettingsSharedShizukuPermissionFlowFragment
 import com.kieronquinn.app.taptap.ui.screens.settings.shared.snapchat.SettingsSharedSnapchatFragment
-import com.kieronquinn.app.taptap.utils.extensions.*
+import com.kieronquinn.app.taptap.utils.extensions.doesHaveNotificationPolicyAccess
+import com.kieronquinn.app.taptap.utils.extensions.doesHaveTaskerPermission
+import com.kieronquinn.app.taptap.utils.extensions.getAccessibilityIntent
+import com.kieronquinn.app.taptap.utils.extensions.getAppInfoIntent
+import com.kieronquinn.app.taptap.utils.extensions.getPermissionName
+import com.kieronquinn.app.taptap.utils.extensions.getRequiredPermissions
+import com.kieronquinn.app.taptap.utils.extensions.isPermissionDenied
+import com.kieronquinn.app.taptap.utils.extensions.isServiceRunning
+import com.kieronquinn.app.taptap.utils.extensions.whenResumed
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.first
@@ -61,13 +68,13 @@ abstract class SettingsActionsAddGenericFragment<T : ViewBinding>(inflate: (Layo
     private val onResume = MutableSharedFlow<Unit>()
     private val permissionResponse = MutableSharedFlow<Map<String, Boolean>>()
     private val permissionResponseContract = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        whenResumed {
             permissionResponse.emit(it)
         }
     }
     private val taskerResponseContract = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
-            val taskName = it.data?.dataString ?: return@launchWhenResumed //Drop if task not picked
+        whenResumed {
+            val taskName = it.data?.dataString ?: return@whenResumed //Drop if task not picked
             handleAction(TapTapActionDirectory.TASKER_TASK, taskName, isReturningData = true)
         }
     }
@@ -79,7 +86,7 @@ abstract class SettingsActionsAddGenericFragment<T : ViewBinding>(inflate: (Layo
         accessibilityRouter.bringToFrontOnGestureAccessibilityStart(this)
     }
 
-    protected fun onActionClicked(action: TapTapActionDirectory) = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    protected fun onActionClicked(action: TapTapActionDirectory) = whenResumed {
         handleAction(action)
     }
 
@@ -283,7 +290,7 @@ abstract class SettingsActionsAddGenericFragment<T : ViewBinding>(inflate: (Layo
         return requireContext().doesHaveTaskerPermission()
     }
 
-    protected fun showSnackbarForChip(requirement: ActionRequirement.UserDisplayedActionRequirement) = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+    protected fun showSnackbarForChip(requirement: ActionRequirement.UserDisplayedActionRequirement) = whenResumed {
         sharedViewModel.showSnackbar(getText(requirement.desc))
     }
 
@@ -291,33 +298,33 @@ abstract class SettingsActionsAddGenericFragment<T : ViewBinding>(inflate: (Layo
         setFragmentResultListener(SettingsSharedAppShortcutsSelectorFragment.FRAGMENT_RESULT_KEY_APP_SHORTCUT) { key, bundle ->
             val selectedAppShortcut = bundle.getParcelable<AppShortcutData>(
                 SettingsSharedAppShortcutsSelectorFragment.FRAGMENT_RESULT_KEY_APP_SHORTCUT) ?: return@setFragmentResultListener
-            viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+            whenResumed {
                 handleAction(TapTapActionDirectory.LAUNCH_APP_SHORTCUT, gson.toJson(selectedAppShortcut), isReturningRequirement = true)
             }
         }
         setFragmentResultListener(SettingsSharedShortcutsSelectorFragment.FRAGMENT_RESULT_KEY_SHORTCUT) { key, bundle ->
             val serializedShortcut = bundle.getString(SettingsSharedShortcutsSelectorFragment.FRAGMENT_RESULT_KEY_SHORTCUT) ?: return@setFragmentResultListener
-            viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+            whenResumed {
                 handleAction(TapTapActionDirectory.LAUNCH_SHORTCUT, serializedShortcut, isReturningRequirement = true)
             }
         }
         setFragmentResultListener(SettingsSharedQuickSettingSelectorFragment.FRAGMENT_RESULT_KEY_QUICK_SETTING) { key, bundle ->
             val serializedTile = bundle.getParcelable<QuickSettingsRepository.QuickSetting>(SettingsSharedQuickSettingSelectorFragment.FRAGMENT_RESULT_KEY_QUICK_SETTING) ?: return@setFragmentResultListener
-            viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+            whenResumed {
                 handleAction(TapTapActionDirectory.QUICK_SETTING, serializedTile.component.flattenToString(), isReturningRequirement = true)
             }
         }
         setFragmentResultListener(SettingsSharedPackageSelectorFragment.FRAGMENT_RESULT_KEY_PACKAGE) { key, bundle ->
             val action = bundle.getParcelable<SharedArgument>(ARG_NAME_SHARED_ARGUMENT)?.action ?: return@setFragmentResultListener
             val packageName = bundle.getString(SettingsSharedPackageSelectorFragment.FRAGMENT_RESULT_KEY_PACKAGE) ?: return@setFragmentResultListener
-            viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+            whenResumed {
                 handleAction(action, packageName, isReturningRequirement = true)
             }
         }
         setFragmentResultListener(SettingsSharedShizukuPermissionFlowFragment.FRAGMENT_RESULT_KEY_SHIZUKU_PERMISSION) { key, bundle ->
             val permissionGranted = bundle.getBoolean(SettingsSharedShizukuPermissionFlowFragment.FRAGMENT_RESULT_KEY_SHIZUKU_PERMISSION, false)
             val action = bundle.getParcelable<SharedArgument>(ARG_NAME_SHARED_ARGUMENT)?.action ?: return@setFragmentResultListener
-            viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+            whenResumed {
                 if(permissionGranted) {
                     handleAction(action, isReturningRequirement = true)
                 } //Drop if permission is denied
@@ -326,7 +333,7 @@ abstract class SettingsActionsAddGenericFragment<T : ViewBinding>(inflate: (Layo
         setFragmentResultListener(SettingsSharedSnapchatFragment.FRAGMENT_RESULT_KEY_SNAPCHAT) { key, bundle ->
             val available = bundle.getBoolean(SettingsSharedSnapchatFragment.FRAGMENT_RESULT_KEY_SNAPCHAT, false)
             val action = bundle.getParcelable<SharedArgument>(ARG_NAME_SHARED_ARGUMENT)?.action ?: return@setFragmentResultListener
-            viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+            whenResumed {
                 if(available) {
                     handleAction(action, isReturningRequirement = true)
                 } //Drop if not available
@@ -336,7 +343,7 @@ abstract class SettingsActionsAddGenericFragment<T : ViewBinding>(inflate: (Layo
 
     override fun onResume() {
         super.onResume()
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        whenResumed {
             onResume.emit(Unit)
         }
     }

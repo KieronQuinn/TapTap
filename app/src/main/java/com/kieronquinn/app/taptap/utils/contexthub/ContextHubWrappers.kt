@@ -101,22 +101,33 @@ class ContextHubClientCallbackRemoteToLocalWrapper(
     override fun onHubReset(client: ContextHubClient) {
         try {
             remote.onHubReset(client.toInterface())
-        }catch (e: NullPointerException){
-            e.printStackTrace()
-            //Occasional system bug on A13
+        }catch (e: Exception){
+            //Died
         }
     }
 
     override fun onMessageFromNanoApp(client: ContextHubClient, message: NanoAppMessage) {
-        remote.onMessageFromNanoApp(client.toInterface(), message)
+        try {
+            remote.onMessageFromNanoApp(client.toInterface(), message)
+        }catch (e: Exception) {
+            //Died
+        }
     }
 
     override fun onNanoAppAborted(client: ContextHubClient, nanoAppId: Long, abortCode: Int) {
-        remote.onNanoAppAborted(client.toInterface(), nanoAppId, abortCode)
+        try {
+            remote.onNanoAppAborted(client.toInterface(), nanoAppId, abortCode)
+        }catch (e: Exception) {
+            //Died
+        }
     }
 
     override fun onNanoAppLoaded(client: ContextHubClient, nanoAppId: Long) {
-        remote.onNanoAppLoaded(client.toInterface(), nanoAppId)
+        try {
+            remote.onNanoAppLoaded(client.toInterface(), nanoAppId)
+        }catch (e: Exception) {
+            //Died
+        }
     }
 
 }

@@ -10,7 +10,12 @@ import com.kieronquinn.app.taptap.components.columbus.gates.TapTapGate
 import com.kieronquinn.app.taptap.utils.extensions.getSettingAsFlow
 import com.kieronquinn.app.taptap.utils.extensions.isKeyboardOpen
 import com.kieronquinn.app.taptap.utils.extensions.secureStringConverter
-import kotlinx.coroutines.flow.*
+import com.kieronquinn.app.taptap.utils.extensions.whenCreated
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import org.koin.core.component.inject
 
 class KeyboardVisibilityGate(
@@ -34,7 +39,7 @@ class KeyboardVisibilityGate(
     }.stateIn(lifecycleScope, SharingStarted.Eagerly, false)
 
     init {
-        lifecycleScope.launchWhenCreated {
+        lifecycle.whenCreated {
             keyboardOpen.collect {
                 notifyListeners()
             }

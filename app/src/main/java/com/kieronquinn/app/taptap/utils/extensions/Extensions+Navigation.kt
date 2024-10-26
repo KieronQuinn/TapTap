@@ -1,5 +1,7 @@
 package com.kieronquinn.app.taptap.utils.extensions
 
+import android.annotation.SuppressLint
+import androidx.activity.OnBackPressedCallback
 import androidx.navigation.NavController
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.callbackFlow
@@ -17,7 +19,14 @@ fun NavController.onDestinationChanged() = callbackFlow {
     }
 }
 
+@SuppressLint("RestrictedApi")
 fun NavController.hasBackAvailable(): Boolean {
     //Seems to include the root
-    return backQueue.size > 2
+    return currentBackStack.value.size > 2
+}
+
+fun NavController.setOnBackPressedCallback(callback: OnBackPressedCallback) {
+    NavController::class.java.getDeclaredField("onBackPressedCallback").apply {
+        isAccessible = true
+    }.set(this, callback)
 }

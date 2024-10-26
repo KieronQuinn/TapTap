@@ -6,11 +6,11 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
-import androidx.lifecycle.lifecycleScope
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.ui.screens.root.RootSharedViewModel
 import com.kieronquinn.app.taptap.utils.extensions.EXTRA_KEY_IS_FROM_COLUMBUS
 import com.kieronquinn.app.taptap.utils.extensions.delayPreDrawUntilFlow
+import com.kieronquinn.app.taptap.utils.extensions.whenCreated
 import com.kieronquinn.app.taptap.work.TapTapUpdateCheckWorker
 import com.kieronquinn.monetcompat.app.MonetCompatActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -33,7 +33,7 @@ class MainActivity: MonetCompatActivity() {
             //TODO move when android.core:splashscreen supports animations
             findViewById<View>(android.R.id.content).delayPreDrawUntilFlow(rootViewModel.appReady, lifecycle)
         }
-        lifecycleScope.launchWhenCreated {
+        lifecycle.whenCreated {
             monet.awaitMonetReady()
             setContentView(R.layout.activity_main)
         }
